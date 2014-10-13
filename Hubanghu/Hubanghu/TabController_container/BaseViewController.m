@@ -33,6 +33,13 @@
     //[self setNavgtionBarBg];
     self.navigationController.navigationBar.barTintColor = KColor;
     self.navigationController.navigationBar.alpha = 1;
+    NSDictionary *attributes=[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil];
+    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
+    
+    if (self != [self.navigationController.viewControllers objectAtIndex:0])
+    {
+        [self setLeftButton:[UIImage imageNamed:@"back"] title:nil target:self action:@selector(back)];
+    }
 
     if(kSystemVersion >= 7.0)
     {
@@ -81,6 +88,10 @@
             self.view.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-20);
         }
     }
+}
+- (void)back
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
