@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB17314C19EBB94C008463E1 /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17314A19EBB94C008463E1 /* OrderTableViewCell.m */; };
 		FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252619E7B861008AB6EC /* JsonToModel.m */; };
 		FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252819E7B861008AB6EC /* NSFileManager_Additions.m */; };
 		FF15253219E7B861008AB6EC /* SCach.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252A19E7B861008AB6EC /* SCach.m */; };
@@ -76,6 +77,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB17314919EBB94C008463E1 /* OrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderTableViewCell.h; path = OrderTableViewCell/OrderTableViewCell.h; sourceTree = "<group>"; };
+		AB17314A19EBB94C008463E1 /* OrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderTableViewCell.m; path = OrderTableViewCell/OrderTableViewCell.m; sourceTree = "<group>"; };
 		FF15252519E7B861008AB6EC /* JsonToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonToModel.h; sourceTree = "<group>"; };
 		FF15252619E7B861008AB6EC /* JsonToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonToModel.m; sourceTree = "<group>"; };
 		FF15252719E7B861008AB6EC /* NSFileManager_Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManager_Additions.h; sourceTree = "<group>"; };
@@ -214,6 +217,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB17314819EBB910008463E1 /* OrderTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				AB17314919EBB94C008463E1 /* OrderTableViewCell.h */,
+				AB17314A19EBB94C008463E1 /* OrderTableViewCell.m */,
+			);
+			name = OrderTableViewCell;
+			sourceTree = "<group>";
+		};
 		FF15252419E7B861008AB6EC /* SCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +352,7 @@
 		FF21CE9319E65FD4005007B7 /* ThirdViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AB17314819EBB910008463E1 /* OrderTableViewCell */,
 				FF21CE9C19E66054005007B7 /* ThirdViewController.h */,
 				FF21CE9D19E66054005007B7 /* ThirdViewController.m */,
 			);
@@ -664,6 +677,7 @@
 			files = (
 				FF15253419E7B861008AB6EC /* ThreadSafeMutableDictionary.m in Sources */,
 				FF21CF1919E66144005007B7 /* UIImage+GIF.m in Sources */,
+				AB17314C19EBB94C008463E1 /* OrderTableViewCell.m in Sources */,
 				FF21CF2119E66144005007B7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				FF21CE9B19E66030005007B7 /* SecondViewController.m in Sources */,
 				FF21CEA419E660CC005007B7 /* BaseViewController.m in Sources */,
