@@ -31,6 +31,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     //[self setNavgtionBarBg];
+    self.navigationController.navigationBar.barTintColor = KColor;
+    self.navigationController.navigationBar.alpha = 1;
 
     if(kSystemVersion >= 7.0)
     {
