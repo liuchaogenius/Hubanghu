@@ -62,6 +62,7 @@
 		FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CF2919E66225005007B7 /* ViewInteraction.m */; };
 		FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF21CF2B19E66238005007B7 /* QuartzCore.framework */; };
 		FF21CF3219E68E28005007B7 /* LeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CF3119E68E28005007B7 /* LeftView.m */; };
+		FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +191,8 @@
 		FF21CF3019E68E28005007B7 /* LeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftView.h; sourceTree = "<group>"; };
 		FF21CF3119E68E28005007B7 /* LeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftView.m; sourceTree = "<group>"; };
 		FF21CF3319E68F5F005007B7 /* MessageDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDefine.h; sourceTree = "<group>"; };
+		FF74A83B19EBC4B0006AADD8 /* SLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLocationManager.h; sourceTree = "<group>"; };
+		FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLocationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +368,7 @@
 		FF21CEA719E66144005007B7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				FF74A83A19EBC4B0006AADD8 /* LocationManager */,
 				FF15252419E7B861008AB6EC /* SCache */,
 				FF21CF2719E66225005007B7 /* ViewInteraction */,
 				FF21CEA819E66144005007B7 /* AFNetworking */,
@@ -550,6 +554,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FF74A83A19EBC4B0006AADD8 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				FF74A83B19EBC4B0006AADD8 /* SLocationManager.h */,
+				FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */,
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -673,6 +686,7 @@
 				FF21CF0A19E66144005007B7 /* NetManager.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
 				FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */,
+				FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */,
 				FF21CF1019E66144005007B7 /* NSData+ImageContentType.m in Sources */,
 				FF21CF1419E66144005007B7 /* SDWebImageDownloader.m in Sources */,
 				FF21CF0E19E66144005007B7 /* JSONKit.m in Sources */,
