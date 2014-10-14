@@ -24,6 +24,7 @@
 		FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252D19E7B861008AB6EC /* ThreadSafeMutableArry.m */; };
 		FF15253419E7B861008AB6EC /* ThreadSafeMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252F19E7B861008AB6EC /* ThreadSafeMutableDictionary.m */; };
 		FF15253619E7D354008AB6EC /* testImg111@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF15253519E7D354008AB6EC /* testImg111@3x.png */; };
+		FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1FC27419ED1A2F00C362F7 /* STAlerView.m */; };
 		FF21CE7019E64B5A005007B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE6F19E64B5A005007B7 /* main.m */; };
 		FF21CE7319E64B5A005007B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE7219E64B5A005007B7 /* AppDelegate.m */; };
 		FF21CE7519E64B5A005007B7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF21CE7419E64B5A005007B7 /* Images.xcassets */; };
@@ -117,6 +118,8 @@
 		FF15252E19E7B861008AB6EC /* ThreadSafeMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadSafeMutableDictionary.h; sourceTree = "<group>"; };
 		FF15252F19E7B861008AB6EC /* ThreadSafeMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadSafeMutableDictionary.m; sourceTree = "<group>"; };
 		FF15253519E7D354008AB6EC /* testImg111@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testImg111@3x.png"; sourceTree = "<group>"; };
+		FF1FC27319ED1A2F00C362F7 /* STAlerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlerView.h; sourceTree = "<group>"; };
+		FF1FC27419ED1A2F00C362F7 /* STAlerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlerView.m; sourceTree = "<group>"; };
 		FF21CE6A19E64B5A005007B7 /* Hubanghu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hubanghu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF21CE6E19E64B5A005007B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF21CE6F19E64B5A005007B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -336,6 +339,15 @@
 				FF15252F19E7B861008AB6EC /* ThreadSafeMutableDictionary.m */,
 			);
 			path = ThreadSafeDict;
+			sourceTree = "<group>";
+		};
+		FF1FC27219ED1A1600C362F7 /* STALertView */ = {
+			isa = PBXGroup;
+			children = (
+				FF1FC27319ED1A2F00C362F7 /* STAlerView.h */,
+				FF1FC27419ED1A2F00C362F7 /* STAlerView.m */,
+			);
+			path = STALertView;
 			sourceTree = "<group>";
 		};
 		FF21CE6119E64B5A005007B7 = {
@@ -647,6 +659,7 @@
 		FF21CF2E19E68C36005007B7 /* ToolUtil */ = {
 			isa = PBXGroup;
 			children = (
+				FF1FC27219ED1A1600C362F7 /* STALertView */,
 			);
 			name = ToolUtil;
 			sourceTree = "<group>";
@@ -791,6 +804,7 @@
 				FF21CF1F19E66144005007B7 /* DataCenterDeal.mm in Sources */,
 				FF21CF0C19E66144005007B7 /* FBKVOController.m in Sources */,
 				AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */,
+				FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */,
 				FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */,
 				FF21CF1819E66144005007B7 /* UIButton+WebCache.m in Sources */,
 				FF21CF3219E68E28005007B7 /* LeftView.m in Sources */,
