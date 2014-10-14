@@ -10,4 +10,5 @@
 
 @interface ThirdViewController : BaseViewController
 
+- (instancetype)initWithCurrentTab:(int)aCurrentTab;
 @end

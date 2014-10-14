@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 striveliu. All rights reserved.
 //
 
-#import "OrderTableViewCell.h"
+#import "HbhOrderTableViewCell.h"
 
-@implementation OrderTableViewCell
+@implementation HbhOrderTableViewCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -17,8 +17,8 @@
     self.frame = temFrame;
     
     [self addSubview:self.nameLabel];
-    [self addSubview:self.teacherNameLabel];
-    [self addSubview:self.teacherLabel];
+    [self addSubview:self.workerLabel];
+    [self addSubview:self.workerNameLabel];
     [self addSubview:self.urgentLabel];
     [self addSubview:self.typeLabel];
     [self addSubview:self.orderStateLabel];
@@ -65,26 +65,26 @@
     return _nameLabel;
 }
 
-- (UILabel *)teacherLabel
+- (UILabel *)workerLabel
 {
-    if (!_teacherLabel) {
-        _teacherLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 50, 20)];
-        _teacherLabel.text = @"安装师傅 :";
-        _teacherLabel.font = kFont10;
-        _teacherLabel.textColor = [UIColor lightGrayColor];
+    if (!_workerLabel) {
+        _workerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 50, 20)];
+        _workerLabel.text = @"安装师傅 :";
+        _workerLabel.font = kFont10;
+        _workerLabel.textColor = [UIColor lightGrayColor];
     }
-    return _teacherLabel;
+    return _workerLabel;
 }
 
-- (UILabel *)teacherNameLabel
+- (UILabel *)workerNameLabel
 {
-    if (!_teacherNameLabel) {
-        _teacherNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 30, 40, 20)];
-        _teacherNameLabel.text = @"某某某";
-        _teacherNameLabel.font = kFont10;
-        _teacherNameLabel.textColor = [UIColor lightGrayColor];
+    if (!_workerNameLabel) {
+        _workerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 30, 40, 20)];
+        _workerNameLabel.text = @"某某某";
+        _workerNameLabel.font = kFont10;
+        _workerNameLabel.textColor = [UIColor lightGrayColor];
     }
-    return _teacherNameLabel;
+    return _workerNameLabel;
 }
 
 - (UILabel *)urgentLabel

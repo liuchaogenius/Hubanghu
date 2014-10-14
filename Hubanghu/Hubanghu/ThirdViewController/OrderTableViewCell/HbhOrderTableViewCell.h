@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OrderTableViewCell : UITableViewCell
+@interface HbhOrderTableViewCell : UITableViewCell
 @property(nonatomic, strong) UILabel *nameLabel;
 @property(nonatomic, strong) UILabel *typeLabel;
-@property(nonatomic, strong) UILabel *teacherLabel;
-@property(nonatomic, strong) UILabel *teacherNameLabel;
+@property(nonatomic, strong) UILabel *workerLabel;
+@property(nonatomic, strong) UILabel *workerNameLabel;
 @property(nonatomic, strong) UILabel *urgentLabel;
 @property(nonatomic, strong) UILabel *priceLabel;
 @property(nonatomic, strong) UILabel *orderStateLabel;

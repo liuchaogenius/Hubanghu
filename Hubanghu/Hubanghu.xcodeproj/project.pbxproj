@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB17314C19EBB94C008463E1 /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17314A19EBB94C008463E1 /* OrderTableViewCell.m */; };
+		AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */; };
+		AB17315C19EBCE35008463E1 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17315A19EBCE35008463E1 /* HbhOrderAppraiseViewController.m */; };
+		AB17315D19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB17315B19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib */; };
+		AB5D5FB719EC1E7700E881E6 /* HbhOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5D5FB619EC1E7700E881E6 /* HbhOrderModel.m */; };
+		AB5D5FBB19EC1EB600E881E6 /* HbhOrderManage.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5D5FBA19EC1EB600E881E6 /* HbhOrderManage.m */; };
+		AB66D37C19ECAC0900518005 /* HbhOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB66D37A19ECAC0900518005 /* HbhOrderDetailViewController.m */; };
+		AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB66D37B19ECAC0900518005 /* HbhOrderDetailViewController.xib */; };
 		FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252619E7B861008AB6EC /* JsonToModel.m */; };
 		FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252819E7B861008AB6EC /* NSFileManager_Additions.m */; };
 		FF15253219E7B861008AB6EC /* SCach.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252A19E7B861008AB6EC /* SCach.m */; };
@@ -77,8 +83,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AB17314919EBB94C008463E1 /* OrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderTableViewCell.h; path = OrderTableViewCell/OrderTableViewCell.h; sourceTree = "<group>"; };
-		AB17314A19EBB94C008463E1 /* OrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderTableViewCell.m; path = OrderTableViewCell/OrderTableViewCell.m; sourceTree = "<group>"; };
+		AB17314919EBB94C008463E1 /* HbhOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HbhOrderTableViewCell.h; path = OrderTableViewCell/HbhOrderTableViewCell.h; sourceTree = "<group>"; };
+		AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HbhOrderTableViewCell.m; path = OrderTableViewCell/HbhOrderTableViewCell.m; sourceTree = "<group>"; };
+		AB17315919EBCE35008463E1 /* HbhOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderAppraiseViewController.h; sourceTree = "<group>"; };
+		AB17315A19EBCE35008463E1 /* HbhOrderAppraiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderAppraiseViewController.m; sourceTree = "<group>"; };
+		AB17315B19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhOrderAppraiseViewController.xib; sourceTree = "<group>"; };
+		AB5D5FB519EC1E7700E881E6 /* HbhOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderModel.h; sourceTree = "<group>"; };
+		AB5D5FB619EC1E7700E881E6 /* HbhOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderModel.m; sourceTree = "<group>"; };
+		AB5D5FB919EC1EB600E881E6 /* HbhOrderManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderManage.h; sourceTree = "<group>"; };
+		AB5D5FBA19EC1EB600E881E6 /* HbhOrderManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderManage.m; sourceTree = "<group>"; };
+		AB66D37919ECAC0900518005 /* HbhOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderDetailViewController.h; sourceTree = "<group>"; };
+		AB66D37A19ECAC0900518005 /* HbhOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderDetailViewController.m; sourceTree = "<group>"; };
+		AB66D37B19ECAC0900518005 /* HbhOrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhOrderDetailViewController.xib; sourceTree = "<group>"; };
 		FF15252519E7B861008AB6EC /* JsonToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonToModel.h; sourceTree = "<group>"; };
 		FF15252619E7B861008AB6EC /* JsonToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonToModel.m; sourceTree = "<group>"; };
 		FF15252719E7B861008AB6EC /* NSFileManager_Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManager_Additions.h; sourceTree = "<group>"; };
@@ -220,10 +236,35 @@
 		AB17314819EBB910008463E1 /* OrderTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				AB17314919EBB94C008463E1 /* OrderTableViewCell.h */,
-				AB17314A19EBB94C008463E1 /* OrderTableViewCell.m */,
+				AB17314919EBB94C008463E1 /* HbhOrderTableViewCell.h */,
+				AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */,
 			);
 			name = OrderTableViewCell;
+			sourceTree = "<group>";
+		};
+		AB5D5FB419EC1E6900E881E6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AB5D5FB519EC1E7700E881E6 /* HbhOrderModel.h */,
+				AB5D5FB619EC1E7700E881E6 /* HbhOrderModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AB5D5FB819EC1E9200E881E6 /* Manage */ = {
+			isa = PBXGroup;
+			children = (
+				AB5D5FB919EC1EB600E881E6 /* HbhOrderManage.h */,
+				AB5D5FBA19EC1EB600E881E6 /* HbhOrderManage.m */,
+			);
+			path = Manage;
+			sourceTree = "<group>";
+		};
+		AB66D37819ECAA6C00518005 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FF15252419E7B861008AB6EC /* SCache */ = {
@@ -352,9 +393,18 @@
 		FF21CE9319E65FD4005007B7 /* ThirdViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AB66D37819ECAA6C00518005 /* View */,
+				AB5D5FB819EC1E9200E881E6 /* Manage */,
+				AB5D5FB419EC1E6900E881E6 /* Model */,
 				AB17314819EBB910008463E1 /* OrderTableViewCell */,
 				FF21CE9C19E66054005007B7 /* ThirdViewController.h */,
 				FF21CE9D19E66054005007B7 /* ThirdViewController.m */,
+				AB17315919EBCE35008463E1 /* HbhOrderAppraiseViewController.h */,
+				AB17315A19EBCE35008463E1 /* HbhOrderAppraiseViewController.m */,
+				AB17315B19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib */,
+				AB66D37919ECAC0900518005 /* HbhOrderDetailViewController.h */,
+				AB66D37A19ECAC0900518005 /* HbhOrderDetailViewController.m */,
+				AB66D37B19ECAC0900518005 /* HbhOrderDetailViewController.xib */,
 			);
 			path = ThirdViewController;
 			sourceTree = "<group>";
@@ -658,6 +708,8 @@
 			files = (
 				FF21CE7519E64B5A005007B7 /* Images.xcassets in Resources */,
 				FF15253619E7D354008AB6EC /* testImg111@3x.png in Resources */,
+				AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */,
+				AB17315D19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,7 +729,7 @@
 			files = (
 				FF15253419E7B861008AB6EC /* ThreadSafeMutableDictionary.m in Sources */,
 				FF21CF1919E66144005007B7 /* UIImage+GIF.m in Sources */,
-				AB17314C19EBB94C008463E1 /* OrderTableViewCell.m in Sources */,
+				AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */,
 				FF21CF2119E66144005007B7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				FF21CE9B19E66030005007B7 /* SecondViewController.m in Sources */,
 				FF21CEA419E660CC005007B7 /* BaseViewController.m in Sources */,
@@ -699,6 +751,8 @@
 				FF21CF1D19E66144005007B7 /* UIImageView+WebCache.m in Sources */,
 				FF21CF0A19E66144005007B7 /* NetManager.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
+				AB5D5FBB19EC1EB600E881E6 /* HbhOrderManage.m in Sources */,
+				AB5D5FB719EC1E7700E881E6 /* HbhOrderModel.m in Sources */,
 				FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */,
 				FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */,
 				FF21CF1019E66144005007B7 /* NSData+ImageContentType.m in Sources */,
@@ -712,6 +766,7 @@
 				FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */,
 				FF21CE9E19E66054005007B7 /* ThirdViewController.m in Sources */,
 				FF21CF0619E66144005007B7 /* AFPropertyListRequestOperation.m in Sources */,
+				AB17315C19EBCE35008463E1 /* HbhOrderAppraiseViewController.m in Sources */,
 				FF21CF1E19E66144005007B7 /* UIView+WebCacheOperation.m in Sources */,
 				FF21CF1219E66144005007B7 /* SDWebImageCompat.m in Sources */,
 				FF21CE7319E64B5A005007B7 /* AppDelegate.m in Sources */,
@@ -719,6 +774,7 @@
 				FF21CF0519E66144005007B7 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				FF21CF0D19E66144005007B7 /* NSData+Base64.m in Sources */,
 				FF21CF1719E66144005007B7 /* SDWebImagePrefetcher.m in Sources */,
+				AB66D37C19ECAC0900518005 /* HbhOrderDetailViewController.m in Sources */,
 				FF21CE7019E64B5A005007B7 /* main.m in Sources */,
 				FF21CF1519E66144005007B7 /* SDWebImageDownloaderOperation.m in Sources */,
 				FF21CEA119E6607B005007B7 /* FourthViewController.m in Sources */,

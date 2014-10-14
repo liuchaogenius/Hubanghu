@@ -8,7 +8,10 @@
 
 #import "ThirdViewController.h"
 #import "SVPullToRefresh.h"
-#import "OrderTableViewCell.h"
+#import "HbhOrderTableViewCell.h"
+#import "HbhOrderDetailViewController.h"
+#import "HbhOrderAppraiseViewController.h"
+#import "HbhOrderManage.h"
 
 typedef enum : NSUInteger {
     currentTabOrderAll = 0,
@@ -17,23 +20,52 @@ typedef enum : NSUInteger {
 } currentTabOrder;
 
 @interface ThirdViewController ()<UITableViewDataSource, UITableViewDelegate>
-@property(nonatomic) int currentTab;//开始的时候是哪个按钮
+@property(nonatomic) int currentTab;//当前页面
+@property(nonatomic) int paramCurrentTab;//传入的当前页面
 @property(nonatomic, strong) UIView *selectedLineView;
 @property(nonatomic, strong) UIView *btnBackView;
 @property(nonatomic, strong) UITableView *showOrderTableView;
+@property(nonatomic, strong) UIView *failView;
 @end
 
 @implementation ThirdViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.hidesBottomBarWhenPushed = YES;
+}
+
+- (void)viewWillDisappear: (BOOL)animated
+{
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+
+- (instancetype)initWithCurrentTab:(int)aCurrentTab
+{
+    self = [super init];
+    self.paramCurrentTab = aCurrentTab;
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBCOLOR(247, 247, 247);
     self.title = @"我的订单";
-    _currentTab = currentTabOrderAppraise;
+    
+    if (!self.paramCurrentTab)
+    {
+        _currentTab = currentTabOrderAll;
+        self.showOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight-66-40-49)];
+    }
+    else
+    {
+        _currentTab = self.paramCurrentTab;
+        self.showOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight-66-40)];
+    }
     
     [self.view addSubview:self.btnBackView];
     
-    self.showOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight-66-40-49)];
     self.showOrderTableView.tableFooterView = [UIView new];
     self.showOrderTableView.delegate = self;
     self.showOrderTableView.dataSource = self;
@@ -41,6 +73,12 @@ typedef enum : NSUInteger {
     [self.view addSubview:self.showOrderTableView];
     
     [self addTableViewTrag];
+    
+    [[HbhOrderManage new] getOrderListSuccBlock:^(NSArray *aArray) {
+        
+    } and:^{
+        
+    }];
 }
 
 #pragma mark 上拉下拉
@@ -117,6 +155,22 @@ typedef enum : NSUInteger {
     return _btnBackView;
 }
 
+- (UIView *)failView
+{
+    if (!_failView) {
+        _failView = [[UIView alloc] init];
+        _failView.frame = self.showOrderTableView.frame;
+        UILabel *failLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-100, kMainScreenHeight/2-100, 200, 50)];
+        failLabel.text = @"暂时没有数据";
+        failLabel.font = kFont14;
+        failLabel.textAlignment = NSTextAlignmentCenter;
+        failLabel.textColor = [UIColor lightGrayColor];
+        [_failView addSubview:failLabel];
+        _failView.backgroundColor = RGBCOLOR(247, 247, 247);
+    }
+    return _failView;
+}
+
 #pragma mark 选中button
 - (void)selectButton:(UIButton *)aBtn
 {
@@ -148,10 +202,10 @@ typedef enum : NSUInteger {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    HbhOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell)
     {
-        cell = [[OrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[HbhOrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     if (_currentTab == currentTabOrderUndone)
     {
@@ -168,6 +222,14 @@ typedef enum : NSUInteger {
 #pragma mark tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_currentTab == currentTabOrderAppraise)
+    {
+        [self.navigationController pushViewController:[HbhOrderAppraiseViewController new] animated:YES];
+    }
+    else if(_currentTab == currentTabOrderUndone)
+    {
+        [self.navigationController pushViewController:[HbhOrderDetailViewController new] animated:YES];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
