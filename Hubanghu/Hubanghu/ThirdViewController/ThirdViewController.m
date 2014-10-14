@@ -12,6 +12,7 @@
 #import "HbhOrderDetailViewController.h"
 #import "HbhOrderAppraiseViewController.h"
 #import "HbhOrderManage.h"
+#import "HbhOrderModel.h"
 
 typedef enum : NSUInteger {
     currentTabOrderAll = 0,
@@ -26,6 +27,8 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) UIView *btnBackView;
 @property(nonatomic, strong) UITableView *showOrderTableView;
 @property(nonatomic, strong) UIView *failView;
+
+@property(nonatomic, strong) NSMutableArray *allOrderArray;
 @end
 
 @implementation ThirdViewController
@@ -66,16 +69,18 @@ typedef enum : NSUInteger {
     
     [self.view addSubview:self.btnBackView];
     
-    self.showOrderTableView.tableFooterView = [UIView new];
+//    self.showOrderTableView.tableFooterView = [UIView new];
     self.showOrderTableView.delegate = self;
     self.showOrderTableView.dataSource = self;
     self.showOrderTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.showOrderTableView.backgroundColor = RGBCOLOR(247, 247, 247);
     [self.view addSubview:self.showOrderTableView];
     
     [self addTableViewTrag];
     
     [[HbhOrderManage new] getOrderListSuccBlock:^(NSArray *aArray) {
-        
+        self.allOrderArray = (NSMutableArray *)aArray;
+        [self.showOrderTableView reloadData];
     } and:^{
         
     }];
@@ -150,6 +155,10 @@ typedef enum : NSUInteger {
             }
         }
         [_btnBackView addSubview:self.selectedLineView];
+        
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 39.5, kMainScreenWidth, 0.5)];
+        lineView.backgroundColor = [UIColor lightGrayColor];
+        [_btnBackView addSubview:lineView];
     }
 
     return _btnBackView;
@@ -192,7 +201,7 @@ typedef enum : NSUInteger {
 #pragma mark tableView datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 15;
+    return self.allOrderArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -207,13 +216,42 @@ typedef enum : NSUInteger {
     {
         cell = [[HbhOrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    if (_currentTab == currentTabOrderUndone)
-    {
-        cell.orderStateLabel.text = @"去付款";
+    HbhOrderModel *model = [self.allOrderArray objectAtIndex:indexPath.row];
+    cell.nameLabel.text = model.name;
+    cell.workerNameLabel.text = model.workerName;
+    if (!model.urgent) {
+        cell.urgentLabel.text = @"";
     }
-    else if(_currentTab == currentTabOrderAppraise)
-    {
-        cell.orderStateLabel.text = @"去评价";
+    cell.priceLabel.text = [NSString stringWithFormat:@"￥%.2f", model.price];
+    switch ((int)model.status) {
+        case 0:
+            cell.orderStateLabel.text = @"去付款";
+            break;
+        case 1:
+            cell.orderStateLabel.text = @"已付款";
+            break;
+        case 2:
+            cell.orderStateLabel.text = @"去评价";
+            break;
+        default:
+            break;
+    }
+    /*0纯装，1拆装，2纯拆，3勘察*/
+    switch ((int)model.mountType) {
+        case 0:
+            cell.typeLabel.text = @"[纯装]";
+            break;
+        case 1:
+            cell.typeLabel.text = @"[拆装]";
+            break;
+        case 2:
+            cell.typeLabel.text = @"[纯拆]";
+            break;
+        case 3:
+            cell.typeLabel.text = @"[勘察]";
+            break;
+        default:
+            break;
     }
     
     return cell;
@@ -222,13 +260,19 @@ typedef enum : NSUInteger {
 #pragma mark tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_currentTab == currentTabOrderAppraise)
-    {
-        [self.navigationController pushViewController:[HbhOrderAppraiseViewController new] animated:YES];
-    }
-    else if(_currentTab == currentTabOrderUndone)
-    {
-        [self.navigationController pushViewController:[HbhOrderDetailViewController new] animated:YES];
+
+    HbhOrderModel *model = [self.allOrderArray objectAtIndex:indexPath.row];
+    switch ((int)model.status) {
+            /*0未付款，1已付款，2待评价*/
+        case 0:
+        case 1:
+            [self.navigationController pushViewController:[[HbhOrderDetailViewController alloc] initWithOrderStatus:model] animated:YES];
+            break;
+        case 2:
+            [self.navigationController pushViewController:[HbhOrderAppraiseViewController new] animated:YES];
+            break;
+        default:
+            break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }

@@ -16,6 +16,14 @@
     NSString *orderListUrl = @"http://114.215.207.196/ApiService/getOrderList.ashx";
     [NetManager requestWith:nil url:orderListUrl method:@"POST" operationKey:nil parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
+        NSMutableArray *dataArray = [successDict objectForKey:@"data"];
+        NSMutableArray *array = [NSMutableArray new];
+        for (int i=0; i<dataArray.count; i++)
+        {
+            HbhOrderModel *model = [HbhOrderModel modelObjectWithDictionary:[dataArray objectAtIndex:i]];
+            [array addObject:model];
+        }
+        aSuccBlock(array);
     } failure:^(NSDictionary *failDict, NSError *error) {
         
     }];

@@ -28,17 +28,26 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) UILabel *showOrderStatusLabel;
 @property(nonatomic, strong) UIButton *movementBtn;
 @property(nonatomic, strong) UIButton *moreBtn;
+
+@property(nonatomic, strong) HbhOrderModel *myModel;
 @end
 
 @implementation HbhOrderDetailViewController
+
+- (instancetype)initWithOrderStatus:(HbhOrderModel *)aModel
+{
+    self = [super init];
+    self.myModel = aModel;
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = RGBCOLOR(247, 247, 247);
     self.title = @"订单详情";
     
-    self.orderStatus = 1;
-    
+    _orderStatus = self.myModel.status;
+    [self setUIWithModel:self.myModel];
     [self.view addSubview:self.topView];
     
     self.movementBtn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth-80, self.priceLabel.top-3, 60, 25)];
@@ -52,7 +61,7 @@ typedef enum : NSUInteger {
     [self.view addSubview:self.moreBtn];
     
     if (self.orderStatus == orderStatusUndone) {
-        self.showOrderStatusLabel.text = @"代付款";
+        self.showOrderStatusLabel.text = @"待付款";
         [self.movementBtn setTitle:@"支付" forState:UIControlStateNormal];
         self.moreBtn.backgroundColor = RGBCOLOR(201, 201, 201);
         [self.moreBtn setTitleColor:RGBCOLOR(115, 115, 115) forState:UIControlStateNormal];
@@ -63,6 +72,40 @@ typedef enum : NSUInteger {
         self.moreBtn.backgroundColor = KColor;
         [self.moreBtn setTitle:@"再次预约" forState:UIControlStateNormal];
     }
+    
+}
+
+- (void)setUIWithModel:(HbhOrderModel *)aModel
+{
+    self.orderTimeLabel.text = [NSString stringWithFormat:@"%.f", aModel.time];
+    self.orderNameLabel.text = aModel.name;
+    /*0纯装，1拆装，2纯拆，3勘察*/
+    switch ((int)aModel.mountType) {
+        case 0:
+            self.orderTypeLabel.text = @"纯装";
+            break;
+        case 1:
+            self.orderTypeLabel.text = @"拆装";
+            break;
+        case 2:
+            self.orderTypeLabel.text = @"纯拆";
+            break;
+        case 3:
+            self.orderTypeLabel.text = @"勘察";
+            break;
+        default:
+            break;
+    }
+    if (!aModel.urgent) {
+        self.urgentLabel.text = @"否";
+    }
+    else
+    {
+        self.urgentLabel.text = @"是";
+    }
+    self.workerNameLabel.text = aModel.workerName;
+    self.remarkLabel.text = aModel.comment;
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f", aModel.price];
     
 }
 

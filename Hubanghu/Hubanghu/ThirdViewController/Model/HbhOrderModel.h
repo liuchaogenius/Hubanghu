@@ -1,7 +1,7 @@
 //
 //  HbhOrderModel.h
 //
-//  Created by  C陈政旭 on 14-10-13
+//  Created by  C陈政旭 on 14-10-14
 //  Copyright (c) 2014 __MyCompanyName__. All rights reserved.
 //
 
@@ -16,7 +16,7 @@
 @property (nonatomic, assign) BOOL urgent;
 @property (nonatomic, assign) double internalBaseClassIdentifier;
 @property (nonatomic, assign) double price;
-@property (nonatomic, strong) NSString *time;
+@property (nonatomic, assign) double time;
 @property (nonatomic, assign) double mountType;
 @property (nonatomic, strong) NSString *comment;
 @property (nonatomic, strong) NSString *name;

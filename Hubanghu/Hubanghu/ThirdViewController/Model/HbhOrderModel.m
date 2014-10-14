@@ -1,7 +1,7 @@
 //
 //  HbhOrderModel.m
 //
-//  Created by  C陈政旭 on 14-10-13
+//  Created by  C陈政旭 on 14-10-14
 //  Copyright (c) 2014 __MyCompanyName__. All rights reserved.
 //
 
@@ -55,7 +55,7 @@ NSString *const kHbhOrderModelName = @"name";
             self.urgent = [[self objectOrNilForKey:kHbhOrderModelUrgent fromDictionary:dict] boolValue];
             self.internalBaseClassIdentifier = [[self objectOrNilForKey:kHbhOrderModelId fromDictionary:dict] doubleValue];
             self.price = [[self objectOrNilForKey:kHbhOrderModelPrice fromDictionary:dict] doubleValue];
-            self.time = [self objectOrNilForKey:kHbhOrderModelTime fromDictionary:dict];
+            self.time = [[self objectOrNilForKey:kHbhOrderModelTime fromDictionary:dict] doubleValue];
             self.mountType = [[self objectOrNilForKey:kHbhOrderModelMountType fromDictionary:dict] doubleValue];
             self.comment = [self objectOrNilForKey:kHbhOrderModelComment fromDictionary:dict];
             self.name = [self objectOrNilForKey:kHbhOrderModelName fromDictionary:dict];
@@ -74,7 +74,7 @@ NSString *const kHbhOrderModelName = @"name";
     [mutableDict setValue:[NSNumber numberWithBool:self.urgent] forKey:kHbhOrderModelUrgent];
     [mutableDict setValue:[NSNumber numberWithDouble:self.internalBaseClassIdentifier] forKey:kHbhOrderModelId];
     [mutableDict setValue:[NSNumber numberWithDouble:self.price] forKey:kHbhOrderModelPrice];
-    [mutableDict setValue:self.time forKey:kHbhOrderModelTime];
+    [mutableDict setValue:[NSNumber numberWithDouble:self.time] forKey:kHbhOrderModelTime];
     [mutableDict setValue:[NSNumber numberWithDouble:self.mountType] forKey:kHbhOrderModelMountType];
     [mutableDict setValue:self.comment forKey:kHbhOrderModelComment];
     [mutableDict setValue:self.name forKey:kHbhOrderModelName];
@@ -106,7 +106,7 @@ NSString *const kHbhOrderModelName = @"name";
     self.urgent = [aDecoder decodeBoolForKey:kHbhOrderModelUrgent];
     self.internalBaseClassIdentifier = [aDecoder decodeDoubleForKey:kHbhOrderModelId];
     self.price = [aDecoder decodeDoubleForKey:kHbhOrderModelPrice];
-    self.time = [aDecoder decodeObjectForKey:kHbhOrderModelTime];
+    self.time = [aDecoder decodeDoubleForKey:kHbhOrderModelTime];
     self.mountType = [aDecoder decodeDoubleForKey:kHbhOrderModelMountType];
     self.comment = [aDecoder decodeObjectForKey:kHbhOrderModelComment];
     self.name = [aDecoder decodeObjectForKey:kHbhOrderModelName];
@@ -121,7 +121,7 @@ NSString *const kHbhOrderModelName = @"name";
     [aCoder encodeBool:_urgent forKey:kHbhOrderModelUrgent];
     [aCoder encodeDouble:_internalBaseClassIdentifier forKey:kHbhOrderModelId];
     [aCoder encodeDouble:_price forKey:kHbhOrderModelPrice];
-    [aCoder encodeObject:_time forKey:kHbhOrderModelTime];
+    [aCoder encodeDouble:_time forKey:kHbhOrderModelTime];
     [aCoder encodeDouble:_mountType forKey:kHbhOrderModelMountType];
     [aCoder encodeObject:_comment forKey:kHbhOrderModelComment];
     [aCoder encodeObject:_name forKey:kHbhOrderModelName];
@@ -138,7 +138,7 @@ NSString *const kHbhOrderModelName = @"name";
         copy.urgent = self.urgent;
         copy.internalBaseClassIdentifier = self.internalBaseClassIdentifier;
         copy.price = self.price;
-        copy.time = [self.time copyWithZone:zone];
+        copy.time = self.time;
         copy.mountType = self.mountType;
         copy.comment = [self.comment copyWithZone:zone];
         copy.name = [self.name copyWithZone:zone];

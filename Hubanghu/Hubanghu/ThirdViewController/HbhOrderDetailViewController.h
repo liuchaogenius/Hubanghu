@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HbhOrderModel.h"
 
 @interface HbhOrderDetailViewController : BaseViewController
 
+- (instancetype)initWithOrderStatus:(HbhOrderModel *)aModel;
 @end
