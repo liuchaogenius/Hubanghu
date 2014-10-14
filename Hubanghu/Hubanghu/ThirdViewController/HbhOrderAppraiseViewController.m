@@ -13,9 +13,17 @@
     UILabel *placeHolderLabel;
 }
 @property(nonatomic, strong) UITextView *appraiseTextView;
+@property(nonatomic, strong) HbhOrderModel *myModel;
 @end
 
 @implementation HbhOrderAppraiseViewController
+
+- (instancetype)initWithModel:(HbhOrderModel *)aModel
+{
+    self = [super init];
+    self.myModel = aModel;
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,6 +47,7 @@
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.appraiseTextView.left, kMainScreenHeight-200, kMainScreenWidth-30, 30)];
     btn.backgroundColor = KColor;
+    btn.layer.cornerRadius = 2.5;
     [btn setTitle:@"确认提交" forState:UIControlStateNormal];
     [self.view addSubview:btn];
 }

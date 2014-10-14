@@ -33,15 +33,15 @@ typedef enum : NSUInteger {
 
 @implementation ThirdViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    self.hidesBottomBarWhenPushed = YES;
-}
-
-- (void)viewWillDisappear: (BOOL)animated
-{
-    self.hidesBottomBarWhenPushed = NO;
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    self.hidesBottomBarWhenPushed = YES;
+//}
+//
+//- (void)viewWillDisappear: (BOOL)animated
+//{
+//    self.hidesBottomBarWhenPushed = NO;
+//}
 
 
 - (instancetype)initWithCurrentTab:(int)aCurrentTab
@@ -262,14 +262,17 @@ typedef enum : NSUInteger {
 {
 
     HbhOrderModel *model = [self.allOrderArray objectAtIndex:indexPath.row];
+    HbhOrderDetailViewController *orderDetailVC = [[HbhOrderDetailViewController alloc] initWithOrderStatus:model];
+    orderDetailVC.hidesBottomBarWhenPushed = YES;
+    HbhOrderAppraiseViewController *orderAppraiseVC = [[HbhOrderAppraiseViewController alloc] initWithModel:model];
     switch ((int)model.status) {
             /*0未付款，1已付款，2待评价*/
         case 0:
         case 1:
-            [self.navigationController pushViewController:[[HbhOrderDetailViewController alloc] initWithOrderStatus:model] animated:YES];
+            [self.navigationController pushViewController:orderDetailVC animated:YES];
             break;
         case 2:
-            [self.navigationController pushViewController:[HbhOrderAppraiseViewController new] animated:YES];
+            [self.navigationController pushViewController:orderAppraiseVC animated:YES];
             break;
         default:
             break;

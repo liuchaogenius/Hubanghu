@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "HbhOrderModel.h"
 
 @interface HbhOrderAppraiseViewController : BaseViewController
 
+
+- (instancetype)initWithModel:(HbhOrderModel *)aModel;
 @end
