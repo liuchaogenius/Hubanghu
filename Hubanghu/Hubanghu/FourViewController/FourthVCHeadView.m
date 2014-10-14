@@ -10,6 +10,16 @@
 
 @implementation FourthVCHeadView
 
+- (id)initWithFrame:(CGRect)frame
+{
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FourthVCHeadView" owner:self options:nil];
+    self = nib[0];
+    if (self) {
+    }
+    
+    return self;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

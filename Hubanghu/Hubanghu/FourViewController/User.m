@@ -7,8 +7,9 @@
 //
 
 #import "User.h"
-//#import "SynthesizeSingleton.h"
+#import "SynthesizeSingleton.h"
 @implementation User
 
+SYNTHESIZE_SINGLETON_FOR_CLASS(User);
 
 @end

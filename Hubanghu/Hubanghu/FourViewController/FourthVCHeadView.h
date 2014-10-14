@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface FourthVCHeadView : UIView
+@property (weak, nonatomic) IBOutlet UIView *hasLoginView;
+@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pointLabel;
+@property (weak, nonatomic) IBOutlet UIButton *changePhotoButton;
 
 @end

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325A219ECF4170085CAEB /* FouthVCList.plist */; };
+		5BB325A619ECF43D0085CAEB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A519ECF43D0085CAEB /* User.m */; };
+		5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */; };
+		5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */; };
 		AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */; };
 		AB17315C19EBCE35008463E1 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17315A19EBCE35008463E1 /* HbhOrderAppraiseViewController.m */; };
 		AB17315D19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB17315B19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib */; };
@@ -83,6 +87,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5BB325A219ECF4170085CAEB /* FouthVCList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FouthVCList.plist; sourceTree = "<group>"; };
+		5BB325A419ECF43D0085CAEB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5BB325A519ECF43D0085CAEB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		5BB325A719ECFA050085CAEB /* SynthesizeSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		5BB325A819ECFAFF0085CAEB /* FourthVCHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthVCHeadView.h; sourceTree = "<group>"; };
+		5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthVCHeadView.m; sourceTree = "<group>"; };
+		5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourthVCHeadView.xib; sourceTree = "<group>"; };
 		AB17314919EBB94C008463E1 /* HbhOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HbhOrderTableViewCell.h; path = OrderTableViewCell/HbhOrderTableViewCell.h; sourceTree = "<group>"; };
 		AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HbhOrderTableViewCell.m; path = OrderTableViewCell/HbhOrderTableViewCell.m; sourceTree = "<group>"; };
 		AB17315919EBCE35008463E1 /* HbhOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderAppraiseViewController.h; sourceTree = "<group>"; };
@@ -233,6 +244,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5BB3259E19ECF3AE0085CAEB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5BB325A819ECFAFF0085CAEB /* FourthVCHeadView.h */,
+				5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */,
+				5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		5BB3259F19ECF3BE0085CAEB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5BB325A719ECFA050085CAEB /* SynthesizeSingleton.h */,
+				5BB325A419ECF43D0085CAEB /* User.h */,
+				5BB325A519ECF43D0085CAEB /* User.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5BB325A019ECF3D20085CAEB /* Manage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Manage;
+			sourceTree = "<group>";
+		};
+		5BB325A119ECF4050085CAEB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5BB325A219ECF4170085CAEB /* FouthVCList.plist */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		AB17314819EBB910008463E1 /* OrderTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +429,10 @@
 		FF21CE9219E65FD4005007B7 /* FourthViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5BB325A119ECF4050085CAEB /* Data */,
+				5BB325A019ECF3D20085CAEB /* Manage */,
+				5BB3259F19ECF3BE0085CAEB /* Model */,
+				5BB3259E19ECF3AE0085CAEB /* View */,
 				FF21CE9F19E6607B005007B7 /* FourthViewController.h */,
 				FF21CEA019E6607B005007B7 /* FourthViewController.m */,
 			);
@@ -708,8 +758,10 @@
 			files = (
 				FF21CE7519E64B5A005007B7 /* Images.xcassets in Resources */,
 				FF15253619E7D354008AB6EC /* testImg111@3x.png in Resources */,
+				5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */,
 				AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */,
 				AB17315D19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib in Resources */,
+				5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,7 +803,9 @@
 				FF21CF0719E66144005007B7 /* AFURLConnectionOperation.m in Sources */,
 				FF21CF1D19E66144005007B7 /* UIImageView+WebCache.m in Sources */,
 				FF21CF0A19E66144005007B7 /* NetManager.m in Sources */,
+				5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
+				5BB325A619ECF43D0085CAEB /* User.m in Sources */,
 				AB5D5FBB19EC1EB600E881E6 /* HbhOrderManage.m in Sources */,
 				FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */,
 				FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */,
