@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>已完成订单</string>
+			<key>image</key>
+			<string>MyVClistImage_1</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>未完成订单</string>
+			<key>image</key>
+			<string>MyVClistImage_1</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>带评价订单</string>
+			<key>image</key>
+			<string>MyVClistImage_1</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>我的二维码</string>
+			<key>image</key>
+			<string>MyVClistImage_1</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>修改密码</string>
+			<key>image</key>
+			<string>MyVClistImage_1</string>
+		</dict>
+	</array>
+</array>
+</plist>
