@@ -11,6 +11,10 @@
 
 #define kMainScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kMainScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define kHubBaseUrl @"http://114.215.207.196/ApiService/"
+#define kHubRequestUrl(path,outUrl) do{\
+  outUrl = [NSString stringWithFormat:@"%@%@",kHubBaseUrl,path];\
+}while(0)
 
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/256.0 green:g/256.0 blue:b/256.0 alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r/256.0 green:g/256.0 blue:b/256.0 alpha:a]

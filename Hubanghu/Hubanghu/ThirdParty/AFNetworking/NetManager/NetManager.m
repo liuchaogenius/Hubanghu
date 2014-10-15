@@ -80,7 +80,11 @@
 
     httpClient.parameterEncoding = aEncoding;
     NSMutableURLRequest *request = [httpClient requestWithMethod:aMethod path:aUrl parameters:aDict];
-    
+#if DEBUG
+    [request addValue:@"1" forHTTPHeaderField:@"hbh_mock"];
+#else
+    [request addValue:@"0" forHTTPHeaderField:@"hbh_mock"];
+#endif
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     NetManager *net = [NetManager shareInstance];
     if(aKey)

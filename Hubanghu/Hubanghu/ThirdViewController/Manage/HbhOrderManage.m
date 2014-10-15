@@ -13,8 +13,10 @@
 @implementation HbhOrderManage
 - (void)getOrderListSuccBlock:(void(^)(NSArray *aArray))aSuccBlock and:(void(^)(void))aFailBlock
 {
-    NSString *orderListUrl = @"http://114.215.207.196/ApiService/getOrderList.ashx";
-    [NetManager requestWith:nil url:orderListUrl method:@"POST" operationKey:nil parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
+    NSString *orderListUrl = nil;
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"filterId", nil];
+    kHubRequestUrl(@"getOrderList.ashx", orderListUrl);
+    [NetManager requestWith:dict url:orderListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
         NSMutableArray *dataArray = [successDict objectForKey:@"data"];
         NSMutableArray *array = [NSMutableArray new];
