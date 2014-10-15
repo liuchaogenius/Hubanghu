@@ -12,13 +12,13 @@
 
 - (instancetype)init
 {
-    if (!self)
-    {
+//    if (!self)
+//    {
         self = [super init];
         CGRect temFrame = self.frame;
         temFrame.size.width = kMainScreenWidth;
         self.frame = temFrame;
-    }
+//    }
     
     return self;
 }

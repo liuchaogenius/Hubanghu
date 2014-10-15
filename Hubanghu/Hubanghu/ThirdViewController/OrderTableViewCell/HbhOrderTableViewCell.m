@@ -11,8 +11,8 @@
 @implementation HbhOrderTableViewCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if (!self)
-    {
+//    if (!self)
+//    {
         self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
         CGRect temFrame = self.frame;
         temFrame.size.width = kMainScreenWidth;
@@ -31,7 +31,7 @@
         [self addSubview:lineView];
         
         self.backgroundColor = RGBCOLOR(247, 247, 247);
-    }
+//    }
     
     return self;
 }
