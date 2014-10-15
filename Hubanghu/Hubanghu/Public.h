@@ -15,6 +15,7 @@
 #define kHubRequestUrl(path,outUrl) do{\
   outUrl = [NSString stringWithFormat:@"%@%@",kHubBaseUrl,path];\
 }while(0)
+#define isNull(a) [a isKindOfClass:[NSNull class]]
 
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/256.0 green:g/256.0 blue:b/256.0 alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r/256.0 green:g/256.0 blue:b/256.0 alpha:a]
