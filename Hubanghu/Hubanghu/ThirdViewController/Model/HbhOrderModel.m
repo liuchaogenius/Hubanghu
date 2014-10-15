@@ -27,6 +27,7 @@ NSString *const kHbhOrderModelName = @"name";
 
 @implementation HbhOrderModel
 
+@synthesize id = _id;
 @synthesize status = _status;
 @synthesize workerName = _workerName;
 @synthesize urgent = _urgent;
@@ -50,6 +51,7 @@ NSString *const kHbhOrderModelName = @"name";
     // This check serves to make sure that a non-NSDictionary object
     // passed into the model class doesn't break the parsing.
     if(self && [dict isKindOfClass:[NSDictionary class]]) {
+            self.id = [[self objectOrNilForKey:kHbhOrderModelId fromDictionary:dict] doubleValue];
             self.status = [[self objectOrNilForKey:kHbhOrderModelStatus fromDictionary:dict] doubleValue];
             self.workerName = [self objectOrNilForKey:kHbhOrderModelWorkerName fromDictionary:dict];
             self.urgent = [[self objectOrNilForKey:kHbhOrderModelUrgent fromDictionary:dict] boolValue];

@@ -57,6 +57,7 @@ typedef enum : NSUInteger {
     [self.view addSubview:self.movementBtn];
     
     self.moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, self.priceLabel.bottom+40, self.movementBtn.right-20, 40)];
+    self.moreBtn.titleLabel.font = kFont20;
     self.moreBtn.layer.cornerRadius = 2.5;
     [self.view addSubview:self.moreBtn];
     
@@ -77,6 +78,7 @@ typedef enum : NSUInteger {
 
 - (void)setUIWithModel:(HbhOrderModel *)aModel
 {
+    self.orderIdLabel.text = [NSString stringWithFormat:@"%.f", aModel.id];
     self.orderTimeLabel.text = [NSString stringWithFormat:@"%.f", aModel.time];
     self.orderNameLabel.text = aModel.name;
     /*0纯装，1拆装，2纯拆，3勘察*/

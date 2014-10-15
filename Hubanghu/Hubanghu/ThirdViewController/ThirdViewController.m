@@ -29,6 +29,8 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) UIView *failView;
 
 @property(nonatomic, strong) NSMutableArray *allOrderArray;
+@property(nonatomic, strong) NSMutableArray *appraiseArray;
+@property(nonatomic, strong) NSMutableArray *unDoneArray;
 @end
 
 @implementation ThirdViewController
@@ -69,7 +71,6 @@ typedef enum : NSUInteger {
     
     [self.view addSubview:self.btnBackView];
     
-//    self.showOrderTableView.tableFooterView = [UIView new];
     self.showOrderTableView.delegate = self;
     self.showOrderTableView.dataSource = self;
     self.showOrderTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -195,13 +196,53 @@ typedef enum : NSUInteger {
         self.selectedLineView.frame = temFrame;
     }];
     _currentTab = (int)aBtn.tag - 10;
+    if (_currentTab == currentTabOrderAll)
+    {
+        if (self.allOrderArray.count == 0) {
+            [self.view addSubview:self.failView];
+        }
+        else{
+            [self.failView removeFromSuperview];
+        }
+    }
+    else if(_currentTab == currentTabOrderAppraise)
+    {
+        if (self.appraiseArray.count == 0) {
+            [self.view addSubview:self.failView];
+        }
+        else{
+            [self.failView removeFromSuperview];
+        }
+    }
+    else if (_currentTab == currentTabOrderUndone)
+    {
+        if (self.unDoneArray.count == 0) {
+            [self.view addSubview:self.failView];
+        }
+        else
+        {
+            [self.failView removeFromSuperview];;
+        }
+    }
     [self.showOrderTableView reloadData];
 }
 
 #pragma mark tableView datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.allOrderArray.count;
+    if (_currentTab == currentTabOrderAll)
+    {
+        return self.allOrderArray.count;
+    }
+    else if(_currentTab == currentTabOrderAppraise)
+    {
+        return self.appraiseArray.count;
+    }
+    else if (_currentTab == currentTabOrderUndone)
+    {
+        return self.unDoneArray.count;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -216,7 +257,19 @@ typedef enum : NSUInteger {
     {
         cell = [[HbhOrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    HbhOrderModel *model = [self.allOrderArray objectAtIndex:indexPath.row];
+    HbhOrderModel *model;
+    if (_currentTab == currentTabOrderAll)
+    {
+        model = [self.allOrderArray objectAtIndex:indexPath.row];
+    }
+    else if(_currentTab == currentTabOrderAppraise)
+    {
+        model = [self.appraiseArray objectAtIndex:indexPath.row];
+    }
+    else if (_currentTab == currentTabOrderUndone)
+    {
+        model = [self.unDoneArray objectAtIndex:indexPath.row];
+    }
     cell.nameLabel.text = model.name;
     cell.workerNameLabel.text = model.workerName;
     if (!model.urgent) {
@@ -265,6 +318,7 @@ typedef enum : NSUInteger {
     HbhOrderDetailViewController *orderDetailVC = [[HbhOrderDetailViewController alloc] initWithOrderStatus:model];
     orderDetailVC.hidesBottomBarWhenPushed = YES;
     HbhOrderAppraiseViewController *orderAppraiseVC = [[HbhOrderAppraiseViewController alloc] initWithModel:model];
+    orderAppraiseVC.hidesBottomBarWhenPushed = YES;
     switch ((int)model.status) {
             /*0未付款，1已付款，2待评价*/
         case 0:

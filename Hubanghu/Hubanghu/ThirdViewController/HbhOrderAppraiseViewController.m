@@ -48,6 +48,7 @@
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.appraiseTextView.left, kMainScreenHeight-200, kMainScreenWidth-30, 30)];
     btn.backgroundColor = KColor;
     btn.layer.cornerRadius = 2.5;
+    btn.titleLabel.font = kFont20;
     [btn setTitle:@"确认提交" forState:UIControlStateNormal];
     [self.view addSubview:btn];
 }

@@ -11,6 +11,11 @@
 		5BB325A619ECF43D0085CAEB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A519ECF43D0085CAEB /* User.m */; };
 		5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */; };
 		5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */; };
+		AB090E1519EE323C00D943C6 /* HbhWorkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E1319EE323C00D943C6 /* HbhWorkerTableViewCell.m */; };
+		AB090E1619EE323C00D943C6 /* HbhWorkerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB090E1419EE323C00D943C6 /* HbhWorkerTableViewCell.xib */; };
+		AB090E2419EE61F700D943C6 /* HbhWorkerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E2319EE61F700D943C6 /* HbhWorkerDetailViewController.m */; };
+		AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E2619EE63E000D943C6 /* HbhTopTableViewCell.m */; };
+		AB090E2919EE63E000D943C6 /* HbhTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB090E2719EE63E000D943C6 /* HbhTopTableViewCell.xib */; };
 		AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */; };
 		AB17315C19EBCE35008463E1 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17315A19EBCE35008463E1 /* HbhOrderAppraiseViewController.m */; };
 		AB17315D19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB17315B19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib */; };
@@ -95,6 +100,14 @@
 		5BB325A819ECFAFF0085CAEB /* FourthVCHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthVCHeadView.h; sourceTree = "<group>"; };
 		5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthVCHeadView.m; sourceTree = "<group>"; };
 		5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourthVCHeadView.xib; sourceTree = "<group>"; };
+		AB090E1219EE323C00D943C6 /* HbhWorkerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerTableViewCell.h; sourceTree = "<group>"; };
+		AB090E1319EE323C00D943C6 /* HbhWorkerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerTableViewCell.m; sourceTree = "<group>"; };
+		AB090E1419EE323C00D943C6 /* HbhWorkerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerTableViewCell.xib; sourceTree = "<group>"; };
+		AB090E2219EE61F700D943C6 /* HbhWorkerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerDetailViewController.h; sourceTree = "<group>"; };
+		AB090E2319EE61F700D943C6 /* HbhWorkerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerDetailViewController.m; sourceTree = "<group>"; };
+		AB090E2519EE63E000D943C6 /* HbhTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhTopTableViewCell.h; sourceTree = "<group>"; };
+		AB090E2619EE63E000D943C6 /* HbhTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhTopTableViewCell.m; sourceTree = "<group>"; };
+		AB090E2719EE63E000D943C6 /* HbhTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhTopTableViewCell.xib; sourceTree = "<group>"; };
 		AB17314919EBB94C008463E1 /* HbhOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HbhOrderTableViewCell.h; path = OrderTableViewCell/HbhOrderTableViewCell.h; sourceTree = "<group>"; };
 		AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HbhOrderTableViewCell.m; path = OrderTableViewCell/HbhOrderTableViewCell.m; sourceTree = "<group>"; };
 		AB17315919EBCE35008463E1 /* HbhOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderAppraiseViewController.h; sourceTree = "<group>"; };
@@ -280,6 +293,26 @@
 				5BB325A219ECF4170085CAEB /* FouthVCList.plist */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		AB090E1119EE321E00D943C6 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				AB090E1219EE323C00D943C6 /* HbhWorkerTableViewCell.h */,
+				AB090E1319EE323C00D943C6 /* HbhWorkerTableViewCell.m */,
+				AB090E1419EE323C00D943C6 /* HbhWorkerTableViewCell.xib */,
+				AB090E2519EE63E000D943C6 /* HbhTopTableViewCell.h */,
+				AB090E2619EE63E000D943C6 /* HbhTopTableViewCell.m */,
+				AB090E2719EE63E000D943C6 /* HbhTopTableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		AB090E1C19EE5E6400D943C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		AB17314819EBB910008463E1 /* OrderTableViewCell */ = {
@@ -474,8 +507,12 @@
 		FF21CE9419E65FD4005007B7 /* SecondViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AB090E1C19EE5E6400D943C6 /* View */,
+				AB090E1119EE321E00D943C6 /* TableViewCell */,
 				FF21CE9919E66030005007B7 /* SecondViewController.h */,
 				FF21CE9A19E66030005007B7 /* SecondViewController.m */,
+				AB090E2219EE61F700D943C6 /* HbhWorkerDetailViewController.h */,
+				AB090E2319EE61F700D943C6 /* HbhWorkerDetailViewController.m */,
 			);
 			name = SecondViewController;
 			path = TwoViewController;
@@ -769,6 +806,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB090E2919EE63E000D943C6 /* HbhTopTableViewCell.xib in Resources */,
+				AB090E1619EE323C00D943C6 /* HbhWorkerTableViewCell.xib in Resources */,
 				FF21CE7519E64B5A005007B7 /* Images.xcassets in Resources */,
 				FF15253619E7D354008AB6EC /* testImg111@3x.png in Resources */,
 				5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */,
@@ -801,6 +840,8 @@
 				FF21CF0419E66144005007B7 /* AFJSONRequestOperation.m in Sources */,
 				FF21CF0219E66144005007B7 /* AFHTTPRequestOperation.m in Sources */,
 				FF21CF2019E66144005007B7 /* DataOC.mm in Sources */,
+				AB090E1519EE323C00D943C6 /* HbhWorkerTableViewCell.m in Sources */,
+				AB090E2419EE61F700D943C6 /* HbhWorkerDetailViewController.m in Sources */,
 				FF21CF1F19E66144005007B7 /* DataCenterDeal.mm in Sources */,
 				FF21CF0C19E66144005007B7 /* FBKVOController.m in Sources */,
 				AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */,
@@ -818,6 +859,7 @@
 				FF21CF1D19E66144005007B7 /* UIImageView+WebCache.m in Sources */,
 				FF21CF0A19E66144005007B7 /* NetManager.m in Sources */,
 				5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */,
+				AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
 				5BB325A619ECF43D0085CAEB /* User.m in Sources */,
 				AB5D5FBB19EC1EB600E881E6 /* HbhOrderManage.m in Sources */,

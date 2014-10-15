@@ -11,24 +11,27 @@
 @implementation HbhOrderTableViewCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    CGRect temFrame = self.frame;
-    temFrame.size.width = kMainScreenWidth;
-    self.frame = temFrame;
-    
-    [self addSubview:self.nameLabel];
-    [self addSubview:self.workerLabel];
-    [self addSubview:self.workerNameLabel];
-    [self addSubview:self.urgentLabel];
-    [self addSubview:self.typeLabel];
-    [self addSubview:self.orderStateLabel];
-    [self addSubview:self.priceLabel];
-    
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
-    lineView.backgroundColor = [UIColor lightGrayColor];
-    [self addSubview:lineView];
-
-    self.backgroundColor = RGBCOLOR(247, 247, 247);
+    if (!self)
+    {
+        self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+        CGRect temFrame = self.frame;
+        temFrame.size.width = kMainScreenWidth;
+        self.frame = temFrame;
+        
+        [self addSubview:self.nameLabel];
+        [self addSubview:self.workerLabel];
+        [self addSubview:self.workerNameLabel];
+        [self addSubview:self.urgentLabel];
+        [self addSubview:self.typeLabel];
+        [self addSubview:self.orderStateLabel];
+        [self addSubview:self.priceLabel];
+        
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
+        lineView.backgroundColor = [UIColor lightGrayColor];
+        [self addSubview:lineView];
+        
+        self.backgroundColor = RGBCOLOR(247, 247, 247);
+    }
     
     return self;
 }

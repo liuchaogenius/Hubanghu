@@ -11,6 +11,7 @@
 
 @interface HbhOrderModel : NSObject <NSCoding, NSCopying>
 
+@property (nonatomic, assign) double id;
 @property (nonatomic, assign) double status;
 @property (nonatomic, strong) NSString *workerName;
 @property (nonatomic, assign) BOOL urgent;
