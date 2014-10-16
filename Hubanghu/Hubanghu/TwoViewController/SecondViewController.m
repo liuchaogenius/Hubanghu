@@ -9,12 +9,23 @@
 #import "SecondViewController.h"
 #import "HbhWorkerTableViewCell.h"
 #import "HbhWorkerDetailViewController.h"
+#import "HbhDropDownView.h"
+
+typedef enum : NSUInteger {
+    btnViewTypeAreas=10,
+    btnViewTypeWorkerTypes,
+    btnViewTypeOrderCount,
+} btnViewType;
 
 @interface SecondViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic) BOOL isSpecial;
 @property(nonatomic, strong) UIView *btnBackView;
 @property(nonatomic, strong) UITableView *showWorkerListTableView;
+
+@property(nonatomic, strong) HbhDropDownView *dropAreasView;
+@property(nonatomic, strong) HbhDropDownView *dropWorkerTypesView;
+@property(nonatomic, strong) HbhDropDownView *dropOrderCountView;
 @end
 
 @implementation SecondViewController
@@ -87,7 +98,60 @@
 
 - (void)touchBtnView:(UITapGestureRecognizer *)aTapGesture
 {
-    MLOG(@"%ld",(long)aTapGesture.view.tag);
+    if (aTapGesture.view.tag==btnViewTypeAreas)
+    {
+        [self showDropView:self.dropAreasView];
+    }
+    else if (aTapGesture.view.tag==btnViewTypeWorkerTypes)
+    {
+        [self showDropView:self.dropWorkerTypesView];
+    }
+    else if(aTapGesture.view.tag==btnViewTypeOrderCount)
+    {
+        [self showDropView:self.dropOrderCountView];
+    }
+}
+
+- (void)showDropView:(UIView *)aViewBtn
+{
+    self.dropAreasView.hidden = YES;
+    self.dropOrderCountView.hidden = YES;
+    self.dropWorkerTypesView.hidden = YES;
+    if (!aViewBtn.superview)
+    {
+        [self.view addSubview:aViewBtn];
+        aViewBtn.hidden = YES;
+    }
+    BOOL state = aViewBtn.hidden;
+    aViewBtn.hidden = !state;
+}
+
+#pragma mark getter
+- (HbhDropDownView *)dropAreasView
+{
+    NSArray *array = @[@"江干区", @"西湖区", @"余杭区"];
+    if (!_dropAreasView) {
+        _dropAreasView = [[HbhDropDownView alloc] initWithArray:array andButton:[self.view viewWithTag:btnViewTypeAreas]];
+    }
+    return _dropAreasView;
+}
+
+- (HbhDropDownView *)dropWorkerTypesView
+{
+    NSArray *array = @[@"木工", @"泥工", @"电工"];
+    if (!_dropWorkerTypesView) {
+        _dropWorkerTypesView = [[HbhDropDownView alloc] initWithArray:array andButton:[self.view viewWithTag:btnViewTypeWorkerTypes]];
+    }
+    return _dropWorkerTypesView;
+}
+
+- (HbhDropDownView *)dropOrderCountView
+{
+    NSArray *array = @[@"小于10单", @"10-100单", @"100-500单", @"大于500单"];
+    if (!_dropOrderCountView) {
+        _dropOrderCountView = [[HbhDropDownView alloc] initWithArray:array andButton:[self.view viewWithTag:btnViewTypeOrderCount]];
+    }
+    return _dropOrderCountView;
 }
 
 #pragma mark tableView datasource
