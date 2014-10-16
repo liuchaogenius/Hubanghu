@@ -27,27 +27,31 @@
     [self addSubview:appointmentBtn];
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 110, kMainScreenWidth, 0.5)];
-    lineView.backgroundColor = [UIColor lightGrayColor];
+    lineView.backgroundColor = RGBCOLOR(218, 218, 218);
     [self addSubview:lineView];
     
-    self.personLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 135, kMainScreenWidth-20, 32)];
+    self.personLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 140, kMainScreenWidth-20, 32)];
     self.personLabel.numberOfLines = 2;
-    self.personLabel.text = @"  蝴蝶结客服哈的看法哈利地方哈劳动法哈德了看法哈德了罚款还地方了宽宏大量付款哈的老客户";
+    self.personLabel.text = @"   我们的工人进入客户的家中，会认真的与我们的客户核对产品的数量和完整性，在客户确认无误后即会准备施工。";
     self.personLabel.font = kFont12;
     self.personLabel.textColor = [UIColor lightGrayColor];
     [self addSubview:self.personLabel];
     
-    self.successLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 167, kMainScreenWidth-80, 15)];
+    self.successLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 175, kMainScreenWidth-80, 15)];
     self.successLabel.font = kFont12;
     self.successLabel.textColor = [UIColor lightGrayColor];
-    self.successLabel.text = @"嘎哈交电话费的缴费和大厦开机连符合大家看法哈德两极分化多了几分哈地方就火大付款就很大房间卡号";
+    self.successLabel.text = @"我们会认真的与我们的客户核对产品的数量。";
     [self addSubview:self.successLabel];
     
-    self.honorLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 183, kMainScreenWidth-80, 15)];
+    self.honorLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 195, kMainScreenWidth-80, 15)];
     self.honorLabel.font = kFont12;
     self.honorLabel.textColor = [UIColor lightGrayColor];
-    self.honorLabel.text = @"嘎哈交电话费的缴费和大厦开机连符合大家看法哈德两极分化多了几分哈地方就火大付款就很大房间卡号";
+    self.honorLabel.text = @"2012年获得某某某装修奖";
     [self addSubview:self.honorLabel];
+    
+    UIView *otherlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 215, kMainScreenWidth, 1)];
+    otherlineView.backgroundColor = RGBCOLOR(218, 218, 218);
+    [self addSubview:otherlineView];
 
     return self;
 }

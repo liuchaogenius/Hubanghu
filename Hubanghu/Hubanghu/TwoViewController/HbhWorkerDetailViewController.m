@@ -8,6 +8,10 @@
 
 #import "HbhWorkerDetailViewController.h"
 #import "HbhTopTableViewCell.h"
+#import "HbhWorkerSecondTopTableViewCell.h"
+#import "HbhWorkerCommentTableViewCell.h"
+#import "HbhWorkerThirdTopTableViewCell.h"
+#import "HbhWorkerImgTableViewCell.h"
 
 @interface HbhWorkerDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -25,6 +29,7 @@
                                 initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.workDetailTableView.dataSource = self;
     self.workDetailTableView.delegate = self;
+    self.workDetailTableView.allowsSelection = NO;
     self.workDetailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.workDetailTableView.backgroundColor = RGBCOLOR(247, 247, 247);
     [self.view addSubview:self.workDetailTableView];
@@ -44,17 +49,43 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 200;
+    if (indexPath.section==0)
+    {
+        return 216;
+    }
+    else if(indexPath.section==1)
+    {
+        if (indexPath.row==0)
+        {
+            return 35;
+        }
+        else{
+            return 70;
+        }
+        return 0;
+    }
+    else if(indexPath.section==2)
+    {
+        if (indexPath.row==0)
+        {
+            return 35;
+        }
+        else{
+            return 70;
+        }
+        return 0;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 5;
+    return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 1;
+    return 5;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -64,7 +95,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (section==0)
+    {
+        return 1;
+    }
+    else if(section==1)
+    {
+        return 3;
+    }
+    else if(section==2)
+    {
+        return 2;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,6 +116,39 @@
     {
         HbhTopTableViewCell *cell = [[HbhTopTableViewCell alloc] init];
         return cell;
+    }
+    else if (indexPath.section==1)
+    {
+        if (indexPath.row==0)
+        {
+            HbhWorkerSecondTopTableViewCell *cell = [[HbhWorkerSecondTopTableViewCell alloc] init];
+            return cell;
+        }
+        else
+        {
+            HbhWorkerCommentTableViewCell *cell = [[HbhWorkerCommentTableViewCell alloc] init];
+            if (indexPath.row==2)
+            {
+                UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 69, kMainScreenWidth, 1)];
+                lineView.backgroundColor = RGBCOLOR(218, 218, 218);
+                [cell addSubview:lineView];
+            }
+            return cell;
+        }
+    }
+    else if(indexPath.section==2)
+    {
+        if (indexPath.row==0)
+        {
+            HbhWorkerThirdTopTableViewCell *cell = [[HbhWorkerThirdTopTableViewCell alloc] init];
+            return cell;
+        }
+        else
+        {
+            NSArray *array = @[@"1", @"2", @"3", @"4"];
+            HbhWorkerImgTableViewCell *cell = [[HbhWorkerImgTableViewCell alloc] initWithImgArray:array];
+            return cell;
+        }
     }
     return [UITableViewCell new];
 }
