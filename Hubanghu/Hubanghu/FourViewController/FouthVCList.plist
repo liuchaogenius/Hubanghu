@@ -4,18 +4,24 @@
 <array>
 	<array>
 		<dict>
+			<key>typeTag</key>
+			<integer>50</integer>
 			<key>name</key>
 			<string>已完成订单</string>
 			<key>image</key>
 			<string>MyVClistImage_1</string>
 		</dict>
 		<dict>
+			<key>typeTag</key>
+			<integer>51</integer>
 			<key>name</key>
 			<string>未完成订单</string>
 			<key>image</key>
 			<string>MyVClistImage_1</string>
 		</dict>
 		<dict>
+			<key>typeTag</key>
+			<integer>52</integer>
 			<key>name</key>
 			<string>带评价订单</string>
 			<key>image</key>
@@ -24,6 +30,8 @@
 	</array>
 	<array>
 		<dict>
+			<key>typeTag</key>
+			<integer>53</integer>
 			<key>name</key>
 			<string>我的二维码</string>
 			<key>image</key>
@@ -32,6 +40,8 @@
 	</array>
 	<array>
 		<dict>
+			<key>typeTag</key>
+			<string>54</string>
 			<key>name</key>
 			<string>修改密码</string>
 			<key>image</key>

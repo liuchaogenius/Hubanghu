@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B03CBFF19EFE0D000A367DC /* HbhQRcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B03CBFD19EFE0D000A367DC /* HbhQRcodeViewController.m */; };
+		5B03CC0019EFE0D000A367DC /* HbhQRcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B03CBFE19EFE0D000A367DC /* HbhQRcodeViewController.xib */; };
 		5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325A219ECF4170085CAEB /* FouthVCList.plist */; };
 		5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */; };
 		5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */; };
@@ -111,6 +113,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B03CBFC19EFE0D000A367DC /* HbhQRcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhQRcodeViewController.h; sourceTree = "<group>"; };
+		5B03CBFD19EFE0D000A367DC /* HbhQRcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhQRcodeViewController.m; sourceTree = "<group>"; };
+		5B03CBFE19EFE0D000A367DC /* HbhQRcodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhQRcodeViewController.xib; sourceTree = "<group>"; };
 		5BB325A219ECF4170085CAEB /* FouthVCList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FouthVCList.plist; sourceTree = "<group>"; };
 		5BB325A719ECFA050085CAEB /* SynthesizeSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		5BB325A819ECFAFF0085CAEB /* FourthVCHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthVCHeadView.h; sourceTree = "<group>"; };
@@ -549,6 +554,9 @@
 				FF21CEA019E6607B005007B7 /* FourthViewController.m */,
 				5BD54D2B19EE4C4A002C4355 /* HbhLoginViewController.h */,
 				5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */,
+				5B03CBFC19EFE0D000A367DC /* HbhQRcodeViewController.h */,
+				5B03CBFD19EFE0D000A367DC /* HbhQRcodeViewController.m */,
+				5B03CBFE19EFE0D000A367DC /* HbhQRcodeViewController.xib */,
 			);
 			name = FourthViewController;
 			path = FourViewController;
@@ -912,6 +920,7 @@
 				FF21CE7519E64B5A005007B7 /* Images.xcassets in Resources */,
 				FF15253619E7D354008AB6EC /* testImg111@3x.png in Resources */,
 				5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */,
+				5B03CC0019EFE0D000A367DC /* HbhQRcodeViewController.xib in Resources */,
 				AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */,
 				AB17315D19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib in Resources */,
 				ABAFAB2219EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.xib in Resources */,
@@ -998,6 +1007,7 @@
 				FF21CE7319E64B5A005007B7 /* AppDelegate.m in Sources */,
 				FF21CF0F19E66144005007B7 /* MKAnnotationView+WebCache.m in Sources */,
 				FF21CF0519E66144005007B7 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				5B03CBFF19EFE0D000A367DC /* HbhQRcodeViewController.m in Sources */,
 				FF21CF0D19E66144005007B7 /* NSData+Base64.m in Sources */,
 				FF21CF1719E66144005007B7 /* SDWebImagePrefetcher.m in Sources */,
 				AB66D37C19ECAC0900518005 /* HbhOrderDetailViewController.m in Sources */,

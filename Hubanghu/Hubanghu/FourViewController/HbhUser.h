@@ -19,6 +19,8 @@
 @property (nonatomic) NSInteger point; //积分
 @property (strong, nonatomic) NSString *encodedToken; //token
 
+@property (nonatomic) BOOL statusIsChanged; //用户状态是否发生了变化
+
 + (HbhUser *)sharedHbhUser;
 
 /**
@@ -30,5 +32,6 @@
 
 //退出登陆
 - (void)logoutUser;
+
 
 @end

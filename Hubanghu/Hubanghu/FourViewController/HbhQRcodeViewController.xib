@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HbhQRcodeViewController">
+            <connections>
+                <outlet property="QRcodeImageView" destination="R71-k2-7KK" id="wuS-mU-VdN"/>
+                <outlet property="UserPhotoImageView" destination="jJA-4x-MbA" id="YyA-qa-U5Q"/>
+                <outlet property="nickName" destination="OiF-GB-ShJ" id="jRC-Gt-uCP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Odu-De-xfQ">
+                    <rect key="frame" x="16" y="8" width="288" height="269"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扫一扫，邀请更多好友加入" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urh-X2-k3Z">
+                            <rect key="frame" x="54" y="243" width="180" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultUserPhoto_hightLight" translatesAutoresizingMaskIntoConstraints="NO" id="jJA-4x-MbA">
+                            <rect key="frame" x="36" y="8" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="oCM-Zt-zYJ"/>
+                                <constraint firstAttribute="height" constant="50" id="p01-oO-2nq"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiF-GB-ShJ">
+                            <rect key="frame" x="94" y="22.5" width="34" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.94117653369903564" green="0.364705890417099" blue="0.28627452254295349" alpha="1" colorSpace="deviceRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBZ-uH-4pm" userLabel="Line">
+                            <rect key="frame" x="0.0" y="66" width="288" height="1"/>
+                            <color key="backgroundColor" red="0.80000007149999997" green="0.80000007149999997" blue="0.80000007149999997" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="y35-YH-5Eo"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R71-k2-7KK">
+                            <rect key="frame" x="73" y="90" width="143" height="143"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="143" id="he5-Gv-ZPY"/>
+                                <constraint firstAttribute="width" constant="143" id="pPu-6d-7Pm"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="mBZ-uH-4pm" firstAttribute="leading" secondItem="Odu-De-xfQ" secondAttribute="leading" id="0Zi-9g-gbr"/>
+                        <constraint firstAttribute="bottom" secondItem="urh-X2-k3Z" secondAttribute="bottom" constant="8" id="5Gc-FJ-Dxd"/>
+                        <constraint firstAttribute="centerX" secondItem="R71-k2-7KK" secondAttribute="centerX" id="7Bw-dV-DM6"/>
+                        <constraint firstItem="mBZ-uH-4pm" firstAttribute="top" secondItem="jJA-4x-MbA" secondAttribute="bottom" constant="8" id="89u-o4-RD7"/>
+                        <constraint firstAttribute="height" constant="269" id="CXc-NI-5WL"/>
+                        <constraint firstAttribute="width" secondItem="mBZ-uH-4pm" secondAttribute="width" id="FYy-gC-FT3"/>
+                        <constraint firstAttribute="centerX" secondItem="urh-X2-k3Z" secondAttribute="centerX" constant="-0.5" id="Muv-gL-8n3"/>
+                        <constraint firstItem="jJA-4x-MbA" firstAttribute="leading" secondItem="Odu-De-xfQ" secondAttribute="leading" constant="36" id="aEK-FG-zuj"/>
+                        <constraint firstItem="jJA-4x-MbA" firstAttribute="centerY" secondItem="OiF-GB-ShJ" secondAttribute="centerY" constant="0.5" id="c5c-Qp-cn1"/>
+                        <constraint firstItem="OiF-GB-ShJ" firstAttribute="leading" secondItem="jJA-4x-MbA" secondAttribute="trailing" constant="8" id="cQt-fT-fED"/>
+                        <constraint firstItem="urh-X2-k3Z" firstAttribute="top" secondItem="R71-k2-7KK" secondAttribute="bottom" constant="10" id="fxT-I3-8UB"/>
+                        <constraint firstItem="jJA-4x-MbA" firstAttribute="top" secondItem="Odu-De-xfQ" secondAttribute="top" constant="8" id="pkp-gs-uQh"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.97647064924240112" green="0.97647064924240112" blue="0.97647064924240112" alpha="1" colorSpace="deviceRGB"/>
+            <constraints>
+                <constraint firstItem="Odu-De-xfQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="02k-l9-nyJ"/>
+                <constraint firstAttribute="centerX" secondItem="Odu-De-xfQ" secondAttribute="centerX" id="0Gp-li-yVF"/>
+                <constraint firstItem="Odu-De-xfQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="eOe-VG-NvH"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="139" y="156"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="DefaultUserPhoto_hightLight" width="91" height="91"/>
+    </resources>
+</document>

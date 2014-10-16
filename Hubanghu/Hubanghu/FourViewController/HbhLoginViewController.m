@@ -209,7 +209,7 @@ enum TextField_Type
     if (self.phoneNumberTextField.text.length && self.passwordTextField.text.length) {
         [HbhUserManager loginWithPhone:self.phoneNumberTextField.text andPassWord:self.passwordTextField.text withSuccess:^{
             //登陆状态处理
-            [HbhUser sharedHbhUser];
+            [HbhUser sharedHbhUser].statusIsChanged = YES;
             [self.navigationController popViewControllerAnimated:YES];
             
         } failure:^{

@@ -39,6 +39,7 @@
     kHubRequestUrl(@"profileReval.ashx", logoutUrl);
     [NetManager requestWith:nil url:logoutUrl method:@"GET" operationKey:nil parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
         [[HbhUser sharedHbhUser] logoutUser];
+        sBlock();
     } failure:^(NSDictionary *failDict, NSError *error) {
         MLOG(@"%@",error.localizedDescription);
     }];

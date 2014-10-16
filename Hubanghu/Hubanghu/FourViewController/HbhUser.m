@@ -38,6 +38,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HbhUser);
     _phone = nil;
     _point = 0;
     _encodedToken = nil;
+    _statusIsChanged = NO;
     [self loadLocalUserInfo]; //判断沙箱是否有数据，并修改数据
     return self;
 }

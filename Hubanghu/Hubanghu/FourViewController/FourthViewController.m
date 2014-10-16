@@ -12,10 +12,20 @@
 #import "HbhLoginViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "HbhUserManager.h"
+#import "HbhQRcodeViewController.h"
 
 #define KSetionNumber 5
 #define kcornerRadius 4
 #define kHeaderHeight 114
+
+enum CellTag_Type
+{
+    CellTag_finishedOrder = 50,//已完成订单
+    CellTag_notFinishedOrder, //未完成订单
+    CellTag_notCommentedOrder,//待评价订单
+    CellTag_QRcode,//二维码
+    CellTag_changePassWord,//修改密码
+};
 
 @interface FourthViewController ()
 
@@ -64,6 +74,16 @@
         _logOutHeadView = view;
     }
     return _logOutHeadView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    //检测用户状态是否改变 //登陆-登出
+    if ([HbhUser sharedHbhUser].statusIsChanged) {
+        [self.tableView reloadData];
+        [HbhUser sharedHbhUser].statusIsChanged = NO;
+    }
 }
 
 - (void)viewDidLoad {
@@ -122,9 +142,6 @@
     if (section == 0) {
         
         HbhUser *user = [HbhUser sharedHbhUser];
-        self.fHeadView.hasLoginView.hidden = (user.isLogin ? NO:YES);
-        self.fHeadView.notLoginView.hidden = (user.isLogin ? YES:NO);
-        
         if (user.isLogin) {
             self.fHeadView.hasLoginView.hidden = NO;
             self.fHeadView.notLoginView.hidden = YES;
@@ -132,6 +149,8 @@
             self.fHeadView.pointLabel.text = [NSString stringWithFormat:@"积分：%ld",(long)user.point];
             [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
         }
+        self.fHeadView.hasLoginView.hidden = (user.isLogin ? NO:YES);
+        self.fHeadView.notLoginView.hidden = (user.isLogin ? YES:NO);
         return self.fHeadView;
         
     }else if(section == self.listArray.count+1){
@@ -161,12 +180,48 @@
         }
         NSArray *array = self.listArray[indexPath.section-1];
         NSDictionary *dic = array[indexPath.row];
+        cell.tag = [dic[@"typeTag"] integerValue]; //通过tag区分cell功能
         cell.imageView.image = [UIImage imageNamed:dic[@"image"]];
         cell.textLabel.text = dic[@"name"];
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         return cell;
     }
     
+}
+
+#pragma mark 点击cell
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch ([tableView cellForRowAtIndexPath:indexPath].tag) {
+        case CellTag_finishedOrder:
+        {
+            //push进入已完成订单页面
+        }
+            break;
+        case CellTag_notFinishedOrder:
+        {
+            //push进入未完成订单页面
+        }
+            break;
+        case CellTag_notCommentedOrder:
+        {
+            //push进入未提交订单页面
+        }
+            break;
+        case CellTag_QRcode:
+        {
+            //push进入二维码页面
+            [self.navigationController pushViewController:[[HbhQRcodeViewController alloc] init] animated:YES];
+        }
+            break;
+        case CellTag_changePassWord:
+        {
+            //push进入修改密码页面
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - Action
