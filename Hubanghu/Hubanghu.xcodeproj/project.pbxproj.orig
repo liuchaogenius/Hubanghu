@@ -968,8 +968,11 @@
 				5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */,
 				AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
+<<<<<<< Updated upstream
 				ABAFAB1C19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m in Sources */,
 				5BB325A619ECF43D0085CAEB /* User.m in Sources */,
+=======
+>>>>>>> Stashed changes
 				AB5D5FBB19EC1EB600E881E6 /* HbhOrderManage.m in Sources */,
 				FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */,
 				5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */,

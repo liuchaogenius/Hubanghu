@@ -15,6 +15,10 @@
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FourthVCHeadView" owner:self options:nil];
     self = nib[0];
     if (self) {
+        _photoImageView.layer.cornerRadius = _photoImageView.frame.size.height/2.0f;
+        _photoImageView.layer.masksToBounds = YES;
+        [_photoImageView setContentMode:UIViewContentModeScaleAspectFill];
+        [_photoImageView setClipsToBounds:YES];
     }
     
     return self;

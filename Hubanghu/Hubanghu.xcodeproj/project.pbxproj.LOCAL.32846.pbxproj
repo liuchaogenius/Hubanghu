@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325A219ECF4170085CAEB /* FouthVCList.plist */; };
+		5BB325A619ECF43D0085CAEB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A519ECF43D0085CAEB /* User.m */; };
 		5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */; };
 		5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */; };
 		AB090E1519EE323C00D943C6 /* HbhWorkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E1319EE323C00D943C6 /* HbhWorkerTableViewCell.m */; };
@@ -15,9 +16,6 @@
 		AB090E2419EE61F700D943C6 /* HbhWorkerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E2319EE61F700D943C6 /* HbhWorkerDetailViewController.m */; };
 		AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E2619EE63E000D943C6 /* HbhTopTableViewCell.m */; };
 		AB090E2919EE63E000D943C6 /* HbhTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB090E2719EE63E000D943C6 /* HbhTopTableViewCell.xib */; };
-		5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */; };
-		5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2F19EE4CC5002C4355 /* HbhUser.m */; };
-		5BD54D3319EE4DC6002C4355 /* HbhUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D3219EE4DC6002C4355 /* HbhUserManager.m */; };
 		AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */; };
 		AB17315C19EBCE35008463E1 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17315A19EBCE35008463E1 /* HbhOrderAppraiseViewController.m */; };
 		AB17315D19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB17315B19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib */; };
@@ -111,6 +109,8 @@
 
 /* Begin PBXFileReference section */
 		5BB325A219ECF4170085CAEB /* FouthVCList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FouthVCList.plist; sourceTree = "<group>"; };
+		5BB325A419ECF43D0085CAEB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5BB325A519ECF43D0085CAEB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		5BB325A719ECFA050085CAEB /* SynthesizeSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		5BB325A819ECFAFF0085CAEB /* FourthVCHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthVCHeadView.h; sourceTree = "<group>"; };
 		5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthVCHeadView.m; sourceTree = "<group>"; };
@@ -123,12 +123,6 @@
 		AB090E2519EE63E000D943C6 /* HbhTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhTopTableViewCell.h; sourceTree = "<group>"; };
 		AB090E2619EE63E000D943C6 /* HbhTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhTopTableViewCell.m; sourceTree = "<group>"; };
 		AB090E2719EE63E000D943C6 /* HbhTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhTopTableViewCell.xib; sourceTree = "<group>"; };
-		5BD54D2B19EE4C4A002C4355 /* HbhLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhLoginViewController.h; sourceTree = "<group>"; };
-		5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhLoginViewController.m; sourceTree = "<group>"; };
-		5BD54D2E19EE4CC5002C4355 /* HbhUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhUser.h; sourceTree = "<group>"; };
-		5BD54D2F19EE4CC5002C4355 /* HbhUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhUser.m; sourceTree = "<group>"; };
-		5BD54D3119EE4DC6002C4355 /* HbhUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhUserManager.h; sourceTree = "<group>"; };
-		5BD54D3219EE4DC6002C4355 /* HbhUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhUserManager.m; sourceTree = "<group>"; };
 		AB17314919EBB94C008463E1 /* HbhOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HbhOrderTableViewCell.h; path = OrderTableViewCell/HbhOrderTableViewCell.h; sourceTree = "<group>"; };
 		AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HbhOrderTableViewCell.m; path = OrderTableViewCell/HbhOrderTableViewCell.m; sourceTree = "<group>"; };
 		AB17315919EBCE35008463E1 /* HbhOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderAppraiseViewController.h; sourceTree = "<group>"; };
@@ -322,8 +316,8 @@
 			isa = PBXGroup;
 			children = (
 				5BB325A719ECFA050085CAEB /* SynthesizeSingleton.h */,
-				5BD54D2E19EE4CC5002C4355 /* HbhUser.h */,
-				5BD54D2F19EE4CC5002C4355 /* HbhUser.m */,
+				5BB325A419ECF43D0085CAEB /* User.h */,
+				5BB325A519ECF43D0085CAEB /* User.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -331,8 +325,6 @@
 		5BB325A019ECF3D20085CAEB /* Manage */ = {
 			isa = PBXGroup;
 			children = (
-				5BD54D3119EE4DC6002C4355 /* HbhUserManager.h */,
-				5BD54D3219EE4DC6002C4355 /* HbhUserManager.m */,
 			);
 			name = Manage;
 			sourceTree = "<group>";
@@ -542,8 +534,6 @@
 				5BB3259E19ECF3AE0085CAEB /* View */,
 				FF21CE9F19E6607B005007B7 /* FourthViewController.h */,
 				FF21CEA019E6607B005007B7 /* FourthViewController.m */,
-				5BD54D2B19EE4C4A002C4355 /* HbhLoginViewController.h */,
-				5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */,
 			);
 			name = FourthViewController;
 			path = FourViewController;
@@ -972,11 +962,8 @@
 				5BB325A619ECF43D0085CAEB /* User.m in Sources */,
 				AB5D5FBB19EC1EB600E881E6 /* HbhOrderManage.m in Sources */,
 				FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */,
-				5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */,
 				FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */,
 				FF21CF1019E66144005007B7 /* NSData+ImageContentType.m in Sources */,
-				5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */,
-				5BD54D3319EE4DC6002C4355 /* HbhUserManager.m in Sources */,
 				FF21CF1419E66144005007B7 /* SDWebImageDownloader.m in Sources */,
 				FF21CF0E19E66144005007B7 /* JSONKit.m in Sources */,
 				FF21CF0B19E66144005007B7 /* UIImageView+AFNetworking.m in Sources */,

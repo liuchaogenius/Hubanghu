@@ -8,6 +8,10 @@
 
 #import "FourthViewController.h"
 #import "FourthVCHeadView.h"
+#import "HbhUser.h"
+#import "HbhLoginViewController.h"
+#import "UIImageView+AFNetworking.h"
+#import "HbhUserManager.h"
 
 #define KSetionNumber 5
 #define kcornerRadius 4
@@ -15,8 +19,11 @@
 
 @interface FourthViewController ()
 
-@property (strong, nonatomic)UITableView *tableView;
-@property (strong, nonatomic)NSArray *listArray;
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSArray *listArray; //页面列表数据
+@property (strong, nonatomic) FourthVCHeadView *fHeadView;//用户信息headerView
+@property (strong, nonatomic) UIView *logOutHeadView;//附退出登陆按钮 headerView
+
 @end
 
 @implementation FourthViewController
@@ -29,6 +36,34 @@
         _listArray = [NSArray arrayWithContentsOfFile:path];
     }
     return _listArray;
+}
+
+- (FourthVCHeadView *)fHeadView
+{
+    if (!_fHeadView) {
+        FourthVCHeadView *view = [[FourthVCHeadView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kHeaderHeight)];
+        [view.loginButton addTarget:self action:@selector(touchLoginButton) forControlEvents:UIControlEventTouchUpInside];
+        _fHeadView = view;
+    }
+    return _fHeadView;
+}
+
+- (UIView *)logOutHeadView
+{
+    if (!_logOutHeadView) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35)];
+        //添加返回按钮
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button setFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];
+        button.backgroundColor = KColor;
+        [button addTarget:self action:@selector(touchLogoutButton) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button setTitle:@"退出登录" forState:UIControlStateNormal];
+        button.layer.cornerRadius = kcornerRadius;
+        [view addSubview:button];
+        _logOutHeadView = view;
+    }
+    return _logOutHeadView;
 }
 
 - (void)viewDidLoad {
@@ -85,24 +120,24 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        FourthVCHeadView *view = [[FourthVCHeadView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kHeaderHeight)];
         
-        //带判断用户是否登录以及载入数据
-        return view;
+        HbhUser *user = [HbhUser sharedHbhUser];
+        self.fHeadView.hasLoginView.hidden = (user.isLogin ? NO:YES);
+        self.fHeadView.notLoginView.hidden = (user.isLogin ? YES:NO);
         
+        if (user.isLogin) {
+            self.fHeadView.hasLoginView.hidden = NO;
+            self.fHeadView.notLoginView.hidden = YES;
+            self.fHeadView.nickNameLabel.text = user.nickName;
+            self.fHeadView.pointLabel.text = [NSString stringWithFormat:@"积分：%ld",(long)user.point];
+            [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+        }
+        return self.fHeadView;
         
     }else if(section == self.listArray.count+1){
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35)];
-        //添加返回按钮
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button setFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];
-        button.backgroundColor = KColor;
-        [button addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [button setTitle:@"退出登录" forState:UIControlStateNormal];
-        button.layer.cornerRadius = kcornerRadius;
-        [view addSubview:button];
-        return view;
+        self.logOutHeadView.hidden = ([HbhUser sharedHbhUser].isLogin ? NO : YES);
+        
+        return self.logOutHeadView;
     }else{
         return nil;
     }
@@ -122,6 +157,7 @@
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+            cell.textLabel.font = kFont13;
         }
         NSArray *array = self.listArray[indexPath.section-1];
         NSDictionary *dic = array[indexPath.row];
@@ -130,33 +166,23 @@
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         return cell;
     }
-    /*
-     else if(indexPath.section == self.listArray.count+1){
-     //退出按钮cell
-     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:logoutCellIdentifier];
-     if (!cell) {
-     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:logoutCellIdentifier];
-     
-     //添加返回按钮
-     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-     [button setFrame:CGRectMake(20, 5, kMainScreenWidth-40.0, 30)];
-     button.backgroundColor = [UIColor redColor];
-     [button addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-     [button setTitle:@"退出登录" forState:UIControlStateNormal];
-     [cell.contentView addSubview:button];
-     cell.backgroundColor = [UIColor clearColor];
-     }
-     
-     return cell;
-     */
+    
 }
 
 #pragma mark - Action
-#pragma mark 退出登录
-- (void)logout
+#pragma mark 点击登录按钮
+- (void)touchLoginButton
 {
-    
+    [self.navigationController pushViewController:[[HbhLoginViewController alloc] init] animated:YES];
+}
+#pragma mark 点击退出登陆按钮
+- (void)touchLogoutButton
+{
+    [HbhUserManager logoutWithSuccess:^{
+        [self.tableView reloadData];
+    } failure:^{
+        //待完善登出失败代码
+    }];
 }
 
 /*

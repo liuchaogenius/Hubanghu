@@ -8,16 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325A219ECF4170085CAEB /* FouthVCList.plist */; };
+		5BB325A619ECF43D0085CAEB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A519ECF43D0085CAEB /* User.m */; };
 		5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */; };
 		5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */; };
-		AB090E1519EE323C00D943C6 /* HbhWorkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E1319EE323C00D943C6 /* HbhWorkerTableViewCell.m */; };
-		AB090E1619EE323C00D943C6 /* HbhWorkerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB090E1419EE323C00D943C6 /* HbhWorkerTableViewCell.xib */; };
-		AB090E2419EE61F700D943C6 /* HbhWorkerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E2319EE61F700D943C6 /* HbhWorkerDetailViewController.m */; };
-		AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E2619EE63E000D943C6 /* HbhTopTableViewCell.m */; };
-		AB090E2919EE63E000D943C6 /* HbhTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB090E2719EE63E000D943C6 /* HbhTopTableViewCell.xib */; };
-		5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */; };
-		5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2F19EE4CC5002C4355 /* HbhUser.m */; };
-		5BD54D3319EE4DC6002C4355 /* HbhUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D3219EE4DC6002C4355 /* HbhUserManager.m */; };
 		AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */; };
 		AB17315C19EBCE35008463E1 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17315A19EBCE35008463E1 /* HbhOrderAppraiseViewController.m */; };
 		AB17315D19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB17315B19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib */; };
@@ -25,13 +18,6 @@
 		AB66D37C19ECAC0900518005 /* HbhOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB66D37A19ECAC0900518005 /* HbhOrderDetailViewController.m */; };
 		AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB66D37B19ECAC0900518005 /* HbhOrderDetailViewController.xib */; };
 		AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB66D38019ECDCBE00518005 /* HbhOrderModel.m */; };
-		ABAFAB1C19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB1A19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m */; };
-		ABAFAB1D19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAFAB1B19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib */; };
-		ABAFAB2119EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB1F19EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m */; };
-		ABAFAB2219EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAFAB2019EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.xib */; };
-		ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2419EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m */; };
-		ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */; };
-		ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */; };
 		FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252619E7B861008AB6EC /* JsonToModel.m */; };
 		FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252819E7B861008AB6EC /* NSFileManager_Additions.m */; };
 		FF15253219E7B861008AB6EC /* SCach.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252A19E7B861008AB6EC /* SCach.m */; };
@@ -89,14 +75,6 @@
 		FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF21CF2B19E66238005007B7 /* QuartzCore.framework */; };
 		FF21CF3219E68E28005007B7 /* LeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CF3119E68E28005007B7 /* LeftView.m */; };
 		FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */; };
-		FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */; };
-		FFD1A2CE19EE4B6D00EA97D4 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C619EE4B6D00EA97D4 /* FMDatabaseAdditions.m */; };
-		FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C819EE4B6D00EA97D4 /* FMDatabasePool.m */; };
-		FFD1A2D019EE4B6D00EA97D4 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2CA19EE4B6D00EA97D4 /* FMDatabaseQueue.m */; };
-		FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2CC19EE4B6D00EA97D4 /* FMResultSet.m */; };
-		FFD1A2D319EE4B8D00EA97D4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */; };
-		FFD1A2D619EE4F2100EA97D4 /* AreasDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2D519EE4F2100EA97D4 /* AreasDBManager.m */; };
-		FFD1A2D919EE6AB300EA97D4 /* HubAreasModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2D819EE6AB300EA97D4 /* HubAreasModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,24 +89,12 @@
 
 /* Begin PBXFileReference section */
 		5BB325A219ECF4170085CAEB /* FouthVCList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FouthVCList.plist; sourceTree = "<group>"; };
+		5BB325A419ECF43D0085CAEB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5BB325A519ECF43D0085CAEB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		5BB325A719ECFA050085CAEB /* SynthesizeSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		5BB325A819ECFAFF0085CAEB /* FourthVCHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthVCHeadView.h; sourceTree = "<group>"; };
 		5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthVCHeadView.m; sourceTree = "<group>"; };
 		5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourthVCHeadView.xib; sourceTree = "<group>"; };
-		AB090E1219EE323C00D943C6 /* HbhWorkerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerTableViewCell.h; sourceTree = "<group>"; };
-		AB090E1319EE323C00D943C6 /* HbhWorkerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerTableViewCell.m; sourceTree = "<group>"; };
-		AB090E1419EE323C00D943C6 /* HbhWorkerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerTableViewCell.xib; sourceTree = "<group>"; };
-		AB090E2219EE61F700D943C6 /* HbhWorkerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerDetailViewController.h; sourceTree = "<group>"; };
-		AB090E2319EE61F700D943C6 /* HbhWorkerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerDetailViewController.m; sourceTree = "<group>"; };
-		AB090E2519EE63E000D943C6 /* HbhTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhTopTableViewCell.h; sourceTree = "<group>"; };
-		AB090E2619EE63E000D943C6 /* HbhTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhTopTableViewCell.m; sourceTree = "<group>"; };
-		AB090E2719EE63E000D943C6 /* HbhTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhTopTableViewCell.xib; sourceTree = "<group>"; };
-		5BD54D2B19EE4C4A002C4355 /* HbhLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhLoginViewController.h; sourceTree = "<group>"; };
-		5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhLoginViewController.m; sourceTree = "<group>"; };
-		5BD54D2E19EE4CC5002C4355 /* HbhUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhUser.h; sourceTree = "<group>"; };
-		5BD54D2F19EE4CC5002C4355 /* HbhUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhUser.m; sourceTree = "<group>"; };
-		5BD54D3119EE4DC6002C4355 /* HbhUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhUserManager.h; sourceTree = "<group>"; };
-		5BD54D3219EE4DC6002C4355 /* HbhUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhUserManager.m; sourceTree = "<group>"; };
 		AB17314919EBB94C008463E1 /* HbhOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HbhOrderTableViewCell.h; path = OrderTableViewCell/HbhOrderTableViewCell.h; sourceTree = "<group>"; };
 		AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HbhOrderTableViewCell.m; path = OrderTableViewCell/HbhOrderTableViewCell.m; sourceTree = "<group>"; };
 		AB17315919EBCE35008463E1 /* HbhOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderAppraiseViewController.h; sourceTree = "<group>"; };
@@ -141,17 +107,6 @@
 		AB66D37B19ECAC0900518005 /* HbhOrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhOrderDetailViewController.xib; sourceTree = "<group>"; };
 		AB66D37F19ECDCBE00518005 /* HbhOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderModel.h; sourceTree = "<group>"; };
 		AB66D38019ECDCBE00518005 /* HbhOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderModel.m; sourceTree = "<group>"; };
-		ABAFAB1919EF35A900B51916 /* HbhWorkerCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCommentTableViewCell.h; sourceTree = "<group>"; };
-		ABAFAB1A19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCommentTableViewCell.m; sourceTree = "<group>"; };
-		ABAFAB1B19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerCommentTableViewCell.xib; sourceTree = "<group>"; };
-		ABAFAB1E19EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerSecondTopTableViewCell.h; sourceTree = "<group>"; };
-		ABAFAB1F19EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerSecondTopTableViewCell.m; sourceTree = "<group>"; };
-		ABAFAB2019EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerSecondTopTableViewCell.xib; sourceTree = "<group>"; };
-		ABAFAB2319EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerThirdTopTableViewCell.h; sourceTree = "<group>"; };
-		ABAFAB2419EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerThirdTopTableViewCell.m; sourceTree = "<group>"; };
-		ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerThirdTopTableViewCell.xib; sourceTree = "<group>"; };
-		ABAFAB2819EF4BDC00B51916 /* HbhWorkerImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerImgTableViewCell.h; sourceTree = "<group>"; };
-		ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerImgTableViewCell.m; sourceTree = "<group>"; };
 		FF15252519E7B861008AB6EC /* JsonToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonToModel.h; sourceTree = "<group>"; };
 		FF15252619E7B861008AB6EC /* JsonToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonToModel.m; sourceTree = "<group>"; };
 		FF15252719E7B861008AB6EC /* NSFileManager_Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManager_Additions.h; sourceTree = "<group>"; };
@@ -271,21 +226,6 @@
 		FF21CF3319E68F5F005007B7 /* MessageDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDefine.h; sourceTree = "<group>"; };
 		FF74A83B19EBC4B0006AADD8 /* SLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLocationManager.h; sourceTree = "<group>"; };
 		FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLocationManager.m; sourceTree = "<group>"; };
-		FFD1A2C319EE4B6D00EA97D4 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
-		FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
-		FFD1A2C519EE4B6D00EA97D4 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
-		FFD1A2C619EE4B6D00EA97D4 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
-		FFD1A2C719EE4B6D00EA97D4 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
-		FFD1A2C819EE4B6D00EA97D4 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
-		FFD1A2C919EE4B6D00EA97D4 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
-		FFD1A2CA19EE4B6D00EA97D4 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
-		FFD1A2CB19EE4B6D00EA97D4 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
-		FFD1A2CC19EE4B6D00EA97D4 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		FFD1A2D419EE4F2100EA97D4 /* AreasDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AreasDBManager.h; path = ../ThirdParty/FMDB/AreasDBManager.h; sourceTree = "<group>"; };
-		FFD1A2D519EE4F2100EA97D4 /* AreasDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AreasDBManager.m; path = ../ThirdParty/FMDB/AreasDBManager.m; sourceTree = "<group>"; };
-		FFD1A2D719EE6AB300EA97D4 /* HubAreasModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubAreasModel.h; sourceTree = "<group>"; };
-		FFD1A2D819EE6AB300EA97D4 /* HubAreasModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubAreasModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,7 +233,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFD1A2D319EE4B8D00EA97D4 /* libsqlite3.dylib in Frameworks */,
 				FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,8 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				5BB325A719ECFA050085CAEB /* SynthesizeSingleton.h */,
-				5BD54D2E19EE4CC5002C4355 /* HbhUser.h */,
-				5BD54D2F19EE4CC5002C4355 /* HbhUser.m */,
+				5BB325A419ECF43D0085CAEB /* User.h */,
+				5BB325A519ECF43D0085CAEB /* User.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -331,8 +270,6 @@
 		5BB325A019ECF3D20085CAEB /* Manage */ = {
 			isa = PBXGroup;
 			children = (
-				5BD54D3119EE4DC6002C4355 /* HbhUserManager.h */,
-				5BD54D3219EE4DC6002C4355 /* HbhUserManager.m */,
 			);
 			name = Manage;
 			sourceTree = "<group>";
@@ -343,37 +280,6 @@
 				5BB325A219ECF4170085CAEB /* FouthVCList.plist */,
 			);
 			name = Data;
-			sourceTree = "<group>";
-		};
-		AB090E1119EE321E00D943C6 /* TableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				AB090E1219EE323C00D943C6 /* HbhWorkerTableViewCell.h */,
-				AB090E1319EE323C00D943C6 /* HbhWorkerTableViewCell.m */,
-				AB090E1419EE323C00D943C6 /* HbhWorkerTableViewCell.xib */,
-				AB090E2519EE63E000D943C6 /* HbhTopTableViewCell.h */,
-				AB090E2619EE63E000D943C6 /* HbhTopTableViewCell.m */,
-				AB090E2719EE63E000D943C6 /* HbhTopTableViewCell.xib */,
-				ABAFAB1919EF35A900B51916 /* HbhWorkerCommentTableViewCell.h */,
-				ABAFAB1A19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m */,
-				ABAFAB1B19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib */,
-				ABAFAB1E19EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.h */,
-				ABAFAB1F19EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m */,
-				ABAFAB2019EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.xib */,
-				ABAFAB2319EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.h */,
-				ABAFAB2419EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m */,
-				ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */,
-				ABAFAB2819EF4BDC00B51916 /* HbhWorkerImgTableViewCell.h */,
-				ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */,
-			);
-			path = TableViewCell;
-			sourceTree = "<group>";
-		};
-		AB090E1C19EE5E6400D943C6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		AB17314819EBB910008463E1 /* OrderTableViewCell */ = {
@@ -447,7 +353,6 @@
 		FF21CE6119E64B5A005007B7 = {
 			isa = PBXGroup;
 			children = (
-				FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */,
 				FF15253519E7D354008AB6EC /* testImg111@3x.png */,
 				FF21CF2B19E66238005007B7 /* QuartzCore.framework */,
 				FF21CE6C19E64B5A005007B7 /* Hubanghu */,
@@ -542,8 +447,6 @@
 				5BB3259E19ECF3AE0085CAEB /* View */,
 				FF21CE9F19E6607B005007B7 /* FourthViewController.h */,
 				FF21CEA019E6607B005007B7 /* FourthViewController.m */,
-				5BD54D2B19EE4C4A002C4355 /* HbhLoginViewController.h */,
-				5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */,
 			);
 			name = FourthViewController;
 			path = FourViewController;
@@ -571,12 +474,8 @@
 		FF21CE9419E65FD4005007B7 /* SecondViewController */ = {
 			isa = PBXGroup;
 			children = (
-				AB090E1C19EE5E6400D943C6 /* View */,
-				AB090E1119EE321E00D943C6 /* TableViewCell */,
 				FF21CE9919E66030005007B7 /* SecondViewController.h */,
 				FF21CE9A19E66030005007B7 /* SecondViewController.m */,
-				AB090E2219EE61F700D943C6 /* HbhWorkerDetailViewController.h */,
-				AB090E2319EE61F700D943C6 /* HbhWorkerDetailViewController.m */,
 			);
 			name = SecondViewController;
 			path = TwoViewController;
@@ -594,7 +493,6 @@
 		FF21CEA719E66144005007B7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				FFD1A2C219EE4B6D00EA97D4 /* FMDB */,
 				FF74A83A19EBC4B0006AADD8 /* LocationManager */,
 				FF15252419E7B861008AB6EC /* SCache */,
 				FF21CF2719E66225005007B7 /* ViewInteraction */,
@@ -778,7 +676,6 @@
 		FF21CF3419E6940D005007B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FFD1A2DA19EE6AC100EA97D4 /* AreasModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -790,34 +687,6 @@
 				FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */,
 			);
 			path = LocationManager;
-			sourceTree = "<group>";
-		};
-		FFD1A2C219EE4B6D00EA97D4 /* FMDB */ = {
-			isa = PBXGroup;
-			children = (
-				FFD1A2C319EE4B6D00EA97D4 /* FMDatabase.h */,
-				FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */,
-				FFD1A2C519EE4B6D00EA97D4 /* FMDatabaseAdditions.h */,
-				FFD1A2C619EE4B6D00EA97D4 /* FMDatabaseAdditions.m */,
-				FFD1A2C719EE4B6D00EA97D4 /* FMDatabasePool.h */,
-				FFD1A2C819EE4B6D00EA97D4 /* FMDatabasePool.m */,
-				FFD1A2C919EE4B6D00EA97D4 /* FMDatabaseQueue.h */,
-				FFD1A2CA19EE4B6D00EA97D4 /* FMDatabaseQueue.m */,
-				FFD1A2CB19EE4B6D00EA97D4 /* FMResultSet.h */,
-				FFD1A2CC19EE4B6D00EA97D4 /* FMResultSet.m */,
-			);
-			path = FMDB;
-			sourceTree = "<group>";
-		};
-		FFD1A2DA19EE6AC100EA97D4 /* AreasModel */ = {
-			isa = PBXGroup;
-			children = (
-				FFD1A2D719EE6AB300EA97D4 /* HubAreasModel.h */,
-				FFD1A2D819EE6AB300EA97D4 /* HubAreasModel.m */,
-				FFD1A2D419EE4F2100EA97D4 /* AreasDBManager.h */,
-				FFD1A2D519EE4F2100EA97D4 /* AreasDBManager.m */,
-			);
-			name = AreasModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -900,16 +769,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB090E2919EE63E000D943C6 /* HbhTopTableViewCell.xib in Resources */,
-				ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */,
-				AB090E1619EE323C00D943C6 /* HbhWorkerTableViewCell.xib in Resources */,
-				ABAFAB1D19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib in Resources */,
 				FF21CE7519E64B5A005007B7 /* Images.xcassets in Resources */,
 				FF15253619E7D354008AB6EC /* testImg111@3x.png in Resources */,
 				5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */,
 				AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */,
 				AB17315D19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib in Resources */,
-				ABAFAB2219EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.xib in Resources */,
 				5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -932,19 +796,11 @@
 				FF21CF1919E66144005007B7 /* UIImage+GIF.m in Sources */,
 				AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */,
 				FF21CF2119E66144005007B7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
-				FFD1A2D919EE6AB300EA97D4 /* HubAreasModel.m in Sources */,
-				FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */,
-				ABAFAB2119EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m in Sources */,
 				FF21CE9B19E66030005007B7 /* SecondViewController.m in Sources */,
-				ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */,
-				FFD1A2CE19EE4B6D00EA97D4 /* FMDatabaseAdditions.m in Sources */,
 				FF21CEA419E660CC005007B7 /* BaseViewController.m in Sources */,
-				FFD1A2D619EE4F2100EA97D4 /* AreasDBManager.m in Sources */,
 				FF21CF0419E66144005007B7 /* AFJSONRequestOperation.m in Sources */,
 				FF21CF0219E66144005007B7 /* AFHTTPRequestOperation.m in Sources */,
 				FF21CF2019E66144005007B7 /* DataOC.mm in Sources */,
-				AB090E1519EE323C00D943C6 /* HbhWorkerTableViewCell.m in Sources */,
-				AB090E2419EE61F700D943C6 /* HbhWorkerDetailViewController.m in Sources */,
 				FF21CF1F19E66144005007B7 /* DataCenterDeal.mm in Sources */,
 				FF21CF0C19E66144005007B7 /* FBKVOController.m in Sources */,
 				AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */,
@@ -953,30 +809,21 @@
 				FF21CF1819E66144005007B7 /* UIButton+WebCache.m in Sources */,
 				FF21CF3219E68E28005007B7 /* LeftView.m in Sources */,
 				FF21CF0919E66144005007B7 /* MyHttpClient.m in Sources */,
-				FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */,
 				FF21CF2619E66144005007B7 /* UIViewAdditions.m in Sources */,
 				FF21CF1A19E66144005007B7 /* UIImage+MultiFormat.m in Sources */,
-				ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */,
 				FF21CF0819E66144005007B7 /* AFXMLRequestOperation.m in Sources */,
 				FF21CF1319E66144005007B7 /* SDWebImageDecoder.m in Sources */,
-				FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */,
 				FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */,
-				FFD1A2D019EE4B6D00EA97D4 /* FMDatabaseQueue.m in Sources */,
 				FF21CF0719E66144005007B7 /* AFURLConnectionOperation.m in Sources */,
 				FF21CF1D19E66144005007B7 /* UIImageView+WebCache.m in Sources */,
 				FF21CF0A19E66144005007B7 /* NetManager.m in Sources */,
 				5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */,
-				AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
-				ABAFAB1C19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m in Sources */,
 				5BB325A619ECF43D0085CAEB /* User.m in Sources */,
 				AB5D5FBB19EC1EB600E881E6 /* HbhOrderManage.m in Sources */,
 				FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */,
-				5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */,
 				FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */,
 				FF21CF1019E66144005007B7 /* NSData+ImageContentType.m in Sources */,
-				5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */,
-				5BD54D3319EE4DC6002C4355 /* HbhUserManager.m in Sources */,
 				FF21CF1419E66144005007B7 /* SDWebImageDownloader.m in Sources */,
 				FF21CF0E19E66144005007B7 /* JSONKit.m in Sources */,
 				FF21CF0B19E66144005007B7 /* UIImageView+AFNetworking.m in Sources */,
@@ -1110,7 +957,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: wu chen (7K2NVL8N69)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yuan yongyao (L9NP99245H)";
 				GCC_PREFIX_HEADER = "Hubanghu/Hubanghu-Prefix.pch";
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1124,7 +971,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: wu chen (7K2NVL8N69)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yuan yongyao (L9NP99245H)";
 				GCC_PREFIX_HEADER = "Hubanghu/Hubanghu-Prefix.pch";
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
