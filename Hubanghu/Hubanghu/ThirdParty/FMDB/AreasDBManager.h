@@ -23,7 +23,8 @@
                      name:(NSString*)aName
                     level:(int)aLevel
                    parent:(NSString *)aParent
-                 typeName:(NSString *)aTypeName;
+                 typeName:(NSString *)aTypeName
+                firstchar:(NSString *)aFirstchar;
 ///获取根据字母分组城市
 - (void)selGroupAreaCity:(void(^)(NSMutableDictionary *cityDict))aCityBlock;
 
@@ -31,9 +32,9 @@
 - (void)selProvince:(void(^)(NSMutableArray *cityArry))aProvinceBlock;
 
 ///获取省份下面对应的城市
-- (void)selProvinceOfCity:(NSString *)aParent district:(void(^)(NSMutableArray *cityArry))acityBlock;
+- (void)selProvinceOfCity:(NSString *)aParent district:(void(^)(NSMutableArray *cityArry))acityBlock __attribute__((nonnull(1)));
 
 ///获取市对应的区
-- (void)selCityOfDistrict:(NSString *)aParent district:(void(^)(NSMutableArray *districtArry))aDistrictBlock;
+- (void)selCityOfDistrict:(NSString *)aParent district:(void(^)(NSMutableArray *districtArry))aDistrictBlock __attribute__((nonnull(1)));
 
 @end

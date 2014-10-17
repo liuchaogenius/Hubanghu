@@ -83,14 +83,19 @@
                     level:(int)aLevel
                    parent:(NSString *)aParent
                  typeName:(NSString *)aTypeName
+                firstchar:(NSString *)aFirstchar
 {
     [dataQueue inDatabase:^(FMDatabase *db) {
         if([db open])
         {
-            NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into areas_table('areaId','name','level','parent','TypeName','firstchar') values(?,?,?,?,?)"];
-            BOOL res = [db executeUpdate:sqlIntoArea,
-                        aAreaId,aName,[NSNumber numberWithInt:aLevel],aParent,aTypeName];
-            MLOG(@"insertAreaRes=%d", res);
+            if(aFirstchar)
+            {
+                NSString *first = [aFirstchar substringToIndex:1];
+                NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into areas_table('areaId','name','level','parent','TypeName','firstchar') values(?,?,?,?,?,?)"];
+                BOOL res = [db executeUpdate:sqlIntoArea,
+                            aAreaId,aName,[NSNumber numberWithInt:aLevel],aParent,aTypeName,first];
+                MLOG(@"insertAreaRes=%d", res);
+            }
         }
     }];
 
