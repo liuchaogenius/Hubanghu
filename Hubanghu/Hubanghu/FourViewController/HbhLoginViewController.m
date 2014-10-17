@@ -18,7 +18,7 @@ enum SegmentBtn_Type
 
 enum TextField_Type
 {
-    TextFiled_phoneNumber = 130,//账号文本框
+    TextField_phoneNumber = 130,//账号文本框
     TextField_password //密码框
 };
 
@@ -28,8 +28,8 @@ enum TextField_Type
 @property (nonatomic,strong) UIView *loginView;//注册界面
 @property (nonatomic,strong) UIView *registerView;//注册界面
 @property (nonatomic,strong) UIView *selectedLine;//选择表示线
-@property (nonatomic, weak) UITextField *phoneNumberTextField;
-@property (nonatomic, weak) UITextField *passwordTextField;
+@property (nonatomic, strong) UITextField *phoneNumberTextField;
+@property (nonatomic, strong) UITextField *passwordTextField;
 @property (nonatomic, weak) UIButton *LoginButton;//登陆按钮
 @property (nonatomic, weak) UIButton *forgetPasswordBtn;//忘记密码按钮
 @end
@@ -93,34 +93,12 @@ enum TextField_Type
         whiteBackView.layer.cornerRadius = 4.0;
         [_loginView addSubview:whiteBackView];
         
-        UITextField *phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 10, whiteBackView.bounds.size.width-10, 35)];
-        [phoneNumberTextField setBorderStyle:UITextBorderStyleRoundedRect];
-        phoneNumberTextField.layer.masksToBounds = YES;
-        phoneNumberTextField.layer.cornerRadius = 4.0f;
-        phoneNumberTextField.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];//[KColor CGColor];
-        phoneNumberTextField.layer.borderWidth = 0.7f;
-        phoneNumberTextField.placeholder = @"用户名/邮箱/手机号";
-        phoneNumberTextField.delegate = self;
-        phoneNumberTextField.tag = TextFiled_phoneNumber;
-        [phoneNumberTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
-        [phoneNumberTextField setReturnKeyType:UIReturnKeyNext];
-        _phoneNumberTextField = phoneNumberTextField;
-        [whiteBackView addSubview:phoneNumberTextField];
+        self.phoneNumberTextField = [self customedTextFieldWithFrame:CGRectMake(5, 10, whiteBackView.bounds.size.width-10, 35) andPlaceholder:@"用户名/邮箱/手机号" andTag:TextField_phoneNumber andReturnKeyType:(UIReturnKeyNext)];
+        [whiteBackView addSubview:self.phoneNumberTextField];
         
-        UITextField *passWordTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 60, whiteBackView.bounds.size.width-10, 35)];
-        [passWordTextField setBorderStyle:UITextBorderStyleRoundedRect];
-        passWordTextField.layer.masksToBounds = YES;
-        passWordTextField.layer.cornerRadius = 4.0f;
-        passWordTextField.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor]; //[KColor CGColor];
-        passWordTextField.layer.borderWidth = 0.7f;
-        passWordTextField.placeholder = @"密码";
-        passWordTextField.delegate = self;
-        passWordTextField.tag = TextField_password;
-        [passWordTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
-        [passWordTextField setReturnKeyType:UIReturnKeyGo];
-        passWordTextField.secureTextEntry = YES;
-        _passwordTextField = passWordTextField;
-        [whiteBackView addSubview:passWordTextField];
+        self.passwordTextField = [self customedTextFieldWithFrame:CGRectMake(5, 60, whiteBackView.bounds.size.width-10, 35) andPlaceholder:@"密码" andTag:TextField_password andReturnKeyType:UIReturnKeyGo];
+        self.passwordTextField.secureTextEntry = YES;
+        [whiteBackView addSubview:self.passwordTextField];
 
         UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
         loginButton.backgroundColor = KColor;
@@ -239,7 +217,7 @@ enum TextField_Type
     [textField resignFirstResponder];
 
     switch (textField.tag) {
-        case TextFiled_phoneNumber:
+        case TextField_phoneNumber:
         {
             [self.passwordTextField becomeFirstResponder];
         }
@@ -253,6 +231,23 @@ enum TextField_Type
             break;
     }
     return YES;
+}
+
+//定制的textField
+- (UITextField *)customedTextFieldWithFrame:(CGRect)frame andPlaceholder:(NSString *)placeholder andTag:(NSInteger)TextField_Type andReturnKeyType:(UIReturnKeyType)returnKeyType
+{
+    UITextField *textField = [[UITextField alloc] initWithFrame:frame];
+    [textField setBorderStyle:UITextBorderStyleRoundedRect];
+    textField.layer.masksToBounds = YES;
+    textField.layer.cornerRadius = 4.0f;
+    textField.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];//[KColor CGColor];
+    textField.layer.borderWidth = 0.7f;
+    textField.placeholder = placeholder;
+    textField.delegate = self;
+    textField.tag = TextField_Type;
+    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [textField setReturnKeyType:returnKeyType];
+    return textField;
 }
 
 /*
