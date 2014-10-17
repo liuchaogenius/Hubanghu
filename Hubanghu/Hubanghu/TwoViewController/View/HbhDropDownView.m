@@ -7,8 +7,15 @@
 //
 
 #import "HbhDropDownView.h"
+#import "HbhDataModels.h"
 
 @implementation HbhDropDownView
+
+- (void)useBlock:(void(^)(int row))aBlock
+{
+    self.myBlock = aBlock;
+}
+
 
 - (instancetype)initWithArray:(NSArray *)aArray andButton:(UIView *)aBtn
 {
@@ -48,7 +55,8 @@
 {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.backgroundColor = RGBCOLOR(242, 242, 242);
-    cell.textLabel.text = [tableArray objectAtIndex:indexPath.row];
+    HbhAreas *model = [tableArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = model.name;
     cell.textLabel.font = kFont15;
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.textColor = RGBCOLOR(122, 122, 122);
@@ -63,4 +71,11 @@
     [cell addSubview:rightLineView];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.myBlock((int)indexPath.row);
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
 @end

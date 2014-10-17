@@ -10,6 +10,9 @@
 #import "HbhWorkerTableViewCell.h"
 #import "HbhWorkerDetailViewController.h"
 #import "HbhDropDownView.h"
+#import "UIImageView+WebCache.h"
+#import "HbhWorkerListManage.h"
+#import "HbhDataModels.h"
 
 typedef enum : NSUInteger {
     btnViewTypeAreas=10,
@@ -23,9 +26,16 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) UIView *btnBackView;
 @property(nonatomic, strong) UITableView *showWorkerListTableView;
 
+@property(nonatomic, strong) HbhWorkerListManage *workerListManage;
+
 @property(nonatomic, strong) HbhDropDownView *dropAreasView;
 @property(nonatomic, strong) HbhDropDownView *dropWorkerTypesView;
 @property(nonatomic, strong) HbhDropDownView *dropOrderCountView;
+
+@property(nonatomic, strong) NSMutableArray *workersArray;
+@property(nonatomic, strong) NSMutableArray *areasArray;
+@property(nonatomic, strong) NSMutableArray *workerTypeArray;
+@property(nonatomic, strong) NSMutableArray *orderCountArray;
 @end
 
 @implementation SecondViewController
@@ -49,6 +59,17 @@ typedef enum : NSUInteger {
     self.showWorkerListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.showWorkerListTableView.backgroundColor = RGBCOLOR(247, 247, 247);
     [self.view addSubview:self.showWorkerListTableView];
+    
+#pragma mark 网络请求
+    [self.workerListManage getWorkerListSuccBlock:^(HbhData *aData) {
+        self.workersArray = [(NSMutableArray *)aData.workers mutableCopy];
+        self.areasArray = [(NSMutableArray *)aData.areas mutableCopy];
+        self.workerTypeArray = [(NSMutableArray *)aData.workerTypes mutableCopy];
+        self.orderCountArray = [(NSMutableArray *)aData.orderCountRegions mutableCopy];
+        [self.showWorkerListTableView reloadData];
+    } and:^{
+        
+    }];
 }
 
 #pragma mark 上面三个btn
@@ -114,9 +135,18 @@ typedef enum : NSUInteger {
 
 - (void)showDropView:(UIView *)aViewBtn
 {
-    self.dropAreasView.hidden = YES;
-    self.dropOrderCountView.hidden = YES;
-    self.dropWorkerTypesView.hidden = YES;
+    if (self.dropWorkerTypesView != aViewBtn)
+    {
+        self.dropWorkerTypesView.hidden = YES;
+    }
+    if (self.dropAreasView != aViewBtn)
+    {
+        self.dropAreasView.hidden = YES;
+    }
+    if (self.dropOrderCountView != aViewBtn)
+    {
+        self.dropOrderCountView.hidden = YES;
+    }
     if (!aViewBtn.superview)
     {
         [self.view addSubview:aViewBtn];
@@ -127,29 +157,50 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark getter
+- (HbhWorkerListManage *)workerListManage
+{
+    if (!_workerListManage)
+    {
+        _workerListManage = [[HbhWorkerListManage alloc] init];
+    }
+    return _workerListManage;
+}
+
 - (HbhDropDownView *)dropAreasView
 {
-    NSArray *array = @[@"江干区", @"西湖区", @"余杭区"];
     if (!_dropAreasView) {
-        _dropAreasView = [[HbhDropDownView alloc] initWithArray:array andButton:[self.view viewWithTag:btnViewTypeAreas]];
+        [self.areasArray removeObjectAtIndex:0];
+        _dropAreasView = [[HbhDropDownView alloc] initWithArray:self.areasArray andButton:[self.view viewWithTag:btnViewTypeAreas]];
+        [_dropAreasView useBlock:^(int row) {
+            NSLog(@"%d", row);
+            _dropAreasView.hidden = YES;
+        }];
     }
     return _dropAreasView;
 }
 
 - (HbhDropDownView *)dropWorkerTypesView
 {
-    NSArray *array = @[@"木工", @"泥工", @"电工"];
     if (!_dropWorkerTypesView) {
-        _dropWorkerTypesView = [[HbhDropDownView alloc] initWithArray:array andButton:[self.view viewWithTag:btnViewTypeWorkerTypes]];
+        [self.workerTypeArray removeObjectAtIndex:0];
+        _dropWorkerTypesView = [[HbhDropDownView alloc] initWithArray:self.workerTypeArray andButton:[self.view viewWithTag:btnViewTypeWorkerTypes]];
+        [_dropWorkerTypesView useBlock:^(int row) {
+            NSLog(@"%d", row);
+            _dropWorkerTypesView.hidden = YES;
+        }];
     }
     return _dropWorkerTypesView;
 }
 
 - (HbhDropDownView *)dropOrderCountView
 {
-    NSArray *array = @[@"小于10单", @"10-100单", @"100-500单", @"大于500单"];
     if (!_dropOrderCountView) {
-        _dropOrderCountView = [[HbhDropDownView alloc] initWithArray:array andButton:[self.view viewWithTag:btnViewTypeOrderCount]];
+        [self.orderCountArray removeObjectAtIndex:0];
+        _dropOrderCountView = [[HbhDropDownView alloc] initWithArray:self.orderCountArray andButton:[self.view viewWithTag:btnViewTypeOrderCount]];
+        [_dropOrderCountView useBlock:^(int row) {
+            NSLog(@"%d", row);
+            _dropOrderCountView.hidden = YES;
+        }];
     }
     return _dropOrderCountView;
 }
@@ -157,7 +208,7 @@ typedef enum : NSUInteger {
 #pragma mark tableView datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.workersArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -176,6 +227,12 @@ typedef enum : NSUInteger {
     }
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
     lineView.backgroundColor = [UIColor lightGrayColor];
+    HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
+    [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
+    cell.workerNameLabel.text = model.workTypeName;
+    cell.workerMountLabel.text = [NSString stringWithFormat:@"%d", (int)model.orderCount];
+    cell.workYearLabel.text = model.workingAge;
+    cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", model.workTypeName];
     [cell addSubview:lineView];
     
     return cell;
