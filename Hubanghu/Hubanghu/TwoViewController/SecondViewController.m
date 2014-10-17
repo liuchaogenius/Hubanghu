@@ -36,6 +36,8 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) NSMutableArray *areasArray;
 @property(nonatomic, strong) NSMutableArray *workerTypeArray;
 @property(nonatomic, strong) NSMutableArray *orderCountArray;
+//蒙层
+@property(nonatomic, strong) UIView *maskingView;
 @end
 
 @implementation SecondViewController
@@ -119,17 +121,21 @@ typedef enum : NSUInteger {
 
 - (void)touchBtnView:(UITapGestureRecognizer *)aTapGesture
 {
+    [self.view addSubview:self.maskingView];
     if (aTapGesture.view.tag==btnViewTypeAreas)
     {
         [self showDropView:self.dropAreasView];
+        [self.view bringSubviewToFront:self.dropAreasView];
     }
     else if (aTapGesture.view.tag==btnViewTypeWorkerTypes)
     {
         [self showDropView:self.dropWorkerTypesView];
+        [self.view bringSubviewToFront:self.dropWorkerTypesView];
     }
     else if(aTapGesture.view.tag==btnViewTypeOrderCount)
     {
         [self showDropView:self.dropOrderCountView];
+        [self.view bringSubviewToFront:self.dropOrderCountView];
     }
 }
 
@@ -152,8 +158,13 @@ typedef enum : NSUInteger {
         [self.view addSubview:aViewBtn];
         aViewBtn.hidden = YES;
     }
-    BOOL state = aViewBtn.hidden;
-    aViewBtn.hidden = !state;
+    if (aViewBtn.hidden==NO) {
+        aViewBtn.hidden = YES;
+        [self.maskingView removeFromSuperview];
+    }else if (aViewBtn.hidden==YES)
+    {
+        aViewBtn.hidden = NO;
+    }
 }
 
 #pragma mark getter
@@ -166,6 +177,16 @@ typedef enum : NSUInteger {
     return _workerListManage;
 }
 
+- (UIView *)maskingView
+{
+    if (!_maskingView) {
+        _maskingView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight)];
+        _maskingView.backgroundColor = [UIColor grayColor];
+        _maskingView.alpha = 0.5;
+    }
+    return _maskingView;
+}
+
 - (HbhDropDownView *)dropAreasView
 {
     if (!_dropAreasView) {
@@ -174,6 +195,7 @@ typedef enum : NSUInteger {
         [_dropAreasView useBlock:^(int row) {
             NSLog(@"%d", row);
             _dropAreasView.hidden = YES;
+            [self.maskingView removeFromSuperview];
         }];
     }
     return _dropAreasView;
@@ -187,6 +209,7 @@ typedef enum : NSUInteger {
         [_dropWorkerTypesView useBlock:^(int row) {
             NSLog(@"%d", row);
             _dropWorkerTypesView.hidden = YES;
+            [self.maskingView removeFromSuperview];
         }];
     }
     return _dropWorkerTypesView;
@@ -200,6 +223,7 @@ typedef enum : NSUInteger {
         [_dropOrderCountView useBlock:^(int row) {
             NSLog(@"%d", row);
             _dropOrderCountView.hidden = YES;
+            [self.maskingView removeFromSuperview];
         }];
     }
     return _dropOrderCountView;
@@ -242,7 +266,8 @@ typedef enum : NSUInteger {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    HbhWorkerDetailViewController *workDetailVC = [[HbhWorkerDetailViewController alloc] init];
+    HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
+    HbhWorkerDetailViewController *workDetailVC = [[HbhWorkerDetailViewController alloc] initWithWorkerId:(int)model.id];
     workDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:workDetailVC animated:YES];
 }
@@ -253,13 +278,13 @@ typedef enum : NSUInteger {
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

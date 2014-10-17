@@ -10,4 +10,5 @@
 
 @interface HbhWorkerDetailViewController : BaseViewController
 
+- (instancetype)initWithWorkerId:(int)aWorkerId;
 @end

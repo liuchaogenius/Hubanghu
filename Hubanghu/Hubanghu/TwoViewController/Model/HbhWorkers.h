@@ -11,6 +11,7 @@
 
 @interface HbhWorkers : NSObject <NSCoding, NSCopying>
 
+@property (nonatomic, assign) double id;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) double workersIdentifier;
 @property (nonatomic, strong) NSString *workTypeName;

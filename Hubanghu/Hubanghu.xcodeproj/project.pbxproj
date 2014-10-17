@@ -16,6 +16,11 @@
 		5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */; };
 		5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2F19EE4CC5002C4355 /* HbhUser.m */; };
 		5BD54D3319EE4DC6002C4355 /* HbhUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D3219EE4DC6002C4355 /* HbhUserManager.m */; };
+		AB06DC4B19F1269500B82C62 /* HbhWorkerCaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AB06DC4319F1269500B82C62 /* HbhWorkerCaseClass.m */; };
+		AB06DC4C19F1269500B82C62 /* HbhWorkerComment.m in Sources */ = {isa = PBXBuildFile; fileRef = AB06DC4519F1269500B82C62 /* HbhWorkerComment.m */; };
+		AB06DC4D19F1269500B82C62 /* HbhWorkerData.m in Sources */ = {isa = PBXBuildFile; fileRef = AB06DC4719F1269500B82C62 /* HbhWorkerData.m */; };
+		AB06DC4E19F1269500B82C62 /* HbhWorkerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB06DC4A19F1269500B82C62 /* HbhWorkerModel.m */; };
+		AB06DC5119F126B000B82C62 /* HbhWorkerDetailManage.m in Sources */ = {isa = PBXBuildFile; fileRef = AB06DC5019F126B000B82C62 /* HbhWorkerDetailManage.m */; };
 		5BF8FC7819F0FA3900598FB9 /* HbhAllCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BF8FC7719F0FA3900598FB9 /* HbhAllCategory.plist */; };
 		5BF8FC7C19F107C700598FB9 /* HbhFirstVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF8FC7B19F107C700598FB9 /* HbhFirstVCCell.m */; };
 		AB090E1519EE323C00D943C6 /* HbhWorkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E1319EE323C00D943C6 /* HbhWorkerTableViewCell.m */; };
@@ -139,6 +144,17 @@
 		5BD54D2F19EE4CC5002C4355 /* HbhUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhUser.m; sourceTree = "<group>"; };
 		5BD54D3119EE4DC6002C4355 /* HbhUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhUserManager.h; sourceTree = "<group>"; };
 		5BD54D3219EE4DC6002C4355 /* HbhUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhUserManager.m; sourceTree = "<group>"; };
+		AB06DC4219F1269500B82C62 /* HbhWorkerCaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCaseClass.h; sourceTree = "<group>"; };
+		AB06DC4319F1269500B82C62 /* HbhWorkerCaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCaseClass.m; sourceTree = "<group>"; };
+		AB06DC4419F1269500B82C62 /* HbhWorkerComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerComment.h; sourceTree = "<group>"; };
+		AB06DC4519F1269500B82C62 /* HbhWorkerComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerComment.m; sourceTree = "<group>"; };
+		AB06DC4619F1269500B82C62 /* HbhWorkerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerData.h; sourceTree = "<group>"; };
+		AB06DC4719F1269500B82C62 /* HbhWorkerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerData.m; sourceTree = "<group>"; };
+		AB06DC4819F1269500B82C62 /* HbhWorkerDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerDataModels.h; sourceTree = "<group>"; };
+		AB06DC4919F1269500B82C62 /* HbhWorkerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerModel.h; sourceTree = "<group>"; };
+		AB06DC4A19F1269500B82C62 /* HbhWorkerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerModel.m; sourceTree = "<group>"; };
+		AB06DC4F19F126B000B82C62 /* HbhWorkerDetailManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerDetailManage.h; sourceTree = "<group>"; };
+		AB06DC5019F126B000B82C62 /* HbhWorkerDetailManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerDetailManage.m; sourceTree = "<group>"; };
 		5BF8FC7719F0FA3900598FB9 /* HbhAllCategory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HbhAllCategory.plist; sourceTree = "<group>"; };
 		5BF8FC7A19F107C700598FB9 /* HbhFirstVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhFirstVCCell.h; sourceTree = "<group>"; };
 		5BF8FC7B19F107C700598FB9 /* HbhFirstVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhFirstVCCell.m; sourceTree = "<group>"; };
@@ -383,6 +399,22 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		AB06DC4119F1269500B82C62 /* WorkerModel */ = {
+			isa = PBXGroup;
+			children = (
+				AB06DC4219F1269500B82C62 /* HbhWorkerCaseClass.h */,
+				AB06DC4319F1269500B82C62 /* HbhWorkerCaseClass.m */,
+				AB06DC4419F1269500B82C62 /* HbhWorkerComment.h */,
+				AB06DC4519F1269500B82C62 /* HbhWorkerComment.m */,
+				AB06DC4619F1269500B82C62 /* HbhWorkerData.h */,
+				AB06DC4719F1269500B82C62 /* HbhWorkerData.m */,
+				AB06DC4819F1269500B82C62 /* HbhWorkerDataModels.h */,
+				AB06DC4919F1269500B82C62 /* HbhWorkerModel.h */,
+				AB06DC4A19F1269500B82C62 /* HbhWorkerModel.m */,
+			);
+			path = WorkerModel;
+			sourceTree = "<group>";
+		};
 		5BF8FC7619F0F9DB00598FB9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -470,6 +502,8 @@
 		ABE53EC119F0ED7A00A8FE8B /* Manage */ = {
 			isa = PBXGroup;
 			children = (
+				AB06DC4F19F126B000B82C62 /* HbhWorkerDetailManage.h */,
+				AB06DC5019F126B000B82C62 /* HbhWorkerDetailManage.m */,
 				ABE53EC219F0ED9900A8FE8B /* HbhWorkerListManage.h */,
 				ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */,
 			);
@@ -662,6 +696,7 @@
 		FF21CE9419E65FD4005007B7 /* SecondViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AB06DC4119F1269500B82C62 /* WorkerModel */,
 				ABE53EC819F0FB5A00A8FE8B /* Model */,
 				ABE53EC119F0ED7A00A8FE8B /* Manage */,
 				AB090E1C19EE5E6400D943C6 /* View */,
@@ -1031,8 +1066,10 @@
 				FF21CF2119E66144005007B7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				FFD1A2D919EE6AB300EA97D4 /* HubAreasModel.m in Sources */,
 				ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */,
+				AB06DC4E19F1269500B82C62 /* HbhWorkerModel.m in Sources */,
 				FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */,
 				ABAFAB2119EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m in Sources */,
+				AB06DC4D19F1269500B82C62 /* HbhWorkerData.m in Sources */,
 				FF21CE9B19E66030005007B7 /* SecondViewController.m in Sources */,
 				ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */,
 				AB7DE99719EFC7B000AA9F93 /* HbhDropDownView.m in Sources */,
@@ -1053,6 +1090,7 @@
 				FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */,
 				ABE53ED919F0FB5A00A8FE8B /* HbhOrderCountRegions.m in Sources */,
 				FF21CF1819E66144005007B7 /* UIButton+WebCache.m in Sources */,
+				AB06DC4B19F1269500B82C62 /* HbhWorkerCaseClass.m in Sources */,
 				FF21CF3219E68E28005007B7 /* LeftView.m in Sources */,
 				FF21CF0919E66144005007B7 /* MyHttpClient.m in Sources */,
 				FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */,
@@ -1073,6 +1111,7 @@
 				AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
 				ABAFAB1C19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m in Sources */,
+				AB06DC4C19F1269500B82C62 /* HbhWorkerComment.m in Sources */,
 				AB5D5FBB19EC1EB600E881E6 /* HbhOrderManage.m in Sources */,
 				FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */,
 				5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */,
@@ -1089,6 +1128,7 @@
 				FF21CF1C19E66144005007B7 /* UIImageView+HighlightedWebCache.m in Sources */,
 				FF15253219E7B861008AB6EC /* SCach.m in Sources */,
 				FF21CF0119E66144005007B7 /* AFHTTPClient.m in Sources */,
+				AB06DC5119F126B000B82C62 /* HbhWorkerDetailManage.m in Sources */,
 				FF21CE9019E64D76005007B7 /* RootTabBarController.m in Sources */,
 				FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */,
 				FF21CE9E19E66054005007B7 /* ThirdViewController.m in Sources */,
