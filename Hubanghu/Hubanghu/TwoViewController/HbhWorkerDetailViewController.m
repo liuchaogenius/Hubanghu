@@ -14,6 +14,8 @@
 #import "HbhWorkerImgTableViewCell.h"
 #import "HbhWorkerDetailManage.h"
 #import "UIImageView+WebCache.h"
+#import "HbhMakeAppointMentViewController.h"
+#import "HbhCommentViewController.h"
 
 @interface HbhWorkerDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -99,7 +101,7 @@
             return 35;
         }
         else{
-            return 85;
+            return 65;
         }
         return 0;
     }
@@ -151,6 +153,7 @@
         cell.personLabel.text = self.workerData.desc;
         cell.successLabel.text = self.workerData.succCaseDesc;
         cell.honorLabel.text = self.workerData.certificationDesc;
+        [cell.appointmentBtn addTarget:self action:@selector(makeAppointment) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
     else if (indexPath.section==1)
@@ -158,6 +161,7 @@
         if (indexPath.row==0)
         {
             HbhWorkerSecondTopTableViewCell *cell = [[HbhWorkerSecondTopTableViewCell alloc] init];
+            [cell.moreBtn addTarget:self action:@selector(moreComment) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }
         else
@@ -200,6 +204,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+#pragma mark 跳转到预约
+- (void)makeAppointment
+{
+    [self.navigationController pushViewController:[[HbhMakeAppointMentViewController alloc] init] animated:YES];
+}
+
+#pragma mark 跳转到更多评论
+- (void)moreComment
+{
+    [self.navigationController pushViewController:[[HbhCommentViewController alloc] initWithCommentArray:self.workerData.comment] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

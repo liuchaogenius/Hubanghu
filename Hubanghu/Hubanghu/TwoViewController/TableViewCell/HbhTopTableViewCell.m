@@ -20,11 +20,11 @@
     temFrame.size.width = kMainScreenWidth;
     self.frame = temFrame;
     
-    UIButton *appointmentBtn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth-90, 30, 70, 35)];
-    appointmentBtn.backgroundColor = KColor;
-    [appointmentBtn setTitle:@"预 约" forState:UIControlStateNormal];
-    appointmentBtn.titleLabel.font = kFont20;
-    [self addSubview:appointmentBtn];
+    self.appointmentBtn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth-90, 30, 70, 35)];
+    self.appointmentBtn.backgroundColor = KColor;
+    [self.appointmentBtn setTitle:@"预 约" forState:UIControlStateNormal];
+    self.appointmentBtn.titleLabel.font = kFont20;
+    [self addSubview:self.appointmentBtn];
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 110, kMainScreenWidth, 0.5)];
     lineView.backgroundColor = RGBCOLOR(218, 218, 218);

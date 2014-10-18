@@ -22,7 +22,7 @@
     int btnWidth = 60;
     CGFloat interval = (kMainScreenWidth-btnWidth*4)/5;
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 85)];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 65)];
     for (int i=0; i<aArray.count; i++)
     {
         HbhWorkerCaseClass *model = [aArray objectAtIndex:i];

@@ -7,6 +7,7 @@
 //
 
 #import "HbhOrderDetailViewController.h"
+#import "NetManager.h"
 
 typedef enum : NSUInteger {
     orderStatusUndone = 0,
@@ -67,6 +68,8 @@ typedef enum : NSUInteger {
         self.moreBtn.backgroundColor = RGBCOLOR(201, 201, 201);
         [self.moreBtn setTitleColor:RGBCOLOR(115, 115, 115) forState:UIControlStateNormal];
         [self.moreBtn setTitle:@"取消订单" forState:UIControlStateNormal];
+        [self.moreBtn addTarget:self action:@selector(cancelOrder) forControlEvents:UIControlEventTouchUpInside];
+        
     }else{
         self.showOrderStatusLabel.text = @"交易成功";
         [self.movementBtn setTitle:@"已付款" forState:UIControlStateNormal];
@@ -74,6 +77,20 @@ typedef enum : NSUInteger {
         [self.moreBtn setTitle:@"再次预约" forState:UIControlStateNormal];
     }
     
+}
+
+#pragma mark cancelOrder
+- (void)cancelOrder
+{
+    NSString *cancelOrderUrl = nil;
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",(int)self.myModel.id], @"orderId",nil];
+    kHubRequestUrl(@"cancelOrder.ashx", cancelOrderUrl);
+    [NetManager requestWith:dict url:cancelOrderUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict){
+        MLOG(@"%@", successDict);
+    } failure:^(NSDictionary *failDict, NSError *error) {
+        
+    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)setUIWithModel:(HbhOrderModel *)aModel

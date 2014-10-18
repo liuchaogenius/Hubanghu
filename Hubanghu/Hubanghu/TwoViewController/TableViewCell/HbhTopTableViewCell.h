@@ -18,5 +18,7 @@
 @property(nonatomic, strong) UILabel *personLabel;
 @property(nonatomic, strong) UILabel *successLabel;
 @property(nonatomic, strong) UILabel *honorLabel;
+
+@property(nonatomic, strong) UIButton *appointmentBtn;
 - (instancetype)init;
 @end
