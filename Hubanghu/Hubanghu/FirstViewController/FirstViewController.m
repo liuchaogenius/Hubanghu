@@ -8,6 +8,9 @@
 
 #import "FirstViewController.h"
 #import "HbhFirstVCCell.h"
+#import "HbuCategoryViewController.h"
+
+#define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
 enum CateId_Type
 {
     CateId_floor = 1,//地板
@@ -110,16 +113,16 @@ enum CateId_Type
     NSDictionary *leftCategory = self.allCategoryInfo[indexPath.row*2];
     [cell.leftImageButton setImage:[UIImage imageNamed:leftCategory[@"image"]] forState:UIControlStateNormal];
     [cell.leftImageButton addTarget:self action:@selector(touchImageButton:) forControlEvents:UIControlEventTouchUpInside];
-    cell.leftImageButton.tag = [leftCategory[@"cateId"] integerValue];
+    cell.leftImageButton.tag = [leftCategory[@"cateId"] doubleValue];
     
     //当category总数为奇数个时，最后一排右侧部分处理
     if (self.allCategoryInfo.count%2 && ((indexPath.row+1)*2 == self.allCategoryInfo.count+1)) {
         [cell.rightImageButton setImage:nil forState:UIControlStateNormal];
-        cell.rightImageButton.tag = 149; //
+        cell.rightImageButton.tag = kBlankButtonTag; //
     }else{
         NSDictionary *rightCategory = self.allCategoryInfo[indexPath.row*2+1];
         [cell.rightImageButton setImage:[UIImage imageNamed:rightCategory[@"image"]] forState:UIControlStateNormal];
-        cell.rightImageButton.tag = [rightCategory[@"cateId"] integerValue];
+        cell.rightImageButton.tag = [rightCategory[@"cateId"] doubleValue];
     }
     
     [cell.rightImageButton addTarget:self action:@selector(touchImageButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -131,7 +134,9 @@ enum CateId_Type
 #pragma mark 点击图片button进入对应type页面
 - (void)touchImageButton:(UIButton *)sender
 {
-
+    if (sender.tag != kBlankButtonTag) {
+        [self.navigationController pushViewController:[[HbuCategoryViewController alloc] initWithCateId:sender.tag] animated:YES];
+    }
 }
 
 /*

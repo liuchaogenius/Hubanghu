@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		5B03CBFF19EFE0D000A367DC /* HbhQRcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B03CBFD19EFE0D000A367DC /* HbhQRcodeViewController.m */; };
 		5B03CC0019EFE0D000A367DC /* HbhQRcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B03CBFE19EFE0D000A367DC /* HbhQRcodeViewController.xib */; };
+		5B16D8C819F12CB7009E9FF3 /* HbuCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8C719F12CB7009E9FF3 /* HbuCategoryViewController.m */; };
+		5B16D8CB19F12F07009E9FF3 /* HbhCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8CA19F12F07009E9FF3 /* HbhCategoryCell.m */; };
+		5B16D8CF19F134C3009E9FF3 /* HbuCategoryListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8CE19F134C3009E9FF3 /* HbuCategoryListManager.m */; };
+		5B16D8D319F139D3009E9FF3 /* CategoryInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8D219F139D3009E9FF3 /* CategoryInfoModel.m */; };
+		5B16D8D619F140D0009E9FF3 /* CategoryChildInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8D519F140D0009E9FF3 /* CategoryChildInfoModel.m */; };
 		5B1BC75919F0080E007D5AF7 /* HbhChangePswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */; };
 		5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325A219ECF4170085CAEB /* FouthVCList.plist */; };
 		5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */; };
@@ -133,6 +138,16 @@
 		5B03CBFC19EFE0D000A367DC /* HbhQRcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhQRcodeViewController.h; sourceTree = "<group>"; };
 		5B03CBFD19EFE0D000A367DC /* HbhQRcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhQRcodeViewController.m; sourceTree = "<group>"; };
 		5B03CBFE19EFE0D000A367DC /* HbhQRcodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhQRcodeViewController.xib; sourceTree = "<group>"; };
+		5B16D8C619F12CB7009E9FF3 /* HbuCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbuCategoryViewController.h; sourceTree = "<group>"; };
+		5B16D8C719F12CB7009E9FF3 /* HbuCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbuCategoryViewController.m; sourceTree = "<group>"; };
+		5B16D8C919F12F07009E9FF3 /* HbhCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhCategoryCell.h; sourceTree = "<group>"; };
+		5B16D8CA19F12F07009E9FF3 /* HbhCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhCategoryCell.m; sourceTree = "<group>"; };
+		5B16D8CD19F134C3009E9FF3 /* HbuCategoryListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbuCategoryListManager.h; sourceTree = "<group>"; };
+		5B16D8CE19F134C3009E9FF3 /* HbuCategoryListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbuCategoryListManager.m; sourceTree = "<group>"; };
+		5B16D8D119F139D3009E9FF3 /* CategoryInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryInfoModel.h; sourceTree = "<group>"; };
+		5B16D8D219F139D3009E9FF3 /* CategoryInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryInfoModel.m; sourceTree = "<group>"; };
+		5B16D8D419F140D0009E9FF3 /* CategoryChildInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryChildInfoModel.h; sourceTree = "<group>"; };
+		5B16D8D519F140D0009E9FF3 /* CategoryChildInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryChildInfoModel.m; sourceTree = "<group>"; };
 		5B1BC75719F0080E007D5AF7 /* HbhChangePswViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhChangePswViewController.h; sourceTree = "<group>"; };
 		5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhChangePswViewController.m; sourceTree = "<group>"; };
 		5BB325A219ECF4170085CAEB /* FouthVCList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FouthVCList.plist; sourceTree = "<group>"; };
@@ -368,6 +383,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B16D8CC19F1340A009E9FF3 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				5B16D8CD19F134C3009E9FF3 /* HbuCategoryListManager.h */,
+				5B16D8CE19F134C3009E9FF3 /* HbuCategoryListManager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		5B16D8D019F139A4009E9FF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B16D8D119F139D3009E9FF3 /* CategoryInfoModel.h */,
+				5B16D8D219F139D3009E9FF3 /* CategoryInfoModel.m */,
+				5B16D8D419F140D0009E9FF3 /* CategoryChildInfoModel.h */,
+				5B16D8D519F140D0009E9FF3 /* CategoryChildInfoModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		5BB3259E19ECF3AE0085CAEB /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,6 +453,8 @@
 			children = (
 				5BF8FC7A19F107C700598FB9 /* HbhFirstVCCell.h */,
 				5BF8FC7B19F107C700598FB9 /* HbhFirstVCCell.m */,
+				5B16D8C919F12F07009E9FF3 /* HbhCategoryCell.h */,
+				5B16D8CA19F12F07009E9FF3 /* HbhCategoryCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -723,10 +760,14 @@
 		FF21CE9519E65FD4005007B7 /* FirstViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5B16D8D019F139A4009E9FF3 /* Model */,
+				5B16D8CC19F1340A009E9FF3 /* Manager */,
 				5BF8FC7919F1073600598FB9 /* View */,
 				5BF8FC7619F0F9DB00598FB9 /* Data */,
 				FF21CE9619E65FE7005007B7 /* FirstViewController.h */,
 				FF21CE9719E65FE7005007B7 /* FirstViewController.m */,
+				5B16D8C619F12CB7009E9FF3 /* HbuCategoryViewController.h */,
+				5B16D8C719F12CB7009E9FF3 /* HbuCategoryViewController.m */,
 			);
 			path = FirstViewController;
 			sourceTree = "<group>";
@@ -1095,8 +1136,10 @@
 				AB090E2419EE61F700D943C6 /* HbhWorkerDetailViewController.m in Sources */,
 				ABC5D50619F1E59800A306F7 /* HbhMakeAppointMentViewController.m in Sources */,
 				FF21CF1F19E66144005007B7 /* DataCenterDeal.mm in Sources */,
+				5B16D8D619F140D0009E9FF3 /* CategoryChildInfoModel.m in Sources */,
 				FF21CF0C19E66144005007B7 /* FBKVOController.m in Sources */,
 				AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */,
+				5B16D8CB19F12F07009E9FF3 /* HbhCategoryCell.m in Sources */,
 				FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */,
 				FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */,
 				ABE53ED919F0FB5A00A8FE8B /* HbhOrderCountRegions.m in Sources */,
@@ -1121,6 +1164,7 @@
 				5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */,
 				ABC5D50F19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m in Sources */,
 				AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */,
+				5B16D8C819F12CB7009E9FF3 /* HbuCategoryViewController.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
 				ABAFAB1C19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m in Sources */,
 				AB06DC4C19F1269500B82C62 /* HbhWorkerComment.m in Sources */,
@@ -1149,6 +1193,7 @@
 				FF21CF1219E66144005007B7 /* SDWebImageCompat.m in Sources */,
 				FF21CE7319E64B5A005007B7 /* AppDelegate.m in Sources */,
 				FF21CF0F19E66144005007B7 /* MKAnnotationView+WebCache.m in Sources */,
+				5B16D8CF19F134C3009E9FF3 /* HbuCategoryListManager.m in Sources */,
 				FF21CF0519E66144005007B7 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				5B03CBFF19EFE0D000A367DC /* HbhQRcodeViewController.m in Sources */,
 				FF21CF0D19E66144005007B7 /* NSData+Base64.m in Sources */,
@@ -1161,6 +1206,7 @@
 				FF21CF2219E66144005007B7 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				FF21CF2519E66144005007B7 /* UIImage+ImageEffects.m in Sources */,
 				FF21CF1B19E66144005007B7 /* UIImage+WebP.m in Sources */,
+				5B16D8D319F139D3009E9FF3 /* CategoryInfoModel.m in Sources */,
 				FF21CE9819E65FE7005007B7 /* FirstViewController.m in Sources */,
 				FF21CF1119E66144005007B7 /* SDImageCache.m in Sources */,
 				ABC5D51319F1F16100A306F7 /* HbhCommentViewController.m in Sources */,

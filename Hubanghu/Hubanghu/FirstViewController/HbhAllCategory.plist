@@ -8,7 +8,7 @@
 		<key>image</key>
 		<string>OrderType_1</string>
 		<key>cateId</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>CategoryName</key>
@@ -16,7 +16,7 @@
 		<key>image</key>
 		<string>OrderType_2</string>
 		<key>cateId</key>
-		<string>2</string>
+		<integer>2</integer>
 	</dict>
 	<dict>
 		<key>CategoryName</key>
@@ -24,7 +24,7 @@
 		<key>image</key>
 		<string>OrderType_3</string>
 		<key>cateId</key>
-		<string>3</string>
+		<integer>3</integer>
 	</dict>
 	<dict>
 		<key>CategoryName</key>
@@ -32,7 +32,7 @@
 		<key>image</key>
 		<string>OrderType_4</string>
 		<key>cateId</key>
-		<string>4</string>
+		<integer>4</integer>
 	</dict>
 	<dict>
 		<key>CategoryName</key>
@@ -40,7 +40,7 @@
 		<key>image</key>
 		<string>OrderType_5</string>
 		<key>cateId</key>
-		<string>5</string>
+		<integer>5</integer>
 	</dict>
 </array>
 </plist>
