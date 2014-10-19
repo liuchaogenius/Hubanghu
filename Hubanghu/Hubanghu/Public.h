@@ -76,12 +76,13 @@ id = nil;\
 }\
 }while(0)
 #define kIntToString(str,a) do{\
-[NSString stringWithFormat:@"%d", a];\
+str = [NSString stringWithFormat:@"%d", a];\
 }while(0)
 
 #define kFloatToString(str,a) do{\
-[NSString stringWithFormat:@"%.2f", a];\
+str=[NSString stringWithFormat:@"%.2f", a];\
 }while(0)
+
 
 #define AssignMentID(l, r) do { \
 id V = (r); \
