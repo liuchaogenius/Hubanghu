@@ -120,6 +120,11 @@
                 NSString *sqlSELcity = @"select 市 from areas_table where firstchar=?";
                 NSMutableArray *mutArry = [[NSMutableArray alloc] init];
                 FMResultSet *cityResultset = [db executeQuery:sqlSELcity,indexchar];
+                if(!cityResultset)
+                {
+                    aCityBlock(nil);
+                    break;
+                }
                 while([cityResultset next])
                 {
                     HubAreasModel *model = [weakself parseFMResultToHubAreasModel:cityResultset];
