@@ -10,9 +10,19 @@
 
 @interface HbhMakeAppointMentViewController ()
 
+@property(nonatomic) double workerId;
+@property(nonatomic, strong) NSString *workerName;
 @end
 
 @implementation HbhMakeAppointMentViewController
+
+- (instancetype)initWithWorkerId:(double)aWorkerId andWorkerName:(NSString *)aWorkerName
+{
+    self = [super init];
+    self.workerId = aWorkerId;
+    self.workerName = aWorkerName;
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,7 +34,7 @@
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 50)];
     label.text = @"请选择要预约的项目 :";
-    label.font = kFont20;
+    label.font = kFont17;
     [self.view addSubview:label];
     
     for (int i=0; i<5; i++)

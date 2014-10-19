@@ -10,4 +10,5 @@
 
 @interface HbhMakeAppointMentViewController : BaseViewController
 
+- (instancetype)initWithWorkerId:(double)aWorkerId andWorkerName:(NSString *)aWorkerName;
 @end

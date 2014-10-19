@@ -24,6 +24,7 @@
 @property(nonatomic, strong)HbhWorkerDetailManage *workerDetailManage;
 
 @property(nonatomic, strong) HbhWorkerData *workerData;
+@property(nonatomic, strong) UIActivityIndicatorView *activityView;
 @end
 
 @implementation HbhWorkerDetailViewController
@@ -49,12 +50,26 @@
     self.workDetailTableView.backgroundColor = RGBCOLOR(247, 247, 247);
     [self.view addSubview:self.workDetailTableView];
     
+    [self.view addSubview:self.activityView];
+    [self.activityView startAnimating];
+    
     [self.workerDetailManage getWorkerDetailWithWorkerId:self.myWorkerId SuccBlock:^(HbhWorkerData *aData) {
         self.workerData = aData;
         [self.workDetailTableView reloadData];
+        [self.activityView stopAnimating];
     } and:^{
         
     }];
+}
+
+- (UIActivityIndicatorView *)activityView
+{
+    if (!_activityView) {
+        _activityView = [[UIActivityIndicatorView alloc]
+                         initWithFrame:CGRectMake(kMainScreenWidth/2-20, kMainScreenHeight/2-20, 40, 40)];
+        _activityView.color = [UIColor blackColor];
+    }
+    return _activityView;
 }
 
 - (HbhWorkerDetailManage *)workerDetailManage

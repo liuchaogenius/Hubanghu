@@ -30,4 +30,16 @@
         
     }];
 }
+
+- (void)cancelOrder:(int)aOrderID andSuccBlock:(void(^)(void))aSuccBlock and:(void(^)(void))aFailBlock
+{
+    NSString *cancelOrderUrl = nil;
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",aOrderID], @"orderId",nil];
+    kHubRequestUrl(@"cancelOrder.ashx", cancelOrderUrl);
+    [NetManager requestWith:dict url:cancelOrderUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict){
+        MLOG(@"%@", successDict);
+    } failure:^(NSDictionary *failDict, NSError *error) {
+        
+    }];
+}
 @end
