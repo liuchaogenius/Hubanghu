@@ -35,6 +35,11 @@
 		ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2419EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m */; };
 		ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */; };
 		ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */; };
+		B029FC3119F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B029FC2F19F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.m */; };
+		B029FC3219F101E000A35B3C /* AppointmentDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B029FC3019F101E000A35B3C /* AppointmentDetailsCell.xib */; };
+		B0EB09DF19F16A5E00EDB0D5 /* HbhAppointmentNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09DE19F16A5E00EDB0D5 /* HbhAppointmentNetManager.m */; };
+		B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */; };
+		B0EB09E519F22C8000EDB0D5 /* HbhAppointmentConfirmeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09E419F22C8000EDB0D5 /* HbhAppointmentConfirmeView.m */; };
 		FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252619E7B861008AB6EC /* JsonToModel.m */; };
 		FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252819E7B861008AB6EC /* NSFileManager_Additions.m */; };
 		FF15253219E7B861008AB6EC /* SCach.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252A19E7B861008AB6EC /* SCach.m */; };
@@ -160,6 +165,15 @@
 		ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerThirdTopTableViewCell.xib; sourceTree = "<group>"; };
 		ABAFAB2819EF4BDC00B51916 /* HbhWorkerImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerImgTableViewCell.h; sourceTree = "<group>"; };
 		ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerImgTableViewCell.m; sourceTree = "<group>"; };
+		B029FC2E19F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentDetailsTableViewCell.h; sourceTree = "<group>"; };
+		B029FC2F19F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentDetailsTableViewCell.m; sourceTree = "<group>"; };
+		B029FC3019F101E000A35B3C /* AppointmentDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentDetailsCell.xib; sourceTree = "<group>"; };
+		B0EB09DD19F16A5E00EDB0D5 /* HbhAppointmentNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentNetManager.h; sourceTree = "<group>"; };
+		B0EB09DE19F16A5E00EDB0D5 /* HbhAppointmentNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentNetManager.m; sourceTree = "<group>"; };
+		B0EB09E019F171FD00EDB0D5 /* HbhAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentViewController.h; sourceTree = "<group>"; };
+		B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentViewController.m; sourceTree = "<group>"; };
+		B0EB09E319F22C8000EDB0D5 /* HbhAppointmentConfirmeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentConfirmeView.h; sourceTree = "<group>"; };
+		B0EB09E419F22C8000EDB0D5 /* HbhAppointmentConfirmeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentConfirmeView.m; sourceTree = "<group>"; };
 		FF15252519E7B861008AB6EC /* JsonToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonToModel.h; sourceTree = "<group>"; };
 		FF15252619E7B861008AB6EC /* JsonToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonToModel.m; sourceTree = "<group>"; };
 		FF15252719E7B861008AB6EC /* NSFileManager_Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManager_Additions.h; sourceTree = "<group>"; };
@@ -420,6 +434,27 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B029FC2B19F0FEC700A35B3C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B029FC2E19F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.h */,
+				B029FC2F19F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.m */,
+				B029FC3019F101E000A35B3C /* AppointmentDetailsCell.xib */,
+				B0EB09E319F22C8000EDB0D5 /* HbhAppointmentConfirmeView.h */,
+				B0EB09E419F22C8000EDB0D5 /* HbhAppointmentConfirmeView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B029FC2C19F1018300A35B3C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B0EB09DD19F16A5E00EDB0D5 /* HbhAppointmentNetManager.h */,
+				B0EB09DE19F16A5E00EDB0D5 /* HbhAppointmentNetManager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
 		FF15252419E7B861008AB6EC /* SCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,8 +633,12 @@
 		FF21CE9519E65FD4005007B7 /* FirstViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B029FC2C19F1018300A35B3C /* Manager */,
+				B029FC2B19F0FEC700A35B3C /* View */,
 				FF21CE9619E65FE7005007B7 /* FirstViewController.h */,
 				FF21CE9719E65FE7005007B7 /* FirstViewController.m */,
+				B0EB09E019F171FD00EDB0D5 /* HbhAppointmentViewController.h */,
+				B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */,
 			);
 			path = FirstViewController;
 			sourceTree = "<group>";
@@ -916,6 +955,7 @@
 				AB090E2919EE63E000D943C6 /* HbhTopTableViewCell.xib in Resources */,
 				ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */,
 				AB090E1619EE323C00D943C6 /* HbhWorkerTableViewCell.xib in Resources */,
+				B029FC3219F101E000A35B3C /* AppointmentDetailsCell.xib in Resources */,
 				ABAFAB1D19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib in Resources */,
 				FF21CE7519E64B5A005007B7 /* Images.xcassets in Resources */,
 				FF15253619E7D354008AB6EC /* testImg111@3x.png in Resources */,
@@ -970,7 +1010,9 @@
 				FF21CF0919E66144005007B7 /* MyHttpClient.m in Sources */,
 				FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */,
 				FF21CF2619E66144005007B7 /* UIViewAdditions.m in Sources */,
+				B0EB09DF19F16A5E00EDB0D5 /* HbhAppointmentNetManager.m in Sources */,
 				FF21CF1A19E66144005007B7 /* UIImage+MultiFormat.m in Sources */,
+				B0EB09E519F22C8000EDB0D5 /* HbhAppointmentConfirmeView.m in Sources */,
 				ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */,
 				FF21CF0819E66144005007B7 /* AFXMLRequestOperation.m in Sources */,
 				FF21CF1319E66144005007B7 /* SDWebImageDecoder.m in Sources */,
@@ -995,9 +1037,11 @@
 				FF21CF0E19E66144005007B7 /* JSONKit.m in Sources */,
 				FF21CF0B19E66144005007B7 /* UIImageView+AFNetworking.m in Sources */,
 				FF21CF1C19E66144005007B7 /* UIImageView+HighlightedWebCache.m in Sources */,
+				B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */,
 				FF15253219E7B861008AB6EC /* SCach.m in Sources */,
 				FF21CF0119E66144005007B7 /* AFHTTPClient.m in Sources */,
 				FF21CE9019E64D76005007B7 /* RootTabBarController.m in Sources */,
+				B029FC3119F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.m in Sources */,
 				FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */,
 				FF21CE9E19E66054005007B7 /* ThirdViewController.m in Sources */,
 				FF21CF0619E66144005007B7 /* AFPropertyListRequestOperation.m in Sources */,

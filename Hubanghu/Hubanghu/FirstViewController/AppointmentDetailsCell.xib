@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="242" id="KGk-i7-Jjw" customClass="HbhAppointmentDetailsTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="235"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appointmentIcon1" translatesAutoresizingMaskIntoConstraints="NO" id="Xx3-HN-exT">
+                        <rect key="frame" x="10" y="10" width="45" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="Hfy-Kg-T0J"/>
+                            <constraint firstAttribute="width" constant="45" id="mGS-3l-yhD"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appointmentIcon1" translatesAutoresizingMaskIntoConstraints="NO" id="Cr4-Q4-QG6">
+                        <rect key="frame" x="10" y="55" width="45" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="52f-8J-erH"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appointmentIcon1" translatesAutoresizingMaskIntoConstraints="NO" id="SbP-ml-F7s">
+                        <rect key="frame" x="10" y="100" width="45" height="35"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appointmentIcon1" translatesAutoresizingMaskIntoConstraints="NO" id="U4h-OC-qYo">
+                        <rect key="frame" x="10" y="190" width="45" height="35"/>
+                    </imageView>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="  输入业主电话" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SxK-AG-Pdd">
+                        <rect key="frame" x="55" y="55" width="249" height="35"/>
+                        <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="  输入业主姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rrd-Jb-jRV">
+                        <rect key="frame" x="55" y="100" width="249" height="35"/>
+                        <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  选择预约时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDf-qe-8Tt">
+                        <rect key="frame" x="55" y="10" width="249" height="35"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appointmentIcon1" translatesAutoresizingMaskIntoConstraints="NO" id="H5S-pm-UEY">
+                        <rect key="frame" x="10" y="145" width="45" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="8RP-4P-5ck"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  选择省、市、区" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctD-Z6-TFm">
+                        <rect key="frame" x="55" y="145" width="249" height="35"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="  输入详细地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="atN-a1-EVd">
+                        <rect key="frame" x="55" y="190" width="249" height="35"/>
+                        <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Cr4-Q4-QG6" firstAttribute="leading" secondItem="SbP-ml-F7s" secondAttribute="leading" id="296-gC-OhT"/>
+                    <constraint firstItem="SbP-ml-F7s" firstAttribute="top" secondItem="Rrd-Jb-jRV" secondAttribute="top" id="4GQ-ao-Qr9"/>
+                    <constraint firstItem="atN-a1-EVd" firstAttribute="leading" secondItem="ctD-Z6-TFm" secondAttribute="leading" id="4W2-ns-thP"/>
+                    <constraint firstItem="Xx3-HN-exT" firstAttribute="trailing" secondItem="Cr4-Q4-QG6" secondAttribute="trailing" id="4dG-Af-uPN"/>
+                    <constraint firstItem="SxK-AG-Pdd" firstAttribute="trailing" secondItem="Rrd-Jb-jRV" secondAttribute="trailing" id="78c-LF-s3Y"/>
+                    <constraint firstItem="SbP-ml-F7s" firstAttribute="leading" secondItem="H5S-pm-UEY" secondAttribute="leading" id="A2J-ht-G73"/>
+                    <constraint firstItem="SxK-AG-Pdd" firstAttribute="leading" secondItem="oDf-qe-8Tt" secondAttribute="leading" id="C0V-ZU-h3G"/>
+                    <constraint firstItem="U4h-OC-qYo" firstAttribute="trailing" secondItem="H5S-pm-UEY" secondAttribute="trailing" id="CQt-D8-tPn"/>
+                    <constraint firstItem="ctD-Z6-TFm" firstAttribute="trailing" secondItem="Rrd-Jb-jRV" secondAttribute="trailing" id="CXZ-yW-II3"/>
+                    <constraint firstItem="H5S-pm-UEY" firstAttribute="top" secondItem="SbP-ml-F7s" secondAttribute="bottom" constant="10" id="Hd8-TV-AR8"/>
+                    <constraint firstItem="Xx3-HN-exT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="JYr-yU-VLP"/>
+                    <constraint firstItem="Rrd-Jb-jRV" firstAttribute="leading" secondItem="ctD-Z6-TFm" secondAttribute="leading" id="N3M-0y-NOa"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="oDf-qe-8Tt" secondAttribute="trailing" constant="8" id="Nzw-E7-6Za"/>
+                    <constraint firstItem="U4h-OC-qYo" firstAttribute="bottom" secondItem="atN-a1-EVd" secondAttribute="bottom" id="OFf-ut-ovN"/>
+                    <constraint firstItem="atN-a1-EVd" firstAttribute="trailing" secondItem="ctD-Z6-TFm" secondAttribute="trailing" id="PHp-yE-oL1"/>
+                    <constraint firstItem="Cr4-Q4-QG6" firstAttribute="trailing" secondItem="SbP-ml-F7s" secondAttribute="trailing" id="PSj-hy-q0b"/>
+                    <constraint firstItem="oDf-qe-8Tt" firstAttribute="leading" secondItem="Xx3-HN-exT" secondAttribute="trailing" id="Q7s-u1-yNH"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="U4h-OC-qYo" secondAttribute="bottom" constant="1.5" id="THO-XK-jr2"/>
+                    <constraint firstItem="atN-a1-EVd" firstAttribute="top" secondItem="U4h-OC-qYo" secondAttribute="top" id="TNN-dG-TlX"/>
+                    <constraint firstItem="H5S-pm-UEY" firstAttribute="bottom" secondItem="ctD-Z6-TFm" secondAttribute="bottom" id="UaI-AF-Oss"/>
+                    <constraint firstItem="SbP-ml-F7s" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="V69-0O-9VH"/>
+                    <constraint firstItem="SxK-AG-Pdd" firstAttribute="trailing" secondItem="oDf-qe-8Tt" secondAttribute="trailing" id="WWb-BM-57L"/>
+                    <constraint firstItem="U4h-OC-qYo" firstAttribute="top" secondItem="H5S-pm-UEY" secondAttribute="bottom" constant="10" id="XxC-Xv-WwS"/>
+                    <constraint firstItem="Xx3-HN-exT" firstAttribute="leading" secondItem="Cr4-Q4-QG6" secondAttribute="leading" id="YmI-rU-5Tx"/>
+                    <constraint firstItem="Cr4-Q4-QG6" firstAttribute="top" secondItem="Xx3-HN-exT" secondAttribute="bottom" constant="10" id="Ywj-jr-Vpx"/>
+                    <constraint firstItem="SbP-ml-F7s" firstAttribute="bottom" secondItem="Rrd-Jb-jRV" secondAttribute="bottom" id="ZUq-Pu-K56"/>
+                    <constraint firstItem="Xx3-HN-exT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="cCv-pI-3qX"/>
+                    <constraint firstItem="SbP-ml-F7s" firstAttribute="trailing" secondItem="H5S-pm-UEY" secondAttribute="trailing" id="ipz-ay-ew7"/>
+                    <constraint firstItem="Xx3-HN-exT" firstAttribute="top" secondItem="oDf-qe-8Tt" secondAttribute="top" id="jkW-5O-cX7"/>
+                    <constraint firstItem="Rrd-Jb-jRV" firstAttribute="leading" secondItem="SxK-AG-Pdd" secondAttribute="leading" id="kiN-CM-si7"/>
+                    <constraint firstItem="H5S-pm-UEY" firstAttribute="top" secondItem="ctD-Z6-TFm" secondAttribute="top" id="klm-sP-9LO"/>
+                    <constraint firstItem="Cr4-Q4-QG6" firstAttribute="top" secondItem="SxK-AG-Pdd" secondAttribute="top" id="m96-AW-pI1"/>
+                    <constraint firstItem="SbP-ml-F7s" firstAttribute="top" secondItem="Cr4-Q4-QG6" secondAttribute="bottom" constant="10" id="mI8-HY-Baa"/>
+                    <constraint firstItem="U4h-OC-qYo" firstAttribute="leading" secondItem="H5S-pm-UEY" secondAttribute="leading" id="ohT-fg-LPc"/>
+                    <constraint firstItem="Cr4-Q4-QG6" firstAttribute="bottom" secondItem="SxK-AG-Pdd" secondAttribute="bottom" id="tOX-cR-SBX"/>
+                    <constraint firstItem="oDf-qe-8Tt" firstAttribute="bottom" secondItem="Xx3-HN-exT" secondAttribute="bottom" id="vLk-bN-ZYj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="areaLabel" destination="ctD-Z6-TFm" id="tcW-5M-mC2"/>
+                <outlet property="detailAreaTF" destination="atN-a1-EVd" id="6ep-d5-jwA"/>
+                <outlet property="phoneNumberTF" destination="SxK-AG-Pdd" id="CkN-bt-3rK"/>
+                <outlet property="timeLabel" destination="oDf-qe-8Tt" id="Vdd-y6-FFO"/>
+                <outlet property="userNameTF" destination="Rrd-Jb-jRV" id="cih-Db-DaT"/>
+            </connections>
+            <point key="canvasLocation" x="320" y="328.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="appointmentIcon1" width="72" height="59"/>
+    </resources>
+</document>

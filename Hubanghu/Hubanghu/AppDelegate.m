@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "RootTabBarController.h"
+
+#import "HbhAppointmentViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -21,6 +23,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     rootvc = [[RootTabBarController alloc] init];
     rootvc.view.frame = self.window.bounds;
+	
     self.window.rootViewController = rootvc;
     [self.window makeKeyAndVisible];
     return YES;

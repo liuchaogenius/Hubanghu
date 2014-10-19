@@ -43,7 +43,6 @@
 #define kFont17 [UIFont systemFontOfSize:17]
 #define kFont18 [UIFont systemFontOfSize:18]
 #define kFont19 [UIFont systemFontOfSize:19]
-
 #define kFont20 [UIFont systemFontOfSize:20]
 #define kFont21 [UIFont systemFontOfSize:21]
 #define kFont22 [UIFont systemFontOfSize:22]
@@ -56,6 +55,17 @@
 #define kFont29 [UIFont systemFontOfSize:29]
 #define kFont30 [UIFont systemFontOfSize:30]
 
+#define kFontBold13 [UIFont fontWithName:@"Helvetica-Bold" size:13]
+#define kFontBold15 [UIFont fontWithName:@"Helvetica-Bold" size:15]
+#define kFontBold17 [UIFont fontWithName:@"Helvetica-Bold" size:17]
+#define kFontBold18 [UIFont fontWithName:@"Helvetica-Bold" size:18]
+#define kFontBold19 [UIFont fontWithName:@"Helvetica-Bold" size:19]
+#define kFontBold20 [UIFont fontWithName:@"Helvetica-Bold" size:20]
+#define kFontBold21 [UIFont fontWithName:@"Helvetica-Bold" size:21]
+#define kFontBold22 [UIFont fontWithName:@"Helvetica-Bold" size:22]
+#define kFontBold23 [UIFont fontWithName:@"Helvetica-Bold" size:23]
+#define kFontBold24 [UIFont fontWithName:@"Helvetica-Bold" size:24]
+#define kFontBold25 [UIFont fontWithName:@"Helvetica-Bold" size:25]
 
 #define kNSUDefaultSaveVauleAndKey(value,key) [[NSUserDefaults standardUserDefaults] setObject:value forKey:key]
 #define kNSUDefaultReadKey(key) [[NSUserDefaults standardUserDefaults] valueForKey:key]
