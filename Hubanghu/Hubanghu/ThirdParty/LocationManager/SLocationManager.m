@@ -119,40 +119,57 @@ static SLocationManager *myLocationObj = nil;
 - (void)startLocation:(void(^)(Location2d al2d))aBlock
 {
     self.locationDegree = aBlock;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
     [self requestAuthorization];
-#else
+//#else
+//    if([CLLocationManager locationServicesEnabled] && isLocationing == NO)
+//    {
+//        isLocationing = YES;///重复定位和重复网络请求？？？？？？？？
+//        [self.myLocationManager startUpdatingLocation];
+//        [self performSelector:@selector(locationTimeOut) withObject:nil afterDelay:10];
+//    }
+//#endif
+}
+
+- (void)requestAlwaysLocationAuthorization
+{
+//#ifdef __IPHONE_8_0
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
+    if([self.myLocationManager respondsToSelector:@selector(requestAlwaysAuthorization)])
+    {
+        //[self.myLocationManager requestAlwaysAuthorization];
+        [self.myLocationManager performSelector:@selector(requestAlwaysAuthorization)];
+    }
     if([CLLocationManager locationServicesEnabled] && isLocationing == NO)
     {
         isLocationing = YES;///重复定位和重复网络请求？？？？？？？？
         [self.myLocationManager startUpdatingLocation];
         [self performSelector:@selector(locationTimeOut) withObject:nil afterDelay:10];
     }
-#endif
-}
 
-- (void)requestAlwaysLocationAuthorization
-{
-#ifdef __IPHONE_8_0
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
-    if([self.myLocationManager respondsToSelector:@selector(requestAlwaysAuthorization)])
-    {
-        [self.myLocationManager requestAlwaysAuthorization];
-    }
-#endif
-#endif
+    
+//#endif
+//#endif
 }
 
 - (void)requestWhenUserLocationAuthorization
 {
-#ifdef __IPHONE_8_0
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
+//#ifdef __IPHONE_8_0
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
     if([self.myLocationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
     {
-        [self.myLocationManager requestWhenInUseAuthorization];
+        //[self.myLocationManager requestWhenInUseAuthorization];
+        [self.myLocationManager performSelector:@selector(requestWhenInUseAuthorization)];
     }
-#endif
-#endif
+    if([CLLocationManager locationServicesEnabled] && isLocationing == NO)
+    {
+        isLocationing = YES;///重复定位和重复网络请求？？？？？？？？
+        [self.myLocationManager startUpdatingLocation];
+        [self performSelector:@selector(locationTimeOut) withObject:nil afterDelay:10];
+    }
+
+//#endif
+//#endif
 }
 
 - (void)locationTimeOut
