@@ -112,8 +112,15 @@ static SLocationManager *myLocationObj = nil;
     }
     else
     {
-        [self.myLocationManager startUpdatingLocation];
+        [self startLocation];
     }
+}
+
+- (void)startLocation
+{
+    isLocationing = YES;///重复定位和重复网络请求？？？？？？？？
+    [self.myLocationManager startUpdatingLocation];
+    [self performSelector:@selector(locationTimeOut) withObject:nil afterDelay:10];
 }
 
 - (void)startLocation:(void(^)(Location2d al2d))aBlock
@@ -142,9 +149,7 @@ static SLocationManager *myLocationObj = nil;
     }
     if([CLLocationManager locationServicesEnabled] && isLocationing == NO)
     {
-        isLocationing = YES;///重复定位和重复网络请求？？？？？？？？
-        [self.myLocationManager startUpdatingLocation];
-        [self performSelector:@selector(locationTimeOut) withObject:nil afterDelay:10];
+        [self startLocation];
     }
 
     
@@ -163,9 +168,7 @@ static SLocationManager *myLocationObj = nil;
     }
     if([CLLocationManager locationServicesEnabled] && isLocationing == NO)
     {
-        isLocationing = YES;///重复定位和重复网络请求？？？？？？？？
-        [self.myLocationManager startUpdatingLocation];
-        [self performSelector:@selector(locationTimeOut) withObject:nil afterDelay:10];
+        [self startLocation];
     }
 
 //#endif
@@ -210,6 +213,10 @@ static SLocationManager *myLocationObj = nil;
     }
 }
 
+- (int)getLocationAuthorStatus
+{
+    return [CLLocationManager authorizationStatus];
+}
 
 - (void)locationManager:(CLLocationManager *)manager getLocation:(CLLocation *)location
 {

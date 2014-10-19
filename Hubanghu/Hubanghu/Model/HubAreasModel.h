@@ -16,3 +16,4 @@
 @property(nonatomic, strong) NSString *strTypeName;
 @property(nonatomic, strong) NSString *strFirstchar;
 @end
+
