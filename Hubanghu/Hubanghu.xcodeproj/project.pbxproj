@@ -129,7 +129,6 @@
 		FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2CC19EE4B6D00EA97D4 /* FMResultSet.m */; };
 		FFD1A2D319EE4B8D00EA97D4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */; };
 		FFD1A2D619EE4F2100EA97D4 /* AreasDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2D519EE4F2100EA97D4 /* AreasDBManager.m */; };
-		FFD1A2D919EE6AB300EA97D4 /* HubAreasModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2D819EE6AB300EA97D4 /* HubAreasModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -382,8 +381,6 @@
 		FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		FFD1A2D419EE4F2100EA97D4 /* AreasDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AreasDBManager.h; path = ../ThirdParty/FMDB/AreasDBManager.h; sourceTree = "<group>"; };
 		FFD1A2D519EE4F2100EA97D4 /* AreasDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AreasDBManager.m; path = ../ThirdParty/FMDB/AreasDBManager.m; sourceTree = "<group>"; };
-		FFD1A2D719EE6AB300EA97D4 /* HubAreasModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubAreasModel.h; sourceTree = "<group>"; };
-		FFD1A2D819EE6AB300EA97D4 /* HubAreasModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubAreasModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1031,8 +1028,6 @@
 		FFD1A2DA19EE6AC100EA97D4 /* AreasModel */ = {
 			isa = PBXGroup;
 			children = (
-				FFD1A2D719EE6AB300EA97D4 /* HubAreasModel.h */,
-				FFD1A2D819EE6AB300EA97D4 /* HubAreasModel.m */,
 				FFD1A2D419EE4F2100EA97D4 /* AreasDBManager.h */,
 				FFD1A2D519EE4F2100EA97D4 /* AreasDBManager.m */,
 			);
@@ -1154,7 +1149,6 @@
 				FF21CF1919E66144005007B7 /* UIImage+GIF.m in Sources */,
 				AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */,
 				FF21CF2119E66144005007B7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
-				FFD1A2D919EE6AB300EA97D4 /* HubAreasModel.m in Sources */,
 				ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */,
 				AB06DC4E19F1269500B82C62 /* HbhWorkerModel.m in Sources */,
 				FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */,

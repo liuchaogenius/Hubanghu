@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class FMDatabase;
 @class FMDatabaseQueue;
-
+@class HbuAreaListModelAreas;
 @interface AreasDBManager : NSObject
 {
     FMDatabaseQueue *dataQueue;
@@ -28,6 +28,7 @@
 ///获取根据字母分组城市
 - (void)selGroupAreaCity:(void(^)(NSMutableDictionary *cityDict))aCityBlock;
 
+- (void)selHbuArealistModel:(NSString *)aCityName resultBlock:(void(^)(HbuAreaListModelAreas*model))aResultBlock __attribute__((nonnull(1)));
 ////获取所有省份
 - (void)selProvince:(void(^)(NSMutableArray *cityArry))aProvinceBlock;
 

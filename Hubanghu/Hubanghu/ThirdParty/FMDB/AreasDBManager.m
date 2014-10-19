@@ -9,7 +9,7 @@
 #import "AreasDBManager.h"
 #import "FMDatabase.h"
 #import "FMDatabaseQueue.h"
-#import "HubAreasModel.h"
+#import "HbuAreaListModelAreas.h"
 #define DataBaseName @"AreasDatabase.sqlite"
 #define kDataBaseQueueName @"DatabaseQueue.sqlite"
 
@@ -37,6 +37,7 @@
     self = [super init];
     if(self)
     {
+        __weak AreasDBManager *weakself = self;
         NSFileManager *manager = [NSFileManager defaultManager];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *strhotPath = [paths objectAtIndex:0];
@@ -47,6 +48,7 @@
             [dataQueue inDatabase:^(FMDatabase *db) {
                 if([db open])
                 {
+                    [weakself createAreasTable];
                     [db close];
                     MLOG(@"table create success");
                 }
@@ -64,7 +66,7 @@
     [dataQueue inDatabase:^(FMDatabase *db) {
         if([db open])
         {
-            NSString *sqlCreateAreasTable = [NSString stringWithFormat:@"create table areas_table('areaId','name','level','parent','TypeName')"];
+            NSString *sqlCreateAreasTable = [NSString stringWithFormat:@"create table areas_table('areaId','name','level','parent','TypeName','firstchar')"];
             BOOL res = [db executeUpdate:sqlCreateAreasTable];
             if(res)
             {
@@ -74,6 +76,39 @@
             {
                 MLOG(@"areas表创建失败或者表已经存在");
             }
+        }
+    }];
+}
+
+- (void)selHbuArealistModel:(NSString *)aCityName resultBlock:(void(^)(HbuAreaListModelAreas*model))aResultBlock
+{
+    __weak AreasDBManager *weakself = self;
+    [dataQueue inDatabase:^(FMDatabase *db) {
+        if([db open])
+        {
+            BOOL isHave=NO;
+            NSString *selCity=@"select 市 from areas_table";
+            FMResultSet *resultset = [db executeQuery:selCity];
+            if(resultset)
+            {
+                while ([resultset next]) {
+                    NSString *name= [resultset stringForColumn:@"name"];
+                    if([name hasPrefix:aCityName] || [aCityName hasPrefix:name])
+                    {
+                        HbuAreaListModelAreas *model = [weakself parseFMResultToHubAreasModel:resultset];
+                        isHave = YES;
+                        aResultBlock(model);
+                    }
+                }
+                if(isHave == NO)
+                {
+                    aResultBlock(nil);
+                }
+            }
+        }
+        else
+        {
+            aResultBlock(nil);
         }
     }];
 }
@@ -127,7 +162,7 @@
                 }
                 while([cityResultset next])
                 {
-                    HubAreasModel *model = [weakself parseFMResultToHubAreasModel:cityResultset];
+                    HbuAreaListModelAreas *model = [weakself parseFMResultToHubAreasModel:cityResultset];
                     if(model)
                     {
                         [mutArry addObject:model];
@@ -154,7 +189,7 @@
             FMResultSet *cityResultset = [db executeQuery:sqlSELcity];
             while([cityResultset next])
             {
-                HubAreasModel *model = [weakself parseFMResultToHubAreasModel:cityResultset];
+                HbuAreaListModelAreas *model = [weakself parseFMResultToHubAreasModel:cityResultset];
                 if(model)
                 {
                     [mutArry addObject:model];
@@ -177,7 +212,7 @@
             FMResultSet *cityResultset = [db executeQuery:sqlSELcity,aParent];
             while([cityResultset next])
             {
-                HubAreasModel *model = [weakself parseFMResultToHubAreasModel:cityResultset];
+                HbuAreaListModelAreas *model = [weakself parseFMResultToHubAreasModel:cityResultset];
                 if(model)
                 {
                     [mutArry addObject:model];
@@ -199,7 +234,7 @@
             FMResultSet *cityResultset = [db executeQuery:sqlSELcity,aParent];
             while([cityResultset next])
             {
-                HubAreasModel *model = [weakself parseFMResultToHubAreasModel:cityResultset];
+                HbuAreaListModelAreas *model = [weakself parseFMResultToHubAreasModel:cityResultset];
                 if(model)
                 {
                     [mutArry addObject:model];
@@ -210,17 +245,17 @@
     }];
 }
 
-- (HubAreasModel *)parseFMResultToHubAreasModel:(FMResultSet *)aResultSet
+- (HbuAreaListModelAreas *)parseFMResultToHubAreasModel:(FMResultSet *)aResultSet
 {
     if(aResultSet)
     {
-        HubAreasModel *model = [[HubAreasModel alloc] init];
-        model.strAreaid = [aResultSet stringForColumn:@"areaId"];
-        model.strName= [aResultSet stringForColumn:@"name"];;
-        model.iLevel= [aResultSet intForColumn:@"level"];;
-        model.strParent= [aResultSet stringForColumn:@"parent"];;
-        model.strTypeName= [aResultSet stringForColumn:@"TypeName"];;
-        model.strFirstchar= [aResultSet stringForColumn:@"firstchar"];
+        HbuAreaListModelAreas *model = [[HbuAreaListModelAreas alloc] init];
+        model.areaId = [aResultSet stringForColumn:@"areaId"].integerValue;
+        model.name= [aResultSet stringForColumn:@"name"];
+        model.level= [aResultSet intForColumn:@"level"];
+        model.parent= [aResultSet stringForColumn:@"parent"].integerValue;
+        model.typeName= [aResultSet stringForColumn:@"TypeName"];
+        model.firstchar= [aResultSet stringForColumn:@"firstchar"];
         return model;
     }
     return nil;

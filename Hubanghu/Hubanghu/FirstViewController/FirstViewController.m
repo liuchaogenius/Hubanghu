@@ -66,11 +66,11 @@ enum CateId_Type
     self.tableView.dataSource = self;
     [self.tableView registerClass:[HbhFirstVCCell class] forCellReuseIdentifier:@"FirstVCCell"];
     
-    [HbuAreaLocationManager getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
-        self.areaListModel = areaListModel;
-    } failure:^{
-    
-    }];
+//    [HbuAreaLocationManager getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
+//        self.areaListModel = areaListModel;
+//    } failure:^{
+//    
+//    }];
     
 }
 
