@@ -14,6 +14,9 @@
 {
     NSMutableDictionary *mutaDict;
     NSString *strUserid;
+    float lat;
+    float lon;
+    NSString *areaId;
 }
 @end
 
@@ -68,9 +71,39 @@
     strUserid = aUserid;
 }
 
+- (void)setLat:(float)alat
+{
+    lat = alat;
+}
+
+- (void)setLon:(float)alon
+{
+    lon = alon;
+}
+
+- (void)setAreaId:(NSString *)aAreaId
+{
+    areaId = aAreaId;
+}
+
 - (NSString *)getUserid
 {
     return strUserid;
+}
+
+- (float)getLat
+{
+    return lat;
+}
+
+- (float)getLon
+{
+    return lon;
+}
+
+- (NSString *)getAreaId
+{
+    return areaId;
 }
 
 - (void)dealloc
@@ -119,6 +152,15 @@
     if([net getUserid])
     {
         [aRequest addValue:[net getUserid] forHTTPHeaderField:@"hbh-uid"];
+    }
+    if ([net getAreaId]) {
+        [aRequest setValue:[net getAreaId] forKey:@"hbh-areaId"];
+    }
+    if ([net getLat]) {
+        [aRequest setValue:[NSNumber numberWithFloat:[net getLat]] forKey:@"hbh-lat"];
+    }
+    if ([net getLon]) {
+        [aRequest setValue:[NSNumber numberWithFloat:[net getLon]] forKey:@"hbh-lon"];
     }
 #if DEBUG
     [aRequest addValue:@"1" forHTTPHeaderField:@"hbh_mock"];

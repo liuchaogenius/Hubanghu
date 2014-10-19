@@ -12,6 +12,7 @@
 #import "CategoryChildInfoModel.h"
 #import "HbhCategoryCell.h"
 #import "UIButton+WebCache.h"
+#import "HbhAppointmentViewController.h"
 
 #define kSgmBtnHeight 35
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
@@ -223,6 +224,9 @@
     double cateId = sender.tag;
     if (cateId != kBlankButtonTag) {
         //push 进入订单界面
+        HbhAppointmentViewController *appointVC = [[HbhAppointmentViewController alloc] initWithTitle:nil cateId:[NSString stringWithFormat:@"%lf",cateId] andWork:nil];
+        [self.navigationController pushViewController:appointVC animated:YES];
+        
     }
 }
 

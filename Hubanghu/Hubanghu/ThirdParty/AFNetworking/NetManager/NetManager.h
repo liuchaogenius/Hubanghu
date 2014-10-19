@@ -17,6 +17,11 @@
 
 + (NetManager *)shareInstance;
 - (void)setUserid:(NSString *)aUserid;
+- (void)setLat:(float)alat;
+- (void)setLon:(float)alon;
+- (void)setAreaId:(NSString *)aAreaId;
+
+//- (void)set
 /******************************************************
  *  aDict   body数据 如果没有业务数据此值为nil
  *  aUrl

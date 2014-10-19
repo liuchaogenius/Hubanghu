@@ -9,6 +9,8 @@
 #import "FirstViewController.h"
 #import "HbhFirstVCCell.h"
 #import "HbuCategoryViewController.h"
+#import "HbuAreaListModelBaseClass.h"
+#import "HbuAreaLocationManager.h"
 
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
 enum CateId_Type
@@ -25,6 +27,8 @@ enum CateId_Type
 @property (strong, nonatomic) UITableView* tableView;
 @property (strong, nonatomic) NSArray *allCategoryInfo;//所有预约类型info数组
 @property (strong, nonatomic) UIView *headView; //headView
+
+@property (strong, nonatomic) HbuAreaListModelBaseClass *areaListModel;
 @end
 
 @implementation FirstViewController
@@ -62,7 +66,12 @@ enum CateId_Type
     self.tableView.dataSource = self;
     [self.tableView registerClass:[HbhFirstVCCell class] forCellReuseIdentifier:@"FirstVCCell"];
     
-
+    [HbuAreaLocationManager getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
+        self.areaListModel = areaListModel;
+    } failure:^{
+    
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
