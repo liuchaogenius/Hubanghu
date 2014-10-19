@@ -242,14 +242,17 @@ static SLocationManager *myLocationObj = nil;
     isLocationing = NO;
 }
 
-- (void)getLocationAddress:(void(^)(NSDictionary *aLocationDict,Location2d aL2d))aBlock
+- (void)getLocationAddress:(BOOL)isStartLocation resultBlock:(void(^)(NSDictionary *aLocationDict,Location2d aL2d))aBlock
 {
     if(addressBlock)
     {
         addressBlock = nil;
     }
     addressBlock = aBlock;
-    [self statUpdateLocation:nil];
+    if(isStartLocation)
+    {
+        [self statUpdateLocation:nil];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{

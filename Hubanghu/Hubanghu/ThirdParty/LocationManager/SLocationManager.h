@@ -29,6 +29,6 @@ typedef struct{
 @property (nonatomic, copy) void(^locationDegree)(Location2d aL2d);
 + (SLocationManager *)getMyLocationInstance;
 - (void)statUpdateLocation:(void(^)(Location2d al2d))aBlock;
-- (void)getLocationAddress:(void(^)(NSDictionary *aLocationDict,Location2d aL2d))aBlock;
+- (void)getLocationAddress:(BOOL)isStartLocation resultBlock:(void(^)(NSDictionary *aLocationDict,Location2d aL2d))aBlock;
 - (int)getLocationAuthorStatus;
 @end
