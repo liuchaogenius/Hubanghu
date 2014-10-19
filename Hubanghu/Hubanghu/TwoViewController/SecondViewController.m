@@ -12,7 +12,6 @@
 #import "HbhDropDownView.h"
 #import "UIImageView+WebCache.h"
 #import "HbhWorkerListManage.h"
-#import "HbhDataModels.h"
 
 
 typedef enum : NSUInteger {
@@ -41,12 +40,12 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) UIView *maskingView;
 @property(nonatomic, strong) UIActivityIndicatorView *activityView;
 
-@property(nonatomic, strong) void(^myWorkerDetailBlock)(double , NSString *);
+@property(nonatomic, strong) void(^myWorkerDetailBlock)(HbhWorkers *);
 @end
 
 @implementation SecondViewController
 
-- (instancetype)initAndUseWorkerDetailBlock:(void (^)(double , NSString *))aBlock
+- (instancetype)initAndUseWorkerDetailBlock:(void (^)(HbhWorkers *))aBlock
 {
     self = [super init];
     _isSpecial = YES;
@@ -288,7 +287,7 @@ typedef enum : NSUInteger {
     if (_isSpecial==YES)
     {
         HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
-        self.myWorkerDetailBlock(model.id, model.name);
+        self.myWorkerDetailBlock(model);
         [self.navigationController popViewControllerAnimated:YES];
     }
     else

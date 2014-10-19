@@ -7,6 +7,7 @@
 //
 
 #import "HbhMakeAppointMentViewController.h"
+#import "HbuCategoryViewController.h"
 
 @interface HbhMakeAppointMentViewController ()
 
@@ -43,9 +44,15 @@
         MLOG(@"%f%f%f%f", btn.left, btn.top , btn.right, btn.bottom);
         [btn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"OrderType_%d", i+1]]
                        forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(push:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = i+11;
         [self.view addSubview:btn];
     }
+}
+
+- (void)push:(UIButton *)aBtn
+{
+    [self.navigationController pushViewController:[[HbuCategoryViewController alloc] initWithCateId:aBtn.tag-10] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

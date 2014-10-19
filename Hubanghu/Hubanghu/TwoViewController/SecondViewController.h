@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HbhDataModels.h"
 
 @interface SecondViewController : BaseViewController
 
-- (instancetype)initAndUseWorkerDetailBlock:(void(^)(double aWorkerID, NSString *aWorkerName))aBlock;
+- (instancetype)initAndUseWorkerDetailBlock:(void(^)(HbhWorkers *aWorkerModel))aBlock;
 @end

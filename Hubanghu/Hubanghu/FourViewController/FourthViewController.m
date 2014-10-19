@@ -14,6 +14,7 @@
 #import "HbhUserManager.h"
 #import "HbhQRcodeViewController.h"
 #import "HbhChangePswViewController.h"
+#import "ThirdViewController.h"
 
 #define KSetionNumber 5
 #define kcornerRadius 4
@@ -234,16 +235,25 @@ enum CellTag_Type
         case CellTag_finishedOrder:
         {
             //push进入已完成订单页面
+            ThirdViewController *thirdVC = [[ThirdViewController alloc] initWithCurrentTab:0];
+            thirdVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:thirdVC animated:YES];
         }
             break;
         case CellTag_notDoneOrder:
         {
             //push进入未完成订单页面
+            ThirdViewController *thirdVC = [[ThirdViewController alloc] initWithCurrentTab:1];
+            thirdVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:thirdVC animated:YES];
         }
             break;
         case CellTag_notCommentOrder:
         {
             //push进入未提交订单页面
+            ThirdViewController *thirdVC = [[ThirdViewController alloc] initWithCurrentTab:2];
+            thirdVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:thirdVC animated:YES];
         }
             break;
         case CellTag_QRcode:
