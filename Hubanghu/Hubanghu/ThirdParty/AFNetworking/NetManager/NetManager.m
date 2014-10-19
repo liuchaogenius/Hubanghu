@@ -13,6 +13,7 @@
 @interface NetManager()
 {
     NSMutableDictionary *mutaDict;
+    NSString *strUserid;
 }
 @end
 
@@ -62,6 +63,16 @@
     [mutaDict removeAllObjects];
 }
 
+- (void)setUserid:(NSString *)aUserid
+{
+    strUserid = aUserid;
+}
+
+- (NSString *)getUserid
+{
+    return strUserid;
+}
+
 - (void)dealloc
 {
     MLOG(@"Netmanager--dealloc");
@@ -80,11 +91,7 @@
 
     httpClient.parameterEncoding = aEncoding;
     NSMutableURLRequest *request = [httpClient requestWithMethod:aMethod path:aUrl parameters:aDict];
-#if DEBUG
-    [request addValue:@"1" forHTTPHeaderField:@"hbh_mock"];
-#else
-    [request addValue:@"0" forHTTPHeaderField:@"hbh_mock"];
-#endif
+    [NetManager setRequestHeadValue:request];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     NetManager *net = [NetManager shareInstance];
     if(aKey)
@@ -104,6 +111,24 @@
     }];
     //[operation start];
     [httpClient.operationQueue addOperation:operation];
+}
+
++ (void)setRequestHeadValue:(NSMutableURLRequest*)aRequest
+{
+    NetManager *net = [NetManager shareInstance];
+    if([net getUserid])
+    {
+        [aRequest addValue:[net getUserid] forHTTPHeaderField:@"hbh-uid"];
+    }
+#if DEBUG
+    [aRequest addValue:@"1" forHTTPHeaderField:@"hbh_mock"];
+#else
+    [aRequest addValue:@"0" forHTTPHeaderField:@"hbh_mock"];
+#endif
+    
+    NSDictionary *bundleDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [bundleDic objectForKey:@"CFBundleShortVersionString"];
+    [aRequest addValue:appVersion forHTTPHeaderField:@"hbh-appver"];
 }
 
 + (void)cancelOperation:(id)aKey

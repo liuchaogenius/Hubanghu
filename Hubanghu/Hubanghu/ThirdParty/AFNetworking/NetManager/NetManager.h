@@ -16,7 +16,7 @@
 @interface NetManager : NSObject
 
 + (NetManager *)shareInstance;
-
+- (void)setUserid:(NSString *)aUserid;
 /******************************************************
  *  aDict   body数据 如果没有业务数据此值为nil
  *  aUrl
