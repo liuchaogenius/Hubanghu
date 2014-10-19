@@ -49,6 +49,9 @@
 		ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2419EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m */; };
 		ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */; };
 		ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */; };
+		ABC2B37419F3AC63000FEE32 /* HbhModifyUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */; };
+		ABC2B37719F3BBC5000FEE32 /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2B37619F3BBC5000FEE32 /* VPImageCropperViewController.m */; };
+		ABC2B37919F3BC83000FEE32 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */; };
 		ABC5D50619F1E59800A306F7 /* HbhMakeAppointMentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */; };
 		ABC5D50F19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50D19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m */; };
 		ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC5D50E19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib */; };
@@ -218,6 +221,11 @@
 		ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerThirdTopTableViewCell.xib; sourceTree = "<group>"; };
 		ABAFAB2819EF4BDC00B51916 /* HbhWorkerImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerImgTableViewCell.h; sourceTree = "<group>"; };
 		ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerImgTableViewCell.m; sourceTree = "<group>"; };
+		ABC2B37219F3AC63000FEE32 /* HbhModifyUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhModifyUserDetailViewController.h; sourceTree = "<group>"; };
+		ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhModifyUserDetailViewController.m; sourceTree = "<group>"; };
+		ABC2B37519F3BBC5000FEE32 /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
+		ABC2B37619F3BBC5000FEE32 /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
+		ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		ABC5D50419F1E59800A306F7 /* HbhMakeAppointMentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhMakeAppointMentViewController.h; sourceTree = "<group>"; };
 		ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhMakeAppointMentViewController.m; sourceTree = "<group>"; };
 		ABC5D50C19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderAppraiseViewController.h; sourceTree = "<group>"; };
@@ -388,6 +396,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABC2B37919F3BC83000FEE32 /* MobileCoreServices.framework in Frameworks */,
 				FFD1A2D319EE4B8D00EA97D4 /* libsqlite3.dylib in Frameworks */,
 				FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */,
 			);
@@ -643,6 +652,7 @@
 		FF21CE6119E64B5A005007B7 = {
 			isa = PBXGroup;
 			children = (
+				ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */,
 				FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */,
 				FF15253519E7D354008AB6EC /* testImg111@3x.png */,
 				FF21CF2B19E66238005007B7 /* QuartzCore.framework */,
@@ -745,6 +755,10 @@
 				5B03CBFE19EFE0D000A367DC /* HbhQRcodeViewController.xib */,
 				5B1BC75719F0080E007D5AF7 /* HbhChangePswViewController.h */,
 				5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */,
+				ABC2B37219F3AC63000FEE32 /* HbhModifyUserDetailViewController.h */,
+				ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */,
+				ABC2B37519F3BBC5000FEE32 /* VPImageCropperViewController.h */,
+				ABC2B37619F3BBC5000FEE32 /* VPImageCropperViewController.m */,
 			);
 			name = FourthViewController;
 			path = FourViewController;
@@ -1178,6 +1192,7 @@
 				FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */,
 				ABE53ED919F0FB5A00A8FE8B /* HbhOrderCountRegions.m in Sources */,
 				FF21CF1819E66144005007B7 /* UIButton+WebCache.m in Sources */,
+				ABC2B37419F3AC63000FEE32 /* HbhModifyUserDetailViewController.m in Sources */,
 				AB06DC4B19F1269500B82C62 /* HbhWorkerCaseClass.m in Sources */,
 				FF21CF3219E68E28005007B7 /* LeftView.m in Sources */,
 				FF21CF0919E66144005007B7 /* MyHttpClient.m in Sources */,
@@ -1226,6 +1241,7 @@
 				FF21CE9019E64D76005007B7 /* RootTabBarController.m in Sources */,
 				FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */,
 				FF21CE9E19E66054005007B7 /* ThirdViewController.m in Sources */,
+				ABC2B37719F3BBC5000FEE32 /* VPImageCropperViewController.m in Sources */,
 				FF21CF0619E66144005007B7 /* AFPropertyListRequestOperation.m in Sources */,
 				FF21CF1E19E66144005007B7 /* UIView+WebCacheOperation.m in Sources */,
 				FF21CF1219E66144005007B7 /* SDWebImageCompat.m in Sources */,

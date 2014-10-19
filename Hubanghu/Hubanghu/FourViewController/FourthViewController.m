@@ -15,6 +15,7 @@
 #import "HbhQRcodeViewController.h"
 #import "HbhChangePswViewController.h"
 #import "ThirdViewController.h"
+#import "HbhModifyUserDetailViewController.h"
 
 #define KSetionNumber 5
 #define kcornerRadius 4
@@ -160,6 +161,7 @@ enum CellTag_Type
             self.fHeadView.nickNameLabel.text = user.nickName;
             self.fHeadView.pointLabel.text = [NSString stringWithFormat:@"积分：%ld",(long)user.point];
             [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+            [self.fHeadView.changePhotoButton addTarget:self action:@selector(touchModifyUserDetail) forControlEvents:UIControlEventTouchUpInside];
         }
         self.fHeadView.hasLoginView.hidden = (user.isLogin ? NO:YES);
         self.fHeadView.notLoginView.hidden = (user.isLogin ? YES:NO);
@@ -300,6 +302,13 @@ enum CellTag_Type
 {
     [[HbhUser sharedHbhUser] logoutUser];
     [self.tableView reloadData];
+}
+#pragma mark 点击进入修改头像页面
+- (void)touchModifyUserDetail
+{
+    HbhModifyUserDetailViewController *vc = [[HbhModifyUserDetailViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*
