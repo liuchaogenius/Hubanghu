@@ -20,7 +20,7 @@
 @property (nonatomic,strong) NSString *describe;
 @property (nonatomic,strong) NSString *amountType;
 @property (nonatomic,strong) HbhAppointmentNetManager *netManager;
-@property (nonatomic,strong) FBKVOController *fbkvo;
+@property (nonatomic,strong) NSDictionary *worker;
 //UI
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) UIActivityIndicatorView *activityView;
@@ -31,11 +31,12 @@
 
 @implementation HbhAppointmentViewController
 
-- (instancetype)initWithTitle:(NSString *)title andCateId:(NSString *)cateId{
+- (instancetype)initWithTitle:(NSString *)title cateId:(NSString *)cateId andWork:(NSDictionary *)dic{
 	if (self = [super init]) {
 		_hbhTitle = title;
 		_cateId = cateId;
 		_style = HbhAppointmentStyleNoWorker;
+		_worker = dic;
 	}
 	return self;
 }

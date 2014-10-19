@@ -15,5 +15,5 @@ typedef NS_ENUM(NSInteger, HbhAppointmentStyle) {
 
 @interface HbhAppointmentViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HbhAppointmentDelegate>
 @property (nonatomic,assign) HbhAppointmentStyle style;
-- (instancetype)initWithTitle:(NSString *)title andCateId:(NSString *)cateId;
+- (instancetype)initWithTitle:(NSString *)title cateId:(NSString *)cateId andWork:(NSDictionary *)dic;
 @end
