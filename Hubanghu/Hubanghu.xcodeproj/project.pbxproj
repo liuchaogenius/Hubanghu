@@ -122,13 +122,13 @@
 		FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF21CF2B19E66238005007B7 /* QuartzCore.framework */; };
 		FF21CF3219E68E28005007B7 /* LeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CF3119E68E28005007B7 /* LeftView.m */; };
 		FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */; };
+		FFBBFB2419F3BB18003A200C /* AreasDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBBFB2319F3BB18003A200C /* AreasDBManager.m */; };
 		FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */; };
 		FFD1A2CE19EE4B6D00EA97D4 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C619EE4B6D00EA97D4 /* FMDatabaseAdditions.m */; };
 		FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C819EE4B6D00EA97D4 /* FMDatabasePool.m */; };
 		FFD1A2D019EE4B6D00EA97D4 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2CA19EE4B6D00EA97D4 /* FMDatabaseQueue.m */; };
 		FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2CC19EE4B6D00EA97D4 /* FMResultSet.m */; };
 		FFD1A2D319EE4B8D00EA97D4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */; };
-		FFD1A2D619EE4F2100EA97D4 /* AreasDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2D519EE4F2100EA97D4 /* AreasDBManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -368,6 +368,8 @@
 		FF21CF3319E68F5F005007B7 /* MessageDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDefine.h; sourceTree = "<group>"; };
 		FF74A83B19EBC4B0006AADD8 /* SLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLocationManager.h; sourceTree = "<group>"; };
 		FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLocationManager.m; sourceTree = "<group>"; };
+		FFBBFB2219F3BB18003A200C /* AreasDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AreasDBManager.h; path = Hubanghu/ThirdParty/FMDB/AreasDBManager.h; sourceTree = SOURCE_ROOT; };
+		FFBBFB2319F3BB18003A200C /* AreasDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AreasDBManager.m; path = Hubanghu/ThirdParty/FMDB/AreasDBManager.m; sourceTree = SOURCE_ROOT; };
 		FFD1A2C319EE4B6D00EA97D4 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		FFD1A2C519EE4B6D00EA97D4 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -379,8 +381,6 @@
 		FFD1A2CB19EE4B6D00EA97D4 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		FFD1A2CC19EE4B6D00EA97D4 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		FFD1A2D419EE4F2100EA97D4 /* AreasDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AreasDBManager.h; path = ../ThirdParty/FMDB/AreasDBManager.h; sourceTree = "<group>"; };
-		FFD1A2D519EE4F2100EA97D4 /* AreasDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AreasDBManager.m; path = ../ThirdParty/FMDB/AreasDBManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1028,8 +1028,8 @@
 		FFD1A2DA19EE6AC100EA97D4 /* AreasModel */ = {
 			isa = PBXGroup;
 			children = (
-				FFD1A2D419EE4F2100EA97D4 /* AreasDBManager.h */,
-				FFD1A2D519EE4F2100EA97D4 /* AreasDBManager.m */,
+				FFBBFB2219F3BB18003A200C /* AreasDBManager.h */,
+				FFBBFB2319F3BB18003A200C /* AreasDBManager.m */,
 			);
 			name = AreasModel;
 			sourceTree = "<group>";
@@ -1160,7 +1160,6 @@
 				FFD1A2CE19EE4B6D00EA97D4 /* FMDatabaseAdditions.m in Sources */,
 				5B69300F19F39BC70005862D /* HbuAreaListModelBaseClass.m in Sources */,
 				FF21CEA419E660CC005007B7 /* BaseViewController.m in Sources */,
-				FFD1A2D619EE4F2100EA97D4 /* AreasDBManager.m in Sources */,
 				FF21CF0419E66144005007B7 /* AFJSONRequestOperation.m in Sources */,
 				5BF8FC7C19F107C700598FB9 /* HbhFirstVCCell.m in Sources */,
 				FF21CF0219E66144005007B7 /* AFHTTPRequestOperation.m in Sources */,
@@ -1218,6 +1217,7 @@
 				FF21CF0E19E66144005007B7 /* JSONKit.m in Sources */,
 				FF21CF0B19E66144005007B7 /* UIImageView+AFNetworking.m in Sources */,
 				5B69300A19F399250005862D /* HbuAreaLocationManager.m in Sources */,
+				FFBBFB2419F3BB18003A200C /* AreasDBManager.m in Sources */,
 				FF21CF1C19E66144005007B7 /* UIImageView+HighlightedWebCache.m in Sources */,
 				B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */,
 				FF15253219E7B861008AB6EC /* SCach.m in Sources */,
