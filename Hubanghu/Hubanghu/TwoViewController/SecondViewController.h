@@ -10,4 +10,5 @@
 
 @interface SecondViewController : BaseViewController
 
+- (instancetype)initAndUseWorkerDetailBlock:(void(^)(double aWorkerID, NSString *aWorkerName))aBlock;
 @end

@@ -28,20 +28,28 @@
         sBlock();
     } failure:^(NSDictionary *failDict, NSError *error) {
         MLOG(@"%@",error.localizedDescription);
-        fBlock();
+        if (fBlock){
+            fBlock();
+        }
     }];
 }
 
-//退出,待完善
-+ (void)logoutWithSuccess:(void(^)())sBlock failure:(void(^)())fBlock
++ (void)profileRevalWithSuccess:(void(^)(int notDone,int notComment))sBlock failure:(void(^)())fBlock;
 {
-    NSString *logoutUrl = nil;
-    kHubRequestUrl(@"profileReval.ashx", logoutUrl);
-    [NetManager requestWith:nil url:logoutUrl method:@"GET" operationKey:nil parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
-        [[HbhUser sharedHbhUser] logoutUser];
-        sBlock();
+    NSString *url = nil;
+    kHubRequestUrl(@"profileReval.ashx", url);
+    
+    [NetManager requestWith:nil url:url method:@"GET" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
+        NSDictionary *dic = successDict[@"data"];
+        int notDone = [dic[@"notDone"] intValue];
+        int notComment = [dic[@"notComment"] intValue];
+        sBlock(notDone,notComment);
     } failure:^(NSDictionary *failDict, NSError *error) {
         MLOG(@"%@",error.localizedDescription);
+        if (fBlock){
+            fBlock();
+        }
     }];
 }
+
 @end

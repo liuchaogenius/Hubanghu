@@ -12,13 +12,29 @@
 #import "HbhWorkerCommentTableViewCell.h"
 #import "HbhWorkerThirdTopTableViewCell.h"
 #import "HbhWorkerImgTableViewCell.h"
+#import "HbhWorkerDetailManage.h"
+#import "UIImageView+WebCache.h"
+#import "HbhMakeAppointMentViewController.h"
+#import "HbhCommentViewController.h"
 
 @interface HbhWorkerDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic, strong) UITableView *workDetailTableView;
+@property(nonatomic) int myWorkerId;
+@property(nonatomic, strong)HbhWorkerDetailManage *workerDetailManage;
+
+@property(nonatomic, strong) HbhWorkerData *workerData;
+@property(nonatomic, strong) UIActivityIndicatorView *activityView;
 @end
 
 @implementation HbhWorkerDetailViewController
+
+- (instancetype)initWithWorkerId:(int)aWorkerId
+{
+    self = [super init];
+    self.myWorkerId = aWorkerId;
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +49,35 @@
     self.workDetailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.workDetailTableView.backgroundColor = RGBCOLOR(247, 247, 247);
     [self.view addSubview:self.workDetailTableView];
+    
+    [self.view addSubview:self.activityView];
+    [self.activityView startAnimating];
+    
+    [self.workerDetailManage getWorkerDetailWithWorkerId:self.myWorkerId SuccBlock:^(HbhWorkerData *aData) {
+        self.workerData = aData;
+        [self.workDetailTableView reloadData];
+        [self.activityView stopAnimating];
+    } and:^{
+        
+    }];
+}
+
+- (UIActivityIndicatorView *)activityView
+{
+    if (!_activityView) {
+        _activityView = [[UIActivityIndicatorView alloc]
+                         initWithFrame:CGRectMake(kMainScreenWidth/2-20, kMainScreenHeight/2-20, 40, 40)];
+        _activityView.color = [UIColor blackColor];
+    }
+    return _activityView;
+}
+
+- (HbhWorkerDetailManage *)workerDetailManage
+{
+    if (!_workerDetailManage) {
+        _workerDetailManage = [[HbhWorkerDetailManage alloc] init];
+    }
+    return _workerDetailManage;
 }
 
 #pragma mark tableView datasource datadelegate
@@ -71,7 +116,7 @@
             return 35;
         }
         else{
-            return 70;
+            return 65;
         }
         return 0;
     }
@@ -115,6 +160,15 @@
     if (indexPath.section==0)
     {
         HbhTopTableViewCell *cell = [[HbhTopTableViewCell alloc] init];
+        [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:self.workerData.photoUrl]];
+        cell.workerNameLabel.text = self.workerData.name;
+        cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", self.workerData.workTypeName];
+        cell.workerYearLabel.text = self.workerData.workingAge;
+        cell.workerMountLabel.text = self.workerData.orderCount;
+        cell.personLabel.text = self.workerData.desc;
+        cell.successLabel.text = self.workerData.succCaseDesc;
+        cell.honorLabel.text = self.workerData.certificationDesc;
+        [cell.appointmentBtn addTarget:self action:@selector(makeAppointment) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
     else if (indexPath.section==1)
@@ -122,6 +176,7 @@
         if (indexPath.row==0)
         {
             HbhWorkerSecondTopTableViewCell *cell = [[HbhWorkerSecondTopTableViewCell alloc] init];
+            [cell.moreBtn addTarget:self action:@selector(moreComment) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }
         else
@@ -133,6 +188,14 @@
                 lineView.backgroundColor = RGBCOLOR(218, 218, 218);
                 [cell addSubview:lineView];
             }
+            NSArray *array = self.workerData.comment;
+            HbhWorkerComment *model = [array objectAtIndex:indexPath.row];
+            [cell.userImg sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
+            cell.userNameLabel.text = model.username;
+            cell.timeLabel.text = [NSString stringWithFormat:@"%d", (int)model.time];
+            cell.typeLabel.text = model.cate;
+            cell.commentLabel.text = model.content;
+            cell.workerNameLabel.text = model.worker;
             return cell;
         }
     }
@@ -145,7 +208,7 @@
         }
         else
         {
-            NSArray *array = @[@"1", @"2", @"3", @"4"];
+            NSArray *array = self.workerData.caseProperty;
             HbhWorkerImgTableViewCell *cell = [[HbhWorkerImgTableViewCell alloc] initWithImgArray:array];
             return cell;
         }
@@ -156,6 +219,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+#pragma mark 跳转到预约
+- (void)makeAppointment
+{
+    [self.navigationController pushViewController:[[HbhMakeAppointMentViewController alloc] init] animated:YES];
+}
+
+#pragma mark 跳转到更多评论
+- (void)moreComment
+{
+    [self.navigationController pushViewController:[[HbhCommentViewController alloc] initWithCommentArray:self.workerData.comment] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

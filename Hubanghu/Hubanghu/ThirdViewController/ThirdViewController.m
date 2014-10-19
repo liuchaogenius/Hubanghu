@@ -35,17 +35,6 @@ typedef enum : NSUInteger {
 
 @implementation ThirdViewController
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    self.hidesBottomBarWhenPushed = YES;
-//}
-//
-//- (void)viewWillDisappear: (BOOL)animated
-//{
-//    self.hidesBottomBarWhenPushed = NO;
-//}
-
-
 - (instancetype)initWithCurrentTab:(int)aCurrentTab
 {
     self = [super init];
@@ -78,7 +67,12 @@ typedef enum : NSUInteger {
     [self.view addSubview:self.showOrderTableView];
     
     [self addTableViewTrag];
-    
+    [self getFisrtPage];
+}
+
+#pragma mark 网络请求
+- (void)getFisrtPage
+{
     [[HbhOrderManage new] getOrderListSuccBlock:^(NSArray *aArray) {
         self.allOrderArray = (NSMutableArray *)aArray;
         [self.showOrderTableView reloadData];
@@ -97,7 +91,7 @@ typedef enum : NSUInteger {
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             [weakself.showOrderTableView.pullToRefreshView stopAnimating];
-
+            [self getFisrtPage];
         });
     }];
     

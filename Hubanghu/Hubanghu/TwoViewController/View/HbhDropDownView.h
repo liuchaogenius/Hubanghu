@@ -14,7 +14,8 @@
     CGFloat tableHeight;
     NSArray *tableArray;
 }
-
+@property(nonatomic, strong) void(^ myBlock)(int);
 @property(nonatomic, strong) UITableView *showItemTableView;
 - (instancetype)initWithArray:(NSArray *)aArray andButton:(UIView *)aBtn;
+- (void)useBlock:(void(^)(int row))aBlock;
 @end

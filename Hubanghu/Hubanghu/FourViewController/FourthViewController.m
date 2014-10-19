@@ -13,6 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "HbhUserManager.h"
 #import "HbhQRcodeViewController.h"
+#import "HbhChangePswViewController.h"
 
 #define KSetionNumber 5
 #define kcornerRadius 4
@@ -21,14 +22,18 @@
 enum CellTag_Type
 {
     CellTag_finishedOrder = 50,//已完成订单
-    CellTag_notFinishedOrder, //未完成订单
-    CellTag_notCommentedOrder,//待评价订单
+    CellTag_notDoneOrder, //未完成订单
+    CellTag_notCommentOrder,//待评价订单
     CellTag_QRcode,//二维码
     CellTag_changePassWord,//修改密码
 };
 
 @interface FourthViewController ()
-
+{
+    UILabel *_numberLabel; // cell右方提示数量的label
+    UILabel *_notCommentNumberLabel;//待评价订单 提示数量label
+    UILabel *_notDoneNumberLabel;//未完成订单 提示数量label
+}
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *listArray; //页面列表数据
 @property (strong, nonatomic) FourthVCHeadView *fHeadView;//用户信息headerView
@@ -83,6 +88,12 @@ enum CellTag_Type
     if ([HbhUser sharedHbhUser].statusIsChanged) {
         [self.tableView reloadData];
         [HbhUser sharedHbhUser].statusIsChanged = NO;
+    }
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+
+    //待完善刷新时机
+    if ([HbhUser sharedHbhUser].isLogin) {
+        [self refreshNumberLabels];
     }
 }
 
@@ -177,10 +188,37 @@ enum CellTag_Type
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             cell.textLabel.font = kFont13;
+            //显示数量的label
+            UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-40-20, cell.frame.size.height/2.0-7.5, 20, 15)];
+            numberLabel.layer.cornerRadius = 2.0f;
+            [numberLabel setTextAlignment:NSTextAlignmentCenter];
+            numberLabel.font = kFont12;
+            numberLabel.layer.masksToBounds = YES;
+            numberLabel.backgroundColor = KColor;
+            numberLabel.textColor = [UIColor whiteColor];
+            _numberLabel = numberLabel;
+            [cell.contentView addSubview:numberLabel];
         }
         NSArray *array = self.listArray[indexPath.section-1];
         NSDictionary *dic = array[indexPath.row];
-        cell.tag = [dic[@"typeTag"] integerValue]; //通过tag区分cell功能
+        _numberLabel.hidden = YES;
+        NSInteger typeTag = [dic[@"typeTag"] integerValue];//通过tag区分cell功能
+        cell.tag = typeTag;
+        switch (typeTag) {
+            case CellTag_notCommentOrder:
+            {
+                _notCommentNumberLabel = _numberLabel;
+    
+            }
+                break;
+            case CellTag_notDoneOrder:
+            {
+                _notDoneNumberLabel = _numberLabel;
+            }
+                break;
+            default:
+                break;
+        }
         cell.imageView.image = [UIImage imageNamed:dic[@"image"]];
         cell.textLabel.text = dic[@"name"];
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
@@ -198,12 +236,12 @@ enum CellTag_Type
             //push进入已完成订单页面
         }
             break;
-        case CellTag_notFinishedOrder:
+        case CellTag_notDoneOrder:
         {
             //push进入未完成订单页面
         }
             break;
-        case CellTag_notCommentedOrder:
+        case CellTag_notCommentOrder:
         {
             //push进入未提交订单页面
         }
@@ -217,11 +255,28 @@ enum CellTag_Type
         case CellTag_changePassWord:
         {
             //push进入修改密码页面
+            [self.navigationController pushViewController:[[HbhChangePswViewController alloc] init] animated:YES];
+            break;
         }
             break;
         default:
             break;
     }
+}
+
+#pragma amrk 刷新订单等提示数字
+- (void)refreshNumberLabels
+{
+    [HbhUserManager profileRevalWithSuccess:^(int notDone, int notComment) {
+        if(_notDoneNumberLabel && notDone){
+            _notDoneNumberLabel.text = [NSString stringWithFormat:@"%d",notDone];
+            _notDoneNumberLabel.hidden = NO;
+        }
+        if(_notCommentNumberLabel && notComment){
+            _notCommentNumberLabel.text = [NSString stringWithFormat:@"%d",notComment];
+            _notCommentNumberLabel.hidden = NO;
+        }
+    } failure:nil];
 }
 
 #pragma mark - Action
@@ -233,11 +288,8 @@ enum CellTag_Type
 #pragma mark 点击退出登陆按钮
 - (void)touchLogoutButton
 {
-    [HbhUserManager logoutWithSuccess:^{
-        [self.tableView reloadData];
-    } failure:^{
-        //待完善登出失败代码
-    }];
+    [[HbhUser sharedHbhUser] logoutUser];
+    [self.tableView reloadData];
 }
 
 /*

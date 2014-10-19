@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface HbhWorkerCommentTableViewCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *commentLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *userImg;
+@property (strong, nonatomic) IBOutlet UILabel *timeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *typeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *workerNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *userNameLabel;
+
 
 - (instancetype)init;
 @end

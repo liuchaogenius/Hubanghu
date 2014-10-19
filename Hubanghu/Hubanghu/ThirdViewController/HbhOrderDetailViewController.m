@@ -7,6 +7,8 @@
 //
 
 #import "HbhOrderDetailViewController.h"
+#import "HbhOrderManage.h"
+#import "STAlerView.h"
 
 typedef enum : NSUInteger {
     orderStatusUndone = 0,
@@ -30,6 +32,7 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) UIButton *moreBtn;
 
 @property(nonatomic, strong) HbhOrderModel *myModel;
+@property(nonatomic, strong) HbhOrderManage *orderManage;
 @end
 
 @implementation HbhOrderDetailViewController
@@ -67,6 +70,8 @@ typedef enum : NSUInteger {
         self.moreBtn.backgroundColor = RGBCOLOR(201, 201, 201);
         [self.moreBtn setTitleColor:RGBCOLOR(115, 115, 115) forState:UIControlStateNormal];
         [self.moreBtn setTitle:@"取消订单" forState:UIControlStateNormal];
+        [self.moreBtn addTarget:self action:@selector(cancelOrderBtn) forControlEvents:UIControlEventTouchUpInside];
+        
     }else{
         self.showOrderStatusLabel.text = @"交易成功";
         [self.movementBtn setTitle:@"已付款" forState:UIControlStateNormal];
@@ -74,6 +79,41 @@ typedef enum : NSUInteger {
         [self.moreBtn setTitle:@"再次预约" forState:UIControlStateNormal];
     }
     
+}
+
+#pragma mark cancelOrder
+- (void)cancelOrderBtn
+{
+    STAlertView *alertView = [[STAlertView alloc]
+                              initWithTitle:@"确定要取消订单吗"
+                              message:nil
+                              clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex)
+                              {
+                                  if (buttonIndex==1) {
+                                      [self cancelOrder];
+                                  }
+                              }
+                              cancelButtonTitle:@"取消"
+                              otherButtonTitles:@"取消订单", nil];
+    [alertView show];
+}
+
+- (void)cancelOrder
+{
+    [self.orderManage cancelOrder:(int)self.myModel.id andSuccBlock:^{
+        
+    } and:^{
+        
+    }];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (HbhOrderManage *)orderManage
+{
+    if (!_orderManage) {
+        _orderManage = [[HbhOrderManage alloc] init];
+    }
+    return _orderManage;
 }
 
 - (void)setUIWithModel:(HbhOrderModel *)aModel

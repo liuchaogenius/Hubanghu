@@ -9,20 +9,31 @@
 /* Begin PBXBuildFile section */
 		5B03CBFF19EFE0D000A367DC /* HbhQRcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B03CBFD19EFE0D000A367DC /* HbhQRcodeViewController.m */; };
 		5B03CC0019EFE0D000A367DC /* HbhQRcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B03CBFE19EFE0D000A367DC /* HbhQRcodeViewController.xib */; };
+		5B16D8C819F12CB7009E9FF3 /* HbuCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8C719F12CB7009E9FF3 /* HbuCategoryViewController.m */; };
+		5B16D8CB19F12F07009E9FF3 /* HbhCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8CA19F12F07009E9FF3 /* HbhCategoryCell.m */; };
+		5B16D8CF19F134C3009E9FF3 /* HbuCategoryListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8CE19F134C3009E9FF3 /* HbuCategoryListManager.m */; };
+		5B16D8D319F139D3009E9FF3 /* CategoryInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8D219F139D3009E9FF3 /* CategoryInfoModel.m */; };
+		5B16D8D619F140D0009E9FF3 /* CategoryChildInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8D519F140D0009E9FF3 /* CategoryChildInfoModel.m */; };
+		5B1BC75919F0080E007D5AF7 /* HbhChangePswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */; };
 		5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325A219ECF4170085CAEB /* FouthVCList.plist */; };
 		5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */; };
 		5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */; };
 		5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */; };
 		5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2F19EE4CC5002C4355 /* HbhUser.m */; };
 		5BD54D3319EE4DC6002C4355 /* HbhUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D3219EE4DC6002C4355 /* HbhUserManager.m */; };
+		5BF8FC7819F0FA3900598FB9 /* HbhAllCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BF8FC7719F0FA3900598FB9 /* HbhAllCategory.plist */; };
+		5BF8FC7C19F107C700598FB9 /* HbhFirstVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF8FC7B19F107C700598FB9 /* HbhFirstVCCell.m */; };
+		AB06DC4B19F1269500B82C62 /* HbhWorkerCaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AB06DC4319F1269500B82C62 /* HbhWorkerCaseClass.m */; };
+		AB06DC4C19F1269500B82C62 /* HbhWorkerComment.m in Sources */ = {isa = PBXBuildFile; fileRef = AB06DC4519F1269500B82C62 /* HbhWorkerComment.m */; };
+		AB06DC4D19F1269500B82C62 /* HbhWorkerData.m in Sources */ = {isa = PBXBuildFile; fileRef = AB06DC4719F1269500B82C62 /* HbhWorkerData.m */; };
+		AB06DC4E19F1269500B82C62 /* HbhWorkerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB06DC4A19F1269500B82C62 /* HbhWorkerModel.m */; };
+		AB06DC5119F126B000B82C62 /* HbhWorkerDetailManage.m in Sources */ = {isa = PBXBuildFile; fileRef = AB06DC5019F126B000B82C62 /* HbhWorkerDetailManage.m */; };
 		AB090E1519EE323C00D943C6 /* HbhWorkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E1319EE323C00D943C6 /* HbhWorkerTableViewCell.m */; };
 		AB090E1619EE323C00D943C6 /* HbhWorkerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB090E1419EE323C00D943C6 /* HbhWorkerTableViewCell.xib */; };
 		AB090E2419EE61F700D943C6 /* HbhWorkerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E2319EE61F700D943C6 /* HbhWorkerDetailViewController.m */; };
 		AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090E2619EE63E000D943C6 /* HbhTopTableViewCell.m */; };
 		AB090E2919EE63E000D943C6 /* HbhTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB090E2719EE63E000D943C6 /* HbhTopTableViewCell.xib */; };
 		AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */; };
-		AB17315C19EBCE35008463E1 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17315A19EBCE35008463E1 /* HbhOrderAppraiseViewController.m */; };
-		AB17315D19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB17315B19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib */; };
 		AB5D5FBB19EC1EB600E881E6 /* HbhOrderManage.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5D5FBA19EC1EB600E881E6 /* HbhOrderManage.m */; };
 		AB66D37C19ECAC0900518005 /* HbhOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB66D37A19ECAC0900518005 /* HbhOrderDetailViewController.m */; };
 		AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB66D37B19ECAC0900518005 /* HbhOrderDetailViewController.xib */; };
@@ -35,11 +46,22 @@
 		ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2419EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m */; };
 		ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */; };
 		ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */; };
-		B029FC3119F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B029FC2F19F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.m */; };
-		B029FC3219F101E000A35B3C /* AppointmentDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B029FC3019F101E000A35B3C /* AppointmentDetailsCell.xib */; };
-		B0EB09DF19F16A5E00EDB0D5 /* HbhAppointmentNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09DE19F16A5E00EDB0D5 /* HbhAppointmentNetManager.m */; };
+		ABC5D50619F1E59800A306F7 /* HbhMakeAppointMentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */; };
+		ABC5D50F19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50D19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m */; };
+		ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC5D50E19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib */; };
+		ABC5D51319F1F16100A306F7 /* HbhCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D51219F1F16100A306F7 /* HbhCommentViewController.m */; };
+		ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */; };
+		ABE53ED619F0FB5A00A8FE8B /* HbhAreas.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ECA19F0FB5A00A8FE8B /* HbhAreas.m */; };
+		ABE53ED719F0FB5A00A8FE8B /* HbhData.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ECC19F0FB5A00A8FE8B /* HbhData.m */; };
+		ABE53ED819F0FB5A00A8FE8B /* HbhModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ECF19F0FB5A00A8FE8B /* HbhModel.m */; };
+		ABE53ED919F0FB5A00A8FE8B /* HbhOrderCountRegions.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ED119F0FB5A00A8FE8B /* HbhOrderCountRegions.m */; };
+		ABE53EDA19F0FB5A00A8FE8B /* HbhWorkers.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ED319F0FB5A00A8FE8B /* HbhWorkers.m */; };
+		ABE53EDB19F0FB5A00A8FE8B /* HbhWorkerTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ED519F0FB5A00A8FE8B /* HbhWorkerTypes.m */; };
 		B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */; };
-		B0EB09E519F22C8000EDB0D5 /* HbhAppointmentConfirmeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09E419F22C8000EDB0D5 /* HbhAppointmentConfirmeView.m */; };
+		B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */; };
+		B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */; };
+		B0EED42E19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */; };
+		B0EED42F19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */; };
 		FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252619E7B861008AB6EC /* JsonToModel.m */; };
 		FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252819E7B861008AB6EC /* NSFileManager_Additions.m */; };
 		FF15253219E7B861008AB6EC /* SCach.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252A19E7B861008AB6EC /* SCach.m */; };
@@ -121,6 +143,18 @@
 		5B03CBFC19EFE0D000A367DC /* HbhQRcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhQRcodeViewController.h; sourceTree = "<group>"; };
 		5B03CBFD19EFE0D000A367DC /* HbhQRcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhQRcodeViewController.m; sourceTree = "<group>"; };
 		5B03CBFE19EFE0D000A367DC /* HbhQRcodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhQRcodeViewController.xib; sourceTree = "<group>"; };
+		5B16D8C619F12CB7009E9FF3 /* HbuCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbuCategoryViewController.h; sourceTree = "<group>"; };
+		5B16D8C719F12CB7009E9FF3 /* HbuCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbuCategoryViewController.m; sourceTree = "<group>"; };
+		5B16D8C919F12F07009E9FF3 /* HbhCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhCategoryCell.h; sourceTree = "<group>"; };
+		5B16D8CA19F12F07009E9FF3 /* HbhCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhCategoryCell.m; sourceTree = "<group>"; };
+		5B16D8CD19F134C3009E9FF3 /* HbuCategoryListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbuCategoryListManager.h; sourceTree = "<group>"; };
+		5B16D8CE19F134C3009E9FF3 /* HbuCategoryListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbuCategoryListManager.m; sourceTree = "<group>"; };
+		5B16D8D119F139D3009E9FF3 /* CategoryInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryInfoModel.h; sourceTree = "<group>"; };
+		5B16D8D219F139D3009E9FF3 /* CategoryInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryInfoModel.m; sourceTree = "<group>"; };
+		5B16D8D419F140D0009E9FF3 /* CategoryChildInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryChildInfoModel.h; sourceTree = "<group>"; };
+		5B16D8D519F140D0009E9FF3 /* CategoryChildInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryChildInfoModel.m; sourceTree = "<group>"; };
+		5B1BC75719F0080E007D5AF7 /* HbhChangePswViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhChangePswViewController.h; sourceTree = "<group>"; };
+		5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhChangePswViewController.m; sourceTree = "<group>"; };
 		5BB325A219ECF4170085CAEB /* FouthVCList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FouthVCList.plist; sourceTree = "<group>"; };
 		5BB325A719ECFA050085CAEB /* SynthesizeSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		5BB325A819ECFAFF0085CAEB /* FourthVCHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthVCHeadView.h; sourceTree = "<group>"; };
@@ -132,6 +166,20 @@
 		5BD54D2F19EE4CC5002C4355 /* HbhUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhUser.m; sourceTree = "<group>"; };
 		5BD54D3119EE4DC6002C4355 /* HbhUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhUserManager.h; sourceTree = "<group>"; };
 		5BD54D3219EE4DC6002C4355 /* HbhUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhUserManager.m; sourceTree = "<group>"; };
+		5BF8FC7719F0FA3900598FB9 /* HbhAllCategory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HbhAllCategory.plist; sourceTree = "<group>"; };
+		5BF8FC7A19F107C700598FB9 /* HbhFirstVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhFirstVCCell.h; sourceTree = "<group>"; };
+		5BF8FC7B19F107C700598FB9 /* HbhFirstVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhFirstVCCell.m; sourceTree = "<group>"; };
+		AB06DC4219F1269500B82C62 /* HbhWorkerCaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCaseClass.h; sourceTree = "<group>"; };
+		AB06DC4319F1269500B82C62 /* HbhWorkerCaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCaseClass.m; sourceTree = "<group>"; };
+		AB06DC4419F1269500B82C62 /* HbhWorkerComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerComment.h; sourceTree = "<group>"; };
+		AB06DC4519F1269500B82C62 /* HbhWorkerComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerComment.m; sourceTree = "<group>"; };
+		AB06DC4619F1269500B82C62 /* HbhWorkerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerData.h; sourceTree = "<group>"; };
+		AB06DC4719F1269500B82C62 /* HbhWorkerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerData.m; sourceTree = "<group>"; };
+		AB06DC4819F1269500B82C62 /* HbhWorkerDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerDataModels.h; sourceTree = "<group>"; };
+		AB06DC4919F1269500B82C62 /* HbhWorkerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerModel.h; sourceTree = "<group>"; };
+		AB06DC4A19F1269500B82C62 /* HbhWorkerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerModel.m; sourceTree = "<group>"; };
+		AB06DC4F19F126B000B82C62 /* HbhWorkerDetailManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerDetailManage.h; sourceTree = "<group>"; };
+		AB06DC5019F126B000B82C62 /* HbhWorkerDetailManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerDetailManage.m; sourceTree = "<group>"; };
 		AB090E1219EE323C00D943C6 /* HbhWorkerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerTableViewCell.h; sourceTree = "<group>"; };
 		AB090E1319EE323C00D943C6 /* HbhWorkerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerTableViewCell.m; sourceTree = "<group>"; };
 		AB090E1419EE323C00D943C6 /* HbhWorkerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerTableViewCell.xib; sourceTree = "<group>"; };
@@ -142,9 +190,6 @@
 		AB090E2719EE63E000D943C6 /* HbhTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhTopTableViewCell.xib; sourceTree = "<group>"; };
 		AB17314919EBB94C008463E1 /* HbhOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HbhOrderTableViewCell.h; path = OrderTableViewCell/HbhOrderTableViewCell.h; sourceTree = "<group>"; };
 		AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HbhOrderTableViewCell.m; path = OrderTableViewCell/HbhOrderTableViewCell.m; sourceTree = "<group>"; };
-		AB17315919EBCE35008463E1 /* HbhOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderAppraiseViewController.h; sourceTree = "<group>"; };
-		AB17315A19EBCE35008463E1 /* HbhOrderAppraiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderAppraiseViewController.m; sourceTree = "<group>"; };
-		AB17315B19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhOrderAppraiseViewController.xib; sourceTree = "<group>"; };
 		AB5D5FB919EC1EB600E881E6 /* HbhOrderManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderManage.h; sourceTree = "<group>"; };
 		AB5D5FBA19EC1EB600E881E6 /* HbhOrderManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderManage.m; sourceTree = "<group>"; };
 		AB66D37919ECAC0900518005 /* HbhOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderDetailViewController.h; sourceTree = "<group>"; };
@@ -165,15 +210,37 @@
 		ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerThirdTopTableViewCell.xib; sourceTree = "<group>"; };
 		ABAFAB2819EF4BDC00B51916 /* HbhWorkerImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerImgTableViewCell.h; sourceTree = "<group>"; };
 		ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerImgTableViewCell.m; sourceTree = "<group>"; };
-		B029FC2E19F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentDetailsTableViewCell.h; sourceTree = "<group>"; };
-		B029FC2F19F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentDetailsTableViewCell.m; sourceTree = "<group>"; };
-		B029FC3019F101E000A35B3C /* AppointmentDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentDetailsCell.xib; sourceTree = "<group>"; };
-		B0EB09DD19F16A5E00EDB0D5 /* HbhAppointmentNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentNetManager.h; sourceTree = "<group>"; };
-		B0EB09DE19F16A5E00EDB0D5 /* HbhAppointmentNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentNetManager.m; sourceTree = "<group>"; };
+		ABC5D50419F1E59800A306F7 /* HbhMakeAppointMentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhMakeAppointMentViewController.h; sourceTree = "<group>"; };
+		ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhMakeAppointMentViewController.m; sourceTree = "<group>"; };
+		ABC5D50C19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderAppraiseViewController.h; sourceTree = "<group>"; };
+		ABC5D50D19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderAppraiseViewController.m; sourceTree = "<group>"; };
+		ABC5D50E19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhOrderAppraiseViewController.xib; sourceTree = "<group>"; };
+		ABC5D51119F1F16100A306F7 /* HbhCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhCommentViewController.h; sourceTree = "<group>"; };
+		ABC5D51219F1F16100A306F7 /* HbhCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhCommentViewController.m; sourceTree = "<group>"; };
+		ABE53EC219F0ED9900A8FE8B /* HbhWorkerListManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerListManage.h; sourceTree = "<group>"; };
+		ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerListManage.m; sourceTree = "<group>"; };
+		ABE53EC919F0FB5A00A8FE8B /* HbhAreas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAreas.h; sourceTree = "<group>"; };
+		ABE53ECA19F0FB5A00A8FE8B /* HbhAreas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAreas.m; sourceTree = "<group>"; };
+		ABE53ECB19F0FB5A00A8FE8B /* HbhData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhData.h; sourceTree = "<group>"; };
+		ABE53ECC19F0FB5A00A8FE8B /* HbhData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhData.m; sourceTree = "<group>"; };
+		ABE53ECD19F0FB5A00A8FE8B /* HbhDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhDataModels.h; sourceTree = "<group>"; };
+		ABE53ECE19F0FB5A00A8FE8B /* HbhModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhModel.h; sourceTree = "<group>"; };
+		ABE53ECF19F0FB5A00A8FE8B /* HbhModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhModel.m; sourceTree = "<group>"; };
+		ABE53ED019F0FB5A00A8FE8B /* HbhOrderCountRegions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderCountRegions.h; sourceTree = "<group>"; };
+		ABE53ED119F0FB5A00A8FE8B /* HbhOrderCountRegions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderCountRegions.m; sourceTree = "<group>"; };
+		ABE53ED219F0FB5A00A8FE8B /* HbhWorkers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkers.h; sourceTree = "<group>"; };
+		ABE53ED319F0FB5A00A8FE8B /* HbhWorkers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkers.m; sourceTree = "<group>"; };
+		ABE53ED419F0FB5A00A8FE8B /* HbhWorkerTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerTypes.h; sourceTree = "<group>"; };
+		ABE53ED519F0FB5A00A8FE8B /* HbhWorkerTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerTypes.m; sourceTree = "<group>"; };
 		B0EB09E019F171FD00EDB0D5 /* HbhAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentViewController.h; sourceTree = "<group>"; };
 		B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentViewController.m; sourceTree = "<group>"; };
-		B0EB09E319F22C8000EDB0D5 /* HbhAppointmentConfirmeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentConfirmeView.h; sourceTree = "<group>"; };
-		B0EB09E419F22C8000EDB0D5 /* HbhAppointmentConfirmeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentConfirmeView.m; sourceTree = "<group>"; };
+		B0EED42519F37C8E00CBFBFC /* HbhAppointmentNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentNetManager.h; sourceTree = "<group>"; };
+		B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentNetManager.m; sourceTree = "<group>"; };
+		B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentDetailsCell.xib; sourceTree = "<group>"; };
+		B0EED42919F37D4A00CBFBFC /* HbhAppointmentConfirmeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentConfirmeView.h; sourceTree = "<group>"; };
+		B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentConfirmeView.m; sourceTree = "<group>"; };
+		B0EED42B19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentDetailsTableViewCell.h; sourceTree = "<group>"; };
+		B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentDetailsTableViewCell.m; sourceTree = "<group>"; };
 		FF15252519E7B861008AB6EC /* JsonToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonToModel.h; sourceTree = "<group>"; };
 		FF15252619E7B861008AB6EC /* JsonToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonToModel.m; sourceTree = "<group>"; };
 		FF15252719E7B861008AB6EC /* NSFileManager_Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManager_Additions.h; sourceTree = "<group>"; };
@@ -330,6 +397,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B16D8CC19F1340A009E9FF3 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B0EED42519F37C8E00CBFBFC /* HbhAppointmentNetManager.h */,
+				B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */,
+				5B16D8CD19F134C3009E9FF3 /* HbuCategoryListManager.h */,
+				5B16D8CE19F134C3009E9FF3 /* HbuCategoryListManager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		5B16D8D019F139A4009E9FF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B16D8D119F139D3009E9FF3 /* CategoryInfoModel.h */,
+				5B16D8D219F139D3009E9FF3 /* CategoryInfoModel.m */,
+				5B16D8D419F140D0009E9FF3 /* CategoryChildInfoModel.h */,
+				5B16D8D519F140D0009E9FF3 /* CategoryChildInfoModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		5BB3259E19ECF3AE0085CAEB /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +454,46 @@
 				5BB325A219ECF4170085CAEB /* FouthVCList.plist */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		5BF8FC7619F0F9DB00598FB9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5BF8FC7719F0FA3900598FB9 /* HbhAllCategory.plist */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		5BF8FC7919F1073600598FB9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */,
+				B0EED42919F37D4A00CBFBFC /* HbhAppointmentConfirmeView.h */,
+				B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */,
+				B0EED42B19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.h */,
+				B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */,
+				5BF8FC7A19F107C700598FB9 /* HbhFirstVCCell.h */,
+				5BF8FC7B19F107C700598FB9 /* HbhFirstVCCell.m */,
+				5B16D8C919F12F07009E9FF3 /* HbhCategoryCell.h */,
+				5B16D8CA19F12F07009E9FF3 /* HbhCategoryCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		AB06DC4119F1269500B82C62 /* WorkerModel */ = {
+			isa = PBXGroup;
+			children = (
+				AB06DC4219F1269500B82C62 /* HbhWorkerCaseClass.h */,
+				AB06DC4319F1269500B82C62 /* HbhWorkerCaseClass.m */,
+				AB06DC4419F1269500B82C62 /* HbhWorkerComment.h */,
+				AB06DC4519F1269500B82C62 /* HbhWorkerComment.m */,
+				AB06DC4619F1269500B82C62 /* HbhWorkerData.h */,
+				AB06DC4719F1269500B82C62 /* HbhWorkerData.m */,
+				AB06DC4819F1269500B82C62 /* HbhWorkerDataModels.h */,
+				AB06DC4919F1269500B82C62 /* HbhWorkerModel.h */,
+				AB06DC4A19F1269500B82C62 /* HbhWorkerModel.m */,
+			);
+			path = WorkerModel;
 			sourceTree = "<group>";
 		};
 		AB090E1119EE321E00D943C6 /* TableViewCell */ = {
@@ -434,25 +563,35 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B029FC2B19F0FEC700A35B3C /* View */ = {
+		ABE53EC119F0ED7A00A8FE8B /* Manage */ = {
 			isa = PBXGroup;
 			children = (
-				B029FC2E19F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.h */,
-				B029FC2F19F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.m */,
-				B029FC3019F101E000A35B3C /* AppointmentDetailsCell.xib */,
-				B0EB09E319F22C8000EDB0D5 /* HbhAppointmentConfirmeView.h */,
-				B0EB09E419F22C8000EDB0D5 /* HbhAppointmentConfirmeView.m */,
+				AB06DC4F19F126B000B82C62 /* HbhWorkerDetailManage.h */,
+				AB06DC5019F126B000B82C62 /* HbhWorkerDetailManage.m */,
+				ABE53EC219F0ED9900A8FE8B /* HbhWorkerListManage.h */,
+				ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */,
 			);
-			name = View;
+			path = Manage;
 			sourceTree = "<group>";
 		};
-		B029FC2C19F1018300A35B3C /* Manager */ = {
+		ABE53EC819F0FB5A00A8FE8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B0EB09DD19F16A5E00EDB0D5 /* HbhAppointmentNetManager.h */,
-				B0EB09DE19F16A5E00EDB0D5 /* HbhAppointmentNetManager.m */,
+				ABE53EC919F0FB5A00A8FE8B /* HbhAreas.h */,
+				ABE53ECA19F0FB5A00A8FE8B /* HbhAreas.m */,
+				ABE53ECB19F0FB5A00A8FE8B /* HbhData.h */,
+				ABE53ECC19F0FB5A00A8FE8B /* HbhData.m */,
+				ABE53ECD19F0FB5A00A8FE8B /* HbhDataModels.h */,
+				ABE53ECE19F0FB5A00A8FE8B /* HbhModel.h */,
+				ABE53ECF19F0FB5A00A8FE8B /* HbhModel.m */,
+				ABE53ED019F0FB5A00A8FE8B /* HbhOrderCountRegions.h */,
+				ABE53ED119F0FB5A00A8FE8B /* HbhOrderCountRegions.m */,
+				ABE53ED219F0FB5A00A8FE8B /* HbhWorkers.h */,
+				ABE53ED319F0FB5A00A8FE8B /* HbhWorkers.m */,
+				ABE53ED419F0FB5A00A8FE8B /* HbhWorkerTypes.h */,
+				ABE53ED519F0FB5A00A8FE8B /* HbhWorkerTypes.m */,
 			);
-			name = Manager;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FF15252419E7B861008AB6EC /* SCache */ = {
@@ -592,6 +731,8 @@
 				5B03CBFC19EFE0D000A367DC /* HbhQRcodeViewController.h */,
 				5B03CBFD19EFE0D000A367DC /* HbhQRcodeViewController.m */,
 				5B03CBFE19EFE0D000A367DC /* HbhQRcodeViewController.xib */,
+				5B1BC75719F0080E007D5AF7 /* HbhChangePswViewController.h */,
+				5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */,
 			);
 			name = FourthViewController;
 			path = FourViewController;
@@ -606,12 +747,12 @@
 				AB17314819EBB910008463E1 /* OrderTableViewCell */,
 				FF21CE9C19E66054005007B7 /* ThirdViewController.h */,
 				FF21CE9D19E66054005007B7 /* ThirdViewController.m */,
-				AB17315919EBCE35008463E1 /* HbhOrderAppraiseViewController.h */,
-				AB17315A19EBCE35008463E1 /* HbhOrderAppraiseViewController.m */,
-				AB17315B19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib */,
 				AB66D37919ECAC0900518005 /* HbhOrderDetailViewController.h */,
 				AB66D37A19ECAC0900518005 /* HbhOrderDetailViewController.m */,
 				AB66D37B19ECAC0900518005 /* HbhOrderDetailViewController.xib */,
+				ABC5D50C19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.h */,
+				ABC5D50D19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m */,
+				ABC5D50E19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib */,
 			);
 			path = ThirdViewController;
 			sourceTree = "<group>";
@@ -619,12 +760,19 @@
 		FF21CE9419E65FD4005007B7 /* SecondViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AB06DC4119F1269500B82C62 /* WorkerModel */,
+				ABE53EC819F0FB5A00A8FE8B /* Model */,
+				ABE53EC119F0ED7A00A8FE8B /* Manage */,
 				AB090E1C19EE5E6400D943C6 /* View */,
 				AB090E1119EE321E00D943C6 /* TableViewCell */,
 				FF21CE9919E66030005007B7 /* SecondViewController.h */,
 				FF21CE9A19E66030005007B7 /* SecondViewController.m */,
 				AB090E2219EE61F700D943C6 /* HbhWorkerDetailViewController.h */,
 				AB090E2319EE61F700D943C6 /* HbhWorkerDetailViewController.m */,
+				ABC5D50419F1E59800A306F7 /* HbhMakeAppointMentViewController.h */,
+				ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */,
+				ABC5D51119F1F16100A306F7 /* HbhCommentViewController.h */,
+				ABC5D51219F1F16100A306F7 /* HbhCommentViewController.m */,
 			);
 			name = SecondViewController;
 			path = TwoViewController;
@@ -633,10 +781,14 @@
 		FF21CE9519E65FD4005007B7 /* FirstViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B029FC2C19F1018300A35B3C /* Manager */,
-				B029FC2B19F0FEC700A35B3C /* View */,
+				5B16D8D019F139A4009E9FF3 /* Model */,
+				5B16D8CC19F1340A009E9FF3 /* Manager */,
+				5BF8FC7919F1073600598FB9 /* View */,
+				5BF8FC7619F0F9DB00598FB9 /* Data */,
 				FF21CE9619E65FE7005007B7 /* FirstViewController.h */,
 				FF21CE9719E65FE7005007B7 /* FirstViewController.m */,
+				5B16D8C619F12CB7009E9FF3 /* HbuCategoryViewController.h */,
+				5B16D8C719F12CB7009E9FF3 /* HbuCategoryViewController.m */,
 				B0EB09E019F171FD00EDB0D5 /* HbhAppointmentViewController.h */,
 				B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */,
 			);
@@ -955,14 +1107,15 @@
 				AB090E2919EE63E000D943C6 /* HbhTopTableViewCell.xib in Resources */,
 				ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */,
 				AB090E1619EE323C00D943C6 /* HbhWorkerTableViewCell.xib in Resources */,
-				B029FC3219F101E000A35B3C /* AppointmentDetailsCell.xib in Resources */,
 				ABAFAB1D19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib in Resources */,
+				B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */,
+				ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */,
 				FF21CE7519E64B5A005007B7 /* Images.xcassets in Resources */,
 				FF15253619E7D354008AB6EC /* testImg111@3x.png in Resources */,
+				5BF8FC7819F0FA3900598FB9 /* HbhAllCategory.plist in Resources */,
 				5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */,
 				5B03CC0019EFE0D000A367DC /* HbhQRcodeViewController.xib in Resources */,
 				AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */,
-				AB17315D19EBCE35008463E1 /* HbhOrderAppraiseViewController.xib in Resources */,
 				ABAFAB2219EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.xib in Resources */,
 				5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */,
 			);
@@ -987,8 +1140,11 @@
 				AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */,
 				FF21CF2119E66144005007B7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				FFD1A2D919EE6AB300EA97D4 /* HubAreasModel.m in Sources */,
+				ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */,
+				AB06DC4E19F1269500B82C62 /* HbhWorkerModel.m in Sources */,
 				FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */,
 				ABAFAB2119EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m in Sources */,
+				AB06DC4D19F1269500B82C62 /* HbhWorkerData.m in Sources */,
 				FF21CE9B19E66030005007B7 /* SecondViewController.m in Sources */,
 				ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */,
 				AB7DE99719EFC7B000AA9F93 /* HbhDropDownView.m in Sources */,
@@ -996,25 +1152,33 @@
 				FF21CEA419E660CC005007B7 /* BaseViewController.m in Sources */,
 				FFD1A2D619EE4F2100EA97D4 /* AreasDBManager.m in Sources */,
 				FF21CF0419E66144005007B7 /* AFJSONRequestOperation.m in Sources */,
+				5BF8FC7C19F107C700598FB9 /* HbhFirstVCCell.m in Sources */,
 				FF21CF0219E66144005007B7 /* AFHTTPRequestOperation.m in Sources */,
 				FF21CF2019E66144005007B7 /* DataOC.mm in Sources */,
+				ABE53ED819F0FB5A00A8FE8B /* HbhModel.m in Sources */,
 				AB090E1519EE323C00D943C6 /* HbhWorkerTableViewCell.m in Sources */,
 				AB090E2419EE61F700D943C6 /* HbhWorkerDetailViewController.m in Sources */,
+				ABC5D50619F1E59800A306F7 /* HbhMakeAppointMentViewController.m in Sources */,
 				FF21CF1F19E66144005007B7 /* DataCenterDeal.mm in Sources */,
+				5B16D8D619F140D0009E9FF3 /* CategoryChildInfoModel.m in Sources */,
 				FF21CF0C19E66144005007B7 /* FBKVOController.m in Sources */,
 				AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */,
+				5B16D8CB19F12F07009E9FF3 /* HbhCategoryCell.m in Sources */,
 				FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */,
 				FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */,
+				ABE53ED919F0FB5A00A8FE8B /* HbhOrderCountRegions.m in Sources */,
 				FF21CF1819E66144005007B7 /* UIButton+WebCache.m in Sources */,
+				AB06DC4B19F1269500B82C62 /* HbhWorkerCaseClass.m in Sources */,
 				FF21CF3219E68E28005007B7 /* LeftView.m in Sources */,
 				FF21CF0919E66144005007B7 /* MyHttpClient.m in Sources */,
 				FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */,
+				B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */,
 				FF21CF2619E66144005007B7 /* UIViewAdditions.m in Sources */,
-				B0EB09DF19F16A5E00EDB0D5 /* HbhAppointmentNetManager.m in Sources */,
 				FF21CF1A19E66144005007B7 /* UIImage+MultiFormat.m in Sources */,
-				B0EB09E519F22C8000EDB0D5 /* HbhAppointmentConfirmeView.m in Sources */,
 				ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */,
 				FF21CF0819E66144005007B7 /* AFXMLRequestOperation.m in Sources */,
+				ABE53EDA19F0FB5A00A8FE8B /* HbhWorkers.m in Sources */,
+				ABE53ED719F0FB5A00A8FE8B /* HbhData.m in Sources */,
 				FF21CF1319E66144005007B7 /* SDWebImageDecoder.m in Sources */,
 				FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */,
 				FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */,
@@ -1023,14 +1187,20 @@
 				FF21CF1D19E66144005007B7 /* UIImageView+WebCache.m in Sources */,
 				FF21CF0A19E66144005007B7 /* NetManager.m in Sources */,
 				5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */,
+				ABC5D50F19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m in Sources */,
 				AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */,
+				5B16D8C819F12CB7009E9FF3 /* HbuCategoryViewController.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
 				ABAFAB1C19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m in Sources */,
+				AB06DC4C19F1269500B82C62 /* HbhWorkerComment.m in Sources */,
 				AB5D5FBB19EC1EB600E881E6 /* HbhOrderManage.m in Sources */,
 				FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */,
 				5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */,
 				FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */,
+				ABE53ED619F0FB5A00A8FE8B /* HbhAreas.m in Sources */,
+				ABE53EDB19F0FB5A00A8FE8B /* HbhWorkerTypes.m in Sources */,
 				FF21CF1019E66144005007B7 /* NSData+ImageContentType.m in Sources */,
+				5B1BC75919F0080E007D5AF7 /* HbhChangePswViewController.m in Sources */,
 				5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */,
 				5BD54D3319EE4DC6002C4355 /* HbhUserManager.m in Sources */,
 				FF21CF1419E66144005007B7 /* SDWebImageDownloader.m in Sources */,
@@ -1040,16 +1210,16 @@
 				B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */,
 				FF15253219E7B861008AB6EC /* SCach.m in Sources */,
 				FF21CF0119E66144005007B7 /* AFHTTPClient.m in Sources */,
+				AB06DC5119F126B000B82C62 /* HbhWorkerDetailManage.m in Sources */,
 				FF21CE9019E64D76005007B7 /* RootTabBarController.m in Sources */,
-				B029FC3119F101E000A35B3C /* HbhAppointmentDetailsTableViewCell.m in Sources */,
 				FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */,
 				FF21CE9E19E66054005007B7 /* ThirdViewController.m in Sources */,
 				FF21CF0619E66144005007B7 /* AFPropertyListRequestOperation.m in Sources */,
-				AB17315C19EBCE35008463E1 /* HbhOrderAppraiseViewController.m in Sources */,
 				FF21CF1E19E66144005007B7 /* UIView+WebCacheOperation.m in Sources */,
 				FF21CF1219E66144005007B7 /* SDWebImageCompat.m in Sources */,
 				FF21CE7319E64B5A005007B7 /* AppDelegate.m in Sources */,
 				FF21CF0F19E66144005007B7 /* MKAnnotationView+WebCache.m in Sources */,
+				5B16D8CF19F134C3009E9FF3 /* HbuCategoryListManager.m in Sources */,
 				FF21CF0519E66144005007B7 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				5B03CBFF19EFE0D000A367DC /* HbhQRcodeViewController.m in Sources */,
 				FF21CF0D19E66144005007B7 /* NSData+Base64.m in Sources */,
@@ -1059,11 +1229,15 @@
 				FF21CF1519E66144005007B7 /* SDWebImageDownloaderOperation.m in Sources */,
 				FF21CEA119E6607B005007B7 /* FourthViewController.m in Sources */,
 				FF21CF1619E66144005007B7 /* SDWebImageManager.m in Sources */,
+				B0EED42E19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m in Sources */,
 				FF21CF2219E66144005007B7 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				FF21CF2519E66144005007B7 /* UIImage+ImageEffects.m in Sources */,
+				B0EED42F19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m in Sources */,
 				FF21CF1B19E66144005007B7 /* UIImage+WebP.m in Sources */,
+				5B16D8D319F139D3009E9FF3 /* CategoryInfoModel.m in Sources */,
 				FF21CE9819E65FE7005007B7 /* FirstViewController.m in Sources */,
 				FF21CF1119E66144005007B7 /* SDImageCache.m in Sources */,
+				ABC5D51319F1F16100A306F7 /* HbhCommentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

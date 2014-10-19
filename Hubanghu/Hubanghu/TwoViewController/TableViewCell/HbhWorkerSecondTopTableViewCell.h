@@ -10,5 +10,6 @@
 
 @interface HbhWorkerSecondTopTableViewCell : UITableViewCell
 
+@property(nonatomic, strong) UIButton *moreBtn;
 - (instancetype)init;
 @end

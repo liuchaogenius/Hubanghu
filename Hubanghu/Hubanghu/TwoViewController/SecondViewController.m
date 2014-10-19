@@ -10,6 +10,10 @@
 #import "HbhWorkerTableViewCell.h"
 #import "HbhWorkerDetailViewController.h"
 #import "HbhDropDownView.h"
+#import "UIImageView+WebCache.h"
+#import "HbhWorkerListManage.h"
+#import "HbhDataModels.h"
+
 
 typedef enum : NSUInteger {
     btnViewTypeAreas=10,
@@ -23,12 +27,32 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) UIView *btnBackView;
 @property(nonatomic, strong) UITableView *showWorkerListTableView;
 
+@property(nonatomic, strong) HbhWorkerListManage *workerListManage;
+
 @property(nonatomic, strong) HbhDropDownView *dropAreasView;
 @property(nonatomic, strong) HbhDropDownView *dropWorkerTypesView;
 @property(nonatomic, strong) HbhDropDownView *dropOrderCountView;
+
+@property(nonatomic, strong) NSMutableArray *workersArray;
+@property(nonatomic, strong) NSMutableArray *areasArray;
+@property(nonatomic, strong) NSMutableArray *workerTypeArray;
+@property(nonatomic, strong) NSMutableArray *orderCountArray;
+//蒙层
+@property(nonatomic, strong) UIView *maskingView;
+@property(nonatomic, strong) UIActivityIndicatorView *activityView;
+
+@property(nonatomic, strong) void(^myWorkerDetailBlock)(double , NSString *);
 @end
 
 @implementation SecondViewController
+
+- (instancetype)initAndUseWorkerDetailBlock:(void (^)(double , NSString *))aBlock
+{
+    self = [super init];
+    _isSpecial = YES;
+    self.myWorkerDetailBlock = aBlock;
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,6 +73,21 @@ typedef enum : NSUInteger {
     self.showWorkerListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.showWorkerListTableView.backgroundColor = RGBCOLOR(247, 247, 247);
     [self.view addSubview:self.showWorkerListTableView];
+    
+    
+    [self.view addSubview:self.activityView];
+    [self.activityView startAnimating];
+#pragma mark 网络请求
+    [self.workerListManage getWorkerListSuccBlock:^(HbhData *aData) {
+        self.workersArray = [(NSMutableArray *)aData.workers mutableCopy];
+        self.areasArray = [(NSMutableArray *)aData.areas mutableCopy];
+        self.workerTypeArray = [(NSMutableArray *)aData.workerTypes mutableCopy];
+        self.orderCountArray = [(NSMutableArray *)aData.orderCountRegions mutableCopy];
+        [self.showWorkerListTableView reloadData];
+        [self.activityView stopAnimating];
+    } and:^{
+        
+    }];
 }
 
 #pragma mark 上面三个btn
@@ -58,7 +97,7 @@ typedef enum : NSUInteger {
     {
         _btnBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 40)];
         _btnBackView.backgroundColor = RGBCOLOR(242, 242, 242);
-        NSArray *array = @[@"所有区域", @"所有工种", @"接单数"];
+        NSArray *array = @[@"所有区域", @"所有工种", @"接单量"];
         for (int i=0; i<3; i++)
         {
             UIView *btnView = [[UIView alloc] initWithFrame:CGRectMake(kMainScreenWidth/3*i, 0, kMainScreenWidth/3, self.btnBackView.bottom)];
@@ -66,21 +105,14 @@ typedef enum : NSUInteger {
             UITapGestureRecognizer *tapGestureBtnView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchBtnView:)];
             [btnView addGestureRecognizer:tapGestureBtnView];
             [_btnBackView addSubview:btnView];
-            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((kMainScreenWidth/3-80)/2, 10, 60, 20)];
-            titleLabel.text = [array objectAtIndex:i];
-            titleLabel.font = kFont15;
-            [btnView addSubview:titleLabel];
-            UIImageView *arrowDownImg;
-            if (i==2)
-            {
-                arrowDownImg = [[UIImageView alloc] initWithFrame:CGRectMake((kMainScreenWidth/3-80)/2+50, 16, 13, 8)];
-            }
-            else
-            {
-                arrowDownImg = [[UIImageView alloc] initWithFrame:CGRectMake((kMainScreenWidth/3-80)/2+65, 16, 13, 8)];
-            }
+            UIImageView *arrowDownImg = [[UIImageView alloc] initWithFrame:CGRectMake(kMainScreenWidth/3-16, 16, 13, 8)];
             arrowDownImg.image = [UIImage imageNamed:@"arrowDown"];
             [btnView addSubview:arrowDownImg];
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, kMainScreenWidth/3, 20)];
+            titleLabel.text = [array objectAtIndex:i];
+            titleLabel.textAlignment = NSTextAlignmentCenter;
+            titleLabel.font = kFont15;
+            [btnView addSubview:titleLabel];
             if (i!=0)
             {
                 UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(kMainScreenWidth/3*i, 5, 0.5, 30)];
@@ -98,58 +130,120 @@ typedef enum : NSUInteger {
 
 - (void)touchBtnView:(UITapGestureRecognizer *)aTapGesture
 {
+    [self.view addSubview:self.maskingView];
     if (aTapGesture.view.tag==btnViewTypeAreas)
     {
         [self showDropView:self.dropAreasView];
+        [self.view bringSubviewToFront:self.dropAreasView];
     }
     else if (aTapGesture.view.tag==btnViewTypeWorkerTypes)
     {
         [self showDropView:self.dropWorkerTypesView];
+        [self.view bringSubviewToFront:self.dropWorkerTypesView];
     }
     else if(aTapGesture.view.tag==btnViewTypeOrderCount)
     {
         [self showDropView:self.dropOrderCountView];
+        [self.view bringSubviewToFront:self.dropOrderCountView];
     }
 }
 
 - (void)showDropView:(UIView *)aViewBtn
 {
-    self.dropAreasView.hidden = YES;
-    self.dropOrderCountView.hidden = YES;
-    self.dropWorkerTypesView.hidden = YES;
+    if (self.dropWorkerTypesView != aViewBtn)
+    {
+        self.dropWorkerTypesView.hidden = YES;
+    }
+    if (self.dropAreasView != aViewBtn)
+    {
+        self.dropAreasView.hidden = YES;
+    }
+    if (self.dropOrderCountView != aViewBtn)
+    {
+        self.dropOrderCountView.hidden = YES;
+    }
     if (!aViewBtn.superview)
     {
         [self.view addSubview:aViewBtn];
         aViewBtn.hidden = YES;
     }
-    BOOL state = aViewBtn.hidden;
-    aViewBtn.hidden = !state;
+    if (aViewBtn.hidden==NO) {
+        aViewBtn.hidden = YES;
+        [self.maskingView removeFromSuperview];
+    }else if (aViewBtn.hidden==YES)
+    {
+        aViewBtn.hidden = NO;
+    }
 }
 
 #pragma mark getter
+- (UIActivityIndicatorView *)activityView
+{
+    if (!_activityView) {
+        _activityView = [[UIActivityIndicatorView alloc]
+                         initWithFrame:CGRectMake(kMainScreenWidth/2-20, kMainScreenHeight/2-20, 40, 40)];
+        _activityView.color = [UIColor blackColor];
+    }
+    return _activityView;
+}
+
+- (HbhWorkerListManage *)workerListManage
+{
+    if (!_workerListManage)
+    {
+        _workerListManage = [[HbhWorkerListManage alloc] init];
+    }
+    return _workerListManage;
+}
+
+- (UIView *)maskingView
+{
+    if (!_maskingView) {
+        _maskingView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight)];
+        _maskingView.backgroundColor = [UIColor grayColor];
+        _maskingView.alpha = 0.5;
+    }
+    return _maskingView;
+}
+
 - (HbhDropDownView *)dropAreasView
 {
-    NSArray *array = @[@"江干区", @"西湖区", @"余杭区"];
     if (!_dropAreasView) {
-        _dropAreasView = [[HbhDropDownView alloc] initWithArray:array andButton:[self.view viewWithTag:btnViewTypeAreas]];
+//        [self.areasArray removeObjectAtIndex:0];
+        _dropAreasView = [[HbhDropDownView alloc] initWithArray:self.areasArray andButton:[self.view viewWithTag:btnViewTypeAreas]];
+        [_dropAreasView useBlock:^(int row) {
+            NSLog(@"%d", row);
+            _dropAreasView.hidden = YES;
+            [self.maskingView removeFromSuperview];
+        }];
     }
     return _dropAreasView;
 }
 
 - (HbhDropDownView *)dropWorkerTypesView
 {
-    NSArray *array = @[@"木工", @"泥工", @"电工"];
     if (!_dropWorkerTypesView) {
-        _dropWorkerTypesView = [[HbhDropDownView alloc] initWithArray:array andButton:[self.view viewWithTag:btnViewTypeWorkerTypes]];
+//        [self.workerTypeArray removeObjectAtIndex:0];
+        _dropWorkerTypesView = [[HbhDropDownView alloc] initWithArray:self.workerTypeArray andButton:[self.view viewWithTag:btnViewTypeWorkerTypes]];
+        [_dropWorkerTypesView useBlock:^(int row) {
+            NSLog(@"%d", row);
+            _dropWorkerTypesView.hidden = YES;
+            [self.maskingView removeFromSuperview];
+        }];
     }
     return _dropWorkerTypesView;
 }
 
 - (HbhDropDownView *)dropOrderCountView
 {
-    NSArray *array = @[@"小于10单", @"10-100单", @"100-500单", @"大于500单"];
     if (!_dropOrderCountView) {
-        _dropOrderCountView = [[HbhDropDownView alloc] initWithArray:array andButton:[self.view viewWithTag:btnViewTypeOrderCount]];
+//        [self.orderCountArray removeObjectAtIndex:0];
+        _dropOrderCountView = [[HbhDropDownView alloc] initWithArray:self.orderCountArray andButton:[self.view viewWithTag:btnViewTypeOrderCount]];
+        [_dropOrderCountView useBlock:^(int row) {
+            NSLog(@"%d", row);
+            _dropOrderCountView.hidden = YES;
+            [self.maskingView removeFromSuperview];
+        }];
     }
     return _dropOrderCountView;
 }
@@ -157,7 +251,7 @@ typedef enum : NSUInteger {
 #pragma mark tableView datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.workersArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -176,6 +270,12 @@ typedef enum : NSUInteger {
     }
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
     lineView.backgroundColor = [UIColor lightGrayColor];
+    HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
+    [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
+    cell.workerNameLabel.text = model.workTypeName;
+    cell.workerMountLabel.text = [NSString stringWithFormat:@"%d", (int)model.orderCount];
+    cell.workYearLabel.text = model.workingAge;
+    cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", model.workTypeName];
     [cell addSubview:lineView];
     
     return cell;
@@ -185,9 +285,19 @@ typedef enum : NSUInteger {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    HbhWorkerDetailViewController *workDetailVC = [[HbhWorkerDetailViewController alloc] init];
-    workDetailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:workDetailVC animated:YES];
+    if (_isSpecial==YES)
+    {
+        HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
+        self.myWorkerDetailBlock(model.id, model.name);
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
+        HbhWorkerDetailViewController *workDetailVC = [[HbhWorkerDetailViewController alloc] initWithWorkerId:(int)model.id];
+        workDetailVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:workDetailVC animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -196,13 +306,13 @@ typedef enum : NSUInteger {
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

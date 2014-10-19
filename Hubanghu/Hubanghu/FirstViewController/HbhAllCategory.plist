@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>CategoryName</key>
+		<string>地板安装</string>
+		<key>image</key>
+		<string>OrderType_1</string>
+		<key>cateId</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>CategoryName</key>
+		<string>地板安装</string>
+		<key>image</key>
+		<string>OrderType_2</string>
+		<key>cateId</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>CategoryName</key>
+		<string>地板安装</string>
+		<key>image</key>
+		<string>OrderType_3</string>
+		<key>cateId</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>CategoryName</key>
+		<string>地板安装</string>
+		<key>image</key>
+		<string>OrderType_4</string>
+		<key>cateId</key>
+		<integer>4</integer>
+	</dict>
+	<dict>
+		<key>CategoryName</key>
+		<string>地板安装</string>
+		<key>image</key>
+		<string>OrderType_5</string>
+		<key>cateId</key>
+		<integer>5</integer>
+	</dict>
+</array>
+</plist>
