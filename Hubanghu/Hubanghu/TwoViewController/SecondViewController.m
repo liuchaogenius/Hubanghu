@@ -41,6 +41,7 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) UIActivityIndicatorView *activityView;
 
 @property(nonatomic, strong) void(^myWorkerDetailBlock)(HbhWorkers *);
+@property(nonatomic, strong) UIView *failView;
 @end
 
 @implementation SecondViewController
@@ -84,8 +85,8 @@ typedef enum : NSUInteger {
         self.orderCountArray = [(NSMutableArray *)aData.orderCountRegions mutableCopy];
         [self.showWorkerListTableView reloadData];
         [self.activityView stopAnimating];
-    } and:^{
-        
+    } andFailBlock:^{
+        [self.view addSubview:self.failView];
     }];
 }
 
@@ -176,6 +177,22 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark getter
+- (UIView *)failView
+{
+    if (!_failView) {
+        _failView = [[UIView alloc] init];
+        _failView.frame = self.showWorkerListTableView.frame;
+        UILabel *failLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-100, kMainScreenHeight/2-100, 200, 50)];
+        failLabel.text = @"暂时没有数据";
+        failLabel.font = kFont14;
+        failLabel.textAlignment = NSTextAlignmentCenter;
+        failLabel.textColor = [UIColor lightGrayColor];
+        [_failView addSubview:failLabel];
+        _failView.backgroundColor = RGBCOLOR(247, 247, 247);
+    }
+    return _failView;
+}
+
 - (UIActivityIndicatorView *)activityView
 {
     if (!_activityView) {
@@ -271,7 +288,7 @@ typedef enum : NSUInteger {
     lineView.backgroundColor = [UIColor lightGrayColor];
     HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
     [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
-    cell.workerNameLabel.text = model.workTypeName;
+    cell.workerNameLabel.text = model.name;
     cell.workerMountLabel.text = [NSString stringWithFormat:@"%d", (int)model.orderCount];
     cell.workYearLabel.text = model.workingAge;
     cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", model.workTypeName];

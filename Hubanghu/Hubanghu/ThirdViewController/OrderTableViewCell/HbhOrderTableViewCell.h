@@ -16,6 +16,7 @@
 @property(nonatomic, strong) UILabel *urgentLabel;
 @property(nonatomic, strong) UILabel *priceLabel;
 @property(nonatomic, strong) UILabel *orderStateLabel;
+@property(nonatomic, strong) UIView *lineView;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 @end

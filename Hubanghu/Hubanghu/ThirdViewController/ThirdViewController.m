@@ -13,6 +13,8 @@
 #import "HbhOrderAppraiseViewController.h"
 #import "HbhOrderManage.h"
 #import "HbhOrderModel.h"
+#import "HbhUser.h"
+#import "HbhLoginViewController.h"
 
 typedef enum : NSUInteger {
     currentTabOrderAll = 0,
@@ -46,6 +48,13 @@ typedef enum : NSUInteger {
     [super viewDidLoad];
     self.view.backgroundColor = RGBCOLOR(247, 247, 247);
     self.title = @"我的订单";
+    
+    if (![HbhUser sharedHbhUser].isLogin)
+    {
+        [self presentViewController:[[HbhLoginViewController alloc] init] animated:YES completion:^{
+            
+        }];
+    }
     
     if (!self.paramCurrentTab)
     {

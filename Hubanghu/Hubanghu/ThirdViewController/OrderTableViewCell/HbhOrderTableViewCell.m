@@ -25,6 +25,7 @@
         [self addSubview:self.typeLabel];
         [self addSubview:self.orderStateLabel];
         [self addSubview:self.priceLabel];
+        [self addSubview:self.lineView];
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
         lineView.backgroundColor = [UIColor lightGrayColor];
@@ -34,6 +35,15 @@
 //    }
     
     return self;
+}
+
+- (UIView *)lineView
+{
+    if (!_lineView) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(self.orderStateLabel.left, self.orderStateLabel.bottom, self.orderStateLabel.right-self.orderStateLabel.left-5, 1)];
+        _lineView.backgroundColor = KColor;
+    }
+    return _lineView;
 }
 
 - (UILabel *)priceLabel

@@ -11,7 +11,7 @@
 
 @implementation HbhWorkerListManage
 
-- (void)getWorkerListSuccBlock:(void(^)(HbhData *aData))aSuccBlock and:(void(^)(void))aFailBlock
+- (void)getWorkerListSuccBlock:(void(^)(HbhData *aData))aSuccBlock andFailBlock:(void(^)(void))aFailBlock
 {
     NSString *workerListUrl = nil;
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"area",@"2",@"workerType",@"3",@"orderCount", nil];
@@ -21,7 +21,7 @@
         HbhData *data = [HbhData modelObjectWithDictionary:[successDict objectForKey:@"data"]];
         aSuccBlock(data);
     } failure:^(NSDictionary *failDict, NSError *error) {
-        
+        aFailBlock();
     }];
 }
 @end
