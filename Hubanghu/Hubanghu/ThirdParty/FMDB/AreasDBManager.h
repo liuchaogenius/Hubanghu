@@ -17,7 +17,7 @@
 }
 
 
-+ (AreasDBManager *)shareFMDBManager;
+//+ (AreasDBManager *)shareFMDBManager;
 ///将数据存入数据库
 - (void)insertAreaToTable:(NSString *)aAreaId
                      name:(NSString*)aName

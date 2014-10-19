@@ -201,6 +201,7 @@ static SLocationManager *myLocationObj = nil;
     if(locations.count > 0){
         [self locationManager:manager getLocation:[locations lastObject]];
     }
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status

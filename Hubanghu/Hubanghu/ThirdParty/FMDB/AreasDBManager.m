@@ -15,22 +15,22 @@
 
 @implementation AreasDBManager
 
-+ (AreasDBManager *)shareFMDBManager
-{
-    static AreasDBManager *g_DBManager = nil;
-    if(!g_DBManager)
-    {
-        @synchronized(self)
-        {
-            if(!g_DBManager)
-            {
-                g_DBManager = [[AreasDBManager alloc] init];
-            }
-        }
-    }
-    
-    return g_DBManager;
-}
+//+ (AreasDBManager *)shareFMDBManager
+//{
+//    static AreasDBManager *g_DBManager = nil;
+//    if(!g_DBManager)
+//    {
+//        @synchronized(self)
+//        {
+//            if(!g_DBManager)
+//            {
+//                g_DBManager = [[AreasDBManager alloc] init];
+//            }
+//        }
+//    }
+//    
+//    return g_DBManager;
+//}
 
 - (instancetype)init
 {
@@ -90,11 +90,16 @@
         {
             if(aFirstchar)
             {
-                NSString *first = [aFirstchar substringToIndex:1];
-                NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into areas_table('areaId','name','level','parent','TypeName','firstchar') values(?,?,?,?,?,?)"];
-                BOOL res = [db executeUpdate:sqlIntoArea,
-                            aAreaId,aName,[NSNumber numberWithInt:aLevel],aParent,aTypeName,first];
-                MLOG(@"insertAreaRes=%d", res);
+                NSString *sel = @"select * from areas_table where areaId=?";
+                FMResultSet *cityResultset = [db executeQuery:sel,aAreaId];
+                if(!cityResultset)
+                {
+                    NSString *first = [aFirstchar substringToIndex:1];
+                    NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into areas_table('areaId','name','level','parent','TypeName','firstchar') values(?,?,?,?,?,?)"];
+                    BOOL res = [db executeUpdate:sqlIntoArea,
+                                aAreaId,aName,[NSNumber numberWithInt:aLevel],aParent,aTypeName,first];
+                    MLOG(@"insertAreaRes=%d", res);
+                }
             }
         }
     }];
