@@ -14,8 +14,10 @@
 @interface HbuAreaLocationManager : NSObject
 
 @property (strong, nonatomic) AreasDBManager *areasDBManager;
-@property (assign, nonatomic) BOOL isHaveData;
 @property (nonatomic, strong) HbuAreaListModelAreas* currentAreas;
-- (void)getAreaListInfoWithsucc:(void(^)(HbuAreaListModelBaseClass* areaListModel))succ failure:(void(^)())failure;
 
+//从网络获取地区信息，并存入数据库（如果数据库没有地区信息）
+- (void)getAreasDataAndSaveToDBifNeeded;
+//定位
+- (void)getUserLocation;
 @end

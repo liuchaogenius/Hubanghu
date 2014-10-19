@@ -12,17 +12,6 @@
 #import "AreasDBManager.h"
 #import "SLocationManager.h"
 @implementation HbuAreaLocationManager
-/*
-- (BOOL)isHaveData
-{
-    [self.areasDBManager selGroupAreaCity:^(NSMutableDictionary *cityDict){
-        if (cityDict) {
-            return YES;
-        }else{
-            return NO;
-        }
-    }];
-}*/
 
 - (AreasDBManager *)areasDBManager
 {
@@ -92,9 +81,7 @@
             [locationManager getLocationAddress:NO resultBlock:^(NSDictionary *aLocationDict, Location2d aL2d) {
 #warning 对比城市 创建currentAreas
                 /*
-                for () {
-                    
-                }
+                self.areasDBManager selHbuArealistModel:<#(NSString *)#> resultBlock:<#^(HbuAreaListModelAreas *model)aResultBlock#>
                  */
             }];
         }];

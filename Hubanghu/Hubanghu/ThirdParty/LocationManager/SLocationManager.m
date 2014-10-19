@@ -102,6 +102,7 @@ static SLocationManager *myLocationObj = nil;
     BOOL hasAlwaysKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"] != nil;
     BOOL hasWhenInUseKey = [[NSBundle mainBundle]
                             objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil;
+    MLOG(@"authorizationStatus = %d",[CLLocationManager authorizationStatus]);
     if(hasAlwaysKey && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
     {
         [self requestAlwaysLocationAuthorization];

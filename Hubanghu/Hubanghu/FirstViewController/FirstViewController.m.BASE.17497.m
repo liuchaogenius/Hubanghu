@@ -27,7 +27,7 @@ enum CateId_Type
 @property (strong, nonatomic) UITableView* tableView;
 @property (strong, nonatomic) NSArray *allCategoryInfo;//所有预约类型info数组
 @property (strong, nonatomic) UIView *headView; //headView
-@property (strong, nonatomic) HbuAreaLocationManager *areaLocationManager;
+
 @property (strong, nonatomic) HbuAreaListModelBaseClass *areaListModel;
 @end
 
@@ -66,10 +66,12 @@ enum CateId_Type
     self.tableView.dataSource = self;
     [self.tableView registerClass:[HbhFirstVCCell class] forCellReuseIdentifier:@"FirstVCCell"];
     
-    //定位
-    _areaLocationManager = [[HbuAreaLocationManager alloc] init];
-    [self.areaLocationManager getAreasDataAndSaveToDBifNeeded];
-    [self.areaLocationManager getUserLocation];
+    [HbuAreaLocationManager getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
+        self.areaListModel = areaListModel;
+    } failure:^{
+    
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
