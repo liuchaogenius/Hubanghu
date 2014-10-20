@@ -46,7 +46,24 @@ typedef enum : NSUInteger {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kLoginForUserMessage object:[NSNumber numberWithBool:YES]];
+    if(![HbhUser sharedHbhUser].isLogin)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLoginForUserMessage object:[NSNumber numberWithBool:YES]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessItem) name:kLoginSuccessMessae object:nil];
+    }
+    else
+    {
+        [self initView];
+    }
+}
+
+- (void)loginSuccessItem
+{
+    [self initView];
+}
+
+- (void)initView
+{
     self.view.backgroundColor = RGBCOLOR(247, 247, 247);
     self.title = @"我的订单";
     if (!self.paramCurrentTab)

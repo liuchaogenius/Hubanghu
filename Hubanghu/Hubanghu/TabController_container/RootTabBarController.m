@@ -138,9 +138,13 @@
 #pragma mark show login
 - (void)showLoginViewController:(NSNotification *)aNotification
 {
-    BOOL isGoBack = [[aNotification object] boolValue]; ///yes为goback  其他的不处理
+    BOOL isGoBack = NO;
+    if(aNotification.object)
+    {
+        isGoBack = [[aNotification object] boolValue]; ///yes为goback  其他的不处理
+    }
     __weak RootTabBarController *weakself = self;
-    if ([HbhUser sharedHbhUser].isLogin)
+    if (![HbhUser sharedHbhUser].isLogin)
     {
         if(!self.loginVC)
         {
@@ -162,17 +166,18 @@
             int type = [[change objectForKey:@"new"] intValue];
             if(type == eLoginSucc)
             {
-                [weakself.loginNav dismissViewControllerAnimated:YES completion:^{
-                    
-                }];
+
             }
             else if(type == eLoginBack)
             {
                 if(isGoBack)
                 {
-                    weakself.tabBarController.selectedIndex = oldSelectIndex;
+                    weakself.selectedIndex = oldSelectIndex;
                 }
             }
+            [weakself.loginNav dismissViewControllerAnimated:YES completion:^{
+                
+            }];
         }];
         
 //        {
