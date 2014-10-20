@@ -45,20 +45,40 @@
         dataQueue = [FMDatabaseQueue databaseQueueWithPath:dbQueuePath];
         if ([manager fileExistsAtPath:dbQueuePath] == NO)
         {
-            [dataQueue inDatabase:^(FMDatabase *db) {
-                if([db open])
-                {
-                    [weakself createAreasTable];
-                    [db close];
-                    MLOG(@"table create success");
-                }
-                
-            }];
+            [manager createFileAtPath:dbQueuePath contents:nil attributes:nil];
+
         }
-        
-        [dataQueue close];
+//        [dataQueue inDatabase:^(FMDatabase *db) {
+//            if([db open])
+//            {
+//                [db close];
+//                MLOG(@"table create success");
+//            }
+//            
+//        }];
+//        [dataQueue close];
+        [self createAreasTable];
     }
     return self;
+}
+
+- (void)tableIsExit
+{
+    __weak AreasDBManager *weakself = self;
+    [dataQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet * set = [db executeQuery:[NSString stringWithFormat:@"select count(*) from sqlite_master where type ='table' and name = 'sqlite_master'"]];
+        
+        [set next];
+        
+        NSInteger count = [set intForColumnIndex:0];
+        
+        BOOL existTable = !!count;
+        
+        if (!existTable) {
+            [weakself createAreasTable];
+        }
+    }];
+
 }
 
 - (void)createAreasTable
@@ -127,7 +147,7 @@
             {
                 NSString *sel = @"select * from areas_table where areaId=?";
                 FMResultSet *cityResultset = [db executeQuery:sel,aAreaId];
-                if(!cityResultset)
+                if(![cityResultset next])
                 {
                     NSString *first = [aFirstchar substringToIndex:1];
                     NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into areas_table('areaId','name','level','parent','TypeName','firstchar') values(?,?,?,?,?,?)"];
@@ -155,7 +175,7 @@
                 NSString *sqlSELcity = @"select 市 from areas_table where firstchar=?";
                 NSMutableArray *mutArry = [[NSMutableArray alloc] init];
                 FMResultSet *cityResultset = [db executeQuery:sqlSELcity,indexchar];
-                if(!cityResultset)
+                if(![cityResultset next])
                 {
                     aCityBlock(nil);
                     break;
