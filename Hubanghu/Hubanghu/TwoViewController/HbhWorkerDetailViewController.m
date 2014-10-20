@@ -148,7 +148,15 @@
     }
     else if(section==1)
     {
-        return 3;
+        if (self.workerData.comment.count>3) {
+            return 3;
+        }else if(self.workerData.comment.count==0)
+        {
+            return 2;
+        }else if (self.workerData.comment.count<3)
+        {
+            return 1+self.workerData.comment.count;
+        }
     }
     else if(section==2)
     {
@@ -190,22 +198,31 @@
         }
         else
         {
-            HbhWorkerCommentTableViewCell *cell = [[HbhWorkerCommentTableViewCell alloc] init];
-            if (indexPath.row==2)
+            if (self.workerData.comment.count == 0)
             {
-                UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 69, kMainScreenWidth, 1)];
-                lineView.backgroundColor = RGBCOLOR(218, 218, 218);
-                [cell addSubview:lineView];
+                UITableViewCell *cell = [[UITableViewCell alloc] init];
+                cell.textLabel.text = @"暂无评论";
+                return cell;
             }
-            NSArray *array = self.workerData.comment;
-            HbhWorkerComment *model = [array objectAtIndex:indexPath.row];
-            [cell.userImg sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
-            cell.userNameLabel.text = model.username;
-            cell.timeLabel.text = [NSString stringWithFormat:@"%d", (int)model.time];
-            cell.typeLabel.text = model.cate;
-            cell.commentLabel.text = model.content;
-            cell.workerNameLabel.text = model.worker;
-            return cell;
+            else
+            {
+                HbhWorkerCommentTableViewCell *cell = [[HbhWorkerCommentTableViewCell alloc] init];
+                if (indexPath.row==2)
+                {
+                    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 69, kMainScreenWidth, 1)];
+                    lineView.backgroundColor = RGBCOLOR(218, 218, 218);
+                    [cell addSubview:lineView];
+                }
+                NSArray *array = self.workerData.comment;
+                HbhWorkerComment *model = [array objectAtIndex:indexPath.row-1];
+                [cell.userImg sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
+                cell.userNameLabel.text = model.username;
+                cell.timeLabel.text = [NSString stringWithFormat:@"%d", (int)model.time];
+                cell.typeLabel.text = model.cate;
+                cell.commentLabel.text = model.content;
+                cell.workerNameLabel.text = model.worker;
+                return cell;
+            }
         }
     }
     else if(indexPath.section==2)
