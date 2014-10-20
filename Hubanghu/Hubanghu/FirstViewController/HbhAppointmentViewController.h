@@ -8,12 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HbhAppointmentDetailsTableViewCell.h"
-typedef NS_ENUM(NSInteger, HbhAppointmentStyle) {
-	HbhAppointmentStyleNoWorker,
-	HbhAppointmentStyleHaveWorker
-};
-
+@class HbhWorkers;
 @interface HbhAppointmentViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HbhAppointmentDelegate>
-@property (nonatomic,assign) HbhAppointmentStyle style;
-- (instancetype)initWithTitle:(NSString *)title cateId:(NSString *)cateId andWork:(NSDictionary *)dic;
+- (instancetype)initWithTitle:(NSString *)title cateId:(NSString *)cateId andWork:(HbhWorkers *)worker;
 @end

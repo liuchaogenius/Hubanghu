@@ -23,6 +23,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     rootvc = [[RootTabBarController alloc] init];
     rootvc.view.frame = self.window.bounds;
+	HbhAppointmentViewController *vc = [[HbhAppointmentViewController alloc] initWithTitle:@"aaa" cateId:@"10" andWork:nil];
+	vc.hidesBottomBarWhenPushed = YES;
+	[rootvc.viewControllers[0] pushViewController:vc animated:YES];
 	
     self.window.rootViewController = rootvc;
     [self.window makeKeyAndVisible];

@@ -16,11 +16,11 @@
 
 @implementation HbhAppointmentConfirmeView
 
-- (instancetype)initWithStyle:(NSInteger)style{
+- (instancetype)initWithType:(NSInteger)type{
 	if (self = [super init]) {
 		self.backgroundColor = [UIColor whiteColor];
 		_price = 0;
-		UILabel *tip = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth - 100, 5, 30, 20)];
+		UILabel *tip = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth - 110, 5, 30, 20)];
 		_priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(tip.right, 5, kMainScreenWidth - tip.right - 20, 20)];
 		_priceLabel.bottom = tip.bottom;
 		tip.text = @"合计:";
@@ -32,7 +32,7 @@
 		_priceLabel.textColor = KColor;
 		
 		_confirmeButton = nil;
-		if (style == 0) {
+		if (type == 0) {
 			_pickWorkerBt = [[UIButton alloc] initWithFrame:CGRectMake(10, _priceLabel.bottom+5, (kMainScreenWidth - 40) / 2, 40)];
 			_pickWorkerBt.backgroundColor = KColor;
 			_pickWorkerBt.layer.cornerRadius = 2;
@@ -42,7 +42,7 @@
 
 			_confirmeButton = [[UIButton alloc] initWithFrame:CGRectMake(_pickWorkerBt.right+20, _pickWorkerBt.top, _pickWorkerBt.width, _pickWorkerBt.height)];
 			
-		}else if (style == 1){
+		}else if (type == 1){
 			_confirmeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, _priceLabel.bottom+5, kMainScreenWidth - 20, 30)];
 		}
 		_confirmeButton.backgroundColor = KColor;
@@ -54,6 +54,13 @@
 		[self addSubview:_confirmeButton];
 	}
 	return self;
+}
+
+- (void)setPrice:(double)price{
+	_price = price;
+	if (_priceLabel) {
+		_priceLabel.text = [NSString stringWithFormat:@"¥%.2lf",_price];	
+	}
 }
 
 /*

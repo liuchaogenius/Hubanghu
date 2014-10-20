@@ -27,6 +27,7 @@
 			view.layer.borderColor = RGBCOLOR(226, 226, 226).CGColor;
 			if ([view isKindOfClass:[UITextField class]]) {
 				((UITextField*)view).delegate = self;
+				((UITextField*)view).clearButtonMode = UITextFieldViewModeWhileEditing;
 			}
 		}
 		_datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, kMainScreenHeight, kMainScreenWidth, 200)];
@@ -53,7 +54,7 @@
 		_datePicker.top = kMainScreenHeight;
 		[_datePicker removeFromSuperview];
 		[_delegate didDatePickerDisappear];
-		[sender removeFromSuperview];
+		[sender.superview removeFromSuperview];
 	}];
 }
 #pragma mark - pickerView delegate
@@ -74,18 +75,20 @@
 	if (![_datePicker superview]) {
 		[self.window addSubview:_datePicker];
 		[_delegate didDatePickerAppear];
-		UIButton *tool = [[UIButton alloc] initWithFrame:CGRectMake(0, _datePicker.top-30, kMainScreenWidth, 30)];
+		UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _datePicker.top-30, kMainScreenWidth, 30)];
+		toolView.backgroundColor = [UIColor lightGrayColor];
+		UIButton *tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 50, 0, 30, 30)];
 		[tool setTitle:@"完成" forState:UIControlStateNormal];
 		tool.titleLabel.textAlignment = NSTextAlignmentCenter;
 		tool.titleLabel.font = kFont13;
-		tool.titleLabel.textColor = [UIColor blackColor];
-		tool.backgroundColor = [UIColor lightGrayColor];
+		tool.backgroundColor = [UIColor clearColor];
 		[tool addTarget:self action:@selector(datePickerPickEnd:) forControlEvents:UIControlEventTouchDown];
-		[self.window addSubview:tool];
+		[toolView addSubview:tool];
+		[self.window addSubview:toolView];
 
 		[UIView animateWithDuration:0.2 animations:^{
 			_datePicker.top = kMainScreenHeight - 200;
-			tool.top = _datePicker.top - 30;
+			toolView.top = _datePicker.top - 30;
 		}];
 	}
 }

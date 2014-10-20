@@ -13,5 +13,5 @@
 @property (nonatomic,assign) double price;
 @property (nonatomic,strong) UIButton *pickWorkerBt;
 @property (nonatomic,strong) UIButton *confirmeButton;
-- (instancetype)initWithStyle:(NSInteger)style;
+- (instancetype)initWithType:(NSInteger)style;
 @end
