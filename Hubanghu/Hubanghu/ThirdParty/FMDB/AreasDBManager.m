@@ -37,7 +37,6 @@
     self = [super init];
     if(self)
     {
-        __weak AreasDBManager *weakself = self;
         NSFileManager *manager = [NSFileManager defaultManager];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *strhotPath = [paths objectAtIndex:0];
@@ -107,7 +106,7 @@
         if([db open])
         {
             BOOL isHave=NO;
-            NSString *selCity=@"select 市 from areas_table";
+            NSString *selCity=@"select * from areas_table where TypeName='市'";
             FMResultSet *resultset = [db executeQuery:selCity];
             if(resultset)
             {
@@ -172,14 +171,9 @@
             {
                 unichar asi = i;
                 NSString *indexchar = [NSString stringWithFormat:@"%c",asi];
-                NSString *sqlSELcity = @"select 市 from areas_table where firstchar=?";
+                NSString *sqlSELcity = @"select * from areas_table where firstchar=? AND TypeName='市'";
                 NSMutableArray *mutArry = [[NSMutableArray alloc] init];
                 FMResultSet *cityResultset = [db executeQuery:sqlSELcity,indexchar];
-                if(![cityResultset next])
-                {
-                    aCityBlock(nil);
-                    break;
-                }
                 while([cityResultset next])
                 {
                     HbuAreaListModelAreas *model = [weakself parseFMResultToHubAreasModel:cityResultset];
@@ -204,7 +198,7 @@
     [dataQueue inDatabase:^(FMDatabase *db) {
         if([db open])
         {
-            NSString *sqlSELcity = @"select 省 from areas_table";
+            NSString *sqlSELcity = @"select * from areas_table where TypeName='省'";
             NSMutableArray *mutArry = [[NSMutableArray alloc] init];
             FMResultSet *cityResultset = [db executeQuery:sqlSELcity];
             while([cityResultset next])

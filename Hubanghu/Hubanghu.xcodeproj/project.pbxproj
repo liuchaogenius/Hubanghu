@@ -74,7 +74,6 @@
 		FF15253219E7B861008AB6EC /* SCach.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252A19E7B861008AB6EC /* SCach.m */; };
 		FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252D19E7B861008AB6EC /* ThreadSafeMutableArry.m */; };
 		FF15253419E7B861008AB6EC /* ThreadSafeMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252F19E7B861008AB6EC /* ThreadSafeMutableDictionary.m */; };
-		FF15253619E7D354008AB6EC /* testImg111@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF15253519E7D354008AB6EC /* testImg111@3x.png */; };
 		FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1FC27419ED1A2F00C362F7 /* STAlerView.m */; };
 		FF21CE7019E64B5A005007B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE6F19E64B5A005007B7 /* main.m */; };
 		FF21CE7319E64B5A005007B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE7219E64B5A005007B7 /* AppDelegate.m */; };
@@ -268,7 +267,6 @@
 		FF15252D19E7B861008AB6EC /* ThreadSafeMutableArry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadSafeMutableArry.m; sourceTree = "<group>"; };
 		FF15252E19E7B861008AB6EC /* ThreadSafeMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadSafeMutableDictionary.h; sourceTree = "<group>"; };
 		FF15252F19E7B861008AB6EC /* ThreadSafeMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadSafeMutableDictionary.m; sourceTree = "<group>"; };
-		FF15253519E7D354008AB6EC /* testImg111@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testImg111@3x.png"; sourceTree = "<group>"; };
 		FF1FC27319ED1A2F00C362F7 /* STAlerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlerView.h; sourceTree = "<group>"; };
 		FF1FC27419ED1A2F00C362F7 /* STAlerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlerView.m; sourceTree = "<group>"; };
 		FF21CE6A19E64B5A005007B7 /* Hubanghu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hubanghu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -615,6 +613,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FF0963FD19F51F0A00EF8D0E /* ToastView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ToastView;
+			sourceTree = "<group>";
+		};
 		FF15252419E7B861008AB6EC /* SCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,7 +659,6 @@
 			children = (
 				ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */,
 				FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */,
-				FF15253519E7D354008AB6EC /* testImg111@3x.png */,
 				FF21CF2B19E66238005007B7 /* QuartzCore.framework */,
 				FF21CE6C19E64B5A005007B7 /* Hubanghu */,
 				FF21CE8019E64B5A005007B7 /* HubanghuTests */,
@@ -824,6 +828,7 @@
 		FF21CEA719E66144005007B7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				FF0963FD19F51F0A00EF8D0E /* ToastView */,
 				FFD1A2C219EE4B6D00EA97D4 /* FMDB */,
 				FF74A83A19EBC4B0006AADD8 /* LocationManager */,
 				FF15252419E7B861008AB6EC /* SCache */,
@@ -1136,7 +1141,6 @@
 				ABAFAB1D19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib in Resources */,
 				B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */,
 				ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */,
-				FF15253619E7D354008AB6EC /* testImg111@3x.png in Resources */,
 				5BF8FC7819F0FA3900598FB9 /* HbhAllCategory.plist in Resources */,
 				5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */,
 				B02C2B1719F4FD0600B9C4FF /* Images.xcassets in Resources */,
