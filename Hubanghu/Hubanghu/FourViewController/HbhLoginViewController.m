@@ -22,6 +22,7 @@ enum TextField_Type
     TextField_password //密码框
 };
 
+
 @interface HbhLoginViewController ()<UITextFieldDelegate>
 @property (nonatomic,strong) UIButton *sgmLoginButton; //登陆选项按钮
 @property (nonatomic,strong) UIButton *sgmRegisterButton; //注册选项按钮
@@ -32,10 +33,11 @@ enum TextField_Type
 @property (nonatomic, strong) UITextField *passwordTextField;
 @property (nonatomic, weak) UIButton *LoginButton;//登陆按钮
 @property (nonatomic, weak) UIButton *forgetPasswordBtn;//忘记密码按钮
+
 @end
 
 @implementation HbhLoginViewController
-
+@synthesize type;
 #pragma mark - getter and setter
 - (UIButton *)sgmLoginButton
 {
@@ -135,8 +137,13 @@ enum TextField_Type
     
     [self.view addSubview:self.loginView];
     [self.view addSubview:self.selectedLine];
+    [self setLeftButton:[UIImage imageNamed:@"back"] title:nil target:self action:@selector(backItem)];
 }
 
+- (void)backItem
+{
+    self.type = eLoginBack;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -188,10 +195,12 @@ enum TextField_Type
         [HbhUserManager loginWithPhone:self.phoneNumberTextField.text andPassWord:self.passwordTextField.text withSuccess:^{
             //登陆状态处理
             [HbhUser sharedHbhUser].statusIsChanged = YES;
-            [self.navigationController popViewControllerAnimated:YES];
-            
+            self.type = eLoginSucc;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessMessae object:nil];
         } failure:^{
             //错误状态处理
+            self.type = eLoginFail;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginFailMessage object:nil];
         }];
     }
 

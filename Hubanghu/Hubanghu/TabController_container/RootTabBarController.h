@@ -14,17 +14,5 @@
 @class LeftView;
 
 @interface RootTabBarController : UITabBarController<UITabBarControllerDelegate,UITabBarDelegate>
-{
-    UINavigationController *firstNav;
-    UINavigationController *secondNav;
-    UINavigationController *thirdNav;
-    UINavigationController *fourthNav;
-    
-    FirstViewController *firstVC;
-    SecondViewController *secondVC;
-    ThirdViewController *thirdVC;
-    FourthViewController *fourthVC;
-    
-    LeftView *leftview;
-}
+
 @end

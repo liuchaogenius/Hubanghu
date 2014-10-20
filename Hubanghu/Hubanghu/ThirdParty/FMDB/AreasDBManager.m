@@ -130,7 +130,7 @@
                 if(!cityResultset)
                 {
                     NSString *first = [aFirstchar substringToIndex:1];
-                    NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into areas_table('areaId','name','level','parent','TypeName','firstchar') values(?,?,?,?,?,?)"];
+                    NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into areas_table('areaId','name','level','parent','TypeName','firstchar') values(?,?,?,?,?,?,?)"];
                     BOOL res = [db executeUpdate:sqlIntoArea,
                                 aAreaId,aName,[NSNumber numberWithInt:aLevel],aParent,aTypeName,first];
                     MLOG(@"insertAreaRes=%d", res);

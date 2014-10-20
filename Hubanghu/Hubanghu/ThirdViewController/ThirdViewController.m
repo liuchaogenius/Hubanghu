@@ -14,7 +14,6 @@
 #import "HbhOrderManage.h"
 #import "HbhOrderModel.h"
 #import "HbhUser.h"
-#import "HbhLoginViewController.h"
 
 typedef enum : NSUInteger {
     currentTabOrderAll = 0,
@@ -47,9 +46,9 @@ typedef enum : NSUInteger {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLoginForUserMessage object:[NSNumber numberWithBool:YES]];
     self.view.backgroundColor = RGBCOLOR(247, 247, 247);
     self.title = @"我的订单";
-    
     if (!self.paramCurrentTab)
     {
         _currentTab = currentTabOrderAll;
