@@ -103,7 +103,7 @@ enum CellTag_Type
     [super viewDidLoad];
     self.title = @"我的";
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-44-64) style:UITableViewStyleGrouped];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-49-64) style:UITableViewStyleGrouped];
     _tableView = tableView;
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -261,13 +261,17 @@ enum CellTag_Type
         case CellTag_QRcode:
         {
             //push进入二维码页面
-            [self.navigationController pushViewController:[[HbhQRcodeViewController alloc] init] animated:YES];
+            HbhQRcodeViewController *qrVC = [[HbhQRcodeViewController alloc] init];
+            qrVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:qrVC animated:YES];
         }
             break;
         case CellTag_changePassWord:
         {
             //push进入修改密码页面
-            [self.navigationController pushViewController:[[HbhChangePswViewController alloc] init] animated:YES];
+            HbhChangePswViewController *cpswVC = [[HbhChangePswViewController alloc] init];
+            cpswVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:cpswVC animated:YES];
             break;
         }
             break;

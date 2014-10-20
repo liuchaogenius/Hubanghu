@@ -34,6 +34,19 @@
     }];
 }
 
++ (void)changePassWordWithOldPwd:(NSString *)oldpwd andNewPwd:(NSString *)newpwd andComfirmPwd:(NSString *)comfirmpwd Success:(void(^)(NSInteger result))sBlock failure:(void(^)())fBlock
+{
+    NSString *url = nil;
+    kHubRequestUrl(@"changePassword.ashx ", url);
+    NSDictionary *postDic = [NSDictionary dictionaryWithObjectsAndKeys:oldpwd,@"oldpwd",newpwd,@"newpwd",comfirmpwd,@"comfirmpwd",nil];
+    [NetManager requestWith:postDic url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
+        NSInteger result = [successDict[@"result"] integerValue];
+        sBlock(result);
+    } failure:^(NSDictionary *failDict, NSError *error) {
+        
+    }];
+}
+
 + (void)profileRevalWithSuccess:(void(^)(int notDone,int notComment))sBlock failure:(void(^)())fBlock;
 {
     NSString *url = nil;

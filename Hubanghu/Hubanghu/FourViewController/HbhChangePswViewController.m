@@ -7,7 +7,7 @@
 //
 
 #import "HbhChangePswViewController.h"
-
+#import "HbhUserManager.h"
 enum TextField_Type
 {
     TextField_oldPsw = 50,
@@ -81,7 +81,30 @@ enum TextField_Type
 #pragma mark 修改密码
 - (void)changePsw
 {
-    
+#warning 待检验数据
+    [HbhUserManager changePassWordWithOldPwd:self.oldPswTextField.text andNewPwd:self.aNewPswTextField.text andComfirmPwd:self.confirmPswTextField.text Success:^(NSInteger result) {
+        switch (result) {
+            case -1: //原始密码错误
+            {
+                
+            }
+                break;
+            case 0: //修改失败
+            {
+                
+            }
+                break;
+            case 1: //修改成功
+            {
+                
+            }
+                break;
+            default:
+                break;
+        }
+    } failure:^{
+        
+    }];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

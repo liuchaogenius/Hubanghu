@@ -135,7 +135,7 @@
             [self.view addSubview:self.sgmBtmScrollView];
             
         }
-        self.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-44-kSgmBtnHeight : kMainScreenHeight-20-44-44) );
+        self.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-49-kSgmBtnHeight : kMainScreenHeight-20-44-49) );
         [self.tableView reloadData];
     } and:^{
         //错误处理
