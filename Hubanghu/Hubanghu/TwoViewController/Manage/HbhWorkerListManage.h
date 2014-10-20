@@ -11,5 +11,5 @@
 
 @interface HbhWorkerListManage : NSObject
 
-- (void)getWorkerListSuccBlock:(void(^)(HbhData *aData))aSuccBlock andFailBlock:(void(^)(void))aFailBlock;
+- (void)getWorkerListWithAreaId:(int)aAreaId andWorkerTypeId:(int)aWorkTypeid andOrderCountId:(int)aOrderId SuccBlock:(void(^)(HbhData *aData))aSuccBlock andFailBlock:(void(^)(void))aFailBlock;
 @end

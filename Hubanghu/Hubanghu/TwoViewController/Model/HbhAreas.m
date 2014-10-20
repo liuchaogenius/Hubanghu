@@ -1,7 +1,7 @@
 //
 //  HbhAreas.m
 //
-//  Created by  C陈政旭 on 14/10/17
+//  Created by  C陈政旭 on 14/10/20
 //  Copyright (c) 2014 __MyCompanyName__. All rights reserved.
 //
 
@@ -9,7 +9,8 @@
 
 
 NSString *const kHbhAreasName = @"name";
-NSString *const kHbhAreasValue = @"value";
+NSString *const kHbhAreasId = @"id";
+NSString *const kHbhAreasSelected = @"selected";
 
 
 @interface HbhAreas ()
@@ -21,7 +22,8 @@ NSString *const kHbhAreasValue = @"value";
 @implementation HbhAreas
 
 @synthesize name = _name;
-@synthesize value = _value;
+@synthesize areasIdentifier = _areasIdentifier;
+@synthesize selected = _selected;
 
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict
@@ -37,7 +39,8 @@ NSString *const kHbhAreasValue = @"value";
     // passed into the model class doesn't break the parsing.
     if(self && [dict isKindOfClass:[NSDictionary class]]) {
             self.name = [self objectOrNilForKey:kHbhAreasName fromDictionary:dict];
-            self.value = [[self objectOrNilForKey:kHbhAreasValue fromDictionary:dict] doubleValue];
+            self.areasIdentifier = [[self objectOrNilForKey:kHbhAreasId fromDictionary:dict] doubleValue];
+            self.selected = [[self objectOrNilForKey:kHbhAreasSelected fromDictionary:dict] boolValue];
 
     }
     
@@ -49,7 +52,8 @@ NSString *const kHbhAreasValue = @"value";
 {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     [mutableDict setValue:self.name forKey:kHbhAreasName];
-    [mutableDict setValue:[NSNumber numberWithDouble:self.value] forKey:kHbhAreasValue];
+    [mutableDict setValue:[NSNumber numberWithDouble:self.areasIdentifier] forKey:kHbhAreasId];
+    [mutableDict setValue:[NSNumber numberWithBool:self.selected] forKey:kHbhAreasSelected];
 
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
@@ -74,7 +78,8 @@ NSString *const kHbhAreasValue = @"value";
     self = [super init];
 
     self.name = [aDecoder decodeObjectForKey:kHbhAreasName];
-    self.value = [aDecoder decodeDoubleForKey:kHbhAreasValue];
+    self.areasIdentifier = [aDecoder decodeDoubleForKey:kHbhAreasId];
+    self.selected = [aDecoder decodeBoolForKey:kHbhAreasSelected];
     return self;
 }
 
@@ -82,7 +87,8 @@ NSString *const kHbhAreasValue = @"value";
 {
 
     [aCoder encodeObject:_name forKey:kHbhAreasName];
-    [aCoder encodeDouble:_value forKey:kHbhAreasValue];
+    [aCoder encodeDouble:_areasIdentifier forKey:kHbhAreasId];
+    [aCoder encodeBool:_selected forKey:kHbhAreasSelected];
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -92,7 +98,8 @@ NSString *const kHbhAreasValue = @"value";
     if (copy) {
 
         copy.name = [self.name copyWithZone:zone];
-        copy.value = self.value;
+        copy.areasIdentifier = self.areasIdentifier;
+        copy.selected = self.selected;
     }
     
     return copy;

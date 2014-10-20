@@ -1,7 +1,7 @@
 //
 //  HbhWorkers.m
 //
-//  Created by  C陈政旭 on 14/10/17
+//  Created by  C陈政旭 on 14/10/20
 //  Copyright (c) 2014 __MyCompanyName__. All rights reserved.
 //
 
@@ -48,7 +48,6 @@ NSString *const kHbhWorkersComment = @"comment";
     // This check serves to make sure that a non-NSDictionary object
     // passed into the model class doesn't break the parsing.
     if(self && [dict isKindOfClass:[NSDictionary class]]) {
-            self.id = [[self objectOrNilForKey:kHbhWorkersId fromDictionary:dict] doubleValue];
             self.name = [self objectOrNilForKey:kHbhWorkersName fromDictionary:dict];
             self.workersIdentifier = [[self objectOrNilForKey:kHbhWorkersId fromDictionary:dict] doubleValue];
             self.workTypeName = [self objectOrNilForKey:kHbhWorkersWorkTypeName fromDictionary:dict];

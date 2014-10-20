@@ -1,7 +1,7 @@
 //
-//  HbhOrderCountRegions.h
+//  HbhOrderCounts.h
 //
-//  Created by  C陈政旭 on 14/10/17
+//  Created by  C陈政旭 on 14/10/20
 //  Copyright (c) 2014 __MyCompanyName__. All rights reserved.
 //
 
@@ -9,10 +9,11 @@
 
 
 
-@interface HbhOrderCountRegions : NSObject <NSCoding, NSCopying>
+@interface HbhOrderCounts : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) double value;
+@property (nonatomic, assign) double orderCountsIdentifier;
+@property (nonatomic, assign) BOOL selected;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;
 - (instancetype)initWithDictionary:(NSDictionary *)dict;

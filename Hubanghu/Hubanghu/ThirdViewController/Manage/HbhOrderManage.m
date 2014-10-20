@@ -11,7 +11,7 @@
 #import "NetManager.h"
 
 @implementation HbhOrderManage
-- (void)getOrderListSuccBlock:(void(^)(NSArray *aArray))aSuccBlock and:(void(^)(void))aFailBlock
+- (void)getOrderWithListFilterId:(int)aFilterId andSuccBlock:(void(^)(NSArray *aArray))aSuccBlock andFailBlock:(void(^)(void))aFailBlock
 {
     NSString *orderListUrl = nil;
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"filterId", nil];

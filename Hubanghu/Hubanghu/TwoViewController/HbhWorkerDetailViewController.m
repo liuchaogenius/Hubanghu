@@ -224,7 +224,7 @@
 #pragma mark 跳转到预约
 - (void)makeAppointment
 {
-    [self.navigationController pushViewController:[[HbhMakeAppointMentViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[HbhMakeAppointMentViewController alloc] initWithWorkerId:self.workerData.dataIdentifier andWorkerName:self.workerData.name] animated:YES];
 }
 
 #pragma mark 跳转到更多评论

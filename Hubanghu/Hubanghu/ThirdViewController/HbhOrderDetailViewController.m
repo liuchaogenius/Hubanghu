@@ -9,6 +9,7 @@
 #import "HbhOrderDetailViewController.h"
 #import "HbhOrderManage.h"
 #import "STAlerView.h"
+#import "HbhMakeAppointMentViewController.h"
 
 typedef enum : NSUInteger {
     orderStatusUndone = 0,
@@ -77,8 +78,15 @@ typedef enum : NSUInteger {
         [self.movementBtn setTitle:@"已付款" forState:UIControlStateNormal];
         self.moreBtn.backgroundColor = KColor;
         [self.moreBtn setTitle:@"再次预约" forState:UIControlStateNormal];
+        [self.moreBtn addTarget:self action:@selector(orderAgian) forControlEvents:UIControlEventTouchUpInside];
     }
     
+}
+
+#pragma mark 再次预约
+- (void)orderAgian
+{
+    [self.navigationController pushViewController:[[HbhMakeAppointMentViewController alloc] init] animated:YES];
 }
 
 #pragma mark cancelOrder

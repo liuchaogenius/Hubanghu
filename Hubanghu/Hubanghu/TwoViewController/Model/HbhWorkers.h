@@ -1,7 +1,7 @@
 //
 //  HbhWorkers.h
 //
-//  Created by  C陈政旭 on 14/10/17
+//  Created by  C陈政旭 on 14/10/20
 //  Copyright (c) 2014 __MyCompanyName__. All rights reserved.
 //
 
@@ -11,7 +11,6 @@
 
 @interface HbhWorkers : NSObject <NSCoding, NSCopying>
 
-@property (nonatomic, assign) double id;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) double workersIdentifier;
 @property (nonatomic, strong) NSString *workTypeName;

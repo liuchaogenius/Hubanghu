@@ -42,6 +42,7 @@ typedef enum : NSUInteger {
 
 @property(nonatomic, strong) void(^myWorkerDetailBlock)(HbhWorkers *);
 @property(nonatomic, strong) UIView *failView;
+
 @end
 
 @implementation SecondViewController
@@ -78,16 +79,54 @@ typedef enum : NSUInteger {
     [self.view addSubview:self.activityView];
     [self.activityView startAnimating];
 #pragma mark 网络请求
-    [self.workerListManage getWorkerListSuccBlock:^(HbhData *aData) {
+    [self getWorkerListWithAreaId:1 andWorkerTypeId:1 andOrderCountId:1];
+}
+
+- (void)getWorkerListWithAreaId:(int)aAreaId andWorkerTypeId:(int)aWorkTypeId andOrderCountId:(int)aOrderId
+{
+    [self.workerListManage getWorkerListWithAreaId:aAreaId andWorkerTypeId:aWorkTypeId andOrderCountId:aOrderId SuccBlock:^(HbhData *aData) {
         self.workersArray = [(NSMutableArray *)aData.workers mutableCopy];
         self.areasArray = [(NSMutableArray *)aData.areas mutableCopy];
         self.workerTypeArray = [(NSMutableArray *)aData.workerTypes mutableCopy];
-        self.orderCountArray = [(NSMutableArray *)aData.orderCountRegions mutableCopy];
+        self.orderCountArray = [(NSMutableArray *)aData.orderCounts mutableCopy];
         [self.showWorkerListTableView reloadData];
         [self.activityView stopAnimating];
+        if (aAreaId!=-1 && aWorkTypeId!=-1 && aOrderId !=-1)
+        {
+            [self updateBtn];
+        }
     } andFailBlock:^{
         [self.view addSubview:self.failView];
     }];
+}
+
+#pragma mark 刷新btn
+- (void)updateBtn
+{
+    UILabel *label0 = (UILabel *)[self.view viewWithTag:100];
+    UILabel *label1 = (UILabel *)[self.view viewWithTag:101];
+    UILabel *label2 = (UILabel *)[self.view viewWithTag:102];
+    for (int i=0; i<self.areasArray.count; i++) {
+        HbhAreas *model = [self.areasArray objectAtIndex:i];
+        if (model.selected==true) {
+            label0.text = model.name;
+            break;
+        }
+    }
+    for (int i=0; i<self.workerTypeArray.count; i++) {
+        HbhWorkerTypes *model = [self.workerTypeArray objectAtIndex:i];
+        if (model.selected==true) {
+            label1.text = model.name;
+            break;
+        }
+    }
+    for (int i=0; i<self.orderCountArray.count; i++) {
+        HbhOrderCounts *model = [self.orderCountArray objectAtIndex:i];
+        if (model.selected==true) {
+            label2.text = model.name;
+            break;
+        }
+    }
 }
 
 #pragma mark 上面三个btn
@@ -112,6 +151,7 @@ typedef enum : NSUInteger {
             titleLabel.text = [array objectAtIndex:i];
             titleLabel.textAlignment = NSTextAlignmentCenter;
             titleLabel.font = kFont15;
+            titleLabel.tag = i+100;
             [btnView addSubview:titleLabel];
             if (i!=0)
             {
@@ -126,6 +166,11 @@ typedef enum : NSUInteger {
     }
     
     return _btnBackView;
+}
+
+- (void)settingLabel:(UILabel *)aLabel
+{
+    
 }
 
 - (void)touchBtnView:(UITapGestureRecognizer *)aTapGesture
@@ -231,6 +276,11 @@ typedef enum : NSUInteger {
             NSLog(@"%d", row);
             _dropAreasView.hidden = YES;
             [self.maskingView removeFromSuperview];
+            [self.activityView startAnimating];
+            HbhAreas *model = [self.areasArray objectAtIndex:row];
+            [self getWorkerListWithAreaId:model.areasIdentifier andWorkerTypeId:-1 andOrderCountId:-1];
+            UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
+            temLabel.text = model.name;
         }];
     }
     return _dropAreasView;
@@ -245,6 +295,11 @@ typedef enum : NSUInteger {
             NSLog(@"%d", row);
             _dropWorkerTypesView.hidden = YES;
             [self.maskingView removeFromSuperview];
+            [self.activityView startAnimating];
+            HbhWorkerTypes *model = [self.workerTypeArray objectAtIndex:row];
+            [self getWorkerListWithAreaId:-1 andWorkerTypeId:model.workerTypesIdentifier andOrderCountId:-1];
+            UILabel *temLabel = (UILabel *)[self.view viewWithTag:101];
+            temLabel.text = model.name;
         }];
     }
     return _dropWorkerTypesView;
@@ -259,6 +314,11 @@ typedef enum : NSUInteger {
             NSLog(@"%d", row);
             _dropOrderCountView.hidden = YES;
             [self.maskingView removeFromSuperview];
+            [self.activityView startAnimating];
+            HbhOrderCounts *model = [self.orderCountArray objectAtIndex:row];
+            [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:model.orderCountsIdentifier];
+            UILabel *temLabel = (UILabel *)[self.view viewWithTag:102];
+            temLabel.text = model.name;
         }];
     }
     return _dropOrderCountView;
@@ -310,7 +370,7 @@ typedef enum : NSUInteger {
     else
     {
         HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
-        HbhWorkerDetailViewController *workDetailVC = [[HbhWorkerDetailViewController alloc] initWithWorkerId:(int)model.id];
+        HbhWorkerDetailViewController *workDetailVC = [[HbhWorkerDetailViewController alloc] initWithWorkerId:(int)model.workersIdentifier];
         workDetailVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:workDetailVC animated:YES];
     }

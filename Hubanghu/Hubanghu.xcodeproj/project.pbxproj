@@ -42,6 +42,12 @@
 		AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB66D37B19ECAC0900518005 /* HbhOrderDetailViewController.xib */; };
 		AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB66D38019ECDCBE00518005 /* HbhOrderModel.m */; };
 		AB7DE99719EFC7B000AA9F93 /* HbhDropDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7DE99619EFC7B000AA9F93 /* HbhDropDownView.m */; };
+		AB8EA5DD19F482D0001F40C2 /* HbhAreas.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EA5D219F482D0001F40C2 /* HbhAreas.m */; };
+		AB8EA5DE19F482D0001F40C2 /* HbhData.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EA5D419F482D0001F40C2 /* HbhData.m */; };
+		AB8EA5DF19F482D0001F40C2 /* HbhModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EA5D619F482D0001F40C2 /* HbhModel.m */; };
+		AB8EA5E019F482D0001F40C2 /* HbhOrderCounts.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EA5D819F482D0001F40C2 /* HbhOrderCounts.m */; };
+		AB8EA5E119F482D0001F40C2 /* HbhWorkers.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EA5DA19F482D0001F40C2 /* HbhWorkers.m */; };
+		AB8EA5E219F482D0001F40C2 /* HbhWorkerTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8EA5DC19F482D0001F40C2 /* HbhWorkerTypes.m */; };
 		ABAFAB1C19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB1A19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m */; };
 		ABAFAB1D19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAFAB1B19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib */; };
 		ABAFAB2119EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB1F19EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m */; };
@@ -57,12 +63,6 @@
 		ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC5D50E19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib */; };
 		ABC5D51319F1F16100A306F7 /* HbhCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D51219F1F16100A306F7 /* HbhCommentViewController.m */; };
 		ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */; };
-		ABE53ED619F0FB5A00A8FE8B /* HbhAreas.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ECA19F0FB5A00A8FE8B /* HbhAreas.m */; };
-		ABE53ED719F0FB5A00A8FE8B /* HbhData.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ECC19F0FB5A00A8FE8B /* HbhData.m */; };
-		ABE53ED819F0FB5A00A8FE8B /* HbhModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ECF19F0FB5A00A8FE8B /* HbhModel.m */; };
-		ABE53ED919F0FB5A00A8FE8B /* HbhOrderCountRegions.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ED119F0FB5A00A8FE8B /* HbhOrderCountRegions.m */; };
-		ABE53EDA19F0FB5A00A8FE8B /* HbhWorkers.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ED319F0FB5A00A8FE8B /* HbhWorkers.m */; };
-		ABE53EDB19F0FB5A00A8FE8B /* HbhWorkerTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53ED519F0FB5A00A8FE8B /* HbhWorkerTypes.m */; };
 		B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */; };
 		B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */; };
 		B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */; };
@@ -210,6 +210,19 @@
 		AB66D38019ECDCBE00518005 /* HbhOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderModel.m; sourceTree = "<group>"; };
 		AB7DE99519EFC7B000AA9F93 /* HbhDropDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhDropDownView.h; sourceTree = "<group>"; };
 		AB7DE99619EFC7B000AA9F93 /* HbhDropDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhDropDownView.m; sourceTree = "<group>"; };
+		AB8EA5D019F482D0001F40C2 /* HbhDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhDataModels.h; sourceTree = "<group>"; };
+		AB8EA5D119F482D0001F40C2 /* HbhAreas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAreas.h; sourceTree = "<group>"; };
+		AB8EA5D219F482D0001F40C2 /* HbhAreas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAreas.m; sourceTree = "<group>"; };
+		AB8EA5D319F482D0001F40C2 /* HbhData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhData.h; sourceTree = "<group>"; };
+		AB8EA5D419F482D0001F40C2 /* HbhData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhData.m; sourceTree = "<group>"; };
+		AB8EA5D519F482D0001F40C2 /* HbhModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhModel.h; sourceTree = "<group>"; };
+		AB8EA5D619F482D0001F40C2 /* HbhModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhModel.m; sourceTree = "<group>"; };
+		AB8EA5D719F482D0001F40C2 /* HbhOrderCounts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderCounts.h; sourceTree = "<group>"; };
+		AB8EA5D819F482D0001F40C2 /* HbhOrderCounts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderCounts.m; sourceTree = "<group>"; };
+		AB8EA5D919F482D0001F40C2 /* HbhWorkers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkers.h; sourceTree = "<group>"; };
+		AB8EA5DA19F482D0001F40C2 /* HbhWorkers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkers.m; sourceTree = "<group>"; };
+		AB8EA5DB19F482D0001F40C2 /* HbhWorkerTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerTypes.h; sourceTree = "<group>"; };
+		AB8EA5DC19F482D0001F40C2 /* HbhWorkerTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerTypes.m; sourceTree = "<group>"; };
 		ABAFAB1919EF35A900B51916 /* HbhWorkerCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCommentTableViewCell.h; sourceTree = "<group>"; };
 		ABAFAB1A19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCommentTableViewCell.m; sourceTree = "<group>"; };
 		ABAFAB1B19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerCommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -235,19 +248,6 @@
 		ABC5D51219F1F16100A306F7 /* HbhCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhCommentViewController.m; sourceTree = "<group>"; };
 		ABE53EC219F0ED9900A8FE8B /* HbhWorkerListManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerListManage.h; sourceTree = "<group>"; };
 		ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerListManage.m; sourceTree = "<group>"; };
-		ABE53EC919F0FB5A00A8FE8B /* HbhAreas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAreas.h; sourceTree = "<group>"; };
-		ABE53ECA19F0FB5A00A8FE8B /* HbhAreas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAreas.m; sourceTree = "<group>"; };
-		ABE53ECB19F0FB5A00A8FE8B /* HbhData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhData.h; sourceTree = "<group>"; };
-		ABE53ECC19F0FB5A00A8FE8B /* HbhData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhData.m; sourceTree = "<group>"; };
-		ABE53ECD19F0FB5A00A8FE8B /* HbhDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhDataModels.h; sourceTree = "<group>"; };
-		ABE53ECE19F0FB5A00A8FE8B /* HbhModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhModel.h; sourceTree = "<group>"; };
-		ABE53ECF19F0FB5A00A8FE8B /* HbhModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhModel.m; sourceTree = "<group>"; };
-		ABE53ED019F0FB5A00A8FE8B /* HbhOrderCountRegions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderCountRegions.h; sourceTree = "<group>"; };
-		ABE53ED119F0FB5A00A8FE8B /* HbhOrderCountRegions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderCountRegions.m; sourceTree = "<group>"; };
-		ABE53ED219F0FB5A00A8FE8B /* HbhWorkers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkers.h; sourceTree = "<group>"; };
-		ABE53ED319F0FB5A00A8FE8B /* HbhWorkers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkers.m; sourceTree = "<group>"; };
-		ABE53ED419F0FB5A00A8FE8B /* HbhWorkerTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerTypes.h; sourceTree = "<group>"; };
-		ABE53ED519F0FB5A00A8FE8B /* HbhWorkerTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerTypes.m; sourceTree = "<group>"; };
 		B0EB09E019F171FD00EDB0D5 /* HbhAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentViewController.h; sourceTree = "<group>"; };
 		B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentViewController.m; sourceTree = "<group>"; };
 		B0EED42519F37C8E00CBFBFC /* HbhAppointmentNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentNetManager.h; sourceTree = "<group>"; };
@@ -598,19 +598,19 @@
 		ABE53EC819F0FB5A00A8FE8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ABE53EC919F0FB5A00A8FE8B /* HbhAreas.h */,
-				ABE53ECA19F0FB5A00A8FE8B /* HbhAreas.m */,
-				ABE53ECB19F0FB5A00A8FE8B /* HbhData.h */,
-				ABE53ECC19F0FB5A00A8FE8B /* HbhData.m */,
-				ABE53ECD19F0FB5A00A8FE8B /* HbhDataModels.h */,
-				ABE53ECE19F0FB5A00A8FE8B /* HbhModel.h */,
-				ABE53ECF19F0FB5A00A8FE8B /* HbhModel.m */,
-				ABE53ED019F0FB5A00A8FE8B /* HbhOrderCountRegions.h */,
-				ABE53ED119F0FB5A00A8FE8B /* HbhOrderCountRegions.m */,
-				ABE53ED219F0FB5A00A8FE8B /* HbhWorkers.h */,
-				ABE53ED319F0FB5A00A8FE8B /* HbhWorkers.m */,
-				ABE53ED419F0FB5A00A8FE8B /* HbhWorkerTypes.h */,
-				ABE53ED519F0FB5A00A8FE8B /* HbhWorkerTypes.m */,
+				AB8EA5D019F482D0001F40C2 /* HbhDataModels.h */,
+				AB8EA5D119F482D0001F40C2 /* HbhAreas.h */,
+				AB8EA5D219F482D0001F40C2 /* HbhAreas.m */,
+				AB8EA5D319F482D0001F40C2 /* HbhData.h */,
+				AB8EA5D419F482D0001F40C2 /* HbhData.m */,
+				AB8EA5D519F482D0001F40C2 /* HbhModel.h */,
+				AB8EA5D619F482D0001F40C2 /* HbhModel.m */,
+				AB8EA5D719F482D0001F40C2 /* HbhOrderCounts.h */,
+				AB8EA5D819F482D0001F40C2 /* HbhOrderCounts.m */,
+				AB8EA5D919F482D0001F40C2 /* HbhWorkers.h */,
+				AB8EA5DA19F482D0001F40C2 /* HbhWorkers.m */,
+				AB8EA5DB19F482D0001F40C2 /* HbhWorkerTypes.h */,
+				AB8EA5DC19F482D0001F40C2 /* HbhWorkerTypes.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1177,8 +1177,8 @@
 				FF21CF0419E66144005007B7 /* AFJSONRequestOperation.m in Sources */,
 				5BF8FC7C19F107C700598FB9 /* HbhFirstVCCell.m in Sources */,
 				FF21CF0219E66144005007B7 /* AFHTTPRequestOperation.m in Sources */,
+				AB8EA5E119F482D0001F40C2 /* HbhWorkers.m in Sources */,
 				FF21CF2019E66144005007B7 /* DataOC.mm in Sources */,
-				ABE53ED819F0FB5A00A8FE8B /* HbhModel.m in Sources */,
 				AB090E1519EE323C00D943C6 /* HbhWorkerTableViewCell.m in Sources */,
 				AB090E2419EE61F700D943C6 /* HbhWorkerDetailViewController.m in Sources */,
 				ABC5D50619F1E59800A306F7 /* HbhMakeAppointMentViewController.m in Sources */,
@@ -1190,7 +1190,6 @@
 				FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */,
 				5B69301019F39BC70005862D /* HbuAreaListModelAreas.m in Sources */,
 				FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */,
-				ABE53ED919F0FB5A00A8FE8B /* HbhOrderCountRegions.m in Sources */,
 				FF21CF1819E66144005007B7 /* UIButton+WebCache.m in Sources */,
 				ABC2B37419F3AC63000FEE32 /* HbhModifyUserDetailViewController.m in Sources */,
 				AB06DC4B19F1269500B82C62 /* HbhWorkerCaseClass.m in Sources */,
@@ -1201,9 +1200,8 @@
 				FF21CF2619E66144005007B7 /* UIViewAdditions.m in Sources */,
 				FF21CF1A19E66144005007B7 /* UIImage+MultiFormat.m in Sources */,
 				ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */,
+				AB8EA5DF19F482D0001F40C2 /* HbhModel.m in Sources */,
 				FF21CF0819E66144005007B7 /* AFXMLRequestOperation.m in Sources */,
-				ABE53EDA19F0FB5A00A8FE8B /* HbhWorkers.m in Sources */,
-				ABE53ED719F0FB5A00A8FE8B /* HbhData.m in Sources */,
 				FF21CF1319E66144005007B7 /* SDWebImageDecoder.m in Sources */,
 				FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */,
 				FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */,
@@ -1222,16 +1220,16 @@
 				FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */,
 				5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */,
 				FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */,
-				ABE53ED619F0FB5A00A8FE8B /* HbhAreas.m in Sources */,
-				ABE53EDB19F0FB5A00A8FE8B /* HbhWorkerTypes.m in Sources */,
 				FF21CF1019E66144005007B7 /* NSData+ImageContentType.m in Sources */,
 				5B1BC75919F0080E007D5AF7 /* HbhChangePswViewController.m in Sources */,
 				5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */,
 				5BD54D3319EE4DC6002C4355 /* HbhUserManager.m in Sources */,
 				FF21CF1419E66144005007B7 /* SDWebImageDownloader.m in Sources */,
+				AB8EA5E219F482D0001F40C2 /* HbhWorkerTypes.m in Sources */,
 				FF21CF0E19E66144005007B7 /* JSONKit.m in Sources */,
 				FF21CF0B19E66144005007B7 /* UIImageView+AFNetworking.m in Sources */,
 				5B69300A19F399250005862D /* HbuAreaLocationManager.m in Sources */,
+				AB8EA5E019F482D0001F40C2 /* HbhOrderCounts.m in Sources */,
 				FFBBFB2419F3BB18003A200C /* AreasDBManager.m in Sources */,
 				FF21CF1C19E66144005007B7 /* UIImageView+HighlightedWebCache.m in Sources */,
 				B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */,
@@ -1260,11 +1258,13 @@
 				B0EED42E19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m in Sources */,
 				FF21CF2219E66144005007B7 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				FF21CF2519E66144005007B7 /* UIImage+ImageEffects.m in Sources */,
+				AB8EA5DD19F482D0001F40C2 /* HbhAreas.m in Sources */,
 				B0EED42F19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m in Sources */,
 				FF21CF1B19E66144005007B7 /* UIImage+WebP.m in Sources */,
 				5B16D8D319F139D3009E9FF3 /* CategoryInfoModel.m in Sources */,
 				FF21CE9819E65FE7005007B7 /* FirstViewController.m in Sources */,
 				FF21CF1119E66144005007B7 /* SDImageCache.m in Sources */,
+				AB8EA5DE19F482D0001F40C2 /* HbhData.m in Sources */,
 				ABC5D51319F1F16100A306F7 /* HbhCommentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

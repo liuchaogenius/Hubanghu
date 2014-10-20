@@ -30,6 +30,7 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) UITableView *showOrderTableView;
 @property(nonatomic, strong) UIView *failView;
 
+@property(nonatomic, strong) HbhOrderManage *orderManage;
 @property(nonatomic, strong) NSMutableArray *allOrderArray;
 @property(nonatomic, strong) NSMutableArray *appraiseArray;
 @property(nonatomic, strong) NSMutableArray *unDoneArray;
@@ -48,13 +49,6 @@ typedef enum : NSUInteger {
     [super viewDidLoad];
     self.view.backgroundColor = RGBCOLOR(247, 247, 247);
     self.title = @"我的订单";
-    
-    if (![HbhUser sharedHbhUser].isLogin)
-    {
-        [self presentViewController:[[HbhLoginViewController alloc] init] animated:YES completion:^{
-            
-        }];
-    }
     
     if (!self.paramCurrentTab)
     {
@@ -79,13 +73,33 @@ typedef enum : NSUInteger {
     [self getFisrtPage];
 }
 
+-(HbhOrderManage *)orderManage
+{
+    if (!_orderManage) {
+        _orderManage = [[HbhOrderManage alloc] init];
+    }
+    return _orderManage;
+}
+
 #pragma mark 网络请求
 - (void)getFisrtPage
 {
-    [[HbhOrderManage new] getOrderListSuccBlock:^(NSArray *aArray) {
-        self.allOrderArray = (NSMutableArray *)aArray;
+    [self.orderManage getOrderWithListFilterId:_currentTab andSuccBlock:^(NSArray *aArray) {
+        switch (_currentTab) {
+            case 0:
+                self.allOrderArray = [aArray mutableCopy];
+                break;
+            case 1:
+                self.appraiseArray = [aArray mutableCopy];
+                break;
+            case 2:
+                self.unDoneArray = [aArray mutableCopy];
+                break;
+            default:
+                break;
+        }
         [self.showOrderTableView reloadData];
-    } and:^{
+    } andFailBlock:^{
         
     }];
 }
@@ -202,32 +216,34 @@ typedef enum : NSUInteger {
     if (_currentTab == currentTabOrderAll)
     {
         if (self.allOrderArray.count == 0) {
-            [self.view addSubview:self.failView];
+            [self getFisrtPage];
+//            [self.view addSubview:self.failView];
         }
-        else{
-            [self.failView removeFromSuperview];
-        }
+//        else{
+//            [self.failView removeFromSuperview];
+//        }
     }
     else if(_currentTab == currentTabOrderAppraise)
     {
         if (self.appraiseArray.count == 0) {
-            [self.view addSubview:self.failView];
+            [self getFisrtPage];
+//            [self.view addSubview:self.failView];
         }
-        else{
-            [self.failView removeFromSuperview];
-        }
+//        else{
+//            [self.failView removeFromSuperview];
+//        }
     }
     else if (_currentTab == currentTabOrderUndone)
     {
         if (self.unDoneArray.count == 0) {
-            [self.view addSubview:self.failView];
+            [self getFisrtPage];
+//            [self.view addSubview:self.failView];
         }
-        else
-        {
-            [self.failView removeFromSuperview];;
-        }
+//        else
+//        {
+//            [self.failView removeFromSuperview];;
+//        }
     }
-    [self.showOrderTableView reloadData];
 }
 
 #pragma mark tableView datasource

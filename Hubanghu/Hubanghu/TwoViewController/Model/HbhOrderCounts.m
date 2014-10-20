@@ -1,28 +1,28 @@
 //
-//  HbhWorkerTypes.m
+//  HbhOrderCounts.m
 //
 //  Created by  C陈政旭 on 14/10/20
 //  Copyright (c) 2014 __MyCompanyName__. All rights reserved.
 //
 
-#import "HbhWorkerTypes.h"
+#import "HbhOrderCounts.h"
 
 
-NSString *const kHbhWorkerTypesName = @"name";
-NSString *const kHbhWorkerTypesId = @"id";
-NSString *const kHbhWorkerTypesSelected = @"selected";
+NSString *const kHbhOrderCountsName = @"name";
+NSString *const kHbhOrderCountsId = @"id";
+NSString *const kHbhOrderCountsSelected = @"selected";
 
 
-@interface HbhWorkerTypes ()
+@interface HbhOrderCounts ()
 
 - (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict;
 
 @end
 
-@implementation HbhWorkerTypes
+@implementation HbhOrderCounts
 
 @synthesize name = _name;
-@synthesize workerTypesIdentifier = _workerTypesIdentifier;
+@synthesize orderCountsIdentifier = _orderCountsIdentifier;
 @synthesize selected = _selected;
 
 
@@ -38,9 +38,9 @@ NSString *const kHbhWorkerTypesSelected = @"selected";
     // This check serves to make sure that a non-NSDictionary object
     // passed into the model class doesn't break the parsing.
     if(self && [dict isKindOfClass:[NSDictionary class]]) {
-            self.name = [self objectOrNilForKey:kHbhWorkerTypesName fromDictionary:dict];
-            self.workerTypesIdentifier = [[self objectOrNilForKey:kHbhWorkerTypesId fromDictionary:dict] doubleValue];
-            self.selected = [[self objectOrNilForKey:kHbhWorkerTypesSelected fromDictionary:dict] boolValue];
+            self.name = [self objectOrNilForKey:kHbhOrderCountsName fromDictionary:dict];
+            self.orderCountsIdentifier = [[self objectOrNilForKey:kHbhOrderCountsId fromDictionary:dict] doubleValue];
+            self.selected = [[self objectOrNilForKey:kHbhOrderCountsSelected fromDictionary:dict] boolValue];
 
     }
     
@@ -51,9 +51,9 @@ NSString *const kHbhWorkerTypesSelected = @"selected";
 - (NSDictionary *)dictionaryRepresentation
 {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
-    [mutableDict setValue:self.name forKey:kHbhWorkerTypesName];
-    [mutableDict setValue:[NSNumber numberWithDouble:self.workerTypesIdentifier] forKey:kHbhWorkerTypesId];
-    [mutableDict setValue:[NSNumber numberWithBool:self.selected] forKey:kHbhWorkerTypesSelected];
+    [mutableDict setValue:self.name forKey:kHbhOrderCountsName];
+    [mutableDict setValue:[NSNumber numberWithDouble:self.orderCountsIdentifier] forKey:kHbhOrderCountsId];
+    [mutableDict setValue:[NSNumber numberWithBool:self.selected] forKey:kHbhOrderCountsSelected];
 
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
@@ -77,28 +77,28 @@ NSString *const kHbhWorkerTypesSelected = @"selected";
 {
     self = [super init];
 
-    self.name = [aDecoder decodeObjectForKey:kHbhWorkerTypesName];
-    self.workerTypesIdentifier = [aDecoder decodeDoubleForKey:kHbhWorkerTypesId];
-    self.selected = [aDecoder decodeBoolForKey:kHbhWorkerTypesSelected];
+    self.name = [aDecoder decodeObjectForKey:kHbhOrderCountsName];
+    self.orderCountsIdentifier = [aDecoder decodeDoubleForKey:kHbhOrderCountsId];
+    self.selected = [aDecoder decodeBoolForKey:kHbhOrderCountsSelected];
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
 
-    [aCoder encodeObject:_name forKey:kHbhWorkerTypesName];
-    [aCoder encodeDouble:_workerTypesIdentifier forKey:kHbhWorkerTypesId];
-    [aCoder encodeBool:_selected forKey:kHbhWorkerTypesSelected];
+    [aCoder encodeObject:_name forKey:kHbhOrderCountsName];
+    [aCoder encodeDouble:_orderCountsIdentifier forKey:kHbhOrderCountsId];
+    [aCoder encodeBool:_selected forKey:kHbhOrderCountsSelected];
 }
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    HbhWorkerTypes *copy = [[HbhWorkerTypes alloc] init];
+    HbhOrderCounts *copy = [[HbhOrderCounts alloc] init];
     
     if (copy) {
 
         copy.name = [self.name copyWithZone:zone];
-        copy.workerTypesIdentifier = self.workerTypesIdentifier;
+        copy.orderCountsIdentifier = self.orderCountsIdentifier;
         copy.selected = self.selected;
     }
     

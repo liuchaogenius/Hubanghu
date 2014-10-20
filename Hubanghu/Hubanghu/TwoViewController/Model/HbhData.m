@@ -1,21 +1,21 @@
 //
 //  HbhData.m
 //
-//  Created by  C陈政旭 on 14/10/17
+//  Created by  C陈政旭 on 14/10/20
 //  Copyright (c) 2014 __MyCompanyName__. All rights reserved.
 //
 
 #import "HbhData.h"
 #import "HbhWorkerTypes.h"
-#import "HbhOrderCountRegions.h"
 #import "HbhWorkers.h"
 #import "HbhAreas.h"
+#import "HbhOrderCounts.h"
 
 
 NSString *const kHbhDataWorkerTypes = @"workerTypes";
-NSString *const kHbhDataOrderCountRegions = @"orderCountRegions";
 NSString *const kHbhDataWorkers = @"workers";
 NSString *const kHbhDataAreas = @"areas";
+NSString *const kHbhDataOrderCounts = @"orderCounts";
 
 
 @interface HbhData ()
@@ -27,9 +27,9 @@ NSString *const kHbhDataAreas = @"areas";
 @implementation HbhData
 
 @synthesize workerTypes = _workerTypes;
-@synthesize orderCountRegions = _orderCountRegions;
 @synthesize workers = _workers;
 @synthesize areas = _areas;
+@synthesize orderCounts = _orderCounts;
 
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict
@@ -57,19 +57,6 @@ NSString *const kHbhDataAreas = @"areas";
     }
 
     self.workerTypes = [NSArray arrayWithArray:parsedHbhWorkerTypes];
-    NSObject *receivedHbhOrderCountRegions = [dict objectForKey:kHbhDataOrderCountRegions];
-    NSMutableArray *parsedHbhOrderCountRegions = [NSMutableArray array];
-    if ([receivedHbhOrderCountRegions isKindOfClass:[NSArray class]]) {
-        for (NSDictionary *item in (NSArray *)receivedHbhOrderCountRegions) {
-            if ([item isKindOfClass:[NSDictionary class]]) {
-                [parsedHbhOrderCountRegions addObject:[HbhOrderCountRegions modelObjectWithDictionary:item]];
-            }
-       }
-    } else if ([receivedHbhOrderCountRegions isKindOfClass:[NSDictionary class]]) {
-       [parsedHbhOrderCountRegions addObject:[HbhOrderCountRegions modelObjectWithDictionary:(NSDictionary *)receivedHbhOrderCountRegions]];
-    }
-
-    self.orderCountRegions = [NSArray arrayWithArray:parsedHbhOrderCountRegions];
     NSObject *receivedHbhWorkers = [dict objectForKey:kHbhDataWorkers];
     NSMutableArray *parsedHbhWorkers = [NSMutableArray array];
     if ([receivedHbhWorkers isKindOfClass:[NSArray class]]) {
@@ -96,6 +83,19 @@ NSString *const kHbhDataAreas = @"areas";
     }
 
     self.areas = [NSArray arrayWithArray:parsedHbhAreas];
+    NSObject *receivedHbhOrderCounts = [dict objectForKey:kHbhDataOrderCounts];
+    NSMutableArray *parsedHbhOrderCounts = [NSMutableArray array];
+    if ([receivedHbhOrderCounts isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *item in (NSArray *)receivedHbhOrderCounts) {
+            if ([item isKindOfClass:[NSDictionary class]]) {
+                [parsedHbhOrderCounts addObject:[HbhOrderCounts modelObjectWithDictionary:item]];
+            }
+       }
+    } else if ([receivedHbhOrderCounts isKindOfClass:[NSDictionary class]]) {
+       [parsedHbhOrderCounts addObject:[HbhOrderCounts modelObjectWithDictionary:(NSDictionary *)receivedHbhOrderCounts]];
+    }
+
+    self.orderCounts = [NSArray arrayWithArray:parsedHbhOrderCounts];
 
     }
     
@@ -117,17 +117,6 @@ NSString *const kHbhDataAreas = @"areas";
         }
     }
     [mutableDict setValue:[NSArray arrayWithArray:tempArrayForWorkerTypes] forKey:kHbhDataWorkerTypes];
-    NSMutableArray *tempArrayForOrderCountRegions = [NSMutableArray array];
-    for (NSObject *subArrayObject in self.orderCountRegions) {
-        if([subArrayObject respondsToSelector:@selector(dictionaryRepresentation)]) {
-            // This class is a model object
-            [tempArrayForOrderCountRegions addObject:[subArrayObject performSelector:@selector(dictionaryRepresentation)]];
-        } else {
-            // Generic object
-            [tempArrayForOrderCountRegions addObject:subArrayObject];
-        }
-    }
-    [mutableDict setValue:[NSArray arrayWithArray:tempArrayForOrderCountRegions] forKey:kHbhDataOrderCountRegions];
     NSMutableArray *tempArrayForWorkers = [NSMutableArray array];
     for (NSObject *subArrayObject in self.workers) {
         if([subArrayObject respondsToSelector:@selector(dictionaryRepresentation)]) {
@@ -150,6 +139,17 @@ NSString *const kHbhDataAreas = @"areas";
         }
     }
     [mutableDict setValue:[NSArray arrayWithArray:tempArrayForAreas] forKey:kHbhDataAreas];
+    NSMutableArray *tempArrayForOrderCounts = [NSMutableArray array];
+    for (NSObject *subArrayObject in self.orderCounts) {
+        if([subArrayObject respondsToSelector:@selector(dictionaryRepresentation)]) {
+            // This class is a model object
+            [tempArrayForOrderCounts addObject:[subArrayObject performSelector:@selector(dictionaryRepresentation)]];
+        } else {
+            // Generic object
+            [tempArrayForOrderCounts addObject:subArrayObject];
+        }
+    }
+    [mutableDict setValue:[NSArray arrayWithArray:tempArrayForOrderCounts] forKey:kHbhDataOrderCounts];
 
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
@@ -174,9 +174,9 @@ NSString *const kHbhDataAreas = @"areas";
     self = [super init];
 
     self.workerTypes = [aDecoder decodeObjectForKey:kHbhDataWorkerTypes];
-    self.orderCountRegions = [aDecoder decodeObjectForKey:kHbhDataOrderCountRegions];
     self.workers = [aDecoder decodeObjectForKey:kHbhDataWorkers];
     self.areas = [aDecoder decodeObjectForKey:kHbhDataAreas];
+    self.orderCounts = [aDecoder decodeObjectForKey:kHbhDataOrderCounts];
     return self;
 }
 
@@ -184,9 +184,9 @@ NSString *const kHbhDataAreas = @"areas";
 {
 
     [aCoder encodeObject:_workerTypes forKey:kHbhDataWorkerTypes];
-    [aCoder encodeObject:_orderCountRegions forKey:kHbhDataOrderCountRegions];
     [aCoder encodeObject:_workers forKey:kHbhDataWorkers];
     [aCoder encodeObject:_areas forKey:kHbhDataAreas];
+    [aCoder encodeObject:_orderCounts forKey:kHbhDataOrderCounts];
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -196,9 +196,9 @@ NSString *const kHbhDataAreas = @"areas";
     if (copy) {
 
         copy.workerTypes = [self.workerTypes copyWithZone:zone];
-        copy.orderCountRegions = [self.orderCountRegions copyWithZone:zone];
         copy.workers = [self.workers copyWithZone:zone];
         copy.areas = [self.areas copyWithZone:zone];
+        copy.orderCounts = [self.orderCounts copyWithZone:zone];
     }
     
     return copy;

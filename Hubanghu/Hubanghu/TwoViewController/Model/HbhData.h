@@ -1,7 +1,7 @@
 //
 //  HbhData.h
 //
-//  Created by  C陈政旭 on 14/10/17
+//  Created by  C陈政旭 on 14/10/20
 //  Copyright (c) 2014 __MyCompanyName__. All rights reserved.
 //
 
@@ -12,9 +12,9 @@
 @interface HbhData : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, strong) NSArray *workerTypes;
-@property (nonatomic, strong) NSArray *orderCountRegions;
 @property (nonatomic, strong) NSArray *workers;
 @property (nonatomic, strong) NSArray *areas;
+@property (nonatomic, strong) NSArray *orderCounts;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;
 - (instancetype)initWithDictionary:(NSDictionary *)dict;

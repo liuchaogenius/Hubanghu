@@ -9,12 +9,24 @@
 #import "HbhWorkerListManage.h"
 #import "NetManager.h"
 
+NSString *areaId;
+NSString *workTypeId;
+NSString *orderCountId;
 @implementation HbhWorkerListManage
 
-- (void)getWorkerListSuccBlock:(void(^)(HbhData *aData))aSuccBlock andFailBlock:(void(^)(void))aFailBlock
+- (void)getWorkerListWithAreaId:(int)aAreaId andWorkerTypeId:(int)aWorkTypeid andOrderCountId:(int)aOrderId SuccBlock:(void(^)(HbhData *aData))aSuccBlock andFailBlock:(void(^)(void))aFailBlock
 {
     NSString *workerListUrl = nil;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"area",@"2",@"workerType",@"3",@"orderCount", nil];
+    if ((aAreaId != [areaId intValue])&&aAreaId!=-1) {
+        areaId = [NSString stringWithFormat:@"%d", aAreaId];
+    }
+    if ((aWorkTypeid != [workTypeId intValue])&&aWorkTypeid!=-1) {
+        workTypeId = [NSString stringWithFormat:@"%d", aWorkTypeid];
+    }
+    if ((aOrderId != [orderCountId intValue])&&aOrderId!=-1) {
+        orderCountId = [NSString stringWithFormat:@"%d", aOrderId];
+    }
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:areaId,@"area",workTypeId,@"workerType",orderCountId,@"orderCount", nil];
     kHubRequestUrl(@"getWorkerList.ashx", workerListUrl);
     [NetManager requestWith:dict url:workerListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
@@ -24,4 +36,6 @@
         aFailBlock();
     }];
 }
+
+
 @end
