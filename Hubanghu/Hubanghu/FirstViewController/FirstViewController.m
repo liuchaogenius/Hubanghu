@@ -11,6 +11,8 @@
 #import "HbuCategoryViewController.h"
 #import "HbuAreaListModelBaseClass.h"
 #import "HbuAreaLocationManager.h"
+#import "LeftView.h"
+#import "ViewInteraction.h"
 
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
 enum CateId_Type
@@ -57,6 +59,8 @@ enum CateId_Type
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setLeftButton:nil title:@"left" target:self action:@selector(showLeftView)];
+    
     self.title = @"预约";
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-44-64) style:UITableViewStyleGrouped];
@@ -70,6 +74,11 @@ enum CateId_Type
     _areaLocationManager = [[HbuAreaLocationManager alloc] init];
     [self.areaLocationManager getAreasDataAndSaveToDBifNeeded];
     [self.areaLocationManager getUserLocation];
+}
+
+- (void)showLeftView
+{
+    [ViewInteraction viewPresentAnimationFromLeft:self.view toView:[[LeftView alloc] init]];
 }
 
 - (void)didReceiveMemoryWarning {

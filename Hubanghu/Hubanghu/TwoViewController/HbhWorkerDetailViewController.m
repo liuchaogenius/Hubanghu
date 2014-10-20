@@ -20,6 +20,7 @@
 @interface HbhWorkerDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic, strong) UITableView *workDetailTableView;
+@property(nonatomic, strong) HbhWorkers *myModel;
 @property(nonatomic) int myWorkerId;
 @property(nonatomic, strong)HbhWorkerDetailManage *workerDetailManage;
 
@@ -29,10 +30,11 @@
 
 @implementation HbhWorkerDetailViewController
 
-- (instancetype)initWithWorkerId:(int)aWorkerId
+- (instancetype)initWithWorkerModel:(HbhWorkers *)aModel
 {
     self = [super init];
-    self.myWorkerId = aWorkerId;
+    self.myModel = aModel;
+    self.myWorkerId = aModel.workersIdentifier;
     return self;
 }
 
@@ -224,7 +226,7 @@
 #pragma mark 跳转到预约
 - (void)makeAppointment
 {
-    [self.navigationController pushViewController:[[HbhMakeAppointMentViewController alloc] initWithWorkerId:self.workerData.dataIdentifier andWorkerName:self.workerData.name] animated:YES];
+    [self.navigationController pushViewController:[[HbhMakeAppointMentViewController alloc] initWithWorkerModel:self.myModel] animated:YES];
 }
 
 #pragma mark 跳转到更多评论

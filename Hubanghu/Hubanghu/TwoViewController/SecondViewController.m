@@ -370,7 +370,7 @@ typedef enum : NSUInteger {
     else
     {
         HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
-        HbhWorkerDetailViewController *workDetailVC = [[HbhWorkerDetailViewController alloc] initWithWorkerId:(int)model.workersIdentifier];
+        HbhWorkerDetailViewController *workDetailVC = [[HbhWorkerDetailViewController alloc] initWithWorkerModel:model];
         workDetailVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:workDetailVC animated:YES];
     }

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HbhWorkers.h"
 
 @interface HbhMakeAppointMentViewController : BaseViewController
 
-- (instancetype)initWithWorkerId:(int)aWorkerId andWorkerName:(NSString *)aWorkerName;
+- (instancetype)initWithWorkerModel:(HbhWorkers *)aModel;
 @end

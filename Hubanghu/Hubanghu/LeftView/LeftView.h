@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LeftView : UIView
+@interface LeftView : UIView <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, assign) int selectItem;
+@property(nonatomic, strong) UITableView *leftTableView;
 @end

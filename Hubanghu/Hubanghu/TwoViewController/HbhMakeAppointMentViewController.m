@@ -11,6 +11,7 @@
 
 @interface HbhMakeAppointMentViewController ()
 
+@property(nonatomic, strong)HbhWorkers *workerModel;
 @property(nonatomic) int workerId;
 @property(nonatomic, strong) NSString *workerName;
 @property(nonatomic, strong) NSDictionary *workerDict;
@@ -18,12 +19,10 @@
 
 @implementation HbhMakeAppointMentViewController
 
-- (instancetype)initWithWorkerId:(int)aWorkerId andWorkerName:(NSString *)aWorkerName
+- (instancetype)initWithWorkerModel:(HbhWorkers *)aModel
 {
     self = [super init];
-    self.workerId = aWorkerId;
-    self.workerName = aWorkerName;
-    self.workerDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", self.workerId],@"workerId",aWorkerName,@"workerName", nil];
+    self.workerModel = aModel;
     return self;
 }
 

@@ -7,8 +7,8 @@
 //
 
 #import "BaseViewController.h"
-
+#import "HbhWorkers.h"
 @interface HbhWorkerDetailViewController : BaseViewController
 
-- (instancetype)initWithWorkerId:(int)aWorkerId;
+- (instancetype)initWithWorkerModel:(HbhWorkers *)aModel;
 @end
