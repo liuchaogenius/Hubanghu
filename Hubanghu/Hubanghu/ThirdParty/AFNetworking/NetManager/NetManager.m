@@ -154,13 +154,13 @@
         [aRequest addValue:[net getUserid] forHTTPHeaderField:@"hbh-uid"];
     }
     if ([net getAreaId]) {
-        [aRequest setValue:[net getAreaId] forKey:@"hbh-areaId"];
+        [aRequest setValue:[net getAreaId] forHTTPHeaderField:@"hbh-areaId"];
     }
     if ([net getLat]) {
-        [aRequest setValue:[NSNumber numberWithFloat:[net getLat]] forKey:@"hbh-lat"];
+        [aRequest setValue:[NSString stringWithFormat:@"%.3f",[net getLat]] forHTTPHeaderField:@"hbh-lat"];
     }
     if ([net getLon]) {
-        [aRequest setValue:[NSNumber numberWithFloat:[net getLon]] forKey:@"hbh-lon"];
+        [aRequest setValue:[NSString stringWithFormat:@"%.3f",[net getLon]] forHTTPHeaderField:@"hbh-lon"];
     }
 #if DEBUG
     [aRequest addValue:@"1" forHTTPHeaderField:@"hbh_mock"];

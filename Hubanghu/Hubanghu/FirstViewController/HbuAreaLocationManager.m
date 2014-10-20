@@ -48,21 +48,22 @@
             //不用获取
         }else{
             [self getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
-                [self saveDataToDBWithAreasArray:areaListModel.areas];
+                [self saveDataToDBWithAreasArray:(HbuAreaListModelBaseClass *)areaListModel];
             } failure:^{
             }];
         }
     }];
 }
 
-- (void)saveDataToDBWithAreasArray:(NSArray *)areas
+- (void)saveDataToDBWithAreasArray:(HbuAreaListModelBaseClass *)areaListModel
 {
-    
+    NSArray *areas = areaListModel.areas;
     if (areas && areas.count > 0) {
         for (HbuAreaListModelAreas *area in areas) {
             [self.areasDBManager insertAreaToTable:[NSString stringWithFormat:@"%lf",area.areaId] name:area.name level:area.level parent:[NSString stringWithFormat:@"%lf",area.parent] typeName:area.typeName firstchar:area.firstchar];
         }
 #warning 对应保存这份数据的time（版本号） nsuser
+        double time = areaListModel.time;
     }
 }
 
@@ -75,8 +76,12 @@
         [locationManager statUpdateLocation:^(Location2d al2d) {
 #warning 需要把定位度添加http头里面
             if (al2d.code == 1) {
-                [[NetManager shareInstance] setLat:al2d.lat];
-                [[NetManager shareInstance] setLon:al2d.lon];
+                if (al2d.lat) {
+                    [[NetManager shareInstance] setLat:al2d.lat];
+                }
+                if (al2d.lon) {
+                    [[NetManager shareInstance] setLon:al2d.lon];
+                }
             }
             [locationManager getLocationAddress:NO resultBlock:^(NSDictionary *aLocationDict, Location2d aL2d) {
 #warning 对比城市 创建currentAreas

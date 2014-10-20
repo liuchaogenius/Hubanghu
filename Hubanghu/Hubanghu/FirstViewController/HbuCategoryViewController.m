@@ -22,6 +22,8 @@
 
 @interface HbuCategoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 
+@property (strong ,nonatomic) HbhWorkers *worker; //if！=nil 代表有预先确定的工人
+
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) CategoryInfoModel *categoryInfoModel;
 @property (strong, nonatomic) CategoryChildInfoModel *categoryChildInfoModel;
@@ -101,6 +103,15 @@
     }
     return self;
 }
+
+- (instancetype)initWithCateId:(double)cateId andWorker:(HbhWorkers *)worker
+{
+    if ((self = [self initWithCateId:cateId]) && worker) {
+        self.worker = worker;
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
