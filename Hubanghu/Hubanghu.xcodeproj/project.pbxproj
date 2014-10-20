@@ -69,6 +69,8 @@
 		B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */; };
 		B0EED42E19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */; };
 		B0EED42F19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */; };
+		FF09640119F539A800EF8D0E /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */; };
+		FF09640219F539A800EF8D0E /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */; };
 		FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252619E7B861008AB6EC /* JsonToModel.m */; };
 		FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252819E7B861008AB6EC /* NSFileManager_Additions.m */; };
 		FF15253219E7B861008AB6EC /* SCach.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252A19E7B861008AB6EC /* SCach.m */; };
@@ -257,6 +259,9 @@
 		B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentConfirmeView.m; sourceTree = "<group>"; };
 		B0EED42B19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentDetailsTableViewCell.h; sourceTree = "<group>"; };
 		B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentDetailsTableViewCell.m; sourceTree = "<group>"; };
+		FF0963FE19F539A800EF8D0E /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		FF15252519E7B861008AB6EC /* JsonToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonToModel.h; sourceTree = "<group>"; };
 		FF15252619E7B861008AB6EC /* JsonToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonToModel.m; sourceTree = "<group>"; };
 		FF15252719E7B861008AB6EC /* NSFileManager_Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManager_Additions.h; sourceTree = "<group>"; };
@@ -616,6 +621,9 @@
 		FF0963FD19F51F0A00EF8D0E /* ToastView */ = {
 			isa = PBXGroup;
 			children = (
+				FF0963FE19F539A800EF8D0E /* SVProgressHUD.h */,
+				FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */,
+				FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */,
 			);
 			path = ToastView;
 			sourceTree = "<group>";
@@ -1142,6 +1150,7 @@
 				B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */,
 				ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */,
 				5BF8FC7819F0FA3900598FB9 /* HbhAllCategory.plist in Resources */,
+				FF09640219F539A800EF8D0E /* SVProgressHUD.bundle in Resources */,
 				5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */,
 				B02C2B1719F4FD0600B9C4FF /* Images.xcassets in Resources */,
 				5B03CC0019EFE0D000A367DC /* HbhQRcodeViewController.xib in Resources */,
@@ -1170,6 +1179,7 @@
 				AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */,
 				FF21CF2119E66144005007B7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */,
+				FF09640119F539A800EF8D0E /* SVProgressHUD.m in Sources */,
 				AB06DC4E19F1269500B82C62 /* HbhWorkerModel.m in Sources */,
 				FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */,
 				ABAFAB2119EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m in Sources */,
