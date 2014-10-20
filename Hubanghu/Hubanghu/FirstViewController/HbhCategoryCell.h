@@ -12,6 +12,7 @@
 #define kImageButtonHeight (kMainScreenWidth -kBlankWidth)/2.0 *470/500.0f
 #define kCellHeight kImageButtonHeight+kBlankWidth
 #define kBlackLabelHeight 24
+#define kTitleLabelTag 50
 
 @interface HbhCategoryCell : UITableViewCell
 

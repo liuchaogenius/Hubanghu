@@ -16,6 +16,9 @@
 @property (strong, nonatomic) AreasDBManager *areasDBManager;
 @property (nonatomic, strong) HbuAreaListModelAreas* currentAreas;
 
+//单例方法
++ (instancetype)sharedManager;
+
 //从网络获取地区信息，并存入数据库（如果数据库没有地区信息）
 - (void)getAreasDataAndSaveToDBifNeeded;
 //定位

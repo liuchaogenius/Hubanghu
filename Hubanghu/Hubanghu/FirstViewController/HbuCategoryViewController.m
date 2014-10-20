@@ -17,6 +17,7 @@
 #define kSgmBtnHeight 35
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
 #define kSelectTagBase 200 //selectline的tag值的起步值
+
 //需分栏下 返回选中种类的catemodel
 #define depth2CateModel (self.categoryInfoModel.child[self.selectSgmButton.tag % kSelectTagBase])
 
@@ -234,8 +235,10 @@
 {
     double cateId = sender.tag;
     if (cateId != kBlankButtonTag) {
+#warning 待验证登陆状态
         //push 进入订单界面
-        HbhAppointmentViewController *appointVC = [[HbhAppointmentViewController alloc] initWithTitle:nil cateId:[NSString stringWithFormat:@"%lf",cateId] andWork:nil];
+        UILabel *titileLable = (UILabel *)[sender viewWithTag:kTitleLabelTag];
+        HbhAppointmentViewController *appointVC = [[HbhAppointmentViewController alloc] initWithTitle:titileLable.text cateId:[NSString stringWithFormat:@"%lf",cateId] andWork:self.worker];
         [self.navigationController pushViewController:appointVC animated:YES];
         
     }

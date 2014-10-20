@@ -24,6 +24,7 @@
         
         //黑色试图上标题lable
         self.leftTitleLable = [self customLabelWithFrame:CGRectMake(0, 0, (kMainScreenWidth -kBlankWidth)/2.0, kBlackLabelHeight)];
+        _leftTitleLable.tag = kTitleLabelTag;
         [leftBlackView addSubview:_leftTitleLable];
         
         [self.contentView addSubview:leftImageButton];
@@ -36,6 +37,7 @@
         [self.rightImageButton addSubview:rightBlackView];
         
         self.rightTitleLabel = [self customLabelWithFrame:CGRectMake(0, 0, (kMainScreenWidth -kBlankWidth)/2.0, kBlackLabelHeight)];
+        _rightTitleLabel.tag = kTitleLabelTag;
         [rightBlackView addSubview:self.rightTitleLabel];
         
         [self.contentView addSubview:rightImageButton];

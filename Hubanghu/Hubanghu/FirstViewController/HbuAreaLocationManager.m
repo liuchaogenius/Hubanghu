@@ -20,8 +20,36 @@
     }
     return _areasDBManager;
 }
-#warning 调用这个接口之前要先判断本地是否存在数据，还有一个判断这个接口数据版本
 
++ (instancetype)sharedManager
+{
+    static HbuAreaLocationManager *areaMa;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        areaMa = [[HbuAreaLocationManager alloc] init];
+    });
+    return areaMa;
+}
+
+
+//获取并保存地区数据 如果需要的话
+- (void)getAreasDataAndSaveToDBifNeeded
+{
+    [self.areasDBManager selGroupAreaCity:^(NSMutableDictionary *cityDict){
+        __weak HbuAreaLocationManager *weakSelf = self;
+        if (cityDict) {
+            //不用获取
+        }else{
+            [self getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
+                [weakSelf saveDataToDBWithAreasArray:(HbuAreaListModelBaseClass *)areaListModel];
+            } failure:^{
+            }];
+        }
+    }];
+}
+
+#warning 调用这个接口之前要先判断本地是否存在数据，还有一个判断这个接口数据版本
+//网络请求 获取地区数据
 - (void)getAreaListInfoWithsucc:(void(^)(HbuAreaListModelBaseClass* areaListModel))succ failure:(void(^)())failure
 {
     NSString *getAreaListUrl = nil;
@@ -41,26 +69,13 @@
     }];
 }
 
-- (void)getAreasDataAndSaveToDBifNeeded
-{
-    [self.areasDBManager selGroupAreaCity:^(NSMutableDictionary *cityDict){
-        if (cityDict) {
-            //不用获取
-        }else{
-            [self getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
-                [self saveDataToDBWithAreasArray:(HbuAreaListModelBaseClass *)areaListModel];
-            } failure:^{
-            }];
-        }
-    }];
-}
-
+//将地区数据保存到DB
 - (void)saveDataToDBWithAreasArray:(HbuAreaListModelBaseClass *)areaListModel
 {
     NSArray *areas = areaListModel.areas;
     if (areas && areas.count > 0) {
         for (HbuAreaListModelAreas *area in areas) {
-            [self.areasDBManager insertAreaToTable:[NSString stringWithFormat:@"%lf",area.areaId] name:area.name level:area.level parent:[NSString stringWithFormat:@"%lf",area.parent] typeName:area.typeName firstchar:area.firstchar];
+            [self.areasDBManager insertAreaToTable:[NSString stringWithFormat:@"%d",(int)area.areaId] name:area.name level:(int)area.level parent:[NSString stringWithFormat:@"%d",(int)area.parent] typeName:area.typeName firstchar:area.firstchar];
         }
 #warning 对应保存这份数据的time（版本号） nsuser
         double time = areaListModel.time;
@@ -85,9 +100,12 @@
             }
             [locationManager getLocationAddress:NO resultBlock:^(NSDictionary *aLocationDict, Location2d aL2d) {
 #warning 对比城市 创建currentAreas
-                /*
-                self.areasDBManager selHbuArealistModel:<#(NSString *)#> resultBlock:<#^(HbuAreaListModelAreas *model)aResultBlock#>
-                 */
+                //MLOG(@"%@",aLocationDict[@"City"]);
+                
+                [self.areasDBManager selHbuArealistModel:aLocationDict[@"City"] resultBlock:^(HbuAreaListModelAreas *model) {
+                    NSLog(@"%@",model);
+                }];
+                
             }];
         }];
     }

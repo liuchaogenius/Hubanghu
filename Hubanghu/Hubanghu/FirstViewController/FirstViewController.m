@@ -71,7 +71,7 @@ enum CateId_Type
     [self.tableView registerClass:[HbhFirstVCCell class] forCellReuseIdentifier:@"FirstVCCell"];
     
     //定位
-    _areaLocationManager = [[HbuAreaLocationManager alloc] init];
+    _areaLocationManager = [HbuAreaLocationManager sharedManager];
     [self.areaLocationManager getAreasDataAndSaveToDBifNeeded];
     [self.areaLocationManager getUserLocation];
 }
