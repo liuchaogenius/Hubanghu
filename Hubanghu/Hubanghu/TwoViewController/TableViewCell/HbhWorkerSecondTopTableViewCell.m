@@ -20,12 +20,6 @@
     temFrame.size.width = kMainScreenWidth;
     self.frame = temFrame;
     
-    self.moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth-50, 8, 30, 15)];
-    self.moreBtn.backgroundColor = RGBCOLOR(183, 183, 183);
-    self.moreBtn.titleLabel.font = kFont10;
-    [self.moreBtn setTitle:@"更多" forState:UIControlStateNormal];
-    [self addSubview:self.moreBtn];
-    
     return self;
 }
 

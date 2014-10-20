@@ -178,7 +178,14 @@
         if (indexPath.row==0)
         {
             HbhWorkerSecondTopTableViewCell *cell = [[HbhWorkerSecondTopTableViewCell alloc] init];
-            [cell.moreBtn addTarget:self action:@selector(moreComment) forControlEvents:UIControlEventTouchUpInside];
+            if (self.workerData.comment.count>3) {
+                UIButton *moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth-50, 8, 30, 15)];
+                moreBtn.backgroundColor = RGBCOLOR(183, 183, 183);
+                moreBtn.titleLabel.font = kFont10;
+                [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
+                [moreBtn addTarget:self action:@selector(moreComment) forControlEvents:UIControlEventTouchUpInside];
+                [cell addSubview:moreBtn];
+            }
             return cell;
         }
         else

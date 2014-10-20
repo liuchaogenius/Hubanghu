@@ -53,7 +53,13 @@
 
 - (void)push:(UIButton *)aBtn
 {
-    [self.navigationController pushViewController:[[HbuCategoryViewController alloc] initWithCateId:aBtn.tag-10] animated:YES];
+    if (!self.workerModel) {
+        [self.navigationController pushViewController:[[HbuCategoryViewController alloc] initWithCateId:aBtn.tag-10] animated:YES];
+    }
+    else
+    {
+        [self.navigationController pushViewController:[[HbuCategoryViewController alloc] initWithCateId:aBtn.tag-10 andWorker:self.workerModel] animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
