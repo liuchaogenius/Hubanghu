@@ -35,12 +35,15 @@
 //获取并保存地区数据 如果需要的话
 - (void)getAreasDataAndSaveToDBifNeeded
 {
+    __weak HbuAreaLocationManager *weakSelf = self;
     [self.areasDBManager selGroupAreaCity:^(NSMutableDictionary *cityDict){
-        __weak HbuAreaLocationManager *weakSelf = self;
+//        [weakSelf.areasDBManager selProvince:^(NSMutableArray *cityArry) {
+//            MLOG(@"%@",cityArry);
+//        }];
         if (cityDict) {
             //不用获取
         }else{
-            [self getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
+            [weakSelf getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
                 [weakSelf saveDataToDBWithAreasArray:(HbuAreaListModelBaseClass *)areaListModel];
             } failure:^{
             }];
@@ -101,9 +104,11 @@
             [locationManager getLocationAddress:NO resultBlock:^(NSDictionary *aLocationDict, Location2d aL2d) {
 #warning 对比城市 创建currentAreas
                 //MLOG(@"%@",aLocationDict[@"City"]);
-                
+                [self.areasDBManager selGroupAreaCity:^(NSMutableDictionary *cityDict) {
+                    MLOG(@"%@",cityDict);
+                }];
                 [self.areasDBManager selHbuArealistModel:aLocationDict[@"City"] resultBlock:^(HbuAreaListModelAreas *model) {
-                    NSLog(@"%@",model);
+                    NSLog(@"model ---------- %@",model);
                 }];
                 
             }];

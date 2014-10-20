@@ -13,6 +13,7 @@
 #import "HbhCategoryCell.h"
 #import "UIButton+WebCache.h"
 #import "HbhAppointmentViewController.h"
+#import "HbhUser.h"
 
 #define kSgmBtnHeight 35
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
@@ -22,7 +23,9 @@
 #define depth2CateModel (self.categoryInfoModel.child[self.selectSgmButton.tag % kSelectTagBase])
 
 @interface HbuCategoryViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+    UIButton *_touchedButton;
+}
 @property (strong ,nonatomic) HbhWorkers *worker; //if！=nil 代表有预先确定的工人
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -233,16 +236,33 @@
 #pragma mark push进入预定界面
 - (void)touchImageButton:(UIButton *)sender
 {
-    double cateId = sender.tag;
+    _touchedButton = sender; //记录sender
+    double cateId = _touchedButton.tag;
     if (cateId != kBlankButtonTag) {
-#warning 待验证登陆状态
-        //push 进入订单界面
-        UILabel *titileLable = (UILabel *)[sender viewWithTag:kTitleLabelTag];
-        HbhAppointmentViewController *appointVC = [[HbhAppointmentViewController alloc] initWithTitle:titileLable.text cateId:[NSString stringWithFormat:@"%lf",cateId] andWork:self.worker];
-        [self.navigationController pushViewController:appointVC animated:YES];
-        
+        if(![HbhUser sharedHbhUser].isLogin)
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginForUserMessage object:[NSNumber numberWithBool:NO]];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PushtoAppointVC) name:kLoginSuccessMessae object:nil];
+        }else{
+            [self PushtoAppointVC];
+        }
     }
 }
+
+#pragma mark 用户登录后push进入预定界面
+- (void)PushtoAppointVC
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessMessae object:nil];
+    if (_touchedButton) {
+        double cateId = _touchedButton.tag;
+        UILabel *titileLable = (UILabel *)[_touchedButton viewWithTag:kTitleLabelTag];
+        NSDictionary *infoDic = [NSDictionary dictionaryWithObjectsAndKeys:titileLable.text,@"title",[NSString stringWithFormat:@"%lf",cateId],@"cateId", nil];
+        HbhAppointmentViewController *appointVC = [[HbhAppointmentViewController alloc] initWithTitle:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:self.worker];
+        appointVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:appointVC animated:YES];
+    }
+}
+
 
 #pragma mark - customButtom构造
 - (UIButton *)customButtonWithFrame:(CGRect)frame andTitle:(NSString *)title

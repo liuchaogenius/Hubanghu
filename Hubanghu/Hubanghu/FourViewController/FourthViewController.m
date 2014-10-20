@@ -89,13 +89,14 @@ enum CellTag_Type
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    /*
     //检测用户状态是否改变 //登陆-登出
     if ([HbhUser sharedHbhUser].statusIsChanged) {
         [self.tableView reloadData];
         [HbhUser sharedHbhUser].statusIsChanged = NO;
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-
+     */
     //待完善刷新时机
     if ([HbhUser sharedHbhUser].isLogin) {
         [self refreshNumberLabels];
@@ -257,50 +258,56 @@ enum CellTag_Type
 #pragma mark 点击cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch ([tableView cellForRowAtIndexPath:indexPath].tag) {
-        case CellTag_finishedOrder:
-        {
-            //push进入已完成订单页面
-            ThirdViewController *thirdVC = [[ThirdViewController alloc] initWithCurrentTab:0];
-            thirdVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:thirdVC animated:YES];
+    if(![HbhUser sharedHbhUser].isLogin)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLoginForUserMessage object:[NSNumber numberWithBool:NO]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:nil name:kLoginSuccessMessae object:nil];
+    }else{
+        switch ([tableView cellForRowAtIndexPath:indexPath].tag) {
+            case CellTag_finishedOrder:
+            {
+                //push进入已完成订单页面
+                ThirdViewController *thirdVC = [[ThirdViewController alloc] initWithCurrentTab:0];
+                thirdVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:thirdVC animated:YES];
+            }
+                break;
+            case CellTag_notDoneOrder:
+            {
+                //push进入未完成订单页面
+                ThirdViewController *thirdVC = [[ThirdViewController alloc] initWithCurrentTab:1];
+                thirdVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:thirdVC animated:YES];
+            }
+                break;
+            case CellTag_notCommentOrder:
+            {
+                //push进入未提交订单页面
+                ThirdViewController *thirdVC = [[ThirdViewController alloc] initWithCurrentTab:2];
+                thirdVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:thirdVC animated:YES];
+            }
+                break;
+            case CellTag_QRcode:
+            {
+                //push进入二维码页面
+                HbhQRcodeViewController *qrVC = [[HbhQRcodeViewController alloc] init];
+                qrVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:qrVC animated:YES];
+            }
+                break;
+            case CellTag_changePassWord:
+            {
+                //push进入修改密码页面
+                HbhChangePswViewController *cpswVC = [[HbhChangePswViewController alloc] init];
+                cpswVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:cpswVC animated:YES];
+                break;
+            }
+                break;
+            default:
+                break;
         }
-            break;
-        case CellTag_notDoneOrder:
-        {
-            //push进入未完成订单页面
-            ThirdViewController *thirdVC = [[ThirdViewController alloc] initWithCurrentTab:1];
-            thirdVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:thirdVC animated:YES];
-        }
-            break;
-        case CellTag_notCommentOrder:
-        {
-            //push进入未提交订单页面
-            ThirdViewController *thirdVC = [[ThirdViewController alloc] initWithCurrentTab:2];
-            thirdVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:thirdVC animated:YES];
-        }
-            break;
-        case CellTag_QRcode:
-        {
-            //push进入二维码页面
-            HbhQRcodeViewController *qrVC = [[HbhQRcodeViewController alloc] init];
-            qrVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:qrVC animated:YES];
-        }
-            break;
-        case CellTag_changePassWord:
-        {
-            //push进入修改密码页面
-            HbhChangePswViewController *cpswVC = [[HbhChangePswViewController alloc] init];
-            cpswVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:cpswVC animated:YES];
-            break;
-        }
-            break;
-        default:
-            break;
     }
 }
 
@@ -325,8 +332,17 @@ enum CellTag_Type
 #pragma mark 点击登录按钮
 - (void)touchLoginButton
 {
-    [self.navigationController pushViewController:[[HbhLoginViewController alloc] init] animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLoginForUserMessage object:[NSNumber numberWithBool:NO]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessItem) name:kLoginSuccessMessae object:nil];
 }
+
+#pragma mark 登录成功返回调用方法
+- (void)loginSuccessItem
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessMessae object:nil];
+    [self.tableView reloadData];
+}
+
 #pragma mark 点击退出登陆按钮
 - (void)touchLogoutButton
 {

@@ -18,8 +18,11 @@ enum SegmentBtn_Type
 
 enum TextField_Type
 {
-    TextField_phoneNumber = 130,//账号文本框
-    TextField_password //密码框
+    TextField_phoneNumber = 130,//账号文本框-登录
+    TextField_password, //密码框-登录
+    TextField_rgPhoneNumber,
+    TextField_rgPassword,
+    TextField_checkCode
 };
 
 
@@ -29,10 +32,17 @@ enum TextField_Type
 @property (nonatomic,strong) UIView *loginView;//注册界面
 @property (nonatomic,strong) UIView *registerView;//注册界面
 @property (nonatomic,strong) UIView *selectedLine;//选择表示线
+//登录界面
 @property (nonatomic, strong) UITextField *phoneNumberTextField;
 @property (nonatomic, strong) UITextField *passwordTextField;
+//注册界面
+@property (nonatomic, strong) UITextField *rgPhoneNumberTextField;
+@property (nonatomic, strong) UITextField *rgPasswordTextField;
+@property (nonatomic, strong) UITextField *checkCodeTextField;
+
 @property (nonatomic, weak) UIButton *LoginButton;//登陆按钮
 @property (nonatomic, weak) UIButton *forgetPasswordBtn;//忘记密码按钮
+@property (nonatomic, weak) UIButton *registerButton;//注册按钮
 
 @end
 
@@ -51,7 +61,7 @@ enum TextField_Type
         _sgmLoginButton.layer.borderWidth = 0.7f;
         _sgmLoginButton.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];
         _sgmLoginButton.selected = NO;
-        [_sgmLoginButton addTarget:self action:@selector(touchSgmButton:) forControlEvents:UIControlEventTouchUpInside];
+        [_sgmLoginButton addTarget:self action:@selector(touchSgmBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sgmLoginButton;
 }
@@ -68,7 +78,7 @@ enum TextField_Type
         _sgmRegisterButton.layer.borderWidth = 0.7f;
         _sgmRegisterButton.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];
         _sgmRegisterButton.selected = NO;
-        [_sgmRegisterButton addTarget:self action:@selector(touchSgmButton:) forControlEvents:UIControlEventTouchUpInside];
+        [_sgmRegisterButton addTarget:self action:@selector(touchSgmBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sgmRegisterButton;
 }
@@ -118,14 +128,47 @@ enum TextField_Type
         [_forgetPasswordBtn setFrame:CGRectMake(kMainScreenWidth - 20-50, 125+85+20, 50, 20)];
         _forgetPasswordBtn.titleLabel.font = kFont12;
         [_loginView addSubview:_forgetPasswordBtn];
+        [self.view addSubview:_loginView];
     }
     return _loginView;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (UIView *)registerView
 {
-    [super viewWillAppear:YES];
-#warning 带隐藏tabbar
+    if (!_registerView) {
+        _registerView = [[UIView alloc] initWithFrame:CGRectMake(0, sgmButtonHeight, kMainScreenWidth, kMainScreenHeight-sgmButtonHeight-64)];
+        _registerView.backgroundColor = RGBCOLOR(249, 249, 249);
+        
+        UIView *whiteBackView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, kMainScreenWidth-40, 165)];
+        whiteBackView.backgroundColor = [UIColor whiteColor];
+        whiteBackView.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];
+        whiteBackView.layer.borderWidth = 1.0f;
+        whiteBackView.layer.cornerRadius = 4.0;
+        [_registerView addSubview:whiteBackView];
+        
+        _rgPhoneNumberTextField = [self customedTextFieldWithFrame:CGRectMake(5, 15, whiteBackView.bounds.size.width-10, 35)  andPlaceholder:@"输入手机号" andTag:TextField_rgPhoneNumber andReturnKeyType:UIReturnKeyNext];
+        [whiteBackView addSubview:self.rgPhoneNumberTextField];
+        
+        _checkCodeTextField = [self customedTextFieldWithFrame:CGRectMake(5, 65, (whiteBackView.bounds.size.width-10)*2/3.0f, 35) andPlaceholder:@"输入验证码" andTag:TextField_checkCode andReturnKeyType:UIReturnKeyNext];
+        [whiteBackView addSubview:self.checkCodeTextField];
+        
+        _rgPasswordTextField = [self customedTextFieldWithFrame:CGRectMake(5, 115, whiteBackView.bounds.size.width-10, 35) andPlaceholder:@"输入密码" andTag:TextField_checkCode andReturnKeyType:UIReturnKeyGo];
+        self.rgPasswordTextField.secureTextEntry = YES;
+        [whiteBackView addSubview:self.rgPasswordTextField];
+        [self.view addSubview:_registerView];
+        
+        UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        registerButton.backgroundColor = KColor;
+        [registerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [registerButton setFrame:CGRectMake(20, 165+45, kMainScreenWidth-40.0, 40)];
+        registerButton.layer.cornerRadius = 5.0f;
+        [registerButton setTitle:@"注册" forState:UIControlStateNormal];
+        [registerButton addTarget:self action:@selector(touchRegisterButton) forControlEvents:UIControlEventTouchUpInside];
+        _LoginButton = registerButton;
+        [_registerView addSubview:registerButton];
+        
+    }
+    return _registerView;
 }
 
 - (void)viewDidLoad {
@@ -150,7 +193,7 @@ enum TextField_Type
 }
 
 #pragma mark - Action
-- (void)touchSgmButton:(UIButton *)sender
+- (void)touchSgmBtn:(UIButton *)sender
 {
     if (!sender.selected) {
         sender.selected = YES;
@@ -161,6 +204,7 @@ enum TextField_Type
                 [UIView animateWithDuration:0.5f animations:^{
                     self.selectedLine.centerX -= kMainScreenWidth/2.0f;
                 }];
+                [UIView transitionFromView:self.registerView toView:self.loginView duration:0.7f options:UIViewAnimationOptionTransitionFlipFromLeft completion:nil];
             }
                 break;
             case SegmentBtn_register:
@@ -169,6 +213,7 @@ enum TextField_Type
                 [UIView animateWithDuration:0.5f animations:^{
                     self.selectedLine.centerX += kMainScreenWidth/2.0f;
                 }];
+                [UIView transitionFromView:self.loginView toView:self.registerView duration:0.7f options:UIViewAnimationOptionTransitionFlipFromRight completion:nil];
             }
                 break;
             default:
@@ -206,6 +251,11 @@ enum TextField_Type
 
 }
 
+#pragma mark 点击登录
+- (void)touchRegisterButton
+{
+    
+}
 
 #pragma mark - textField delegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
