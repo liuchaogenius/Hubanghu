@@ -22,14 +22,21 @@
 	NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AppointmentDetailsCell" owner:self options:nil];
 	self = nib[0];
 	if (self) {
-		for (UIView *view in [self.contentView subviews]) {
-			view.layer.borderWidth = 1;
-			view.layer.borderColor = RGBCOLOR(226, 226, 226).CGColor;
-			if ([view isKindOfClass:[UITextField class]]) {
-				((UITextField*)view).delegate = self;
-				((UITextField*)view).clearButtonMode = UITextFieldViewModeWhileEditing;
-			}
+		NSArray *arr = @[_timeTF,_phoneNumberTF,_userNameTF,_areaTF,_detailAreaTF];
+		for (int i = 0; i < arr.count; i++) {
+			UITextField *tf = arr[i];
+			tf.layer.borderWidth = 1;
+			tf.layer.borderColor = RGBCOLOR(226, 226, 226).CGColor;
+			tf.delegate = self;
+			tf.clearButtonMode = UITextFieldViewModeWhileEditing;
+			UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 40)];
+			imageView.backgroundColor = RGBCOLOR(226, 226, 226);
+			imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"apoinIcon%d",i+1]];
+			tf.leftView = imageView;
+			tf.leftViewMode = UITextFieldViewModeAlways;
 		}
+		_timeTF.enabled = NO;
+		
 		_datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, kMainScreenHeight, kMainScreenWidth, 200)];
 		_datePicker.datePickerMode = UIDatePickerModeDateAndTime;
 		_datePicker.date = [NSDate date];
@@ -46,7 +53,7 @@
 	NSDateFormatter *selectDateFormatter = [[NSDateFormatter alloc] init];
 	selectDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm"; // 设置时间和日期的格式
 	NSString *dateAndTime = [selectDateFormatter stringFromDate:select]; // 把date类型转为设置好格式的string类型
-	_timeLabel.text = dateAndTime;
+	_timeTF.text = dateAndTime;
 }
 
 - (void)datePickerPickEnd:(UIButton *)sender{
@@ -71,6 +78,11 @@
 	[textField resignFirstResponder];
 	return YES;
 }
+//控制文本的位置
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+	return CGRectInset(bounds, 20, 0);
+}
+
 - (void)showDatePickView{
 	if (![_datePicker superview]) {
 		[self.window addSubview:_datePicker];
@@ -100,9 +112,9 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 	for (UITouch *touch in touches) {
 		CGPoint touchPoint = [touch locationInView:self];
-		if(CGRectContainsPoint(_timeLabel.frame, touchPoint)){
+		if(CGRectContainsPoint(_timeTF.frame, touchPoint)){
 			[self showDatePickView];
-		}else if (CGRectContainsPoint(_areaLabel.frame, touchPoint)){
+		}else if (CGRectContainsPoint(_areaTF.frame, touchPoint)){
 			[self showAreaPickView];
 		}else {
 			

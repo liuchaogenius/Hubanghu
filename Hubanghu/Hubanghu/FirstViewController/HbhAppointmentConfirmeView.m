@@ -41,7 +41,6 @@
 			[self addSubview:_pickWorkerBt];
 
 			_confirmeButton = [[UIButton alloc] initWithFrame:CGRectMake(_pickWorkerBt.right+20, _pickWorkerBt.top, _pickWorkerBt.width, _pickWorkerBt.height)];
-			
 		}else if (type == 1){
 			_confirmeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, _priceLabel.bottom+5, kMainScreenWidth - 20, 30)];
 		}

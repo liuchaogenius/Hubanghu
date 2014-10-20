@@ -42,6 +42,7 @@
 		_worker = worker;
 		_urgent = NO;
 		_type = 0;
+		self.hidesBottomBarWhenPushed = YES;
 	}
 	return self;
 }
@@ -154,6 +155,7 @@
 				UIButton *typeButton = [[UIButton alloc] initWithFrame:CGRectMake(offsetX + 10, 0, width, kDescLabelHeight/2)];
 				typeButton.centerY = headline.centerY;
 				typeButton.layer.borderWidth = 1;
+				typeButton.layer.cornerRadius = 2;
 				typeButton.tag = i;
 				if (_type == i) {
 					typeButton.layer.borderColor = KColor.CGColor;
@@ -228,7 +230,7 @@
 			remarkTf.placeholder = @"请输入..";
 			remarkTf.clearButtonMode = UITextFieldViewModeWhileEditing;
 			remarkTf.font = kFont13;
-			remarkTf.layer.borderWidth = 1;
+			remarkTf.layer.borderWidth = 0.2;
 			remarkTf.layer.borderColor = [UIColor lightGrayColor].CGColor;
 			remarkTf.layer.cornerRadius = 2;
 			remarkTf.leftViewMode = UITextFieldViewModeAlways;
@@ -252,7 +254,7 @@
 	switch (indexPath.section) {
 		case 0:return kDescLabelHeight;
 		case 1:return 70;
-		case 2:return 235;
+		case 2:return 260;
 	}
 	return 0;
 }

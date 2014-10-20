@@ -15,10 +15,10 @@
 @end
 
 @interface HbhAppointmentDetailsTableViewCell : UITableViewCell<UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UITextField *timeTF;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTF;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTF;
-@property (weak, nonatomic) IBOutlet UILabel *areaLabel;
+@property (weak, nonatomic) IBOutlet UITextField *areaTF;
 @property (weak, nonatomic) IBOutlet UITextField *detailAreaTF;
 @property (nonatomic,strong) UIDatePicker *datePicker;
 @property (nonatomic) id<HbhAppointmentDelegate> delegate;

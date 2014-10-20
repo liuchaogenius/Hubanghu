@@ -63,6 +63,7 @@
 		ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC5D50E19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib */; };
 		ABC5D51319F1F16100A306F7 /* HbhCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D51219F1F16100A306F7 /* HbhCommentViewController.m */; };
 		ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */; };
+		B02C2B1719F4FD0600B9C4FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02C2B1619F4FD0600B9C4FF /* Images.xcassets */; };
 		B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */; };
 		B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */; };
 		B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */; };
@@ -77,7 +78,6 @@
 		FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1FC27419ED1A2F00C362F7 /* STAlerView.m */; };
 		FF21CE7019E64B5A005007B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE6F19E64B5A005007B7 /* main.m */; };
 		FF21CE7319E64B5A005007B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE7219E64B5A005007B7 /* AppDelegate.m */; };
-		FF21CE7519E64B5A005007B7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF21CE7419E64B5A005007B7 /* Images.xcassets */; };
 		FF21CE8419E64B5A005007B7 /* HubanghuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE8319E64B5A005007B7 /* HubanghuTests.m */; };
 		FF21CE9019E64D76005007B7 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE8F19E64D76005007B7 /* RootTabBarController.m */; };
 		FF21CE9819E65FE7005007B7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE9719E65FE7005007B7 /* FirstViewController.m */; };
@@ -248,6 +248,7 @@
 		ABC5D51219F1F16100A306F7 /* HbhCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhCommentViewController.m; sourceTree = "<group>"; };
 		ABE53EC219F0ED9900A8FE8B /* HbhWorkerListManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerListManage.h; sourceTree = "<group>"; };
 		ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerListManage.m; sourceTree = "<group>"; };
+		B02C2B1619F4FD0600B9C4FF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B0EB09E019F171FD00EDB0D5 /* HbhAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentViewController.h; sourceTree = "<group>"; };
 		B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentViewController.m; sourceTree = "<group>"; };
 		B0EED42519F37C8E00CBFBFC /* HbhAppointmentNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentNetManager.h; sourceTree = "<group>"; };
@@ -275,7 +276,6 @@
 		FF21CE6F19E64B5A005007B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FF21CE7119E64B5A005007B7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FF21CE7219E64B5A005007B7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FF21CE7419E64B5A005007B7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FF21CE7D19E64B5A005007B7 /* HubanghuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HubanghuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF21CE8219E64B5A005007B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF21CE8319E64B5A005007B7 /* HubanghuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HubanghuTests.m; sourceTree = "<group>"; };
@@ -488,9 +488,9 @@
 		5BF8FC7919F1073600598FB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */,
 				B0EED42919F37D4A00CBFBFC /* HbhAppointmentConfirmeView.h */,
 				B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */,
+				B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */,
 				B0EED42B19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.h */,
 				B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */,
 				5BF8FC7A19F107C700598FB9 /* HbhFirstVCCell.h */,
@@ -680,7 +680,7 @@
 				FF21CE9119E64DAE005007B7 /* UIParty */,
 				FF21CE7119E64B5A005007B7 /* AppDelegate.h */,
 				FF21CE7219E64B5A005007B7 /* AppDelegate.m */,
-				FF21CE7419E64B5A005007B7 /* Images.xcassets */,
+				B02C2B1619F4FD0600B9C4FF /* Images.xcassets */,
 				FF21CE6D19E64B5A005007B7 /* Supporting Files */,
 			);
 			path = Hubanghu;
@@ -1136,10 +1136,10 @@
 				ABAFAB1D19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib in Resources */,
 				B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */,
 				ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */,
-				FF21CE7519E64B5A005007B7 /* Images.xcassets in Resources */,
 				FF15253619E7D354008AB6EC /* testImg111@3x.png in Resources */,
 				5BF8FC7819F0FA3900598FB9 /* HbhAllCategory.plist in Resources */,
 				5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */,
+				B02C2B1719F4FD0600B9C4FF /* Images.xcassets in Resources */,
 				5B03CC0019EFE0D000A367DC /* HbhQRcodeViewController.xib in Resources */,
 				AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */,
 				ABAFAB2219EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.xib in Resources */,
