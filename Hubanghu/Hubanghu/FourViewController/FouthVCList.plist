@@ -17,7 +17,7 @@
 			<key>name</key>
 			<string>未完成订单</string>
 			<key>image</key>
-			<string>MyVClistImage_1</string>
+			<string>MyVClistImage_2</string>
 		</dict>
 		<dict>
 			<key>typeTag</key>
@@ -25,7 +25,7 @@
 			<key>name</key>
 			<string>带评价订单</string>
 			<key>image</key>
-			<string>MyVClistImage_1</string>
+			<string>MyVClistImage_3</string>
 		</dict>
 	</array>
 	<array>
@@ -35,7 +35,7 @@
 			<key>name</key>
 			<string>我的二维码</string>
 			<key>image</key>
-			<string>MyVClistImage_1</string>
+			<string>MyVClistImage_4</string>
 		</dict>
 	</array>
 	<array>
@@ -45,7 +45,7 @@
 			<key>name</key>
 			<string>修改密码</string>
 			<key>image</key>
-			<string>MyVClistImage_1</string>
+			<string>MyVClistImage_5</string>
 		</dict>
 	</array>
 </array>

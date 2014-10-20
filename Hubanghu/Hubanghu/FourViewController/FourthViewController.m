@@ -20,6 +20,9 @@
 #define KSetionNumber 5
 #define kcornerRadius 4
 #define kHeaderHeight 114
+#define kNumberLabelTag 55
+#define kaImageViewTag 56
+#define klabelTag 57
 
 enum CellTag_Type
 {
@@ -147,7 +150,10 @@ enum CellTag_Type
     }
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40;
+}
 
 #pragma mark headView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -190,7 +196,20 @@ enum CellTag_Type
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-            cell.textLabel.font = kFont13;
+            //图片
+            UIImageView *aImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, (cell.height-20)/2.0f, 20, 20)];
+            [aImageView setContentMode:UIViewContentModeScaleToFill];
+            [aImageView setFrame:CGRectMake(10, (cell.height-20)/2.0f, 22, 25)];
+            aImageView.tag = kaImageViewTag;
+            [cell addSubview:aImageView];
+            
+            //显示文字的label
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, kMainScreenWidth-40, cell.height)];
+            [label setTextAlignment:UITextAlignmentLeft];
+            [label setFont:kFont13];
+            label.tag = klabelTag;
+            [cell.contentView addSubview:label];
+            
             //显示数量的label
             UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-40-20, cell.frame.size.height/2.0-7.5, 20, 15)];
             numberLabel.layer.cornerRadius = 2.0f;
@@ -199,11 +218,13 @@ enum CellTag_Type
             numberLabel.layer.masksToBounds = YES;
             numberLabel.backgroundColor = KColor;
             numberLabel.textColor = [UIColor whiteColor];
+            numberLabel.tag = kNumberLabelTag;
             _numberLabel = numberLabel;
             [cell.contentView addSubview:numberLabel];
         }
         NSArray *array = self.listArray[indexPath.section-1];
         NSDictionary *dic = array[indexPath.row];
+        _numberLabel = (UILabel *)[cell viewWithTag:kNumberLabelTag];
         _numberLabel.hidden = YES;
         NSInteger typeTag = [dic[@"typeTag"] integerValue];//通过tag区分cell功能
         cell.tag = typeTag;
@@ -222,8 +243,11 @@ enum CellTag_Type
             default:
                 break;
         }
-        cell.imageView.image = [UIImage imageNamed:dic[@"image"]];
-        cell.textLabel.text = dic[@"name"];
+        UIImageView *aImageView = (UIImageView *)[cell viewWithTag:kaImageViewTag];
+        aImageView.image = [UIImage imageNamed:dic[@"image"]];
+        UILabel *textLabel = (UILabel *)[cell viewWithTag:klabelTag];
+        textLabel.text = dic[@"name"];
+        //cell.textLabel.text = dic[@"name"];
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         return cell;
     }
@@ -283,16 +307,18 @@ enum CellTag_Type
 #pragma amrk 刷新订单等提示数字
 - (void)refreshNumberLabels
 {
-    [HbhUserManager profileRevalWithSuccess:^(int notDone, int notComment) {
-        if(_notDoneNumberLabel && notDone){
-            _notDoneNumberLabel.text = [NSString stringWithFormat:@"%d",notDone];
-            _notDoneNumberLabel.hidden = NO;
-        }
-        if(_notCommentNumberLabel && notComment){
-            _notCommentNumberLabel.text = [NSString stringWithFormat:@"%d",notComment];
-            _notCommentNumberLabel.hidden = NO;
-        }
-    } failure:nil];
+    if ([HbhUser sharedHbhUser].isLogin) {
+        [HbhUserManager profileRevalWithSuccess:^(int notDone, int notComment) {
+            if(_notDoneNumberLabel && notDone){
+                _notDoneNumberLabel.text = [NSString stringWithFormat:@"%d",notDone];
+                _notDoneNumberLabel.hidden = NO;
+            }
+            if(_notCommentNumberLabel && notComment){
+                _notCommentNumberLabel.text = [NSString stringWithFormat:@"%d",notComment];
+                _notCommentNumberLabel.hidden = NO;
+            }
+        } failure:nil];
+    }
 }
 
 #pragma mark - Action
