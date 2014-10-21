@@ -23,7 +23,7 @@
 
 @property (nonatomic, readonly) CGFloat visibleKeyboardHeight;
 
-- (void)showWithStatus:(NSString*)string maskType:(SVProgressHUDMaskType)hudMaskType networkIndicator:(BOOL)show;
+- (void)showWithStatus:(NSString*)string maskType:(SVProgressHUDMaskType)hudMaskType networkIndicator:(BOOL)show cover:(BOOL)isCoverNavbar offsetY:(int)offsetY;
 - (void)setStatus:(NSString*)string;
 - (void)registerNotifications;
 - (void)moveToPoint:(CGPoint)newCenter rotateAngle:(CGFloat)angle;
@@ -60,37 +60,43 @@
 
 #pragma mark - Show Methods
 
-+ (void)show {
-    [[SVProgressHUD sharedView] showWithStatus:nil maskType:SVProgressHUDMaskTypeNone networkIndicator:NO];
++ (void)show:(BOOL)isCoverNavbar offsetY:(int)offsetY{
+    [[SVProgressHUD sharedView] showWithStatus:nil maskType:SVProgressHUDMaskTypeNone networkIndicator:NO cover:isCoverNavbar offsetY:offsetY];
 }
 
-+ (void)showWithStatus:(NSString *)status {
-    [[SVProgressHUD sharedView] showWithStatus:status maskType:SVProgressHUDMaskTypeNone networkIndicator:NO];
++ (void)showWithStatus:(NSString *)status cover:(BOOL)isCoverNavbar offsetY:(int)offsetY{
+    [[SVProgressHUD sharedView] showWithStatus:status maskType:SVProgressHUDMaskTypeNone networkIndicator:NO cover:isCoverNavbar offsetY:offsetY];
 }
 
-+ (void)showWithMaskType:(SVProgressHUDMaskType)maskType {
-    [[SVProgressHUD sharedView] showWithStatus:nil maskType:maskType networkIndicator:NO];
++ (void)showWithMaskType:(SVProgressHUDMaskType)maskType cover:(BOOL)isCoverNavbar offsetY:(int)offsetY{
+    [[SVProgressHUD sharedView] showWithStatus:nil maskType:maskType networkIndicator:NO cover:isCoverNavbar offsetY:offsetY];
 }
 
-+ (void)showWithStatus:(NSString*)status maskType:(SVProgressHUDMaskType)maskType {
-    [[SVProgressHUD sharedView] showWithStatus:status maskType:maskType networkIndicator:NO];
++ (void)showWithStatus:(NSString*)status
+              maskType:(SVProgressHUDMaskType)maskType
+                 cover:(BOOL)isCoverNavbar offsetY:(int)offsetY{
+    [[SVProgressHUD sharedView] showWithStatus:status maskType:maskType networkIndicator:NO cover:isCoverNavbar offsetY:offsetY];
 }
 
-+ (void)showSuccessWithStatus:(NSString *)string {
-    [SVProgressHUD showSuccessWithStatus:string duration:1];
++ (void)showSuccessWithStatus:(NSString *)string cover:(BOOL)isCoverNavbar offsetY:(int)offsetY{
+    [SVProgressHUD showSuccessWithStatus:string duration:1 cover:isCoverNavbar offsetY:offsetY];
 }
 
-+ (void)showSuccessWithStatus:(NSString *)string duration:(NSTimeInterval)duration {
-    [SVProgressHUD show];
++ (void)showSuccessWithStatus:(NSString *)string
+                     duration:(NSTimeInterval)duration
+                        cover:(BOOL)isCoverNavbar offsetY:(int)offsetY{
+    [SVProgressHUD show:isCoverNavbar offsetY:offsetY];
     [SVProgressHUD dismissWithSuccess:string afterDelay:duration];
 }
 
-+ (void)showErrorWithStatus:(NSString *)string {
-    [SVProgressHUD showErrorWithStatus:string duration:1];
++ (void)showErrorWithStatus:(NSString *)string cover:(BOOL)isCoverNavbar offsetY:(int)offsetY{
+    [SVProgressHUD showErrorWithStatus:string duration:1 cover:isCoverNavbar offsetY:offsetY];
 }
 
-+ (void)showErrorWithStatus:(NSString *)string duration:(NSTimeInterval)duration {
-    [SVProgressHUD show];
++ (void)showErrorWithStatus:(NSString *)string
+                   duration:(NSTimeInterval)duration
+                      cover:(BOOL)isCoverNavbar offsetY:(int)offsetY{
+    [SVProgressHUD show:isCoverNavbar offsetY:offsetY];
     [SVProgressHUD dismissWithError:string afterDelay:duration];
 }
 
@@ -333,7 +339,7 @@
 
 #pragma mark - Master show/dismiss methods
 
-- (void)showWithStatus:(NSString*)string maskType:(SVProgressHUDMaskType)hudMaskType networkIndicator:(BOOL)show {
+- (void)showWithStatus:(NSString*)string maskType:(SVProgressHUDMaskType)hudMaskType networkIndicator:(BOOL)show cover:(BOOL)isCoverNavbar offsetY:(int)offsetY{
     dispatch_async(dispatch_get_main_queue(), ^{
         if(!self.superview)
             [self.overlayWindow addSubview:self];
@@ -350,7 +356,11 @@
         } else {
             self.overlayWindow.userInteractionEnabled = NO;
         }
-        
+        if(!isCoverNavbar)
+        {
+            CGRect rect = self.overlayWindow.frame;
+            self.overlayWindow.frame = CGRectMake(0, offsetY, rect.size.width, rect.size.height-offsetY);
+        }
         [self.overlayWindow makeKeyAndVisible];
         [self positionHUD:nil];
         

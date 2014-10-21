@@ -21,15 +21,16 @@ typedef NSUInteger SVProgressHUDMaskType;
 
 @interface SVProgressHUD : UIView
 
-+ (void)show;
-+ (void)showWithStatus:(NSString*)status;
-+ (void)showWithStatus:(NSString*)status maskType:(SVProgressHUDMaskType)maskType;
-+ (void)showWithMaskType:(SVProgressHUDMaskType)maskType;
+//isCovernavr  是否覆盖navgationbar  如果需要遮盖 offsety 是要便宜的Y值即 navgationbar的高度
++ (void)show:(BOOL)isCoverNavbar offsetY:(int)offsetY;
++ (void)showWithStatus:(NSString*)status cover:(BOOL)isCoverNavbar offsetY:(int)offsetY;
++ (void)showWithStatus:(NSString*)status maskType:(SVProgressHUDMaskType)maskType cover:(BOOL)isCoverNavbar offsetY:(int)offsetY;
++ (void)showWithMaskType:(SVProgressHUDMaskType)maskType cover:(BOOL)isCoverNavbar offsetY:(int)offsetY;
 
-+ (void)showSuccessWithStatus:(NSString*)string;
-+ (void)showSuccessWithStatus:(NSString *)string duration:(NSTimeInterval)duration;
-+ (void)showErrorWithStatus:(NSString *)string;
-+ (void)showErrorWithStatus:(NSString *)string duration:(NSTimeInterval)duration;
++ (void)showSuccessWithStatus:(NSString*)string cover:(BOOL)isCoverNavbar offsetY:(int)offsetY;
++ (void)showSuccessWithStatus:(NSString *)string duration:(NSTimeInterval)duration cover:(BOOL)isCoverNavbar offsetY:(int)offsetY;
++ (void)showErrorWithStatus:(NSString *)string cover:(BOOL)isCoverNavbar offsetY:(int)offsetY;
++ (void)showErrorWithStatus:(NSString *)string duration:(NSTimeInterval)duration cover:(BOOL)isCoverNavbar offsetY:(int)offsetY;
 
 + (void)setStatus:(NSString*)string; // change the HUD loading status while it's showing
 
