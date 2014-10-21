@@ -28,6 +28,7 @@
         HbhWorkerCaseClass *model = [aArray objectAtIndex:i];
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(interval+(btnWidth+interval)*i, 0, btnWidth, btnWidth)];
         [btn sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] forState:UIControlStateNormal];
+        btn.userInteractionEnabled = NO;
         [scrollView addSubview:btn];
     }
     scrollView.contentSize = CGSizeMake(aArray.count*(btnWidth+interval)+interval, 60);

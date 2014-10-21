@@ -16,6 +16,7 @@
 #import "UIImageView+WebCache.h"
 #import "HbhMakeAppointMentViewController.h"
 #import "HbhCommentViewController.h"
+#import "SVPullToRefresh.h"
 
 @interface HbhWorkerDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -54,6 +55,7 @@
     
     [self.view addSubview:self.activityView];
     [self.activityView startAnimating];
+    [self addTableViewTrag];
     
     [self.workerDetailManage getWorkerDetailWithWorkerId:self.myWorkerId SuccBlock:^(HbhWorkerData *aData) {
         self.workerData = aData;
@@ -62,6 +64,40 @@
     } and:^{
         
     }];
+}
+
+#pragma mark 上拉下拉
+#pragma mark 增加上拉下拉
+- (void)addTableViewTrag
+{
+    __weak HbhWorkerDetailViewController *weakself = self;
+    [weakself.workDetailTableView addPullToRefreshWithActionHandler:^{
+        int64_t delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+            [weakself.workDetailTableView.pullToRefreshView stopAnimating];
+            [self.workerDetailManage getWorkerDetailWithWorkerId:self.myWorkerId SuccBlock:^(HbhWorkerData *aData) {
+                self.workerData = aData;
+                [self.workDetailTableView reloadData];
+                [self.activityView stopAnimating];
+            } and:^{
+                
+            }];
+        });
+    }];
+    
+    //    if (btnCount == 15)
+    //    {
+    //        [weakself.showOrderTableView addInfiniteScrollingWithActionHandler:^{
+    //            int64_t delayInSeconds = 2.0;
+    //            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    //            dispatch_after(popTime, dispatch_get_main_queue(), ^{
+    //                [weakself.showOrderTableView.infiniteScrollingView stopAnimating];
+    //
+    //            });
+    //        }];
+    //    }
+    
 }
 
 - (UIActivityIndicatorView *)activityView

@@ -12,6 +12,7 @@
 #import "HbhDropDownView.h"
 #import "UIImageView+WebCache.h"
 #import "HbhWorkerListManage.h"
+#import "SVPullToRefresh.h"
 
 
 typedef enum : NSUInteger {
@@ -78,6 +79,7 @@ typedef enum : NSUInteger {
     
     [self.view addSubview:self.activityView];
     [self.activityView startAnimating];
+    [self addTableViewTrag];
 #pragma mark 网络请求
     [self getWorkerListWithAreaId:1 andWorkerTypeId:1 andOrderCountId:1];
 }
@@ -99,6 +101,35 @@ typedef enum : NSUInteger {
         [self.view addSubview:self.failView];
     }];
 }
+
+#pragma mark 上拉下拉
+#pragma mark 增加上拉下拉
+- (void)addTableViewTrag
+{
+    __weak SecondViewController *weakself = self;
+    [weakself.showWorkerListTableView addPullToRefreshWithActionHandler:^{
+        int64_t delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+            [weakself.showWorkerListTableView.pullToRefreshView stopAnimating];
+            [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:-1];
+        });
+    }];
+    
+    //    if (btnCount == 15)
+    //    {
+    //        [weakself.showOrderTableView addInfiniteScrollingWithActionHandler:^{
+    //            int64_t delayInSeconds = 2.0;
+    //            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    //            dispatch_after(popTime, dispatch_get_main_queue(), ^{
+    //                [weakself.showOrderTableView.infiniteScrollingView stopAnimating];
+    //
+    //            });
+    //        }];
+    //    }
+    
+}
+
 
 #pragma mark 刷新btn
 - (void)updateBtn
