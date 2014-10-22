@@ -105,7 +105,7 @@ enum CellTag_Type
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的";
+    [self settitleLabel:@"我的"];
     
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-49-64) style:UITableViewStyleGrouped];
     _tableView = tableView;

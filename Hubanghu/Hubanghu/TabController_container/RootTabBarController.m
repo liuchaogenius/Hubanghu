@@ -78,8 +78,8 @@
 
 - (void)initTabBarItem
 {
-    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_sel"]]];
-    for(int i=0; i<self.tabBar.items.count;i++)
+    //[[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_sel"]]];
+    for(int i=0; i<4;i++)
     {
         UITabBarItem *tabBarItem = self.tabBar.items[i];
         UIImage *norimg = [UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_nor_%d",i+1]];
@@ -87,6 +87,7 @@
         norimg = [norimg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         //selimg = [selimg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         tabBarItem.imageInsets = UIEdgeInsetsMake(-3, 0, 4, 0);
+        tabBarItem.title = @" ";
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
         tabBarItem.image = norimg;
         tabBarItem.tag = i;
@@ -95,7 +96,15 @@
 #endif
         
     }
+    
+    MLOG(@"tabbarHeight=%f",self.tabBar.frame.size.height);
+
 }
+
+//- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+//{
+//    tabBar.selectedItem.title = @" ";
+//}
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {

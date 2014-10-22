@@ -10,7 +10,9 @@
 #import "ViewInteraction.h"
 
 @interface BaseViewController ()
-
+{
+    UILabel *titleLabel;
+}
 @end
 
 @implementation BaseViewController
@@ -130,6 +132,22 @@
     {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
     }
+}
+
+- (void)settitleLabel:(NSString*)aTitle
+{
+    if(!titleLabel)
+    {
+        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 200, self.navigationController.navigationBar.frame.size.height)];
+        self.navigationItem.titleView = titleLabel;
+    }
+    titleLabel.center = self.navigationController.navigationBar.center;
+    titleLabel.backgroundColor = kClearColor;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.font = kFont18;
+    titleLabel.text = aTitle;
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    
 }
 
 - (void)setRightButton:(UIImage *)aImg title:(NSString *)aTitle target:(id)aTarget action:(SEL)aSelector

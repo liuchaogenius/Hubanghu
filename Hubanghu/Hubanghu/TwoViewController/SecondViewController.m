@@ -58,7 +58,7 @@ typedef enum : NSUInteger {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"预约工人";
+    [self settitleLabel:@"预约工人"];
     [self.view addSubview:self.btnBackView];
     
     if (!_isSpecial)

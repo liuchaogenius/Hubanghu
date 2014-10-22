@@ -65,7 +65,7 @@ typedef enum : NSUInteger {
 - (void)initView
 {
     self.view.backgroundColor = RGBCOLOR(247, 247, 247);
-    self.title = @"我的订单";
+    [self settitleLabel:@"我的订单"];
     if (!self.paramCurrentTab)
     {
         _currentTab = currentTabOrderAll;

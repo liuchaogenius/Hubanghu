@@ -72,8 +72,10 @@ enum CateId_Type
         rightBtnTitle = @"城市";
     }
     [self setRightButton:nil title:rightBtnTitle target:self action:@selector(showSelCityVC)];
-    
-    self.title = @"预约";
+
+    MLOG(@"navgationBarHeight=%f",self.navigationController.navigationBar.frame.size.height);
+    //self.title = @"预约";
+    [self settitleLabel:@"预约"];
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-49-64) style:UITableViewStyleGrouped];
     MLOG(@"%lf",self.tableView.height);

@@ -20,7 +20,7 @@
                  title:(NSString *)aTitle
                 target:(id)aTarget
                 action:(SEL)aSelector;
-
+- (void)settitleLabel:(NSString*)aTitle;
 - (void)pushView:(UIView*)aView;
 
 - (void)popView:(UIView*)aView completeBlock:(void(^)(BOOL isComplete))aCompleteblock;

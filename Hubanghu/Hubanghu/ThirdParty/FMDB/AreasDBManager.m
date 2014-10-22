@@ -102,6 +102,11 @@
 - (void)selHbuArealistModel:(NSString *)aCityName resultBlock:(void(^)(HbuAreaListModelAreas*model))aResultBlock
 {
     __weak AreasDBManager *weakself = self;
+    if(aCityName == nil)
+    {
+        aResultBlock(nil);
+        return;
+    }
     [dataQueue inDatabase:^(FMDatabase *db) {
         if([db open])
         {
@@ -217,6 +222,11 @@
 
 - (void)selProvinceOfCity:(NSString *)aParent district:(void(^)(NSMutableArray *cityArry))acityBlock
 {
+    if(aParent == nil)
+    {
+        acityBlock(nil);
+        return;
+    }
     __weak AreasDBManager *weakself = self;
     [dataQueue inDatabase:^(FMDatabase *db) {
         if([db open])
@@ -239,6 +249,11 @@
 
 - (void)selCityOfDistrict:(NSString *)aParent district:(void(^)(NSMutableArray *districtArry))aDistrictBlock
 {
+    if(aParent == nil)
+    {
+        aDistrictBlock(nil);
+        return;
+    }
     __weak AreasDBManager *weakself = self;
     [dataQueue inDatabase:^(FMDatabase *db) {
         if([db open])
