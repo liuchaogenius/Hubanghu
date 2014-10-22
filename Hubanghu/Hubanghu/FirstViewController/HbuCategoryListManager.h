@@ -10,6 +10,6 @@
 @class CategoryInfoModel;
 @interface HbuCategoryListManager : NSObject
 
-+ (void)getSingleCategroryInfoWithCateId:(double)cateId WithSuccBlock:(void(^)(CategoryInfoModel *cModel))aSuccBlock and:(void(^)(void))aFailBlock;
++ (void)getCategroryInfoWithCateId:(double)cateId WithSuccBlock:(void(^)(CategoryInfoModel *cModel))aSuccBlock and:(void(^)(void))aFailBlock;
 
 @end

@@ -22,5 +22,5 @@
 //从网络获取地区信息，并存入数据库（如果数据库没有地区信息）
 - (void)getAreasDataAndSaveToDBifNeeded;
 //定位
-- (void)getUserLocation;
+- (void)getUserLocationWithSuccess : (void (^)())sBlock Fail : (void(^)(NSString *failString))aFailBlock;
 @end

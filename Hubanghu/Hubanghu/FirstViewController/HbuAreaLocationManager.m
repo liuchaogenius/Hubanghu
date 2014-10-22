@@ -11,6 +11,8 @@
 #import "NetManager.h"
 #import "AreasDBManager.h"
 #import "SLocationManager.h"
+#import "HbhUser.h"
+
 @implementation HbuAreaLocationManager
 
 - (AreasDBManager *)areasDBManager
@@ -40,7 +42,7 @@
 //        [weakSelf.areasDBManager selProvince:^(NSMutableArray *cityArry) {
 //            MLOG(@"%@",cityArry);
 //        }];
-        if (cityDict) {
+        if (!cityDict) {
             //不用获取
         }else{
             [weakSelf getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
@@ -86,11 +88,12 @@
 }
 
 #pragma mark - 获取位置
-- (void)getUserLocation
+- (void)getUserLocationWithSuccess : (void (^)())sBlock Fail : (void(^)(NSString *failString))aFailBlock
 {
     SLocationManager *locationManager = [SLocationManager getMyLocationInstance];
     if([locationManager getLocationAuthorStatus] == 0 || [locationManager getLocationAuthorStatus]>= 3)
     {
+        __weak HbuAreaLocationManager *weakSelf = self;
         [locationManager statUpdateLocation:^(Location2d al2d) {
 #warning 需要把定位度添加http头里面
             if (al2d.code == 1) {
@@ -103,20 +106,27 @@
             }
             [locationManager getLocationAddress:NO resultBlock:^(NSDictionary *aLocationDict, Location2d aL2d) {
 #warning 对比城市 创建currentAreas
-                //MLOG(@"%@",aLocationDict[@"City"]);
-                [self.areasDBManager selGroupAreaCity:^(NSMutableDictionary *cityDict) {
-                    MLOG(@"%@",cityDict);
-                }];
-                [self.areasDBManager selHbuArealistModel:aLocationDict[@"City"] resultBlock:^(HbuAreaListModelAreas *model) {
-                    NSLog(@"model ---------- %@",model);
-                }];
-                
+                MLOG(@"%@",aLocationDict[@"City"]);
+                if (aLocationDict[@"City"]) {
+                    [weakSelf.areasDBManager selHbuArealistModel:aLocationDict[@"City"] resultBlock:^(HbuAreaListModelAreas *model) {
+                        if (model) {
+                            weakSelf.currentAreas = model;
+                            [HbhUser sharedHbhUser].currentArea = model;
+                            sBlock();
+                        }else{
+                            aFailBlock(@"匹配用户城市失败，请手动选择");
+                        }
+                    }];
+                }else{
+                    aFailBlock(@"定位用户城市失败，请手动选择");
+                }
             }];
         }];
     }
     else
     {
 #warning  return 一个值 让用户自己选择城市
+        aFailBlock(@"您没有开启定位服务，请手动选择城市");
     }
 }
 
@@ -124,6 +134,9 @@
 {
     _currentAreas = currentAreas;
 #warning 设置http透明的areadid
+    if (_currentAreas.areaId) {
+        [[NetManager shareInstance] setAreaId:[NSString stringWithFormat:@"%f",_currentAreas.areaId]];
+    }
 }
 
 @end

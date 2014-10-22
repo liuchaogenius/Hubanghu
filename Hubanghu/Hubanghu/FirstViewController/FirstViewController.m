@@ -13,6 +13,9 @@
 #import "HbuAreaLocationManager.h"
 #import "LeftView.h"
 #import "ViewInteraction.h"
+#import "SVProgressHUD.h"
+#import "HbhUser.h"
+#import "HbhSelCityViewController.h"
 
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
 enum CateId_Type
@@ -25,7 +28,6 @@ enum CateId_Type
 };
 
 @interface FirstViewController ()<UITableViewDataSource,UITableViewDelegate>
-
 @property (strong, nonatomic) UITableView* tableView;
 @property (strong, nonatomic) NSArray *allCategoryInfo;//所有预约类型info数组
 @property (strong, nonatomic) UIView *headView; //headView
@@ -58,8 +60,18 @@ enum CateId_Type
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self setLeftButton:nil title:@"left" target:self action:@selector(showLeftView)];
+    
+    //右侧button
+    NSString *rightBtnTitle;
+    if ([HbhUser sharedHbhUser].isLogin && [HbhUser sharedHbhUser].currentArea) { //登陆状态
+        rightBtnTitle = [HbhUser sharedHbhUser].currentArea.name;
+    }else if([HbuAreaLocationManager sharedManager].currentAreas){ //未登录
+        rightBtnTitle = [HbuAreaLocationManager sharedManager].currentAreas.name;
+    }else{
+        rightBtnTitle = @"城市";
+    }
+    [self setRightButton:nil title:rightBtnTitle target:self action:@selector(showSelCityVC)];
     
     self.title = @"预约";
     self.view.backgroundColor = [UIColor whiteColor];
@@ -70,10 +82,21 @@ enum CateId_Type
     self.tableView.dataSource = self;
     [self.tableView registerClass:[HbhFirstVCCell class] forCellReuseIdentifier:@"FirstVCCell"];
     
-    //定位
+    //定位相关
     _areaLocationManager = [HbuAreaLocationManager sharedManager];
     [self.areaLocationManager getAreasDataAndSaveToDBifNeeded];
-    [self.areaLocationManager getUserLocation];
+
+    //定位处理
+    __weak FirstViewController *weakSelf = self;
+    [self.areaLocationManager getUserLocationWithSuccess:^{
+        [weakSelf setRightButton:nil title:[HbuAreaLocationManager sharedManager].currentAreas.name target:self action:@selector(showSelCityVC)];
+        
+    } Fail:^(NSString *failString) {
+        [SVProgressHUD showErrorWithStatus:failString duration:1.2f cover:YES offsetY:kMainScreenHeight/2.0f];
+        HbhSelCityViewController *selCityVC = [[HbhSelCityViewController alloc] init];
+        selCityVC.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:selCityVC animated:YES];
+    }];
 }
 
 - (void)showLeftView
@@ -147,6 +170,14 @@ enum CateId_Type
 
 
 #pragma mark - Action
+
+- (void)showSelCityVC
+{
+    HbhSelCityViewController *selCityVC = [[HbhSelCityViewController alloc] init];
+    selCityVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:selCityVC animated:YES];
+}
+
 #pragma mark 点击图片button进入对应type页面
 - (void)touchImageButton:(UIButton *)sender
 {

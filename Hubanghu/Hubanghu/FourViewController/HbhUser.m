@@ -39,6 +39,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HbhUser);
     _point = 0;
     _encodedToken = nil;
     _statusIsChanged = NO;
+    _currentArea = nil;
     [self loadLocalUserInfo]; //判断沙箱是否有数据，并修改数据
     return self;
 }
@@ -84,12 +85,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HbhUser);
     self.point = [userDic[@"point"] integerValue];
     self.QRCodeUrl = userDic[@"QRCodeUrl"];
     self.encodedToken = userDic[@"encodedToken"];
+    self.currentArea = userDic[@"currentArea"];
 }
 
 //保存用户信息文件至沙箱
 - (void)writeUserInfoToFile
 {
-    NSDictionary *dic = @{@"nickName":self.nickName, @"id":self.userID, @"photoUrl":self.photoUrl, @"phone":self.phone, @"point":[NSNumber numberWithInteger:self.point], @"QRCodeUrl":self.QRCodeUrl,@"encodedToken":self.encodedToken};
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"nickName":self.nickName, @"id":self.userID, @"photoUrl":self.photoUrl, @"phone":self.phone, @"point":[NSNumber numberWithInteger:self.point], @"QRCodeUrl":self.QRCodeUrl,@"encodedToken":self.encodedToken}];
+    if (self.currentArea) {
+        [dic setObject:self.currentArea forKey:@"currentArea"];
+    }
     [dic writeToFile:self.userFilePath atomically:YES];
     //MLOG(@"%@",self.userFilePath);
 }

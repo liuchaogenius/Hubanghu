@@ -14,6 +14,7 @@
 #import "UIButton+WebCache.h"
 #import "HbhAppointmentViewController.h"
 #import "HbhUser.h"
+#import "SVPullToRefresh.h"
 
 #define kSgmBtnHeight 35
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
@@ -128,26 +129,50 @@
     
     [self.tableView registerClass:[HbhCategoryCell class] forCellReuseIdentifier:@"Cell"];
 
-    
-    [HbuCategoryListManager getSingleCategroryInfoWithCateId:self.cateId WithSuccBlock:^(CategoryInfoModel *cModel) {
-        self.categoryInfoModel = cModel;
-        self.title = self.categoryInfoModel.title;
-        [self.view addSubview:self.tableView];
+    __weak HbuCategoryViewController *weakSelf = self;
+    [HbuCategoryListManager getCategroryInfoWithCateId:self.cateId WithSuccBlock:^(CategoryInfoModel *cModel) {
+        weakSelf.categoryInfoModel = cModel;
+        weakSelf.title = weakSelf.categoryInfoModel.title;
+        [weakSelf.view addSubview:weakSelf.tableView];
+        
         //判断是否需要分栏，并作处理
-        if (self.sgmCount) {
-            [self.view addSubview:self.sgmBtmScrollView];
+        if (weakSelf.sgmCount) {
+            [weakSelf.view addSubview:weakSelf.sgmBtmScrollView];
             
         }
-        self.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-49-kSgmBtnHeight : kMainScreenHeight-20-44-49) );
-        [self.tableView reloadData];
+        weakSelf.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-49-kSgmBtnHeight : kMainScreenHeight-20-44-49) );
+        [weakSelf addTableViewTrag];
+        [weakSelf.tableView reloadData];
     } and:^{
         //错误处理
     }];
-    
-    
-    
 }
 
+#warning 待完善 是sgmbutton的处理
+- (void)addTableViewTrag
+{
+    __weak HbuCategoryViewController *weakSelf = self;
+    [weakSelf.tableView addPullToRefreshWithActionHandler:^{
+        int64_t delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+            [weakSelf.tableView.pullToRefreshView stopAnimating];
+            [HbuCategoryListManager getCategroryInfoWithCateId:self.cateId WithSuccBlock:^(CategoryInfoModel *cModel) {
+                // weakSelf.categoryInfoModel = cModel;
+                weakSelf.title = weakSelf.categoryInfoModel.title;
+                [weakSelf.view addSubview:weakSelf.tableView];
+                
+                //判断是否需要分栏，并作处理
+                if (weakSelf.sgmCount && !_sgmBtmScrollView) {
+                    [weakSelf.view addSubview:weakSelf.sgmBtmScrollView];
+                    
+                }
+                weakSelf.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-49-kSgmBtnHeight : kMainScreenHeight-20-44-49) );
+                [weakSelf.tableView reloadData];
+            } and:nil];
+        });
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

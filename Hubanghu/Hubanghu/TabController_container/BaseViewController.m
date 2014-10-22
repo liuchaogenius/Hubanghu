@@ -141,6 +141,7 @@
     if(aTitle)
     {
         [button setTitle:aTitle forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     if(aImg)
     {

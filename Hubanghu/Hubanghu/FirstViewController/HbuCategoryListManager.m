@@ -13,7 +13,7 @@
 
 @implementation HbuCategoryListManager
 
-+ (void)getSingleCategroryInfoWithCateId:(double)cateId WithSuccBlock:(void(^)(CategoryInfoModel *cModel))aSuccBlock and:(void(^)(void))aFailBlock{
++ (void)getCategroryInfoWithCateId:(double)cateId WithSuccBlock:(void(^)(CategoryInfoModel *cModel))aSuccBlock and:(void(^)(void))aFailBlock{
     NSString *getCategoryUrl = nil;
     NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:cateId] forKey:@"cateId"];
     kHubRequestUrl(@"getCategory.ashx",getCategoryUrl);
