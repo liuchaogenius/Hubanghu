@@ -105,6 +105,7 @@
 {
     if (self = [super init]) {
         self.cateId = cateId;
+        self.hidesBottomBarWhenPushed = YES;
     }
     return self;
 }
