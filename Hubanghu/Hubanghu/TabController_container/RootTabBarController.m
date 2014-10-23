@@ -83,13 +83,14 @@
     {
         UITabBarItem *tabBarItem = self.tabBar.items[i];
         UIImage *norimg = [UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_nor_%d",i+1]];
-        //UIImage *selimg = [UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_sel_%d",i+1]];
+        UIImage *selimg = [UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_nor_%d",i+1]];
         norimg = [norimg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        //selimg = [selimg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        tabBarItem.imageInsets = UIEdgeInsetsMake(-3, 0, 4, 0);
+        selimg = [selimg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
         tabBarItem.title = @" ";
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
         tabBarItem.image = norimg;
+        tabBarItem.selectedImage = selimg;
         tabBarItem.tag = i;
 #else
         [tabBarItem setFinishedSelectedImage:selimg withFinishedUnselectedImage:norimg];
