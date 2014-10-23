@@ -201,23 +201,14 @@
     }];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+        block(bytesWritten,totalBytesWritten,totalBytesExpectedToWrite);
     }];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSDictionary *Dict = [operation.responseString objectFromJSONString];
-//        NSURLRequest *temRequest = operation.request;
-//        //NSString *strRequestID = [temRequest valueForHTTPHeaderField:@"uploadImgRequestID"];
-//        NSMutableDictionary *mutDict = [NSMutableDictionary dictionaryWithCapacity:0];
-//        [mutDict setObject:Dict forKey:@"successDict"];
-//        //[mutDict setObject:strRequestID forKey:@"requestID"];
-//        success(mutDict);
+        NSDictionary *Dict = [operation.responseString objectFromJSONString];
+        success(Dict);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSDictionary *resultDictionary = [operation.responseString objectFromJSONString];
-//        NSURLRequest *temRequest = operation.request;
-//        //NSString *strRequestID = [temRequest valueForHTTPHeaderField:@"uploadImgRequestID"];
-//        NSMutableDictionary *mutDict = [NSMutableDictionary dictionaryWithCapacity:0];
-//        [mutDict setObject:resultDictionary forKey:@"failDict"];
-//        //[mutDict setObject:strRequestID forKey:@"requestID"];
-//        failure(mutDict, error);
+        NSDictionary *resultDictionary = [operation.responseString objectFromJSONString];
+        failure(resultDictionary, nil);
     }];
     [operation start];
 }
