@@ -59,7 +59,6 @@
 		ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */; };
 		ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */; };
 		ABC2B37419F3AC63000FEE32 /* HbhModifyUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */; };
-		ABC2B37719F3BBC5000FEE32 /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2B37619F3BBC5000FEE32 /* VPImageCropperViewController.m */; };
 		ABC2B37919F3BC83000FEE32 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */; };
 		ABC5D50619F1E59800A306F7 /* HbhMakeAppointMentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */; };
 		ABC5D50F19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50D19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m */; };
@@ -249,8 +248,6 @@
 		ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerImgTableViewCell.m; sourceTree = "<group>"; };
 		ABC2B37219F3AC63000FEE32 /* HbhModifyUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhModifyUserDetailViewController.h; sourceTree = "<group>"; };
 		ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhModifyUserDetailViewController.m; sourceTree = "<group>"; };
-		ABC2B37519F3BBC5000FEE32 /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
-		ABC2B37619F3BBC5000FEE32 /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
 		ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		ABC5D50419F1E59800A306F7 /* HbhMakeAppointMentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhMakeAppointMentViewController.h; sourceTree = "<group>"; };
 		ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhMakeAppointMentViewController.m; sourceTree = "<group>"; };
@@ -798,8 +795,6 @@
 				5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */,
 				ABC2B37219F3AC63000FEE32 /* HbhModifyUserDetailViewController.h */,
 				ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */,
-				ABC2B37519F3BBC5000FEE32 /* VPImageCropperViewController.h */,
-				ABC2B37619F3BBC5000FEE32 /* VPImageCropperViewController.m */,
 			);
 			name = FourthViewController;
 			path = FourViewController;
@@ -1294,7 +1289,6 @@
 				FF21CE9019E64D76005007B7 /* RootTabBarController.m in Sources */,
 				FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */,
 				FF21CE9E19E66054005007B7 /* ThirdViewController.m in Sources */,
-				ABC2B37719F3BBC5000FEE32 /* VPImageCropperViewController.m in Sources */,
 				FF21CF0619E66144005007B7 /* AFPropertyListRequestOperation.m in Sources */,
 				FF21CF1E19E66144005007B7 /* UIView+WebCacheOperation.m in Sources */,
 				FF21CF1219E66144005007B7 /* SDWebImageCompat.m in Sources */,
