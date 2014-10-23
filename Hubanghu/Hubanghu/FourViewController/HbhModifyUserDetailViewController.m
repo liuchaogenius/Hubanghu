@@ -93,7 +93,13 @@
 
 - (void)touchBtn
 {
-    [self uploadImg];
+    if (![self.textField.text isEqualToString:@""])
+    {
+        [self changeUserName:self.textField.text];
+    }
+    if (self.photoImg) {
+        [self uploadImg];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -101,13 +107,25 @@
 - (void)uploadImg
 {
     NSString *uploadPhototUrl = nil;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"result",
-                          @"",@"photoUrl", nil];
     kHubRequestUrl(@"uploadPhoto.ashx", uploadPhototUrl);
-    [NetManager uploadImg:self.photoImg parameters:dict uploadUrl:uploadPhototUrl uploadimgName:@"icon" parameEncoding:AFJSONParameterEncoding progressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+    [NetManager uploadImg:self.photoImg parameters:nil uploadUrl:uploadPhototUrl uploadimgName:@"headImg" parameEncoding:AFJSONParameterEncoding progressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
         
     } succ:^(NSDictionary *successDict) {
+        MLOG(@"%@", successDict);
         
+    } failure:^(NSDictionary *failDict, NSError *error) {
+        
+    }];
+}
+
+//change username
+- (void)changeUserName:(NSString *)aNewName
+{
+    NSString *changeUserNameUrl = nil;
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:aNewName,@"newname", nil];
+    kHubRequestUrl(@"changeProfile.ashx", changeUserNameUrl);
+    [NetManager requestWith:dict url:changeUserNameUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
+        MLOG(@"%@", successDict);
     } failure:^(NSDictionary *failDict, NSError *error) {
         
     }];
@@ -173,7 +191,7 @@
 {
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
-    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     self.photoImg = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     self.imgView.image = image;
     
