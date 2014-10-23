@@ -42,6 +42,7 @@
         NSString *strhotPath = [paths objectAtIndex:0];
         dbQueuePath = [strhotPath stringByAppendingPathComponent:kDataBaseQueueName];
         dataQueue = [FMDatabaseQueue databaseQueueWithPath:dbQueuePath];
+        MLOG(@"dataQueuePath = %@", dbQueuePath);
         if ([manager fileExistsAtPath:dbQueuePath] == NO)
         {
             [manager createFileAtPath:dbQueuePath contents:nil attributes:nil];
@@ -272,6 +273,28 @@
             aDistrictBlock(mutArry);
         }
     }];
+}
+
+- (void)selParentModel:(NSString *)aAreadid resultBlock:(void(^)(HbuAreaListModelAreas*model))aResultBlock __attribute__((nonnull(1)))
+{
+    if(aAreadid)
+    {
+        __weak AreasDBManager *weakself = self;
+        [dataQueue inDatabase:^(FMDatabase *db) {
+            NSString *selModel = @"select * from areas_table where areaId=?";
+            FMResultSet *resultset = [db executeQuery:selModel,aAreadid];
+            HbuAreaListModelAreas *model = nil;
+            while([resultset next])
+            {
+                model = [weakself parseFMResultToHubAreasModel:resultset];
+            }
+            aResultBlock(model);
+        }];
+    }
+    else
+    {
+        aResultBlock(nil);
+    }
 }
 
 - (HbuAreaListModelAreas *)parseFMResultToHubAreasModel:(FMResultSet *)aResultSet
