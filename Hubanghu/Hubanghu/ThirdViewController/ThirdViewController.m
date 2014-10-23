@@ -22,6 +22,9 @@ typedef enum : NSUInteger {
 } currentTabOrder;
 
 @interface ThirdViewController ()<UITableViewDataSource, UITableViewDelegate>
+{
+    BOOL firstInitview;
+}
 @property(nonatomic) int currentTab;//当前页面
 @property(nonatomic) int paramCurrentTab;//传入的当前页面
 @property(nonatomic, strong) UIView *selectedLineView;
@@ -46,6 +49,12 @@ typedef enum : NSUInteger {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     if(![HbhUser sharedHbhUser].isLogin)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:kLoginForUserMessage object:[NSNumber numberWithBool:YES]];
@@ -53,13 +62,24 @@ typedef enum : NSUInteger {
     }
     else
     {
-        [self initView];
+        if(firstInitview == NO)
+        {
+            [self initView];
+        }
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)loginSuccessItem
 {
-    [self initView];
+    if(firstInitview == NO)
+    {
+        [self initView];
+    }
 }
 
 - (void)initView
@@ -84,7 +104,7 @@ typedef enum : NSUInteger {
     self.showOrderTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.showOrderTableView.backgroundColor = RGBCOLOR(247, 247, 247);
     [self.view addSubview:self.showOrderTableView];
-    
+    firstInitview = YES;
     [self addTableViewTrag];
     [self getFisrtPage];
 }
