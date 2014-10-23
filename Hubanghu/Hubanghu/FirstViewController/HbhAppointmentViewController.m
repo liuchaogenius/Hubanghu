@@ -9,10 +9,13 @@
 #import "HbhAppointmentViewController.h"
 #import "HbhAppointmentNetManager.h"
 #import "HbhAppointmentConfirmeView.h"
+#import "HbhConfirmOrderViewController.h"
 #import "FBKVOController.h"
 #import "STAlerView.h"
 #import "SecondViewController.h"
 #import "HbhWorkers.h"
+#import "HubOrder.h"
+#import "STAlerView.h"
 #define kDescLabelHeight 80
 #define kCountTextFieldTag 991
 @interface HbhAppointmentViewController ()
@@ -25,11 +28,14 @@
 @property (nonatomic,strong) HbhWorkers *worker;
 @property (nonatomic,assign) BOOL urgent;
 @property (nonatomic,assign) NSInteger type;
+@property (nonatomic,strong) NSString *price;
 //UI
-@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) TouchTableView *tableView;
 @property (nonatomic,strong) UIActivityIndicatorView *activityView;
 @property (nonatomic,strong) HbhAppointmentConfirmeView *footView;
 @property (nonatomic,strong) UITextField *countTextField;
+@property (nonatomic,strong) UITextField *remarkTf;
+@property (nonatomic,strong) HbhAppointmentDetailsTableViewCell *details;
 
 @end
 
@@ -46,8 +52,28 @@
 	}
 	return self;
 }
+#pragma mark - lazy init
 
-- (void)getPirce{
+- (UITextField *)countTextField{
+	if (!_countTextField) {
+		_countTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 20, 80, kDescLabelHeight - 40)];
+		_countTextField.tag	= kCountTextFieldTag;
+		_countTextField.delegate = self;
+		_countTextField.placeholder = @"请输入..";
+		_countTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+		_countTextField.font = kFont13;
+		_countTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+		_countTextField.textAlignment = NSTextAlignmentCenter;
+		_countTextField.layer.borderWidth = 1;
+		_countTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		_countTextField.layer.cornerRadius = 2;
+		[_countTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+	}
+	return _countTextField;
+}
+
+#pragma mark -
+- (void)getPrice{
 	if (![_countTextField.text isEqualToString:@""]) {
 		NSDictionary *dic = @{@"type":@(_type),
 							  @"amountType":@(_amountType),
@@ -55,8 +81,41 @@
 							  @"urgent":@(_urgent)};
 		[_netManager getAPpointmentPriceWith:dic succ:^(NSString *price) {
 			_footView.price = [price doubleValue];
+			_price = price;
 		}];
 	}
+}
+
+- (BOOL)checkContent{
+	STAlertView *alert = [[STAlertView alloc] initWithTitle:@"!" message:@"" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+		
+	} cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+	if ([_countTextField.text isEqualToString:@""]) {
+		alert.message = @"请输入数量";
+		[_countTextField becomeFirstResponder];
+	}else if ([_details.timeTF.text isEqualToString:@""]) {
+		alert.message = @"请输入时间";
+	}else if ([_details.phoneNumberTF.text isEqualToString:@""]){
+		alert.message = @"请输入手机号";
+		[_details.phoneNumberTF becomeFirstResponder];
+	}else if ([_details.userNameTF.text isEqualToString:@""]){
+		alert.message = @"请输入姓名";
+		[_details.userNameTF becomeFirstResponder];
+	}else if ([_details.areaTF.text isEqualToString:@""]){
+		alert.message = @"请输入地址";
+	}else if ([_details.detailAreaTF.text isEqualToString:@""]){
+		alert.message = @"请输入详细地址";
+		[_details.detailAreaTF becomeFirstResponder];
+	}else if (!_worker){
+		alert.message = @"请选择工人";
+	}
+	
+	if (![alert.message isEqualToString:@""]) {
+		[alert show];
+		return NO;
+	}
+	
+	return YES;
 }
 
 #pragma mark - button event
@@ -69,8 +128,54 @@
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)confirmeOrder{
-	
+- (void)confirmOrder{
+	if ([self checkContent]) {
+//		NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
+//		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//		[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+//		dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT+8"];
+//		NSString *dateString = [dateFormatter stringFromDate:date];
+		/*
+		 "cateId":10,
+		 "username":"小明",
+		 "time":121323453453454356334,
+		 "amount":3232,
+		 "workerId":123,
+		 "mountType":1,
+		 "comment":"32w2323wwes",
+		 "phone":1381213232424,
+		 "areaId":323,
+		 "location":"wewew",
+		 "price":80.0,
+		 "workerName":"ewewsd",
+		 "urgent":0
+		 */
+
+		NSDictionary *orderDic = @{@"cateId":_cateId,
+								@"username":@"小明",
+								@"time":@(_details.time),
+								@"amount":_countTextField.text,
+								@"workerId":@(_worker.workersIdentifier),
+								@"mountType":@(_amountType),
+								@"comment":_remarkTf.text,
+								@"phone":_details.phoneNumberTF.text,
+								@"areaId":_details.selectAreaId,
+								@"location":_details.detailAreaTF.text,
+								@"price":_price,
+								@"workerName":_worker.name,
+								@"urgent":@(_urgent)};
+		HubOrder *order = [[HubOrder alloc] initWithDictionary:orderDic];
+		__weak HbhAppointmentViewController *weakself = self;
+		[_netManager commitOrderWith:order succ:^(NSDictionary *succDic) {
+			HbhConfirmOrderViewController * covc = [[HbhConfirmOrderViewController alloc] initWithOrder:order];
+			[weakself.navigationController pushViewController:covc animated:YES];
+		} failure:^{
+			STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"提交订单失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+				;
+			} cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+			[alert show];
+		}];
+	}
 }
 
 - (void)selectType:(UIButton *)sender{
@@ -83,7 +188,7 @@
 	_type = sender.tag;
 	[sender setTitleColor:KColor forState:UIControlStateNormal];
 	sender.layer.borderColor = KColor.CGColor;
-	[self getPirce];
+	[self getPrice];
 }
 
 - (void)selectUrgent:(UIButton *)sender{
@@ -93,7 +198,7 @@
 	}else{
 		[sender setImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
 	}
-	[self getPirce];
+	[self getPrice];
 }
 
 #pragma mark - delegate
@@ -109,9 +214,18 @@
 }
 
 #pragma mark - textField delegate
+
+//监听textfield的值变化
+- (BOOL)textFieldDidChange:(UITextField *)textField{
+	if (textField.tag == kCountTextFieldTag) {
+		[self getPrice];
+	}
+	return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
 	if (textField.tag == kCountTextFieldTag) {
-		[self getPirce];
+		[self getPrice];
 	}
 	[textField resignFirstResponder];
 	return YES;
@@ -172,19 +286,9 @@
 			}
 		}else if(indexPath.row == 1){
 			headline.text = @"数量:";
-			_countTextField = [[UITextField alloc] initWithFrame:CGRectMake(headline.right + 10, 20, 80, kDescLabelHeight - 40)];
-			_countTextField.centerY = headline.centerY;
-			_countTextField.tag	= kCountTextFieldTag;
-			_countTextField.delegate = self;
-			_countTextField.placeholder = @"请输入..";
-			_countTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-			_countTextField.font = kFont13;
-			_countTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-			_countTextField.textAlignment = NSTextAlignmentCenter;
-			_countTextField.layer.borderWidth = 1;
-			_countTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
-			_countTextField.layer.cornerRadius = 2;
-			[cell.contentView addSubview:_countTextField];
+			self.countTextField.left = headline.right + 10;
+			self.countTextField.centerY = headline.centerY;
+			[cell.contentView addSubview:self.countTextField];
 			
 			UILabel *unitLb = [[UILabel alloc] initWithFrame:CGRectMake(_countTextField.right+2, 0, 25, 25)];
 			unitLb.bottom = _countTextField.bottom;
@@ -224,26 +328,26 @@
 		}else if(indexPath.row == 3){
 			headline.text = @"  备注:";
 			headline.width = 65;
-			UITextField *remarkTf = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, kMainScreenWidth - 20, kDescLabelHeight - 40)];
-			remarkTf.centerY = kDescLabelHeight/2 - 5;
-			remarkTf.delegate = self;
-			remarkTf.placeholder = @"请输入..";
-			remarkTf.clearButtonMode = UITextFieldViewModeWhileEditing;
-			remarkTf.font = kFont13;
-			remarkTf.layer.borderWidth = 0.2;
-			remarkTf.layer.borderColor = [UIColor lightGrayColor].CGColor;
-			remarkTf.layer.cornerRadius = 2;
-			remarkTf.leftViewMode = UITextFieldViewModeAlways;
-			remarkTf.leftView = headline;
-			[cell.contentView addSubview:remarkTf];
+			_remarkTf = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, kMainScreenWidth - 20, kDescLabelHeight - 40)];
+			_remarkTf.centerY = kDescLabelHeight/2 - 5;
+			_remarkTf.delegate = self;
+			_remarkTf.placeholder = @"请输入..";
+			_remarkTf.clearButtonMode = UITextFieldViewModeWhileEditing;
+			_remarkTf.font = kFont13;
+			_remarkTf.layer.borderWidth = 0.2;
+			_remarkTf.layer.borderColor = [UIColor lightGrayColor].CGColor;
+			_remarkTf.layer.cornerRadius = 2;
+			_remarkTf.leftViewMode = UITextFieldViewModeAlways;
+			_remarkTf.leftView = headline;
+			[cell.contentView addSubview:_remarkTf];
 			return cell;
 		}
 		[cell.contentView addSubview:headline];
 		return cell;
 	}else if (indexPath.section == 2){
-		HbhAppointmentDetailsTableViewCell *details = [[HbhAppointmentDetailsTableViewCell alloc] init];
-		details.delegate = self;
-		return details;
+		_details = [[HbhAppointmentDetailsTableViewCell alloc] init];
+		_details.delegate = self;
+		return _details;
 	}
 	return nil;
 }
@@ -267,21 +371,20 @@
 	return 10;
 }
 
-//- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//	return nil;
-//}
-//
-//- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//	return nil;
-//}
 #pragma mark - keyboard notification
 - (void)keyboardWillShow:(NSNotification *)notification{
 	NSDictionary *info = [notification userInfo];
 	//获取高度
 	NSValue *value = [info objectForKey:@"UIKeyboardBoundsUserInfoKey"];
 	CGSize hightSize = [value CGRectValue].size;
-	_tableView.height -= hightSize.height;
-	[UIView animateWithDuration:0.2 animations:^{
+	_tableView.height = self.view.height -  hightSize.height;
+	
+	//避免切换输入法时的抖动
+	if (_tableView.contentOffset.y <= hightSize.height + 30 ||
+		_tableView.contentOffset.y >= hightSize.height - 30) {
+		return;
+	}
+	[UIView animateWithDuration:0.5 animations:^{
 		[_tableView setContentOffset:CGPointMake(0, hightSize.height)];
 	}];
 
@@ -296,6 +399,20 @@
 	_tableView.height += hightSize.height;
 }
 
+#pragma mark -
+//tableview 响应touch事件
+- (void)tableView:(UITableView *)tableView touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//	if ([_remarkTf isFirstResponder]) {
+//		[_remarkTf resignFirstResponder];
+//	}
+//	if ([_countTextField isFirstResponder]) {
+//		[_countTextField resignFirstResponder];
+//	}
+
+	UIView *view = [self.view.window performSelector:@selector(firstResponder) withObject:nil];
+	[view resignFirstResponder];
+}
+
 #pragma mark - view lift loop
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -303,9 +420,10 @@
 	
 	self.navigationItem.title = _hbhTitle;
 	
-	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+	_tableView = [[TouchTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
+	_tableView.touchDelegate = self;
 	_tableView.allowsSelection = NO;
 	[self.view addSubview:_tableView];
 	
@@ -331,14 +449,21 @@
 //		[alert show];
 	}];
 	
+	
+	
 	_footView = [[HbhAppointmentConfirmeView alloc] initWithType:_worker?1:0];
 	[_footView.pickWorkerBt addTarget:self action:@selector(pickWorker) forControlEvents:UIControlEventTouchDown];
-	[_footView.confirmeButton addTarget:self action:@selector(confirmeOrder) forControlEvents:UIControlEventTouchDown];
+	[_footView.confirmeButton addTarget:self action:@selector(confirmOrder) forControlEvents:UIControlEventTouchDown];
 	_footView.frame = CGRectMake(0, 0, kMainScreenWidth, 90);
 	_tableView.tableFooterView = _footView;
 	//初始化键盘通知
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+	[super viewWillDisappear:animated];
+	[_details superViewWillDisappear:_details.tool];
 }
 
 - (void)didReceiveMemoryWarning {

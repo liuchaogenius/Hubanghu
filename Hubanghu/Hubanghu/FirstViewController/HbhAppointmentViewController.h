@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "HbhAppointmentDetailsTableViewCell.h"
+#import "TouchTableView.h"
 @class HbhWorkers;
-@interface HbhAppointmentViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HbhAppointmentDelegate>
+@interface HbhAppointmentViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,HbhAppointmentDelegate,TouchTableViewDelegate>
 - (instancetype)initWithTitle:(NSString *)title cateId:(NSString *)cateId andWork:(HbhWorkers *)worker;
 @end

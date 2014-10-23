@@ -20,6 +20,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *userNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *areaTF;
 @property (weak, nonatomic) IBOutlet UITextField *detailAreaTF;
+@property (nonatomic,strong) UIButton *tool;
 @property (nonatomic,strong) UIDatePicker *datePicker;
+@property (nonatomic,strong) UIPickerView *areaPicker;
+@property (nonatomic,assign) NSTimeInterval time;
+@property (nonatomic,strong) NSString *selectAreaId;
 @property (nonatomic) id<HbhAppointmentDelegate> delegate;
+- (void)superViewWillDisappear:(id)sender;
 @end

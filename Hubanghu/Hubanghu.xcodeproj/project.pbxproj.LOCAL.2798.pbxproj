@@ -66,16 +66,12 @@
 		ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC5D50E19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib */; };
 		ABC5D51319F1F16100A306F7 /* HbhCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D51219F1F16100A306F7 /* HbhCommentViewController.m */; };
 		ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */; };
-		B01D687319F90FCF008B6BDE /* TouchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B01D687219F90FCF008B6BDE /* TouchTableView.m */; };
 		B02C2B1719F4FD0600B9C4FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02C2B1619F4FD0600B9C4FF /* Images.xcassets */; };
-		B08F580B19F64D0D00F3E130 /* HbhConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B08F580919F64D0D00F3E130 /* HbhConfirmOrderViewController.m */; };
-		B09D1DAC19F654D200C7513C /* HubOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B09D1DAB19F654D200C7513C /* HubOrder.m */; };
 		B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */; };
 		B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */; };
 		B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */; };
 		B0EED42E19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */; };
 		B0EED42F19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */; };
-		B0FF902519F7B174001B8E14 /* HbhOrderDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */; };
 		FF09640119F539A800EF8D0E /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */; };
 		FF09640219F539A800EF8D0E /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */; };
 		FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252619E7B861008AB6EC /* JsonToModel.m */; };
@@ -261,13 +257,7 @@
 		ABC5D51219F1F16100A306F7 /* HbhCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhCommentViewController.m; sourceTree = "<group>"; };
 		ABE53EC219F0ED9900A8FE8B /* HbhWorkerListManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerListManage.h; sourceTree = "<group>"; };
 		ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerListManage.m; sourceTree = "<group>"; };
-		B01D687119F90FCF008B6BDE /* TouchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchTableView.h; sourceTree = "<group>"; };
-		B01D687219F90FCF008B6BDE /* TouchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchTableView.m; sourceTree = "<group>"; };
 		B02C2B1619F4FD0600B9C4FF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B08F580819F64D0D00F3E130 /* HbhConfirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhConfirmOrderViewController.h; sourceTree = "<group>"; };
-		B08F580919F64D0D00F3E130 /* HbhConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhConfirmOrderViewController.m; sourceTree = "<group>"; };
-		B09D1DAA19F654D200C7513C /* HubOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubOrder.h; sourceTree = "<group>"; };
-		B09D1DAB19F654D200C7513C /* HubOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubOrder.m; sourceTree = "<group>"; };
 		B0EB09E019F171FD00EDB0D5 /* HbhAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentViewController.h; sourceTree = "<group>"; };
 		B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentViewController.m; sourceTree = "<group>"; };
 		B0EED42519F37C8E00CBFBFC /* HbhAppointmentNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentNetManager.h; sourceTree = "<group>"; };
@@ -277,8 +267,6 @@
 		B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentConfirmeView.m; sourceTree = "<group>"; };
 		B0EED42B19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentDetailsTableViewCell.h; sourceTree = "<group>"; };
 		B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentDetailsTableViewCell.m; sourceTree = "<group>"; };
-		B0FF902319F7B174001B8E14 /* HbhOrderDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderDetailsView.h; sourceTree = "<group>"; };
-		B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderDetailsView.m; sourceTree = "<group>"; };
 		FF0963FE19F539A800EF8D0E /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
@@ -451,8 +439,6 @@
 		5B16D8D019F139A4009E9FF3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B09D1DAA19F654D200C7513C /* HubOrder.h */,
-				B09D1DAB19F654D200C7513C /* HubOrder.m */,
 				5B69300B19F39BC70005862D /* HbuAreaListModelBaseClass.h */,
 				5B69300C19F39BC70005862D /* HbuAreaListModelBaseClass.m */,
 				5B69300D19F39BC70005862D /* HbuAreaListModelAreas.m */,
@@ -525,10 +511,6 @@
 				5BBD051C19F6527100399219 /* HbhHotCityCell.h */,
 				5BBD051D19F6527100399219 /* HbhHotCityCell.m */,
 				5BBD051E19F6527100399219 /* HbhHotCityCell.xib */,
-				B0FF902319F7B174001B8E14 /* HbhOrderDetailsView.h */,
-				B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */,
-				B01D687119F90FCF008B6BDE /* TouchTableView.h */,
-				B01D687219F90FCF008B6BDE /* TouchTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -860,8 +842,6 @@
 				B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */,
 				5B25473E19F5439600E50B60 /* HbhSelCityViewController.h */,
 				5B25473F19F5439600E50B60 /* HbhSelCityViewController.m */,
-				B08F580819F64D0D00F3E130 /* HbhConfirmOrderViewController.h */,
-				B08F580919F64D0D00F3E130 /* HbhConfirmOrderViewController.m */,
 			);
 			path = FirstViewController;
 			sourceTree = "<group>";
@@ -1212,14 +1192,12 @@
 				FF21CF1919E66144005007B7 /* UIImage+GIF.m in Sources */,
 				AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */,
 				FF21CF2119E66144005007B7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
-				B09D1DAC19F654D200C7513C /* HubOrder.m in Sources */,
 				ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */,
 				FF09640119F539A800EF8D0E /* SVProgressHUD.m in Sources */,
 				AB06DC4E19F1269500B82C62 /* HbhWorkerModel.m in Sources */,
 				FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */,
 				ABAFAB2119EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m in Sources */,
 				AB06DC4D19F1269500B82C62 /* HbhWorkerData.m in Sources */,
-				B08F580B19F64D0D00F3E130 /* HbhConfirmOrderViewController.m in Sources */,
 				FF21CE9B19E66030005007B7 /* SecondViewController.m in Sources */,
 				ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */,
 				AB7DE99719EFC7B000AA9F93 /* HbhDropDownView.m in Sources */,
@@ -1239,7 +1217,6 @@
 				FF21CF0C19E66144005007B7 /* FBKVOController.m in Sources */,
 				AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */,
 				5B16D8CB19F12F07009E9FF3 /* HbhCategoryCell.m in Sources */,
-				B0FF902519F7B174001B8E14 /* HbhOrderDetailsView.m in Sources */,
 				FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */,
 				5B69301019F39BC70005862D /* HbuAreaListModelAreas.m in Sources */,
 				FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */,
@@ -1279,7 +1256,6 @@
 				5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */,
 				5BD54D3319EE4DC6002C4355 /* HbhUserManager.m in Sources */,
 				FF21CF1419E66144005007B7 /* SDWebImageDownloader.m in Sources */,
-				B01D687319F90FCF008B6BDE /* TouchTableView.m in Sources */,
 				AB8EA5E219F482D0001F40C2 /* HbhWorkerTypes.m in Sources */,
 				FF21CF0E19E66144005007B7 /* JSONKit.m in Sources */,
 				FF21CF0B19E66144005007B7 /* UIImageView+AFNetworking.m in Sources */,
@@ -1361,8 +1337,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yuan yongyao (L9NP99245H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yuan yongyao (L9NP99245H)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1403,8 +1379,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yuan yongyao (L9NP99245H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yuan yongyao (L9NP99245H)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
