@@ -12,10 +12,10 @@
 {
     CGFloat cellHeight;
     CGFloat tableHeight;
-    NSArray *tableArray;
 }
 @property(nonatomic, strong) void(^ myBlock)(int);
 @property(nonatomic, strong) UITableView *showItemTableView;
+@property(nonatomic, strong) NSArray *tableArray;
 - (instancetype)initWithArray:(NSArray *)aArray andButton:(UIView *)aBtn;
 - (void)useBlock:(void(^)(int row))aBlock;
 @end

@@ -13,7 +13,9 @@
 #import "UIImageView+WebCache.h"
 #import "HbhWorkerListManage.h"
 #import "SVPullToRefresh.h"
-
+#import "HbuAreaLocationManager.h"
+#import "AreasDBManager.h"
+#import "HbuAreaListModelAreas.h"
 
 typedef enum : NSUInteger {
     btnViewTypeAreas=10,
@@ -44,6 +46,11 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) void(^myWorkerDetailBlock)(HbhWorkers *);
 @property(nonatomic, strong) UIView *failView;
 
+@property(nonatomic, strong) NSArray *locationArray;
+@property(nonatomic) BOOL isLocationed;
+@property(nonatomic, strong) AreasDBManager *areasDBManage;
+@property(nonatomic, strong) HbhDropDownView *dropLocationView;
+@property(nonatomic) int locationAreaId;
 @end
 
 @implementation SecondViewController
@@ -60,6 +67,21 @@ typedef enum : NSUInteger {
     [super viewDidLoad];
     [self settitleLabel:@"预约工人"];
     [self.view addSubview:self.btnBackView];
+    
+    if ([HbuAreaLocationManager sharedManager].currentAreas.areaId)
+    {
+        _locationAreaId = [HbuAreaLocationManager sharedManager].currentAreas.areaId;
+        [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
+            self.locationArray = districtArry;
+            _isLocationed = YES;
+        }];
+    }
+    else
+    {
+        _isLocationed = NO;
+    }
+    
+    
     
     if (!_isSpecial)
     {
@@ -81,7 +103,14 @@ typedef enum : NSUInteger {
     [self.activityView startAnimating];
     [self addTableViewTrag];
 #pragma mark 网络请求
-    [self getWorkerListWithAreaId:1 andWorkerTypeId:1 andOrderCountId:1];
+    if (_isLocationed) {
+        HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
+        [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:1 andOrderCountId:1];
+    }
+    else
+    {
+        [self getWorkerListWithAreaId:1 andWorkerTypeId:1 andOrderCountId:1];
+    }
 }
 
 - (void)getWorkerListWithAreaId:(int)aAreaId andWorkerTypeId:(int)aWorkTypeId andOrderCountId:(int)aOrderId
@@ -112,7 +141,41 @@ typedef enum : NSUInteger {
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             [weakself.showWorkerListTableView.pullToRefreshView stopAnimating];
-            [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:-1];
+            if (_isLocationed)
+            {
+                [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:-1];
+                if ([HbuAreaLocationManager sharedManager].currentAreas.areaId != _locationAreaId)
+                {
+                    _locationAreaId = [HbuAreaLocationManager sharedManager].currentAreas.areaId;
+                    [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
+                        self.locationArray = districtArry;
+                        self.dropLocationView.tableArray = self.locationArray;
+                        [self.dropLocationView.showItemTableView reloadData];
+                        _isLocationed = YES;
+                        HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
+                        UILabel *label0 = (UILabel *)[self.view viewWithTag:100];
+                        label0.text = model.name;
+                        [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:-1 andOrderCountId:-1];
+                    }];
+                }
+            }
+            else
+            {
+                if ([HbuAreaLocationManager sharedManager].currentAreas.areaId)
+                {
+                    [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
+                        self.locationArray = districtArry;
+                        self.dropLocationView.tableArray = self.locationArray;
+                        [self.dropLocationView.showItemTableView reloadData];
+                        _isLocationed = YES;
+                        HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
+                        UILabel *label0 = (UILabel *)[self.view viewWithTag:100];
+                        label0.text = model.name;
+                        [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:-1 andOrderCountId:-1];
+                    }];
+                }
+            }
+
         });
     }];
     
@@ -137,12 +200,18 @@ typedef enum : NSUInteger {
     UILabel *label0 = (UILabel *)[self.view viewWithTag:100];
     UILabel *label1 = (UILabel *)[self.view viewWithTag:101];
     UILabel *label2 = (UILabel *)[self.view viewWithTag:102];
+    if (_isLocationed) {
+        HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
+        label0.text = model.name;
+    }
+    else{
     for (int i=0; i<self.areasArray.count; i++) {
         HbhAreas *model = [self.areasArray objectAtIndex:i];
         if (model.selected==true) {
             label0.text = model.name;
             break;
         }
+    }
     }
     for (int i=0; i<self.workerTypeArray.count; i++) {
         HbhWorkerTypes *model = [self.workerTypeArray objectAtIndex:i];
@@ -204,13 +273,21 @@ typedef enum : NSUInteger {
     
 }
 
+#pragma mark 按钮事件
 - (void)touchBtnView:(UITapGestureRecognizer *)aTapGesture
 {
     [self.view addSubview:self.maskingView];
     if (aTapGesture.view.tag==btnViewTypeAreas)
     {
-        [self showDropView:self.dropAreasView];
-        [self.view bringSubviewToFront:self.dropAreasView];
+        if (_isLocationed) {
+            [self showDropView:self.dropLocationView];
+            [self.view bringSubviewToFront:self.dropLocationView];
+        }
+        else
+        {
+            [self showDropView:self.dropAreasView];
+            [self.view bringSubviewToFront:self.dropAreasView];
+        }
     }
     else if (aTapGesture.view.tag==btnViewTypeWorkerTypes)
     {
@@ -238,6 +315,9 @@ typedef enum : NSUInteger {
     {
         self.dropOrderCountView.hidden = YES;
     }
+    if (self.dropLocationView != aViewBtn) {
+        self.dropLocationView.hidden = YES;
+    }
     if (!aViewBtn.superview)
     {
         [self.view addSubview:aViewBtn];
@@ -253,6 +333,14 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark getter
+- (AreasDBManager *)areasDBManage
+{
+    if (!_areasDBManage) {
+        _areasDBManage = [[AreasDBManager alloc] init];
+    }
+    return _areasDBManage;
+}
+
 - (UIView *)failView
 {
     if (!_failView) {
@@ -296,6 +384,31 @@ typedef enum : NSUInteger {
         _maskingView.alpha = 0.5;
     }
     return _maskingView;
+}
+
+- (HbhDropDownView *)dropLocationView
+{
+    if (!_dropLocationView) {
+        if (_isLocationed) {
+            _dropLocationView = [[HbhDropDownView alloc] initWithArray:self.locationArray andButton:[self.view viewWithTag:btnViewTypeAreas]];
+        }
+        else
+        {
+            _dropLocationView = [[HbhDropDownView alloc] initWithArray:self.areasArray andButton:[self.view viewWithTag:btnViewTypeAreas]];
+        }
+        [_dropLocationView useBlock:^(int row) {
+            NSLog(@"%d", row);
+            _dropLocationView.hidden = YES;
+            [self.maskingView removeFromSuperview];
+            [self.activityView startAnimating];
+            HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:row];
+            [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:-1 andOrderCountId:-1];
+            UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
+            temLabel.text = model.name;
+        }];
+
+    }
+    return _dropLocationView;
 }
 
 - (HbhDropDownView *)dropAreasView

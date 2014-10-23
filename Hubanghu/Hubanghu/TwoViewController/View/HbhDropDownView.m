@@ -22,18 +22,21 @@
     self = [super init];
     
     cellHeight = 30;
-    tableArray = aArray;
-    if (aBtn.bottom+cellHeight*aArray.count>[UIScreen mainScreen].bounds.size.height)
-    {
-        tableHeight = [UIScreen mainScreen].bounds.size.height - aBtn.bottom;
-    }
-    else
-    {
-        tableHeight = cellHeight*aArray.count;
-    }
+    _tableArray = aArray;
+//    if (aBtn.bottom+cellHeight*aArray.count>200)
+//    {
+//        tableHeight = 200;
+//    }
+//    else
+//    {
+//        tableHeight = cellHeight*aArray.count;
+//    }
+    tableHeight = 160;
     self.frame = CGRectMake(aBtn.left, aBtn.bottom, aBtn.right-aBtn.left, tableHeight);
     self.showItemTableView = [[UITableView alloc]
                               initWithFrame:self.bounds];
+    self.showItemTableView.backgroundColor = [UIColor clearColor];
+    self.showItemTableView.bounces = NO;
     self.showItemTableView.delegate = self;
     self.showItemTableView.dataSource = self;
     self.showItemTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -43,7 +46,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return tableArray.count;
+    return _tableArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -55,7 +58,7 @@
 {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.backgroundColor = RGBCOLOR(242, 242, 242);
-    HbhAreas *model = [tableArray objectAtIndex:indexPath.row];
+    HbhAreas *model = [_tableArray objectAtIndex:indexPath.row];
     cell.textLabel.text = model.name;
     cell.textLabel.font = kFont15;
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
