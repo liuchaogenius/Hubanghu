@@ -10,6 +10,7 @@
 #import "HbhOrderManage.h"
 #import "STAlerView.h"
 #import "HbhMakeAppointMentViewController.h"
+#import "HbhConfirmOrderViewController.h"
 
 typedef enum : NSUInteger {
     orderStatusUndone = 0,
@@ -68,6 +69,7 @@ typedef enum : NSUInteger {
     if (self.orderStatus == orderStatusUndone) {
         self.showOrderStatusLabel.text = @"待付款";
         [self.movementBtn setTitle:@"支付" forState:UIControlStateNormal];
+        [self.movementBtn addTarget:self action:@selector(pushToComfirmOrderVC) forControlEvents:UIControlEventTouchUpInside];
         self.moreBtn.backgroundColor = RGBCOLOR(201, 201, 201);
         [self.moreBtn setTitleColor:RGBCOLOR(115, 115, 115) forState:UIControlStateNormal];
         [self.moreBtn setTitle:@"取消订单" forState:UIControlStateNormal];
@@ -76,6 +78,7 @@ typedef enum : NSUInteger {
     }else{
         self.showOrderStatusLabel.text = @"交易成功";
         [self.movementBtn setTitle:@"已付款" forState:UIControlStateNormal];
+        self.movementBtn.userInteractionEnabled = NO;
         self.moreBtn.backgroundColor = KColor;
         [self.moreBtn setTitle:@"再次预约" forState:UIControlStateNormal];
         [self.moreBtn addTarget:self action:@selector(orderAgian) forControlEvents:UIControlEventTouchUpInside];
@@ -157,6 +160,14 @@ typedef enum : NSUInteger {
     self.remarkLabel.text = aModel.comment;
     self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f", aModel.price];
     
+}
+
+//确认支付
+- (void)pushToComfirmOrderVC
+{
+    [self.navigationController pushViewController:[[HbhConfirmOrderViewController alloc]
+                                  initWithOrderId:[NSString stringWithFormat:@"%d", (int)self.myModel.id]]
+                                         animated:YES];
 }
 
 - (UIView *)topView
