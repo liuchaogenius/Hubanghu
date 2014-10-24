@@ -110,7 +110,7 @@
 	dateFormatter.timeZone = [[NSTimeZone alloc] initWithName:@"GMT+8"];
 	NSString *dateString = [dateFormatter stringFromDate:date];
 
-	_detailsInfo = @[_order.name,_order.username,kDoubleToString(_order.phone),kDoubleToString(_order.amount),dateString,_order.areaId,_order.workerName,_order.comment,kDoubleToString(_order.price)];
+//	_detailsInfo = @[_order.name,_order.username,kDoubleToString(_order.phone),kDoubleToString(_order.amount),dateString,_order.areaId,_order.workerName,_order.comment,kDoubleToString(_order.price)];
 }
 
 #pragma mark - tableview delegate and datasource
