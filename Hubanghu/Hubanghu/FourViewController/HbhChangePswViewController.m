@@ -8,6 +8,7 @@
 
 #import "HbhChangePswViewController.h"
 #import "HbhUserManager.h"
+#import "SVProgressHUD.h"
 enum TextField_Type
 {
     TextField_oldPsw = 50,
@@ -81,30 +82,24 @@ enum TextField_Type
 #pragma mark 修改密码
 - (void)changePsw
 {
-#warning 待检验数据
-    [HbhUserManager changePassWordWithOldPwd:self.oldPswTextField.text andNewPwd:self.aNewPswTextField.text andComfirmPwd:self.confirmPswTextField.text Success:^(NSInteger result) {
-        switch (result) {
-            case -1: //原始密码错误
-            {
-                
+    if (self.oldPswTextField.text.length && self.aNewPswTextField.text.length && self.confirmPswTextField.text.length) {
+        if (![self.oldPswTextField.text isEqualToString:self.aNewPswTextField.text]) {
+            if ([self.aNewPswTextField.text isEqualToString:self.confirmPswTextField.text]) {
+                [HbhUserManager changePassWordWithOldPwd:self.oldPswTextField.text andNewPwd:self.aNewPswTextField.text andComfirmPwd:self.confirmPswTextField.text Success:^{
+                    [SVProgressHUD showSuccessWithStatus:@"修改密码成功!" cover:YES offsetY:kMainScreenHeight/2.0];
+                } failure:^(NSInteger result, NSString *resultString) {
+                    [SVProgressHUD showErrorWithStatus:resultString cover:YES offsetY:kMainScreenHeight/2.0];
+                }];
+
+            }else{
+                [SVProgressHUD showErrorWithStatus:@"两次输入新密码不一致，请重输" cover:YES offsetY:kMainScreenHeight/2.0];
             }
-                break;
-            case 0: //修改失败
-            {
-                
-            }
-                break;
-            case 1: //修改成功
-            {
-                
-            }
-                break;
-            default:
-                break;
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"新旧密码一样，请重新输入" cover:YES offsetY:kMainScreenHeight/2.0];
         }
-    } failure:^{
-        
-    }];
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"请输入完整" cover:YES offsetY:kMainScreenHeight/2.0];
+    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

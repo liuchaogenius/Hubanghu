@@ -37,7 +37,6 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) AreasDBManager *areaDBManager;
 @property (strong, nonatomic) NSMutableDictionary *cityDict; //地区数组
-@property (assign, nonatomic) NSInteger lastArrayNum;
 @property (strong, nonatomic) NSMutableArray *firstCharArray; //首字母数组
 @property (strong, nonatomic) NSArray *hotCityName; //热门城市名字数组
 
@@ -84,7 +83,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
-    
+    [self setRightButton:[UIImage imageNamed:@"refresh"] title:nil target:self action:@selector(refreshData)];
     
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
     
@@ -184,14 +183,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
 {
     if (indexPath.section == 0) {
         //定位
-        [_locationIndictorView startAnimating];
-        [[HbuAreaLocationManager sharedManager] getUserLocationWithSuccess:^{
-            [_locationIndictorView stopAnimating];
-            _localCityLable.text = [HbuAreaLocationManager sharedManager].currentAreas.name;
-        } Fail:^(NSString *failString) {
-            [_locationIndictorView stopAnimating];
-            _localCityLable.text = @"定位失败,点击重新定位";
-        }];
+        [self reLocationUserArea];
     }else if(indexPath.section == 1){
         //热门城市不做处理
     }else{
@@ -220,6 +212,30 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
         }else{
             [SVProgressHUD showErrorWithStatus:@"发生错误，选择失败" cover:YES offsetY:kMainScreenHeight/2.0];
         }
+    }];
+}
+//刷新数据
+- (void)refreshData
+{
+    [[HbuAreaLocationManager sharedManager] shouldGetAreasDataAndSaveToDBWithSuccess:^{
+        self.firstCharArray = nil;
+        self.cityDict = nil;
+        [self.tableView reloadData];
+        [self reLocationUserArea];
+    } Fail:^{
+        [SVProgressHUD showErrorWithStatus:@"刷新失败" cover:YES offsetY:kMainScreenHeight/2.0];
+    }];
+}
+//重新定位
+- (void)reLocationUserArea
+{
+    [_locationIndictorView startAnimating];
+    [[HbuAreaLocationManager sharedManager] getUserLocationWithSuccess:^{
+        [_locationIndictorView stopAnimating];
+        _localCityLable.text = [HbuAreaLocationManager sharedManager].currentAreas.name;
+    } Fail:^(NSString *failString) {
+        [_locationIndictorView stopAnimating];
+        _localCityLable.text = @"定位失败,点击重新定位";
     }];
 }
 

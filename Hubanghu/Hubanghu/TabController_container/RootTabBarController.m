@@ -163,6 +163,7 @@
         if(!self.loginNav)
         {
             self.loginNav = [[UINavigationController alloc] initWithRootViewController:self.loginVC];
+            
         }
 
         [self presentViewController:self.loginNav animated:YES completion:^{

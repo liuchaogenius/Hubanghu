@@ -15,6 +15,8 @@
 
 @implementation HbuAreaLocationManager
 
+@synthesize currentAreas = _currentAreas;
+
 - (AreasDBManager *)areasDBManager
 {
     if (!_areasDBManager) {
@@ -39,9 +41,6 @@
 {
     __weak HbuAreaLocationManager *weakSelf = self;
     [self.areasDBManager selGroupAreaCity:^(NSMutableDictionary *cityDict){
-//        [weakSelf.areasDBManager selProvince:^(NSMutableArray *cityArry) {
-//            MLOG(@"%@",cityArry);
-//        }];
         if (!cityDict) {
             //不用获取
         }else{
@@ -84,12 +83,35 @@
         }
 #warning 对应保存这份数据的time（版本号） nsuser
         double time = areaListModel.time;
+        if ([HbhUser sharedHbhUser].isLogin) {
+            [HbhUser sharedHbhUser].time = time;
+        }
     }
+}
+
+#pragma mark 无视是否有本地数据,进行地区模型的获取，并存入DB
+- (void)shouldGetAreasDataAndSaveToDBWithSuccess : (void (^)())sBlock Fail : (void(^)())fBlock{
+    __weak HbuAreaLocationManager *weakSelf = self;
+    [self getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
+        [weakSelf saveDataToDBWithAreasArray:areaListModel];
+        if (sBlock) {
+            sBlock();
+        }
+    } failure:^{
+        if(fBlock){
+            fBlock();
+        }
+    }];
 }
 
 #pragma mark - 获取位置
 - (void)getUserLocationWithSuccess : (void (^)())sBlock Fail : (void(^)(NSString *failString))aFailBlock
 {
+    //读取用户文件的地区
+    if (self.currentAreas == nil && [HbhUser sharedHbhUser].isLogin && [HbhUser sharedHbhUser].currentArea) {
+        self.currentAreas = [HbhUser sharedHbhUser].currentArea;
+    }
+    
     SLocationManager *locationManager = [SLocationManager getMyLocationInstance];
     if([locationManager getLocationAuthorStatus] == 0 || [locationManager getLocationAuthorStatus]>= 3)
     {
@@ -111,14 +133,17 @@
                     [weakSelf.areasDBManager selHbuArealistModel:aLocationDict[@"City"] resultBlock:^(HbuAreaListModelAreas *model) {
                         if (model) {
                             weakSelf.currentAreas = model;
-                            [HbhUser sharedHbhUser].currentArea = model;
                             sBlock();
                         }else{
-                            aFailBlock(@"匹配用户城市失败，请手动选择");
+                            if (!weakSelf.currentAreas) {
+                                aFailBlock(@"匹配用户城市失败，请手动选择");
+                            }
                         }
                     }];
                 }else{
-                    aFailBlock(@"定位用户城市失败，请手动选择");
+                    if (!weakSelf.currentAreas) {
+                        aFailBlock(@"定位用户城市失败，请手动选择");
+                    }
                 }
             }];
         }];
@@ -126,9 +151,12 @@
     else
     {
 #warning  return 一个值 让用户自己选择城市
-        aFailBlock(@"您没有开启定位服务，请手动选择城市");
+        if (!self.currentAreas) {
+            aFailBlock(@"您没有开启定位服务，请手动选择城市");
+        }
     }
 }
+
 
 - (void)setCurrentAreas:(HbuAreaListModelAreas *)currentAreas
 {
@@ -137,6 +165,12 @@
     if (_currentAreas.areaId) {
         [[NetManager shareInstance] setAreaId:[NSString stringWithFormat:@"%f",_currentAreas.areaId]];
     }
+    //修改用户模型的地区
+    if ([HbhUser sharedHbhUser].isLogin && [HbhUser sharedHbhUser].currentArea != _currentAreas) {
+        [HbhUser sharedHbhUser].currentArea = _currentAreas;
+    }
 }
+
+
 
 @end

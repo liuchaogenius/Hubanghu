@@ -172,6 +172,7 @@
     {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
     }
+    _rightButton = button;
 }
 
 - (void)pushView:(UIView*)aView

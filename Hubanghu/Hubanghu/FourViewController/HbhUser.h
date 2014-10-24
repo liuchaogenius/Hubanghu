@@ -20,6 +20,7 @@
 @property (nonatomic) NSInteger point; //积分
 @property (strong, nonatomic) NSString *encodedToken; //token
 @property (strong, nonatomic) HbuAreaListModelAreas *currentArea; //用户所在地
+@property (assign, nonatomic) double time; //获取地区信息的版本 时间号
 
 @property (nonatomic) BOOL statusIsChanged; //用户状态是否发生了变化
 
@@ -34,6 +35,7 @@
 
 //退出登陆
 - (void)logoutUser;
-
+//保存文件至沙箱
+- (void)writeUserInfoToFile;
 
 @end

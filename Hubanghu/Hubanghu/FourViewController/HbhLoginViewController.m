@@ -9,6 +9,7 @@
 #import "HbhLoginViewController.h"
 #import "HbhUserManager.h"
 #import "HbhUser.h"
+#import "SVProgressHUD.h"
 #define sgmButtonHeight 40
 enum SegmentBtn_Type
 {
@@ -27,6 +28,9 @@ enum TextField_Type
 
 
 @interface HbhLoginViewController ()<UITextFieldDelegate>
+{
+    int _secondCountDown;
+}
 @property (nonatomic,strong) UIButton *sgmLoginButton; //登陆选项按钮
 @property (nonatomic,strong) UIButton *sgmRegisterButton; //注册选项按钮
 @property (nonatomic,strong) UIView *loginView;//注册界面
@@ -43,7 +47,9 @@ enum TextField_Type
 @property (nonatomic, weak) UIButton *LoginButton;//登陆按钮
 @property (nonatomic, weak) UIButton *forgetPasswordBtn;//忘记密码按钮
 @property (nonatomic, weak) UIButton *registerButton;//注册按钮
-
+@property (nonatomic, weak) UIButton *checkCodeButton;//验证码按钮
+@property (nonatomic, strong) NSString *checkCode;//验证码
+@property (nonatomic, strong) NSTimer *checkCodeTimer; //计时器
 @end
 
 @implementation HbhLoginViewController
@@ -147,15 +153,31 @@ enum TextField_Type
         [_registerView addSubview:whiteBackView];
         
         _rgPhoneNumberTextField = [self customedTextFieldWithFrame:CGRectMake(5, 15, whiteBackView.bounds.size.width-10, 35)  andPlaceholder:@"输入手机号" andTag:TextField_rgPhoneNumber andReturnKeyType:UIReturnKeyNext];
+        [_rgPhoneNumberTextField setKeyboardType:UIKeyboardTypeNumberPad];
         [whiteBackView addSubview:self.rgPhoneNumberTextField];
         
-        _checkCodeTextField = [self customedTextFieldWithFrame:CGRectMake(5, 65, (whiteBackView.bounds.size.width-10)*2/3.0f, 35) andPlaceholder:@"输入验证码" andTag:TextField_checkCode andReturnKeyType:UIReturnKeyNext];
+        _checkCodeTextField = [self customedTextFieldWithFrame:CGRectMake(5, 65, (whiteBackView.bounds.size.width-10)*1.8/3.0f, 35) andPlaceholder:@"输入验证码" andTag:TextField_checkCode andReturnKeyType:UIReturnKeyNext];
         [whiteBackView addSubview:self.checkCodeTextField];
         
         _rgPasswordTextField = [self customedTextFieldWithFrame:CGRectMake(5, 115, whiteBackView.bounds.size.width-10, 35) andPlaceholder:@"输入密码" andTag:TextField_checkCode andReturnKeyType:UIReturnKeyGo];
         self.rgPasswordTextField.secureTextEntry = YES;
         [whiteBackView addSubview:self.rgPasswordTextField];
         [self.view addSubview:_registerView];
+        
+        //验证码button
+        UIButton *checkCodeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        checkCodeButton.frame = CGRectMake(whiteBackView.bounds.size.width-10-95, 65, 95, 35);
+        checkCodeButton.titleLabel.font = kFont14;
+        [checkCodeButton setBackgroundColor:RGBCOLOR(220, 220, 220)];
+        [checkCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [checkCodeButton setTitleColor:RGBCOLOR(157, 157, 157) forState:UIControlStateNormal];
+        [checkCodeButton addTarget:self action:@selector(getCheckCode) forControlEvents:UIControlEventTouchUpInside];
+        checkCodeButton.layer.borderColor = [RGBCOLOR(198, 198, 198) CGColor];
+        checkCodeButton.layer.borderWidth = 0.5f;
+        checkCodeButton.layer.masksToBounds = YES;
+        self.checkCodeButton = checkCodeButton;
+        checkCodeButton.layer.cornerRadius = 5.0f;
+        [whiteBackView addSubview:checkCodeButton];
         
         UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
         registerButton.backgroundColor = KColor;
@@ -177,6 +199,7 @@ enum TextField_Type
     [self.view addSubview:self.sgmLoginButton];
     [self.view addSubview:self.sgmRegisterButton];
     self.sgmLoginButton.selected = YES;
+    self.title = @"登陆";
     
     [self.view addSubview:self.loginView];
     [self.view addSubview:self.selectedLine];
@@ -225,17 +248,13 @@ enum TextField_Type
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if ([self.phoneNumberTextField isFirstResponder]) {
-        [self.phoneNumberTextField resignFirstResponder];
-    }
-    if ([self.passwordTextField isFirstResponder]) {
-        [self.passwordTextField resignFirstResponder];
-    }
+    [self resignAllKeybord];
 }
 
 #pragma mark 点击登陆按钮
 - (void)touchLoginButton
 {
+    [self resignAllKeybord];
     if (self.phoneNumberTextField.text.length && self.passwordTextField.text.length) {
         [HbhUserManager loginWithPhone:self.phoneNumberTextField.text andPassWord:self.passwordTextField.text withSuccess:^{
             //登陆状态处理
@@ -244,6 +263,7 @@ enum TextField_Type
             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessMessae object:nil];
         } failure:^{
             //错误状态处理
+            [SVProgressHUD showErrorWithStatus:@"登录失败" cover:YES offsetY:kMainScreenHeight/2.0];
             self.type = eLoginFail;
             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginFailMessage object:nil];
         }];
@@ -251,10 +271,58 @@ enum TextField_Type
 
 }
 
-#pragma mark 点击登录
+#pragma mark 点击获取验证码按钮
+- (void)getCheckCode
+{
+    if (self.rgPhoneNumberTextField.text && self.rgPhoneNumberTextField.text.length) {
+        [HbhUserManager getCheckCodeWithPhone:self.rgPhoneNumberTextField.text Success:^(NSString *result){
+            self.checkCode = result;
+            [SVProgressHUD showSuccessWithStatus:@"验证码已发送到您的手机" cover:YES offsetY:kMainScreenHeight/2.0];
+            self.checkCodeButton.enabled = NO;
+            _secondCountDown = 120;
+            if (!self.checkCodeTimer) {
+                self.checkCodeTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timeClicked) userInfo:nil repeats:YES];
+            }
+        } failure:^(int result, NSString *errorString) {
+            [SVProgressHUD showErrorWithStatus:errorString cover:YES offsetY:kMainScreenHeight/2.0];
+            self.checkCode = nil;
+        }];
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"请输入手机号" cover:YES offsetY:kMainScreenHeight/2.0];
+    }
+}
+
+#pragma mark 点击注册按钮
 - (void)touchRegisterButton
 {
-    
+    if (self.rgPasswordTextField.text.length && self.rgPhoneNumberTextField.text.length && self.checkCodeTextField.text.length) {
+        [HbhUserManager registerWithPhone:self.rgPhoneNumberTextField.text checkCode:self.checkCodeTextField.text passWord:self.rgPasswordTextField.text withSuccess:^{
+            [SVProgressHUD showSuccessWithStatus:@"注册成功!" cover:YES offsetY:kMainScreenHeight/2.0];
+            self.type = eLoginSucc;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessMessae object:nil];
+        } failure:^(int result, NSString *errorString) {
+            [SVProgressHUD showErrorWithStatus:errorString cover:YES offsetY:kMainScreenHeight/2.0];
+        }];
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"请输入完整" cover:YES offsetY:kMainScreenHeight/2.0];
+    }
+}
+
+#pragma mark 倒计时
+- (void)timeClicked
+{
+    if (_secondCountDown > 0) {
+        //self.checkCodeButton.titleLabel.text = [NSString stringWithFormat:@"%ds重发",_secondCountDown];
+        [self.checkCodeButton setTitle:[NSString stringWithFormat:@"%ds后重发",_secondCountDown] forState:UIControlStateNormal];
+        _secondCountDown--;
+    }else{
+        self.checkCodeButton.enabled = YES;
+        [self.checkCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        if ([self.checkCodeTimer isValid]) {
+            [self.checkCodeTimer invalidate];
+            _checkCodeTimer = nil;
+        }
+    }
 }
 
 #pragma mark - textField delegate
@@ -290,6 +358,30 @@ enum TextField_Type
             break;
     }
     return YES;
+}
+
+
+- (void)resignAllKeybord
+{
+    if (_loginView) {
+        if ([self.phoneNumberTextField isFirstResponder]) {
+            [self.phoneNumberTextField resignFirstResponder];
+        }
+        if ([self.passwordTextField isFirstResponder]) {
+            [self.passwordTextField resignFirstResponder];
+        }
+    }
+    if (_registerView) {
+        if ([self.rgPhoneNumberTextField isFirstResponder]) {
+            [self.rgPhoneNumberTextField resignFirstResponder];
+        }
+        if ([self.rgPasswordTextField isFirstResponder]) {
+            [self.rgPasswordTextField resignFirstResponder];
+        }
+        if ([self.checkCodeTextField isFirstResponder]) {
+            [self.checkCodeTextField resignFirstResponder];
+        }
+    }
 }
 
 //定制的textField
