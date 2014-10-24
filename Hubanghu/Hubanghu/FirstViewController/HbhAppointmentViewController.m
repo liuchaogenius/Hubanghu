@@ -73,7 +73,7 @@
 }
 
 #pragma mark -
-- (void)getPrice{
+- (void)getPrice{ //获取价格
 	if (![_countTextField.text isEqualToString:@""]) {
 		NSDictionary *dic = @{@"type":@(_type),
 							  @"amountType":@(_amountType),
@@ -86,6 +86,7 @@
 	}
 }
 
+//检查内容的完整性和正确性
 - (BOOL)checkContent{
 	STAlertView *alert = [[STAlertView alloc] initWithTitle:@"!" message:@"" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
 		
@@ -108,6 +109,8 @@
 		[_details.detailAreaTF becomeFirstResponder];
 	}else if (!_worker){
 		alert.message = @"请选择工人";
+	}else if (![self phoneNumIsRight]){
+		alert.message = @"请输入正确的电话号码";
 	}
 	
 	if (![alert.message isEqualToString:@""]) {
@@ -118,8 +121,14 @@
 	return YES;
 }
 
-#pragma mark - button event
+//判断电话号码是否正确
+- (BOOL)phoneNumIsRight{
+#warning 正则表达式判断电话号码是否正确
+	return YES;
+}
 
+#pragma mark - button event
+//跳转到选择工人列表
 - (void)pickWorker{
 	SecondViewController *vc = [[SecondViewController alloc] initAndUseWorkerDetailBlock:^(HbhWorkers *aWorkerModel) {
 		_worker = aWorkerModel;
@@ -130,27 +139,6 @@
 
 - (void)confirmOrder{
 	if ([self checkContent]) {
-//		NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
-//		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//		[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-//		dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT+8"];
-//		NSString *dateString = [dateFormatter stringFromDate:date];
-		/*
-		 "cateId":10,
-		 "username":"小明",
-		 "time":121323453453454356334,
-		 "amount":3232,
-		 "workerId":123,
-		 "mountType":1,
-		 "comment":"32w2323wwes",
-		 "phone":1381213232424,
-		 "areaId":323,
-		 "location":"wewew",
-		 "price":80.0,
-		 "workerName":"ewewsd",
-		 "urgent":0
-		 */
-
 		NSDictionary *orderDic = @{@"cateId":_cateId,
 								@"username":@"小明",
 								@"time":@(_details.time),
@@ -166,16 +154,8 @@
 								@"urgent":@(_urgent),
 								@"name":_hbhTitle};
 		HubOrder *order = [[HubOrder alloc] initWithDictionary:orderDic];
-//		__weak HbhAppointmentViewController *weakself = self;
-//		[_netManager commitOrderWith:order succ:^(NSDictionary *succDic) {
-			HbhConfirmOrderViewController * covc = [[HbhConfirmOrderViewController alloc] initWithOrder:order];
-			[self.navigationController pushViewController:covc animated:YES];
-//		} failure:^{
-//			STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"提交订单失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
-//				;
-//			} cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//			[alert show];
-//		}];
+		HbhConfirmOrderViewController * covc = [[HbhConfirmOrderViewController alloc] initWithOrder:order];
+		[self.navigationController pushViewController:covc animated:YES];
 	}
 }
 
