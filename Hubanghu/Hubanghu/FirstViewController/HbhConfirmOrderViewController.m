@@ -8,15 +8,17 @@
 
 #import "HbhConfirmOrderViewController.h"
 #import "HubOrder.h"
-#import "HbhOrderDetailsView.h"
 #import "HbhAppointmentNetManager.h"
 #import "STAlerView.h"
+#define kDoubleToString(a) [NSString stringWithFormat:@"%.0lf",a]
 @interface HbhConfirmOrderViewController ()
 //data
 @property (nonatomic,strong) HubOrder *order;
 @property (nonatomic,strong) NSString *orderId;
 @property (nonatomic,strong) HbhAppointmentNetManager *netManager;
-@property (nonatomic,strong) NSArray *payPath;
+@property (nonatomic,strong) NSArray *payPathArr;
+@property (nonatomic,strong) NSArray *detailsInfoTitle;
+@property (nonatomic,strong) NSArray *detailsInfo;
 //UI
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) UIActivityIndicatorView *activityView;
@@ -24,12 +26,18 @@
 
 @implementation HbhConfirmOrderViewController
 
+- (void)initData{
+	_netManager = [[HbhAppointmentNetManager alloc] init];
+	_payPathArr = @[@"支付宝支付"];
+	_detailsInfoTitle = @[@"名称:",@"姓名:",@"手机号",@"数量",@"时间",@"地址",@"安装师傅",@"备注",@"应付金额"];
+
+}
+
 - (instancetype)initWithOrder:(HubOrder *)order{
 	if (self = [super init]) {
 		_order = order;
 		_orderId = nil;
-		_netManager = [[HbhAppointmentNetManager alloc] init];
-		_payPath = @[@"支付宝支付"];
+		[self initData];
 	}
 	return self;
 }
@@ -38,8 +46,9 @@
 {
 	self = [super init];
 	if (self) {
+		_order = nil;
 		_orderId = orderId;
-		_netManager = [[HbhAppointmentNetManager alloc] init];
+		[self initData];
 	}
 	return self;
 }
@@ -57,25 +66,74 @@
 		STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"提交订单失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
 			if (buttonIndex == 0) {
 				[weakself.navigationController popViewControllerAnimated:YES];
-			}else if(buttonIndex == 2){
-				[weakself commitOrder];
 			}
-		} cancelButtonTitle:@"返回" otherButtonTitles:@"重试", nil];
+			//未完成的重试代码
+//			else if(buttonIndex == 1){
+//				[weakself.view bringSubviewToFront:weakself.activityView];
+//				[weakself.activityView startAnimating];
+//				
+//				[weakself performSelector:@selector(commitOrder) withObject:nil afterDelay:10];
+//			}
+		} cancelButtonTitle:@"返回" otherButtonTitles:nil, nil];
 		[alert show];
 	}];
 }
 
 - (void)getOrderUseOrderId{
-	
+	__weak HbhConfirmOrderViewController *weakself = self;
+	[_netManager getOrderWith:_orderId succ:^(HubOrder *order) {
+		_order = order;
+		[self.activityView stopAnimating];
+	} failure:^{
+		[self.activityView stopAnimating];
+		STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"获取订单信息出错" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+			if (buttonIndex == 0) {
+				[weakself.navigationController popViewControllerAnimated:YES];
+			}
+			//未完成的重试代码
+//			else if(buttonIndex == 1){
+//				[weakself.view bringSubviewToFront:weakself.activityView];
+//				[weakself.activityView startAnimating];
+//				
+//				[weakself performSelector:@selector(getOrderUseOrderId) withObject:nil afterDelay:300];
+//			}
+		} cancelButtonTitle:@"返回" otherButtonTitles:nil, nil];
+		[alert show];
+	}];
+}
+
+- (void)resetDetailsInfo{
+//	_detailsInfoTitle = @[@"名称:",@"姓名:",@"手机号",@"数量",@"时间",@"地址",@"安装师傅",@"备注",@"应付金额"];
+	NSDate *date = [NSDate dateWithTimeIntervalSince1970:_order.time];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+	dateFormatter.timeZone = [[NSTimeZone alloc] initWithName:@"GMT+8"];
+	NSString *dateString = [dateFormatter stringFromDate:date];
+
+	_detailsInfo = @[_order.name,_order.username,kDoubleToString(_order.phone),kDoubleToString(_order.amount),dateString,_order.areaId,_order.workerName,_order.comment,kDoubleToString(_order.price)];
 }
 
 #pragma mark - tableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	return 1;
+	return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	return _payPath.count;
+	if(section == 0){
+		return _detailsInfoTitle.count;
+	}else if (section == 1){
+		return _payPathArr.count;
+	}
+	return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+	if (indexPath.section == 0) {
+		return 35;
+	}else if(indexPath.section == 1){
+		return 44;
+	}
+	return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -83,7 +141,24 @@
 	if (!cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"payCell"];
 	}
-	cell.textLabel.text = [_payPath objectAtIndex:indexPath.row];
+	if(indexPath.section == 0){
+		NSInteger i = indexPath.row;
+		UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, cell.width - 40, 35)];
+		tf.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		tf.layer.borderWidth = 1;
+		tf.enabled = NO; // 设置为不可编辑
+		tf.font = kFont13;
+		tf.textColor = [UIColor lightGrayColor];
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+		label.text = _detailsInfoTitle[i];
+		label.font = kFont13;
+		
+		tf.leftViewMode = UITextFieldViewModeAlways;
+		tf.leftView = label;
+		[cell.contentView addSubview:tf];
+	}else if(indexPath.section == 1){
+		cell.textLabel.text = [_payPathArr objectAtIndex:indexPath.row];
+	}
 	return cell;
 }
 
@@ -110,15 +185,6 @@
 	_tableView.allowsSelection = NO;
 	[self.view addSubview:_tableView];
 	
-	HbhOrderDetailsView *details = [[HbhOrderDetailsView alloc] initWithOrder:_order];
-	details.frame = CGRectMake(50, 50, kMainScreenWidth - 100, 400);
-	details.centerX = kMainScreenWidth/2;
-	details.layer.borderColor = [UIColor lightGrayColor].CGColor;
-	details.layer.borderWidth = 0.2;
-	details.layer.cornerRadius = 5;
-	details.backgroundColor = [UIColor whiteColor];
-
-	_tableView.tableHeaderView = details;
 	[self.view bringSubviewToFront:_activityView];
 	[_activityView startAnimating];
 }

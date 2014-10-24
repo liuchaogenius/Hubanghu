@@ -163,18 +163,19 @@
 								@"location":_details.detailAreaTF.text,
 								@"price":_price,
 								@"workerName":_worker.name,
-								@"urgent":@(_urgent)};
+								@"urgent":@(_urgent),
+								@"name":_hbhTitle};
 		HubOrder *order = [[HubOrder alloc] initWithDictionary:orderDic];
-		__weak HbhAppointmentViewController *weakself = self;
-		[_netManager commitOrderWith:order succ:^(NSDictionary *succDic) {
+//		__weak HbhAppointmentViewController *weakself = self;
+//		[_netManager commitOrderWith:order succ:^(NSDictionary *succDic) {
 			HbhConfirmOrderViewController * covc = [[HbhConfirmOrderViewController alloc] initWithOrder:order];
-			[weakself.navigationController pushViewController:covc animated:YES];
-		} failure:^{
-			STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"提交订单失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
-				;
-			} cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-			[alert show];
-		}];
+			[self.navigationController pushViewController:covc animated:YES];
+//		} failure:^{
+//			STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"提交订单失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+//				;
+//			} cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//			[alert show];
+//		}];
 	}
 }
 
