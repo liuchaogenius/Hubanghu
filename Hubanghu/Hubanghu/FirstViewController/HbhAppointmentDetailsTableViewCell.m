@@ -10,6 +10,7 @@
 #import "HbhUser.h"
 #import "AreasDBManager.h"
 #import "HbuAreaListModelAreas.h"
+#import "HbuAreaLocationManager.h"
 @interface HbhAppointmentDetailsTableViewCell (){
 }
 @property (nonatomic,strong) HbuAreaListModelAreas *province;
@@ -21,7 +22,7 @@
 
 @property (nonatomic,strong) UIActivityIndicatorView *activityView;
 @property (nonatomic,strong) AreasDBManager *areaManager;
-@property (nonatomic,strong) HbhUser *user;
+@property (nonatomic,strong) HbuAreaLocationManager *areaLocationManager;
 @end
 
 @implementation HbhAppointmentDetailsTableViewCell
@@ -82,11 +83,11 @@
 	return _activityView;
 }
 
-- (HbhUser *)user{
-	if (!_user) {
-		_user = [HbhUser sharedHbhUser];
+- (HbuAreaLocationManager *)areaLocationManager{
+	if (!_areaLocationManager) {
+		_areaLocationManager = [HbuAreaLocationManager sharedManager];
 	}
-	return _user;
+	return _areaLocationManager;
 }
 
 - (AreasDBManager *)areaManager{
@@ -225,32 +226,32 @@
 	[self.areaManager selProvince:^(NSMutableArray *cityArry) {
 		_provinceArr = cityArry;
 	}];
-    /*
-	if (self.user.currentArea) {
+	
+	if (self.areaLocationManager.currentAreas) {
 		for (int i = 0; i < _provinceArr.count; i++) {
 			HbuAreaListModelAreas *area = _provinceArr[i];
-			if (area.areaId == self.user.currentArea.parent) {
+			if (area.areaId == _areaLocationManager.currentAreas.parent) {
 				_province = area;
 				[_areaPicker selectRow:i inComponent:0 animated:YES];
 				break;
 			}
 		}
-	}else{*/
+	}else{
 		_province = _provinceArr[0];
-	//}
+	}
 	
-/*
-	if (self.user.currentArea) {
-		_city = self.user.currentArea;
-		[self setCityArrWithAreaId:self.user.currentArea.parent];
-		[self setDistrictArrWithAreaId:self.user.currentArea.areaId];
+
+	if (self.areaLocationManager.currentAreas) {
+		_city = self.areaLocationManager.currentAreas;
+		[self setCityArrWithAreaId:_city.parent];
+		[self setDistrictArrWithAreaId:_city.areaId];
 		_district = _districtArr[0];
-	}else{ */
+	}else{ 
 		[self setCityArrWithAreaId:_province.areaId];
 		_city = _cityArr[0];
 		[self setDistrictArrWithAreaId:_city.areaId];
 		_district = _districtArr[0];
-	//}
+	}
 	[self.activityView stopAnimating];
 	
 	if (![self.areaPicker superview]) {

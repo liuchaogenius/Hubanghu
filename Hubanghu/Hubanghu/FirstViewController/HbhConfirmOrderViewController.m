@@ -94,6 +94,7 @@
 	[_netManager getOrderWith:_orderId succ:^(HubOrder *order) {
 		_order = order;
 		[weakself resetDetailsInfo];
+		[weakself.tableView reloadData];
 		[self.activityView stopAnimating];
 	} failure:^{
 		[self.activityView stopAnimating];
