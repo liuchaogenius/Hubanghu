@@ -40,7 +40,7 @@
     self.imgView.userInteractionEnabled = YES;
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:user.photoUrl]];
     [self.view addSubview:self.imgView];
-    
+        
     UIButton *modifyBtn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-50, self.imgView.bottom+10, 100, 20)];
     [modifyBtn setTitle:@"点击修改头像" forState:UIControlStateNormal];
     [modifyBtn setTitleColor:RGBCOLOR(176, 176, 176) forState:UIControlStateNormal];

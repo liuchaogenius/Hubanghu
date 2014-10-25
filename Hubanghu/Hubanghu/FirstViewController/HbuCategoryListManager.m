@@ -18,15 +18,15 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:cateId] forKey:@"cateId"];
     kHubRequestUrl(@"getCategory.ashx",getCategoryUrl);
     [NetManager requestWith:dic url:getCategoryUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
-        
         NSDictionary *dataDic = successDict[@"data"];
-        
         if (aSuccBlock) {
             aSuccBlock([CategoryInfoModel modelObjectWithDictionary:dataDic]);
         }
-        
     } failure:^(NSDictionary *failDict, NSError *error) {
         MLOG(@"%@",error.localizedDescription);
+        if (aFailBlock) {
+            aFailBlock();
+        }
     }];
 }
 

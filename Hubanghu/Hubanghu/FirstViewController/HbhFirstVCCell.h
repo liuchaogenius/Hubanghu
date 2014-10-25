@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #define kBlankWidth 3.0
-#define kImageButtonHeight ((kMainScreenWidth - kBlankWidth)/2.0*368/532.0f)
+#define kImageButtonHeight ((kMainScreenWidth - kBlankWidth)/2.0*370/532.0f)
 #define kCellHeight kImageButtonHeight+kBlankWidth
 
 @interface HbhFirstVCCell : UITableViewCell

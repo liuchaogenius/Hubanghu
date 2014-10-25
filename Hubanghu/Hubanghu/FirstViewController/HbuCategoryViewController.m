@@ -15,6 +15,7 @@
 #import "HbhAppointmentViewController.h"
 #import "HbhUser.h"
 #import "SVPullToRefresh.h"
+#import "SVProgressHUD.h"
 
 #define kSgmBtnHeight 35
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
@@ -55,12 +56,10 @@
     return _selectLine;
 }
 
-- (NSInteger)sgmCount
+- (NSInteger)getSgmCount
 {
-    if (!_sgmCount) {
-        CategoryChildInfoModel *childCateModel = self.categoryInfoModel.child[0];
-        _sgmCount = (childCateModel.child.count ? self.categoryInfoModel.child.count : 0);//判断是否多层
-    }
+    CategoryChildInfoModel *childCateModel = self.categoryInfoModel.child[0];
+    _sgmCount = (childCateModel.child.count ? self.categoryInfoModel.child.count : 0);//判断是否多层
     return _sgmCount;
 }
 
@@ -127,13 +126,20 @@
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    
+    _sgmCount = 0;
     [self.tableView registerClass:[HbhCategoryCell class] forCellReuseIdentifier:@"Cell"];
-
     __weak HbuCategoryViewController *weakSelf = self;
+    
+    UIActivityIndicatorView *indictor = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indictor.center = CGPointMake(kMainScreenWidth/2.0,100);
+    [self.view addSubview:indictor];
+    [indictor startAnimating];
+    
     [HbuCategoryListManager getCategroryInfoWithCateId:self.cateId WithSuccBlock:^(CategoryInfoModel *cModel) {
+        [indictor stopAnimating];
         weakSelf.categoryInfoModel = cModel;
         weakSelf.title = weakSelf.categoryInfoModel.title;
+        weakSelf.sgmCount = [weakSelf getSgmCount];
         [weakSelf.view addSubview:weakSelf.tableView];
         
         //判断是否需要分栏，并作处理
@@ -141,15 +147,15 @@
             [weakSelf.view addSubview:weakSelf.sgmBtmScrollView];
             
         }
-        weakSelf.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-49-kSgmBtnHeight : kMainScreenHeight-20-44-49) );
+        weakSelf.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-kSgmBtnHeight : kMainScreenHeight-20-44) );
         [weakSelf addTableViewTrag];
         [weakSelf.tableView reloadData];
     } and:^{
         //错误处理
+        [SVProgressHUD showErrorWithStatus:@"加载失败，请检查网络" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
 }
 
-#warning 待完善 是sgmbutton的处理
 - (void)addTableViewTrag
 {
     __weak HbuCategoryViewController *weakSelf = self;
@@ -159,16 +165,17 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             [weakSelf.tableView.pullToRefreshView stopAnimating];
             [HbuCategoryListManager getCategroryInfoWithCateId:self.cateId WithSuccBlock:^(CategoryInfoModel *cModel) {
-                // weakSelf.categoryInfoModel = cModel;
+                weakSelf.categoryInfoModel = cModel;
+                _sgmCount = [weakSelf getSgmCount];
+                if (weakSelf.sgmCount && !_sgmBtmScrollView) {
+                    [weakSelf.view addSubview:weakSelf.sgmBtmScrollView];
+                }
                 weakSelf.title = weakSelf.categoryInfoModel.title;
                 [weakSelf.view addSubview:weakSelf.tableView];
                 
                 //判断是否需要分栏，并作处理
-                if (weakSelf.sgmCount && !_sgmBtmScrollView) {
-                    [weakSelf.view addSubview:weakSelf.sgmBtmScrollView];
-                    
-                }
-                weakSelf.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-49-kSgmBtnHeight : kMainScreenHeight-20-44-49) );
+                
+                weakSelf.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-kSgmBtnHeight : kMainScreenHeight-20-44) );
                 [weakSelf.tableView reloadData];
             } and:nil];
         });
@@ -213,7 +220,7 @@
     
     CategoryChildInfoModel *leftCateModel =(self.sgmCount ? [self childDepthThreeCateModelWithIndex:indexPath.row * 2] : self.categoryInfoModel.child[indexPath.row*2]);
     
-    [cell.leftImageButton sd_setImageWithURL:[NSURL URLWithString:leftCateModel.imageUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"OrderType_3"]];
+    [cell.leftImageButton sd_setImageWithURL:[NSURL URLWithString:leftCateModel.imageUrl] forState:UIControlStateNormal];
     
     [cell.leftImageButton addTarget:self action:@selector(touchImageButton:) forControlEvents:UIControlEventTouchUpInside];
     cell.leftImageButton.tag = leftCateModel.cateId;
@@ -234,7 +241,7 @@
         }
         
         
-        [cell.rightImageButton sd_setImageWithURL:[NSURL URLWithString:rightCateModel.imageUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"OrderType_3"]];
+        [cell.rightImageButton sd_setImageWithURL:[NSURL URLWithString:rightCateModel.imageUrl] forState:UIControlStateNormal ];
         
         [cell.rightImageButton addTarget:self action:@selector(touchImageButton:) forControlEvents:UIControlEventTouchUpInside];
         cell.rightImageButton.tag = rightCateModel.cateId;

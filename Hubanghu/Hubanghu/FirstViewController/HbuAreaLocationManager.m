@@ -11,6 +11,7 @@
 #import "NetManager.h"
 #import "AreasDBManager.h"
 #import "SLocationManager.h"
+#import "HbhSelCityViewController.h"
 
 @implementation HbuAreaLocationManager
 
@@ -34,7 +35,7 @@
 - (void)setCurrentAreas:(HbuAreaListModelAreas *)currentAreas
 {
     _currentAreas = currentAreas;
-#warning 设置http透明的areadid
+// 设置http透明的areadid
     if (_currentAreas.areaId) {
         [[NetManager shareInstance] setAreaId:[NSString stringWithFormat:@"%f",_currentAreas.areaId]];
     }
@@ -82,7 +83,6 @@
     }];
 }
 
-#warning 调用这个接口之前要先判断本地是否存在数据，还有一个判断这个接口数据版本
 //网络请求 获取地区数据
 - (void)getAreaListInfoWithsucc:(void(^)(HbuAreaListModelBaseClass* areaListModel))succ failure:(void(^)())failure
 {
@@ -111,8 +111,10 @@
         for (HbuAreaListModelAreas *area in areas) {
             [self.areasDBManager insertAreaToTable:[NSString stringWithFormat:@"%d",(int)area.areaId] name:area.name level:(int)area.level parent:[NSString stringWithFormat:@"%d",(int)area.parent] typeName:area.typeName firstchar:area.firstchar];
         }
-#warning 对应保存这份数据的time（版本号） nsuser
+// 对应保存这份数据的time（版本号） nsuser
         double time = areaListModel.time;
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setDouble:time forKey:@"time"];
     }
 }
 
@@ -132,7 +134,7 @@
 }
 
 #pragma mark - 获取位置
-- (void)getUserLocationWithSuccess : (void (^)())sBlock Fail : (void(^)(NSString *failString))aFailBlock
+- (void)getUserLocationWithSuccess : (void (^)())sBlock Fail : (void(^)(NSString *failString,int errorType))aFailBlock
 {
     
     SLocationManager *locationManager = [SLocationManager getMyLocationInstance];
@@ -140,7 +142,7 @@
     {
         __weak HbuAreaLocationManager *weakSelf = self;
         [locationManager statUpdateLocation:^(Location2d al2d) {
-#warning 需要把定位度添加http头里面
+// 需要把定位度添加http头里面
             if (al2d.code == 1) {
                 if (al2d.lat) {
                     [[NetManager shareInstance] setLat:al2d.lat];
@@ -150,7 +152,7 @@
                 }
             }
             [locationManager getLocationAddress:NO resultBlock:^(NSDictionary *aLocationDict, Location2d aL2d) {
-#warning 对比城市 创建currentAreas
+// 对比城市 创建currentAreas
                 MLOG(@"%@",aLocationDict[@"City"]);
                 if (aLocationDict[@"City"]) {
                     [weakSelf.areasDBManager selHbuArealistModel:aLocationDict[@"City"] resultBlock:^(HbuAreaListModelAreas *model) {
@@ -158,27 +160,21 @@
                             weakSelf.currentAreas = model;
                             sBlock();
                         }else{
-                            if (!weakSelf.currentAreas) {
-                                aFailBlock(@"匹配用户城市失败，请手动选择");
-                            }
+                            weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_matchCfail)):(aFailBlock(@"匹配用户城市失败，请手动选择",errorType_matchCityFailed));
                         }
                     }];
                 }else{
-                    if (!weakSelf.currentAreas) {
-                        aFailBlock(@"定位用户城市失败，请手动选择");
-                    }
-                }
+                    weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_locFail)) : (aFailBlock(@"定位用户城市失败，请手动选择",errorType_locationFailed));                }
             }];
         }];
     }
     else
     {
-#warning  return 一个值 让用户自己选择城市
-        if (!self.currentAreas) {
-            aFailBlock(@"您没有开启定位服务，请手动选择城市");
-        }
+// return 一个值 让用户自己选择城市
+        aFailBlock(@"未开启定位服务",errorType_notOpenService);
     }
 }
+
 
 
 

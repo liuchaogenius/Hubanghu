@@ -89,14 +89,6 @@ enum CellTag_Type
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    /*
-    //检测用户状态是否改变 //登陆-登出
-    if ([HbhUser sharedHbhUser].statusIsChanged) {
-        [self.tableView reloadData];
-        [HbhUser sharedHbhUser].statusIsChanged = NO;
-    }
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-     */
     //待完善刷新时机
     if ([HbhUser sharedHbhUser].isLogin) {
         [self refreshNumberLabels];
@@ -163,6 +155,10 @@ enum CellTag_Type
         
         HbhUser *user = [HbhUser sharedHbhUser];
         if (user.isLogin) {
+            
+            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchHeadView)];
+            [self.fHeadView addGestureRecognizer:tapRecognizer];
+            
             self.fHeadView.hasLoginView.hidden = NO;
             self.fHeadView.notLoginView.hidden = YES;
             self.fHeadView.nickNameLabel.text = user.nickName;
@@ -206,7 +202,7 @@ enum CellTag_Type
             
             //显示文字的label
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, kMainScreenWidth-40, cell.height)];
-            [label setTextAlignment:UITextAlignmentLeft];
+            //[label setTextAlignment:UITextAlignmentLeft];
             [label setFont:kFont13];
             label.tag = klabelTag;
             [cell.contentView addSubview:label];
@@ -349,6 +345,18 @@ enum CellTag_Type
     [[HbhUser sharedHbhUser] logoutUser];
     [self.tableView reloadData];
 }
+
+#pragma mark 点击headView,用户信息/登陆_注册
+- (void)touchHeadView
+{
+    if ([HbhUser sharedHbhUser].isLogin) { //进入修改用户信息界面
+        [self touchModifyUserDetail];
+    }else{
+        [self touchLoginButton];
+    }
+}
+
+
 #pragma mark 点击进入修改头像页面
 - (void)touchModifyUserDetail
 {

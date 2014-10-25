@@ -33,6 +33,7 @@ enum CateId_Type
 @property (strong, nonatomic) UIView *headView; //headView
 @property (strong, nonatomic) HbuAreaLocationManager *areaLocationManager;
 @property (strong, nonatomic) HbuAreaListModelBaseClass *areaListModel;
+
 @end
 
 @implementation FirstViewController
@@ -50,8 +51,8 @@ enum CateId_Type
 - (UIView *)headView
 {
     if (!_headView) {
-        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenWidth*381/1080.0f)];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:_headView.frame];
+        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenWidth*381/1080.0f+kBlankWidth) ];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kBlankWidth, _headView.width, _headView.height-kBlankWidth)];
         [imageView setImage:[UIImage imageNamed:@"OrderHeader"]];
         [_headView addSubview:imageView];
     }
@@ -73,6 +74,7 @@ enum CateId_Type
     NSString *rightBtnTitle = (self.areaLocationManager.currentAreas.name.length ?
                                self.areaLocationManager.currentAreas.name : @"城市");
     [self.rightButton setTitle:rightBtnTitle forState:UIControlStateNormal];
+   // self.rightButton.titleLabel.text = rightBtnTitle;
 }
 
 - (void)viewDidLoad {
@@ -81,12 +83,13 @@ enum CateId_Type
     [self setRightButton:nil title:@"城市" target:self action:@selector(showSelCityVC)];
     [self settitleLabel:@"预约"];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-49-64) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64) style:UITableViewStyleGrouped];
     MLOG(@"%lf",self.tableView.height);
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[HbhFirstVCCell class] forCellReuseIdentifier:@"FirstVCCell"];
+    //self.tableView.bounces = NO;
     
     //定位相关
     _areaLocationManager = [HbuAreaLocationManager sharedManager];
@@ -96,12 +99,20 @@ enum CateId_Type
     __weak FirstViewController *weakSelf = self;
     [self.areaLocationManager getUserLocationWithSuccess:^{
         [weakSelf setRightButton:nil title:[HbuAreaLocationManager sharedManager].currentAreas.name target:self action:@selector(showSelCityVC)];
-        
-    } Fail:^(NSString *failString) {
-        [SVProgressHUD showErrorWithStatus:failString duration:1.2f cover:YES offsetY:kMainScreenHeight/2.0f];
-        HbhSelCityViewController *selCityVC = [[HbhSelCityViewController alloc] init];
-        selCityVC.hidesBottomBarWhenPushed = YES;
-        [weakSelf.navigationController pushViewController:selCityVC animated:YES];
+        //weakSelf.rightButton.titleLabel.text = weakSelf.areaLocationManager.currentAreas.name;
+    } Fail:^(NSString *failString, int errorType) {
+        if (errorType == errorType_notOpenService) { //未开启定位服务
+            //区分是否有之前的定位城市
+            NSString *cancelButtonTiltle = (self.areaLocationManager.currentAreas ? @"知道了":@"手动选择城市");
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"定位服务未开启" message:@"请在系统设置中开启定位服务（设置->隐私->定位服务->开启互帮互）" delegate:self cancelButtonTitle:cancelButtonTiltle otherButtonTitles:nil, nil];
+            alertView.tag = (self.areaLocationManager.currentAreas ? 1 : 2);
+            [alertView show];
+        }else if(errorType == errorType_locationFailed || errorType == errorType_matchCityFailed){
+            [SVProgressHUD showErrorWithStatus:failString cover:YES offsetY:kMainScreenHeight/2.0];
+            HbhSelCityViewController *selCityVC = [[HbhSelCityViewController alloc] init];
+            selCityVC.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:selCityVC animated:YES];
+        }
     }];
 }
 
@@ -135,8 +146,6 @@ enum CateId_Type
     return self.headView.height;
     
 }
-
-
 
 #pragma mark headView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -174,9 +183,8 @@ enum CateId_Type
     return cell;
 }
 
-
 #pragma mark - Action
-
+#pragma mark show SelCityVC
 - (void)showSelCityVC
 {
     HbhSelCityViewController *selCityVC = [[HbhSelCityViewController alloc] init];
@@ -192,7 +200,18 @@ enum CateId_Type
     }
 }
 
-
+#pragma mark -alertview delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 2) {
+        if (buttonIndex == 0) {
+            HbhSelCityViewController *selCityVC = [[HbhSelCityViewController alloc] init];
+            selCityVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:selCityVC animated:YES];
+        }
+    }
+    
+}
 
 /*
 #pragma mark - Navigation

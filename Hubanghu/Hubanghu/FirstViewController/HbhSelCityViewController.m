@@ -10,6 +10,7 @@
 #import "HbuAreaLocationManager.h"
 #import "HbhHotCityCell.h"
 #import "SVProgressHUD.h"
+#import "SVPullToRefresh.h"
 enum kActionSheet_Type
 {
     kActionSheet_selectCity = 100
@@ -44,6 +45,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
 @implementation HbhSelCityViewController
 
 #pragma mark - getter and setter
+
 - (NSMutableDictionary *)cityDict
 {
     if (!_cityDict) {
@@ -82,6 +84,17 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+    
+    __weak HbhSelCityViewController *weakSelf = self;
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        int64_t delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+            [weakSelf.tableView.pullToRefreshView stopAnimating];
+            [weakSelf refreshData];
+        });
+    }];
+    
     [self setRightButton:[UIImage imageNamed:@"refresh"] title:nil target:self action:@selector(refreshData)];
     
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
@@ -96,6 +109,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - delegate datasource 方法
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -169,7 +183,6 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        //TODO：设备cell内容
         HbuAreaListModelAreas *area = ((NSArray *)self.cityDict[self.firstCharArray[indexPath.section - 2]])[indexPath.row];
         cell.textLabel.text = area.name;
         
@@ -186,7 +199,6 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     }else if(indexPath.section == 1){
         //热门城市不做处理
     }else{
-        
         HbuAreaListModelAreas *area = ((NSArray *)self.cityDict[self.firstCharArray[indexPath.section - 2]])[indexPath.row];
         _selectArea = area;
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"选择%@作为您所在的城市？",area.name] delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -232,7 +244,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     [[HbuAreaLocationManager sharedManager] getUserLocationWithSuccess:^{
         [_locationIndictorView stopAnimating];
         _localCityLable.text = [HbuAreaLocationManager sharedManager].currentAreas.name;
-    } Fail:^(NSString *failString) {
+    } Fail:^(NSString *failString, int errorType) {
         [_locationIndictorView stopAnimating];
         _localCityLable.text = @"定位失败,点击重新定位";
     }];
