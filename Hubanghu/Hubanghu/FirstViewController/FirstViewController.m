@@ -58,18 +58,20 @@ enum CateId_Type
     return _headView;
 }
 
+- (HbuAreaLocationManager *)areaLocationManager
+{
+    if (!_areaLocationManager) {
+        _areaLocationManager = [HbuAreaLocationManager sharedManager];
+    }
+    return _areaLocationManager;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     //更改右上button 城市titile
-    NSString *rightBtnTitle;
-    if ([HbhUser sharedHbhUser].isLogin && [HbhUser sharedHbhUser].currentArea) { //登陆状态
-        rightBtnTitle = [HbhUser sharedHbhUser].currentArea.name;
-    }else if([HbuAreaLocationManager sharedManager].currentAreas){ //未登录
-        rightBtnTitle = [HbuAreaLocationManager sharedManager].currentAreas.name;
-    }else{
-        rightBtnTitle = @"城市";
-    }
+    NSString *rightBtnTitle = (self.areaLocationManager.currentAreas.name.length ?
+                               self.areaLocationManager.currentAreas.name : @"城市");
     [self.rightButton setTitle:rightBtnTitle forState:UIControlStateNormal];
 }
 
@@ -77,7 +79,7 @@ enum CateId_Type
     [super viewDidLoad];
     [self setLeftButton:nil title:@"left" target:self action:@selector(showLeftView)];
     [self setRightButton:nil title:@"城市" target:self action:@selector(showSelCityVC)];
-    self.title = @"预约";
+    [self settitleLabel:@"预约"];
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-49-64) style:UITableViewStyleGrouped];
     MLOG(@"%lf",self.tableView.height);
@@ -96,12 +98,10 @@ enum CateId_Type
         [weakSelf setRightButton:nil title:[HbuAreaLocationManager sharedManager].currentAreas.name target:self action:@selector(showSelCityVC)];
         
     } Fail:^(NSString *failString) {
-        if (![weakSelf isHaveUserOldAreaCheck]){
-            [SVProgressHUD showErrorWithStatus:failString duration:1.2f cover:YES offsetY:kMainScreenHeight/2.0f];
-            HbhSelCityViewController *selCityVC = [[HbhSelCityViewController alloc] init];
-            selCityVC.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:selCityVC animated:YES];
-        }
+        [SVProgressHUD showErrorWithStatus:failString duration:1.2f cover:YES offsetY:kMainScreenHeight/2.0f];
+        HbhSelCityViewController *selCityVC = [[HbhSelCityViewController alloc] init];
+        selCityVC.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:selCityVC animated:YES];
     }];
 }
 
@@ -193,14 +193,6 @@ enum CateId_Type
 }
 
 
-#pragma 检查用户模型中是否有定位/手选 的地区
-- (BOOL)isHaveUserOldAreaCheck
-{
-    if ([HbhUser sharedHbhUser].isLogin) {
-        return  ([HbhUser sharedHbhUser].currentArea ? YES:NO);
-    }
-    return NO;
-}
 
 /*
 #pragma mark - Navigation

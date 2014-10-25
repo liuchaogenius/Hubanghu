@@ -225,6 +225,7 @@
 	[self.areaManager selProvince:^(NSMutableArray *cityArry) {
 		_provinceArr = cityArry;
 	}];
+    /*
 	if (self.user.currentArea) {
 		for (int i = 0; i < _provinceArr.count; i++) {
 			HbuAreaListModelAreas *area = _provinceArr[i];
@@ -234,22 +235,22 @@
 				break;
 			}
 		}
-	}else{
+	}else{*/
 		_province = _provinceArr[0];
-	}
+	//}
 	
-
+/*
 	if (self.user.currentArea) {
 		_city = self.user.currentArea;
 		[self setCityArrWithAreaId:self.user.currentArea.parent];
 		[self setDistrictArrWithAreaId:self.user.currentArea.areaId];
 		_district = _districtArr[0];
-	}else{
+	}else{ */
 		[self setCityArrWithAreaId:_province.areaId];
 		_city = _cityArr[0];
 		[self setDistrictArrWithAreaId:_city.areaId];
 		_district = _districtArr[0];
-	}
+	//}
 	[self.activityView stopAnimating];
 	
 	if (![self.areaPicker superview]) {

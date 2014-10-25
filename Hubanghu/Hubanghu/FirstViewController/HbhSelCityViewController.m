@@ -9,7 +9,6 @@
 #import "HbhSelCityViewController.h"
 #import "HbuAreaLocationManager.h"
 #import "HbhHotCityCell.h"
-#import "HbhUser.h"
 #import "SVProgressHUD.h"
 enum kActionSheet_Type
 {
@@ -254,11 +253,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
         case kActionSheet_selectCity:
         {
             if (buttonIndex == 0) {
-                if ([HbhUser sharedHbhUser].isLogin) {
-                    [HbhUser sharedHbhUser].currentArea = _selectArea;
-                }
                 [HbuAreaLocationManager sharedManager].currentAreas = _selectArea;
-                
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }

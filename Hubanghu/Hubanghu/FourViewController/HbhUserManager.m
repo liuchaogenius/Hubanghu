@@ -11,26 +11,25 @@
 #import "HbhUser.h"
 @implementation HbhUserManager
 //登陆
-+ (void)loginWithPhone:(NSString *)phone andPassWord:(NSString *)password withSuccess:(void(^)())sBlock failure:(void(^)())fBlock
++ (void)loginWithPhone:(NSString *)phone andPassWord:(NSString *)password withSuccess:(void(^)())sBlock failure:(void(^)(int result, NSString *errorStr))fBlock
 {
     NSString *loginUrl = nil;
     kHubRequestUrl(@"login.ashx", loginUrl);
     NSDictionary *postDic = [NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password", nil];
     
     [NetManager requestWith:postDic url:loginUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
-   
-        if ([successDict[@"code"] isEqualToString:@"SUCCESS"]) {
-            NSDictionary *dataDic = successDict[@"data"];
+        NSDictionary *dataDic = successDict[@"data"];
+        if ([dataDic[@"result"] intValue] == 1) {
             NSDictionary *userDic = dataDic[@"user"];
             [[HbhUser sharedHbhUser] loginUserWithUserDictionnary:userDic];
             sBlock();
-        }else if (fBlock){
-            fBlock();
+        }else if ([dataDic[@"result"] intValue] == 0){
+            fBlock(0,@"账号或密码错误");
         }
     } failure:^(NSDictionary *failDict, NSError *error) {
         MLOG(@"%@",error.localizedDescription);
         if (fBlock){
-            fBlock();
+            fBlock(-2,@"网络错误，请检查网络");
         }
     }];
 }

@@ -200,7 +200,7 @@ enum CellTag_Type
             //图片
             UIImageView *aImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, (cell.height-20)/2.0f, 20, 20)];
             [aImageView setContentMode:UIViewContentModeScaleToFill];
-            [aImageView setFrame:CGRectMake(10, (cell.height-20)/2.0f, 22, 25)];
+            [aImageView setFrame:CGRectMake(10, (cell.height-25)/2.0, 22, 25)];
             aImageView.tag = kaImageViewTag;
             [cell addSubview:aImageView];
             

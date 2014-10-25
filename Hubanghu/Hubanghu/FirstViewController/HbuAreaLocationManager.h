@@ -26,4 +26,7 @@
 //从网络获取地区信息，并存入数据库（不管数据库有没有地区信息）
 - (void)shouldGetAreasDataAndSaveToDBWithSuccess : (void (^)())sBlock Fail : (void(^)())fBlock;
 
+//- (void)encodeWithCoder:(NSCoder *)aCoder;
+//- (id)initWithCoder:(NSCoder *)aDecoder;
+
 @end

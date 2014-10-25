@@ -255,29 +255,30 @@ enum TextField_Type
 - (void)touchLoginButton
 {
     [self resignAllKeybord];
+    [SVProgressHUD showWithStatus:@"登录中" cover:YES offsetY:kMainScreenHeight/2.0];
     if (self.phoneNumberTextField.text.length && self.passwordTextField.text.length) {
         [HbhUserManager loginWithPhone:self.phoneNumberTextField.text andPassWord:self.passwordTextField.text withSuccess:^{
             //登陆状态处理
             [HbhUser sharedHbhUser].statusIsChanged = YES;
+            [SVProgressHUD dismissWithSuccess:@"登陆成功！"];
             self.type = eLoginSucc;
             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessMessae object:nil];
-        } failure:^{
-            //错误状态处理
-            [SVProgressHUD showErrorWithStatus:@"登录失败" cover:YES offsetY:kMainScreenHeight/2.0];
-            self.type = eLoginFail;
+        } failure:^(int result, NSString *errorStr) {
+            [SVProgressHUD dismissWithError:errorStr];
+            //self.type = eLoginFail;
             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginFailMessage object:nil];
         }];
     }
-
 }
 
 #pragma mark 点击获取验证码按钮
 - (void)getCheckCode
 {
     if (self.rgPhoneNumberTextField.text && self.rgPhoneNumberTextField.text.length) {
+        [SVProgressHUD showWithStatus:@"验证码发送中" cover:YES offsetY:kMainScreenHeight/2.0];
         [HbhUserManager getCheckCodeWithPhone:self.rgPhoneNumberTextField.text Success:^(NSString *result){
             self.checkCode = result;
-            [SVProgressHUD showSuccessWithStatus:@"验证码已发送到您的手机" cover:YES offsetY:kMainScreenHeight/2.0];
+            [SVProgressHUD dismissWithSuccess:@"验证码已发送到您的手机"];
             self.checkCodeButton.enabled = NO;
             _secondCountDown = 120;
             if (!self.checkCodeTimer) {
@@ -296,12 +297,13 @@ enum TextField_Type
 - (void)touchRegisterButton
 {
     if (self.rgPasswordTextField.text.length && self.rgPhoneNumberTextField.text.length && self.checkCodeTextField.text.length) {
+        [SVProgressHUD showWithStatus:@"信息提交中" cover:YES offsetY:kMainScreenHeight/2.0];
         [HbhUserManager registerWithPhone:self.rgPhoneNumberTextField.text checkCode:self.checkCodeTextField.text passWord:self.rgPasswordTextField.text withSuccess:^{
-            [SVProgressHUD showSuccessWithStatus:@"注册成功!" cover:YES offsetY:kMainScreenHeight/2.0];
+            [SVProgressHUD dismissWithSuccess:@"注册成功!"];
             self.type = eLoginSucc;
             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessMessae object:nil];
         } failure:^(int result, NSString *errorString) {
-            [SVProgressHUD showErrorWithStatus:errorString cover:YES offsetY:kMainScreenHeight/2.0];
+            [SVProgressHUD dismissWithError:errorString];
         }];
     }else{
         [SVProgressHUD showErrorWithStatus:@"请输入完整" cover:YES offsetY:kMainScreenHeight/2.0];

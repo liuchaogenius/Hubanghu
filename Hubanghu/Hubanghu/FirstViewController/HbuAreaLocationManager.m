@@ -11,11 +11,41 @@
 #import "NetManager.h"
 #import "AreasDBManager.h"
 #import "SLocationManager.h"
-#import "HbhUser.h"
 
 @implementation HbuAreaLocationManager
 
 @synthesize currentAreas = _currentAreas;
+
+- (HbuAreaListModelAreas *)currentAreas
+{
+    if (!_currentAreas) {
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        
+        NSData *currentAreaDate = [userDefault objectForKey:@"currentAreas"];
+        if (currentAreaDate) {
+            _currentAreas = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
+        }else{
+            _currentAreas = [[HbuAreaListModelAreas alloc] init];
+        }
+    }
+    return _currentAreas;
+}
+
+- (void)setCurrentAreas:(HbuAreaListModelAreas *)currentAreas
+{
+    _currentAreas = currentAreas;
+#warning 设置http透明的areadid
+    if (_currentAreas.areaId) {
+        [[NetManager shareInstance] setAreaId:[NSString stringWithFormat:@"%f",_currentAreas.areaId]];
+    }
+    //修改文件，记录地区
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    
+    NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentAreas];
+    [userDefault synchronize];
+    [userDefault setObject:currentAreasData forKey:@"currentAreas"];
+    
+}
 
 - (AreasDBManager *)areasDBManager
 {
@@ -83,9 +113,6 @@
         }
 #warning 对应保存这份数据的time（版本号） nsuser
         double time = areaListModel.time;
-        if ([HbhUser sharedHbhUser].isLogin) {
-            [HbhUser sharedHbhUser].time = time;
-        }
     }
 }
 
@@ -107,10 +134,6 @@
 #pragma mark - 获取位置
 - (void)getUserLocationWithSuccess : (void (^)())sBlock Fail : (void(^)(NSString *failString))aFailBlock
 {
-    //读取用户文件的地区
-    if (self.currentAreas == nil && [HbhUser sharedHbhUser].isLogin && [HbhUser sharedHbhUser].currentArea) {
-        self.currentAreas = [HbhUser sharedHbhUser].currentArea;
-    }
     
     SLocationManager *locationManager = [SLocationManager getMyLocationInstance];
     if([locationManager getLocationAuthorStatus] == 0 || [locationManager getLocationAuthorStatus]>= 3)
@@ -158,18 +181,6 @@
 }
 
 
-- (void)setCurrentAreas:(HbuAreaListModelAreas *)currentAreas
-{
-    _currentAreas = currentAreas;
-#warning 设置http透明的areadid
-    if (_currentAreas.areaId) {
-        [[NetManager shareInstance] setAreaId:[NSString stringWithFormat:@"%f",_currentAreas.areaId]];
-    }
-    //修改用户模型的地区
-    if ([HbhUser sharedHbhUser].isLogin && [HbhUser sharedHbhUser].currentArea != _currentAreas) {
-        [HbhUser sharedHbhUser].currentArea = _currentAreas;
-    }
-}
 
 
 
