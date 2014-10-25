@@ -18,6 +18,7 @@
 @property(nonatomic, strong) UITextField *textField;
 @property(nonatomic, strong) UIImageView *imgView;
 @property(nonatomic, strong) UIImage *photoImg;
+@property(nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @end
 
 @implementation HbhModifyUserDetailViewController
@@ -25,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = RGBCOLOR(247, 247, 247);
-    self.title = @"编辑个人信息";
+    [self settitleLabel:@"编辑个人信息"];
     HbhUser *user = [HbhUser sharedHbhUser];
     
     self.imgView = [[UIImageView alloc]
@@ -34,6 +35,9 @@
     self.imgView.layer.borderWidth = 1;
     self.imgView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.imgView.clipsToBounds = YES;
+    self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(UesrImageClicked)];
+    [self.imgView addGestureRecognizer:self.tapGesture];
+    self.imgView.userInteractionEnabled = YES;
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:user.photoUrl]];
     [self.view addSubview:self.imgView];
     
