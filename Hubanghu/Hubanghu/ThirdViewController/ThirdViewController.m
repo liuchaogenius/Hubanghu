@@ -121,6 +121,11 @@ typedef enum : NSUInteger {
 - (void)getFisrtPage
 {
     [self.orderManage getOrderWithListFilterId:_currentTab andSuccBlock:^(NSArray *aArray) {
+        [self.failView removeFromSuperview];
+        if (aArray.count==0)
+        {
+            [self.view addSubview:self.failView];
+        }
         switch (_currentTab) {
             case 0:
                 self.allOrderArray = [aArray mutableCopy];
@@ -136,7 +141,7 @@ typedef enum : NSUInteger {
         }
         [self.showOrderTableView reloadData];
     } andFailBlock:^{
-        
+        [self.view addSubview:self.failView];
     }];
 }
 

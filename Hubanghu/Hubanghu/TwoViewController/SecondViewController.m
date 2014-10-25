@@ -116,11 +116,15 @@ typedef enum : NSUInteger {
 - (void)getWorkerListWithAreaId:(int)aAreaId andWorkerTypeId:(int)aWorkTypeId andOrderCountId:(int)aOrderId
 {
     [self.workerListManage getWorkerListWithAreaId:aAreaId andWorkerTypeId:aWorkTypeId andOrderCountId:aOrderId SuccBlock:^(HbhData *aData) {
+        [self.failView removeFromSuperview];
         self.workersArray = [(NSMutableArray *)aData.workers mutableCopy];
         self.areasArray = [(NSMutableArray *)aData.areas mutableCopy];
         self.workerTypeArray = [(NSMutableArray *)aData.workerTypes mutableCopy];
         self.orderCountArray = [(NSMutableArray *)aData.orderCounts mutableCopy];
         [self.showWorkerListTableView reloadData];
+        if (self.workersArray.count==0) {
+            [self.view addSubview:self.failView];
+        }
         [self.activityView stopAnimating];
         if (aAreaId!=-1 && aWorkTypeId!=-1 && aOrderId !=-1)
         {
