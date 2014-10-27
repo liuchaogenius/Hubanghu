@@ -83,14 +83,16 @@ enum CateId_Type
     [self setRightButton:nil title:@"城市" target:self action:@selector(showSelCityVC)];
     [self settitleLabel:@"预约"];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64) style:UITableViewStylePlain];
     MLOG(@"%lf",self.tableView.height);
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[HbhFirstVCCell class] forCellReuseIdentifier:@"FirstVCCell"];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     //self.tableView.bounces = NO;
-    
+    self.tableView.tableHeaderView = self.headView;
     //定位相关
     _areaLocationManager = [HbuAreaLocationManager sharedManager];
     [self.areaLocationManager getAreasDataAndSaveToDBifNeeded];
@@ -141,17 +143,17 @@ enum CateId_Type
     return self.allCategoryInfo.count/2 + self.allCategoryInfo.count%2;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return self.headView.height;
-    
-}
-
-#pragma mark headView
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return self.headView;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return self.headView.height;
+//    
+//}
+//
+//#pragma mark headView
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    return self.headView;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
