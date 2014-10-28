@@ -11,6 +11,7 @@
 #import "AreasDBManager.h"
 #import "HbuAreaListModelAreas.h"
 #import "HbuAreaLocationManager.h"
+#import "STAlerView.h"
 @interface HbhAppointmentDetailsTableViewCell (){
 }
 @property (nonatomic,strong) HbuAreaListModelAreas *province;
@@ -202,9 +203,18 @@
 - (void)setCityArrWithAreaId:(double)areaId{
 	NSString *area;
 	kIntToString(area,(int)areaId);
+	[self.activityView startAnimating];
+	
 	[self.areaManager selProvinceOfCity:area district:^(NSMutableArray *cityArry) {
 		_cityArr = cityArry;
 	}];
+	if (!_cityArr) {
+		STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"地区信息获取失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+			
+		} cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+		[alert show];
+	}
+	[self.activityView stopAnimating];
 	if ([_areaPicker superview]) {
 		[_areaPicker reloadComponent:1];
 	}
@@ -214,8 +224,15 @@
 	NSString *area;
 	kIntToString(area, (int)areaId);
 	[self.areaManager selCityOfDistrict:area district:^(NSMutableArray *districtArry) {
+#warning 获取到空值时进行警告。
 		_districtArr = districtArry;
 	}];
+	if (!_districtArr) {
+		STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"地区信息获取失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+			
+		} cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+		[alert show];
+	}
 	if ([_areaPicker superview]) {
 		[_areaPicker reloadComponent:2];
 	}
@@ -227,7 +244,21 @@
 		_provinceArr = cityArry;
 	}];
 	
-	if (self.areaLocationManager.currentAreas) {
+//	if (self.areaLocationManager.currentAreas) {
+//		for (int i = 0; i < _provinceArr.count; i++) {
+//			HbuAreaListModelAreas *area = _provinceArr[i];
+//			if (area.areaId == _areaLocationManager.currentAreas.parent) {
+//				_province = area;
+//				[_areaPicker selectRow:i inComponent:0 animated:YES];
+//				break;
+//			}
+//		}
+//	}else{
+//		_province = _provinceArr[0];
+//	}
+	
+	MLOG(@"%@",self.areaLocationManager.currentAreas);
+	if (self.areaLocationManager.currentAreas && (int)self.areaLocationManager.currentAreas.areaId != 0) {
 		for (int i = 0; i < _provinceArr.count; i++) {
 			HbuAreaListModelAreas *area = _provinceArr[i];
 			if (area.areaId == _areaLocationManager.currentAreas.parent) {
@@ -236,21 +267,24 @@
 				break;
 			}
 		}
-	}else{
-		_province = _provinceArr[0];
-	}
-	
-
-	if (self.areaLocationManager.currentAreas) {
 		_city = self.areaLocationManager.currentAreas;
 		[self setCityArrWithAreaId:_city.parent];
 		[self setDistrictArrWithAreaId:_city.areaId];
-		_district = _districtArr[0];
-	}else{ 
+		if (_districtArr) {
+			_district = _districtArr[0];
+		}
+	}else{
+		if (_provinceArr) {
+			_province = _provinceArr[0];
+		}
 		[self setCityArrWithAreaId:_province.areaId];
-		_city = _cityArr[0];
+		if (_cityArr) {
+			_city = _cityArr[0];
+		}
 		[self setDistrictArrWithAreaId:_city.areaId];
-		_district = _districtArr[0];
+		if (_districtArr) {
+			_district = _districtArr[0];
+		}
 	}
 	[self.activityView stopAnimating];
 	

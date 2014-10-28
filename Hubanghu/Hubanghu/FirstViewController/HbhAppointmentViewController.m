@@ -191,7 +191,7 @@
 }
 
 - (void)didDatePickerDisappear{
-	_tableView.height += 150;
+	_tableView.height = self.view.height;
 }
 
 #pragma mark - textField delegate
