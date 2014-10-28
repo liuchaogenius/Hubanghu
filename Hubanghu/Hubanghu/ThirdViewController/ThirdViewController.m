@@ -17,8 +17,8 @@
 
 typedef enum : NSUInteger {
     currentTabOrderAll = 0,
-    currentTabOrderAppraise,
     currentTabOrderUndone,
+    currentTabOrderAppraise
 } currentTabOrder;
 
 @interface ThirdViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -49,7 +49,6 @@ typedef enum : NSUInteger {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -131,10 +130,10 @@ typedef enum : NSUInteger {
                 self.allOrderArray = [aArray mutableCopy];
                 break;
             case 1:
-                self.appraiseArray = [aArray mutableCopy];
+                self.unDoneArray = [aArray mutableCopy];
                 break;
             case 2:
-                self.unDoneArray = [aArray mutableCopy];
+                self.appraiseArray = [aArray mutableCopy];
                 break;
             default:
                 break;
@@ -191,7 +190,7 @@ typedef enum : NSUInteger {
     {
         _btnBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 40)];
         _btnBackView.backgroundColor = RGBCOLOR(242, 242, 242);
-        NSArray *array = @[@"全部订单", @"待评价", @"未完成"];
+        NSArray *array = @[@"全部订单", @"未完成", @"待评价"];
         for (int i=0; i<3; i++)
         {
             UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth/3*i, 0, kMainScreenWidth/3, self.btnBackView.bottom)];
@@ -366,7 +365,7 @@ typedef enum : NSUInteger {
         default:
             break;
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

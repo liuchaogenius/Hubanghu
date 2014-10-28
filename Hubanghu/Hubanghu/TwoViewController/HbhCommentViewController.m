@@ -71,6 +71,7 @@
     cell.typeLabel.text = model.cate;
     cell.commentLabel.text = model.content;
     cell.workerNameLabel.text = model.worker;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

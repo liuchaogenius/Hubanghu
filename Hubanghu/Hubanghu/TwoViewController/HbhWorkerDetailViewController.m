@@ -214,6 +214,7 @@
         cell.personLabel.text = self.workerData.desc;
         cell.successLabel.text = self.workerData.succCaseDesc;
         cell.honorLabel.text = self.workerData.certificationDesc;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.appointmentBtn addTarget:self action:@selector(makeAppointment) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
@@ -222,6 +223,7 @@
         if (indexPath.row==0)
         {
             HbhWorkerSecondTopTableViewCell *cell = [[HbhWorkerSecondTopTableViewCell alloc] init];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             if (self.workerData.comment.count>3) {
                 UIButton *moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth-50, 8, 30, 15)];
                 moreBtn.backgroundColor = RGBCOLOR(183, 183, 183);
@@ -237,12 +239,14 @@
             if (self.workerData.comment.count == 0)
             {
                 UITableViewCell *cell = [[UITableViewCell alloc] init];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.textLabel.text = @"暂无评论";
                 return cell;
             }
             else
             {
                 HbhWorkerCommentTableViewCell *cell = [[HbhWorkerCommentTableViewCell alloc] init];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 if (indexPath.row==2)
                 {
                     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 69, kMainScreenWidth, 1)];
@@ -266,12 +270,14 @@
         if (indexPath.row==0)
         {
             HbhWorkerThirdTopTableViewCell *cell = [[HbhWorkerThirdTopTableViewCell alloc] init];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         else
         {
             NSArray *array = self.workerData.caseProperty;
             HbhWorkerImgTableViewCell *cell = [[HbhWorkerImgTableViewCell alloc] initWithImgArray:array];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
     }

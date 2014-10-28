@@ -500,6 +500,7 @@ typedef enum : NSUInteger {
     cell.workerMountLabel.text = [NSString stringWithFormat:@"%d", (int)model.orderCount];
     cell.workYearLabel.text = model.workingAge;
     cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", model.workTypeName];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell addSubview:lineView];
     
     return cell;
