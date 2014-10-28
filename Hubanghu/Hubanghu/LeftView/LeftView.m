@@ -9,6 +9,7 @@
 #import "LeftView.h"
 #import "UIImageView+WebCache.h"
 #import "HbhUser.h"
+#import "ViewInteraction.h"
 
 NSArray *itemArray;
 @implementation LeftView
@@ -125,6 +126,20 @@ NSArray *itemArray;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = touches.anyObject;
+    CGPoint point = [touch locationInView:self];
+    
+    CGRect tableRect = self.leftTableView.frame;
+    if(!CGRectContainsPoint(tableRect, point))
+    {
+        [ViewInteraction viewDissmissAnimationToLeft:self isRemove:NO completeBlock:^(BOOL isComplete) {
+            
+        }];
+    }
 }
 /*
 // Only override drawRect: if you perform custom drawing.
