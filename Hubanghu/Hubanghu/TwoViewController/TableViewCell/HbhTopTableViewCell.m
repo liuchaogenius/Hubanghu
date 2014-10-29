@@ -56,6 +56,14 @@
     return self;
 }
 
+- (void)drawRect:(CGRect)rect
+{
+    self.workerIcon.layer.cornerRadius = 5;
+    self.workerIcon.clipsToBounds = YES;
+    self.workerIcon.layer.borderWidth = 0.5;
+    self.workerIcon.layer.borderColor = [[UIColor grayColor] CGColor];
+}
+
 - (void)awakeFromNib {
     // Initialization code
 }

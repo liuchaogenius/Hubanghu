@@ -27,6 +27,9 @@
     {
         HbhWorkerCaseClass *model = [aArray objectAtIndex:i];
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(interval+(btnWidth+interval)*i, 0, btnWidth, btnWidth)];
+        btn.layer.borderColor = [[UIColor grayColor] CGColor];
+        btn.layer.borderWidth = 0.5;
+        btn.layer.cornerRadius = 5;
         [btn sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] forState:UIControlStateNormal];
         btn.userInteractionEnabled = NO;
         [scrollView addSubview:btn];

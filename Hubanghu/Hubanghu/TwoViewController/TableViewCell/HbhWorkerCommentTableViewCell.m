@@ -27,6 +27,12 @@
     return self;
 }
 
+- (void)drawRect:(CGRect)rect
+{
+    self.userImg.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.userImg.layer.borderWidth = 0.5;
+}
+
 - (void)awakeFromNib {
     // Initialization code
 }
