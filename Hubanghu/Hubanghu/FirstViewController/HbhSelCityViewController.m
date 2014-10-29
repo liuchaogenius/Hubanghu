@@ -166,8 +166,9 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
             _locationIndictorView = indicatorView;
             cell.textLabel.textColor = KColor;
             _localCityLable = cell.textLabel;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
-        cell.textLabel.text = ([HbuAreaLocationManager sharedManager].currentAreas ? [HbuAreaLocationManager sharedManager].currentAreas.name : @"定位失败,点击重新定位");
+        cell.textLabel.text = ([HbuAreaLocationManager sharedManager].currentAreas.name.length ? [HbuAreaLocationManager sharedManager].currentAreas.name : @"定位失败,点击重新定位");
         return cell;
     }else if(indexPath.section == 1){
         HbhHotCityCell *cell = [tableView dequeueReusableCellWithIdentifier:hotCellIdentifier forIndexPath:indexPath];
@@ -175,13 +176,16 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
         if (![((UIButton *)cell.hotCityButtons[0]) respondsToSelector:@selector(touchHotCityButton:)]) {
             for (UIButton *button  in cell.hotCityButtons) {
                 [button addTarget:self action:@selector(touchHotCityButton:) forControlEvents:UIControlEventTouchUpInside];
+                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             }
         }
+        
         return cell;
     }else{
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
         HbuAreaListModelAreas *area = ((NSArray *)self.cityDict[self.firstCharArray[indexPath.section - 2]])[indexPath.row];
         cell.textLabel.text = area.name;

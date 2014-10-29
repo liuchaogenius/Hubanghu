@@ -152,6 +152,7 @@
         [weakSelf.tableView reloadData];
     } and:^{
         //错误处理
+        [indictor stopAnimating];
         [SVProgressHUD showErrorWithStatus:@"加载失败，请检查网络" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
 }

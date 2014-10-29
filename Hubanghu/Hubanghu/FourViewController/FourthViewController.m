@@ -199,7 +199,7 @@ enum CellTag_Type
             [aImageView setFrame:CGRectMake(10, (cell.height-25)/2.0, 22, 25)];
             aImageView.tag = kaImageViewTag;
             [cell addSubview:aImageView];
-            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             //显示文字的label
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, kMainScreenWidth-40, cell.height)];
             //[label setTextAlignment:UITextAlignmentLeft];

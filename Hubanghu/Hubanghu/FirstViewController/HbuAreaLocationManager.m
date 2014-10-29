@@ -17,20 +17,20 @@
 
 @synthesize currentAreas = _currentAreas;
 
-- (HbuAreaListModelAreas *)currentAreas
-{
-    if (!_currentAreas) {
-        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-        
-        NSData *currentAreaDate = [userDefault objectForKey:@"currentAreas"];
-        if (currentAreaDate) {
-            _currentAreas = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
-        }else{
-            _currentAreas = [[HbuAreaListModelAreas alloc] init];
-        }
-    }
-    return _currentAreas;
-}
+//- (HbuAreaListModelAreas *)currentAreas
+//{
+//    if (!_currentAreas) {
+//        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//        
+//        NSData *currentAreaDate = [userDefault objectForKey:@"currentAreas"];
+//        if (currentAreaDate) {
+//            _currentAreas = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
+//        }else{
+//            _currentAreas = [[HbuAreaListModelAreas alloc] init];
+//        }
+//    }
+//    return _currentAreas;
+//}
 
 - (void)setCurrentAreas:(HbuAreaListModelAreas *)currentAreas
 {
@@ -66,6 +66,17 @@
     return areaMa;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    
+    NSData *currentAreaDate = [userDefault objectForKey:@"currentAreas"];
+    if (currentAreaDate) {
+        self.currentAreas = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
+    }
+    return self;
+}
 
 //获取并保存地区数据 如果需要的话
 - (void)getAreasDataAndSaveToDBifNeeded
