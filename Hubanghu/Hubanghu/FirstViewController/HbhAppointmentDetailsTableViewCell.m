@@ -20,7 +20,6 @@
 @property (nonatomic,strong) NSMutableArray *provinceArr;
 @property (nonatomic,strong) NSMutableArray *cityArr;
 @property (nonatomic,strong) NSMutableArray *districtArr;
-
 @property (nonatomic,strong) UIActivityIndicatorView *activityView;
 @property (nonatomic,strong) AreasDBManager *areaManager;
 @property (nonatomic,strong) HbuAreaLocationManager *areaLocationManager;
@@ -116,7 +115,8 @@
 			[_delegate didDatePickerDisappear];
 			[sender.superview removeFromSuperview];
 		}];
-	}else if([_areaPicker superview]){
+	}
+	if([_areaPicker superview]){
 		[UIView animateWithDuration:0.2 animations:^{
 			_areaPicker.top = kMainScreenHeight;
 			[_areaPicker removeFromSuperview];
@@ -224,7 +224,6 @@
 	NSString *area;
 	kIntToString(area, (int)areaId);
 	[self.areaManager selCityOfDistrict:area district:^(NSMutableArray *districtArry) {
-#warning 获取到空值时进行警告。
 		_districtArr = districtArry;
 	}];
 	if (!_districtArr) {
@@ -244,18 +243,6 @@
 		_provinceArr = cityArry;
 	}];
 	
-//	if (self.areaLocationManager.currentAreas) {
-//		for (int i = 0; i < _provinceArr.count; i++) {
-//			HbuAreaListModelAreas *area = _provinceArr[i];
-//			if (area.areaId == _areaLocationManager.currentAreas.parent) {
-//				_province = area;
-//				[_areaPicker selectRow:i inComponent:0 animated:YES];
-//				break;
-//			}
-//		}
-//	}else{
-//		_province = _provinceArr[0];
-//	}
 	
 	MLOG(@"%@",self.areaLocationManager.currentAreas);
 	if (self.areaLocationManager.currentAreas && (int)self.areaLocationManager.currentAreas.areaId != 0) {
@@ -289,8 +276,8 @@
 	[self.activityView stopAnimating];
 	
 	if (![self.areaPicker superview]) {
-		[self.window addSubview:_areaPicker];
 		[_delegate didDatePickerAppear];
+		[self.window addSubview:_areaPicker];
 		UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _areaPicker.top-30, kMainScreenWidth, 30)];
 		toolView.backgroundColor = [UIColor lightGrayColor];
 		_tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 50, 0, 30, 30)];
@@ -307,7 +294,6 @@
 			toolView.top = _areaPicker.top - 30;
 		}];
 	}
-	
 }
 
 - (void)showDatePickView{
@@ -344,8 +330,14 @@
 		
 		CGPoint touchPoint = [touch locationInView:self];
 		if(CGRectContainsPoint(_timeTF.frame, touchPoint)){
+			if ([_areaPicker superview]) {
+				[self datePickerPickEnd:_tool];
+			}
 			[self showDatePickView];
 		}else if (CGRectContainsPoint(_areaTF.frame, touchPoint)){
+			if ([_datePicker superview]) {
+				[self datePickerPickEnd:_tool];
+			}
 			[self showAreaPickView];
 		}else {
 			

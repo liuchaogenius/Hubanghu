@@ -184,14 +184,40 @@
 
 #pragma mark - delegate
 - (void)didDatePickerAppear{
-	_tableView.height -= 150;
-	[UIView animateWithDuration:0.2 animations:^{
-		[_tableView setContentOffset:CGPointMake(0, 150)];
+#warning ----
+	_tableView.height = self.view.height -  230;
+	[UIView animateWithDuration:0.5 animations:^{
+		[_tableView setContentOffset:CGPointMake(0, 260)];
 	}];
 }
 
 - (void)didDatePickerDisappear{
 	_tableView.height = self.view.height;
+}
+#pragma mark - keyboard notification
+- (void)keyboardWillShow:(NSNotification *)notification{
+	NSDictionary *info = [notification userInfo];
+	//获取高度
+	NSValue *value = [info objectForKey:@"UIKeyboardBoundsUserInfoKey"];
+	CGSize hightSize = [value CGRectValue].size;
+	_tableView.height = self.view.height -  hightSize.height;
+	
+	//避免切换输入法时的抖动
+	if (_tableView.contentOffset.y <= hightSize.height + 30 ||
+		_tableView.contentOffset.y >= hightSize.height - 30) {
+		return;
+	}
+	[UIView animateWithDuration:0.5 animations:^{
+		[_tableView setContentOffset:CGPointMake(0, hightSize.height)];
+	}];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification{
+	NSDictionary *info = [notification userInfo];
+	//获取高度
+	NSValue *value = [info objectForKey:@"UIKeyboardBoundsUserInfoKey"];
+	CGSize hightSize = [value CGRectValue].size;
+	_tableView.height += hightSize.height;
 }
 
 #pragma mark - textField delegate
@@ -350,34 +376,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 	return 10;
-}
-
-#pragma mark - keyboard notification
-- (void)keyboardWillShow:(NSNotification *)notification{
-	NSDictionary *info = [notification userInfo];
-	//获取高度
-	NSValue *value = [info objectForKey:@"UIKeyboardBoundsUserInfoKey"];
-	CGSize hightSize = [value CGRectValue].size;
-	_tableView.height = self.view.height -  hightSize.height;
-	
-	//避免切换输入法时的抖动
-	if (_tableView.contentOffset.y <= hightSize.height + 30 ||
-		_tableView.contentOffset.y >= hightSize.height - 30) {
-		return;
-	}
-	[UIView animateWithDuration:0.5 animations:^{
-		[_tableView setContentOffset:CGPointMake(0, hightSize.height)];
-	}];
-
-//	_tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - hightSize.height);
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification{
-	NSDictionary *info = [notification userInfo];
-	//获取高度
-	NSValue *value = [info objectForKey:@"UIKeyboardBoundsUserInfoKey"];
-	CGSize hightSize = [value CGRectValue].size;
-	_tableView.height += hightSize.height;
 }
 
 #pragma mark -
