@@ -39,6 +39,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
 @property (strong, nonatomic) NSMutableDictionary *cityDict; //地区数组
 @property (strong, nonatomic) NSMutableArray *firstCharArray; //首字母数组
 @property (strong, nonatomic) NSArray *hotCityName; //热门城市名字数组
+@property (strong, nonatomic) UIView *selectorView;//首字母检索view
 
 @end
 
@@ -77,6 +78,33 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     return _areaDBManager;
 }
 
+- (UIView *)selectorView
+{
+    if (!_selectorView) {
+        _selectorView = [[UIView alloc] initWithFrame:CGRectMake(kMainScreenWidth -20, 0, 20, kMainScreenHeight-64)];
+        //_selectorView.backgroundColor = [UIColor blackColor];
+        NSUInteger firstCharCount = self.cityDict.count + 2; //加上定位 热门城市 2个 #与*
+        for (int i = 0; i < firstCharCount; i++) {
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            CGFloat btnHeight = (kMainScreenHeight - 64) / firstCharCount * 1.0;
+            [button setFrame:CGRectMake(0, i * btnHeight, 20, btnHeight)];
+            [button.titleLabel setFont:kFont11];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            if (i == 0) {
+                [button setTitle:@"#" forState:UIControlStateNormal]; //定位城市section
+            }else if(i == 1){
+                [button setTitle:@"*" forState:UIControlStateNormal]; //热门城市section
+            }else{
+                [button setTitle:self.firstCharArray[i-2] forState:UIControlStateNormal];
+            }
+            button.tag = i;
+            [button addTarget:self action:@selector(touchFirstChar:) forControlEvents:UIControlEventTouchUpInside];
+            [_selectorView addSubview:button];
+        }
+    }
+    return _selectorView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"选择城市";
@@ -84,6 +112,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.selectorView];
     
     __weak HbhSelCityViewController *weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
@@ -95,7 +124,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
         });
     }];
     
-    [self setRightButton:[UIImage imageNamed:@"refresh"] title:nil target:self action:@selector(refreshData)];
+    [self setRightButton:[UIImage imageNamed:@"refresh"] title:nil target:self action:@selector(reLocationUserArea)];
     
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
     
@@ -225,7 +254,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
             actionSheet.tag = kActionSheet_selectCity;
             [actionSheet showInView:self.tableView];
         }else{
-            [SVProgressHUD showErrorWithStatus:@"发生错误，选择失败" cover:YES offsetY:kMainScreenHeight/2.0];
+            [SVProgressHUD showErrorWithStatus:@"暂不支持该城市，选择失败" cover:YES offsetY:kMainScreenHeight/2.0];
         }
     }];
 }
@@ -235,8 +264,12 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     [[HbuAreaLocationManager sharedManager] shouldGetAreasDataAndSaveToDBWithSuccess:^{
         self.firstCharArray = nil;
         self.cityDict = nil;
+        [self.selectorView removeFromSuperview];
+        self.selectorView = nil;
         [self.tableView reloadData];
+        [self.view addSubview:self.selectorView];
         [self reLocationUserArea];
+
     } Fail:^{
         [SVProgressHUD showErrorWithStatus:@"刷新失败" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
@@ -250,8 +283,19 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
         _localCityLable.text = [HbuAreaLocationManager sharedManager].currentAreas.name;
     } Fail:^(NSString *failString, int errorType) {
         [_locationIndictorView stopAnimating];
-        _localCityLable.text = @"定位失败,点击重新定位";
+        
+        if (errorType == errorType_hadData_matchCfail || errorType == errorType_matchCityFailed) {
+            _localCityLable.text = @"匹配城市失败，请手动选择城市";
+        }else{
+            _localCityLable.text = @"定位失败,点击重新定位";
+        }
     }];
+}
+
+//点击首字母
+- (void)touchFirstChar : (UIButton *)sender
+{
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sender.tag]  atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)setExtraCellLineHidden: (UITableView *)tableView

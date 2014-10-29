@@ -83,7 +83,7 @@ enum CateId_Type
     [self setRightButton:nil title:@"城市" target:self action:@selector(showSelCityVC)];
     [self settitleLabel:@"预约"];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-49) style:UITableViewStylePlain];
     MLOG(@"%lf",self.tableView.height);
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
