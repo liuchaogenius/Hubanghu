@@ -67,13 +67,54 @@
     HbhWorkerComment *model = [self.commentArray objectAtIndex:indexPath.row];
     [cell.userImg sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
     cell.userNameLabel.text = model.username;
-    cell.timeLabel.text = [NSString stringWithFormat:@"%d", (int)model.time];
+    cell.timeLabel.text = [self transformTime:model.time];
     cell.typeLabel.text = model.cate;
     cell.commentLabel.text = model.content;
     cell.workerNameLabel.text = model.worker;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
+
+- (NSString *)transformTime:(int)aTime
+{
+    NSDate *newDate  = [NSDate dateWithTimeIntervalSince1970:aTime];
+    MLOG(@"%@", newDate);
+    NSDateFormatter *formatter1 = [[NSDateFormatter alloc] init];
+    [formatter1 setDateFormat:@"yyyy-MM-dd"];
+    NSString *showtimeNew = [formatter1 stringFromDate:newDate];
+    return showtimeNew;
+}
+
+//- (NSDate*)getNSDate:(NSString *)aStrTime
+//{
+//    if(!calendar)
+//    {
+//        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//    }
+//    if(!inputFormatter)
+//    {
+//        inputFormatter = [[NSDateFormatter alloc] init] ;
+//        [inputFormatter setLocale:[NSLocale currentLocale]];
+//        [inputFormatter setDateFormat:@"yyyyMMddHHmmss"];
+//    }
+//    NSDate* inputDate = [inputFormatter dateFromString:aStrTime];
+//    return inputDate;
+//}
+//
+//- (NSString *)strTimeToNSInteger:(NSString *)aStrTime
+//{
+//    /////NSString* string = @"20110826134106";
+//    NSDate* inputDate = [self getNSDate:aStrTime];
+//    //    NSLog(@"date = %@", inputDate);
+//    if(!comps)
+//    {
+//        comps = [[NSDateComponents alloc] init];
+//    }
+//    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+//    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+//    comps = [calendar components:unitFlags fromDate:inputDate];
+//}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

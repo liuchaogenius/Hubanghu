@@ -257,7 +257,7 @@
                 HbhWorkerComment *model = [array objectAtIndex:indexPath.row-1];
                 [cell.userImg sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
                 cell.userNameLabel.text = model.username;
-                cell.timeLabel.text = [NSString stringWithFormat:@"%d", (int)model.time];
+                cell.timeLabel.text = [self transformTime:model.time];
                 cell.typeLabel.text = model.cate;
                 cell.commentLabel.text = model.content;
                 cell.workerNameLabel.text = model.worker;
@@ -299,6 +299,16 @@
 - (void)moreComment
 {
     [self.navigationController pushViewController:[[HbhCommentViewController alloc] initWithCommentArray:self.workerData.comment] animated:YES];
+}
+
+- (NSString *)transformTime:(int)aTime
+{
+    NSDate *newDate  = [NSDate dateWithTimeIntervalSince1970:aTime];
+    MLOG(@"%@", newDate);
+    NSDateFormatter *formatter1 = [[NSDateFormatter alloc] init];
+    [formatter1 setDateFormat:@"yyyy-MM-dd"];
+    NSString *showtimeNew = [formatter1 stringFromDate:newDate];
+    return showtimeNew;
 }
 
 - (void)didReceiveMemoryWarning {

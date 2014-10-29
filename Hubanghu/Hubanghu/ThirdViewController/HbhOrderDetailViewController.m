@@ -130,7 +130,7 @@ typedef enum : NSUInteger {
 - (void)setUIWithModel:(HbhOrderModel *)aModel
 {
     self.orderIdLabel.text = [NSString stringWithFormat:@"%.f", aModel.id];
-    self.orderTimeLabel.text = [NSString stringWithFormat:@"%.f", aModel.time];
+    self.orderTimeLabel.text = [self transformTime:aModel.time];
     self.orderNameLabel.text = aModel.name;
     /*0纯装，1拆装，2纯拆，3勘察*/
     switch ((int)aModel.mountType) {
@@ -192,6 +192,16 @@ typedef enum : NSUInteger {
         [_topView addSubview:self.showOrderStatusLabel];
     }
     return _topView;
+}
+
+- (NSString *)transformTime:(int)aTime
+{
+    NSDate *newDate  = [NSDate dateWithTimeIntervalSince1970:aTime];
+    MLOG(@"%@", newDate);
+    NSDateFormatter *formatter1 = [[NSDateFormatter alloc] init];
+    [formatter1 setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString *showtimeNew = [formatter1 stringFromDate:newDate];
+    return showtimeNew;
 }
 
 - (void)didReceiveMemoryWarning {
