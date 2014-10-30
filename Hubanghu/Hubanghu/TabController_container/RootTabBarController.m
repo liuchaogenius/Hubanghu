@@ -35,6 +35,8 @@
     NSInteger oldSelectIndex;
     FBKVOController *loginObserver;
     FBKVOController *leftViewObserver;
+    
+    BOOL isGoBack;
 }
 @property (nonatomic, strong) HbhLoginViewController *loginVC;
 @property (nonatomic, strong) UINavigationController *loginNav;
@@ -47,6 +49,7 @@
     // Do any additional setup after loading the view.
     self.view.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight);
     self.delegate = self;
+    isGoBack = NO;
     [self initTabViewController];
     [self initTabBarItem];
     [self initNotifyRegister];
@@ -148,7 +151,7 @@
 #pragma mark show login
 - (void)showLoginViewController:(NSNotification *)aNotification
 {
-    BOOL isGoBack = NO;
+    
     if(aNotification.object)
     {
         isGoBack = [[aNotification object] boolValue]; ///yes为goback  其他的不处理
@@ -184,24 +187,13 @@
                 if(isGoBack)
                 {
                     weakself.selectedIndex = oldSelectIndex;
+                    isGoBack = NO;
                 }
             }
             [weakself.loginNav dismissViewControllerAnimated:YES completion:^{
                 
             }];
         }];
-        
-//        {
-//            kind = 1;
-//            new = 0;
-//        }
-        
-//        loginObserver = [FBKVOController lazyeObserValue:self.loginVC byObserver:self keyPath:@"type" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
-//            if(isGoBack)
-//            {
-//                
-//            }
-//        }];
     }
 }
 
