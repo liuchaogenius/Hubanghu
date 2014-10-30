@@ -36,6 +36,8 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) NSMutableArray *allOrderArray;
 @property(nonatomic, strong) NSMutableArray *appraiseArray;
 @property(nonatomic, strong) NSMutableArray *unDoneArray;
+
+@property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation ThirdViewController
@@ -106,6 +108,8 @@ typedef enum : NSUInteger {
     firstInitview = YES;
     [self addTableViewTrag];
     [self getFisrtPage];
+    [self.view addSubview:self.activityIndicatorView];
+    [self.activityIndicatorView startAnimating];
 }
 
 -(HbhOrderManage *)orderManage
@@ -126,18 +130,19 @@ typedef enum : NSUInteger {
             [self.view addSubview:self.failView];
         }
         switch (_currentTab) {
-            case 0:
+            case currentTabOrderAll:
                 self.allOrderArray = [aArray mutableCopy];
                 break;
-            case 1:
+            case currentTabOrderUndone:
                 self.unDoneArray = [aArray mutableCopy];
                 break;
-            case 2:
+            case currentTabOrderAppraise:
                 self.appraiseArray = [aArray mutableCopy];
                 break;
             default:
                 break;
         }
+        [self.activityIndicatorView stopAnimating];
         [self.showOrderTableView reloadData];
     } andFailBlock:^{
         [self.view addSubview:self.failView];
@@ -173,6 +178,15 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark getter
+- (UIActivityIndicatorView *)activityIndicatorView
+{
+    if (!_activityIndicatorView) {
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-20, kMainScreenHeight/2-20, 40, 40)];
+        _activityIndicatorView.color = [UIColor blackColor];
+    }
+    return _activityIndicatorView;
+}
+
 - (UIView *)selectedLineView
 {
     if (!_selectedLineView)
@@ -241,6 +255,9 @@ typedef enum : NSUInteger {
 #pragma mark 选中button
 - (void)selectButton:(UIButton *)aBtn
 {
+    _currentTab = (int)aBtn.tag - 10;
+    [self.showOrderTableView reloadData];
+    [self.activityIndicatorView startAnimating];
     for (int i=0; i<3; i++)
     {
         UIButton *temBtn = (UIButton *)[self.view viewWithTag:i+10];
@@ -252,16 +269,16 @@ typedef enum : NSUInteger {
         temFrame.origin = CGPointMake(aBtn.left+10, aBtn.bottom-1);
         self.selectedLineView.frame = temFrame;
     }];
-    _currentTab = (int)aBtn.tag - 10;
     if (_currentTab == currentTabOrderAll)
     {
         if (self.allOrderArray.count == 0) {
             [self getFisrtPage];
 //            [self.view addSubview:self.failView];
         }
-//        else{
+        else{
+            [self.activityIndicatorView stopAnimating];
 //            [self.failView removeFromSuperview];
-//        }
+        }
     }
     else if(_currentTab == currentTabOrderAppraise)
     {
@@ -269,9 +286,10 @@ typedef enum : NSUInteger {
             [self getFisrtPage];
 //            [self.view addSubview:self.failView];
         }
-//        else{
+        else{
+            [self.activityIndicatorView stopAnimating];
 //            [self.failView removeFromSuperview];
-//        }
+        }
     }
     else if (_currentTab == currentTabOrderUndone)
     {
@@ -279,10 +297,11 @@ typedef enum : NSUInteger {
             [self getFisrtPage];
 //            [self.view addSubview:self.failView];
         }
-//        else
-//        {
+        else
+        {
+            [self.activityIndicatorView stopAnimating];
 //            [self.failView removeFromSuperview];;
-//        }
+        }
     }
 }
 
@@ -373,7 +392,16 @@ typedef enum : NSUInteger {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    HbhOrderModel *model = [self.allOrderArray objectAtIndex:indexPath.row];
+    HbhOrderModel *model;//= [self.allOrderArray objectAtIndex:indexPath.row];
+    if (_currentTab==currentTabOrderAll) {
+        model = [self.allOrderArray objectAtIndex:indexPath.row];
+    }
+    else if(_currentTab==currentTabOrderUndone){
+        model = [self.unDoneArray objectAtIndex:indexPath.row];
+    }else if(_currentTab==currentTabOrderAppraise)
+    {
+        model = [self.appraiseArray objectAtIndex:indexPath.row];
+    }
     HbhOrderDetailViewController *orderDetailVC = [[HbhOrderDetailViewController alloc] initWithOrderStatus:model];
     orderDetailVC.hidesBottomBarWhenPushed = YES;
     HbhOrderAppraiseViewController *orderAppraiseVC = [[HbhOrderAppraiseViewController alloc] initWithModel:model];
