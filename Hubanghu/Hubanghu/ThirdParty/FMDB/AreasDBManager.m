@@ -148,7 +148,7 @@
     [dataQueue inDatabase:^(FMDatabase *db) {
         if([db open])
         {
-            if(aFirstchar)
+            if(aFirstchar && aFirstchar.length>0)
             {
                 NSString *sel = @"select * from areas_table where areaId=?";
                 FMResultSet *cityResultset = [db executeQuery:sel,aAreaId];
