@@ -65,7 +65,7 @@
         cell = [[HbhWorkerCommentTableViewCell alloc] init];
     }
     HbhWorkerComment *model = [self.commentArray objectAtIndex:indexPath.row];
-    [cell.userImg sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
+    [cell.userImg sd_setImageWithURL:[NSURL URLWithString:model.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
     cell.userNameLabel.text = model.username;
     cell.timeLabel.text = [self transformTime:model.time];
     cell.typeLabel.text = model.cate;

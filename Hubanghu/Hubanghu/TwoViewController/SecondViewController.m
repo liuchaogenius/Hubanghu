@@ -495,7 +495,7 @@ typedef enum : NSUInteger {
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
     lineView.backgroundColor = [UIColor lightGrayColor];
     HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
-    [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
+    [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
     cell.workerNameLabel.text = model.name;
     cell.workerMountLabel.text = [NSString stringWithFormat:@"%d", (int)model.orderCount];
     cell.workYearLabel.text = model.workingAge;

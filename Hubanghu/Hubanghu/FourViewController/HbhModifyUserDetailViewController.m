@@ -38,7 +38,7 @@
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(UesrImageClicked)];
     [self.imgView addGestureRecognizer:self.tapGesture];
     self.imgView.userInteractionEnabled = YES;
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:user.photoUrl]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
     [self.view addSubview:self.imgView];
         
     UIButton *modifyBtn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-50, self.imgView.bottom+10, 100, 20)];
