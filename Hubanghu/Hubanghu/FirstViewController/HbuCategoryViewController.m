@@ -222,8 +222,9 @@
     CategoryChildInfoModel *leftCateModel =(self.sgmCount ? [self childDepthThreeCateModelWithIndex:indexPath.row * 2] : self.categoryInfoModel.child[indexPath.row*2]);
     
     [cell.leftImageButton sd_setImageWithURL:[NSURL URLWithString:leftCateModel.imageUrl] forState:UIControlStateNormal];
-    
-    [cell.leftImageButton addTarget:self action:@selector(touchImageButton:) forControlEvents:UIControlEventTouchUpInside];
+    if (![cell respondsToSelector:@selector(touchImageButton:)]) {
+        [cell.leftImageButton addTarget:self action:@selector(touchImageButton:) forControlEvents:UIControlEventTouchUpInside];
+    }
     cell.leftImageButton.tag = leftCateModel.cateId;
     cell.leftTitleLable.text = leftCateModel.title;
     

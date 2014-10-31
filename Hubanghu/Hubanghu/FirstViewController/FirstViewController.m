@@ -168,7 +168,9 @@ enum CateId_Type
     
     NSDictionary *leftCategory = self.allCategoryInfo[indexPath.row*2];
     [cell.leftImageButton setImage:[UIImage imageNamed:leftCategory[@"image"]] forState:UIControlStateNormal];
-    [cell.leftImageButton addTarget:self action:@selector(touchImageButton:) forControlEvents:UIControlEventTouchUpInside];
+    if (![cell respondsToSelector:@selector(touchImageButton:)]) {
+        [cell.leftImageButton addTarget:self action:@selector(touchImageButton:) forControlEvents:UIControlEventTouchUpInside];
+    }
     cell.leftImageButton.tag = [leftCategory[@"cateId"] doubleValue];
     
     //当category总数为奇数个时，最后一排右侧部分处理
