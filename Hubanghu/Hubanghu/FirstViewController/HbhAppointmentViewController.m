@@ -184,10 +184,9 @@
 
 #pragma mark - delegate
 - (void)didDatePickerAppear{
-#warning ----
-	_tableView.height = self.view.height -  230;
 	[UIView animateWithDuration:0.5 animations:^{
-		[_tableView setContentOffset:CGPointMake(0, 260)];
+		_tableView.height = self.view.height -  230;
+		[_tableView setContentOffset:CGPointMake(0, _tableView.contentOffset.y + 200)];
 	}];
 }
 
@@ -352,8 +351,10 @@
 		[cell.contentView addSubview:headline];
 		return cell;
 	}else if (indexPath.section == 2){
-		_details = [[HbhAppointmentDetailsTableViewCell alloc] init];
-		_details.delegate = self;
+		if (!_details) {
+			_details = [[HbhAppointmentDetailsTableViewCell alloc] init];
+			_details.delegate = self;
+		}
 		return _details;
 	}
 	return nil;

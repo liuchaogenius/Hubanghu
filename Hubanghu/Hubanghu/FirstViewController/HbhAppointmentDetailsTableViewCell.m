@@ -238,14 +238,24 @@
 }
 
 - (void)showAreaPickView{
-	[self.activityView startAnimating];
+	//获取省份信息
 	[self.areaManager selProvince:^(NSMutableArray *cityArry) {
 		_provinceArr = cityArry;
 	}];
 	
+	//地区信息错误时 弹出警告
+	if (!_provinceArr || _provinceArr.count == 0) {
+		STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"地区信息获取失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+			
+		} cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+		[alert show];
+		return;
+	}
 	
 	MLOG(@"%@",self.areaLocationManager.currentAreas);
+	
 	if (self.areaLocationManager.currentAreas && (int)self.areaLocationManager.currentAreas.areaId != 0) {
+		//当定位成功时 将省市区设置为对应地区
 		for (int i = 0; i < _provinceArr.count; i++) {
 			HbuAreaListModelAreas *area = _provinceArr[i];
 			if (area.areaId == _areaLocationManager.currentAreas.parent) {
@@ -256,12 +266,19 @@
 		}
 		_city = self.areaLocationManager.currentAreas;
 		[self setCityArrWithAreaId:_city.parent];
+		for (int i = 0; i < _cityArr.count; i++) {
+			HbuAreaListModelAreas *area = _cityArr[i];
+			if (area.areaId == _city.areaId) {
+				[_areaPicker selectRow:i inComponent:1 animated:YES];
+				break;
+			}
+		}
 		[self setDistrictArrWithAreaId:_city.areaId];
-		if (_districtArr) {
+		if (_districtArr && _districtArr.count > 0) {
 			_district = _districtArr[0];
 		}
-	}else{
-		if (_provinceArr) {
+	}else{	//用户没有定位成功时  显示数据中对应第一项
+		if (_provinceArr.count != 0) {
 			_province = _provinceArr[0];
 		}
 		[self setCityArrWithAreaId:_province.areaId];
@@ -273,7 +290,6 @@
 			_district = _districtArr[0];
 		}
 	}
-	[self.activityView stopAnimating];
 	
 	if (![self.areaPicker superview]) {
 		[_delegate didDatePickerAppear];
