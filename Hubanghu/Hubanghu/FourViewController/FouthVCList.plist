@@ -23,7 +23,7 @@
 			<key>typeTag</key>
 			<integer>52</integer>
 			<key>name</key>
-			<string>带评价订单</string>
+			<string>待评价订单</string>
 			<key>image</key>
 			<string>MyVClistImage_3</string>
 		</dict>
