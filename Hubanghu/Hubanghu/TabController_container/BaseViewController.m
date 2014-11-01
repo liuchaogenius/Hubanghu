@@ -33,7 +33,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     //[self setNavgtionBarBg];
-    self.navigationController.navigationBar.barTintColor = KColor;
+    if(kSystemVersion>=7.0)
+    {
+        self.navigationController.navigationBar.barTintColor = KColor;
+    }
+    else
+    {
+        self.navigationController.navigationBar.tintColor = KColor;
+    }
     self.navigationController.navigationBar.alpha = 1;
     NSDictionary *attributes=[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil];
     [self.navigationController.navigationBar setTitleTextAttributes:attributes];

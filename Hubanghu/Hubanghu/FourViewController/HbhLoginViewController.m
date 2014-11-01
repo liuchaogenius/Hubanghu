@@ -280,7 +280,7 @@ enum TextField_Type
             self.checkCode = result;
             [SVProgressHUD dismissWithSuccess:@"验证码已发送到您的手机"];
             self.checkCodeButton.enabled = NO;
-            _secondCountDown = 120;
+            _secondCountDown = 90;
             if (!self.checkCodeTimer) {
                 self.checkCodeTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timeClicked) userInfo:nil repeats:YES];
             }
