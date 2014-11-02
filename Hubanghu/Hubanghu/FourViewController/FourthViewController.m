@@ -195,7 +195,7 @@ enum CellTag_Type
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             //图片
             UIImageView *aImageView = nil;
-            
+            aImageView = [[UIImageView alloc] init];
             if(kSystemVersion<7.0)
             {
                 [aImageView setFrame:CGRectMake(20, (cell.height-25)/2.0, 22, 25)];
