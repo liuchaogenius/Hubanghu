@@ -51,6 +51,8 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) AreasDBManager *areasDBManage;
 @property(nonatomic, strong) HbhDropDownView *dropLocationView;
 @property(nonatomic) int locationAreaId;
+
+@property(nonatomic, strong) UITapGestureRecognizer *maskingViewTapGestureRecognizer;
 @end
 
 @implementation SecondViewController
@@ -386,8 +388,27 @@ typedef enum : NSUInteger {
         _maskingView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight)];
         _maskingView.backgroundColor = [UIColor grayColor];
         _maskingView.alpha = 0.5;
+        _maskingView.userInteractionEnabled = YES;
+        [_maskingView addGestureRecognizer:self.maskingViewTapGestureRecognizer];
     }
     return _maskingView;
+}
+
+- (UITapGestureRecognizer *)maskingViewTapGestureRecognizer
+{
+    if (!_maskingViewTapGestureRecognizer) {
+        _maskingViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeMaskingView)];
+    }
+    return _maskingViewTapGestureRecognizer;
+}
+
+- (void)removeMaskingView
+{
+    [self.maskingView removeFromSuperview];
+    self.dropAreasView.hidden = YES;
+    self.dropLocationView.hidden = YES;
+    self.dropOrderCountView.hidden = YES;
+    self.dropWorkerTypesView.hidden = YES;
 }
 
 - (HbhDropDownView *)dropLocationView

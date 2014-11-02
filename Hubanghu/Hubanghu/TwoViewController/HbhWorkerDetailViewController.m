@@ -17,7 +17,7 @@
 #import "HbhMakeAppointMentViewController.h"
 #import "HbhCommentViewController.h"
 #import "SVPullToRefresh.h"
-
+//RGBCOLOR(244, 244, 244);
 @interface HbhWorkerDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic, strong) UITableView *workDetailTableView;
@@ -45,7 +45,7 @@
     self.title = @"工人详情";
     
     self.workDetailTableView = [[UITableView alloc]
-                                initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+                                initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.workDetailTableView.dataSource = self;
     self.workDetailTableView.delegate = self;
     self.workDetailTableView.allowsSelection = NO;
@@ -123,11 +123,20 @@
 {
     if (section == 0)
     {
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 5)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 1)];
         headerView.backgroundColor = [UIColor whiteColor];
         return headerView;
     }
-    return [UIView new];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 1)];
+    headerView.backgroundColor = RGBCOLOR(240, 240, 240);
+    return headerView;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 14)];
+    footView.backgroundColor = RGBCOLOR(240, 240, 240);
+    return footView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -163,12 +172,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 5;
+    return 14;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
