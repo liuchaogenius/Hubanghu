@@ -35,7 +35,9 @@
     self.frame = CGRectMake(aBtn.left, aBtn.bottom, aBtn.right-aBtn.left, tableHeight);
     self.showItemTableView = [[UITableView alloc]
                               initWithFrame:self.bounds];
-    self.showItemTableView.backgroundColor = [UIColor clearColor];
+    if (kSystemVersion>=7) {
+        self.showItemTableView.backgroundColor = [UIColor clearColor];
+    }
     self.showItemTableView.bounces = NO;
     self.showItemTableView.delegate = self;
     self.showItemTableView.dataSource = self;

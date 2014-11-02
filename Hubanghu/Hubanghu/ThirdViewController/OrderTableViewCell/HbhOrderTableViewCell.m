@@ -53,6 +53,7 @@
         _priceLabel.textColor = KColor;
         _priceLabel.font = kFont14;
         _priceLabel.text = @"￥110.00";
+        _priceLabel.backgroundColor = [UIColor clearColor];
     }
     return _priceLabel;
 }
@@ -64,6 +65,7 @@
         _orderStateLabel.text = @"已付款";
         _orderStateLabel.font = kFont11;
         _orderStateLabel.textColor = KColor;
+        _orderStateLabel.backgroundColor = [UIColor clearColor];
     }
     return _orderStateLabel;
 }
@@ -74,6 +76,7 @@
         _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 160, 25)];
         _nameLabel.font = kFont14;
         _nameLabel.text = @"预约 卫浴安装坐便器安装";
+        _nameLabel.backgroundColor = [UIColor clearColor];
     }
     return _nameLabel;
 }
@@ -85,6 +88,7 @@
         _workerLabel.text = @"安装师傅 :";
         _workerLabel.font = kFont10;
         _workerLabel.textColor = [UIColor lightGrayColor];
+        _workerLabel.backgroundColor = [UIColor clearColor];
     }
     return _workerLabel;
 }
@@ -96,6 +100,7 @@
         _workerNameLabel.text = @"某某某";
         _workerNameLabel.font = kFont10;
         _workerNameLabel.textColor = [UIColor lightGrayColor];
+        _workerNameLabel.backgroundColor = [UIColor clearColor];
     }
     return _workerNameLabel;
 }
@@ -107,6 +112,7 @@
         _urgentLabel.text = @"[加急]";
         _urgentLabel.textColor = KColor;
         _urgentLabel.font = kFont10;
+        _urgentLabel.backgroundColor = [UIColor clearColor];
     }
     return _urgentLabel;
 }
@@ -118,6 +124,7 @@
         _typeLabel.text = @"[拆装]";
         _typeLabel.textColor = KColor;
         _typeLabel.font = kFont14;
+        _typeLabel.backgroundColor = [UIColor clearColor];
     }
     return _typeLabel;
 }

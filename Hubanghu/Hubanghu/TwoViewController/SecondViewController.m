@@ -254,6 +254,7 @@ typedef enum : NSUInteger {
             arrowDownImg.image = [UIImage imageNamed:@"arrowDown"];
             [btnView addSubview:arrowDownImg];
             UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, kMainScreenWidth/3, 20)];
+            titleLabel.backgroundColor = [UIColor clearColor];
             titleLabel.text = [array objectAtIndex:i];
             titleLabel.textAlignment = NSTextAlignmentCenter;
             titleLabel.font = kFont15;

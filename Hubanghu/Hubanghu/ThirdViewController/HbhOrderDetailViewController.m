@@ -177,6 +177,7 @@ typedef enum : NSUInteger {
         _topView.backgroundColor = RGBCOLOR(242, 242, 242);
         
         UILabel *orderStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 80, 20)];
+        orderStatusLabel.backgroundColor = [UIColor clearColor];
         orderStatusLabel.text = @"订单状态";
         orderStatusLabel.font = kFont15;
         [_topView addSubview:orderStatusLabel];
@@ -187,6 +188,7 @@ typedef enum : NSUInteger {
         
         self.showOrderStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-100, 10, 80, 20)];
         self.showOrderStatusLabel.textAlignment = NSTextAlignmentRight;
+        self.showOrderStatusLabel.backgroundColor = [UIColor clearColor];
         self.showOrderStatusLabel.font = kFont15;
         self.showOrderStatusLabel.textColor = KColor;
         [_topView addSubview:self.showOrderStatusLabel];
