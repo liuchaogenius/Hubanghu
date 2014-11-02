@@ -205,6 +205,7 @@ enum CellTag_Type
             //[label setTextAlignment:UITextAlignmentLeft];
             [label setFont:kFont13];
             label.tag = klabelTag;
+            label.backgroundColor = kClearColor;
             [cell.contentView addSubview:label];
             
             //显示数量的label
@@ -216,6 +217,7 @@ enum CellTag_Type
             numberLabel.backgroundColor = KColor;
             numberLabel.textColor = [UIColor whiteColor];
             numberLabel.tag = kNumberLabelTag;
+            numberLabel.backgroundColor = kClearColor;
             _numberLabel = numberLabel;
             [cell.contentView addSubview:numberLabel];
         }

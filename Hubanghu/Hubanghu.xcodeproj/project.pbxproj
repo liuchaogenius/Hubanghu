@@ -71,7 +71,6 @@
 		B09D1DAC19F654D200C7513C /* HubOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B09D1DAB19F654D200C7513C /* HubOrder.m */; };
 		B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */; };
 		B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */; };
-		B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */; };
 		B0EED42E19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */; };
 		B0EED42F19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */; };
 		B0FF902519F7B174001B8E14 /* HbhOrderDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */; };
@@ -274,7 +273,6 @@
 		B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentViewController.m; sourceTree = "<group>"; };
 		B0EED42519F37C8E00CBFBFC /* HbhAppointmentNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentNetManager.h; sourceTree = "<group>"; };
 		B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentNetManager.m; sourceTree = "<group>"; };
-		B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentDetailsCell.xib; sourceTree = "<group>"; };
 		B0EED42919F37D4A00CBFBFC /* HbhAppointmentConfirmeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentConfirmeView.h; sourceTree = "<group>"; };
 		B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentConfirmeView.m; sourceTree = "<group>"; };
 		B0EED42B19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentDetailsTableViewCell.h; sourceTree = "<group>"; };
@@ -527,7 +525,6 @@
 			children = (
 				B0EED42919F37D4A00CBFBFC /* HbhAppointmentConfirmeView.h */,
 				B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */,
-				B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */,
 				B0EED42B19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.h */,
 				B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */,
 				5BF8FC7A19F107C700598FB9 /* HbhFirstVCCell.h */,
@@ -1200,7 +1197,6 @@
 				ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */,
 				AB090E1619EE323C00D943C6 /* HbhWorkerTableViewCell.xib in Resources */,
 				ABAFAB1D19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib in Resources */,
-				B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */,
 				5BBD052019F6527100399219 /* HbhHotCityCell.xib in Resources */,
 				ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */,
 				5BF8FC7819F0FA3900598FB9 /* HbhAllCategory.plist in Resources */,
