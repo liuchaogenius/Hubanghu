@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+@class HbhWorkers;
 @interface HuhAppointmentVC : BaseViewController
 
 - (void)setVCData:(NSString *)title cateId:(NSString *)cateId andWork:(HbhWorkers *)worker;
