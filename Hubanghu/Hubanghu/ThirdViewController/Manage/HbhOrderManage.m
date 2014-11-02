@@ -13,6 +13,7 @@
 int pageCount;
 int pageIndex;
 int filterId;
+int totalCount;
 @implementation HbhOrderManage
 - (void)getOrderWithListFilterId:(int)aFilterId andSuccBlock:(void(^)(NSArray *aArray))aSuccBlock andFailBlock:(void(^)(void))aFailBlock
 {
@@ -24,6 +25,7 @@ int filterId;
     kHubRequestUrl(@"getOrderList.ashx", orderListUrl);
     [NetManager requestWith:dict url:orderListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
+        totalCount = [[successDict objectForKey:@"totalCount"] intValue];
         NSMutableArray *dataArray = [successDict objectForKey:@"data"];
         NSMutableArray *array = [NSMutableArray new];
         for (int i=0; i<dataArray.count; i++)
@@ -51,21 +53,24 @@ int filterId;
 
 - (void)getNextOrderListSuccBlock:(void(^)(NSArray *aArray))aSuccBlock andFailBlock:(void(^)(void))aFailBlock
 {
-    NSString *orderListUrl = nil;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", filterId],@"filterId", [NSString stringWithFormat:@"%d", pageCount], @"pageCount",[NSString stringWithFormat:@"%d", pageIndex], @"pageIndex",nil];
-    kHubRequestUrl(@"getOrderList.ashx", orderListUrl);
-    [NetManager requestWith:dict url:orderListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
-        MLOG(@"%@", successDict);
-        NSMutableArray *dataArray = [successDict objectForKey:@"data"];
-        NSMutableArray *array = [NSMutableArray new];
-        for (int i=0; i<dataArray.count; i++)
-        {
-            HbhOrderModel *model = [HbhOrderModel modelObjectWithDictionary:[dataArray objectAtIndex:i]];
-            [array addObject:model];
-        }
-        aSuccBlock(array);
-    } failure:^(NSDictionary *failDict, NSError *error) {
-        
-    }];
+    if (pageIndex*pageCount<totalCount) {
+        NSString *orderListUrl = nil;
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", filterId],@"filterId", [NSString stringWithFormat:@"%d", pageCount], @"pageCount",[NSString stringWithFormat:@"%d", pageIndex], @"pageIndex",nil];
+        kHubRequestUrl(@"getOrderList.ashx", orderListUrl);
+        [NetManager requestWith:dict url:orderListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
+            MLOG(@"%@", successDict);
+            NSMutableArray *dataArray = [successDict objectForKey:@"data"];
+            NSMutableArray *array = [NSMutableArray new];
+            for (int i=0; i<dataArray.count; i++)
+            {
+                HbhOrderModel *model = [HbhOrderModel modelObjectWithDictionary:[dataArray objectAtIndex:i]];
+                [array addObject:model];
+            }
+            pageIndex++;
+            aSuccBlock(array);
+        } failure:^(NSDictionary *failDict, NSError *error) {
+            
+        }];
+    }
 }
 @end

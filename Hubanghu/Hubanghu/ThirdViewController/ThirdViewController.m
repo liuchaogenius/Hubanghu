@@ -149,6 +149,28 @@ typedef enum : NSUInteger {
     }];
 }
 
+- (void)getNextPage
+{
+    [self.orderManage getNextOrderListSuccBlock:^(NSArray *aArray) {
+        switch (_currentTab) {
+            case currentTabOrderAll:
+                [self.allOrderArray addObjectsFromArray:aArray];
+                break;
+            case currentTabOrderUndone:
+                [self.unDoneArray addObjectsFromArray:aArray];
+                break;
+            case currentTabOrderAppraise:
+                [self.appraiseArray addObjectsFromArray:aArray];
+                break;
+            default:
+                break;
+        }
+        [self.showOrderTableView reloadData];
+    } andFailBlock:^{
+        
+    }];
+}
+
 #pragma mark 上拉下拉
 #pragma mark 增加上拉下拉
 - (void)addTableViewTrag
@@ -163,18 +185,15 @@ typedef enum : NSUInteger {
         });
     }];
     
-//    if (btnCount == 15)
-//    {
-//        [weakself.showOrderTableView addInfiniteScrollingWithActionHandler:^{
-//            int64_t delayInSeconds = 2.0;
-//            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//            dispatch_after(popTime, dispatch_get_main_queue(), ^{
-//                [weakself.showOrderTableView.infiniteScrollingView stopAnimating];
-//
-//            });
-//        }];
-//    }
-    
+
+    [weakself.showOrderTableView addInfiniteScrollingWithActionHandler:^{
+        int64_t delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+            [weakself.showOrderTableView.infiniteScrollingView stopAnimating];
+            [self getNextPage];
+        });
+    }];
 }
 
 #pragma mark getter
