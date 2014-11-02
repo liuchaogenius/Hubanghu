@@ -19,6 +19,7 @@
 #define kDescLabelHeight 80
 #define kCountTextFieldTag 991
 @interface HbhAppointmentViewController ()
+
 //data
 @property (nonatomic,strong) NSString *hbhTitle;
 @property (nonatomic,strong) NSString *cateId;
@@ -74,7 +75,7 @@
 
 #pragma mark -
 - (void)getPrice{ //获取价格
-	if (![_countTextField.text isEqualToString:@""]) {
+	if (_countTextField.text && ![_countTextField.text isEqualToString:@""]) {
 		NSDictionary *dic = @{@"type":@(_type),
 							  @"amountType":@(_amountType),
 							  @"amount":_countTextField.text,
@@ -400,7 +401,7 @@
 	
 	self.navigationItem.title = _hbhTitle;
 	
-	_tableView = [[TouchTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+	_tableView = [[TouchTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
 	_tableView.touchDelegate = self;

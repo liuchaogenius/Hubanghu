@@ -23,6 +23,7 @@ NSArray *itemArray;
         self.leftTableView.scrollEnabled = NO;
         self.leftTableView.delegate = self;
         self.leftTableView.dataSource = self;
+        self.leftTableView.backgroundColor = RGBCOLOR(47, 47, 47);
         self.leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:self.leftTableView];
     }
@@ -57,7 +58,7 @@ NSArray *itemArray;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.backgroundColor = RGBCOLOR(47, 47, 47);
+    cell.backgroundColor = kClearColor;
     if (indexPath.row==0) {
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(kMainScreenWidth/3-40, 40, 80, 80)];
         imgView.layer.cornerRadius = 40;
@@ -65,6 +66,7 @@ NSArray *itemArray;
         [imgView sd_setImageWithURL:[NSURL URLWithString:user.photoUrl]
                    placeholderImage:[UIImage imageNamed:@"leftDefault"]];
         imgView.clipsToBounds = YES;
+        imgView.backgroundColor = kClearColor;
         [cell addSubview:imgView];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/3-50, imgView.bottom+10, 100, 20)];
         label.font = kFont20;
@@ -72,6 +74,7 @@ NSArray *itemArray;
         label.text = user.nickName;
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = RGBCOLOR(134, 134, 134);
+        label.backgroundColor = kClearColor;
         [cell addSubview:label];
         UIView *lineView = [[UILabel alloc] initWithFrame:CGRectMake(0, 159, kMainScreenWidth*2/3, 1)];
         lineView.backgroundColor = RGBCOLOR(74, 74, 74);
@@ -94,14 +97,16 @@ NSArray *itemArray;
             label = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, 100, 20)];
             lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 39, kMainScreenWidth*2/3, 1)];
         }
-            [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"leftItem%d", (int)indexPath.row]]];
-            [cell addSubview:imgView];
-            label.text = [itemArray objectAtIndex:indexPath.row];
-            label.textColor = RGBCOLOR(147, 147, 147);
-            label.font = kFont15;
-            [cell addSubview:label];
-            lineView.backgroundColor = RGBCOLOR(74, 74, 74);
-            [cell addSubview:lineView];
+        [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"leftItem%d", (int)indexPath.row]]];
+        imgView.backgroundColor = kClearColor;
+        [cell addSubview:imgView];
+        label.text = [itemArray objectAtIndex:indexPath.row];
+        label.textColor = RGBCOLOR(147, 147, 147);
+        label.font = kFont15;
+        label.backgroundColor = kClearColor;
+        [cell addSubview:label];
+        lineView.backgroundColor = RGBCOLOR(74, 74, 74);
+        [cell addSubview:lineView];
     }
     if (indexPath.row==7)
     {
@@ -111,12 +116,14 @@ NSArray *itemArray;
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = RGBCOLOR(147, 147, 147);
         label.text = @"客服热线";
+        label.backgroundColor = kClearColor;
         [cell addSubview:label];
         UILabel *phoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/3-70, label.bottom+10, 140, 20)];
         phoneLabel.textColor = RGBCOLOR(147, 147, 147);
         phoneLabel.textAlignment = NSTextAlignmentCenter;
         phoneLabel.font = kFont20;
         phoneLabel.text = @"400-663-8585";
+        phoneLabel.backgroundColor = kClearColor;
         [cell addSubview:phoneLabel];
     }
     return cell;
@@ -125,7 +132,10 @@ NSArray *itemArray;
 #pragma mark tableViewdelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [ViewInteraction viewDissmissAnimationToLeft:self isRemove:NO completeBlock:^(BOOL isComplete) {
+        
+    }];
+    self.selectItem = 1;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

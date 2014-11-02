@@ -77,6 +77,8 @@
 		B0FF902519F7B174001B8E14 /* HbhOrderDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */; };
 		FF09640119F539A800EF8D0E /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */; };
 		FF09640219F539A800EF8D0E /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */; };
+		FF0B35D61A05132E00299FC9 /* IntroduceWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0B35D51A05132E00299FC9 /* IntroduceWebView.m */; };
+		FF0B35DE1A052F3800299FC9 /* HuhAppointmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0B35DD1A052F3800299FC9 /* HuhAppointmentVC.m */; };
 		FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252619E7B861008AB6EC /* JsonToModel.m */; };
 		FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252819E7B861008AB6EC /* NSFileManager_Additions.m */; };
 		FF15253219E7B861008AB6EC /* SCach.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252A19E7B861008AB6EC /* SCach.m */; };
@@ -132,6 +134,9 @@
 		FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF21CF2B19E66238005007B7 /* QuartzCore.framework */; };
 		FF21CF3219E68E28005007B7 /* LeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CF3119E68E28005007B7 /* LeftView.m */; };
 		FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */; };
+		FF9CCD461A05365A007DC51B /* HubInstallDesView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9CCD451A05365A007DC51B /* HubInstallDesView.m */; };
+		FF9CCD491A05367D007DC51B /* HubControlPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9CCD481A05367D007DC51B /* HubControlPriceView.m */; };
+		FF9CCD4C1A0536AE007DC51B /* HubAppointUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9CCD4B1A0536AE007DC51B /* HubAppointUserInfoView.m */; };
 		FFBBFB2419F3BB18003A200C /* AreasDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBBFB2319F3BB18003A200C /* AreasDBManager.m */; };
 		FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */; };
 		FFD1A2CE19EE4B6D00EA97D4 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C619EE4B6D00EA97D4 /* FMDatabaseAdditions.m */; };
@@ -279,6 +284,10 @@
 		FF0963FE19F539A800EF8D0E /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		FF0B35D41A05132E00299FC9 /* IntroduceWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceWebView.h; sourceTree = "<group>"; };
+		FF0B35D51A05132E00299FC9 /* IntroduceWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroduceWebView.m; sourceTree = "<group>"; };
+		FF0B35DC1A052F3800299FC9 /* HuhAppointmentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuhAppointmentVC.h; sourceTree = "<group>"; };
+		FF0B35DD1A052F3800299FC9 /* HuhAppointmentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuhAppointmentVC.m; sourceTree = "<group>"; };
 		FF15252519E7B861008AB6EC /* JsonToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonToModel.h; sourceTree = "<group>"; };
 		FF15252619E7B861008AB6EC /* JsonToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonToModel.m; sourceTree = "<group>"; };
 		FF15252719E7B861008AB6EC /* NSFileManager_Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManager_Additions.h; sourceTree = "<group>"; };
@@ -396,6 +405,12 @@
 		FF21CF3319E68F5F005007B7 /* MessageDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDefine.h; sourceTree = "<group>"; };
 		FF74A83B19EBC4B0006AADD8 /* SLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLocationManager.h; sourceTree = "<group>"; };
 		FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLocationManager.m; sourceTree = "<group>"; };
+		FF9CCD441A05365A007DC51B /* HubInstallDesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubInstallDesView.h; sourceTree = "<group>"; };
+		FF9CCD451A05365A007DC51B /* HubInstallDesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubInstallDesView.m; sourceTree = "<group>"; };
+		FF9CCD471A05367D007DC51B /* HubControlPriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubControlPriceView.h; sourceTree = "<group>"; };
+		FF9CCD481A05367D007DC51B /* HubControlPriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubControlPriceView.m; sourceTree = "<group>"; };
+		FF9CCD4A1A0536AE007DC51B /* HubAppointUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubAppointUserInfoView.h; sourceTree = "<group>"; };
+		FF9CCD4B1A0536AE007DC51B /* HubAppointUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubAppointUserInfoView.m; sourceTree = "<group>"; };
 		FFBBFB2219F3BB18003A200C /* AreasDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AreasDBManager.h; path = Hubanghu/ThirdParty/FMDB/AreasDBManager.h; sourceTree = SOURCE_ROOT; };
 		FFBBFB2319F3BB18003A200C /* AreasDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AreasDBManager.m; path = Hubanghu/ThirdParty/FMDB/AreasDBManager.m; sourceTree = SOURCE_ROOT; };
 		FFD1A2C319EE4B6D00EA97D4 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -526,6 +541,12 @@
 				B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */,
 				B01D687119F90FCF008B6BDE /* TouchTableView.h */,
 				B01D687219F90FCF008B6BDE /* TouchTableView.m */,
+				FF9CCD441A05365A007DC51B /* HubInstallDesView.h */,
+				FF9CCD451A05365A007DC51B /* HubInstallDesView.m */,
+				FF9CCD471A05367D007DC51B /* HubControlPriceView.h */,
+				FF9CCD481A05367D007DC51B /* HubControlPriceView.m */,
+				FF9CCD4A1A0536AE007DC51B /* HubAppointUserInfoView.h */,
+				FF9CCD4B1A0536AE007DC51B /* HubAppointUserInfoView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -857,6 +878,8 @@
 				5B25473F19F5439600E50B60 /* HbhSelCityViewController.m */,
 				B08F580819F64D0D00F3E130 /* HbhConfirmOrderViewController.h */,
 				B08F580919F64D0D00F3E130 /* HbhConfirmOrderViewController.m */,
+				FF0B35DC1A052F3800299FC9 /* HuhAppointmentVC.h */,
+				FF0B35DD1A052F3800299FC9 /* HuhAppointmentVC.m */,
 			);
 			path = FirstViewController;
 			sourceTree = "<group>";
@@ -1042,6 +1065,8 @@
 			children = (
 				FF21CF3019E68E28005007B7 /* LeftView.h */,
 				FF21CF3119E68E28005007B7 /* LeftView.m */,
+				FF0B35D41A05132E00299FC9 /* IntroduceWebView.h */,
+				FF0B35D51A05132E00299FC9 /* IntroduceWebView.m */,
 			);
 			path = LeftView;
 			sourceTree = "<group>";
@@ -1218,6 +1243,7 @@
 				FF21CE9B19E66030005007B7 /* SecondViewController.m in Sources */,
 				ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */,
 				AB7DE99719EFC7B000AA9F93 /* HbhDropDownView.m in Sources */,
+				FF9CCD461A05365A007DC51B /* HubInstallDesView.m in Sources */,
 				FFD1A2CE19EE4B6D00EA97D4 /* FMDatabaseAdditions.m in Sources */,
 				5B69300F19F39BC70005862D /* HbuAreaListModelBaseClass.m in Sources */,
 				FF21CEA419E660CC005007B7 /* BaseViewController.m in Sources */,
@@ -1230,6 +1256,7 @@
 				AB090E2419EE61F700D943C6 /* HbhWorkerDetailViewController.m in Sources */,
 				ABC5D50619F1E59800A306F7 /* HbhMakeAppointMentViewController.m in Sources */,
 				FF21CF1F19E66144005007B7 /* DataCenterDeal.mm in Sources */,
+				FF0B35DE1A052F3800299FC9 /* HuhAppointmentVC.m in Sources */,
 				5B16D8D619F140D0009E9FF3 /* CategoryChildInfoModel.m in Sources */,
 				FF21CF0C19E66144005007B7 /* FBKVOController.m in Sources */,
 				AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */,
@@ -1284,15 +1311,18 @@
 				FF21CF1C19E66144005007B7 /* UIImageView+HighlightedWebCache.m in Sources */,
 				B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */,
 				FF15253219E7B861008AB6EC /* SCach.m in Sources */,
+				FF9CCD4C1A0536AE007DC51B /* HubAppointUserInfoView.m in Sources */,
 				FF21CF0119E66144005007B7 /* AFHTTPClient.m in Sources */,
 				AB06DC5119F126B000B82C62 /* HbhWorkerDetailManage.m in Sources */,
 				FF21CE9019E64D76005007B7 /* RootTabBarController.m in Sources */,
 				FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */,
+				FF0B35D61A05132E00299FC9 /* IntroduceWebView.m in Sources */,
 				FF21CE9E19E66054005007B7 /* ThirdViewController.m in Sources */,
 				FF21CF0619E66144005007B7 /* AFPropertyListRequestOperation.m in Sources */,
 				FF21CF1E19E66144005007B7 /* UIView+WebCacheOperation.m in Sources */,
 				FF21CF1219E66144005007B7 /* SDWebImageCompat.m in Sources */,
 				FF21CE7319E64B5A005007B7 /* AppDelegate.m in Sources */,
+				FF9CCD491A05367D007DC51B /* HubControlPriceView.m in Sources */,
 				FF21CF0F19E66144005007B7 /* MKAnnotationView+WebCache.m in Sources */,
 				5B16D8CF19F134C3009E9FF3 /* HbuCategoryListManager.m in Sources */,
 				FF21CF0519E66144005007B7 /* AFNetworkActivityIndicatorManager.m in Sources */,

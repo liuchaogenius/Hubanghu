@@ -16,6 +16,7 @@
 #import "ViewInteraction.h"
 #import "HbhLoginViewController.h"
 #import "HbhUser.h"
+#import "IntroduceWebView.h"
 
 @interface RootTabBarController ()
 {
@@ -82,6 +83,11 @@
 - (void)initTabBarItem
 {
     //[[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_sel"]]];
+    if(kSystemVersion<7.0)
+    {
+        UIImage *img = [[UIImage imageNamed:@"tabbarBG"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+        [[UITabBar appearance] setBackgroundImage:img];
+    }
     for(int i=0; i<4;i++)
     {
         UITabBarItem *tabBarItem = self.tabBar.items[i];
@@ -134,21 +140,29 @@
     }
     
     [ViewInteraction viewPresentAnimationFromBottom:self.view toView:leftview];
+    if(!leftViewObserver)
+    {
+        leftViewObserver = [[FBKVOController alloc] initWithObserver:self];
+    }
     __weak RootTabBarController *weakself = self;
-    leftViewObserver = [FBKVOController lazyeObserValue:self byObserver:leftview keyPath:@"selectItem" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
-#warning 这里解析selectitem的新值 调用dealLeftviewSlectitem 去处理页面切换
-//        [weakself dealLeftviewSlectitem]
+    [leftViewObserver observe:leftview keyPath:@"selectItem" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
+        [weakself showIntroduceView];
     }];
+//    leftViewObserver = [FBKVOController lazyeObserValue:self byObserver:leftview keyPath:@"selectItem" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
+//#warning 这里解析selectitem的新值 调用dealLeftviewSlectitem 去处理页面切换
+//        [weakself showIntroduceView];
+//    }];
+}
+
+- (void)showIntroduceView
+{
+    IntroduceWebView *webview = [[IntroduceWebView alloc] initWithFrame:self.view.bounds];
+    [ViewInteraction viewPresentAnimationFromRight:self.view toView:webview];
 }
 
 - (void)popLeftView
 {
     
-}
-
-- (void)dealLeftviewSlectitem:(int)aSelectIndex
-{
-#warning 接收到新值，先把leftview dissmiss(不需要动画，直接removew 在把值设置为nil)了，然后用ViewInteraction  把新的页面new出来 显示出来
 }
 
 #pragma mark show login
