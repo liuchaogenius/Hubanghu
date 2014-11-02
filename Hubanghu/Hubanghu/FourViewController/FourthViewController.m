@@ -73,7 +73,7 @@ enum CellTag_Type
     if (!_logOutHeadView) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35)];
         //添加返回按钮
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];//[UIButton buttonWithType:UIButtonTypeRoundedRect];
         [button setFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];
         button.backgroundColor = KColor;
         [button addTarget:self action:@selector(touchLogoutButton) forControlEvents:UIControlEventTouchUpInside];
@@ -194,9 +194,16 @@ enum CellTag_Type
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             //图片
-            UIImageView *aImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, (cell.height-20)/2.0f, 20, 20)];
-            [aImageView setContentMode:UIViewContentModeScaleToFill];
-            [aImageView setFrame:CGRectMake(10, (cell.height-25)/2.0, 22, 25)];
+            UIImageView *aImageView = nil;
+            
+            if(kSystemVersion<7.0)
+            {
+                [aImageView setFrame:CGRectMake(20, (cell.height-25)/2.0, 22, 25)];
+            }
+            else
+            {
+                [aImageView setFrame:CGRectMake(10, (cell.height-25)/2.0, 22, 25)];
+            }
             aImageView.tag = kaImageViewTag;
             [cell addSubview:aImageView];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
