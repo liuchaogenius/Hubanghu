@@ -34,6 +34,7 @@
     self.personLabel.numberOfLines = 2;
     self.personLabel.text = @"   我们的工人进入客户的家中，会认真的与我们的客户核对产品的数量和完整性，在客户确认无误后即会准备施工。";
     self.personLabel.font = kFont12;
+    self.personLabel.backgroundColor = [UIColor clearColor];
     self.personLabel.textColor = [UIColor lightGrayColor];
     [self addSubview:self.personLabel];
     
@@ -41,12 +42,14 @@
     self.successLabel.font = kFont12;
     self.successLabel.textColor = [UIColor lightGrayColor];
     self.successLabel.text = @"我们会认真的与我们的客户核对产品的数量。";
+    self.successLabel.backgroundColor = [UIColor clearColor];
     [self addSubview:self.successLabel];
     
     self.honorLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 195, kMainScreenWidth-80, 15)];
     self.honorLabel.font = kFont12;
     self.honorLabel.textColor = [UIColor lightGrayColor];
     self.honorLabel.text = @"2012年获得某某某装修奖";
+    self.honorLabel.backgroundColor = [UIColor clearColor];
     [self addSubview:self.honorLabel];
     
     UIView *otherlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 215, kMainScreenWidth, 1)];

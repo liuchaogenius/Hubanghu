@@ -78,6 +78,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(phoneImgView.right+10, phoneImgView.top, kMainScreenWidth-20-phoneImgView.right, 40)];
     label.font = kFont20;
     label.text = user.phone;
+    label.backgroundColor = [UIColor clearColor];
     [self.view addSubview:label];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(headImgView.left, phoneImgView.bottom+70, kMainScreenWidth-headImgView.left*2, 35)];

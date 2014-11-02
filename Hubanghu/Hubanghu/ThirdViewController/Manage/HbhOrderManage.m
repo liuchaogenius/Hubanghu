@@ -10,11 +10,17 @@
 #import "HbhOrderModel.h"
 #import "NetManager.h"
 
+int pageCount;
+int pageIndex;
+int filterId;
 @implementation HbhOrderManage
 - (void)getOrderWithListFilterId:(int)aFilterId andSuccBlock:(void(^)(NSArray *aArray))aSuccBlock andFailBlock:(void(^)(void))aFailBlock
 {
+    pageIndex=1;
+    pageCount=20;
+    filterId=aFilterId;
     NSString *orderListUrl = nil;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"filterId", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", filterId],@"filterId", [NSString stringWithFormat:@"%d", pageCount], @"pageCount",[NSString stringWithFormat:@"%d", pageIndex], @"pageIndex",nil];
     kHubRequestUrl(@"getOrderList.ashx", orderListUrl);
     [NetManager requestWith:dict url:orderListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
@@ -38,6 +44,26 @@
     kHubRequestUrl(@"cancelOrder.ashx", cancelOrderUrl);
     [NetManager requestWith:dict url:cancelOrderUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict){
         MLOG(@"%@", successDict);
+    } failure:^(NSDictionary *failDict, NSError *error) {
+        
+    }];
+}
+
+- (void)getNextOrderListSuccBlock:(void(^)(NSArray *aArray))aSuccBlock andFailBlock:(void(^)(void))aFailBlock
+{
+    NSString *orderListUrl = nil;
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", filterId],@"filterId", [NSString stringWithFormat:@"%d", pageCount], @"pageCount",[NSString stringWithFormat:@"%d", pageIndex], @"pageIndex",nil];
+    kHubRequestUrl(@"getOrderList.ashx", orderListUrl);
+    [NetManager requestWith:dict url:orderListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
+        MLOG(@"%@", successDict);
+        NSMutableArray *dataArray = [successDict objectForKey:@"data"];
+        NSMutableArray *array = [NSMutableArray new];
+        for (int i=0; i<dataArray.count; i++)
+        {
+            HbhOrderModel *model = [HbhOrderModel modelObjectWithDictionary:[dataArray objectAtIndex:i]];
+            [array addObject:model];
+        }
+        aSuccBlock(array);
     } failure:^(NSDictionary *failDict, NSError *error) {
         
     }];

@@ -117,6 +117,7 @@ typedef enum : NSUInteger {
 
 - (void)getWorkerListWithAreaId:(int)aAreaId andWorkerTypeId:(int)aWorkTypeId andOrderCountId:(int)aOrderId
 {
+    [self.showWorkerListTableView setContentOffset:CGPointMake(0, 0) animated:YES];
     [self.workerListManage getWorkerListWithAreaId:aAreaId andWorkerTypeId:aWorkTypeId andOrderCountId:aOrderId SuccBlock:^(HbhData *aData) {
         [self.failView removeFromSuperview];
         self.workersArray = [(NSMutableArray *)aData.workers mutableCopy];
@@ -185,18 +186,20 @@ typedef enum : NSUInteger {
         });
     }];
     
-    //    if (btnCount == 15)
-    //    {
-    //        [weakself.showOrderTableView addInfiniteScrollingWithActionHandler:^{
-    //            int64_t delayInSeconds = 2.0;
-    //            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    //            dispatch_after(popTime, dispatch_get_main_queue(), ^{
-    //                [weakself.showOrderTableView.infiniteScrollingView stopAnimating];
-    //
-    //            });
-    //        }];
-    //    }
-    
+
+        [weakself.showWorkerListTableView addInfiniteScrollingWithActionHandler:^{
+            int64_t delayInSeconds = 2.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^{
+                [weakself.showWorkerListTableView.infiniteScrollingView stopAnimating];
+                [self.workerListManage getNextPageWorerListSuccBlock:^(HbhData *aData) {
+                    [self.workersArray addObjectsFromArray:aData.workers];
+                    [self.showWorkerListTableView reloadData];
+                } andFailBlock:^{
+                    
+                }];
+            });
+        }];
 }
 
 

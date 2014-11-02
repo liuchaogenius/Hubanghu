@@ -12,6 +12,7 @@
 #import "HbhOrderCounts.h"
 
 
+NSString *const kHbhDataTotalCount = @"totalCount";
 NSString *const kHbhDataWorkerTypes = @"workerTypes";
 NSString *const kHbhDataWorkers = @"workers";
 NSString *const kHbhDataAreas = @"areas";
@@ -26,6 +27,7 @@ NSString *const kHbhDataOrderCounts = @"orderCounts";
 
 @implementation HbhData
 
+@synthesize totalCount = _totalCount;
 @synthesize workerTypes = _workerTypes;
 @synthesize workers = _workers;
 @synthesize areas = _areas;
@@ -40,6 +42,8 @@ NSString *const kHbhDataOrderCounts = @"orderCounts";
 - (instancetype)initWithDictionary:(NSDictionary *)dict
 {
     self = [super init];
+    
+    self.totalCount = [[dict objectForKey:@"totalCount"] intValue];
     
     // This check serves to make sure that a non-NSDictionary object
     // passed into the model class doesn't break the parsing.

@@ -9,6 +9,9 @@
 #import "HbhWorkerListManage.h"
 #import "NetManager.h"
 
+int pageCount;
+int pageindex;
+int totalCount;
 NSString *areaId;
 NSString *workTypeId;
 NSString *orderCountId;
@@ -16,6 +19,8 @@ NSString *orderCountId;
 
 - (void)getWorkerListWithAreaId:(int)aAreaId andWorkerTypeId:(int)aWorkTypeid andOrderCountId:(int)aOrderId SuccBlock:(void(^)(HbhData *aData))aSuccBlock andFailBlock:(void(^)(void))aFailBlock
 {
+    pageindex = 1;
+    pageCount = 20;
     NSString *workerListUrl = nil;
     if ((aAreaId != [areaId intValue])&&aAreaId!=-1) {
         areaId = [NSString stringWithFormat:@"%d", aAreaId];
@@ -26,15 +31,35 @@ NSString *orderCountId;
     if ((aOrderId != [orderCountId intValue])&&aOrderId!=-1) {
         orderCountId = [NSString stringWithFormat:@"%d", aOrderId];
     }
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:areaId,@"area",workTypeId,@"workerType",orderCountId,@"orderCount", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:areaId,@"area",workTypeId,@"workerType",orderCountId,@"orderCount", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageCount", nil];
     kHubRequestUrl(@"getWorkerList.ashx", workerListUrl);
     [NetManager requestWith:dict url:workerListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
         HbhData *data = [HbhData modelObjectWithDictionary:[successDict objectForKey:@"data"]];
+        totalCount = data.totalCount;
         aSuccBlock(data);
     } failure:^(NSDictionary *failDict, NSError *error) {
         aFailBlock();
     }];
+}
+
+- (void)getNextPageWorerListSuccBlock:(void(^)(HbhData *aData))aSuccBlock andFailBlock:(void(^)(void))aFailBlock
+{
+    if (pageindex*pageCount<totalCount)
+    {
+        NSString *workerListUrl = nil;
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:areaId,@"area",workTypeId,@"workerType",orderCountId,@"orderCount", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageCount", nil];
+        kHubRequestUrl(@"getWorkerList.ashx", workerListUrl);
+        [NetManager requestWith:dict url:workerListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
+            MLOG(@"%@", successDict);
+            HbhData *data = [HbhData modelObjectWithDictionary:[successDict objectForKey:@"data"]];
+            pageindex++;
+            aSuccBlock(data);
+        } failure:^(NSDictionary *failDict, NSError *error) {
+            aFailBlock();
+        }];
+
+    }
 }
 
 

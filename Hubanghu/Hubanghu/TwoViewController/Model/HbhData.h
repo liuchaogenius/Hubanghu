@@ -11,6 +11,7 @@
 
 @interface HbhData : NSObject <NSCoding, NSCopying>
 
+@property(nonatomic, assign) int totalCount;
 @property (nonatomic, strong) NSArray *workerTypes;
 @property (nonatomic, strong) NSArray *workers;
 @property (nonatomic, strong) NSArray *areas;
