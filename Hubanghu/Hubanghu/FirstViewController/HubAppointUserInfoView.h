@@ -8,6 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol appointUserInfoDelegate <NSObject>
+
+- (void)shouldResignAllFirstResponds;
+
+@end
+
 @interface HubAppointUserInfoView : UIView
+
+@property(nonatomic) id<appointUserInfoDelegate> delegate;
+
+- (BOOL)infoCheck;
+
+- (NSString *)getUserName;
+- (NSString *)getTime;
+- (NSString *)getPhone;
+- (NSString *)getAreaId;
+- (NSString *)getLocation;
 
 @end

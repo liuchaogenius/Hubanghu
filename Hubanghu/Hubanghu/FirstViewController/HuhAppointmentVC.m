@@ -12,6 +12,12 @@
 #import "HubInstallDesView.h"
 #import "HubControlPriceView.h"
 #import "HubAppointUserInfoView.h"
+#import "HbhWorkers.h"
+#import "HbhConfirmOrderViewController.h"
+#import "SecondViewController.h"
+#import "SVProgressHUD.h"
+#import "HubOrder.h"
+
 
 typedef NS_ENUM(int, AmountDesc)
 {
@@ -19,7 +25,7 @@ typedef NS_ENUM(int, AmountDesc)
     E_AREA,
     E_LENGHT
 };
-@interface HuhAppointmentVC ()<controlPriceDelegate>
+@interface HuhAppointmentVC ()<controlPriceDelegate,appointUserInfoDelegate>
 {
     NSString *strNavtitle;
     NSString *strCateId;
@@ -33,6 +39,7 @@ typedef NS_ENUM(int, AmountDesc)
     HubControlPriceView *controlPriceView; //price相关部分
     HubAppointUserInfoView *userInfoView; //用户信息部分
     UIToolbar *toolBarView;//下方确认页面
+    UIButton *_selectWorkerBtn;
     
     UILabel *_totalPriceLabel;
 }
@@ -68,7 +75,7 @@ typedef NS_ENUM(int, AmountDesc)
     [self settitleLabel:strNavtitle];
     self.view.backgroundColor = [UIColor whiteColor];
     scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-65)];
-    scrollview.contentSize = CGSizeMake(kMainScreenWidth, kMainScreenHeight + 100);
+    scrollview.contentSize = CGSizeMake(kMainScreenWidth, 650);
     [self.view addSubview:scrollview];
     scrollview.backgroundColor = RGBCOLOR(249, 249, 249);
     
@@ -132,6 +139,7 @@ typedef NS_ENUM(int, AmountDesc)
 {
     if (!userInfoView) {
         userInfoView = [[HubAppointUserInfoView alloc] initWithFrame:CGRectMake(0, controlPriceView.bottom+20, kMainScreenWidth, 260)];
+        userInfoView.delegate = self;
         [scrollview addSubview:userInfoView];
     }
 }
@@ -141,15 +149,15 @@ typedef NS_ENUM(int, AmountDesc)
     if (!toolBarView) {
         toolBarView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, kMainScreenHeight-65.0-64.0, kMainScreenWidth, 65)];
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-30-100, 2, 30, 25)];
-        titleLabel.text = @"合计:";
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-40-100, 2, 40, 25)];
+        titleLabel.text = @"合计:￥";
         titleLabel.font = kFont12;
         titleLabel.textColor = KColor;
         [toolBarView addSubview:titleLabel];
         
         UILabel *totalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLabel.right, 5, 100, 16)];
         totalPriceLabel.textColor = KColor;
-        totalPriceLabel.text = @"￥0.00";
+        totalPriceLabel.text = @"0.00";
         _totalPriceLabel = totalPriceLabel;
         [toolBarView addSubview:totalPriceLabel];
         
@@ -159,7 +167,11 @@ typedef NS_ENUM(int, AmountDesc)
         [selectWorkerBtn setBackgroundColor:KColor];
         [selectWorkerBtn addTarget:self action:@selector(touchSelectWorkerBtn) forControlEvents:UIControlEventTouchUpInside];
         [selectWorkerBtn setTitle:@"选师傅" forState:UIControlStateNormal];
+        if (workerModel && workerModel.name) {
+            [selectWorkerBtn setTitle:workerModel.name forState:UIControlStateNormal];
+        }
         [toolBarView addSubview:selectWorkerBtn];
+        _selectWorkerBtn = selectWorkerBtn;
         
         UIButton *orderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [orderBtn setFrame:CGRectMake(kMainScreenWidth-10-(kMainScreenWidth-20-20)/2.0, 25, (kMainScreenWidth-20-20)/2.0, 30)];
@@ -178,22 +190,83 @@ typedef NS_ENUM(int, AmountDesc)
 #pragma mark - action
 - (void)touchSelectWorkerBtn
 {
-    
+    [self pickWorker];
 }
 
 - (void)touchOrderBtn
 {
-    
+    if ([self infoCheck]) {
+        [self submitOrder];
+    }
+}
+
+//跳转到选择工人列表
+- (void)pickWorker{
+    SecondViewController *vc = [[SecondViewController alloc] initAndUseWorkerDetailBlock:^(HbhWorkers *aWorkerModel) {
+        if (aWorkerModel) {
+            workerModel = aWorkerModel;
+            [_selectWorkerBtn setTitle:workerModel.name forState:UIControlStateNormal];
+        }
+    }];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark 数据完整性检查
+- (BOOL)infoCheck
+{
+#warning work,price检查
+    if (![controlPriceView infoCheck]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入安装数量(㎡/个/长度)" cover:YES offsetY:kMainScreenHeight/2.0];
+        return NO;
+    }else if (![userInfoView infoCheck]){
+        [SVProgressHUD showErrorWithStatus:@"请输入完整信息" cover:YES offsetY:kMainScreenHeight/2.0];
+        return NO;
+    }else if ([_totalPriceLabel.text isEqualToString:@"0.00"]){
+        [SVProgressHUD showErrorWithStatus:@"价格读取中.." cover:YES offsetY:kMainScreenHeight/2.0];
+        return NO;
+    }else if (!workerModel){
+        [SVProgressHUD showErrorWithStatus:@"你还没有选择工人" cover:YES offsetY:kMainScreenHeight/2.0];
+        return NO;
+    }else{
+        return YES;
+    }
+}
+#pragma mark 提交订单,进入下个页面
+- (void)submitOrder
+{
+    NSDictionary *orderDic = @{@"cateId":strCateId,
+                               @"username":[userInfoView getUserName],
+                               @"time":[userInfoView getTime],
+                               @"amount":[controlPriceView getAmount],
+                               @"workerId":@(workerModel.workersIdentifier),
+                               @"mountType":[controlPriceView getMountType],
+                               @"comment":[controlPriceView getComment],
+                               @"phone":[userInfoView getPhone],
+                               @"areaId":[userInfoView getAreaId],
+                               @"location":[userInfoView getLocation],
+                               @"price":_totalPriceLabel.text,
+                               @"workerName":workerModel.name,
+                               @"urgent":[controlPriceView getUrgent],
+                               @"name":strNavtitle};
+    HubOrder *order = [[HubOrder alloc] initWithDictionary:orderDic];
+    HbhConfirmOrderViewController * covc = [[HbhConfirmOrderViewController alloc] initWithOrder:order];
+    [self.navigationController pushViewController:covc animated:YES];
 }
 
 #pragma mark - delegate
-#pragma mark 价格改动 
+#pragma mark 价格改动
 - (void)priceChangedWithPrice:(NSString *)price
 {
     if (price) {
-        _totalPriceLabel.text = [NSString stringWithFormat:@"￥%@",price];
+        _totalPriceLabel.text = [NSString stringWithFormat:@"%@",price];
     }
 }
+#pragma mark resign first resp
+- (void)shouldResignAllFirstResponds
+{
+    [controlPriceView allTextFieldsResignFirstRespond];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

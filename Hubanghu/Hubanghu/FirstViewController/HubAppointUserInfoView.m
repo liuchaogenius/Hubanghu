@@ -26,6 +26,7 @@ enum TextFieldType
     HbuAreaListModelAreas *_city;
     HbuAreaListModelAreas *_district;
     NSString *_selectAreaId;
+    NSTimeInterval _time;
 }
 @property (strong, nonatomic) NSArray *placehodeArray;
 @property (strong, nonatomic) NSMutableArray *textFiledArray;
@@ -42,6 +43,47 @@ enum TextFieldType
 @end
 @implementation HubAppointUserInfoView
 #pragma mark - getter and setter
+- (NSString *)getUserName
+{
+    UITextField *tf = self.textFiledArray[TextField_name];
+    if (tf && tf.text.length) {
+        return tf.text;
+    }
+    return nil;
+}
+- (NSString *)getTime
+{
+    UITextField *tf = self.textFiledArray[TextField_name];
+    if (tf && tf.text.length && _time) {
+        return [NSString stringWithFormat:@"%lf",_time];
+    }
+    return nil;
+}
+- (NSString *)getPhone
+{
+    UITextField *tf = self.textFiledArray[TextField_phone];
+    if (tf && tf.text.length) {
+        return tf.text;
+    }
+    return nil;
+}
+- (NSString *)getAreaId
+{
+    UITextField *tf = self.textFiledArray[TextField_location];
+    if (tf && tf.text.length && _selectAreaId.length) {
+        return _selectAreaId;
+    }
+    return nil;
+}
+- (NSString *)getLocation
+{
+    UITextField *tf = self.textFiledArray[TextField_detailLoc];
+    if (tf && tf.text.length) {
+        return tf.text;
+    }
+    return nil;
+}
+
 - (UIView *)clearView
 {
     if (!_clearView) {
@@ -176,7 +218,7 @@ enum TextFieldType
     textField.textAlignment = NSTextAlignmentLeft;
     textField.layer.borderWidth = 1;
     textField.layer.borderColor = kBorderColor.CGColor;
-    
+    textField.returnKeyType = UIReturnKeyDone;
     UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 40)];
     imageView.backgroundColor = RGBCOLOR(226, 226, 226);
@@ -185,6 +227,10 @@ enum TextFieldType
     textField.leftView = leftView;
     textField.leftViewMode = UITextFieldViewModeAlways;
     self.textFiledArray[tag] = textField;
+    
+    if (tag == TextField_phone) {
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }
     
     return textField;
 }
@@ -205,8 +251,8 @@ enum TextFieldType
         [toolView addSubview:_tool];
         
         [[UIApplication sharedApplication].keyWindow addSubview:self.clearView];
-        [self.window addSubview:_datePicker];
-        [self.window addSubview:toolView];
+        [[UIApplication sharedApplication].keyWindow addSubview:_datePicker];
+        [[UIApplication sharedApplication].keyWindow addSubview:toolView];
         
         [UIView animateWithDuration:0.2 animations:^{
             _datePicker.top = kMainScreenHeight - 200;
@@ -280,15 +326,50 @@ enum TextFieldType
 
     }
 }
+#pragma mark - 用户信息检查
+- (BOOL)infoCheck
+{
+    int i = 0;
+    for (i = 0; i < self.textFiledArray.count; i ++) {
+        UITextField *tf = self.textFiledArray[i];
+        if (!tf.text || tf.text.length <=0) {
+            return NO;
+            break;
+        }
+    }
+    if (i < self.textFiledArray.count) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+#pragma mark textField FisrtResp check
+- (void)checkAlltextFieldFirstRespond
+{
+    //去除其他view的fisrtrespond
+    [self.delegate shouldResignAllFirstResponds];
+    
+    for (int i = 0; i < self.placehodeArray.count; i++) {
+        UITextField *tf = self.textFiledArray[i];
+        if ([tf isKindOfClass:[UITextField class]] && tf.isFirstResponder) {
+            [tf resignFirstResponder];
+        }
+    }
+}
 
 #pragma mark - delegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    //[self checkAlltextFieldFirstRespond];
+    
     if (textField.tag == TextField_time) {
+        [self checkAlltextFieldFirstRespond];
         [self showDatePickView];
         return NO;
     }else if (TextField_location == textField.tag){
+        [self checkAlltextFieldFirstRespond];
         [self showAreaPickView];
         return NO;
     }else{
@@ -298,12 +379,8 @@ enum TextFieldType
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    for (int i = 0; i < self.placehodeArray.count; i++) {
-        UITextField *tf = self.textFiledArray[i];
-        if ([tf isKindOfClass:[UITextField class]] && tf.isFirstResponder) {
-            [tf resignFirstResponder];
-        }
-    }
+    [self checkAlltextFieldFirstRespond];
+    
     return YES;
 }
 
@@ -315,6 +392,7 @@ enum TextFieldType
     NSString *dateAndTime = [selectDateFormatter stringFromDate:select]; // 把date类型转为设置好格式的
     UITextField *tf = self.textFiledArray[TextField_time];
     tf.text = dateAndTime;
+    _time = select.timeIntervalSince1970;
 }
 
 - (void)areaPikerValueToTextField
@@ -351,18 +429,6 @@ enum TextFieldType
             [sender.superview removeFromSuperview];
         }];
     }
-    /*
-    if([_areaPicker superview]){
-        [UIView animateWithDuration:0.2 animations:^{
-            _areaPicker.top = kMainScreenHeight;
-            [_areaPicker removeFromSuperview];
-            [sender.superview removeFromSuperview];
-        }];
-        if (_district) {
-            _selectAreaId = [NSString stringWithFormat:@"%.0lf",_district.areaId];
-            _areaTF.text = [NSString stringWithFormat:@"%@ %@ %@",_province.name,_city.name,_district.name];
-        }
-    }*/
 }
 
 #pragma mark - pickerView delegate and datasource

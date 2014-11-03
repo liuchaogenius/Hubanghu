@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @protocol controlPriceDelegate <NSObject>
 
 - (void)priceChangedWithPrice:(NSString *)price; //和vc交互 修改价格
@@ -20,5 +21,12 @@
 
 - (void)setCountType:(int)aType;// 1:(数量),2:（面积）,3:（长度)
 - (void)setCateId:(NSString *)cateId;
+- (void)allTextFieldsResignFirstRespond;
+
+- (BOOL)infoCheck;
+- (NSString *)getUrgent;
+- (NSString *)getMountType;//种类
+- (NSString *)getAmount;//数量
+- (NSString *)getComment;//备注
 
 @end

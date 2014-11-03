@@ -8,6 +8,7 @@
 
 #import "HubControlPriceView.h"
 #import "HbhAppointmentNetManager.h"
+#import "SVProgressHUD.h"
 #define kTitleFont 15
 #define kCateTitleFont  15
 #define kBorderColor RGBCOLOR(207, 207, 207)
@@ -23,7 +24,7 @@
     
     UITextField *countTextField;
     int offsetY;
-    NSString *strRemark;
+    //NSString *strRemark;
     UITextField *remarkTextField;
     
     UILabel *_countTitleLabel; //数量title
@@ -39,6 +40,26 @@
 @implementation HubControlPriceView
 
 #pragma mark - getter and setter
+- (NSString *)getUrgent
+{
+    return [NSString stringWithFormat:@"%d",uragent];
+}
+- (NSString *)getMountType//种类
+{
+    return [NSString stringWithFormat:@"%d",countType];
+}
+- (NSString *)getAmount//数量
+{
+    if (countTextField.text && countTextField.text.length) {
+        return countTextField.text;
+    }
+    return nil;
+}
+- (NSString *)getComment//备注
+{
+    return  (remarkTextField.text.length ? remarkTextField.text : @"");
+}
+
 - (HbhAppointmentNetManager *)netManager
 {
     if (!_netManager) {
@@ -170,7 +191,7 @@
     countTextField.layer.borderWidth = 1;
     countTextField.layer.borderColor = kBorderColor.CGColor;
     countTextField.layer.cornerRadius = 2;
-    
+    countTextField.delegate = self;
     
     UILabel *unitLabel = [[UILabel alloc] initWithFrame:CGRectMake(countTextField.right+3, countTextField.bottom-13, 28, 10)];
     unitLabel.backgroundColor = kClearColor;
@@ -208,6 +229,7 @@
     
     UILabel *uragentDesc = [[UILabel alloc] initWithFrame:CGRectMake(bt.right+8, bt.top, 110, 12)];
     uragentDesc.backgroundColor = kClearColor;
+    uragentDesc.centerY = bt.centerY;
     uragentDesc.font = [UIFont systemFontOfSize:kTitleFont-2];
     uragentDesc.textColor = [UIColor grayColor];
     uragentDesc.text = @"12小时内上门安装";
@@ -244,6 +266,7 @@
         remarkTextField.tag = 0;
         remarkTextField.placeholder = @"请输入备注信息";
         remarkTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        remarkTextField.returnKeyType = UIReturnKeyDone;
         remarkTextField.font = kFont13;
         remarkTextField.textAlignment = NSTextAlignmentCenter;
         remarkTextField.layer.borderWidth = 1;
@@ -255,6 +278,17 @@
 }
 
 #pragma mark - Action
+
+- (BOOL)infoCheck
+{
+    if (countTextField.text && countTextField.text.length) {
+        //价格相关页面只需检查数量，其他均有初值
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 - (void)getPrice
 {
     if (countTextField && countTextField.text.length && _cateId) {
@@ -262,7 +296,7 @@
             //通知vc修改价格
             [self.delegate priceChangedWithPrice:price];
         } failure:^{
-            nil;
+            [SVProgressHUD showErrorWithStatus:@"网络请求失败，请检查网络!" cover:YES offsetY:kMainScreenHeight/2.0];
         }];
     }
 }
@@ -275,7 +309,10 @@
         [aBut setImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
     }
     uragent = !uragent;
-    [self getPrice];
+    if (countTextField && countTextField.text.length) {
+        [self getPrice];
+    }
+    
 }
 
 - (void)cateButtonItem:(UIButton *)aBut
@@ -302,6 +339,13 @@
     }
     
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == countTextField) {
+        [self getPrice];
+    }
 }
 
 - (void)allTextFieldsResignFirstRespond
