@@ -21,7 +21,7 @@ NSString *workerId;
     pageindex = 1;
     workerId = [NSString stringWithFormat:@"%d", aWorkerId];
     NSString *workerCommentListUrl = nil;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:workerId, @"workerId", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageCount", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:workerId, @"workerId", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageSize", nil];
     kHubRequestUrl(@"getWorkerComment.aspx", workerCommentListUrl);
     [NetManager requestWith:dict url:workerCommentListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
@@ -39,7 +39,7 @@ NSString *workerId;
     {
         pageindex++;
         NSString *workerCommentListUrl = nil;
-        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:workerId, @"workerId", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageCount", nil];
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:workerId, @"workerId", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageSize", nil];
         kHubRequestUrl(@"getWorkerComment.aspx", workerCommentListUrl);
         [NetManager requestWith:dict url:workerCommentListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
             MLOG(@"%@", successDict);
