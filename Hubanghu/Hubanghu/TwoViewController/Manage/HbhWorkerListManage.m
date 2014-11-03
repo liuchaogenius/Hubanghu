@@ -31,7 +31,7 @@ NSString *orderCountId;
     if ((aOrderId != [orderCountId intValue])&&aOrderId!=-1) {
         orderCountId = [NSString stringWithFormat:@"%d", aOrderId];
     }
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:areaId,@"area",workTypeId,@"workerType",orderCountId,@"orderCount", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageCount", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:areaId,@"area",workTypeId,@"workerType",orderCountId,@"orderCount", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageSize", nil];
     kHubRequestUrl(@"getWorkerList.ashx", workerListUrl);
     [NetManager requestWith:dict url:workerListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
@@ -49,7 +49,7 @@ NSString *orderCountId;
     {
         pageindex++;
         NSString *workerListUrl = nil;
-        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:areaId,@"area",workTypeId,@"workerType",orderCountId,@"orderCount", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageCount", nil];
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:areaId,@"area",workTypeId,@"workerType",orderCountId,@"orderCount", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageSize", nil];
         kHubRequestUrl(@"getWorkerList.ashx", workerListUrl);
         [NetManager requestWith:dict url:workerListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
             MLOG(@"%@", successDict);

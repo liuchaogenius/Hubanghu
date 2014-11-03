@@ -21,7 +21,7 @@ int totalCount;
     pageCount=20;
     filterId=aFilterId;
     NSString *orderListUrl = nil;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", filterId],@"filterId", [NSString stringWithFormat:@"%d", pageCount], @"pageCount",[NSString stringWithFormat:@"%d", pageIndex], @"pageIndex",nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", filterId],@"filterId", [NSString stringWithFormat:@"%d", pageCount], @"pageSize",[NSString stringWithFormat:@"%d", pageIndex], @"pageIndex",nil];
     kHubRequestUrl(@"getOrderList.ashx", orderListUrl);
     [NetManager requestWith:dict url:orderListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
@@ -56,7 +56,7 @@ int totalCount;
     if (pageIndex*pageCount<totalCount) {
         pageIndex++;
         NSString *orderListUrl = nil;
-        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", filterId],@"filterId", [NSString stringWithFormat:@"%d", pageCount], @"pageCount",[NSString stringWithFormat:@"%d", pageIndex], @"pageIndex",nil];
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", filterId],@"filterId", [NSString stringWithFormat:@"%d", pageCount], @"pageSize",[NSString stringWithFormat:@"%d", pageIndex], @"pageIndex",nil];
         kHubRequestUrl(@"getOrderList.ashx", orderListUrl);
         [NetManager requestWith:dict url:orderListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
             MLOG(@"%@", successDict);

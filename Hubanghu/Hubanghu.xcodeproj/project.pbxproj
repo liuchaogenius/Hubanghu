@@ -72,10 +72,7 @@
 		B02C2B1719F4FD0600B9C4FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02C2B1619F4FD0600B9C4FF /* Images.xcassets */; };
 		B08F580B19F64D0D00F3E130 /* HbhConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B08F580919F64D0D00F3E130 /* HbhConfirmOrderViewController.m */; };
 		B09D1DAC19F654D200C7513C /* HubOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B09D1DAB19F654D200C7513C /* HubOrder.m */; };
-		B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */; };
 		B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */; };
-		B0EED42E19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */; };
-		B0EED42F19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */; };
 		B0FF902519F7B174001B8E14 /* HbhOrderDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */; };
 		FF09640119F539A800EF8D0E /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */; };
 		FF09640219F539A800EF8D0E /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */; };
@@ -292,14 +289,8 @@
 		B08F580919F64D0D00F3E130 /* HbhConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhConfirmOrderViewController.m; sourceTree = "<group>"; };
 		B09D1DAA19F654D200C7513C /* HubOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubOrder.h; sourceTree = "<group>"; };
 		B09D1DAB19F654D200C7513C /* HubOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubOrder.m; sourceTree = "<group>"; };
-		B0EB09E019F171FD00EDB0D5 /* HbhAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentViewController.h; sourceTree = "<group>"; };
-		B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentViewController.m; sourceTree = "<group>"; };
 		B0EED42519F37C8E00CBFBFC /* HbhAppointmentNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentNetManager.h; sourceTree = "<group>"; };
 		B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentNetManager.m; sourceTree = "<group>"; };
-		B0EED42919F37D4A00CBFBFC /* HbhAppointmentConfirmeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentConfirmeView.h; sourceTree = "<group>"; };
-		B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentConfirmeView.m; sourceTree = "<group>"; };
-		B0EED42B19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentDetailsTableViewCell.h; sourceTree = "<group>"; };
-		B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentDetailsTableViewCell.m; sourceTree = "<group>"; };
 		B0FF902319F7B174001B8E14 /* HbhOrderDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderDetailsView.h; sourceTree = "<group>"; };
 		B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderDetailsView.m; sourceTree = "<group>"; };
 		FF0963FE19F539A800EF8D0E /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
@@ -577,10 +568,6 @@
 		5BF8FC7919F1073600598FB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B0EED42919F37D4A00CBFBFC /* HbhAppointmentConfirmeView.h */,
-				B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */,
-				B0EED42B19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.h */,
-				B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */,
 				5BF8FC7A19F107C700598FB9 /* HbhFirstVCCell.h */,
 				5BF8FC7B19F107C700598FB9 /* HbhFirstVCCell.m */,
 				5B16D8C919F12F07009E9FF3 /* HbhCategoryCell.h */,
@@ -929,8 +916,6 @@
 				FF21CE9719E65FE7005007B7 /* FirstViewController.m */,
 				5B16D8C619F12CB7009E9FF3 /* HbuCategoryViewController.h */,
 				5B16D8C719F12CB7009E9FF3 /* HbuCategoryViewController.m */,
-				B0EB09E019F171FD00EDB0D5 /* HbhAppointmentViewController.h */,
-				B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */,
 				5B25473E19F5439600E50B60 /* HbhSelCityViewController.h */,
 				5B25473F19F5439600E50B60 /* HbhSelCityViewController.m */,
 				B08F580819F64D0D00F3E130 /* HbhConfirmOrderViewController.h */,
@@ -1282,7 +1267,7 @@
 					};
 					FF21CE7C19E64B5A005007B7 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 95Y3FJ9H47;
+						DevelopmentTeam = JERPD52W3W;
 						TestTargetID = FF21CE6919E64B5A005007B7;
 					};
 				};
@@ -1433,7 +1418,6 @@
 				AB8EA5E019F482D0001F40C2 /* HbhOrderCounts.m in Sources */,
 				FFBBFB2419F3BB18003A200C /* AreasDBManager.m in Sources */,
 				FF21CF1C19E66144005007B7 /* UIImageView+HighlightedWebCache.m in Sources */,
-				B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */,
 				FF15253219E7B861008AB6EC /* SCach.m in Sources */,
 				FF9CCD4C1A0536AE007DC51B /* HubAppointUserInfoView.m in Sources */,
 				FF21CF0119E66144005007B7 /* AFHTTPClient.m in Sources */,
@@ -1459,12 +1443,10 @@
 				FF21CF1519E66144005007B7 /* SDWebImageDownloaderOperation.m in Sources */,
 				FF21CEA119E6607B005007B7 /* FourthViewController.m in Sources */,
 				FF21CF1619E66144005007B7 /* SDWebImageManager.m in Sources */,
-				B0EED42E19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m in Sources */,
 				FF21CF2219E66144005007B7 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				FF21CF2519E66144005007B7 /* UIImage+ImageEffects.m in Sources */,
 				FF6D90631A0749B500C966F8 /* AlixPayOrder.m in Sources */,
 				AB8EA5DD19F482D0001F40C2 /* HbhAreas.m in Sources */,
-				B0EED42F19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m in Sources */,
 				5B25474019F5439600E50B60 /* HbhSelCityViewController.m in Sources */,
 				FF21CF1B19E66144005007B7 /* UIImage+WebP.m in Sources */,
 				5B16D8D319F139D3009E9FF3 /* CategoryInfoModel.m in Sources */,
@@ -1579,8 +1561,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: wu chen (7K2NVL8N69)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wu chen (7K2NVL8N69)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "Hubanghu/Hubanghu-Prefix.pch";
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1590,7 +1572,7 @@
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/alipay_sdk/alipay",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c8525c24-ca9b-4121-b8df-3a146e534b1a";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1599,8 +1581,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: wu chen (7K2NVL8N69)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wu chen (7K2NVL8N69)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "Hubanghu/Hubanghu-Prefix.pch";
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1610,7 +1592,7 @@
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/alipay_sdk/alipay",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c8525c24-ca9b-4121-b8df-3a146e534b1a";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
