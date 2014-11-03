@@ -27,6 +27,10 @@ enum TextFieldType
     HbuAreaListModelAreas *_district;
     NSString *_selectAreaId;
     NSTimeInterval _time;
+    
+    NSString *strCurrentProvice;
+    NSString *strCurrentCity;
+    NSString *strCurrentDistrict;
 }
 @property (strong, nonatomic) NSArray *placehodeArray;
 @property (strong, nonatomic) NSMutableArray *textFiledArray;
@@ -195,7 +199,16 @@ enum TextFieldType
             UITextField *textField = [self customTextFieldWithFrame:CGRectMake(10, 10+50*i, kMainScreenWidth-20, 40) andTag:i];
             [self addSubview:textField];
         }
-        
+#warning  初始化位置信息  设置text field的内容
+        [self initLocationInfo];
+        if(strCurrentProvice && strCurrentCity && strCurrentDistrict)
+        {
+            ((UITextField *)self.textFiledArray[TextField_location]).text = [NSString stringWithFormat:@" %@  %@  %@", strCurrentProvice,strCurrentCity, strCurrentDistrict];
+        }
+//        else
+//        {
+//            ((UITextField *)self.textFiledArray[TextField_location]).text = @"请重新定位";
+//        }
         //用户信息
         if([HbhUser sharedHbhUser].isLogin)
         {
@@ -206,12 +219,37 @@ enum TextFieldType
     return self;
 }
 
+- (void)initLocationInfo
+{
+    _city = self.areaLocationManger.currentAreas;
+    HbuAreaListModelAreas *area = nil;
+    if(self.provinceArray)
+    {
+        area = [self.provinceArray objectAtIndex:0];
+        strCurrentProvice = area.name;
+    }
+    //get citysarray
+    [self setCityArrayWithParentId:_city.parent];
+    if(_cityArray && [_cityArray count]>0)
+    {
+        area = [self.provinceArray objectAtIndex:0];
+        strCurrentCity = area.name;
+    }
+    [self setDistrictArrayWithParentId:_city.areaId];
+    if(_districtArray && [_districtArray count])
+    {
+        area = [self.provinceArray objectAtIndex:0];
+        strCurrentDistrict = area.name;
+    }
+}
+
 //customed textfield
 - (UITextField *)customTextFieldWithFrame:(CGRect)frame andTag:(int)tag
 {
     UITextField *textField = [[UITextField alloc] initWithFrame:frame];
     textField.delegate = self;
     textField.tag = tag;
+    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textField.placeholder = self.placehodeArray[tag];
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.font = kFont13;
@@ -285,7 +323,7 @@ enum TextFieldType
                 }
             }
             //get districtArray
-            [self setDistrictArrayWithParentId:_city.areaId];
+//            [self setDistrictArrayWithParentId:_city.areaId];
             if (_districtArray && _districtArray.count) {
                 _district = _districtArray[0];
             }

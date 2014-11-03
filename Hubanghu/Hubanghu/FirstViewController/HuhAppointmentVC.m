@@ -38,7 +38,7 @@ typedef NS_ENUM(int, AmountDesc)
     HubInstallDesView *installDesView; //top描述
     HubControlPriceView *controlPriceView; //price相关部分
     HubAppointUserInfoView *userInfoView; //用户信息部分
-    UIToolbar *toolBarView;//下方确认页面
+    UIView *toolBarView;//下方确认页面
     UIButton *_selectWorkerBtn;
     
     UILabel *_totalPriceLabel;
@@ -147,12 +147,13 @@ typedef NS_ENUM(int, AmountDesc)
 - (void)creatToolBarView
 {
     if (!toolBarView) {
-        toolBarView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, kMainScreenHeight-65.0-64.0, kMainScreenWidth, 65)];
+        toolBarView = [[UIView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight-65.0-64.0, kMainScreenWidth, 65)];
         
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-40-100, 2, 40, 25)];
         titleLabel.text = @"合计:￥";
         titleLabel.font = kFont12;
         titleLabel.textColor = KColor;
+        toolBarView.backgroundColor = [UIColor whiteColor];
         [toolBarView addSubview:titleLabel];
         
         UILabel *totalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLabel.right, 5, 100, 16)];

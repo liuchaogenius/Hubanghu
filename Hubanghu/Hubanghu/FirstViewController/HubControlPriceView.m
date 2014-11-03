@@ -183,6 +183,7 @@
     countTextField.tag	= 0;
     countTextField.delegate = self;
     countTextField.placeholder = @"请输入..";
+    countTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     countTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     countTextField.returnKeyType = UIReturnKeyDone;
     countTextField.font = kFont13;
@@ -264,6 +265,7 @@
         remarkTextField.centerY = remarkTitleLabel.centerY;
         remarkTextField.delegate = self;
         remarkTextField.tag = 0;
+        remarkTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         remarkTextField.placeholder = @"请输入备注信息";
         remarkTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         remarkTextField.returnKeyType = UIReturnKeyDone;
