@@ -22,7 +22,7 @@
     int btnWidth = 60;
     CGFloat interval = (kMainScreenWidth-btnWidth*4)/5;
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 65)];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 85)];
     for (int i=0; i<aArray.count; i++)
     {
         HbhWorkerCaseClass *model = [aArray objectAtIndex:i];
@@ -32,6 +32,12 @@
         btn.layer.cornerRadius = 5;
         [btn sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] forState:UIControlStateNormal];
         btn.userInteractionEnabled = NO;
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(btn.left, btn.bottom, btn.right-btn.left, 20)];
+        label.text = model.title;
+        label.font = kFont12;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = RGBCOLOR(129, 129, 129);
+        [scrollView addSubview:label];
         [scrollView addSubview:btn];
     }
     scrollView.contentSize = CGSizeMake(aArray.count*(btnWidth+interval)+interval, 60);

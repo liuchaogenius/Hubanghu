@@ -163,7 +163,7 @@
             return 35;
         }
         else{
-            return 65;
+            return 90;
         }
         return 0;
     }
@@ -177,7 +177,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 14;
+    if (section==2) {
+        return 1;
+    }
+    return 9;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
