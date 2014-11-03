@@ -10,19 +10,32 @@
 #import "HbhWorkerCommentTableViewCell.h"
 #import "HbhWorkerComment.h"
 #import "UIImageView+WebCache.h"
+#import "SVPullToRefresh.h"
+#import "HbhWorkerCommentManage.h"
 
 @interface HbhCommentViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic, strong) UITableView *showCommentTableView;
-@property(nonatomic, strong) NSArray *commentArray;
+@property(nonatomic, strong) NSMutableArray *commentArray;
+@property(nonatomic, strong) UIActivityIndicatorView *activityView;
+@property(nonatomic, assign) int myWorkerId;
+@property(nonatomic, strong) HbhWorkerCommentManage *workerCommentManage;
+@property(nonatomic, strong) UIView *failView;
 @end
 
 @implementation HbhCommentViewController
 
-- (instancetype)initWithCommentArray:(NSArray *)aArray
+//- (instancetype)initWithCommentArray:(NSArray *)aArray
+//{
+//    self = [super init];
+//    self.commentArray = aArray;
+//    return self;
+//}
+
+- (instancetype)initWithWorkerId:(int)aId
 {
     self = [super init];
-    self.commentArray = aArray;
+    self.myWorkerId = aId;
     return self;
 }
 
@@ -40,6 +53,102 @@
     self.showCommentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.showCommentTableView.tableHeaderView = view;
     [self.view addSubview:self.showCommentTableView];
+    
+    [self addTableViewTrag];
+    
+    [self.activityView startAnimating];
+    [self.view addSubview:self.activityView];
+    
+    [self tableViewTragDown];
+    
+}
+
+- (UIActivityIndicatorView *)activityView
+{
+    if(!_activityView)
+    {
+        _activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-20, kMainScreenHeight/2-20, 40, 40)];
+        _activityView.color = [UIColor blackColor];
+    }
+    return _activityView;
+}
+
+- (HbhWorkerCommentManage *)workerCommentManage
+{
+    if (!_workerCommentManage) {
+        _workerCommentManage = [[HbhWorkerCommentManage alloc] init];
+    }
+    return _workerCommentManage;
+}
+
+- (UIView *)failView
+{
+    if (!_failView) {
+        _failView = [[UIView alloc] init];
+        _failView.frame = self.showCommentTableView.frame;
+        UILabel *failLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-100, kMainScreenHeight/2-100, 200, 50)];
+        failLabel.text = @"暂时没有数据";
+        failLabel.font = kFont14;
+        failLabel.textAlignment = NSTextAlignmentCenter;
+        failLabel.textColor = [UIColor lightGrayColor];
+        [_failView addSubview:failLabel];
+        _failView.backgroundColor = RGBCOLOR(247, 247, 247);
+    }
+    return _failView;
+}
+
+- (NSMutableArray *)commentArray
+{
+    if (!_commentArray) {
+        _commentArray = [NSMutableArray new];
+    }
+    return _commentArray;
+}
+
+- (void)tableViewTragDown
+{
+    [self.workerCommentManage getWorkerListWithWorkerId:self.myWorkerId SuccBlock:^(NSArray *aCommentArray) {
+        self.commentArray = [aCommentArray mutableCopy];
+        [self.showCommentTableView reloadData];
+        [self.activityView stopAnimating];
+    } andFailBlock:^{
+        [self.view addSubview:self.failView];
+    }];
+}
+
+- (void)tableViewTragUp
+{
+    [self.workerCommentManage getNextWorkerListSuccBlock:^(NSArray *aCommentArray) {
+        [self.commentArray addObjectsFromArray:aCommentArray];
+        [self.showCommentTableView reloadData];
+    } andFailBlock:^{
+        
+    }];
+}
+
+#pragma mark 上拉下拉
+#pragma mark 增加上拉下拉
+- (void)addTableViewTrag
+{
+    __weak HbhCommentViewController *weakself = self;
+    [weakself.showCommentTableView addPullToRefreshWithActionHandler:^{
+        int64_t delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+            [weakself.showCommentTableView.pullToRefreshView stopAnimating];
+            [self tableViewTragDown];
+        });
+    }];
+    
+    
+    [weakself.showCommentTableView addInfiniteScrollingWithActionHandler:^{
+        int64_t delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+            [weakself.showCommentTableView.infiniteScrollingView stopAnimating];
+            [self tableViewTragUp];
+        });
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -84,37 +193,6 @@
     NSString *showtimeNew = [formatter1 stringFromDate:newDate];
     return showtimeNew;
 }
-
-//- (NSDate*)getNSDate:(NSString *)aStrTime
-//{
-//    if(!calendar)
-//    {
-//        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-//    }
-//    if(!inputFormatter)
-//    {
-//        inputFormatter = [[NSDateFormatter alloc] init] ;
-//        [inputFormatter setLocale:[NSLocale currentLocale]];
-//        [inputFormatter setDateFormat:@"yyyyMMddHHmmss"];
-//    }
-//    NSDate* inputDate = [inputFormatter dateFromString:aStrTime];
-//    return inputDate;
-//}
-//
-//- (NSString *)strTimeToNSInteger:(NSString *)aStrTime
-//{
-//    /////NSString* string = @"20110826134106";
-//    NSDate* inputDate = [self getNSDate:aStrTime];
-//    //    NSLog(@"date = %@", inputDate);
-//    if(!comps)
-//    {
-//        comps = [[NSDateComponents alloc] init];
-//    }
-//    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
-//    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-//    comps = [calendar components:unitFlags fromDate:inputDate];
-//}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

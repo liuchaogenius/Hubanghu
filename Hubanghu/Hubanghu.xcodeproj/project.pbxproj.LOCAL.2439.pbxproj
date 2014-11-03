@@ -58,11 +58,8 @@
 		ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2419EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m */; };
 		ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */; };
 		ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */; };
-		ABBCE96F1A072B46008601C6 /* HbhWorkerCommentManage.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBCE96E1A072B46008601C6 /* HbhWorkerCommentManage.m */; };
 		ABC2B37419F3AC63000FEE32 /* HbhModifyUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */; };
 		ABC2B37919F3BC83000FEE32 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */; };
-		ABC543631A078DBA00C1C601 /* HbhWorkerCommentComment.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC543601A078DBA00C1C601 /* HbhWorkerCommentComment.m */; };
-		ABC543641A078DBA00C1C601 /* HbhWorkerCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC543621A078DBA00C1C601 /* HbhWorkerCommentModel.m */; };
 		ABC5D50619F1E59800A306F7 /* HbhMakeAppointMentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */; };
 		ABC5D50F19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50D19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m */; };
 		ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC5D50E19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib */; };
@@ -267,15 +264,9 @@
 		ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerThirdTopTableViewCell.xib; sourceTree = "<group>"; };
 		ABAFAB2819EF4BDC00B51916 /* HbhWorkerImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerImgTableViewCell.h; sourceTree = "<group>"; };
 		ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerImgTableViewCell.m; sourceTree = "<group>"; };
-		ABBCE96D1A072B46008601C6 /* HbhWorkerCommentManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCommentManage.h; sourceTree = "<group>"; };
-		ABBCE96E1A072B46008601C6 /* HbhWorkerCommentManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCommentManage.m; sourceTree = "<group>"; };
 		ABC2B37219F3AC63000FEE32 /* HbhModifyUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhModifyUserDetailViewController.h; sourceTree = "<group>"; };
 		ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhModifyUserDetailViewController.m; sourceTree = "<group>"; };
 		ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		ABC5435F1A078DBA00C1C601 /* HbhWorkerCommentComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCommentComment.h; sourceTree = "<group>"; };
-		ABC543601A078DBA00C1C601 /* HbhWorkerCommentComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCommentComment.m; sourceTree = "<group>"; };
-		ABC543611A078DBA00C1C601 /* HbhWorkerCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCommentModel.h; sourceTree = "<group>"; };
-		ABC543621A078DBA00C1C601 /* HbhWorkerCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCommentModel.m; sourceTree = "<group>"; };
 		ABC5D50419F1E59800A306F7 /* HbhMakeAppointMentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhMakeAppointMentViewController.h; sourceTree = "<group>"; };
 		ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhMakeAppointMentViewController.m; sourceTree = "<group>"; };
 		ABC5D50C19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderAppraiseViewController.h; sourceTree = "<group>"; };
@@ -692,8 +683,6 @@
 				AB06DC5019F126B000B82C62 /* HbhWorkerDetailManage.m */,
 				ABE53EC219F0ED9900A8FE8B /* HbhWorkerListManage.h */,
 				ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */,
-				ABBCE96D1A072B46008601C6 /* HbhWorkerCommentManage.h */,
-				ABBCE96E1A072B46008601C6 /* HbhWorkerCommentManage.m */,
 			);
 			path = Manage;
 			sourceTree = "<group>";
@@ -701,10 +690,6 @@
 		ABE53EC819F0FB5A00A8FE8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ABC5435F1A078DBA00C1C601 /* HbhWorkerCommentComment.h */,
-				ABC543601A078DBA00C1C601 /* HbhWorkerCommentComment.m */,
-				ABC543611A078DBA00C1C601 /* HbhWorkerCommentModel.h */,
-				ABC543621A078DBA00C1C601 /* HbhWorkerCommentModel.m */,
 				AB8EA5D019F482D0001F40C2 /* HbhDataModels.h */,
 				AB8EA5D119F482D0001F40C2 /* HbhAreas.h */,
 				AB8EA5D219F482D0001F40C2 /* HbhAreas.m */,
@@ -1381,7 +1366,6 @@
 				5B16D8CB19F12F07009E9FF3 /* HbhCategoryCell.m in Sources */,
 				B0FF902519F7B174001B8E14 /* HbhOrderDetailsView.m in Sources */,
 				FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */,
-				ABBCE96F1A072B46008601C6 /* HbhWorkerCommentManage.m in Sources */,
 				FF6D90661A0749B500C966F8 /* NSString+SBJSON.m in Sources */,
 				5B69301019F39BC70005862D /* HbuAreaListModelAreas.m in Sources */,
 				FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */,
@@ -1396,7 +1380,6 @@
 				FF6D906A1A0749B500C966F8 /* SBJsonWriter.m in Sources */,
 				FF21CF1A19E66144005007B7 /* UIImage+MultiFormat.m in Sources */,
 				ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */,
-				ABC543641A078DBA00C1C601 /* HbhWorkerCommentModel.m in Sources */,
 				AB8EA5DF19F482D0001F40C2 /* HbhModel.m in Sources */,
 				FF21CF0819E66144005007B7 /* AFXMLRequestOperation.m in Sources */,
 				FF21CF1319E66144005007B7 /* SDWebImageDecoder.m in Sources */,
@@ -1412,7 +1395,6 @@
 				FF6D90651A0749B500C966F8 /* NSObject+SBJSON.m in Sources */,
 				AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */,
 				5B16D8C819F12CB7009E9FF3 /* HbuCategoryViewController.m in Sources */,
-				ABC543631A078DBA00C1C601 /* HbhWorkerCommentComment.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
 				ABAFAB1C19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m in Sources */,
 				AB06DC4C19F1269500B82C62 /* HbhWorkerComment.m in Sources */,

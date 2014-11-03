@@ -54,6 +54,7 @@ int totalCount;
 - (void)getNextOrderListSuccBlock:(void(^)(NSArray *aArray))aSuccBlock andFailBlock:(void(^)(void))aFailBlock
 {
     if (pageIndex*pageCount<totalCount) {
+        pageIndex++;
         NSString *orderListUrl = nil;
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", filterId],@"filterId", [NSString stringWithFormat:@"%d", pageCount], @"pageCount",[NSString stringWithFormat:@"%d", pageIndex], @"pageIndex",nil];
         kHubRequestUrl(@"getOrderList.ashx", orderListUrl);
@@ -66,7 +67,6 @@ int totalCount;
                 HbhOrderModel *model = [HbhOrderModel modelObjectWithDictionary:[dataArray objectAtIndex:i]];
                 [array addObject:model];
             }
-            pageIndex++;
             aSuccBlock(array);
         } failure:^(NSDictionary *failDict, NSError *error) {
             

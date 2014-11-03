@@ -47,13 +47,13 @@ NSString *orderCountId;
 {
     if (pageindex*pageCount<totalCount)
     {
+        pageindex++;
         NSString *workerListUrl = nil;
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:areaId,@"area",workTypeId,@"workerType",orderCountId,@"orderCount", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageCount", nil];
         kHubRequestUrl(@"getWorkerList.ashx", workerListUrl);
         [NetManager requestWith:dict url:workerListUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
             MLOG(@"%@", successDict);
             HbhData *data = [HbhData modelObjectWithDictionary:[successDict objectForKey:@"data"]];
-            pageindex++;
             aSuccBlock(data);
         } failure:^(NSDictionary *failDict, NSError *error) {
             aFailBlock();

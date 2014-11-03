@@ -58,11 +58,8 @@
 		ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2419EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m */; };
 		ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */; };
 		ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */; };
-		ABBCE96F1A072B46008601C6 /* HbhWorkerCommentManage.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBCE96E1A072B46008601C6 /* HbhWorkerCommentManage.m */; };
 		ABC2B37419F3AC63000FEE32 /* HbhModifyUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */; };
 		ABC2B37919F3BC83000FEE32 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */; };
-		ABC543631A078DBA00C1C601 /* HbhWorkerCommentComment.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC543601A078DBA00C1C601 /* HbhWorkerCommentComment.m */; };
-		ABC543641A078DBA00C1C601 /* HbhWorkerCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC543621A078DBA00C1C601 /* HbhWorkerCommentModel.m */; };
 		ABC5D50619F1E59800A306F7 /* HbhMakeAppointMentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */; };
 		ABC5D50F19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50D19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m */; };
 		ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC5D50E19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib */; };
@@ -135,20 +132,6 @@
 		FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CF2919E66225005007B7 /* ViewInteraction.m */; };
 		FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF21CF2B19E66238005007B7 /* QuartzCore.framework */; };
 		FF21CF3219E68E28005007B7 /* LeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CF3119E68E28005007B7 /* LeftView.m */; };
-		FF6D905F1A0749B500C966F8 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D90421A0749B500C966F8 /* AlipayRsaLib.a */; };
-		FF6D90601A0749B500C966F8 /* Alixpay.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF6D90441A0749B500C966F8 /* Alixpay.bundle */; };
-		FF6D90611A0749B500C966F8 /* AlixPaylib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D90451A0749B500C966F8 /* AlixPaylib.a */; };
-		FF6D90621A0749B500C966F8 /* AlixPaylib_arc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D90461A0749B500C966F8 /* AlixPaylib_arc.a */; };
-		FF6D90631A0749B500C966F8 /* AlixPayOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90481A0749B500C966F8 /* AlixPayOrder.m */; };
-		FF6D90641A0749B500C966F8 /* AlixPayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D904A1A0749B500C966F8 /* AlixPayResult.m */; };
-		FF6D90651A0749B500C966F8 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D904E1A0749B500C966F8 /* NSObject+SBJSON.m */; };
-		FF6D90661A0749B500C966F8 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90501A0749B500C966F8 /* NSString+SBJSON.m */; };
-		FF6D90671A0749B500C966F8 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90521A0749B500C966F8 /* SBJSON.m */; };
-		FF6D90681A0749B500C966F8 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90541A0749B500C966F8 /* SBJsonBase.m */; };
-		FF6D90691A0749B500C966F8 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90561A0749B500C966F8 /* SBJsonParser.m */; };
-		FF6D906A1A0749B500C966F8 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90581A0749B500C966F8 /* SBJsonWriter.m */; };
-		FF6D906B1A0749B500C966F8 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D90591A0749B500C966F8 /* libcrypto.a */; };
-		FF6D906C1A0749B500C966F8 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D905A1A0749B500C966F8 /* libssl.a */; };
 		FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */; };
 		FF9CCD461A05365A007DC51B /* HubInstallDesView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9CCD451A05365A007DC51B /* HubInstallDesView.m */; };
 		FF9CCD491A05367D007DC51B /* HubControlPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9CCD481A05367D007DC51B /* HubControlPriceView.m */; };
@@ -267,15 +250,9 @@
 		ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerThirdTopTableViewCell.xib; sourceTree = "<group>"; };
 		ABAFAB2819EF4BDC00B51916 /* HbhWorkerImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerImgTableViewCell.h; sourceTree = "<group>"; };
 		ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerImgTableViewCell.m; sourceTree = "<group>"; };
-		ABBCE96D1A072B46008601C6 /* HbhWorkerCommentManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCommentManage.h; sourceTree = "<group>"; };
-		ABBCE96E1A072B46008601C6 /* HbhWorkerCommentManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCommentManage.m; sourceTree = "<group>"; };
 		ABC2B37219F3AC63000FEE32 /* HbhModifyUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhModifyUserDetailViewController.h; sourceTree = "<group>"; };
 		ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhModifyUserDetailViewController.m; sourceTree = "<group>"; };
 		ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		ABC5435F1A078DBA00C1C601 /* HbhWorkerCommentComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCommentComment.h; sourceTree = "<group>"; };
-		ABC543601A078DBA00C1C601 /* HbhWorkerCommentComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCommentComment.m; sourceTree = "<group>"; };
-		ABC543611A078DBA00C1C601 /* HbhWorkerCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCommentModel.h; sourceTree = "<group>"; };
-		ABC543621A078DBA00C1C601 /* HbhWorkerCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCommentModel.m; sourceTree = "<group>"; };
 		ABC5D50419F1E59800A306F7 /* HbhMakeAppointMentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhMakeAppointMentViewController.h; sourceTree = "<group>"; };
 		ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhMakeAppointMentViewController.m; sourceTree = "<group>"; };
 		ABC5D50C19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderAppraiseViewController.h; sourceTree = "<group>"; };
@@ -424,32 +401,6 @@
 		FF21CF3019E68E28005007B7 /* LeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftView.h; sourceTree = "<group>"; };
 		FF21CF3119E68E28005007B7 /* LeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftView.m; sourceTree = "<group>"; };
 		FF21CF3319E68F5F005007B7 /* MessageDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDefine.h; sourceTree = "<group>"; };
-		FF6D90421A0749B500C966F8 /* AlipayRsaLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = AlipayRsaLib.a; sourceTree = "<group>"; };
-		FF6D90431A0749B500C966F8 /* AlixLibService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixLibService.h; sourceTree = "<group>"; };
-		FF6D90441A0749B500C966F8 /* Alixpay.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Alixpay.bundle; sourceTree = "<group>"; };
-		FF6D90451A0749B500C966F8 /* AlixPaylib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = AlixPaylib.a; sourceTree = "<group>"; };
-		FF6D90461A0749B500C966F8 /* AlixPaylib_arc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = AlixPaylib_arc.a; sourceTree = "<group>"; };
-		FF6D90471A0749B500C966F8 /* AlixPayOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayOrder.h; sourceTree = "<group>"; };
-		FF6D90481A0749B500C966F8 /* AlixPayOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlixPayOrder.m; sourceTree = "<group>"; };
-		FF6D90491A0749B500C966F8 /* AlixPayResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayResult.h; sourceTree = "<group>"; };
-		FF6D904A1A0749B500C966F8 /* AlixPayResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlixPayResult.m; sourceTree = "<group>"; };
-		FF6D904C1A0749B500C966F8 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
-		FF6D904D1A0749B500C966F8 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
-		FF6D904E1A0749B500C966F8 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
-		FF6D904F1A0749B500C966F8 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
-		FF6D90501A0749B500C966F8 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
-		FF6D90511A0749B500C966F8 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
-		FF6D90521A0749B500C966F8 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
-		FF6D90531A0749B500C966F8 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
-		FF6D90541A0749B500C966F8 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
-		FF6D90551A0749B500C966F8 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
-		FF6D90561A0749B500C966F8 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
-		FF6D90571A0749B500C966F8 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		FF6D90581A0749B500C966F8 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		FF6D90591A0749B500C966F8 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		FF6D905A1A0749B500C966F8 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		FF6D905C1A0749B500C966F8 /* DataSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSigner.h; sourceTree = "<group>"; };
-		FF6D905D1A0749B500C966F8 /* DataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataVerifier.h; sourceTree = "<group>"; };
 		FF74A83B19EBC4B0006AADD8 /* SLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLocationManager.h; sourceTree = "<group>"; };
 		FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLocationManager.m; sourceTree = "<group>"; };
 		FF9CCD441A05365A007DC51B /* HubInstallDesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubInstallDesView.h; sourceTree = "<group>"; };
@@ -478,14 +429,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF6D906C1A0749B500C966F8 /* libssl.a in Frameworks */,
 				ABC2B37919F3BC83000FEE32 /* MobileCoreServices.framework in Frameworks */,
 				FFD1A2D319EE4B8D00EA97D4 /* libsqlite3.dylib in Frameworks */,
-				FF6D90611A0749B500C966F8 /* AlixPaylib.a in Frameworks */,
-				FF6D90621A0749B500C966F8 /* AlixPaylib_arc.a in Frameworks */,
-				FF6D905F1A0749B500C966F8 /* AlipayRsaLib.a in Frameworks */,
 				FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */,
-				FF6D906B1A0749B500C966F8 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,8 +638,6 @@
 				AB06DC5019F126B000B82C62 /* HbhWorkerDetailManage.m */,
 				ABE53EC219F0ED9900A8FE8B /* HbhWorkerListManage.h */,
 				ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */,
-				ABBCE96D1A072B46008601C6 /* HbhWorkerCommentManage.h */,
-				ABBCE96E1A072B46008601C6 /* HbhWorkerCommentManage.m */,
 			);
 			path = Manage;
 			sourceTree = "<group>";
@@ -701,10 +645,6 @@
 		ABE53EC819F0FB5A00A8FE8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ABC5435F1A078DBA00C1C601 /* HbhWorkerCommentComment.h */,
-				ABC543601A078DBA00C1C601 /* HbhWorkerCommentComment.m */,
-				ABC543611A078DBA00C1C601 /* HbhWorkerCommentModel.h */,
-				ABC543621A078DBA00C1C601 /* HbhWorkerCommentModel.m */,
 				AB8EA5D019F482D0001F40C2 /* HbhDataModels.h */,
 				AB8EA5D119F482D0001F40C2 /* HbhAreas.h */,
 				AB8EA5D219F482D0001F40C2 /* HbhAreas.m */,
@@ -944,7 +884,6 @@
 		FF21CEA719E66144005007B7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				FF6D90401A0749B500C966F8 /* alipay_sdk */,
 				FF0963FD19F51F0A00EF8D0E /* ToastView */,
 				FFD1A2C219EE4B6D00EA97D4 /* FMDB */,
 				FF74A83A19EBC4B0006AADD8 /* LocationManager */,
@@ -1137,63 +1076,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		FF6D90401A0749B500C966F8 /* alipay_sdk */ = {
-			isa = PBXGroup;
-			children = (
-				FF6D90411A0749B500C966F8 /* alipay */,
-			);
-			path = alipay_sdk;
-			sourceTree = "<group>";
-		};
-		FF6D90411A0749B500C966F8 /* alipay */ = {
-			isa = PBXGroup;
-			children = (
-				FF6D90421A0749B500C966F8 /* AlipayRsaLib.a */,
-				FF6D90431A0749B500C966F8 /* AlixLibService.h */,
-				FF6D90441A0749B500C966F8 /* Alixpay.bundle */,
-				FF6D90451A0749B500C966F8 /* AlixPaylib.a */,
-				FF6D90461A0749B500C966F8 /* AlixPaylib_arc.a */,
-				FF6D90471A0749B500C966F8 /* AlixPayOrder.h */,
-				FF6D90481A0749B500C966F8 /* AlixPayOrder.m */,
-				FF6D90491A0749B500C966F8 /* AlixPayResult.h */,
-				FF6D904A1A0749B500C966F8 /* AlixPayResult.m */,
-				FF6D904B1A0749B500C966F8 /* json */,
-				FF6D90591A0749B500C966F8 /* libcrypto.a */,
-				FF6D905A1A0749B500C966F8 /* libssl.a */,
-				FF6D905B1A0749B500C966F8 /* RSA */,
-			);
-			path = alipay;
-			sourceTree = "<group>";
-		};
-		FF6D904B1A0749B500C966F8 /* json */ = {
-			isa = PBXGroup;
-			children = (
-				FF6D904C1A0749B500C966F8 /* JSON.h */,
-				FF6D904D1A0749B500C966F8 /* NSObject+SBJSON.h */,
-				FF6D904E1A0749B500C966F8 /* NSObject+SBJSON.m */,
-				FF6D904F1A0749B500C966F8 /* NSString+SBJSON.h */,
-				FF6D90501A0749B500C966F8 /* NSString+SBJSON.m */,
-				FF6D90511A0749B500C966F8 /* SBJSON.h */,
-				FF6D90521A0749B500C966F8 /* SBJSON.m */,
-				FF6D90531A0749B500C966F8 /* SBJsonBase.h */,
-				FF6D90541A0749B500C966F8 /* SBJsonBase.m */,
-				FF6D90551A0749B500C966F8 /* SBJsonParser.h */,
-				FF6D90561A0749B500C966F8 /* SBJsonParser.m */,
-				FF6D90571A0749B500C966F8 /* SBJsonWriter.h */,
-				FF6D90581A0749B500C966F8 /* SBJsonWriter.m */,
-			);
-			path = json;
-			sourceTree = "<group>";
-		};
-		FF6D905B1A0749B500C966F8 /* RSA */ = {
-			isa = PBXGroup;
-			children = (
-				FF6D905C1A0749B500C966F8 /* DataSigner.h */,
-				FF6D905D1A0749B500C966F8 /* DataVerifier.h */,
-			);
-			path = RSA;
-			sourceTree = "<group>";
-		};
 		FF74A83A19EBC4B0006AADD8 /* LocationManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1319,7 +1201,6 @@
 				ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */,
 				5BF8FC7819F0FA3900598FB9 /* HbhAllCategory.plist in Resources */,
 				FF09640219F539A800EF8D0E /* SVProgressHUD.bundle in Resources */,
-				FF6D90601A0749B500C966F8 /* Alixpay.bundle in Resources */,
 				5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */,
 				B02C2B1719F4FD0600B9C4FF /* Images.xcassets in Resources */,
 				5B03CC0019EFE0D000A367DC /* HbhQRcodeViewController.xib in Resources */,
@@ -1346,14 +1227,12 @@
 				FF15253419E7B861008AB6EC /* ThreadSafeMutableDictionary.m in Sources */,
 				FF21CF1919E66144005007B7 /* UIImage+GIF.m in Sources */,
 				AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */,
-				FF6D90691A0749B500C966F8 /* SBJsonParser.m in Sources */,
 				FF21CF2119E66144005007B7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				B09D1DAC19F654D200C7513C /* HubOrder.m in Sources */,
 				ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */,
 				FF09640119F539A800EF8D0E /* SVProgressHUD.m in Sources */,
 				AB06DC4E19F1269500B82C62 /* HbhWorkerModel.m in Sources */,
 				FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */,
-				FF6D90641A0749B500C966F8 /* AlixPayResult.m in Sources */,
 				ABAFAB2119EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m in Sources */,
 				AB06DC4D19F1269500B82C62 /* HbhWorkerData.m in Sources */,
 				B08F580B19F64D0D00F3E130 /* HbhConfirmOrderViewController.m in Sources */,
@@ -1377,12 +1256,9 @@
 				5B16D8D619F140D0009E9FF3 /* CategoryChildInfoModel.m in Sources */,
 				FF21CF0C19E66144005007B7 /* FBKVOController.m in Sources */,
 				AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */,
-				FF6D90681A0749B500C966F8 /* SBJsonBase.m in Sources */,
 				5B16D8CB19F12F07009E9FF3 /* HbhCategoryCell.m in Sources */,
 				B0FF902519F7B174001B8E14 /* HbhOrderDetailsView.m in Sources */,
 				FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */,
-				ABBCE96F1A072B46008601C6 /* HbhWorkerCommentManage.m in Sources */,
-				FF6D90661A0749B500C966F8 /* NSString+SBJSON.m in Sources */,
 				5B69301019F39BC70005862D /* HbuAreaListModelAreas.m in Sources */,
 				FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */,
 				FF21CF1819E66144005007B7 /* UIButton+WebCache.m in Sources */,
@@ -1393,10 +1269,8 @@
 				FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */,
 				B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */,
 				FF21CF2619E66144005007B7 /* UIViewAdditions.m in Sources */,
-				FF6D906A1A0749B500C966F8 /* SBJsonWriter.m in Sources */,
 				FF21CF1A19E66144005007B7 /* UIImage+MultiFormat.m in Sources */,
 				ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */,
-				ABC543641A078DBA00C1C601 /* HbhWorkerCommentModel.m in Sources */,
 				AB8EA5DF19F482D0001F40C2 /* HbhModel.m in Sources */,
 				FF21CF0819E66144005007B7 /* AFXMLRequestOperation.m in Sources */,
 				FF21CF1319E66144005007B7 /* SDWebImageDecoder.m in Sources */,
@@ -1409,10 +1283,8 @@
 				FF21CF0A19E66144005007B7 /* NetManager.m in Sources */,
 				5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */,
 				ABC5D50F19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m in Sources */,
-				FF6D90651A0749B500C966F8 /* NSObject+SBJSON.m in Sources */,
 				AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */,
 				5B16D8C819F12CB7009E9FF3 /* HbuCategoryViewController.m in Sources */,
-				ABC543631A078DBA00C1C601 /* HbhWorkerCommentComment.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
 				ABAFAB1C19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m in Sources */,
 				AB06DC4C19F1269500B82C62 /* HbhWorkerComment.m in Sources */,
@@ -1454,7 +1326,6 @@
 				FF21CF0D19E66144005007B7 /* NSData+Base64.m in Sources */,
 				FF21CF1719E66144005007B7 /* SDWebImagePrefetcher.m in Sources */,
 				AB66D37C19ECAC0900518005 /* HbhOrderDetailViewController.m in Sources */,
-				FF6D90671A0749B500C966F8 /* SBJSON.m in Sources */,
 				FF21CE7019E64B5A005007B7 /* main.m in Sources */,
 				FF21CF1519E66144005007B7 /* SDWebImageDownloaderOperation.m in Sources */,
 				FF21CEA119E6607B005007B7 /* FourthViewController.m in Sources */,
@@ -1462,7 +1333,6 @@
 				B0EED42E19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m in Sources */,
 				FF21CF2219E66144005007B7 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				FF21CF2519E66144005007B7 /* UIImage+ImageEffects.m in Sources */,
-				FF6D90631A0749B500C966F8 /* AlixPayOrder.m in Sources */,
 				AB8EA5DD19F482D0001F40C2 /* HbhAreas.m in Sources */,
 				B0EED42F19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m in Sources */,
 				5B25474019F5439600E50B60 /* HbhSelCityViewController.m in Sources */,
@@ -1585,10 +1455,6 @@
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Hubanghu/ThirdParty/alipay_sdk/alipay",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c8525c24-ca9b-4121-b8df-3a146e534b1a";
 			};
@@ -1605,10 +1471,6 @@
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Hubanghu/ThirdParty/alipay_sdk/alipay",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c8525c24-ca9b-4121-b8df-3a146e534b1a";
 			};

@@ -193,12 +193,12 @@
     }
     else if(section==1)
     {
-        if (self.workerData.comment.count>3) {
-            return 3;
+        if (self.workerData.comment.count>4) {
+            return 4;
         }else if(self.workerData.comment.count==0)
         {
             return 2;
-        }else if (self.workerData.comment.count<3)
+        }else if (self.workerData.comment.count<4)
         {
             return 1+self.workerData.comment.count;
         }
@@ -233,7 +233,7 @@
         {
             HbhWorkerSecondTopTableViewCell *cell = [[HbhWorkerSecondTopTableViewCell alloc] init];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (self.workerData.comment.count>3) {
+            if (self.workerData.comment.count>4) {
                 UIButton *moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth-50, 8, 30, 15)];
                 moreBtn.backgroundColor = RGBCOLOR(183, 183, 183);
                 moreBtn.titleLabel.font = kFont10;
@@ -256,7 +256,7 @@
             {
                 HbhWorkerCommentTableViewCell *cell = [[HbhWorkerCommentTableViewCell alloc] init];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                if (indexPath.row==2)
+                if (indexPath.row==3)
                 {
                     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 69, kMainScreenWidth, 1)];
                     lineView.backgroundColor = RGBCOLOR(218, 218, 218);
@@ -307,7 +307,7 @@
 #pragma mark 跳转到更多评论
 - (void)moreComment
 {
-    [self.navigationController pushViewController:[[HbhCommentViewController alloc] initWithCommentArray:self.workerData.comment] animated:YES];
+    [self.navigationController pushViewController:[[HbhCommentViewController alloc] initWithWorkerId:self.myWorkerId] animated:YES];
 }
 
 - (NSString *)transformTime:(int)aTime

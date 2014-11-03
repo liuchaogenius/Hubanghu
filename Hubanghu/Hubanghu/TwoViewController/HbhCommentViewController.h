@@ -10,5 +10,6 @@
 
 @interface HbhCommentViewController : BaseViewController
 
-- (instancetype)initWithCommentArray:(NSArray *)aArray;
+//- (instancetype)initWithCommentArray:(NSArray *)aArray;
+- (instancetype)initWithWorkerId:(int)aId;
 @end

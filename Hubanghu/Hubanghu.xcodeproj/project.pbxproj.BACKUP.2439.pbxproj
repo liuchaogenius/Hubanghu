@@ -1381,8 +1381,11 @@
 				5B16D8CB19F12F07009E9FF3 /* HbhCategoryCell.m in Sources */,
 				B0FF902519F7B174001B8E14 /* HbhOrderDetailsView.m in Sources */,
 				FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */,
-				ABBCE96F1A072B46008601C6 /* HbhWorkerCommentManage.m in Sources */,
+<<<<<<< Updated upstream
 				FF6D90661A0749B500C966F8 /* NSString+SBJSON.m in Sources */,
+=======
+				ABBCE96F1A072B46008601C6 /* HbhWorkerCommentManage.m in Sources */,
+>>>>>>> Stashed changes
 				5B69301019F39BC70005862D /* HbuAreaListModelAreas.m in Sources */,
 				FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */,
 				FF21CF1819E66144005007B7 /* UIButton+WebCache.m in Sources */,
