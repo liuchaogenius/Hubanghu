@@ -19,7 +19,7 @@ typedef NS_ENUM(int, AmountDesc)
     E_AREA,
     E_LENGHT
 };
-@interface HuhAppointmentVC ()
+@interface HuhAppointmentVC ()<controlPriceDelegate>
 {
     NSString *strNavtitle;
     NSString *strCateId;
@@ -28,14 +28,28 @@ typedef NS_ENUM(int, AmountDesc)
     AmountDesc amounttype;
     
     UIScrollView *scrollview;
-    HbhAppointmentNetManager *manager;
-    HubInstallDesView *installDesView;
-    HubControlPriceView *controlPriceView;
-    HubAppointUserInfoView *userInfoView;
+    //HbhAppointmentNetManager *manager;
+    HubInstallDesView *installDesView; //top描述
+    HubControlPriceView *controlPriceView; //price相关部分
+    HubAppointUserInfoView *userInfoView; //用户信息部分
+    UIToolbar *toolBarView;//下方确认页面
+    
+    UILabel *_totalPriceLabel;
 }
+@property(strong, nonatomic) HbhAppointmentNetManager *manager;
+
 @end
 
 @implementation HuhAppointmentVC
+
+#pragma mark - getter and setter
+- (HbhAppointmentNetManager *)manager
+{
+    if (!_manager) {
+        _manager = [[HbhAppointmentNetManager alloc] init];
+    }
+    return _manager;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,17 +66,29 @@ typedef NS_ENUM(int, AmountDesc)
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self settitleLabel:strNavtitle];
-    scrollview = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    self.view.backgroundColor = [UIColor whiteColor];
+    scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-65)];
+    scrollview.contentSize = CGSizeMake(kMainScreenWidth, kMainScreenHeight + 100);
     [self.view addSubview:scrollview];
+    scrollview.backgroundColor = RGBCOLOR(249, 249, 249);
+    
+    [self createHeadInstallDesView];
+    [self getAppointInfo];
+    [self creatControlPriceView];
+    [self creatUserInfoView];
+    [self creatToolBarView];
 }
 
 - (void)getAppointInfo
 {
     if(strCateId)
     {
-        [manager getAppointmentInfoWith:strCateId succ:^(NSDictionary *succDic) {
+        [self.manager getAppointmentInfoWith:strCateId succ:^(NSDictionary *succDic) {
             strInstallDesc = [succDic objectForKey:@"desc"];
-            amounttype = [[succDic objectForKey:@"amountType"] integerValue];
+            amounttype = [[succDic objectForKey:@"amountType"] intValue];
+            
+            [installDesView setContent:strInstallDesc];
+            [controlPriceView setCountType:amounttype];
             //[_activityView stopAnimating];
             //[_tableView reloadData];
         } failure:^{
@@ -76,7 +102,9 @@ typedef NS_ENUM(int, AmountDesc)
 {
     strNavtitle = title;
     strCateId = cateId;
-    workerModel = worker;
+    if (worker) {
+        workerModel = worker;
+    }
 }
 
 #pragma mark 构造页面
@@ -84,7 +112,86 @@ typedef NS_ENUM(int, AmountDesc)
 {
     if(!installDesView)
     {
-        installDesView = [UILabel alloc];
+        installDesView = [[HubInstallDesView alloc] initWithFrame:CGRectMake(0, 10, kMainScreenWidth, 65)];
+        [scrollview addSubview:installDesView];
+    }
+}
+
+- (void)creatControlPriceView
+{
+    if (!controlPriceView) {
+        controlPriceView = [[HubControlPriceView alloc] initWithFrame:CGRectMake(0, installDesView.bottom+10, kMainScreenWidth, 200.0)];
+        [controlPriceView setCateId:strCateId];
+        controlPriceView.delegate = self;
+        [scrollview addSubview:controlPriceView];
+    }
+}
+
+
+- (void)creatUserInfoView
+{
+    if (!userInfoView) {
+        userInfoView = [[HubAppointUserInfoView alloc] initWithFrame:CGRectMake(0, controlPriceView.bottom+20, kMainScreenWidth, 260)];
+        [scrollview addSubview:userInfoView];
+    }
+}
+
+- (void)creatToolBarView
+{
+    if (!toolBarView) {
+        toolBarView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, kMainScreenHeight-65.0-64.0, kMainScreenWidth, 65)];
+        
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-30-100, 2, 30, 25)];
+        titleLabel.text = @"合计:";
+        titleLabel.font = kFont12;
+        titleLabel.textColor = KColor;
+        [toolBarView addSubview:titleLabel];
+        
+        UILabel *totalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLabel.right, 5, 100, 16)];
+        totalPriceLabel.textColor = KColor;
+        totalPriceLabel.text = @"￥0.00";
+        _totalPriceLabel = totalPriceLabel;
+        [toolBarView addSubview:totalPriceLabel];
+        
+        UIButton *selectWorkerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [selectWorkerBtn setFrame:CGRectMake(10, 25, (kMainScreenWidth-20-20)/2.0, 30)];
+        [selectWorkerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [selectWorkerBtn setBackgroundColor:KColor];
+        [selectWorkerBtn addTarget:self action:@selector(touchSelectWorkerBtn) forControlEvents:UIControlEventTouchUpInside];
+        [selectWorkerBtn setTitle:@"选师傅" forState:UIControlStateNormal];
+        [toolBarView addSubview:selectWorkerBtn];
+        
+        UIButton *orderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [orderBtn setFrame:CGRectMake(kMainScreenWidth-10-(kMainScreenWidth-20-20)/2.0, 25, (kMainScreenWidth-20-20)/2.0, 30)];
+        [orderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        orderBtn.backgroundColor = KColor;
+        [orderBtn addTarget:self action:@selector(touchOrderBtn) forControlEvents:UIControlEventTouchUpInside];
+        [orderBtn setTitle:@"预约" forState:UIControlStateNormal];
+        [toolBarView addSubview:orderBtn];
+        
+        //toolBarView.backgroundColor = [UIColor blackColor];
+        [self.view addSubview:toolBarView];
+    }
+    
+}
+
+#pragma mark - action
+- (void)touchSelectWorkerBtn
+{
+    
+}
+
+- (void)touchOrderBtn
+{
+    
+}
+
+#pragma mark - delegate
+#pragma mark 价格改动 
+- (void)priceChangedWithPrice:(NSString *)price
+{
+    if (price) {
+        _totalPriceLabel.text = [NSString stringWithFormat:@"￥%@",price];
     }
 }
 

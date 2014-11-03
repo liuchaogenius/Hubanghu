@@ -109,6 +109,7 @@
 
 - (void)datePickerPickEnd:(UIButton *)sender{
 	if ([_datePicker superview]) {
+        
 		[UIView animateWithDuration:0.2 animations:^{
 			_datePicker.top = kMainScreenHeight;
 			[_datePicker removeFromSuperview];

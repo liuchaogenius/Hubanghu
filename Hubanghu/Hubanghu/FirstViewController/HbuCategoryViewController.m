@@ -12,7 +12,7 @@
 #import "CategoryChildInfoModel.h"
 #import "HbhCategoryCell.h"
 #import "UIButton+WebCache.h"
-#import "HbhAppointmentViewController.h"
+#import "HuhAppointmentVC.h"
 #import "HbhUser.h"
 #import "SVPullToRefresh.h"
 #import "SVProgressHUD.h"
@@ -292,7 +292,8 @@
         double cateId = _touchedButton.tag;
         UILabel *titileLable = (UILabel *)[_touchedButton viewWithTag:kTitleLabelTag];
         NSDictionary *infoDic = [NSDictionary dictionaryWithObjectsAndKeys:titileLable.text,@"title",[NSString stringWithFormat:@"%lf",cateId],@"cateId", nil];
-        HbhAppointmentViewController *appointVC = [[HbhAppointmentViewController alloc] initWithTitle:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:self.worker];
+        HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] init];//WithTitle:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:self.worker];
+        [appointVC setVCData:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:nil];
         appointVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:appointVC animated:YES];
     }
