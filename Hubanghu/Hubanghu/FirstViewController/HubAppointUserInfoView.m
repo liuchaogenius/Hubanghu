@@ -186,6 +186,7 @@ enum TextFieldType
         _areaPicker.backgroundColor = [UIColor whiteColor];
         _areaPicker.dataSource =self;
         _areaPicker.delegate = self;
+        //_areaPicker.showsSelectionIndicator = YES;
     }
     return _areaPicker;
 }
@@ -335,8 +336,8 @@ enum TextFieldType
 - (void)showAreaPickView
 {
     if (self.provinceArray && self.provinceArray.count) {
+        [self.areaPicker reloadAllComponents];
         if (![self.areaPicker superview]) {
-            
             UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _areaPicker.top-30, kMainScreenWidth, 30)];
             toolView.backgroundColor = [UIColor lightGrayColor];
             _tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 50, 0, 30, 30)];

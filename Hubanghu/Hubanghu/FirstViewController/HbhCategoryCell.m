@@ -66,6 +66,9 @@
 - (UILabel *)customLabelWithFrame:(CGRect)frame
 {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    if (kSystemVersion < 7) {
+        label.backgroundColor =[UIColor clearColor];//RGBACOLOR(0.2, 0.2, 0.2, 0.5);
+    }
     [label setTextAlignment:NSTextAlignmentCenter];
     label.textColor = [UIColor whiteColor];
     label.font = kFont14;

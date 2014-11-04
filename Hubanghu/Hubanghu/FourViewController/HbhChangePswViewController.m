@@ -64,6 +64,9 @@ enum TextField_Type
     label.textColor = [UIColor lightGrayColor];
     label.text = @"至少6位的数字和字母组成";
     label.font = kFont11;
+    if (kSystemVersion < 7.0) {
+        label.backgroundColor = [UIColor clearColor];
+    }
     [self.view addSubview:label];
     
     _ConfirmButton = [UIButton buttonWithType:UIButtonTypeCustom];

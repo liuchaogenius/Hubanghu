@@ -255,8 +255,8 @@ enum TextField_Type
 - (void)touchLoginButton
 {
     [self resignAllKeybord];
-    [SVProgressHUD showWithStatus:@"登录中" cover:YES offsetY:kMainScreenHeight/2.0];
     if (self.phoneNumberTextField.text.length && self.passwordTextField.text.length) {
+        [SVProgressHUD showWithStatus:@"登录中" cover:YES offsetY:kMainScreenHeight/2.0];
         [HbhUserManager loginWithPhone:self.phoneNumberTextField.text andPassWord:self.passwordTextField.text withSuccess:^{
             //登陆状态处理
             [HbhUser sharedHbhUser].statusIsChanged = YES;
@@ -268,6 +268,8 @@ enum TextField_Type
             //self.type = eLoginFail;
             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginFailMessage object:nil];
         }];
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"请输入完整" cover:YES offsetY:kMainScreenHeight/2.0];
     }
 }
 
@@ -276,8 +278,7 @@ enum TextField_Type
 {
     if (self.rgPhoneNumberTextField.text && self.rgPhoneNumberTextField.text.length) {
         [SVProgressHUD showWithStatus:@"验证码发送中" cover:YES offsetY:kMainScreenHeight/2.0];
-        [HbhUserManager getCheckCodeWithPhone:self.rgPhoneNumberTextField.text Success:^(NSString *result){
-            self.checkCode = result;
+        [HbhUserManager getCheckCodeWithPhone:self.rgPhoneNumberTextField.text Success:^(){
             [SVProgressHUD dismissWithSuccess:@"验证码已发送到您的手机"];
             self.checkCodeButton.enabled = NO;
             _secondCountDown = 90;
@@ -390,10 +391,11 @@ enum TextField_Type
 - (UITextField *)customedTextFieldWithFrame:(CGRect)frame andPlaceholder:(NSString *)placeholder andTag:(NSInteger)TextField_Type andReturnKeyType:(UIReturnKeyType)returnKeyType
 {
     UITextField *textField = [[UITextField alloc] initWithFrame:frame];
-    [textField setBorderStyle:UITextBorderStyleRoundedRect];
+    [textField setBorderStyle:UITextBorderStyleBezel];
     textField.layer.masksToBounds = YES;
     textField.layer.cornerRadius = 4.0f;
     textField.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];//[KColor CGColor];
+    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textField.layer.borderWidth = 0.7f;
     textField.placeholder = placeholder;
     textField.delegate = self;
