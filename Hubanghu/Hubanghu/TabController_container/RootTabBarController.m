@@ -92,7 +92,7 @@
     {
         UITabBarItem *tabBarItem = self.tabBar.items[i];
         UIImage *norimg = [UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_nor_%d",i+1]];
-        UIImage *selimg = [UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_nor_%d",i+1]];
+        UIImage *selimg = [UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_sel_%d",i+1]];
 
         tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
         tabBarItem.title = @" ";
