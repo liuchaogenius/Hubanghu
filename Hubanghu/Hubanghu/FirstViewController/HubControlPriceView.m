@@ -128,7 +128,7 @@
     for(int i=0; i<4; i++)
     {
         
-        UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(categoryTitle.right+10+(i*50+(i)*7), categoryTitle.top, 50, kCateTitleFont+3)];
+        UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(categoryTitle.right+10+(i*50+(i)*15), categoryTitle.top, 60, kCateTitleFont+6)];
         [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
         cateButton.layer.borderWidth = 1;
         cateButton.layer.cornerRadius = 2;
@@ -224,7 +224,9 @@
     [self addSubview:expeditedTitleLabel];
     
     UIButton *bt = [[UIButton alloc] initWithFrame:CGRectMake(expeditedTitleLabel.right+10, expeditedTitleLabel.top, 18, 18)];
+    bt.selected = uragent;
     [bt setImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
+    [bt setImage:[UIImage imageNamed:@"rectangleUp"] forState:UIControlStateSelected];
     [bt addTarget:self action:@selector(selectUrgent:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:bt];
     
@@ -305,15 +307,18 @@
 
 - (void)selectUrgent:(UIButton*)aBut
 {
-    if (uragent) {
-        [aBut setImage:[UIImage imageNamed:@"rectangleUp"] forState:UIControlStateNormal];
-    }else{
-        [aBut setImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
-    }
-    uragent = !uragent;
+    aBut.selected = !aBut.selected;
+    uragent = aBut.selected;
+//    if (uragent) {
+//        [aBut setImage:[UIImage imageNamed:@"rectangleUp"] forState:UIControlStateNormal];
+//    }else{
+//        [aBut setImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
+//    }
+//    uragent = !uragent;
     if (countTextField && countTextField.text.length) {
         [self getPrice];
     }
+    MLOG(@"%d",uragent);
     
 }
 
