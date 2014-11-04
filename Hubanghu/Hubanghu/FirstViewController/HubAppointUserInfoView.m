@@ -96,28 +96,33 @@ enum TextFieldType
     }
     return _clearView;
 }
-- (void)setDistrictArrayWithParentId : (double)areaId
+
+- (void)setDistrictArrayWithParentId : (double)areaId WithSuccessBlock:(void(^)())success
 {
     [self.areaManager selCityOfDistrict:[NSString stringWithFormat:@"%d",(int)areaId] district:^(NSMutableArray *districtArry) {
         _districtArray = districtArry;
-    }];
-    if (_districtArray && [_areaPicker superview]) {
-        [_areaPicker reloadComponent:2];
-    }else{
+        success();
+        if (_districtArray && [_areaPicker superview]) {
+            [_areaPicker reloadComponent:2];
+        }else{
 #warning 为获取到district数据处理
-    }
+        }
+        
+    }];
+    
 }
 
-- (void)setCityArrayWithParentId:(double)areaId
+- (void)setCityArrayWithParentId:(double)areaId WithSuccessBlock:(void(^)())success
 {
     [self.areaManager selProvinceOfCity:[NSString stringWithFormat:@"%d",(int)areaId] district:^(NSMutableArray *cityArry) {
         _cityArray = cityArry;
-    }];
-    if (_cityArray && [_areaPicker superview]) {
-        [_areaPicker reloadComponent:1];
-    }else{
+        success();
+        if (_cityArray && [_areaPicker superview]) {
+            [_areaPicker reloadComponent:1];
+        }else{
 #warning 为获取到city数据处理
-    }
+        }
+    }];
 }
 
 - (HbuAreaLocationManager *)areaLocationManger
@@ -133,9 +138,23 @@ enum TextFieldType
     if (!_provinceArray) {
         [self.areaManager selProvince:^(NSMutableArray *cityArry) {
             _provinceArray = cityArry;
+            //刷新
+            if ([_areaPicker superview] && _provinceArray) {
+                [_areaPicker reloadComponent:0];
+            }
         }];
     }
     return _provinceArray;
+}
+
+- (void)getProvinceArrayWithSuccessBlock:(void(^)())suss
+{
+    if (!_provinceArray) {
+        [self.areaManager selProvince:^(NSMutableArray *cityArry) {
+            _provinceArray = cityArry;
+            suss();
+        }];
+    }
 }
 
 - (AreasDBManager *)areaManager
@@ -199,16 +218,9 @@ enum TextFieldType
             UITextField *textField = [self customTextFieldWithFrame:CGRectMake(10, 10+50*i, kMainScreenWidth-20, 40) andTag:i];
             [self addSubview:textField];
         }
-#warning  初始化位置信息  设置text field的内容
+        //载入地址信息以及picker
         [self initLocationInfo];
-        if(strCurrentProvice && strCurrentCity && strCurrentDistrict)
-        {
-            ((UITextField *)self.textFiledArray[TextField_location]).text = [NSString stringWithFormat:@" %@  %@  %@", strCurrentProvice,strCurrentCity, strCurrentDistrict];
-        }
-//        else
-//        {
-//            ((UITextField *)self.textFiledArray[TextField_location]).text = @"请重新定位";
-//        }
+       
         //用户信息
         if([HbhUser sharedHbhUser].isLogin)
         {
@@ -221,27 +233,48 @@ enum TextFieldType
 
 - (void)initLocationInfo
 {
-    _city = self.areaLocationManger.currentAreas;
-    HbuAreaListModelAreas *area = nil;
-    if(self.provinceArray)
-    {
-        area = [self.provinceArray objectAtIndex:0];
-        strCurrentProvice = area.name;
-    }
-    //get citysarray
-    [self setCityArrayWithParentId:_city.parent];
-    if(_cityArray && [_cityArray count]>0)
-    {
-        area = [self.provinceArray objectAtIndex:0];
-        strCurrentCity = area.name;
-    }
-    [self setDistrictArrayWithParentId:_city.areaId];
-    if(_districtArray && [_districtArray count])
-    {
-        area = [self.provinceArray objectAtIndex:0];
-        strCurrentDistrict = area.name;
-    }
+    __weak HubAppointUserInfoView *weakSelf = self;
+    [self getProvinceArrayWithSuccessBlock:^{
+        //赋初值
+        HbuAreaListModelAreas *area = weakSelf.provinceArray[0];
+        _province = area;
+        
+        if (weakSelf.areaLocationManger.currentAreas && weakSelf.areaLocationManger.currentAreas.name.length) {
+            //有定位信息，选中定位城市
+            for (int i = 0; i < weakSelf.provinceArray.count; i++) {
+                HbuAreaListModelAreas *area = weakSelf.provinceArray[i];
+                if ((int)area.areaId == (int)weakSelf.areaLocationManger.currentAreas.parent) {
+                    _province = area;
+                    [self.areaPicker selectRow:i inComponent:0 animated:YES];
+                    break;
+                }
+            }
+            _city = weakSelf.areaLocationManger.currentAreas;
+        }
+    }];
+    //读取城市
+    [weakSelf setCityArrayWithParentId:_province.areaId WithSuccessBlock:^{
+        if (!_city) {
+            _city = weakSelf.cityArray[0];
+        }
+        for (int i = 0; i < self.cityArray.count; i++) {
+            HbuAreaListModelAreas *area = self.cityArray[i];
+            if ((int)area.areaId == (int)self.areaLocationManger.currentAreas.areaId) {
+                [self.areaPicker selectRow:i inComponent:1 animated:YES];
+                break;
+            }
+        }
+    }];
+    //读取区
+    [weakSelf setDistrictArrayWithParentId:_city.areaId WithSuccessBlock:^{
+        _district = weakSelf.districtArray[0];
+        //地址textField文字
+        if (weakSelf.textFiledArray && weakSelf.textFiledArray.count >= TextField_location && _province && _city) {
+            ((UITextField *)weakSelf.textFiledArray[TextField_location]).text = [NSString stringWithFormat:@"%@ %@ %@",_province.name,_city.name,_district.name];
+        }
+    }];
 }
+
 
 //customed textfield
 - (UITextField *)customTextFieldWithFrame:(CGRect)frame andTag:(int)tag
@@ -302,44 +335,6 @@ enum TextFieldType
 - (void)showAreaPickView
 {
     if (self.provinceArray && self.provinceArray.count) {
-        if (self.areaLocationManger.currentAreas && self.areaLocationManger.currentAreas.name.length) {
-            //有定位信息，选中定位城市
-            for (int i = 0; i < self.provinceArray.count; i++) {
-                HbuAreaListModelAreas *area = self.provinceArray[i];
-                if ((int)area.areaId == (int)self.areaLocationManger.currentAreas.parent) {
-                     _province = area;
-                    [self.areaPicker selectRow:i inComponent:0 animated:YES];
-                    break;
-                }
-            }
-            _city = self.areaLocationManger.currentAreas;
-            //get citysarray
-            [self setCityArrayWithParentId:_city.parent];
-            for (int i = 0; i < self.cityArray.count; i++) {
-                HbuAreaListModelAreas *area = self.cityArray[i];
-                if ((int)area.areaId == (int)self.areaLocationManger.currentAreas.areaId) {
-                    [self.areaPicker selectRow:i inComponent:1 animated:YES];
-                    break;
-                }
-            }
-            //get districtArray
-//            [self setDistrictArrayWithParentId:_city.areaId];
-            if (_districtArray && _districtArray.count) {
-                _district = _districtArray[0];
-            }
-        }else{
-            //无定位信息
-            _province = _provinceArray[0];
-            [self setCityArrayWithParentId:_province.areaId];
-            if (_cityArray && _cityArray.count) {
-                _city = _cityArray[0];
-                [self setDistrictArrayWithParentId:_city.areaId];
-                if (_districtArray && _districtArray.count) {
-                    _district = _districtArray[0];
-                }
-            }
-        }
-        
         if (![self.areaPicker superview]) {
             
             UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _areaPicker.top-30, kMainScreenWidth, 30)];
@@ -509,17 +504,23 @@ enum TextFieldType
     
     if (component == 0) {
         _province = self.provinceArray[row];
-        [self setCityArrayWithParentId:_province.areaId];
+        [self setCityArrayWithParentId:_province.areaId WithSuccessBlock:^{
+            
+        }];
         if (self.cityArray.count) {
             _city = self.cityArray[0];
             [pickerView selectRow:0 inComponent:1 animated:YES];
-            [self setDistrictArrayWithParentId:_city.areaId];
+            [self setDistrictArrayWithParentId:_city.areaId WithSuccessBlock:^{
+                
+            }];
             [pickerView selectRow:0 inComponent:2 animated:YES];
             _district = self.districtArray[0];
         }
     }else if(component == 1){
         _city = self.cityArray[row];
-        [self setDistrictArrayWithParentId:_city.areaId];
+        [self setDistrictArrayWithParentId:_city.areaId WithSuccessBlock:^{
+            
+        }];
         if (self.districtArray.count) {
             _district = self.districtArray[0];
             [pickerView selectRow:0 inComponent:2 animated:YES];
