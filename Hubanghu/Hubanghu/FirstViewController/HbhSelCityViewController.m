@@ -129,6 +129,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
     
     UINib *nib = [UINib nibWithNibName:@"HbhHotCityCell" bundle:[NSBundle mainBundle]];
+    //[self.tableView registerClass:[HbhHotCityCell class] forCellReuseIdentifier:@"hCell"];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"hCell"];
     
 

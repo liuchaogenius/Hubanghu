@@ -14,7 +14,7 @@
     // Initialization code 90
     UIButton *button = self.hotCityButtons[0];
     for (button in self.hotCityButtons) {
-        int i = button.tag;
+        NSInteger i = button.tag;
         button.center = CGPointMake(0, 0);
         [button setFrame:CGRectMake(kMainScreenWidth - 40 + (i-1)*(kMainScreenWidth-40-60*4)/3.0f, i < 5 ? 10.0 : (90-10-32), 60, 32)];
     }
