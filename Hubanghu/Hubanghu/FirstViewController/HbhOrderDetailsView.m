@@ -61,6 +61,8 @@
 
 - (void)setUI{
 	UITextField *view = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    view.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    view.backgroundColor = kClearColor;
 	_nameTf = view,
 	_usernameTf = view,
 	_phoneNumTf = view,
@@ -78,13 +80,15 @@
 		tf = [[UITextField alloc] initWithFrame:CGRectMake(5, 50*i, self.width, 50)];
 		tf.layer.borderColor = [UIColor lightGrayColor].CGColor;
 		tf.layer.borderWidth = 0.2;
+        tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        tf.backgroundColor = [UIColor clearColor];
 		tf.enabled = NO; // 设置为不可编辑
 		tf.font = kFont13;
 		tf.textColor = [UIColor lightGrayColor];
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
 		label.text = array[i];
 		label.font = kFont13;
-		
+		label.backgroundColor = kClearColor;
 		tf.leftViewMode = UITextFieldViewModeAlways;
 		tf.leftView = label;
 		[self addSubview:tf];

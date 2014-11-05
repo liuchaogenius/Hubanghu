@@ -144,6 +144,7 @@
 	NSString *dateString = [dateFormatter stringFromDate:date];
 	NSString *areaStr = [self getAreaNameWith:_order.areaId];
 	NSString *comment = [_order.comment isEqualToString:@""]?@"无":_order.comment;
+    NSString *workName = _order.workerName?:@"客服安排";
 	NSString *amount;
 	switch ((int)_order.mountType) {
 		case 0:
@@ -165,7 +166,7 @@
 					 amount,
 					 dateString,
 					 areaStr,
-					 _order.workerName,
+					 workName,
 					 comment,
 					 price];
 }

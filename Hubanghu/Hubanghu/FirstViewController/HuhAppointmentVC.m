@@ -225,10 +225,13 @@ typedef NS_ENUM(int, AmountDesc)
     }else if ([_totalPriceLabel.text isEqualToString:@"0.00"]){
         [SVProgressHUD showErrorWithStatus:@"价格读取中.." cover:YES offsetY:kMainScreenHeight/2.0];
         return NO;
-    }else if (!workerModel){
-        [SVProgressHUD showErrorWithStatus:@"你还没有选择工人" cover:YES offsetY:kMainScreenHeight/2.0];
-        return NO;
-    }else{
+    }
+//    else if (!workerModel)
+//    {
+//        [SVProgressHUD showErrorWithStatus:@"你还没有选择工人" cover:YES offsetY:kMainScreenHeight/2.0];
+//        return NO;
+//    }
+    else{
         return YES;
     }
 }
@@ -239,7 +242,7 @@ typedef NS_ENUM(int, AmountDesc)
                                @"username":[userInfoView getUserName],
                                @"time":[userInfoView getTime],
                                @"amount":[controlPriceView getAmount],
-                               @"workerId":@(workerModel.workersIdentifier),
+                               //@"workerId":@(workerModel.workersIdentifier),
                                @"mountType":[controlPriceView getCateButtonType],
                                @"amountType":[controlPriceView getMountType],
                                @"comment":[controlPriceView getComment],
@@ -247,10 +250,19 @@ typedef NS_ENUM(int, AmountDesc)
                                @"areaId":[userInfoView getAreaId],
                                @"location":[userInfoView getLocation],
                                @"price":_totalPriceLabel.text,
-                               @"workerName":workerModel.name,
+                               //@"workerName":workerModel.name,
                                @"urgent":[controlPriceView getUrgent],
                                @"name":strNavtitle};
-    HubOrder *order = [[HubOrder alloc] initWithDictionary:orderDic];
+    NSMutableDictionary *mutDict = [NSMutableDictionary dictionaryWithDictionary:orderDic];
+    if(workerModel && workerModel.workersIdentifier)
+    {
+        [mutDict setObject:[NSString stringWithFormat:@"%d",(int)workerModel.workersIdentifier] forKey:@"workerId"];
+        if(workerModel.name)
+        {
+            [mutDict setObject:workerModel.name forKey:@"name"];
+        }
+    }
+    HubOrder *order = [[HubOrder alloc] initWithDictionary:mutDict];
     HbhConfirmOrderViewController * covc = [[HbhConfirmOrderViewController alloc] initWithOrder:order];
     [self.navigationController pushViewController:covc animated:YES];
 }
