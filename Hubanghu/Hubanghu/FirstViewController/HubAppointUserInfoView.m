@@ -53,7 +53,7 @@ enum TextFieldType
     if (tf && tf.text.length) {
         return tf.text;
     }
-    return nil;
+    return @"";
 }
 - (NSString *)getTime
 {
@@ -61,7 +61,7 @@ enum TextFieldType
     if (tf && tf.text.length && _time) {
         return [NSString stringWithFormat:@"%lf",_time];
     }
-    return nil;
+    return @"";
 }
 - (NSString *)getPhone
 {
@@ -69,7 +69,7 @@ enum TextFieldType
     if (tf && tf.text.length) {
         return tf.text;
     }
-    return nil;
+    return @"";
 }
 - (NSString *)getAreaId
 {
@@ -77,7 +77,7 @@ enum TextFieldType
     if (tf && tf.text.length && _selectAreaId.length) {
         return _selectAreaId;
     }
-    return nil;
+    return @"";
 }
 - (NSString *)getLocation
 {
@@ -85,7 +85,7 @@ enum TextFieldType
     if (tf && tf.text.length) {
         return tf.text;
     }
-    return nil;
+    return @"";
 }
 
 - (UIView *)clearView
@@ -277,6 +277,7 @@ enum TextFieldType
         //地址textField文字
         if (weakSelf.textFiledArray && weakSelf.textFiledArray.count >= TextField_location && _province && _city) {
             ((UITextField *)weakSelf.textFiledArray[TextField_location]).text = [NSString stringWithFormat:@"%@ %@ %@",_province.name,_city.name,_district.name];
+            _selectAreaId = [NSString stringWithFormat:@"%d", (int)_district.areaId];
         }
     }];
 }

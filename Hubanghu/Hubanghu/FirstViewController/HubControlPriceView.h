@@ -28,5 +28,5 @@
 - (NSString *)getMountType;//种类
 - (NSString *)getAmount;//数量
 - (NSString *)getComment;//备注
-
+- (NSString *)getCateButtonType;//返回 是纯装  纯拆。。。
 @end

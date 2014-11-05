@@ -22,7 +22,7 @@ NSString *const kHubOrderLocation = @"location";
 NSString *const kHubOrderCateId = @"cateId";
 NSString *const kHubOrderUsername = @"username";
 NSString *const kHubOrderName = @"name";
-
+NSString *const kHubOrderAmountType = @"amountType";
 
 @interface HubOrder ()
 
@@ -46,7 +46,7 @@ NSString *const kHubOrderName = @"name";
 @synthesize cateId = _cateId;
 @synthesize username = _username;
 @synthesize name = _name;
-
+@synthesize amountType = _amountType;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict
 {
@@ -74,7 +74,7 @@ NSString *const kHubOrderName = @"name";
             self.cateId = [[self objectOrNilForKey:kHubOrderCateId fromDictionary:dict] doubleValue];
             self.username = [self objectOrNilForKey:kHubOrderUsername fromDictionary:dict];
             self.name = [self objectOrNilForKey:kHubOrderName fromDictionary:dict];
-
+            self.amountType = [self objectOrNilForKey:kHubOrderAmountType fromDictionary:dict];
     }
     
     return self;
@@ -98,7 +98,7 @@ NSString *const kHubOrderName = @"name";
     [mutableDict setValue:[NSNumber numberWithDouble:self.cateId] forKey:kHubOrderCateId];
     [mutableDict setValue:self.username forKey:kHubOrderUsername];
     [mutableDict setValue:self.name forKey:kHubOrderName];
-
+    [mutableDict setValue:self.amountType forKey:kHubOrderAmountType];
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
 
@@ -135,6 +135,7 @@ NSString *const kHubOrderName = @"name";
     self.cateId = [aDecoder decodeDoubleForKey:kHubOrderCateId];
     self.username = [aDecoder decodeObjectForKey:kHubOrderUsername];
     self.name = [aDecoder decodeObjectForKey:kHubOrderName];
+    self.amountType = [aDecoder decodeObjectForKey:kHubOrderAmountType];
     return self;
 }
 
@@ -155,6 +156,7 @@ NSString *const kHubOrderName = @"name";
     [aCoder encodeDouble:_cateId forKey:kHubOrderCateId];
     [aCoder encodeObject:_username forKey:kHubOrderUsername];
     [aCoder encodeObject:_name forKey:kHubOrderName];
+    [aCoder encodeObject:_amountType forKey:kHubOrderAmountType];
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -177,6 +179,7 @@ NSString *const kHubOrderName = @"name";
         copy.cateId = self.cateId;
         copy.username = [self.username copyWithZone:zone];
         copy.name = [self.name copyWithZone:zone];
+        copy.amountType = [self.amountType copyWithZone:zone];
     }
     
     return copy;

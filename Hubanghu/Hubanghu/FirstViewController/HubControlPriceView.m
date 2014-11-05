@@ -40,6 +40,10 @@
 @implementation HubControlPriceView
 
 #pragma mark - getter and setter
+- (NSString *)getCateButtonType
+{
+    return [NSString stringWithFormat:@"%d",cateButtonType];
+}
 - (NSString *)getUrgent
 {
     return [NSString stringWithFormat:@"%d",uragent];
@@ -53,7 +57,7 @@
     if (countTextField.text && countTextField.text.length) {
         return countTextField.text;
     }
-    return nil;
+    return @" ";
 }
 - (NSString *)getComment//备注
 {
@@ -96,8 +100,8 @@
         countArry = @[@"数量:",@"面积:",@"长度:"];
         unitArry = @[@"(个)",@"(㎡)",@"(米)"];
         
-        cateButtonType = 1; //1起步 1，2，3，4
-        countType = 1;
+        cateButtonType = 0; //0起步 0，1，2，3
+        countType = 0;
         uragent = NO;
         
         offsetY = 15;
@@ -132,8 +136,8 @@
         [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
         cateButton.layer.borderWidth = 1;
         cateButton.layer.cornerRadius = 2;
-        cateButton.tag = i+1;
-        if (cateButtonType == i+1)
+        cateButton.tag = i;
+        if (cateButtonType == i)
         {
             //cateButton.selected = YES;
             cateButton.layer.borderColor = KColor.CGColor;
@@ -166,9 +170,9 @@
     countTitleLabel.backgroundColor = kClearColor;
     countTitleLabel.textAlignment = NSTextAlignmentCenter;
     _countTitleLabel = countTitleLabel;
-    if((countType-1) < [countArry count])
+    if(countType < [countArry count])
     {
-        countTitleLabel.text = [countArry objectAtIndex:(countType-1)];
+        countTitleLabel.text = [countArry objectAtIndex:(countType)];
     }
     countTitleLabel.textColor = [UIColor blackColor];
     [self addSubview:countTitleLabel];
@@ -199,9 +203,9 @@
     unitLabel.textAlignment = NSTextAlignmentCenter;
     _unitLabel = unitLabel;
 
-    if((countType-1) < [unitArry count])
+    if((countType) < [unitArry count])
     {
-        unitLabel.text = [unitArry objectAtIndex:(countType-1)];
+        unitLabel.text = [unitArry objectAtIndex:(countType)];
     }
     unitLabel.textColor = kBorderColor;
     [self addSubview:unitLabel];
@@ -325,7 +329,7 @@
 - (void)cateButtonItem:(UIButton *)aBut
 {
     if (aBut.tag != cateButtonType) {
-        UIButton *button = self.cateButtonArray[cateButtonType-1];
+        UIButton *button = self.cateButtonArray[cateButtonType];
         if (button) {
             button.layer.borderColor = kBorderColor.CGColor;
             [button setTitleColor:kBorderColor forState:UIControlStateNormal];

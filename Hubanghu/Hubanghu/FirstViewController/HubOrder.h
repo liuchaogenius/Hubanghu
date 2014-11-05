@@ -25,6 +25,7 @@
 @property (nonatomic, assign) double cateId;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *amountType;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
