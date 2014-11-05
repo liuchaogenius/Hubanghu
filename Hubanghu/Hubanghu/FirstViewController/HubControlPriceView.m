@@ -198,7 +198,9 @@
     countTextField.layer.cornerRadius = 2;
     countTextField.delegate = self;
     
-    UILabel *unitLabel = [[UILabel alloc] initWithFrame:CGRectMake(countTextField.right+3, countTextField.bottom-13, 28, 10)];
+    UILabel *unitLabel = [[UILabel alloc] initWithFrame:CGRectMake(countTextField.right+3, countTextField.bottom-13, 28, 15)];
+    unitLabel.bottom = countTextField.bottom;
+    unitLabel.font = [UIFont systemFontOfSize:kTitleFont - 2];
     unitLabel.backgroundColor = kClearColor;
     unitLabel.textAlignment = NSTextAlignmentCenter;
     _unitLabel = unitLabel;

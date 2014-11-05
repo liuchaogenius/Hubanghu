@@ -193,8 +193,14 @@ typedef enum : NSUInteger {
             dispatch_after(popTime, dispatch_get_main_queue(), ^{
                 [weakself.showWorkerListTableView.infiniteScrollingView stopAnimating];
                 [self.workerListManage getNextPageWorerListSuccBlock:^(HbhData *aData) {
+                    NSMutableArray *insertIndexPaths = [NSMutableArray new];
+                    for (unsigned long i=self.workersArray.count; i<self.workersArray.count+aData.workers.count; i++) {
+                        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:i inSection:0];
+                        [insertIndexPaths addObject:indexpath];
+                    }
                     [self.workersArray addObjectsFromArray:aData.workers];
-                    [self.showWorkerListTableView reloadData];
+                    [self.showWorkerListTableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+//                    [self.showWorkerListTableView reloadData];
                 } andFailBlock:^{
                     
                 }];

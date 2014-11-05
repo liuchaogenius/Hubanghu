@@ -151,24 +151,36 @@ typedef enum : NSUInteger {
 
 - (void)getNextPage
 {
+    
     [self.orderManage getNextOrderListSuccBlock:^(NSArray *aArray) {
         switch (_currentTab) {
             case currentTabOrderAll:
-                [self.allOrderArray addObjectsFromArray:aArray];
+                [self insertArray:self.allOrderArray andArray:aArray];
                 break;
             case currentTabOrderUndone:
-                [self.unDoneArray addObjectsFromArray:aArray];
+                [self insertArray:self.unDoneArray andArray:aArray];
                 break;
             case currentTabOrderAppraise:
-                [self.appraiseArray addObjectsFromArray:aArray];
+                [self insertArray:self.appraiseArray andArray:aArray];
                 break;
             default:
                 break;
         }
-        [self.showOrderTableView reloadData];
+//        [self.showOrderTableView reloadData];
     } andFailBlock:^{
         
     }];
+}
+
+- (void)insertArray:(NSMutableArray *)aMutableArray andArray:(NSArray *)aArray
+{
+    NSMutableArray *insertIndexPaths = [NSMutableArray new];
+    for (unsigned long i=aMutableArray.count; i<aMutableArray.count+aArray.count; i++) {
+        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:i inSection:0];
+        [insertIndexPaths addObject:indexpath];
+    }
+    [aMutableArray addObjectsFromArray:aArray];
+    [self.showOrderTableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark 上拉下拉
