@@ -48,7 +48,7 @@ typedef enum : NSUInteger {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = RGBCOLOR(247, 247, 247);
+    self.view.backgroundColor = kViewBackgroundColor;
     self.title = @"订单详情";
     
     _orderStatus = self.myModel.status;
@@ -183,7 +183,7 @@ typedef enum : NSUInteger {
         [_topView addSubview:orderStatusLabel];
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 39, kMainScreenWidth, 1)];
-        lineView.backgroundColor = RGBCOLOR(190, 190, 190);
+        lineView.backgroundColor = kLineColor;
         [_topView addSubview:lineView];
         
         self.showOrderStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-100, 10, 80, 20)];

@@ -85,7 +85,7 @@ typedef enum : NSUInteger {
 
 - (void)initView
 {
-    self.view.backgroundColor = RGBCOLOR(247, 247, 247);
+    self.view.backgroundColor = kViewBackgroundColor;
     [self settitleLabel:@"我的订单"];
     if (!self.paramCurrentTab)
     {
@@ -103,7 +103,7 @@ typedef enum : NSUInteger {
     self.showOrderTableView.delegate = self;
     self.showOrderTableView.dataSource = self;
     self.showOrderTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.showOrderTableView.backgroundColor = RGBCOLOR(247, 247, 247);
+    self.showOrderTableView.backgroundColor = kViewBackgroundColor;
     [self.view addSubview:self.showOrderTableView];
     firstInitview = YES;
     [self addTableViewTrag];
@@ -241,14 +241,14 @@ typedef enum : NSUInteger {
             if (i!=0)
             {
                 UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(kMainScreenWidth/3*i, 15, 1.5, 15)];
-                lineView.backgroundColor = RGBCOLOR(168, 168, 168);
+                lineView.backgroundColor = kLineColor;
                 [_btnBackView addSubview:lineView];
             }
         }
         [_btnBackView addSubview:self.selectedLineView];
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 39.5, kMainScreenWidth, 0.5)];
-        lineView.backgroundColor = [UIColor lightGrayColor];
+        lineView.backgroundColor = kLineColor;
         [_btnBackView addSubview:lineView];
     }
 
@@ -263,10 +263,11 @@ typedef enum : NSUInteger {
         UILabel *failLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-100, kMainScreenHeight/2-100, 200, 50)];
         failLabel.text = @"暂时没有数据";
         failLabel.font = kFont14;
+        failLabel.backgroundColor = [UIColor clearColor];
         failLabel.textAlignment = NSTextAlignmentCenter;
         failLabel.textColor = [UIColor lightGrayColor];
         [_failView addSubview:failLabel];
-        _failView.backgroundColor = RGBCOLOR(247, 247, 247);
+        _failView.backgroundColor = kViewBackgroundColor;
     }
     return _failView;
 }

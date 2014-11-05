@@ -97,7 +97,7 @@ typedef enum : NSUInteger {
     self.showWorkerListTableView.delegate = self;
     self.showWorkerListTableView.dataSource = self;
     self.showWorkerListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.showWorkerListTableView.backgroundColor = RGBCOLOR(247, 247, 247);
+    self.showWorkerListTableView.backgroundColor = kViewBackgroundColor;
     [self.view addSubview:self.showWorkerListTableView];
     
     
@@ -266,12 +266,12 @@ typedef enum : NSUInteger {
             if (i!=0)
             {
                 UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(kMainScreenWidth/3*i, 5, 0.5, 30)];
-                lineView.backgroundColor = RGBCOLOR(168, 168, 168);
+                lineView.backgroundColor = kLineColor;
                 [_btnBackView addSubview:lineView];
             }
         }
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 39.5, kMainScreenWidth, 0.5)];
-        lineView.backgroundColor = [UIColor lightGrayColor];
+        lineView.backgroundColor = kLineColor;
         [_btnBackView addSubview:lineView];
     }
     
@@ -359,10 +359,11 @@ typedef enum : NSUInteger {
         UILabel *failLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-100, kMainScreenHeight/2-100, 200, 50)];
         failLabel.text = @"暂时没有数据";
         failLabel.font = kFont14;
+        failLabel.backgroundColor = [UIColor clearColor];
         failLabel.textAlignment = NSTextAlignmentCenter;
         failLabel.textColor = [UIColor lightGrayColor];
         [_failView addSubview:failLabel];
-        _failView.backgroundColor = RGBCOLOR(247, 247, 247);
+        _failView.backgroundColor = kViewBackgroundColor;
     }
     return _failView;
 }
@@ -518,7 +519,7 @@ typedef enum : NSUInteger {
         cell = [array objectAtIndex:0];
     }
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
-    lineView.backgroundColor = [UIColor lightGrayColor];
+    lineView.backgroundColor = kLineColor;
     HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
     [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
     cell.workerNameLabel.text = model.name;

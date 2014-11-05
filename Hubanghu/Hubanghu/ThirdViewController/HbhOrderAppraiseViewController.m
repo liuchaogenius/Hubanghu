@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = RGBCOLOR(247, 247, 247);
+    self.view.backgroundColor = kViewBackgroundColor;
     self.title = @"评价";
     _isAgian = 0;
     
