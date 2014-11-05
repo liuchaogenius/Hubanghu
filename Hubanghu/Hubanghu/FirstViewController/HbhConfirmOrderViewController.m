@@ -31,7 +31,11 @@
 - (void)initData{
 	_netManager = [[HbhAppointmentNetManager alloc] init];
 	_payPathArr = @[@"支付宝支付"];
-	_detailsInfoTitle = @[@"名\t   称:",@"姓\t   名:",@"手  机  号:",@"数\t   量:",@"时\t   间:",@"地\t   址:",@"安装师傅:",@"备\t   注:",@"应付金额:"];
+    if (kSystemVersion < 7.0) {
+        _detailsInfoTitle = @[@"名        称:",@"姓        名:",@"手  机  号:",@"数        量:",@"时        间:",@"地        址:",@"安装师傅:",@"备        注:",@"应付金额:"];
+    }else{
+        _detailsInfoTitle = @[@"名\t   称:",@"姓\t   名:",@"手  机  号:",@"数\t   量:",@"时\t   间:",@"地\t   址:",@"安装师傅:",@"备\t   注:",@"应付金额:"];
+    }
 }
 
 - (instancetype)initWithOrder:(HubOrder *)order{
@@ -49,6 +53,7 @@
 	if (self) {
 		_order = nil;
 		_orderId = orderId;
+        
 		[self initData];
 	}
 	return self;
@@ -204,11 +209,13 @@
 		UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, kMainScreenHeight - 40, 35)];
 //		tf.layer.borderColor = [UIColor lightGrayColor].CGColor;
 //		tf.layer.borderWidth = 1;
+        tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 		tf.enabled = NO; // 设置为不可编辑
 		tf.font = kFont13;
 		tf.textColor = [UIColor lightGrayColor];
 		tf.text = _detailsInfo[indexPath.row];
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+        label.backgroundColor = [UIColor clearColor];
 		label.text = _detailsInfoTitle[i	];
 		label.font = kFont13;
 		
@@ -260,6 +267,8 @@
 		[self.view bringSubviewToFront:_activityView];
 		[_activityView startAnimating];
 	}
+    self.tableView.backgroundView = nil;
+    self.view.backgroundColor = kViewBackgroundColor;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -103,7 +103,9 @@ enum CellTag_Type
     _tableView = tableView;
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.backgroundView = nil;
     [self.view addSubview:self.tableView];
+    self.view.backgroundColor = kViewBackgroundColor;
     
 }
 
