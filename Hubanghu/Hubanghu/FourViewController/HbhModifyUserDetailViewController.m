@@ -33,7 +33,7 @@
                             initWithFrame:CGRectMake(kMainScreenWidth/2-40, 20, 80, 80)];
     self.imgView.layer.cornerRadius = 40;
     self.imgView.layer.borderWidth = 1;
-    self.imgView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.imgView.layer.borderColor = [kLineColor CGColor];//[[UIColor lightGrayColor] CGColor];
     self.imgView.clipsToBounds = YES;
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(UesrImageClicked)];
     [self.imgView addGestureRecognizer:self.tapGesture];
@@ -58,7 +58,7 @@
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(headImgView.right+5, headImgView.top, kMainScreenWidth-20-headImgView.right-5, 40)];
     backView.backgroundColor = [UIColor whiteColor];
-    backView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    backView.layer.borderColor = [kLineColor CGColor];//[[UIColor lightGrayColor] CGColor];
     backView.layer.borderWidth = 1;
     backView.layer.cornerRadius = 5;
     [self.view addSubview:backView];

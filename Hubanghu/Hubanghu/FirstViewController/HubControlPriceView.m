@@ -11,7 +11,7 @@
 #import "SVProgressHUD.h"
 #define kTitleFont 15
 #define kCateTitleFont  15
-#define kBorderColor RGBCOLOR(207, 207, 207)
+#define kBorderColor kLineColor//RGBCOLOR(207, 207, 207)
 @interface HubControlPriceView()
 {
     NSArray *categoryTitlearry;

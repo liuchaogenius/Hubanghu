@@ -11,7 +11,7 @@
 #import "AreasDBManager.h"
 #import "HbuAreaLocationManager.h"
 
-#define kBorderColor RGBCOLOR(232, 232, 232)
+#define kBorderColor kLineColor//RGBCOLOR(232, 232, 232)
 enum TextFieldType
 {
     TextField_time = 0,

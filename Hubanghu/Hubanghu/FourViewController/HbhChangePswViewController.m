@@ -30,7 +30,7 @@ enum TextField_Type
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"修改密码";
-    self.view.backgroundColor = RGBCOLOR(249, 249, 249);
+    self.view.backgroundColor = kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
     [self setUI];
     
 }
@@ -43,8 +43,8 @@ enum TextField_Type
 - (void)setUI
 {
     UIView *whiteBackView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, kMainScreenWidth-40, 165)];
-    whiteBackView.backgroundColor = [UIColor whiteColor];
-    whiteBackView.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];
+    whiteBackView.backgroundColor = kViewBackgroundColor;//[UIColor whiteColor];
+    whiteBackView.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 207) CGColor];
     whiteBackView.layer.borderWidth = 1.0f;
     whiteBackView.layer.cornerRadius = 4.0;
     [self.view addSubview:whiteBackView];
@@ -70,7 +70,7 @@ enum TextField_Type
     [self.view addSubview:label];
     
     _ConfirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _ConfirmButton.backgroundColor = KColor;
+    _ConfirmButton.backgroundColor = kIconSelectColor;
     [_ConfirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_ConfirmButton setFrame:CGRectMake(20, 190+60, kMainScreenWidth-40.0, 40)];
     _ConfirmButton.layer.cornerRadius = 5.0f;
@@ -122,13 +122,13 @@ enum TextField_Type
 #pragma mark - textField delegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    textField.layer.borderColor = [KColor CGColor];
+    textField.layer.borderColor = [kIconSelectColor CGColor];
     return YES;
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    textField.layer.borderColor = [RGBCOLOR(207, 207, 204) CGColor];
+    textField.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 204) CGColor];
     
     return YES;
 }
@@ -166,7 +166,7 @@ enum TextField_Type
     [textField setBorderStyle:UITextBorderStyleRoundedRect];
     textField.layer.masksToBounds = YES;
     textField.layer.cornerRadius = 4.0f;
-    textField.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];//[KColor CGColor];
+    textField.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 207) CGColor];//[KColor CGColor];
     textField.layer.borderWidth = 0.7f;
     textField.placeholder = placeholder;
     textField.delegate = self;

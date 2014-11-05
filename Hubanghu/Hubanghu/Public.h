@@ -162,6 +162,6 @@ NSNumber *iNum = [NSNumber numberWithLongLong:i];\
 [dict setObject:iNum forKey:key]; \
 }while(0)
 
-#define KColor RGBCOLOR(225, 44, 25)
+#define KColor kIconSelectColor//RGBCOLOR(225, 44, 25)
 
 #endif

@@ -82,7 +82,7 @@ enum CateId_Type
     [self setLeftButton:nil title:@"left" target:self action:@selector(showLeftView)];
     [self setRightButton:nil title:@"城市" target:self action:@selector(showSelCityVC)];
     [self settitleLabel:@"预约"];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = kViewBackgroundColor;
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-49) style:UITableViewStylePlain];
     MLOG(@"%lf",self.tableView.height);
     [self.view addSubview:self.tableView];
@@ -90,7 +90,7 @@ enum CateId_Type
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[HbhFirstVCCell class] forCellReuseIdentifier:@"FirstVCCell"];
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = kViewBackgroundColor;//[UIColor whiteColor];
     //self.tableView.bounces = NO;
     self.tableView.tableHeaderView = self.headView;
     //定位相关

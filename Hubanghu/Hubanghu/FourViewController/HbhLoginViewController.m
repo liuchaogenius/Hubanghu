@@ -65,7 +65,7 @@ enum TextField_Type
         [_sgmLoginButton setTitle:@"账号登陆" forState:UIControlStateNormal];
         _sgmLoginButton.tag = SegmentBtn_login;
         _sgmLoginButton.layer.borderWidth = 0.7f;
-        _sgmLoginButton.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];
+        _sgmLoginButton.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 207) CGColor];
         _sgmLoginButton.selected = NO;
         [_sgmLoginButton addTarget:self action:@selector(touchSgmBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -82,7 +82,7 @@ enum TextField_Type
         [_sgmRegisterButton setTitle:@"注册" forState:UIControlStateNormal];
         _sgmRegisterButton.tag = SegmentBtn_register;
         _sgmRegisterButton.layer.borderWidth = 0.7f;
-        _sgmRegisterButton.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];
+        _sgmRegisterButton.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 207) CGColor];
         _sgmRegisterButton.selected = NO;
         [_sgmRegisterButton addTarget:self action:@selector(touchSgmBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -106,7 +106,7 @@ enum TextField_Type
         
         UIView *whiteBackView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, kMainScreenWidth-40, 105)];
         whiteBackView.backgroundColor = [UIColor whiteColor];
-        whiteBackView.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];
+        whiteBackView.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 207) CGColor];
         whiteBackView.layer.borderWidth = 1.0f;
         whiteBackView.layer.cornerRadius = 4.0;
         [_loginView addSubview:whiteBackView];
@@ -147,7 +147,7 @@ enum TextField_Type
         
         UIView *whiteBackView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, kMainScreenWidth-40, 165)];
         whiteBackView.backgroundColor = [UIColor whiteColor];
-        whiteBackView.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];
+        whiteBackView.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 207) CGColor];
         whiteBackView.layer.borderWidth = 1.0f;
         whiteBackView.layer.cornerRadius = 4.0;
         [_registerView addSubview:whiteBackView];
@@ -172,7 +172,7 @@ enum TextField_Type
         [checkCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
         [checkCodeButton setTitleColor:RGBCOLOR(157, 157, 157) forState:UIControlStateNormal];
         [checkCodeButton addTarget:self action:@selector(getCheckCode) forControlEvents:UIControlEventTouchUpInside];
-        checkCodeButton.layer.borderColor = [RGBCOLOR(198, 198, 198) CGColor];
+        checkCodeButton.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(198, 198, 198) CGColor];
         checkCodeButton.layer.borderWidth = 0.5f;
         checkCodeButton.layer.masksToBounds = YES;
         self.checkCodeButton = checkCodeButton;
@@ -208,6 +208,7 @@ enum TextField_Type
 
 - (void)backItem
 {
+    [self resignAllKeybord];
     self.type = eLoginBack;
 }
 - (void)didReceiveMemoryWarning {
@@ -297,6 +298,7 @@ enum TextField_Type
 #pragma mark 点击注册按钮
 - (void)touchRegisterButton
 {
+    [self resignAllKeybord];
     if (self.rgPasswordTextField.text.length && self.rgPhoneNumberTextField.text.length && self.checkCodeTextField.text.length) {
         [SVProgressHUD showWithStatus:@"信息提交中" cover:YES offsetY:kMainScreenHeight/2.0];
         [HbhUserManager registerWithPhone:self.rgPhoneNumberTextField.text checkCode:self.checkCodeTextField.text passWord:self.rgPasswordTextField.text withSuccess:^{
@@ -337,7 +339,7 @@ enum TextField_Type
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    textField.layer.borderColor = [RGBCOLOR(207, 207, 204) CGColor];
+    textField.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 204) CGColor];
     
     return YES;
 }
@@ -394,7 +396,7 @@ enum TextField_Type
     [textField setBorderStyle:UITextBorderStyleBezel];
     textField.layer.masksToBounds = YES;
     textField.layer.cornerRadius = 4.0f;
-    textField.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];//[KColor CGColor];
+    textField.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 207) CGColor];//[KColor CGColor];
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textField.layer.borderWidth = 0.7f;
     textField.placeholder = placeholder;

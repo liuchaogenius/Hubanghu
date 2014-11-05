@@ -75,7 +75,7 @@ enum CellTag_Type
         //添加返回按钮
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];//[UIButton buttonWithType:UIButtonTypeRoundedRect];
         [button setFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];
-        button.backgroundColor = KColor;
+        button.backgroundColor = kIconSelectColor;
         [button addTarget:self action:@selector(touchLogoutButton) forControlEvents:UIControlEventTouchUpInside];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button setTitle:@"退出登录" forState:UIControlStateNormal];
@@ -221,7 +221,7 @@ enum CellTag_Type
             [numberLabel setTextAlignment:NSTextAlignmentCenter];
             numberLabel.font = kFont12;
             numberLabel.layer.masksToBounds = YES;
-            numberLabel.backgroundColor = KColor;
+            numberLabel.backgroundColor = kIconSelectColor;
             numberLabel.textColor = [UIColor whiteColor];
             numberLabel.tag = kNumberLabelTag;
             numberLabel.backgroundColor = kClearColor;
