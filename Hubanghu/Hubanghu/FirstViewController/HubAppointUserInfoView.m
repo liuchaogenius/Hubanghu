@@ -173,6 +173,7 @@ enum TextFieldType
         _datePicker.date = [NSDate date];
         _datePicker.timeZone = [NSTimeZone timeZoneWithName:@"GMT+8"];
         _datePicker.backgroundColor = [UIColor whiteColor];
+        _datePicker.minuteInterval = 10;
         [_datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
         _datePicker.minimumDate = [NSDate date];
     }

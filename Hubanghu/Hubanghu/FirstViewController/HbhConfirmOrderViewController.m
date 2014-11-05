@@ -162,9 +162,17 @@
 			amount = [NSString stringWithFormat:@"%.2lf(米)",_order.amount];
 			break;
 		default:
+            amount = @"";
 			break;
 	}
 	NSString *price = [NSString stringWithFormat:@"¥%.2lf",_order.price];
+    _order.name = _order.name?:@"";
+    _order.username = _order.username?:@"";
+    dateString = dateString?:@"";
+    areaStr = dateString?:@"";
+    workName = workName?:@"";
+    comment = comment?:@"";
+    price = price?:@"";
 	_detailsInfo = @[_order.name,
 					 _order.username,
 					 kDoubleToString(_order.phone),

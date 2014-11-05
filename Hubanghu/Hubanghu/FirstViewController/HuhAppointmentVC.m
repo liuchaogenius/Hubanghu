@@ -259,7 +259,7 @@ typedef NS_ENUM(int, AmountDesc)
         [mutDict setObject:[NSString stringWithFormat:@"%d",(int)workerModel.workersIdentifier] forKey:@"workerId"];
         if(workerModel.name)
         {
-            [mutDict setObject:workerModel.name forKey:@"name"];
+            [mutDict setObject:workerModel.name forKey:@"workerName"];
         }
     }
     HubOrder *order = [[HubOrder alloc] initWithDictionary:mutDict];

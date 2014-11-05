@@ -24,6 +24,7 @@
 - (instancetype)init{
 	if (self = [super init]) {
 		[self setUI];
+        self.backgroundColor = kViewBackgroundColor;
 	}
 	return self;
 }
