@@ -30,6 +30,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HbhUser);
 
 - (id)init
 {
+    MLOG(@"%@",self.userFilePath);
     self = [super init];
     _isLogin = NO;
     _nickName = nil;

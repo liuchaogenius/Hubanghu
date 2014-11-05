@@ -297,6 +297,24 @@
     }
 }
 
+- (void)firstCityOfFirstProvinceResultBlock:(void(^)(HbuAreaListModelAreas*model))aCityBlock
+{
+    __weak AreasDBManager *weakself = self;
+    [dataQueue inDatabase:^(FMDatabase *db) {
+        if([db open])
+        {
+            NSString *sqlSELcity = @"select * from areas_table where parent  = (SELECT areaId FROM areas_table  where TypeName like '省'  limit 1) and TypeName like '市' limit 1;";
+            HbuAreaListModelAreas *model = nil;
+            FMResultSet *cityResultset = [db executeQuery:sqlSELcity];
+            while([cityResultset next])
+            {
+                model = [weakself parseFMResultToHubAreasModel:cityResultset];
+            }
+            aCityBlock(model);
+        }
+    }];
+}
+
 - (HbuAreaListModelAreas *)parseFMResultToHubAreasModel:(FMResultSet *)aResultSet
 {
     if(aResultSet)
@@ -312,4 +330,5 @@
     }
     return nil;
 }
+
 @end

@@ -235,6 +235,15 @@ enum TextFieldType
 - (void)initLocationInfo
 {
     __weak HubAppointUserInfoView *weakSelf = self;
+    
+    if (self.areaLocationManger.currentAreas && self.areaLocationManger.currentAreas.name.length) {
+        _city = self.areaLocationManger.currentAreas;
+    }else{
+        [self.areaManager firstCityOfFirstProvinceResultBlock:^(HbuAreaListModelAreas *model) {
+            _city = model;
+        }];
+    }
+    
     [self getProvinceArrayWithSuccessBlock:^{
         //赋初值
         HbuAreaListModelAreas *area = weakSelf.provinceArray[0];
@@ -250,17 +259,13 @@ enum TextFieldType
                     break;
                 }
             }
-            _city = weakSelf.areaLocationManger.currentAreas;
         }
     }];
     //读取城市
-    [weakSelf setCityArrayWithParentId:_province.areaId WithSuccessBlock:^{
-        if (!_city) {
-            _city = weakSelf.cityArray[0];
-        }
+    [weakSelf setCityArrayWithParentId:_city.parent WithSuccessBlock:^{
         for (int i = 0; i < self.cityArray.count; i++) {
             HbuAreaListModelAreas *area = self.cityArray[i];
-            if ((int)area.areaId == (int)self.areaLocationManger.currentAreas.areaId) {
+            if ((int)area.areaId == (int)_city.areaId) {
                 [self.areaPicker selectRow:i inComponent:1 animated:YES];
                 break;
             }

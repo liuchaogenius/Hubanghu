@@ -39,5 +39,6 @@
 - (void)selCityOfDistrict:(NSString *)aParent district:(void(^)(NSMutableArray *districtArry))aDistrictBlock __attribute__((nonnull(1)));
 ///根据areaid 获取当前的数据model  如果要是获取当前areaid对应的parentid的mode  这里的areadid传parentid就是返回parentid对应的数据model
 - (void)selParentModel:(NSString *)aAreadid resultBlock:(void(^)(HbuAreaListModelAreas*model))aResultBlock __attribute__((nonnull(1)));
-
+//获取第一个省下的第一个city
+- (void)firstCityOfFirstProvinceResultBlock:(void(^)(HbuAreaListModelAreas*model))aCityBlock;
 @end
