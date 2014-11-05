@@ -157,7 +157,7 @@ typedef enum : NSUInteger {
                     [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
                         self.locationArray = districtArry;
                         self.dropLocationView.tableArray = self.locationArray;
-                        [self.dropLocationView.showItemTableView reloadData];
+                        [self.dropLocationView reloadTableView];
                         _isLocationed = YES;
                         HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
                         UILabel *label0 = (UILabel *)[self.view viewWithTag:100];
@@ -173,7 +173,7 @@ typedef enum : NSUInteger {
                     [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
                         self.locationArray = districtArry;
                         self.dropLocationView.tableArray = self.locationArray;
-                        [self.dropLocationView.showItemTableView reloadData];
+                        [self.dropLocationView reloadTableView];
                         _isLocationed = YES;
                         HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
                         UILabel *label0 = (UILabel *)[self.view viewWithTag:100];

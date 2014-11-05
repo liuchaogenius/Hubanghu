@@ -45,6 +45,23 @@
     return self;
 }
 
+- (void)reloadTableView
+{
+    if (cellHeight*self.tableArray.count>160)
+    {
+        tableHeight = 160;
+    }
+    else
+    {
+        tableHeight = cellHeight*self.tableArray.count;
+    }
+    CGRect temFrame = self.frame;
+    temFrame.size.height = tableHeight;
+    self.frame = temFrame;
+    self.showItemTableView.frame = self.bounds;
+    [self.showItemTableView reloadData];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _tableArray.count;

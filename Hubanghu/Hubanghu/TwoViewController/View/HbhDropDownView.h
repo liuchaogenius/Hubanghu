@@ -18,4 +18,5 @@
 @property(nonatomic, strong) NSArray *tableArray;
 - (instancetype)initWithArray:(NSArray *)aArray andButton:(UIView *)aBtn;
 - (void)useBlock:(void(^)(int row))aBlock;
+- (void)reloadTableView;
 @end
