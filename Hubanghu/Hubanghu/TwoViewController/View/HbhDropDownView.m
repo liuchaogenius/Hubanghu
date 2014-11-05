@@ -23,15 +23,14 @@
     
     cellHeight = 30;
     _tableArray = aArray;
-//    if (aBtn.bottom+cellHeight*aArray.count>200)
-//    {
-//        tableHeight = 200;
-//    }
-//    else
-//    {
-//        tableHeight = cellHeight*aArray.count;
-//    }
-    tableHeight = 160;
+    if (cellHeight*aArray.count>160)
+    {
+        tableHeight = 160;
+    }
+    else
+    {
+        tableHeight = cellHeight*aArray.count;
+    }
     self.frame = CGRectMake(aBtn.left, aBtn.bottom, aBtn.right-aBtn.left, tableHeight);
     self.showItemTableView = [[UITableView alloc]
                               initWithFrame:self.bounds];
