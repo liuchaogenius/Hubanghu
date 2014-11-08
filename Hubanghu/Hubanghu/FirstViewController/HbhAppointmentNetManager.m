@@ -27,7 +27,7 @@
 - (void)getOrderWith:(NSString *)orderId succ:(void (^)(HubOrder *))succ failure:(void (^)())failure{
 	NSString *url;
 	kHubRequestUrl(@"getOrder.ashx", url);
-	[NetManager requestWith:@{@"orderId":orderId} url:url method:@"POST" operationKey:nil parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
+    [NetManager requestWith:@{@"orderId":(orderId ? orderId : @"")} url:url method:@"POST" operationKey:nil parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
 		HubOrder *order = [HubOrder modelObjectWithDictionary:successDict[@"data"]];
 		succ(order);
 	} failure:^(NSDictionary *failDict, NSError *error) {
@@ -38,7 +38,7 @@
 - (void)getAppointmentInfoWith:(NSString*)cateId succ:(void(^)(NSDictionary* succDic))succ failure:(void(^)())failure{
 	NSString *url;
 	kHubRequestUrl(@"getApointmentInfo.ashx", url);
-	[NetManager requestWith:@{@"cateId":@([cateId integerValue])} url:url method:@"POST" operationKey:nil parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
+    [NetManager requestWith:@{@"cateId":(cateId ? cateId : @"")} url:url method:@"POST" operationKey:nil parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
         NSDictionary *data = successDict[@"data"];
         if (data) {
             succ(data);
@@ -61,7 +61,7 @@
 
 - (void)getAppointmentPriceWithCateId:(NSString *)cateId type:(int)type amountType:(int)amountType amount:(NSString *)amount urgent:(BOOL)urgent succ:(void(^)(NSString *price))succ failure:(void(^)())failure
 {
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:cateId,@"cateId",[NSNumber numberWithInt:type],@"amountType",amount,@"amount",[NSNumber numberWithBool:urgent],@"urgent", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:(cateId ? cateId : @""),@"cateId",[NSNumber numberWithInt:type],@"amountType",(amount ? amount : @""),@"amount",[NSNumber numberWithBool:urgent],@"urgent", nil];
     NSString *url;
     kHubRequestUrl(@"getApointmentPrice.ashx", url);
     [NetManager requestWith:dic url:url method:@"POST" operationKey:nil parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {

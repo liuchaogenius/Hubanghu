@@ -151,7 +151,7 @@
 	NSString *comment = [_order.comment isEqualToString:@""]?@"无":_order.comment;
     NSString *workName = _order.workerName?:@"客服安排";
 	NSString *amount;
-	switch ((int)_order.mountType) {
+	switch ((int)_order.amountType) {
 		case 0:
 			amount = [NSString stringWithFormat:@"%.0lf(个)",_order.amount];
 			break;

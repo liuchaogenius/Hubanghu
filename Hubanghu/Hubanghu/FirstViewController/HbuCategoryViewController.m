@@ -291,7 +291,7 @@
     if (_touchedButton) {
         double cateId = _touchedButton.tag;
         UILabel *titileLable = (UILabel *)[_touchedButton viewWithTag:kTitleLabelTag];
-        NSDictionary *infoDic = [NSDictionary dictionaryWithObjectsAndKeys:titileLable.text,@"title",[NSString stringWithFormat:@"%lf",cateId],@"cateId", nil];
+        NSDictionary *infoDic = [NSDictionary dictionaryWithObjectsAndKeys:titileLable.text?:@"",@"title",[NSString stringWithFormat:@"%lf",cateId],@"cateId", nil];
         HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] init];//WithTitle:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:self.worker];
         [appointVC setVCData:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:self.worker];
         appointVC.hidesBottomBarWhenPushed = YES;

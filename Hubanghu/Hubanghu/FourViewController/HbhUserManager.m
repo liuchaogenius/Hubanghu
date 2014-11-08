@@ -15,7 +15,7 @@
 {
     NSString *loginUrl = nil;
     kHubRequestUrl(@"login.ashx", loginUrl);
-    NSDictionary *postDic = [NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password", nil];
+    NSDictionary *postDic = [NSDictionary dictionaryWithObjectsAndKeys:phone ? phone:@"",@"phone",password ? :@"",@"password", nil];
     
     [NetManager requestWith:postDic url:loginUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         NSDictionary *dataDic = successDict[@"data"];
