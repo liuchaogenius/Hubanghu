@@ -111,7 +111,7 @@ typedef enum : NSUInteger {
     }
     else
     {
-        [self getWorkerListWithAreaId:1 andWorkerTypeId:0 andOrderCountId:0];
+        [self getWorkerListWithAreaId:0 andWorkerTypeId:0 andOrderCountId:0];
     }
 }
 
