@@ -107,11 +107,11 @@ typedef enum : NSUInteger {
 #pragma mark 网络请求
     if (_isLocationed) {
         HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
-        [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:1 andOrderCountId:1];
+        [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:0 andOrderCountId:0];
     }
     else
     {
-        [self getWorkerListWithAreaId:1 andWorkerTypeId:1 andOrderCountId:1];
+        [self getWorkerListWithAreaId:1 andWorkerTypeId:0 andOrderCountId:0];
     }
 }
 
