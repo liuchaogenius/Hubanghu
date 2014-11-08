@@ -11,12 +11,14 @@
 @protocol appointUserInfoDelegate <NSObject>
 
 - (void)shouldResignAllFirstResponds;
+- (void)shouldScrolltoPointY:(CGFloat)pointY;
 
 @end
 
 @interface HubAppointUserInfoView : UIView
 
 @property(nonatomic) id<appointUserInfoDelegate> delegate;
+@property(assign, nonatomic) CGFloat originY;
 
 - (BOOL)infoCheck;
 

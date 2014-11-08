@@ -17,6 +17,7 @@
 #import "SecondViewController.h"
 #import "SVProgressHUD.h"
 #import "HubOrder.h"
+#import "HbhSelCityViewController.h"
 
 
 typedef NS_ENUM(int, AmountDesc)
@@ -140,6 +141,7 @@ typedef NS_ENUM(int, AmountDesc)
     if (!userInfoView) {
         userInfoView = [[HubAppointUserInfoView alloc] initWithFrame:CGRectMake(0, controlPriceView.bottom+20, kMainScreenWidth, 260)];
         userInfoView.delegate = self;
+    
         [scrollview addSubview:userInfoView];
     }
 }
@@ -215,7 +217,6 @@ typedef NS_ENUM(int, AmountDesc)
 #pragma mark 数据完整性检查
 - (BOOL)infoCheck
 {
-#warning work,price检查
     if (![controlPriceView infoCheck]) {
         [SVProgressHUD showErrorWithStatus:@"请输入安装数量(㎡/个/长度)" cover:YES offsetY:kMainScreenHeight/2.0];
         return NO;
@@ -275,12 +276,30 @@ typedef NS_ENUM(int, AmountDesc)
         _totalPriceLabel.text = [NSString stringWithFormat:@"%@",price];
     }
 }
+
+- (void)shouldScrolltoPointY:(CGFloat)pointY
+{
+    CGFloat y = 200 +50+ (userInfoView.frame.origin.y + pointY) - (kMainScreenHeight-64);
+    CGPoint thePoint = CGPointMake(0, y);
+    MLOG(@"%lf %lf",thePoint.x,thePoint.y);
+    [scrollview setContentOffset:thePoint animated:YES];
+}
+
 #pragma mark resign first resp
 - (void)shouldResignAllFirstResponds
 {
     [controlPriceView allTextFieldsResignFirstRespond];
 }
 
+#pragma mark alertView delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        HbhSelCityViewController *vc = [[HbhSelCityViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {

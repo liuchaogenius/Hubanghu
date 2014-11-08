@@ -20,7 +20,7 @@ enum TextFieldType
     TextField_location,
     TextField_detailLoc
 };
-@interface HubAppointUserInfoView()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface HubAppointUserInfoView()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIAlertViewDelegate>
 {
     HbuAreaListModelAreas *_province;
     HbuAreaListModelAreas *_city;
@@ -151,8 +151,14 @@ enum TextFieldType
 {
     if (!_provinceArray) {
         [self.areaManager selProvince:^(NSMutableArray *cityArry) {
-            _provinceArray = cityArry;
-            suss();
+            if (cityArry && cityArry.count) {
+                _provinceArray = cityArry;
+                suss();
+            }else{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"没有地区信息" message:@"请进入首页->右上城市->下拉刷新 获取最新城市信息" delegate:self.delegate cancelButtonTitle:@"确定" otherButtonTitles:@"现在就去", nil];
+                [alertView show];
+            }
+            
         }];
     }
 }
@@ -364,7 +370,6 @@ enum TextFieldType
                 toolView.top = _areaPicker.top - 30;
             }];
         }
-
     }
 }
 #pragma mark - 用户信息检查
@@ -404,7 +409,9 @@ enum TextFieldType
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     //[self checkAlltextFieldFirstRespond];
-    
+    if ([self.delegate respondsToSelector:@selector(shouldScrolltoPointY:)]){
+        [self.delegate shouldScrolltoPointY:textField.bottom+40];
+    }
     if (textField.tag == TextField_time) {
         [self checkAlltextFieldFirstRespond];
         [self showDatePickView];
@@ -537,6 +544,7 @@ enum TextFieldType
         _district = self.districtArray[row];
     }
 }
+
 
 
 /*

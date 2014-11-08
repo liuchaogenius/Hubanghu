@@ -37,8 +37,10 @@
 
 - (void)getAppointmentInfoWith:(NSString*)cateId succ:(void(^)(NSDictionary* succDic))succ failure:(void(^)())failure{
 	NSString *url;
+    NSString *akey = @"appPrice";
+    [NetManager cancelOperation:akey];
 	kHubRequestUrl(@"getApointmentInfo.ashx", url);
-    [NetManager requestWith:@{@"cateId":(cateId ? cateId : @"")} url:url method:@"POST" operationKey:nil parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
+    [NetManager requestWith:@{@"cateId":(cateId ? cateId : @"")} url:url method:@"POST" operationKey:akey parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
         NSDictionary *data = successDict[@"data"];
         if (data) {
             succ(data);
@@ -48,16 +50,6 @@
 	}];
 }
 
-- (void)getAPpointmentPriceWith:(NSDictionary*)dic succ:(void(^)(NSString *price))succ{
-	NSString *url;
-	kHubRequestUrl(@"getApointmentPrice.ashx", url);
-	[NetManager requestWith:dic url:url method:@"POST" operationKey:nil parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
-		NSDictionary *dic = [successDict objectForKey:@"data"];
-		succ(dic[@"price"]);
-	} failure:^(NSDictionary *failDict, NSError *error) {
- 
-	}];
-}
 
 - (void)getAppointmentPriceWithCateId:(NSString *)cateId type:(int)type amountType:(int)amountType amount:(NSString *)amount urgent:(BOOL)urgent succ:(void(^)(NSString *price))succ failure:(void(^)())failure
 {
