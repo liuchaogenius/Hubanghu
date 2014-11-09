@@ -31,7 +31,9 @@ enum TextFieldType
     NSString *strCurrentProvice;
     NSString *strCurrentCity;
     NSString *strCurrentDistrict;
+    UITextField *currentTextField;
 }
+
 @property (strong, nonatomic) NSArray *placehodeArray;
 @property (strong, nonatomic) NSMutableArray *textFiledArray;
 @property (strong, nonatomic) UIDatePicker *datePicker;
@@ -184,6 +186,20 @@ enum TextFieldType
         _datePicker.minimumDate = [NSDate date];
     }
     return _datePicker;
+}
+
+- (UITextField *)getCurrentTextField
+{
+    if(currentTextField)
+    {
+        return currentTextField;
+    }
+    return nil;
+}
+
+- (void)setCurrentTextFieldNil
+{
+    currentTextField = nil;
 }
 
 - (UIPickerView *)areaPicker
@@ -405,13 +421,13 @@ enum TextFieldType
 }
 
 #pragma mark - delegate
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     //[self checkAlltextFieldFirstRespond];
     if ([self.delegate respondsToSelector:@selector(shouldScrolltoPointY:)]){
         [self.delegate shouldScrolltoPointY:textField.bottom+40];
     }
+    currentTextField = textField;
     if (textField.tag == TextField_time) {
         [self checkAlltextFieldFirstRespond];
         [self showDatePickView];

@@ -139,7 +139,7 @@
         leftview = [[LeftView alloc] initWithFrame:self.view.bounds];
     }
     
-    [ViewInteraction viewPresentAnimationFromBottom:self.view toView:leftview];
+    [ViewInteraction viewPresentAnimationFromLeft:self.view toView:leftview];
     if(!leftViewObserver)
     {
         leftViewObserver = [[FBKVOController alloc] initWithObserver:self];

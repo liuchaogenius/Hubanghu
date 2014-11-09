@@ -58,7 +58,11 @@
 
 - (NSInteger)getSgmCount
 {
-    CategoryChildInfoModel *childCateModel = self.categoryInfoModel.child[0];
+    CategoryChildInfoModel *childCateModel = nil;
+    if(self.categoryChildInfoModel.child && self.categoryChildInfoModel.child.count>0)
+    {
+        childCateModel = self.categoryInfoModel.child[0];
+    }
     _sgmCount = (childCateModel.child.count ? self.categoryInfoModel.child.count : 0);//判断是否多层
     return _sgmCount;
 }
@@ -103,7 +107,7 @@
 - (instancetype)initWithCateId:(double)cateId
 {
     if (self = [super init]) {
-        self.cateId = cateId;
+        self.cateId = cateId+1;
         self.hidesBottomBarWhenPushed = YES;
     }
     return self;

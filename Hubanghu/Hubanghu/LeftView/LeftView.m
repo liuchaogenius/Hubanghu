@@ -59,6 +59,7 @@ NSArray *itemArray;
 {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.backgroundColor = kClearColor;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row==0) {
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(kMainScreenWidth/3-40, 40, 80, 80)];
         imgView.layer.cornerRadius = 40;

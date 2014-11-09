@@ -68,7 +68,6 @@ typedef NS_ENUM(int, AmountDesc)
     return self;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -187,7 +186,6 @@ typedef NS_ENUM(int, AmountDesc)
         //toolBarView.backgroundColor = [UIColor blackColor];
         [self.view addSubview:toolBarView];
     }
-    
 }
 
 #pragma mark - action
@@ -307,15 +305,31 @@ typedef NS_ENUM(int, AmountDesc)
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+#pragma mark 键盘事件
+- (void)addNotification
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
-*/
 
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    if([userInfoView getCurrentTextField])
+    {
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
 @end

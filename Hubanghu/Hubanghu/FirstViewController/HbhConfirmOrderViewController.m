@@ -24,13 +24,14 @@
 //UI
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) UIActivityIndicatorView *activityView;
+@property (nonatomic,strong) UIImageView *alipayLogoImgview;
 @end
 
 @implementation HbhConfirmOrderViewController
 
 - (void)initData{
 	_netManager = [[HbhAppointmentNetManager alloc] init];
-	_payPathArr = @[@"支付宝支付"];
+	_payPathArr = @[@"    支付宝支付"];
     if (kSystemVersion < 7.0) {
         _detailsInfoTitle = @[@"名        称:",@"姓        名:",@"手  机  号:",@"数        量:",@"时        间:",@"地        址:",@"安装师傅:",@"备        注:",@"应付金额:"];
     }else{
@@ -74,7 +75,7 @@
 	[_netManager commitOrderWith:_order succ:^(NSDictionary *succDic) {
 		_orderId = [[succDic objectForKey:@"data"] objectForKey:@"orderId"];
 		[weakself.activityView stopAnimating];
-#warning 跳转到支付界面
+#warning 跳转到支付界面 liuchao
 	} failure:^{
 		[self.activityView stopAnimating];
 		STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"提交订单失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
@@ -232,6 +233,14 @@
 		[cell.contentView addSubview:tf];
 	}else if(indexPath.section == 1){
 		cell.textLabel.text = [_payPathArr objectAtIndex:indexPath.row];
+        if(!self.alipayLogoImgview)
+        {
+            UIImage *img = [UIImage imageNamed:@"alipay_logo"];
+            self.alipayLogoImgview = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 20, 20)];
+            self.alipayLogoImgview.contentMode = UIViewContentModeScaleAspectFill;
+            [self.alipayLogoImgview setImage:img];
+            [cell addSubview:self.alipayLogoImgview];
+        }
 	}
 	return cell;
 }
@@ -251,12 +260,21 @@
 	
 	UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 70)];
 	UIButton *commit = [[UIButton alloc] initWithFrame:CGRectMake(10, 15, kMainScreenWidth - 20, 40)];
-	[commit setTitle:@"确认下单" forState:UIControlStateNormal];
+    if(_orderId)
+    {
+        [commit setTitle:@"支付" forState:UIControlStateNormal];
+        [commit addTarget:self action:@selector(alipayServier) forControlEvents:UIControlEventTouchDown];
+    }
+    else
+    {
+	    [commit setTitle:@"确认下单" forState:UIControlStateNormal];
+        [commit addTarget:self action:@selector(commitOrder) forControlEvents:UIControlEventTouchDown];
+    }
 	footView.backgroundColor = [UIColor whiteColor];
 	[commit setBackgroundColor:KColor];
 	commit.layer.cornerRadius = 2;
 	commit.titleLabel.font = kFontBold20;
-	[commit addTarget:self action:@selector(commitOrder) forControlEvents:UIControlEventTouchDown];
+
 	[footView addSubview:commit];
 	
 	_tableView.tableFooterView = footView;
@@ -283,7 +301,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark 支付订单
+#warning 支付订单 liuchao
+- (void)alipayServier
+{
+}
 /*
 #pragma mark - Navigation
 

@@ -91,6 +91,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HbhUser);
 //保存用户信息文件至沙箱
 - (void)writeUserInfoToFile
 {
+    self.nickName = self.nickName?:@"";
+    self.userID = self.userID?:@"";
+    self.photoUrl = self.photoUrl?:@"";
+    self.phone = self.phone?:@"";
+    self.QRCodeUrl = self.QRCodeUrl?:@"";
+    self.encodedToken = self.encodedToken?:@"";
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"nickName":self.nickName, @"id":self.userID, @"photoUrl":self.photoUrl, @"phone":self.phone, @"point":[NSNumber numberWithInteger:self.point], @"QRCodeUrl":self.QRCodeUrl,@"encodedToken":self.encodedToken}];
     [dic writeToFile:self.userFilePath atomically:YES];
     //MLOG(@"%@",self.userFilePath);

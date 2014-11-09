@@ -27,5 +27,6 @@
 - (NSString *)getPhone;
 - (NSString *)getAreaId;
 - (NSString *)getLocation;
-
+- (UITextField *)getCurrentTextField;
+- (void)setCurrentTextFieldNil;
 @end

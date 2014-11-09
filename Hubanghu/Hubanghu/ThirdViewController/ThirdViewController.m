@@ -366,6 +366,7 @@ typedef enum : NSUInteger {
     if (!cell)
     {
         cell = [[HbhOrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     HbhOrderModel *model;
     if (_currentTab == currentTabOrderAll)

@@ -120,7 +120,7 @@ enum CateId_Type
 
 - (void)showLeftView
 {
-    [ViewInteraction viewPresentAnimationFromLeft:self.view toView:[[LeftView alloc] init]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLeftViewPushMessage object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -165,7 +165,7 @@ enum CateId_Type
 {
     static NSString *cellIdentifier = @"FirstVCCell";
     HbhFirstVCCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *leftCategory = self.allCategoryInfo[indexPath.row*2];
     [cell.leftImageButton setImage:[UIImage imageNamed:leftCategory[@"image"]] forState:UIControlStateNormal];
     if (![cell respondsToSelector:@selector(touchImageButton:)]) {
@@ -227,4 +227,8 @@ enum CateId_Type
 }
 */
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 @end
