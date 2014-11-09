@@ -39,7 +39,7 @@ NSString *const kHbhOrderCountsSelected = @"selected";
     // passed into the model class doesn't break the parsing.
     if(self && [dict isKindOfClass:[NSDictionary class]]) {
             self.name = [self objectOrNilForKey:kHbhOrderCountsName fromDictionary:dict];
-            self.orderCountsIdentifier = [[self objectOrNilForKey:kHbhOrderCountsId fromDictionary:dict] doubleValue];
+            self.orderCountsIdentifier = [[self objectOrNilForKey:kHbhOrderCountsId fromDictionary:dict] intValue];
             self.selected = [[self objectOrNilForKey:kHbhOrderCountsSelected fromDictionary:dict] boolValue];
 
     }
@@ -52,7 +52,7 @@ NSString *const kHbhOrderCountsSelected = @"selected";
 {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     [mutableDict setValue:self.name forKey:kHbhOrderCountsName];
-    [mutableDict setValue:[NSNumber numberWithDouble:self.orderCountsIdentifier] forKey:kHbhOrderCountsId];
+    [mutableDict setValue:[NSNumber numberWithInt:self.orderCountsIdentifier] forKey:kHbhOrderCountsId];
     [mutableDict setValue:[NSNumber numberWithBool:self.selected] forKey:kHbhOrderCountsSelected];
 
     return [NSDictionary dictionaryWithDictionary:mutableDict];
@@ -78,7 +78,7 @@ NSString *const kHbhOrderCountsSelected = @"selected";
     self = [super init];
 
     self.name = [aDecoder decodeObjectForKey:kHbhOrderCountsName];
-    self.orderCountsIdentifier = [aDecoder decodeDoubleForKey:kHbhOrderCountsId];
+    self.orderCountsIdentifier = [aDecoder decodeIntForKey:kHbhOrderCountsId];
     self.selected = [aDecoder decodeBoolForKey:kHbhOrderCountsSelected];
     return self;
 }
@@ -87,7 +87,7 @@ NSString *const kHbhOrderCountsSelected = @"selected";
 {
 
     [aCoder encodeObject:_name forKey:kHbhOrderCountsName];
-    [aCoder encodeDouble:_orderCountsIdentifier forKey:kHbhOrderCountsId];
+    [aCoder encodeInt:_orderCountsIdentifier forKey:kHbhOrderCountsId];
     [aCoder encodeBool:_selected forKey:kHbhOrderCountsSelected];
 }
 

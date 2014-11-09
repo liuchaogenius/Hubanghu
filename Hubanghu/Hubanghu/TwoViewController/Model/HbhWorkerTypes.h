@@ -12,7 +12,7 @@
 @interface HbhWorkerTypes : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) double workerTypesIdentifier;
+@property (nonatomic, assign) int workerTypesIdentifier;
 @property (nonatomic, assign) BOOL selected;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;

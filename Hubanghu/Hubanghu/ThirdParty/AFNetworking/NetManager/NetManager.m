@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "JSONKit.h"
 #import "ThreadSafeMutableDictionary.h"
+#import "HbhUser.h"
 @interface NetManager()
 {
     NSMutableDictionary *mutaDict;
@@ -149,28 +150,29 @@
 + (void)setRequestHeadValue:(NSMutableURLRequest*)aRequest
 {
     NetManager *net = [NetManager shareInstance];
-    if([net getUserid])
+    HbhUser *user = [HbhUser sharedHbhUser];
+    if(user.userID)
     {
-        [aRequest addValue:[net getUserid] forHTTPHeaderField:@"hbh-uid"];
+        [aRequest addValue:user.userID forHTTPHeaderField:@"hbh_uid"];
     }
     if ([net getAreaId]) {
-        [aRequest setValue:[net getAreaId] forHTTPHeaderField:@"hbh-areaId"];
+        [aRequest setValue:[net getAreaId] forHTTPHeaderField:@"hbh_areaId"];
     }
     if ([net getLat]) {
-        [aRequest setValue:[NSString stringWithFormat:@"%.3f",[net getLat]] forHTTPHeaderField:@"hbh-lat"];
+        [aRequest setValue:[NSString stringWithFormat:@"%.3f",[net getLat]] forHTTPHeaderField:@"hbh_lat"];
     }
     if ([net getLon]) {
-        [aRequest setValue:[NSString stringWithFormat:@"%.3f",[net getLon]] forHTTPHeaderField:@"hbh-lon"];
+        [aRequest setValue:[NSString stringWithFormat:@"%.3f",[net getLon]] forHTTPHeaderField:@"hbh_lon"];
     }
 #if DEBUG
-    [aRequest addValue:@"1" forHTTPHeaderField:@"hbh_mock"];
+    [aRequest addValue:@"0" forHTTPHeaderField:@"hbh_mock"];
 #else
     [aRequest addValue:@"0" forHTTPHeaderField:@"hbh_mock"];
 #endif
     
     NSDictionary *bundleDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [bundleDic objectForKey:@"CFBundleShortVersionString"];
-    [aRequest addValue:appVersion forHTTPHeaderField:@"hbh-appver"];
+    [aRequest addValue:appVersion forHTTPHeaderField:@"hbh_appver"];
 }
 
 + (void)cancelOperation:(id)aKey

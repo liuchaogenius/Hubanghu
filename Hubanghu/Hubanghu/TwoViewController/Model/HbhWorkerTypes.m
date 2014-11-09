@@ -39,7 +39,7 @@ NSString *const kHbhWorkerTypesSelected = @"selected";
     // passed into the model class doesn't break the parsing.
     if(self && [dict isKindOfClass:[NSDictionary class]]) {
             self.name = [self objectOrNilForKey:kHbhWorkerTypesName fromDictionary:dict];
-            self.workerTypesIdentifier = [[self objectOrNilForKey:kHbhWorkerTypesId fromDictionary:dict] doubleValue];
+            self.workerTypesIdentifier = [[self objectOrNilForKey:kHbhWorkerTypesId fromDictionary:dict] intValue];
             self.selected = [[self objectOrNilForKey:kHbhWorkerTypesSelected fromDictionary:dict] boolValue];
 
     }
@@ -52,7 +52,7 @@ NSString *const kHbhWorkerTypesSelected = @"selected";
 {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     [mutableDict setValue:self.name forKey:kHbhWorkerTypesName];
-    [mutableDict setValue:[NSNumber numberWithDouble:self.workerTypesIdentifier] forKey:kHbhWorkerTypesId];
+    [mutableDict setValue:[NSNumber numberWithInt:self.workerTypesIdentifier] forKey:kHbhWorkerTypesId];
     [mutableDict setValue:[NSNumber numberWithBool:self.selected] forKey:kHbhWorkerTypesSelected];
 
     return [NSDictionary dictionaryWithDictionary:mutableDict];
@@ -78,7 +78,7 @@ NSString *const kHbhWorkerTypesSelected = @"selected";
     self = [super init];
 
     self.name = [aDecoder decodeObjectForKey:kHbhWorkerTypesName];
-    self.workerTypesIdentifier = [aDecoder decodeDoubleForKey:kHbhWorkerTypesId];
+    self.workerTypesIdentifier = [aDecoder decodeIntForKey:kHbhWorkerTypesId];
     self.selected = [aDecoder decodeBoolForKey:kHbhWorkerTypesSelected];
     return self;
 }
@@ -87,7 +87,7 @@ NSString *const kHbhWorkerTypesSelected = @"selected";
 {
 
     [aCoder encodeObject:_name forKey:kHbhWorkerTypesName];
-    [aCoder encodeDouble:_workerTypesIdentifier forKey:kHbhWorkerTypesId];
+    [aCoder encodeInt:_workerTypesIdentifier forKey:kHbhWorkerTypesId];
     [aCoder encodeBool:_selected forKey:kHbhWorkerTypesSelected];
 }
 

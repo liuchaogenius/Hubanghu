@@ -49,12 +49,13 @@ NSString *const kHbhWorkersComment = @"comment";
     // passed into the model class doesn't break the parsing.
     if(self && [dict isKindOfClass:[NSDictionary class]]) {
             self.name = [self objectOrNilForKey:kHbhWorkersName fromDictionary:dict];
-            self.workersIdentifier = [[self objectOrNilForKey:kHbhWorkersId fromDictionary:dict] doubleValue];
+            self.workersIdentifier = [[self objectOrNilForKey:kHbhWorkersId fromDictionary:dict] intValue];
             self.workTypeName = [self objectOrNilForKey:kHbhWorkersWorkTypeName fromDictionary:dict];
             self.photoUrl = [self objectOrNilForKey:kHbhWorkersPhotoUrl fromDictionary:dict];
-            self.orderCount = [[self objectOrNilForKey:kHbhWorkersOrderCount fromDictionary:dict] doubleValue];
+            self.orderCount = [[self objectOrNilForKey:kHbhWorkersOrderCount fromDictionary:dict] intValue];
             self.caseProperty = [self objectOrNilForKey:kHbhWorkersCase fromDictionary:dict];
-            self.workingAge = [self objectOrNilForKey:kHbhWorkersWorkingAge fromDictionary:dict];
+            int age = [[self objectOrNilForKey:kHbhWorkersWorkingAge fromDictionary:dict] intValue];
+            self.workingAge = [NSString stringWithFormat:@"%d", age];
             self.comment = [self objectOrNilForKey:kHbhWorkersComment fromDictionary:dict];
 
     }
@@ -67,7 +68,7 @@ NSString *const kHbhWorkersComment = @"comment";
 {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     [mutableDict setValue:self.name forKey:kHbhWorkersName];
-    [mutableDict setValue:[NSNumber numberWithDouble:self.workersIdentifier] forKey:kHbhWorkersId];
+    [mutableDict setValue:[NSNumber numberWithInt:self.workersIdentifier] forKey:kHbhWorkersId];
     [mutableDict setValue:self.workTypeName forKey:kHbhWorkersWorkTypeName];
     [mutableDict setValue:self.photoUrl forKey:kHbhWorkersPhotoUrl];
     [mutableDict setValue:[NSNumber numberWithDouble:self.orderCount] forKey:kHbhWorkersOrderCount];
@@ -118,10 +119,10 @@ NSString *const kHbhWorkersComment = @"comment";
     self = [super init];
 
     self.name = [aDecoder decodeObjectForKey:kHbhWorkersName];
-    self.workersIdentifier = [aDecoder decodeDoubleForKey:kHbhWorkersId];
+    self.workersIdentifier = [aDecoder decodeIntForKey:kHbhWorkersId];
     self.workTypeName = [aDecoder decodeObjectForKey:kHbhWorkersWorkTypeName];
     self.photoUrl = [aDecoder decodeObjectForKey:kHbhWorkersPhotoUrl];
-    self.orderCount = [aDecoder decodeDoubleForKey:kHbhWorkersOrderCount];
+    self.orderCount = [aDecoder decodeIntForKey:kHbhWorkersOrderCount];
     self.caseProperty = [aDecoder decodeObjectForKey:kHbhWorkersCase];
     self.workingAge = [aDecoder decodeObjectForKey:kHbhWorkersWorkingAge];
     self.comment = [aDecoder decodeObjectForKey:kHbhWorkersComment];
@@ -132,10 +133,10 @@ NSString *const kHbhWorkersComment = @"comment";
 {
 
     [aCoder encodeObject:_name forKey:kHbhWorkersName];
-    [aCoder encodeDouble:_workersIdentifier forKey:kHbhWorkersId];
+    [aCoder encodeInt:_workersIdentifier forKey:kHbhWorkersId];
     [aCoder encodeObject:_workTypeName forKey:kHbhWorkersWorkTypeName];
     [aCoder encodeObject:_photoUrl forKey:kHbhWorkersPhotoUrl];
-    [aCoder encodeDouble:_orderCount forKey:kHbhWorkersOrderCount];
+    [aCoder encodeInt:_orderCount forKey:kHbhWorkersOrderCount];
     [aCoder encodeObject:_caseProperty forKey:kHbhWorkersCase];
     [aCoder encodeObject:_workingAge forKey:kHbhWorkersWorkingAge];
     [aCoder encodeObject:_comment forKey:kHbhWorkersComment];

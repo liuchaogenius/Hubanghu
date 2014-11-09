@@ -12,7 +12,7 @@
 @interface HbhOrderCounts : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) double orderCountsIdentifier;
+@property (nonatomic, assign) int orderCountsIdentifier;
 @property (nonatomic, assign) BOOL selected;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;

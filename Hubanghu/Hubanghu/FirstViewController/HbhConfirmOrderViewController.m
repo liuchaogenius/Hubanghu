@@ -75,7 +75,7 @@
 	[_netManager commitOrderWith:_order succ:^(NSDictionary *succDic) {
 		_orderId = [[succDic objectForKey:@"data"] objectForKey:@"orderId"];
 		[weakself.activityView stopAnimating];
-#warning 跳转到支付界面 liuchao
+#warning 跳转到支付界面 liuchao 单下成功后 按钮变成支付 如果支付成功了 就灰掉按钮
 	} failure:^{
 		[self.activityView stopAnimating];
 		STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"提交订单失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
@@ -152,7 +152,7 @@
 	NSString *comment = [_order.comment isEqualToString:@""]?@"无":_order.comment;
     NSString *workName = _order.workerName?:@"客服安排";
 	NSString *amount;
-	switch ((int)_order.amountType) {
+	switch ([_order.amountType intValue]) {
 		case 0:
 			amount = [NSString stringWithFormat:@"%.0lf(个)",_order.amount];
 			break;
