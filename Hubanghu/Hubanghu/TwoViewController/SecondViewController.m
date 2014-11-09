@@ -65,6 +65,21 @@ typedef enum : NSUInteger {
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+#pragma mark 网络请求
+    if (self.workersArray.count==0) {
+        if (_isLocationed) {
+            HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
+            [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:0 andOrderCountId:0];
+        }
+        else
+        {
+            [self getWorkerListWithAreaId:0 andWorkerTypeId:0 andOrderCountId:0];
+        }
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self settitleLabel:@"预约工人"];
@@ -104,15 +119,6 @@ typedef enum : NSUInteger {
     [self.view addSubview:self.activityView];
     [self.activityView startAnimating];
     [self addTableViewTrag];
-#pragma mark 网络请求
-    if (_isLocationed) {
-        HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
-        [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:0 andOrderCountId:0];
-    }
-    else
-    {
-        [self getWorkerListWithAreaId:0 andWorkerTypeId:0 andOrderCountId:0];
-    }
 }
 
 - (void)getWorkerListWithAreaId:(int)aAreaId andWorkerTypeId:(int)aWorkTypeId andOrderCountId:(int)aOrderId
@@ -531,7 +537,13 @@ typedef enum : NSUInteger {
     cell.workerNameLabel.text = model.name;
     cell.workerMountLabel.text = [NSString stringWithFormat:@"%d", (int)model.orderCount];
     cell.workYearLabel.text = model.workingAge;
-    cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", model.workTypeName];
+    if (![model.workTypeName isEqualToString:@""]) {
+        cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", model.workTypeName];
+    }
+    else
+    {
+        cell.workerTypeLabel.text = @"";
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell addSubview:lineView];
     
