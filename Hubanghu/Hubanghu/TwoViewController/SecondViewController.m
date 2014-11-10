@@ -125,14 +125,14 @@ typedef enum : NSUInteger {
 {
     [self.showWorkerListTableView setContentOffset:CGPointMake(0, 0) animated:YES];
     [self.workerListManage getWorkerListWithAreaId:aAreaId andWorkerTypeId:aWorkTypeId andOrderCountId:aOrderId SuccBlock:^(HbhData *aData) {
-        [self.failView removeFromSuperview];
+//        [self.failView removeFromSuperview];
         self.workersArray = [(NSMutableArray *)aData.workers mutableCopy];
         self.areasArray = [(NSMutableArray *)aData.areas mutableCopy];
         self.workerTypeArray = [(NSMutableArray *)aData.workerTypes mutableCopy];
         self.orderCountArray = [(NSMutableArray *)aData.orderCounts mutableCopy];
         [self.showWorkerListTableView reloadData];
         if (self.workersArray.count==0) {
-            [self.view addSubview:self.failView];
+//            [self.view addSubview:self.failView];
         }
         [self.activityView stopAnimating];
         if (aAreaId!=-1 && aWorkTypeId!=-1 && aOrderId !=-1)
@@ -140,7 +140,7 @@ typedef enum : NSUInteger {
             [self updateBtn];
         }
     } andFailBlock:^{
-        [self.view addSubview:self.failView];
+//        [self.view addSubview:self.failView];
     }];
 }
 
@@ -513,7 +513,13 @@ typedef enum : NSUInteger {
 #pragma mark tableView datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.workersArray.count;
+    if (self.workersArray.count>0) {
+        return self.workersArray.count;
+    }
+    else
+    {
+        return 4;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -523,31 +529,48 @@ typedef enum : NSUInteger {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"CustomCellIdentifier";
-    HbhWorkerTableViewCell *cell = (HbhWorkerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-    {
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"HbhWorkerTableViewCell" owner:self options:nil];
-        cell = [array objectAtIndex:0];
-    }
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
-    lineView.backgroundColor = kLineColor;
-    HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
-    [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
-    cell.workerNameLabel.text = model.name;
-    cell.workerMountLabel.text = [NSString stringWithFormat:@"%d", (int)model.orderCount];
-    cell.workYearLabel.text = model.workingAge;
-    if ([model.workTypeName isEqualToString:@""]||model.workTypeName==nil) {
-        cell.workerTypeLabel.text = @"";
+    if (self.workersArray.count>0) {
+        static NSString *CellIdentifier = @"CustomCellIdentifier";
+        HbhWorkerTableViewCell *cell = (HbhWorkerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil)
+        {
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"HbhWorkerTableViewCell" owner:self options:nil];
+            cell = [array objectAtIndex:0];
+        }
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
+        lineView.backgroundColor = kLineColor;
+        HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
+        [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+        cell.workerNameLabel.text = model.name;
+        cell.workerMountLabel.text = [NSString stringWithFormat:@"%d", (int)model.orderCount];
+        cell.workYearLabel.text = model.workingAge;
+        if ([model.workTypeName isEqualToString:@""]||model.workTypeName==nil) {
+            cell.workerTypeLabel.text = @"";
+        }
+        else
+        {
+            cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", model.workTypeName];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell addSubview:lineView];
+        
+        return cell;
     }
     else
     {
-        cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", model.workTypeName];
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
+        if (indexPath.row==3) {
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-50, 20, 100, 20)];
+            label.text = @"暂时没有数据";
+            label.font = kFont14;
+            label.textColor = [UIColor lightGrayColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            [cell addSubview:label];
+        }
+        cell.backgroundColor = [UIColor clearColor];
+        return cell;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell addSubview:lineView];
     
-    return cell;
 }
 
 #pragma mark tableView delegate

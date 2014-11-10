@@ -129,6 +129,46 @@
     return _typeLabel;
 }
 
+- (void)setCellWithModel:(HbhOrderModel *)aModel
+{
+    self.nameLabel.text = aModel.name;
+    self.workerNameLabel.text = aModel.workerName;
+    if (!aModel.urgent) {
+        self.urgentLabel.text = @"";
+    }
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f", aModel.price];
+    switch ((int)aModel.status) {
+        case 0:
+            self.orderStateLabel.text = @"去付款";
+            break;
+        case 1:
+            self.orderStateLabel.text = @"已付款";
+            break;
+        case 2:
+            self.orderStateLabel.text = @"去评价";
+            break;
+        default:
+            break;
+    }
+    /*0纯装，1拆装，2纯拆，3勘察*/
+    switch ((int)aModel.mountType) {
+        case 0:
+            self.typeLabel.text = @"[纯装]";
+            break;
+        case 1:
+            self.typeLabel.text = @"[拆装]";
+            break;
+        case 2:
+            self.typeLabel.text = @"[纯拆]";
+            break;
+        case 3:
+            self.typeLabel.text = @"[勘察]";
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)awakeFromNib {
     // Initialization code
 }

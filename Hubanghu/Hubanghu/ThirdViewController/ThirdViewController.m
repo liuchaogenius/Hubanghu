@@ -381,42 +381,7 @@ typedef enum : NSUInteger {
     {
         model = [self.unDoneArray objectAtIndex:indexPath.row];
     }
-    cell.nameLabel.text = model.name;
-    cell.workerNameLabel.text = model.workerName;
-    if (!model.urgent) {
-        cell.urgentLabel.text = @"";
-    }
-    cell.priceLabel.text = [NSString stringWithFormat:@"￥%.2f", model.price];
-    switch ((int)model.status) {
-        case 0:
-            cell.orderStateLabel.text = @"去付款";
-            break;
-        case 1:
-            cell.orderStateLabel.text = @"已付款";
-            break;
-        case 2:
-            cell.orderStateLabel.text = @"去评价";
-            break;
-        default:
-            break;
-    }
-    /*0纯装，1拆装，2纯拆，3勘察*/
-    switch ((int)model.mountType) {
-        case 0:
-            cell.typeLabel.text = @"[纯装]";
-            break;
-        case 1:
-            cell.typeLabel.text = @"[拆装]";
-            break;
-        case 2:
-            cell.typeLabel.text = @"[纯拆]";
-            break;
-        case 3:
-            cell.typeLabel.text = @"[勘察]";
-            break;
-        default:
-            break;
-    }
+    [cell setCellWithModel:model];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
