@@ -38,6 +38,7 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) NSMutableArray *unDoneArray;
 
 @property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
+@property(nonatomic) BOOL isHaveData;
 @end
 
 @implementation ThirdViewController
@@ -124,10 +125,15 @@ typedef enum : NSUInteger {
 - (void)getFisrtPage
 {
     [self.orderManage getOrderWithListFilterId:_currentTab andSuccBlock:^(NSArray *aArray) {
-        [self.failView removeFromSuperview];
+//        [self.failView removeFromSuperview];
         if (aArray.count==0)
         {
-            [self.view addSubview:self.failView];
+            _isHaveData = NO;
+//            [self.view addSubview:self.failView];
+        }
+        else
+        {
+            _isHaveData = YES;
         }
         switch (_currentTab) {
             case currentTabOrderAll:
@@ -145,7 +151,8 @@ typedef enum : NSUInteger {
         [self.activityIndicatorView stopAnimating];
         [self.showOrderTableView reloadData];
     } andFailBlock:^{
-        [self.view addSubview:self.failView];
+//        [self.view addSubview:self.failView];
+        _isHaveData = NO;
     }];
 }
 
@@ -340,17 +347,23 @@ typedef enum : NSUInteger {
 #pragma mark tableView datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (_currentTab == currentTabOrderAll)
-    {
-        return self.allOrderArray.count;
+    if (!_isHaveData==NO) {
+        if (_currentTab == currentTabOrderAll)
+        {
+            return self.allOrderArray.count;
+        }
+        else if(_currentTab == currentTabOrderAppraise)
+        {
+            return self.appraiseArray.count;
+        }
+        else if (_currentTab == currentTabOrderUndone)
+        {
+            return self.unDoneArray.count;
+        }
     }
-    else if(_currentTab == currentTabOrderAppraise)
+    else
     {
-        return self.appraiseArray.count;
-    }
-    else if (_currentTab == currentTabOrderUndone)
-    {
-        return self.unDoneArray.count;
+        return 4;
     }
     return 0;
 }
@@ -362,28 +375,44 @@ typedef enum : NSUInteger {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HbhOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell)
-    {
-        cell = [[HbhOrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    if (!_isHaveData==NO) {
+        HbhOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (!cell)
+        {
+            cell = [[HbhOrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        HbhOrderModel *model;
+        if (_currentTab == currentTabOrderAll)
+        {
+            model = [self.allOrderArray objectAtIndex:indexPath.row];
+        }
+        else if(_currentTab == currentTabOrderAppraise)
+        {
+            model = [self.appraiseArray objectAtIndex:indexPath.row];
+        }
+        else if (_currentTab == currentTabOrderUndone)
+        {
+            model = [self.unDoneArray objectAtIndex:indexPath.row];
+        }
+        [cell setCellWithModel:model];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    HbhOrderModel *model;
-    if (_currentTab == currentTabOrderAll)
+    else
     {
-        model = [self.allOrderArray objectAtIndex:indexPath.row];
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
+        if (indexPath.row==3) {
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-50, 20, 100, 20)];
+            label.text = @"暂时没有数据";
+            label.font = kFont14;
+            label.textColor = [UIColor lightGrayColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            [cell addSubview:label];
+        }
+        cell.backgroundColor = [UIColor clearColor];
+        return cell;
     }
-    else if(_currentTab == currentTabOrderAppraise)
-    {
-        model = [self.appraiseArray objectAtIndex:indexPath.row];
-    }
-    else if (_currentTab == currentTabOrderUndone)
-    {
-        model = [self.unDoneArray objectAtIndex:indexPath.row];
-    }
-    [cell setCellWithModel:model];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
 }
 
 #pragma mark tableView delegate
