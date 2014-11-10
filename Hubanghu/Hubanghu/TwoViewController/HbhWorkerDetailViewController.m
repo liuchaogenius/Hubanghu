@@ -220,7 +220,13 @@
         HbhTopTableViewCell *cell = [[HbhTopTableViewCell alloc] init];
         [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:self.workerData.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
         cell.workerNameLabel.text = self.workerData.name;
-        cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", self.workerData.workTypeName];
+        if ([self.workerData.workTypeName isEqualToString:@""]||self.workerData.workTypeName==nil) {
+            cell.workerTypeLabel.text = @"";
+        }
+        else
+        {
+            cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", self.workerData.workTypeName];
+        }
         cell.workerYearLabel.text = self.workerData.workingAge;
         cell.workerMountLabel.text = self.workerData.orderCount;
         cell.personLabel.text = self.workerData.desc;

@@ -537,12 +537,12 @@ typedef enum : NSUInteger {
     cell.workerNameLabel.text = model.name;
     cell.workerMountLabel.text = [NSString stringWithFormat:@"%d", (int)model.orderCount];
     cell.workYearLabel.text = model.workingAge;
-    if (![model.workTypeName isEqualToString:@""]) {
-        cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", model.workTypeName];
+    if ([model.workTypeName isEqualToString:@""]||model.workTypeName==nil) {
+        cell.workerTypeLabel.text = @"";
     }
     else
     {
-        cell.workerTypeLabel.text = @"";
+        cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", model.workTypeName];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell addSubview:lineView];
