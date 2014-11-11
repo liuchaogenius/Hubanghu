@@ -17,20 +17,6 @@
 
 @synthesize currentAreas = _currentAreas;
 
-//- (HbuAreaListModelAreas *)currentAreas
-//{
-//    if (!_currentAreas) {
-//        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//        
-//        NSData *currentAreaDate = [userDefault objectForKey:@"currentAreas"];
-//        if (currentAreaDate) {
-//            _currentAreas = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
-//        }else{
-//            _currentAreas = [[HbuAreaListModelAreas alloc] init];
-//        }
-//    }
-//    return _currentAreas;
-//}
 
 - (void)setCurrentAreas:(HbuAreaListModelAreas *)currentAreas
 {
@@ -38,14 +24,26 @@
 // 设置http透明的areadid
     if (_currentAreas.areaId) {
         [[NetManager shareInstance] setAreaId:[NSString stringWithFormat:@"%f",_currentAreas.areaId]];
+        //修改文件，记录地区
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        
+        NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentAreas];
+        [userDefault setObject:currentAreasData forKey:@"currentAreas"];
+        
+        [userDefault removeObjectForKey:@"currentDistrict"];
+        [userDefault synchronize];
     }
-    //修改文件，记录地区
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    
-    NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentAreas];
-    [userDefault synchronize];
-    [userDefault setObject:currentAreasData forKey:@"currentAreas"];
-    
+}
+
+- (void)setCurrentDistrict:(HbuAreaListModelAreas *)currentDistrict
+{
+    _currentDistrict = currentDistrict;
+    if (_currentDistrict.areaId) {
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentDistrict];
+        [userDefault setObject:currentAreasData forKey:@"currentDistrict"];
+        [userDefault synchronize];
+    }
 }
 
 - (AreasDBManager *)areasDBManager
@@ -72,9 +70,13 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     
     NSData *currentAreaDate = [userDefault objectForKey:@"currentAreas"];
-    if (currentAreaDate) {
-        self.currentAreas = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
-    }
+    NSData *currentDistrictData = [userDefault objectForKey:@"currentDistrict"];
+//    if (currentAreaDate) {
+//        self.currentAreas = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
+//        if (<#condition#>) {
+//            <#statements#>
+//        }
+//    }
     return self;
 }
 
@@ -164,16 +166,33 @@
             }
             [locationManager getLocationAddress:NO resultBlock:^(NSDictionary *aLocationDict, Location2d aL2d) {
 // 对比城市 创建currentAreas
-                MLOG(@"%@",aLocationDict[@"City"]);
-                if (aLocationDict[@"City"]) {
-                    [weakSelf.areasDBManager selHbuArealistModel:aLocationDict[@"City"] resultBlock:^(HbuAreaListModelAreas *model) {
+                MLOG(@"%@",aLocationDict);
+                NSDictionary *result = aLocationDict[@"result"];
+                NSDictionary *addressDic = result[@"addressComponent"];
+                MLOG(@"city:%@",addressDic[@"city"]);
+                MLOG(@"district:%@",addressDic[@"district"]);
+                MLOG(@"province:%@",addressDic[@"province"]);
+                
+                if (addressDic[@"city"]) {
+                    [weakSelf.areasDBManager selHbuArealistModelOfCity:addressDic[@"city"] district:addressDic[@"district"] resultBlock:^(HbuAreaListModelAreas *city, HbuAreaListModelAreas *district) {
+                        MLOG(@"%@   %@",city.name,district.name);
+                        if (city) {
+                            weakSelf.currentAreas = city;
+                            weakSelf.currentDistrict = district;
+                            sBlock();
+                        }else{
+                            weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_matchCfail)):(aFailBlock(@"匹配用户城市失败，请手动选择",errorType_matchCityFailed));
+                        }
+                        
+                    }];/*
+                    [weakSelf.areasDBManager selHbuArealistModel:addressDic[@"city"] resultBlock:^(HbuAreaListModelAreas *model) {
                         if (model) {
                             weakSelf.currentAreas = model;
                             sBlock();
                         }else{
                             weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_matchCfail)):(aFailBlock(@"匹配用户城市失败，请手动选择",errorType_matchCityFailed));
                         }
-                    }];
+                    }];*/
                 }else{
                     weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_locFail)) : (aFailBlock(@"定位用户城市失败，请手动选择",errorType_locationFailed));                }
             }];

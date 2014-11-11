@@ -29,6 +29,8 @@
 - (void)selGroupAreaCity:(void(^)(NSMutableDictionary *cityDict))aCityBlock;
 
 - (void)selHbuArealistModel:(NSString *)aCityName resultBlock:(void(^)(HbuAreaListModelAreas*model))aResultBlock __attribute__((nonnull(1)));
+- (void)selHbuArealistModelOfCity:(NSString *)aCityName district:(NSString *)aDistrictName resultBlock:(void(^)(HbuAreaListModelAreas *city,HbuAreaListModelAreas *district))aResultBlock;
+
 ////获取所有省份
 - (void)selProvince:(void(^)(NSMutableArray *cityArry))aProvinceBlock;
 

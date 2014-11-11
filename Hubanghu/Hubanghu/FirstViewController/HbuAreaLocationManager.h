@@ -26,7 +26,8 @@ enum error_Type
 @interface HbuAreaLocationManager : NSObject <UIAlertViewDelegate>
 
 @property (strong, nonatomic) AreasDBManager *areasDBManager;
-@property (nonatomic, strong) HbuAreaListModelAreas* currentAreas;
+@property (nonatomic, strong) HbuAreaListModelAreas *currentAreas; //当前城市
+@property (nonatomic, strong) HbuAreaListModelAreas *currentDistrict;//当前区
 
 //单例方法
 + (instancetype)sharedManager;

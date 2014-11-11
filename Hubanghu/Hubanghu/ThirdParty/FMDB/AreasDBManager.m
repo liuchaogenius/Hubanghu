@@ -138,6 +138,55 @@
     }];
 }
 
+- (void)selHbuArealistModelOfCity:(NSString *)aCityName district:(NSString *)aDistrictName resultBlock:(void(^)(HbuAreaListModelAreas *city,HbuAreaListModelAreas *district))aResultBlock
+{
+    __weak AreasDBManager *weakself = self;
+    if (aDistrictName == nil) {
+        aResultBlock(nil,nil);
+        return;
+    }
+    [dataQueue inDatabase:^(FMDatabase *db) {
+        if ([db open]) {
+            NSString *selCity=@"select * from areas_table where TypeName='市'";
+            FMResultSet *resultset = [db executeQuery:selCity];
+            if(resultset)
+            {
+                while ([resultset next]) {
+                    NSString *name= [resultset stringForColumn:@"name"];
+                    if([name hasPrefix:aCityName] || [aCityName hasPrefix:name])
+                    {
+                        HbuAreaListModelAreas *city = [weakself parseFMResultToHubAreasModel:resultset];
+                        //检索区
+                        NSString *selDistrict = @"select * from areas_table where TypeName = '区' and parent = ?";
+                        NSString *aAreaId = [NSString stringWithFormat:@"%d",(int)city.areaId];
+                        FMResultSet *aResult = [db executeQuery:selDistrict,aAreaId];
+                        if (aResult) {
+                            while ([aResult next]) {
+                                NSString *aName = [aResult stringForColumn:@"name"];
+                                if ([aName hasPrefix:aDistrictName] || [aDistrictName hasPrefix:aName]) {
+                                    HbuAreaListModelAreas *district = [weakself parseFMResultToHubAreasModel:aResult];
+                                    aResultBlock(city,district);
+                                    return ;
+                                }
+                            }
+                            aResultBlock(city,nil);
+                            return;
+                        }else{
+                            aResultBlock(city,nil);
+                            return;
+                        }
+                    }
+                }
+                aResultBlock(nil,nil);
+            }
+        }
+        else
+        {
+            aResultBlock(nil,nil);
+        }
+    }];
+}
+
 - (void)insertAreaToTable:(NSString *)aAreaId
                      name:(NSString*)aName
                     level:(int)aLevel
@@ -274,6 +323,7 @@
         }
     }];
 }
+
 
 - (void)selParentModel:(NSString *)aAreadid resultBlock:(void(^)(HbuAreaListModelAreas*model))aResultBlock __attribute__((nonnull(1)))
 {

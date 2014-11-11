@@ -59,11 +59,12 @@
 - (NSInteger)getSgmCount
 {
     CategoryChildInfoModel *childCateModel = nil;
-    if(self.categoryChildInfoModel.child && self.categoryChildInfoModel.child.count>0)
+    if(self.categoryInfoModel.child &&self.categoryInfoModel.child.count >0)
     {
         childCateModel = self.categoryInfoModel.child[0];
     }
-    _sgmCount = (childCateModel.child.count ? self.categoryInfoModel.child.count : 0);//判断是否多层
+    MLOG(@"%@",childCateModel);
+    _sgmCount = (childCateModel ? self.categoryInfoModel.child.count : 0);//判断是否多层
     return _sgmCount;
 }
 
@@ -220,9 +221,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"Cell";
+    MLOG(@"indexpath.row = %d",indexPath.row);
     HbhCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    
+    cell.rightImageButton.hidden = NO;
     CategoryChildInfoModel *leftCateModel =(self.sgmCount ? [self childDepthThreeCateModelWithIndex:indexPath.row * 2] : self.categoryInfoModel.child[indexPath.row*2]);
     
     [cell.leftImageButton sd_setImageWithURL:[NSURL URLWithString:leftCateModel.imageUrl] forState:UIControlStateNormal];
@@ -233,11 +235,14 @@
     cell.leftTitleLable.text = leftCateModel.title;
     
     //当category总数为奇数个时，最后一排右侧部分处理
-    if (self.categoryInfoModel.child.count%2 && ((indexPath.row+1)*2 == (self.sgmCount ? ((CategoryChildInfoModel *)depth2CateModel).child.count+1 : self.categoryInfoModel.child.count+1))) {
+    //self.categoryInfoModel.child.count%2 && 
+    if (((indexPath.row+1)*2 == (self.sgmCount ? ((CategoryChildInfoModel *)depth2CateModel).child.count+1 : self.categoryInfoModel.child.count+1))) {
 
         [cell.rightImageButton setImage:nil forState:UIControlStateNormal];
         cell.rightTitleLabel.text = @"";
+        cell.rightImageButton.hidden = YES;
         cell.rightImageButton.tag = kBlankButtonTag;
+    
     }else{
         CategoryChildInfoModel *rightCateModel;
         if (self.sgmCount) {
@@ -325,6 +330,8 @@
 - (CategoryChildInfoModel *)childDepthThreeCateModelWithIndex:(NSInteger)index
 {
     CategoryChildInfoModel *childModel = self.categoryInfoModel.child[self.selectSgmButton.tag % kSelectTagBase];
+    MLOG(@"%d",childModel.child.count)
+    ;
     return [CategoryChildInfoModel modelObjectWithDictionary:childModel.child[index]];
 }
 

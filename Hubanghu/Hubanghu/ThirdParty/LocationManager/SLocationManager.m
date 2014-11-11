@@ -285,8 +285,8 @@ static SLocationManager *myLocationObj = nil;
 - (void)locationAddressWithLocation:(float)lat lon:(float)alon
 {
     __weak SLocationManager *weakself = self;
-//    NSString *strlocation = [NSString stringWithFormat:@"http://api.map.baidu.com/geocoder/v2/?ak=F2fc1e6d3ef4195131cbcb8af07a604b&callback=renderReverse&location=%.6f,%.6f&output=json",lat,alon];
-        NSString *strlocation = [NSString stringWithFormat:@"http://api.map.baidu.com/geocoder/v2/?ak=F2fc1e6d3ef4195131cbcb8af07a604b&callback=renderReverse&location=39.983424,116.322987&output=json"];
+    NSString *strlocation = [NSString stringWithFormat:@"http://api.map.baidu.com/geocoder/v2/?ak=F2fc1e6d3ef4195131cbcb8af07a604b&callback=renderReverse&location=%.6f,%.6f&output=json",lat,alon];
+//        NSString *strlocation = [NSString stringWithFormat:@"http://api.map.baidu.com/geocoder/v2/?ak=F2fc1e6d3ef4195131cbcb8af07a604b&callback=renderReverse&location=39.983424,116.322987&output=json"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:strlocation]];
         NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];

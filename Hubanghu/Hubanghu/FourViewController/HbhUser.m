@@ -23,6 +23,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HbhUser);
         NSArray *storeFilePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docPath = storeFilePath[0];
         _userFilePath = [docPath stringByAppendingPathComponent:@"user.plist"];
+        //MLOG(@"%@",_userFilePath);
     }
     return _userFilePath;
 }
