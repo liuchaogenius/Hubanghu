@@ -107,7 +107,7 @@
 - (instancetype)initWithCateId:(double)cateId
 {
     if (self = [super init]) {
-        self.cateId = cateId+1;
+        self.cateId = cateId;
         self.hidesBottomBarWhenPushed = YES;
     }
     return self;
