@@ -105,13 +105,13 @@ typedef enum : NSUInteger {
                                   }
                               }
                               cancelButtonTitle:@"取消"
-                              otherButtonTitles:@"取消订单", nil];
+                              otherButtonTitles:@"确定", nil];
     [alertView show];
 }
 
 - (void)cancelOrder
 {
-    [self.orderManage cancelOrder:(int)self.myModel.id andSuccBlock:^{
+    [self.orderManage cancelOrder:(int)self.myModel.orderId andSuccBlock:^{
         
     } and:^{
         
@@ -129,7 +129,7 @@ typedef enum : NSUInteger {
 
 - (void)setUIWithModel:(HbhOrderModel *)aModel
 {
-    self.orderIdLabel.text = [NSString stringWithFormat:@"%.f", aModel.id];
+    self.orderIdLabel.text = [NSString stringWithFormat:@"%.f", aModel.orderId];
     self.orderTimeLabel.text = [self transformTime:aModel.time];
     self.orderNameLabel.text = aModel.name;
     /*0纯装，1拆装，2纯拆，3勘察*/
@@ -166,7 +166,7 @@ typedef enum : NSUInteger {
 - (void)pushToComfirmOrderVC
 {
     [self.navigationController pushViewController:[[HbhConfirmOrderViewController alloc]
-                                  initWithOrderId:[NSString stringWithFormat:@"%d", (int)self.myModel.id]]
+                                  initWithOrderId:[NSString stringWithFormat:@"%d", (int)self.myModel.orderId]]
                                          animated:YES];
 }
 

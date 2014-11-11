@@ -132,7 +132,15 @@
 - (void)setCellWithModel:(HbhOrderModel *)aModel
 {
     self.nameLabel.text = aModel.name;
-    self.workerNameLabel.text = aModel.workerName;
+    if(aModel.workerName && aModel.workerName.length>0)
+    {
+        self.workerNameLabel.text = aModel.workerName;
+    }
+    else
+    {
+        self.workerNameLabel.text = @"客服安排";
+    }
+    
     if (!aModel.urgent) {
         self.urgentLabel.text = @"";
     }

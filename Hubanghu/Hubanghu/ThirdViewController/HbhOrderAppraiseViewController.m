@@ -97,7 +97,7 @@
 - (void)commitComment
 {
     NSString *commentUrl = nil;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", (int)self.myModel.id],@"orderId",@"4",@"skill",@"4",@"status",[NSString stringWithFormat:@"%d", _isAgian],@"again",self.appraiseTextView.text,@"commment", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", (int)self.myModel.orderId],@"orderId",@"4",@"skill",@"4",@"status",[NSString stringWithFormat:@"%d", _isAgian],@"again",self.appraiseTextView.text,@"commment", nil];
     kHubRequestUrl(@"submitComment.ashx", commentUrl);
     [NetManager requestWith:dict url:commentUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict){
         MLOG(@"%@", successDict);

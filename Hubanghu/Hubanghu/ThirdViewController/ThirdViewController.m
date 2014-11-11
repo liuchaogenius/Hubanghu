@@ -317,6 +317,7 @@ typedef enum : NSUInteger {
         else{
             [self.activityIndicatorView stopAnimating];
 //            [self.failView removeFromSuperview];
+            [self.showOrderTableView reloadData];
         }
     }
     else if(_currentTab == currentTabOrderAppraise)
@@ -328,6 +329,7 @@ typedef enum : NSUInteger {
         else{
             [self.activityIndicatorView stopAnimating];
 //            [self.failView removeFromSuperview];
+            [self.showOrderTableView reloadData];
         }
     }
     else if (_currentTab == currentTabOrderUndone)
@@ -340,6 +342,7 @@ typedef enum : NSUInteger {
         {
             [self.activityIndicatorView stopAnimating];
 //            [self.failView removeFromSuperview];;
+            [self.showOrderTableView reloadData];
         }
     }
 }
@@ -437,6 +440,7 @@ typedef enum : NSUInteger {
             /*0未付款，1已付款，2待评价*/
         case 0:
         case 1:
+        case 3:
             [self.navigationController pushViewController:orderDetailVC animated:YES];
             break;
         case 2:

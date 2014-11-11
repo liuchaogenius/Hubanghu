@@ -54,8 +54,8 @@ NSString *const kHbhWorkersComment = @"comment";
             self.photoUrl = [self objectOrNilForKey:kHbhWorkersPhotoUrl fromDictionary:dict];
             self.orderCount = [[self objectOrNilForKey:kHbhWorkersOrderCount fromDictionary:dict] intValue];
             self.caseProperty = [self objectOrNilForKey:kHbhWorkersCase fromDictionary:dict];
-            int age = [[self objectOrNilForKey:kHbhWorkersWorkingAge fromDictionary:dict] intValue];
-            self.workingAge = [NSString stringWithFormat:@"%d", age];
+            //int age = [[self objectOrNilForKey:kHbhWorkersWorkingAge fromDictionary:dict] intValue];
+            self.workingAge = [self objectOrNilForKey:kHbhWorkersWorkingAge fromDictionary:dict];
             self.comment = [self objectOrNilForKey:kHbhWorkersComment fromDictionary:dict];
 
     }

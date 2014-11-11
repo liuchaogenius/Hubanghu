@@ -14,7 +14,7 @@
 - (void)getWorkerDetailWithWorkerId:(int)aWorkerId SuccBlock:(void(^)(HbhWorkerData *aData))aSuccBlock and:(void(^)(void))aFailBlock
 {
     NSString *workerDetailUrl = nil;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",aWorkerId],@"getWorkerDetail.ashx", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",aWorkerId],@"workerId", nil];
     kHubRequestUrl(@"getWorkerDetail.ashx", workerDetailUrl);
     [NetManager requestWith:dict url:workerDetailUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
