@@ -157,6 +157,7 @@
 		FFD1A2D019EE4B6D00EA97D4 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2CA19EE4B6D00EA97D4 /* FMDatabaseQueue.m */; };
 		FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2CC19EE4B6D00EA97D4 /* FMResultSet.m */; };
 		FFD1A2D319EE4B8D00EA97D4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */; };
+		FFDBF2761A11A035004E0868 /* LSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDBF2751A11A035004E0868 /* LSNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -462,6 +463,8 @@
 		FFD1A2CB19EE4B6D00EA97D4 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		FFD1A2CC19EE4B6D00EA97D4 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		FFDBF2741A11A035004E0868 /* LSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNavigationController.h; sourceTree = "<group>"; };
+		FFDBF2751A11A035004E0868 /* LSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -929,6 +932,7 @@
 		FF21CEA719E66144005007B7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				FFDBF2731A11A010004E0868 /* LSNavigationController */,
 				FF6D90401A0749B500C966F8 /* alipay_sdk */,
 				FF0963FD19F51F0A00EF8D0E /* ToastView */,
 				FFD1A2C219EE4B6D00EA97D4 /* FMDB */,
@@ -1214,6 +1218,15 @@
 			name = AreasModel;
 			sourceTree = "<group>";
 		};
+		FFDBF2731A11A010004E0868 /* LSNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				FFDBF2741A11A035004E0868 /* LSNavigationController.h */,
+				FFDBF2751A11A035004E0868 /* LSNavigationController.m */,
+			);
+			path = LSNavigationController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1378,6 +1391,7 @@
 				FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */,
 				B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */,
 				FF21CF2619E66144005007B7 /* UIViewAdditions.m in Sources */,
+				FFDBF2761A11A035004E0868 /* LSNavigationController.m in Sources */,
 				FF6D906A1A0749B500C966F8 /* SBJsonWriter.m in Sources */,
 				FF21CF1A19E66144005007B7 /* UIImage+MultiFormat.m in Sources */,
 				ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */,

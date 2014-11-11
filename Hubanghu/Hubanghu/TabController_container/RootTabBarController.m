@@ -17,13 +17,19 @@
 #import "HbhLoginViewController.h"
 #import "HbhUser.h"
 #import "IntroduceWebView.h"
+#import "LSNavigationController.h"
 
 @interface RootTabBarController ()
 {
-    UINavigationController *firstNav;
-    UINavigationController *secondNav;
-    UINavigationController *thirdNav;
-    UINavigationController *fourthNav;
+//    UINavigationController *firstNav;
+//    UINavigationController *secondNav;
+//    UINavigationController *thirdNav;
+//    UINavigationController *fourthNav;
+    
+    LSNavigationController *firstNav;
+    LSNavigationController *secondNav;
+    LSNavigationController *thirdNav;
+    LSNavigationController *fourthNav;
     
     FirstViewController *firstVC;
     SecondViewController *secondVC;
@@ -66,16 +72,16 @@
 - (void)initTabViewController
 {
     firstVC = [[FirstViewController alloc] init];
-    firstNav = [[UINavigationController alloc] initWithRootViewController:firstVC];
+    firstNav = [[LSNavigationController alloc] initWithRootViewController:firstVC];
     
     secondVC = [[SecondViewController alloc] init];
-    secondNav = [[UINavigationController alloc] initWithRootViewController:secondVC];
+    secondNav = [[LSNavigationController alloc] initWithRootViewController:secondVC];
     
     thirdVC = [[ThirdViewController alloc] init];
-    thirdNav = [[UINavigationController alloc] initWithRootViewController:thirdVC];
+    thirdNav = [[LSNavigationController alloc] initWithRootViewController:thirdVC];
     
     fourthVC = [[FourthViewController alloc] init];
-    fourthNav = [[UINavigationController alloc] initWithRootViewController:fourthVC];
+    fourthNav = [[LSNavigationController alloc] initWithRootViewController:fourthVC];
     
     self.viewControllers = @[firstNav,secondNav,thirdNav,fourthNav];
 }
