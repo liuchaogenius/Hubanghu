@@ -71,12 +71,12 @@
     
     NSData *currentAreaDate = [userDefault objectForKey:@"currentAreas"];
     NSData *currentDistrictData = [userDefault objectForKey:@"currentDistrict"];
-//    if (currentAreaDate) {
-//        self.currentAreas = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
-//        if (<#condition#>) {
-//            <#statements#>
-//        }
-//    }
+    if (currentAreaDate) {
+        self.currentAreas = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
+        if (currentDistrictData) {
+            self.currentDistrict = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
+        }
+    }
     return self;
 }
 
@@ -178,7 +178,9 @@
                         MLOG(@"%@   %@",city.name,district.name);
                         if (city) {
                             weakSelf.currentAreas = city;
-                            weakSelf.currentDistrict = district;
+                            if (district) {
+                                weakSelf.currentDistrict = district;
+                            }
                             sBlock();
                         }else{
                             weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_matchCfail)):(aFailBlock(@"匹配用户城市失败，请手动选择",errorType_matchCityFailed));

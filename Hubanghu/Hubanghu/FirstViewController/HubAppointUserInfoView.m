@@ -296,7 +296,19 @@ enum TextFieldType
     }];
     //读取区
     [weakSelf setDistrictArrayWithParentId:_city.areaId WithSuccessBlock:^{
-        _district = weakSelf.districtArray[0];
+        if (self.areaLocationManger.currentDistrict && self.areaLocationManger.currentDistrict.name.length) {
+            _district = self.areaLocationManger.currentDistrict;
+            for (int i = 0; i < self.districtArray.count; i++) {
+                HbuAreaListModelAreas *area = self.districtArray[i];
+                if ((int)area.areaId == (int)_district.areaId) {
+                    [self.areaPicker selectRow:i inComponent:2 animated:YES];
+                    break;
+                }
+            }
+        }else{
+            _district = weakSelf.districtArray[0];
+        }
+        
         //地址textField文字
         if (weakSelf.textFiledArray && weakSelf.textFiledArray.count >= TextField_location && _province && _city) {
             ((UITextField *)weakSelf.textFiledArray[TextField_location]).text = [NSString stringWithFormat:@"%@ %@ %@",_province.name,_city.name,_district.name];

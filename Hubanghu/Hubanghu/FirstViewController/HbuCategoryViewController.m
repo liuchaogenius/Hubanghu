@@ -235,7 +235,8 @@
     cell.leftTitleLable.text = leftCateModel.title;
     
     //当category总数为奇数个时，最后一排右侧部分处理
-    //self.categoryInfoModel.child.count%2 && 
+    //self.categoryInfoModel.child.count%2 &&
+
     if (((indexPath.row+1)*2 == (self.sgmCount ? ((CategoryChildInfoModel *)depth2CateModel).child.count+1 : self.categoryInfoModel.child.count+1))) {
 
         [cell.rightImageButton setImage:nil forState:UIControlStateNormal];
