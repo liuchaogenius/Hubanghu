@@ -68,4 +68,29 @@
     }];
 }
 
+
+- (void)aliPaySigned:(HubOrder *)aOrder
+             orderId:(NSString *)aOrderId
+         productDesx:(NSString *)aDisc
+               title:(NSString *)aTitle
+               price:(NSString *)aPrice
+{
+    NSString *url = nil;
+    kHubRequestUrl(@"getAlipaysigned.ashx", url);
+    AlixPayOrder *aliOrder = [[AlixPayOrder alloc] init];
+    aliOrder.partner = @"2088311602278363";
+    aliOrder.seller =@"hu8hu888@sina.com";
+    aliOrder.tradeNO = aOrderId;
+    aliOrder.productName = aTitle; //商品标题
+    aliOrder.productDescription = aDisc; //商品描述
+    aliOrder.amount = aPrice; //商品价格
+    aliOrder.notifyURL =  @"http%3A%2F%2Fwwww.xxx.com"; //回调URL;
+    NSString *strAliOrer = [aliOrder description];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:strAliOrer,@"rsaSigned", nil];
+    [NetManager requestWith:dict url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
+        MLOG(@"succes = %@", successDict);
+    } failure:^(NSDictionary *failDict, NSError *error) {
+        MLOG(@"succes = %@", failDict);
+    }];
+}
 @end

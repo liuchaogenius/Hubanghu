@@ -12,6 +12,7 @@
 #import "STAlerView.h"
 #import "AreasDBManager.h"
 #import "HbuAreaListModelAreas.h"
+
 #define kDoubleToString(a) [NSString stringWithFormat:@"%.0lf",a]
 @interface HbhConfirmOrderViewController ()
 //data
@@ -76,6 +77,7 @@
 		_orderId = [[succDic objectForKey:@"data"] objectForKey:@"orderId"];
 		[weakself.activityView stopAnimating];
 #warning 跳转到支付界面 liuchao 单下成功后 按钮变成支付 如果支付成功了 就灰掉按钮
+        [weakself alipayServier];
 	} failure:^{
 		[self.activityView stopAnimating];
 		STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"提交订单失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
@@ -305,6 +307,8 @@
 #warning 支付订单 liuchao
 - (void)alipayServier
 {
+    
+    [self.netManager aliPaySigned:self.order orderId:self.orderId productDesx:@"aaa" title:@"安装" price:[NSString stringWithFormat:@"%.4f", self.order.price]];
 }
 /*
 #pragma mark - Navigation
