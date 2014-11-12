@@ -70,9 +70,12 @@
 + (void)profileRevalWithSuccess:(void(^)(int notDone,int notComment))sBlock failure:(void(^)())fBlock
 {
     NSString *url = nil;
+    NSString *key = @"profile";
     kHubRequestUrl(@"profileReval.ashx", url);
     
-    [NetManager requestWith:nil url:url method:@"GET" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
+    [NetManager cancelOperation:key];
+    
+    [NetManager requestWith:nil url:url method:@"POST" operationKey:key parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         NSDictionary *dic = successDict[@"data"];
         int notDone = [dic[@"notDone"] intValue];
         int notComment = [dic[@"notComment"] intValue];

@@ -71,6 +71,7 @@
     self.textField.font = kFont15;
     self.textField.placeholder = @"输入用户名";
     self.textField.returnKeyType = UIReturnKeyDone;
+    self.textField.text = [HbhUser sharedHbhUser].nickName;
     self.textField.delegate = self;
     self.textField.textColor = RGBCOLOR(176, 176, 176);
     [self.view addSubview:self.textField];
@@ -98,7 +99,7 @@
 
 - (void)touchBtn
 {
-    if (![self.textField.text isEqualToString:@""])
+    if (![self.textField.text isEqualToString:[HbhUser sharedHbhUser].nickName])
     {
         [self changeUserName:self.textField.text];
     }
@@ -117,6 +118,11 @@
         
     } succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
+        MLOG(@"%@",successDict[@"photoUrl"]);
+        
+        /*
+         修改 [HbhUser sharedHbhUser].photoUrl
+         */
         
     } failure:^(NSDictionary *failDict, NSError *error) {
         

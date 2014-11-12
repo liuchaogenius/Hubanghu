@@ -226,7 +226,6 @@ enum CellTag_Type
             numberLabel.backgroundColor = kIconSelectColor;
             numberLabel.textColor = [UIColor whiteColor];
             numberLabel.tag = kNumberLabelTag;
-            numberLabel.backgroundColor = kClearColor;
             _numberLabel = numberLabel;
             [cell.contentView addSubview:numberLabel];
         }

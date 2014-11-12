@@ -9,6 +9,7 @@
 #import "HbhUser.h"
 #import "SynthesizeSingleton.h"
 #import "HbuAreaLocationManager.h"
+#import "NetManager.h"
 @interface HbhUser()
 @property (strong, nonatomic) NSString *userFilePath; //用户文件路径
 //@property (strong, nonatomic) NSMutableDictionary *userInfoDic;//用户信息字典
@@ -55,6 +56,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HbhUser);
             
             if (encodedToken.length) {
                 [self loadUserInfoWithDictionary:userDic];
+                [[NetManager shareInstance] setUserid:self.userID];
             }
         }
     }

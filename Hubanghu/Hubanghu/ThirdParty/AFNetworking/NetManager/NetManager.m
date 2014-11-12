@@ -154,6 +154,8 @@
     if(user.userID)
     {
         [aRequest addValue:user.userID forHTTPHeaderField:@"hbh_uid"];
+        //[aRequest addValue:@"1" forHTTPHeaderField:@"hbh_uid"];
+        MLOG(@"userId : %@",user.userID);
     }
     if ([net getAreaId]) {
         [aRequest setValue:[net getAreaId] forHTTPHeaderField:@"hbh_areaId"];
