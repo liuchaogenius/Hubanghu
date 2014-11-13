@@ -67,17 +67,7 @@ typedef enum : NSUInteger {
 
 - (void)viewWillAppear:(BOOL)animated
 {
-#pragma mark 网络请求
-    if (self.workersArray.count==0) {
-        if (_isLocationed) {
-            HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
-            [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:0 andOrderCountId:0];
-        }
-        else
-        {
-            [self getWorkerListWithAreaId:0 andWorkerTypeId:0 andOrderCountId:0];
-        }
-    }
+
 }
 
 - (void)viewDidLoad {
@@ -115,10 +105,28 @@ typedef enum : NSUInteger {
     self.showWorkerListTableView.backgroundColor = kViewBackgroundColor;
     [self.view addSubview:self.showWorkerListTableView];
     
-    
     [self.view addSubview:self.activityView];
     [self.activityView startAnimating];
     [self addTableViewTrag];
+    
+#pragma mark 网络请求
+    if (_isLocationed) {
+        if ([HbuAreaLocationManager sharedManager].currentDistrict) {
+            HbuAreaListModelAreas *area = [HbuAreaLocationManager sharedManager].currentDistrict;
+            [self getWorkerListWithAreaId:area.areaId andWorkerTypeId:0 andOrderCountId:0];
+            UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
+            temLabel.text = area.name;
+        }
+        else
+        {
+            HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
+            [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:0 andOrderCountId:0];
+        }
+    }
+    else
+    {
+        [self getWorkerListWithAreaId:0 andWorkerTypeId:0 andOrderCountId:0];
+    }
 }
 
 - (void)getWorkerListWithAreaId:(int)aAreaId andWorkerTypeId:(int)aWorkTypeId andOrderCountId:(int)aOrderId
