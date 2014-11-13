@@ -122,7 +122,10 @@ static SLocationManager *myLocationObj = nil;
 {
     isLocationing = YES;///重复定位和重复网络请求？？？？？？？？
     [self.myLocationManager startUpdatingLocation];
-    [self performSelector:@selector(locationTimeOut) withObject:nil afterDelay:10];
+    if([self getLocationAuthorStatus] != kCLAuthorizationStatusNotDetermined)
+    {
+        [self performSelector:@selector(locationTimeOut) withObject:nil afterDelay:10];
+    }
 }
 
 - (void)startLocation:(void(^)(Location2d al2d))aBlock

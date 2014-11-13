@@ -79,7 +79,7 @@ enum CateId_Type
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setLeftButton:nil title:@"left" target:self action:@selector(showLeftView)];
+    [self setLeftButton:[UIImage imageNamed:@"leftButtonBg"] title:@"" target:self action:@selector(showLeftView)];
     [self setRightButton:nil title:@"城市" target:self action:@selector(showSelCityVC)];
     [self settitleLabel:@"预约"];
     self.view.backgroundColor = kViewBackgroundColor;

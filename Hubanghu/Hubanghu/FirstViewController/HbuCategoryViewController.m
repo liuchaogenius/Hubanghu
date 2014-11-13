@@ -88,7 +88,6 @@
         for (int i = 0; i < self.sgmCount; i++) {
             CategoryChildInfoModel *childModel = self.categoryInfoModel.child[i];
             UIButton *sgmButton = [self customButtonWithFrame:CGRectMake(i*buttonWidth, 0, buttonWidth, kSgmBtnHeight) andTitle:childModel.title];
-            
             sgmButton.tag = i + kSelectTagBase;//用tag%kSelectTagBase 来记录选中的分类
             if (i == 0) {
                 sgmButton.selected = YES; //默认选择第一个
@@ -319,7 +318,7 @@
     [button setTitleColor:KColor forState:UIControlStateSelected];
     [button setTitle:title forState:UIControlStateNormal];
     [button setBackgroundColor:[UIColor clearColor]];
-    button.titleLabel.font = kFont11;
+    button.titleLabel.font = kFont14;
     //button.layer.borderWidth = 0.7f;
     //button.layer.borderColor = [RGBCOLOR(207, 207, 207) CGColor];
     button.selected = NO;

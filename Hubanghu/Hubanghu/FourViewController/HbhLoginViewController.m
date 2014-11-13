@@ -123,7 +123,8 @@ enum TextField_Type
         [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [loginButton setFrame:CGRectMake(20, 125+45, kMainScreenWidth-40.0, 40)];
         loginButton.layer.cornerRadius = 5.0f;
-        [loginButton setTitle:@"登陆" forState:UIControlStateNormal];
+        loginButton.titleLabel.font = kFontBold17;
+        [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
         [loginButton addTarget:self action:@selector(touchLoginButton) forControlEvents:UIControlEventTouchUpInside];
         _LoginButton = loginButton;
         [_loginView addSubview:loginButton];
@@ -184,7 +185,8 @@ enum TextField_Type
         [registerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [registerButton setFrame:CGRectMake(20, 165+45, kMainScreenWidth-40.0, 40)];
         registerButton.layer.cornerRadius = 5.0f;
-        [registerButton setTitle:@"注册" forState:UIControlStateNormal];
+        registerButton.titleLabel.font = kFontBold17;
+        [registerButton setTitle:@"注 册" forState:UIControlStateNormal];
         [registerButton addTarget:self action:@selector(touchRegisterButton) forControlEvents:UIControlEventTouchUpInside];
         _LoginButton = registerButton;
         [_registerView addSubview:registerButton];
@@ -199,7 +201,7 @@ enum TextField_Type
     [self.view addSubview:self.sgmLoginButton];
     [self.view addSubview:self.sgmRegisterButton];
     self.sgmLoginButton.selected = YES;
-    self.title = @"登陆";
+    self.title = @"登 录";
     
     [self.view addSubview:self.loginView];
     [self.view addSubview:self.selectedLine];

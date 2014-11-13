@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "RootTabBarController.h"
 #import "HbhUser.h"
-
+#import "NetManager.h"
 @interface AppDelegate ()
 
 @end
@@ -26,7 +26,19 @@
 	
     self.window.rootViewController = rootvc;
     [self.window makeKeyAndVisible];
+    [self checkVersion];
     return YES;
+}
+
+- (void)checkVersion
+{
+    NSString *url = nil;
+    kHubRequestUrl(@"checkVersion.aspx", url);
+    [NetManager requestWith:nil url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
+        NSDictionary *dict = [successDict objectForKey:@"data"];
+    } failure:^(NSDictionary *failDict, NSError *error) {
+        
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
