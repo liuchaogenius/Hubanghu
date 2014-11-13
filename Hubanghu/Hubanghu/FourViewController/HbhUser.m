@@ -41,6 +41,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HbhUser);
     _phone = nil;
     _point = 0;
     _encodedToken = nil;
+    _localPhoto = nil;
     _statusIsChanged = NO;
     [self loadLocalUserInfo]; //判断沙箱是否有数据，并修改数据
     return self;
@@ -93,6 +94,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HbhUser);
     self.point = [userDic[@"point"] integerValue];
     self.QRCodeUrl = userDic[@"QRCodeUrl"];
     self.encodedToken = userDic[@"encodedToken"];
+    self.localPhoto = userDic[@"localPhoto"];
 }
 
 //保存用户信息文件至沙箱
@@ -104,7 +106,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HbhUser);
     self.phone = self.phone?:@"";
     self.QRCodeUrl = self.QRCodeUrl?:@"";
     self.encodedToken = self.encodedToken?:@"";
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"nickName":self.nickName, @"id":self.userID, @"photoUrl":self.photoUrl, @"phone":self.phone, @"point":[NSNumber numberWithInteger:self.point], @"QRCodeUrl":self.QRCodeUrl,@"encodedToken":self.encodedToken}];
+    self.localPhoto = self.localPhoto ? :@"";
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"nickName":self.nickName, @"id":self.userID, @"photoUrl":self.photoUrl, @"phone":self.phone, @"point":[NSNumber numberWithInteger:self.point],@"QRCodeUrl":self.QRCodeUrl,@"encodedToken":self.encodedToken,@"localPhoto":self.localPhoto}];
     [dic writeToFile:self.userFilePath atomically:YES];
     //MLOG(@"%@",self.userFilePath);
 }

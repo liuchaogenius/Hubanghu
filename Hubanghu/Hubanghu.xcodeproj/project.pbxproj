@@ -1276,11 +1276,11 @@
 				TargetAttributes = {
 					FF21CE6919E64B5A005007B7 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 95Y3FJ9H47;
+						DevelopmentTeam = JERPD52W3W;
 					};
 					FF21CE7C19E64B5A005007B7 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 95Y3FJ9H47;
+						DevelopmentTeam = JERPD52W3W;
 						TestTargetID = FF21CE6919E64B5A005007B7;
 					};
 				};

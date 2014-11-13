@@ -92,6 +92,11 @@ enum CellTag_Type
     //待完善刷新时机
     if ([HbhUser sharedHbhUser].isLogin) {
         [self refreshNumberLabels];
+        if ([HbhUser sharedHbhUser].statusIsChanged) {
+            [HbhUser sharedHbhUser].statusIsChanged = NO;
+            [self loadUserPhoto];
+            self.fHeadView.nickNameLabel.text = [HbhUser sharedHbhUser].nickName;
+        }
     }
 }
 
@@ -165,7 +170,8 @@ enum CellTag_Type
             self.fHeadView.notLoginView.hidden = YES;
             self.fHeadView.nickNameLabel.text = user.nickName;
             self.fHeadView.pointLabel.text = [NSString stringWithFormat:@"积分：%ld",(long)user.point];
-            [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+//            [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+            [self loadUserPhoto];
             [self.fHeadView.changePhotoButton addTarget:self action:@selector(touchModifyUserDetail) forControlEvents:UIControlEventTouchUpInside];
         }
         self.fHeadView.hasLoginView.hidden = (user.isLogin ? NO:YES);
@@ -373,6 +379,21 @@ enum CellTag_Type
     HbhModifyUserDetailViewController *vc = [[HbhModifyUserDetailViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma 载入头像
+- (void)loadUserPhoto
+{
+    HbhUser *user = [HbhUser sharedHbhUser];
+    if (user.localPhoto && user.localPhoto.length > 3) {
+        NSArray *storeFilePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docPath = storeFilePath[0];
+        NSString *localPhotoUrl = [docPath stringByAppendingPathComponent:user.localPhoto];
+
+        self.fHeadView.photoImageView.image = [UIImage imageWithContentsOfFile:localPhotoUrl];
+    }else{
+        [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+    }
 }
 
 /*

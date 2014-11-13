@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString *userID; //id
 @property (strong, nonatomic) NSString *nickName; //昵称
 @property (strong, nonatomic) NSString *photoUrl; //头像
+@property (strong, nonatomic) NSString *localPhoto;//本地头像url
 @property (strong, nonatomic) NSString *QRCodeUrl; //二维码
 @property (strong, nonatomic) NSString *phone; //手机
 @property (nonatomic) NSInteger point; //积分

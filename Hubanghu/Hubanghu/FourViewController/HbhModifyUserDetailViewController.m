@@ -38,7 +38,7 @@
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(UesrImageClicked)];
     [self.imgView addGestureRecognizer:self.tapGesture];
     self.imgView.userInteractionEnabled = YES;
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+    [self loadUserPhoto];
     [self.view addSubview:self.imgView];
         
     UIButton *modifyBtn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-50, self.imgView.bottom+10, 100, 20)];
@@ -99,12 +99,18 @@
 
 - (void)touchBtn
 {
+    BOOL isChanged = NO;
     if (![self.textField.text isEqualToString:[HbhUser sharedHbhUser].nickName])
     {
         [self changeUserName:self.textField.text];
+        isChanged = YES;
     }
     if (self.photoImg) {
         [self uploadImg];
+        isChanged = YES;
+    }
+    if (isChanged) {
+        [[HbhUser sharedHbhUser] writeUserInfoToFile];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -119,24 +125,41 @@
     } succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
         MLOG(@"%@",successDict[@"photoUrl"]);
-        
-        /*
-         修改 [HbhUser sharedHbhUser].photoUrl
-         */
+        if ([successDict[@"result"] integerValue] == 1) {
+            [HbhUser sharedHbhUser].photoUrl = successDict[@"photoUrl"];
+        }
         
     } failure:^(NSDictionary *failDict, NSError *error) {
         
     }];
+    
+    //本地操作
+    NSArray *storeFilePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *docPath = storeFilePath[0];
+    NSString *filePath = [docPath stringByAppendingPathComponent:@"userPhoto.png"];
+    MLOG(@"%@",filePath);
+    BOOL result = [UIImagePNGRepresentation(self.photoImg) writeToFile: filePath    atomically:YES];
+    if (result) {
+        [HbhUser sharedHbhUser].localPhoto = @"userPhoto.png";
+        [HbhUser sharedHbhUser].statusIsChanged = YES;
+    }
 }
 
 //change username
 - (void)changeUserName:(NSString *)aNewName
 {
+    [HbhUser sharedHbhUser].nickName = aNewName;
+    [HbhUser sharedHbhUser].statusIsChanged = YES;
+    
     NSString *changeUserNameUrl = nil;
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:aNewName,@"newname", nil];
     kHubRequestUrl(@"changeProfile.ashx", changeUserNameUrl);
     [NetManager requestWith:dict url:changeUserNameUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         MLOG(@"%@", successDict);
+        if ([successDict[@"result"] integerValue] == 1) {
+            [HbhUser sharedHbhUser].userID = successDict[@"newname"];
+        }
     } failure:^(NSDictionary *failDict, NSError *error) {
         
     }];
@@ -212,6 +235,21 @@
     
     //    [HttpRequestManager uploadImage:compressedImage httpClient:self.httpClient delegate:self];
     
+}
+
+#pragma 载入头像
+- (void)loadUserPhoto
+{
+    HbhUser *user = [HbhUser sharedHbhUser];
+    if (user.localPhoto && user.localPhoto.length > 3) {
+        NSArray *storeFilePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docPath = storeFilePath[0];
+        NSString *localPhotoUrl = [docPath stringByAppendingPathComponent:user.localPhoto];
+        
+        self.imgView.image = [UIImage imageWithContentsOfFile:localPhotoUrl];
+    }else{
+        [self.imgView sd_setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
