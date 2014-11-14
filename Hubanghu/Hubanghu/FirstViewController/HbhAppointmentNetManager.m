@@ -56,7 +56,7 @@
 {
     cateId = cateId?:@"0";
     NSString *strCateid = [NSString stringWithFormat:@"%d",[cateId intValue]];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:(strCateid ? strCateid : @""),@"cateId",[NSNumber numberWithInt:type],@"amountType",(amount ? amount : @""),@"amount",[NSNumber numberWithInt:urgent],@"urgent", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:(strCateid ? strCateid : @""),@"cateId",[NSNumber numberWithInt:type],@"type",(amount ? amount : @""),@"amount",[NSNumber numberWithInt:urgent],@"urgent", nil];
     NSString *url;
     kHubRequestUrl(@"getApointmentPrice.ashx", url);
     [NetManager requestWith:dic url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
