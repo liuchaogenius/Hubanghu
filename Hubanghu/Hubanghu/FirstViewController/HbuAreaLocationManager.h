@@ -28,6 +28,7 @@ enum error_Type
 @property (strong, nonatomic) AreasDBManager *areasDBManager;
 @property (nonatomic, strong) HbuAreaListModelAreas *currentAreas; //当前城市
 @property (nonatomic, strong) HbuAreaListModelAreas *currentDistrict;//当前区
+@property (nonatomic, strong) HbuAreaListModelAreas *currentProvince;//当前省
 
 //单例方法
 + (instancetype)sharedManager;

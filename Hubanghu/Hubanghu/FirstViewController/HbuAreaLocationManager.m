@@ -46,6 +46,17 @@
     }
 }
 
+- (void)setCurrentProvince:(HbuAreaListModelAreas *)currentProvince
+{
+    _currentProvince = currentProvince;
+    if (_currentProvince.areaId) {
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentProvince];
+        [userDefault setObject:currentAreasData forKey:@"currentProvince"];
+        [userDefault synchronize];
+    }
+}
+
 - (AreasDBManager *)areasDBManager
 {
     if (!_areasDBManager) {
@@ -71,10 +82,14 @@
     
     NSData *currentAreaDate = [userDefault objectForKey:@"currentAreas"];
     NSData *currentDistrictData = [userDefault objectForKey:@"currentDistrict"];
+    NSData *currentProvinceData = [userDefault objectForKey:@"currentProvince"];
     if (currentAreaDate) {
         self.currentAreas = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
         if (currentDistrictData) {
             self.currentDistrict = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
+        }
+        if (currentProvinceData) {
+            self.currentProvince = [NSKeyedUnarchiver unarchiveObjectWithData:currentProvinceData];
         }
     }
     return self;
@@ -187,14 +202,7 @@
                         }
                         
                     }];/*
-                    [weakSelf.areasDBManager selHbuArealistModel:addressDic[@"city"] resultBlock:^(HbuAreaListModelAreas *model) {
-                        if (model) {
-                            weakSelf.currentAreas = model;
-                            sBlock();
-                        }else{
-                            weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_matchCfail)):(aFailBlock(@"匹配用户城市失败，请手动选择",errorType_matchCityFailed));
-                        }
-                    }];*/
+                   
                 }else{
                     weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_locFail)) : (aFailBlock(@"定位用户城市失败，请手动选择",errorType_locationFailed));                }
             }];
