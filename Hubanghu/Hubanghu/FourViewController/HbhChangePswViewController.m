@@ -43,7 +43,7 @@ enum TextField_Type
 - (void)setUI
 {
     UIView *whiteBackView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, kMainScreenWidth-40, 165)];
-    whiteBackView.backgroundColor = kViewBackgroundColor;//[UIColor whiteColor];
+    whiteBackView.backgroundColor = [UIColor whiteColor];
     whiteBackView.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 207) CGColor];
     whiteBackView.layer.borderWidth = 1.0f;
     whiteBackView.layer.cornerRadius = 4.0;
