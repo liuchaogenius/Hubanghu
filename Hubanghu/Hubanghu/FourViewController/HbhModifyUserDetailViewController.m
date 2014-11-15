@@ -199,7 +199,7 @@
                     sourceType = UIImagePickerControllerSourceTypeCamera;
                     break;
                 case 2: //相册
-                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;//UIImagePickerControllerSourceTypeSavedPhotosAlbum;//
                     break;
             }
         }
@@ -215,6 +215,7 @@
         imagePickerController.delegate = self;
         imagePickerController.allowsEditing = YES;
         imagePickerController.sourceType = sourceType;
+        imagePickerController.mediaTypes =[UIImagePickerController availableMediaTypesForSourceType:imagePickerController.sourceType];
         
         [self presentViewController:imagePickerController animated:YES completion:^{}];
     }
@@ -226,8 +227,19 @@
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
     UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    self.photoImg = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    self.imgView.image = image;
+    //self.photoImg = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    
+    CGRect rect = CGRectMake(0,0,100,100);
+    UIGraphicsBeginImageContext( rect.size );
+    [image drawInRect:rect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.photoImg = newImage;
+    self.imgView.image = newImage;
+    
+    //NSLog(@"imagew = %f,h = %f",self.photoImg.size.width,
+         // self.photoImg.size.height);
     
 //    self.photoUrl = [[info objectForKey:@"UIImagePickerControllerMediaURL"] absoluteString];
     //    NSData *imageData = UIImageJPEGRepresentation(image, COMPRESSED_RATE);
@@ -235,6 +247,11 @@
     
     //    [HttpRequestManager uploadImage:compressedImage httpClient:self.httpClient delegate:self];
     
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma 载入头像
@@ -254,6 +271,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     // Dispose of any resources that can be recreated.
 }
 
