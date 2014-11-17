@@ -91,12 +91,12 @@ typedef enum : NSUInteger {
     if (!self.paramCurrentTab)
     {
         _currentTab = currentTabOrderAll;
-        self.showOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight-66-40-49)];
+        self.showOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight-64-40-49)];
     }
     else
     {
         _currentTab = self.paramCurrentTab;
-        self.showOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight-66-40)];
+        self.showOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight-64-40)];
     }
     
     [self.view addSubview:self.btnBackView];
