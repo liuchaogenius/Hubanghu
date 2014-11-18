@@ -33,9 +33,11 @@
 - (void)checkVersion
 {
     NSString *url = nil;
-    kHubRequestUrl(@"checkVersion.aspx", url);
+    kHubRequestUrl(@"checkVersion.ashx", url);
     [NetManager requestWith:nil url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
-        NSDictionary *dict = [successDict objectForKey:@"data"];
+        NSDictionary *dataDict = [successDict objectForKey:@"data"];
+        int Type = [[dataDict objectForKey:@"type"] intValue];
+        ////"type":0/*0不更新，1强制更新，2可选更新*/
     } failure:^(NSDictionary *failDict, NSError *error) {
         
     }];

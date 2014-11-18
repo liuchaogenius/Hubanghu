@@ -14,4 +14,7 @@
 #define kLoginForUserMessage @"loginforuser"
 #define kLoginSuccessMessae @"loginsuccess" //登陆成功发送消息
 #define kLoginFailMessage @"loginFail"
+
+#define kAlipayPartnerId @"2088311602278363"
+#define kAlipaySellerAcount @"hu8hu888@sina.com"
 #endif

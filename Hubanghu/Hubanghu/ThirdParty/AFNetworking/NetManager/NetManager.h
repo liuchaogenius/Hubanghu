@@ -48,4 +48,7 @@
           failure:(FAILUREBLOCK)failure;
 
 + (void)cancelOperation:(id)aOperationKey;
+
++ (void)setRequestHeadValue:(NSMutableURLRequest*)aRequest;
+
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "AlixPayOrder.h"
+
+
 @class HubOrder;
 @interface HbhAppointmentNetManager : NSObject
 
@@ -23,5 +25,7 @@
              orderId:(NSString *)aOrderId
          productDesx:(NSString *)aDisc
                title:(NSString *)aTitle
-               price:(NSString *)aPrice;
+               price:(NSString *)aPrice
+                succ:(void(^)(NSString *sigAlipayInfo))succ
+             failure:(void(^)(NSError *error))failure;
 @end

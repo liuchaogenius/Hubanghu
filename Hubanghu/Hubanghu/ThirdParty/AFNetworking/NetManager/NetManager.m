@@ -135,6 +135,7 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
         //请求成功
         [net removeOperationKey:aKey];
+        MLOG(@"operation.responseString=%@", operation.responseString);
         NSDictionary *Dict = [operation.responseString objectFromJSONString];
         success(Dict);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

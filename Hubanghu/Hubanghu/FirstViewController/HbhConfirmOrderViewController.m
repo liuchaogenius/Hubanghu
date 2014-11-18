@@ -15,6 +15,9 @@
 
 #define kDoubleToString(a) [NSString stringWithFormat:@"%.0lf",a]
 @interface HbhConfirmOrderViewController ()
+{
+    UIButton *commitButton;
+}
 //data
 @property (nonatomic,strong) HubOrder *order;
 @property (nonatomic,strong) NSString *orderId;
@@ -54,7 +57,8 @@
 	self = [super init];
 	if (self) {
 		_order = nil;
-		_orderId = orderId;
+        int iOrderid = [orderId intValue];
+		_orderId = [NSString stringWithFormat:@"%d",iOrderid];
         
 		[self initData];
 	}
@@ -74,10 +78,26 @@
 	[_activityView startAnimating];
 	__weak HbhConfirmOrderViewController *weakself = self;
 	[_netManager commitOrderWith:_order succ:^(NSDictionary *succDic) {
-		_orderId = [[succDic objectForKey:@"data"] objectForKey:@"orderId"];
-		[weakself.activityView stopAnimating];
-#warning 跳转到支付界面 liuchao 单下成功后 按钮变成支付 如果支付成功了 就灰掉按钮
-        [weakself alipayServier];
+        NSDictionary *dataDict = [succDic objectForKey:@"data"];
+        if(dataDict && [[dataDict objectForKey:@"result"] intValue] == 1)
+        {
+            int iOrderid = [[dataDict objectForKey:@"orderId"] intValue];
+            _orderId = [NSString stringWithFormat:@"%d",iOrderid];
+            if(_orderId && _orderId.length > 0)
+            {
+                [commitButton setTitle:@"支付" forState:UIControlStateNormal];
+                [commitButton addTarget:self action:@selector(alipayServier) forControlEvents:UIControlEventTouchDown];
+                [weakself.activityView stopAnimating];
+            }
+            else
+            {
+                [weakself.activityView stopAnimating];
+            }
+        }
+        else
+        {
+            [weakself.activityView stopAnimating];
+        }
 	} failure:^{
 		[self.activityView stopAnimating];
 		STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"提交订单失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
@@ -261,23 +281,23 @@
 	[self.view addSubview:_tableView];
 	
 	UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 70)];
-	UIButton *commit = [[UIButton alloc] initWithFrame:CGRectMake(10, 15, kMainScreenWidth - 20, 40)];
+	commitButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 15, kMainScreenWidth - 20, 40)];
     if(_orderId)
     {
-        [commit setTitle:@"支付" forState:UIControlStateNormal];
-        [commit addTarget:self action:@selector(alipayServier) forControlEvents:UIControlEventTouchDown];
+        [commitButton setTitle:@"支付" forState:UIControlStateNormal];
+        [commitButton addTarget:self action:@selector(alipayServier) forControlEvents:UIControlEventTouchDown];
     }
     else
     {
-	    [commit setTitle:@"确认下单" forState:UIControlStateNormal];
-        [commit addTarget:self action:@selector(commitOrder) forControlEvents:UIControlEventTouchDown];
+	    [commitButton setTitle:@"确认下单" forState:UIControlStateNormal];
+        [commitButton addTarget:self action:@selector(commitOrder) forControlEvents:UIControlEventTouchDown];
     }
 	footView.backgroundColor = [UIColor whiteColor];
-	[commit setBackgroundColor:KColor];
-	commit.layer.cornerRadius = 2;
-	commit.titleLabel.font = kFontBold20;
+	[commitButton setBackgroundColor:KColor];
+	commitButton.layer.cornerRadius = 2;
+	commitButton.titleLabel.font = kFontBold20;
 
-	[footView addSubview:commit];
+	[footView addSubview:commitButton];
 	
 	_tableView.tableFooterView = footView;
 	if (!_orderId && _order) {
@@ -307,8 +327,14 @@
 #warning 支付订单 liuchao
 - (void)alipayServier
 {
-    
-    [self.netManager aliPaySigned:self.order orderId:self.orderId productDesx:@"aaa" title:@"安装" price:[NSString stringWithFormat:@"%.4f", self.order.price]];
+    NSString *strPric = [NSString stringWithFormat:@"%.4f", self.order.price];
+
+    [self.netManager aliPaySigned:self.order orderId:self.orderId productDesx:@"浴盆" title:@"安装" price:strPric succ:^(NSString *sigAlipayInfo) {
+        MLOG(@"sigalipay = %@",sigAlipayInfo);
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 /*
 #pragma mark - Navigation

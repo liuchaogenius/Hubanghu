@@ -9,6 +9,11 @@
 #import "HbhAppointmentNetManager.h"
 #import "NetManager.h"
 #import "HubOrder.h"
+#import "AlixLibService.h"
+#import "AlixPayResult.h"
+#import "DataSigner.h"
+#import "JSONKit.h"
+
 @implementation HbhAppointmentNetManager
 
 - (void)commitOrderWith:(HubOrder *)order succ:(void (^)(NSDictionary *))succ failure:(void (^)())failure{
@@ -74,23 +79,92 @@
          productDesx:(NSString *)aDisc
                title:(NSString *)aTitle
                price:(NSString *)aPrice
+                succ:(void(^)(NSString *sigAlipayInfo))succ
+             failure:(void(^)(NSError *error))failure
 {
+    if(aOrder == nil || aPrice==nil || aOrderId == nil)
+    {
+        return;
+    }
     NSString *url = nil;
     kHubRequestUrl(@"getAlipaysigned.ashx", url);
     AlixPayOrder *aliOrder = [[AlixPayOrder alloc] init];
-    aliOrder.partner = @"2088311602278363";
-    aliOrder.seller =@"hu8hu888@sina.com";
+    aliOrder.partner = kAlipayPartnerId;
+    aliOrder.seller = kAlipaySellerAcount;
     aliOrder.tradeNO = aOrderId;
     aliOrder.productName = aTitle; //商品标题
     aliOrder.productDescription = aDisc; //商品描述
-    aliOrder.amount = aPrice; //商品价格
-    aliOrder.notifyURL =  @"http%3A%2F%2Fwwww.xxx.com"; //回调URL;
+    float fprice = 0.10;//[aPrice floatValue];
+    aliOrder.amount = [NSString stringWithFormat:@"%.2f",fprice]; //商品价格
+    aliOrder.notifyURL =  @"http://114.215.207.196/ApiService/TaobaoNotify_URL.ashx"; //回调URL;
     NSString *strAliOrer = [aliOrder description];
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:strAliOrer,@"rsaSigned", nil];
-    [NetManager requestWith:dict url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
-        MLOG(@"succes = %@", successDict);
-    } failure:^(NSDictionary *failDict, NSError *error) {
-        MLOG(@"succes = %@", failDict);
-    }];
+//    NSString *signedStr = [self doRsa:strAliOrer];
+//    [self aliPayOrder:strAliOrer sigInfo:signedStr];
+    //NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:strAliOrer,@"orderInfo", nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+        [NetManager setRequestHeadValue:request];
+        NSData *reqData = [strAliOrer dataUsingEncoding:NSUTF8StringEncoding];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:reqData];
+        NSError *error = nil;
+        NSData *resultData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+        if(error)
+        {
+            MLOG(@"%@",error);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"支付失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        else
+        {
+            NSString *strResult = [[NSString alloc] initWithData:resultData encoding:NSUTF8StringEncoding];
+            MLOG(@"%@",strResult);
+            NSDictionary *dict = [strResult objectFromJSONString];
+            if(dict)
+            {
+                NSDictionary *dataDict = [dict objectForKey:@"data"];
+                if([[dataDict objectForKey:@"result"] intValue] == 1)
+                {
+                    NSString *sigInfo = [dataDict objectForKey:@"rsaSigned"];
+                    MLOG(@"sigInfo:%@",sigInfo);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self aliPayOrder:strAliOrer sigInfo:sigInfo];
+                    });
+                }
+            }
+
+        }
+    });
+  /////////////////
+    
+//    [NetManager requestWith:dict url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
+//        MLOG(@"succes = %@", successDict);
+//        NSDictionary *dict = [successDict objectForKey:@"data"];
+//        if(dict)
+//        {
+//            if([[dict objectForKey:@"result"] intValue] == 1)
+//            {
+//                NSString *sigInfo = [dict objectForKey:@"rsaSigned"];
+//                [self aliPayOrder:strAliOrer sigInfo:sigInfo];
+//            }
+//        }
+//    } failure:^(NSDictionary *failDict, NSError *error) {
+//        MLOG(@"succes = %@", failDict);
+//    }];
+}
+
+- (void)aliPayOrder:(NSString *)orderInfo sigInfo:(NSString *)sigInfo
+{
+    NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+                             orderInfo, sigInfo, @"RSA"];
+    NSString *strSchem = @"com.Hubanghu";
+    MLOG(@"alipaystring= %@", orderString);
+    [AlixLibService payOrder:orderString AndScheme:strSchem seletor:@selector(aliPayResult:) target:self];
+}
+
+
+- (void)aliPayResult:(NSString*)resultid
+{
+    MLOG(@"alipayresut");
 }
 @end
