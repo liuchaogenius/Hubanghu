@@ -10,6 +10,7 @@
 #import "RootTabBarController.h"
 #import "HbhUser.h"
 #import "NetManager.h"
+
 @interface AppDelegate ()
 
 @end
@@ -41,6 +42,16 @@
     } failure:^(NSDictionary *failDict, NSError *error) {
         
     }];
+}
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if(url)
+    {
+        NSString *strQuery = url.query;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kAlipayOrderResultMessage object:strQuery];
+    }
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

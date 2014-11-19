@@ -59,7 +59,7 @@
 
 - (void)getAppointmentPriceWithCateId:(NSString *)cateId type:(int)type amountType:(int)amountType amount:(NSString *)amount urgent:(BOOL)urgent succ:(void(^)(NSString *price))succ failure:(void(^)())failure
 {
-    cateId = cateId?:@"0";
+    cateId = cateId?cateId:@"0";
     NSString *strCateid = [NSString stringWithFormat:@"%d",[cateId intValue]];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:(strCateid ? strCateid : @""),@"cateId",[NSNumber numberWithInt:type],@"type",(amount ? amount : @""),@"amount",[NSNumber numberWithInt:urgent],@"urgent", nil];
     NSString *url;
@@ -94,13 +94,14 @@
     aliOrder.tradeNO = aOrderId;
     aliOrder.productName = aTitle; //商品标题
     aliOrder.productDescription = aDisc; //商品描述
-    float fprice = 0.10;//[aPrice floatValue];
+    float fprice = 0.01;//[aPrice floatValue];
     aliOrder.amount = [NSString stringWithFormat:@"%.2f",fprice]; //商品价格
-    aliOrder.notifyURL =  @"http://114.215.207.196/ApiService/TaobaoNotify_URL.ashx"; //回调URL;
+    NSString *notifyUrl = nil;
+    kHubRequestUrl(@"TaobaoNotify_URL.ashx", notifyUrl);
+    aliOrder.notifyURL =  notifyUrl; //回调URL;
+    NSString *returnUrl = notifyUrl;
+    aliOrder.returnUrl = returnUrl;
     NSString *strAliOrer = [aliOrder description];
-//    NSString *signedStr = [self doRsa:strAliOrer];
-//    [self aliPayOrder:strAliOrer sigInfo:signedStr];
-    //NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:strAliOrer,@"orderInfo", nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
         [NetManager setRequestHeadValue:request];

@@ -17,4 +17,5 @@
 
 #define kAlipayPartnerId @"2088311602278363"
 #define kAlipaySellerAcount @"hu8hu888@sina.com"
+#define kAlipayOrderResultMessage @"payorderResult" 
 #endif

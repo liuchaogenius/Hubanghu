@@ -358,6 +358,22 @@
         }
         if(!isCoverNavbar)
         {
+            int iOffsety = 0;
+            if(offsetY == 0)
+            {
+                if(kSystemVersion >6.99)
+                {
+                    iOffsety = 64;
+                }
+                else
+                {
+                    iOffsety = 44;
+                }
+            }
+            else
+            {
+                iOffsety = offsetY;
+            }
             CGRect rect = self.overlayWindow.frame;
             self.overlayWindow.frame = CGRectMake(0, offsetY, rect.size.width, rect.size.height-offsetY);
         }

@@ -12,6 +12,8 @@
 #import "STAlerView.h"
 #import "AreasDBManager.h"
 #import "HbuAreaListModelAreas.h"
+#import "SVProgressHUD.h"
+#import "JSONKit.h"
 
 #define kDoubleToString(a) [NSString stringWithFormat:@"%.0lf",a]
 @interface HbhConfirmOrderViewController ()
@@ -27,7 +29,6 @@
 @property (nonatomic,strong) NSArray *detailsInfo;
 //UI
 @property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) UIActivityIndicatorView *activityView;
 @property (nonatomic,strong) UIImageView *alipayLogoImgview;
 @end
 
@@ -41,6 +42,12 @@
     }else{
         _detailsInfoTitle = @[@"名\t   称:",@"姓\t   名:",@"手  机  号:",@"数\t   量:",@"时\t   间:",@"地\t   址:",@"安装师傅:",@"备\t   注:",@"应付金额:"];
     }
+    [self registerPayorderResultNotify];
+}
+
+- (void)registerPayorderResultNotify
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(aliPayresult:) name:kAlipayOrderResultMessage object:nil];
 }
 
 - (instancetype)initWithOrder:(HubOrder *)order{
@@ -68,14 +75,7 @@
 #pragma mark -
 //提交订单
 - (void)commitOrder{
-	_activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-	_activityView.centerX = kMainScreenWidth/2;
-	_activityView.centerY = kMainScreenHeight/2 - 100;
-	_activityView.backgroundColor = [UIColor lightGrayColor];
-	[self.view addSubview:_activityView];
-
-	[self.view bringSubviewToFront:_activityView];
-	[_activityView startAnimating];
+    [SVProgressHUD showErrorWithStatus:@"正在下单.." cover:NO offsetY:0];
 	__weak HbhConfirmOrderViewController *weakself = self;
 	[_netManager commitOrderWith:_order succ:^(NSDictionary *succDic) {
         NSDictionary *dataDict = [succDic objectForKey:@"data"];
@@ -87,30 +87,16 @@
             {
                 [commitButton setTitle:@"支付" forState:UIControlStateNormal];
                 [commitButton addTarget:self action:@selector(alipayServier) forControlEvents:UIControlEventTouchDown];
-                [weakself.activityView stopAnimating];
             }
-            else
-            {
-                [weakself.activityView stopAnimating];
-            }
+            [SVProgressHUD dismiss];
         }
-        else
-        {
-            [weakself.activityView stopAnimating];
-        }
+
 	} failure:^{
-		[self.activityView stopAnimating];
+		[SVProgressHUD dismiss];
 		STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"提交订单失败" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
 			if (buttonIndex == 0) {
 				[weakself.navigationController popViewControllerAnimated:YES];
 			}
-			//未完成的重试代码
-//			else if(buttonIndex == 1){
-//				[weakself.view bringSubviewToFront:weakself.activityView];
-//				[weakself.activityView startAnimating];
-//				
-//				[weakself performSelector:@selector(commitOrder) withObject:nil afterDelay:10];
-//			}
 		} cancelButtonTitle:@"返回" otherButtonTitles:nil, nil];
 		[alert show];
 	}];
@@ -123,20 +109,13 @@
 		_order = order;
 		[weakself resetDetailsInfo];
 		[weakself.tableView reloadData];
-		[self.activityView stopAnimating];
+        [SVProgressHUD dismiss];
 	} failure:^{
-		[self.activityView stopAnimating];
+		[SVProgressHUD dismiss];
 		STAlertView *alert = [[STAlertView alloc] initWithTitle:@"抱歉" message:@"获取订单信息出错" clickedBlock:^(STAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
 			if (buttonIndex == 0) {
 				[weakself.navigationController popViewControllerAnimated:YES];
 			}
-			//未完成的重试代码
-//			else if(buttonIndex == 1){
-//				[weakself.view bringSubviewToFront:weakself.activityView];
-//				[weakself.activityView startAnimating];
-//				
-//				[weakself performSelector:@selector(getOrderUseOrderId) withObject:nil afterDelay:300];
-//			}
 		} cancelButtonTitle:@"返回" otherButtonTitles:nil, nil];
 		[alert show];
 	}];
@@ -172,7 +151,9 @@
 	NSString *dateString = [dateFormatter stringFromDate:date];
 	NSString *areaStr = [self getAreaNameWith:_order.areaId];
 	NSString *comment = [_order.comment isEqualToString:@""]?@"无":_order.comment;
-    NSString *workName = _order.workerName?:@"客服安排";
+    NSString *workName = (_order.workerName&&_order.workerName.length>0)?_order.workerName:@"客服安排";
+
+    ;
 	NSString *amount;
 	switch ([_order.amountType intValue]) {
 		case 0:
@@ -189,13 +170,13 @@
 			break;
 	}
 	NSString *price = [NSString stringWithFormat:@"¥%.2lf",_order.price];
-    _order.name = _order.name?:@"";
-    _order.username = _order.username?:@"";
-    dateString = dateString?:@"";
-    areaStr = dateString?:@"";
-    workName = workName?:@"";
-    comment = comment?:@"";
-    price = price?:@"";
+    _order.name = _order.name?_order.name:@"";
+    _order.username = _order.username?_order.username:@"";
+    dateString = dateString?dateString:@"";
+    areaStr = dateString?dateString:@"";
+    workName = workName?workName:@"";
+    comment = comment?comment:@"";
+    price = price?price:@"";
 	_detailsInfo = @[_order.name,
 					 _order.username,
 					 kDoubleToString(_order.phone),
@@ -304,16 +285,8 @@
 		[self resetDetailsInfo];
 	}
 	if (!_order && _orderId) {
-		_activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-		_activityView.centerX = kMainScreenWidth/2;
-		_activityView.centerY = kMainScreenHeight/2 - 100;
-		_activityView.backgroundColor = [UIColor lightGrayColor];
-		[self.view addSubview:_activityView];
-
+        [SVProgressHUD showErrorWithStatus:@"获取订单信息..." cover:NO offsetY:0];
 		[self getOrderUseOrderId];
-		
-		[self.view bringSubviewToFront:_activityView];
-		[_activityView startAnimating];
 	}
     self.tableView.backgroundView = nil;
     self.view.backgroundColor = kViewBackgroundColor;
@@ -327,14 +300,63 @@
 #warning 支付订单 liuchao
 - (void)alipayServier
 {
-    NSString *strPric = [NSString stringWithFormat:@"%.4f", self.order.price];
-
-    [self.netManager aliPaySigned:self.order orderId:self.orderId productDesx:@"浴盆" title:@"安装" price:strPric succ:^(NSString *sigAlipayInfo) {
+    NSString *strPric = [NSString stringWithFormat:@"%.2f", self.order.price];
+    NSString *strDesc = nil;
+    NSString *strTitle = nil;
+    [SVProgressHUD showErrorWithStatus:@"正在下单.." cover:NO offsetY:0];
+    if(self.order.name && self.order.name.length > 0)
+    {
+        strTitle = self.order.name;
+    }
+    else
+    {
+        strTitle = @"户帮户安装";
+    }
+    if(self.order.comment && self.order.comment.length>0)
+    {
+        strDesc = self.order.comment;
+    }
+    else
+    {
+        strDesc = @"户帮户服务";
+    }
+    [self.netManager aliPaySigned:self.order orderId:self.orderId productDesx:strDesc title:strTitle price:strPric succ:^(NSString *sigAlipayInfo) {
         MLOG(@"sigalipay = %@",sigAlipayInfo);
-        
+        [SVProgressHUD dismiss];
     } failure:^(NSError *error) {
-        
+        [SVProgressHUD dismiss];
     }];
+}
+
+- (void)aliPayresult:(NSNotification *)aNotification
+{
+    MLOG(@"%@",aNotification);
+    NSString *strNotification = [aNotification object];
+    NSString *strEncode = [strNotification stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *notificationDict = [strEncode objectFromJSONString];
+     MLOG(@"notificationDict = %@",notificationDict);
+    NSDictionary *memoDict = [notificationDict objectForKey:@"memo"];
+    int resultStatus = [[memoDict objectForKey:@"ResultStatus"] intValue];
+    NSString *resultDesc = [memoDict objectForKey:@"memo"];
+    if(resultStatus == 9000)///支付成功
+    {
+        
+    }
+    else if(resultStatus == 8000)///正在处理也当支付成功
+    {
+        
+    }
+    else///支付失败
+    {
+        
+    }
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
 }
 /*
 #pragma mark - Navigation
