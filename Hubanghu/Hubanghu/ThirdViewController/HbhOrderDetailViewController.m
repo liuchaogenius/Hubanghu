@@ -175,8 +175,14 @@ typedef enum : NSUInteger {
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kPaySuccess object:nil];
     //未支付设为支付完成
-#warning 此处待将各个未支付信息设为已支付的状态 - cc
-    
+    self.showOrderStatusLabel.text = @"交易成功";
+    [self.movementBtn setTitle:@"已付款" forState:UIControlStateNormal];
+    self.movementBtn.backgroundColor = RGBCOLOR(201, 201, 201);
+    [self.movementBtn setTitleColor:RGBCOLOR(115, 115, 115) forState:UIControlStateNormal];
+    self.movementBtn.userInteractionEnabled = NO;
+    self.moreBtn.backgroundColor = KColor;
+    [self.moreBtn setTitle:@"再次预约" forState:UIControlStateNormal];
+    [self.moreBtn addTarget:self action:@selector(orderAgian) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (UIView *)topView

@@ -351,7 +351,7 @@ typedef enum : NSUInteger {
 
 - (void)anyPayedSuccItem
 {
-#warning 此处待刷新数据 - cc
+    [self getFisrtPage];
 }
 
 #pragma mark tableView datasource
