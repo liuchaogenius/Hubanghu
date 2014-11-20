@@ -167,34 +167,45 @@ typedef enum : NSUInteger {
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             [weakself.showWorkerListTableView.pullToRefreshView stopAnimating];
             
-                int shareDistrictId = [HbuAreaLocationManager sharedManager].currentDistrict.areaId;
-                int shareAreaId = [HbuAreaLocationManager sharedManager].currentAreas.areaId;
-                if (shareDistrictId && shareDistrictId!=_locationDistrictId)
-                {
-                    _locationDistrictId = shareDistrictId;
-                    [self getWorkerListWithAreaId:shareDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
-                    UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
-                    temLabel.text = [HbuAreaLocationManager sharedManager].currentDistrict.name;
-                    [self getWorkerListWithAreaId:_locationDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
-                }
-                else if(shareAreaId && shareAreaId != _locationAreaId)
-                {
-                    _locationAreaId = shareAreaId;
-                    [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
-                        self.locationArray = districtArry;
-                        self.dropLocationView.tableArray = self.locationArray;
-                        [self.dropLocationView reloadTableView];
-                        _isLocationed = YES;
+            int shareDistrictId = [HbuAreaLocationManager sharedManager].currentDistrict.areaId;
+            int shareAreaId = [HbuAreaLocationManager sharedManager].currentAreas.areaId;
+            if(shareAreaId && shareAreaId != _locationAreaId)
+            {
+                _locationAreaId = shareAreaId;
+                [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
+                    self.locationArray = districtArry;
+                    self.dropLocationView.tableArray = self.locationArray;
+                    [self.dropLocationView reloadTableView];
+                    _isLocationed = YES;
+                    if (shareDistrictId && shareDistrictId!=_locationDistrictId)
+                    {
+                        _locationDistrictId = shareDistrictId;
+                        [self getWorkerListWithAreaId:shareDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
+                        UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
+                        temLabel.text = [HbuAreaLocationManager sharedManager].currentDistrict.name;
+                        [self getWorkerListWithAreaId:_locationDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
+                    }
+                    else
+                    {
                         HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
                         UILabel *label0 = (UILabel *)[self.view viewWithTag:100];
                         label0.text = model.name;
                         [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:-1 andOrderCountId:-1];
-                    }];
-                }
-                else
-                {
-                    [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:-1];
-                }
+                    }
+                }];
+            }
+            else if (shareDistrictId && shareDistrictId!=_locationDistrictId)
+            {
+                _locationDistrictId = shareDistrictId;
+                [self getWorkerListWithAreaId:shareDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
+                UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
+                temLabel.text = [HbuAreaLocationManager sharedManager].currentDistrict.name;
+                [self getWorkerListWithAreaId:_locationDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
+            }
+            else
+            {
+                [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:-1];
+            }
 
         });
     }];
