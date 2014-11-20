@@ -584,6 +584,7 @@ typedef enum : NSUInteger {
     else
     {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
+        cell.userInteractionEnabled=NO;
         if (indexPath.row==3) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-50, 20, 100, 20)];
             label.text = @"暂时没有数据";

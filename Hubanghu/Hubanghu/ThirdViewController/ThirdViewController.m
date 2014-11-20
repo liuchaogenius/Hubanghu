@@ -21,7 +21,7 @@ typedef enum : NSUInteger {
     currentTabOrderAppraise
 } currentTabOrder;
 
-@interface ThirdViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface ThirdViewController ()<UITableViewDataSource, UITableViewDelegate, OrderDetailVCDelegaet>
 {
     BOOL firstInitview;
 }
@@ -324,6 +324,7 @@ typedef enum : NSUInteger {
 //            [self.view addSubview:self.failView];
         }
         else{
+            _isHaveData = YES;
             [self.activityIndicatorView stopAnimating];
 //            [self.failView removeFromSuperview];
             [self.showOrderTableView reloadData];
@@ -336,6 +337,7 @@ typedef enum : NSUInteger {
 //            [self.view addSubview:self.failView];
         }
         else{
+            _isHaveData = YES;
             [self.activityIndicatorView stopAnimating];
 //            [self.failView removeFromSuperview];
             [self.showOrderTableView reloadData];
@@ -349,6 +351,7 @@ typedef enum : NSUInteger {
         }
         else
         {
+            _isHaveData = YES;
             [self.activityIndicatorView stopAnimating];
 //            [self.failView removeFromSuperview];;
             [self.showOrderTableView reloadData];
@@ -419,6 +422,7 @@ typedef enum : NSUInteger {
     else
     {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
+        cell.userInteractionEnabled=NO;
         if (indexPath.row==3) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-50, 20, 100, 20)];
             label.text = @"暂时没有数据";
