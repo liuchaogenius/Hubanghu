@@ -50,7 +50,8 @@ typedef enum : NSUInteger {
 @property(nonatomic) BOOL isLocationed;
 @property(nonatomic, strong) AreasDBManager *areasDBManage;
 @property(nonatomic, strong) HbhDropDownView *dropLocationView;
-@property(nonatomic) int locationAreaId;
+@property(nonatomic, assign) int locationAreaId;
+@property(nonatomic, assign) int locationDistrictId;
 
 @property(nonatomic, strong) UITapGestureRecognizer *maskingViewTapGestureRecognizer;
 @end
@@ -113,6 +114,7 @@ typedef enum : NSUInteger {
     if (_isLocationed) {
         if ([HbuAreaLocationManager sharedManager].currentDistrict) {
             HbuAreaListModelAreas *area = [HbuAreaLocationManager sharedManager].currentDistrict;
+            _locationDistrictId = area.areaId;
             [self getWorkerListWithAreaId:area.areaId andWorkerTypeId:0 andOrderCountId:0];
             UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
             temLabel.text = area.name;
@@ -139,6 +141,9 @@ typedef enum : NSUInteger {
         self.workerTypeArray = [(NSMutableArray *)aData.workerTypes mutableCopy];
         self.orderCountArray = [(NSMutableArray *)aData.orderCounts mutableCopy];
         [self.showWorkerListTableView reloadData];
+        [self.dropLocationView reloadTableView];
+        [self.dropOrderCountView reloadTableView];
+        [self.dropWorkerTypesView reloadTableView];
         if (self.workersArray.count==0) {
 //            [self.view addSubview:self.failView];
         }
@@ -162,10 +167,23 @@ typedef enum : NSUInteger {
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             [weakself.showWorkerListTableView.pullToRefreshView stopAnimating];
-            if (_isLocationed)
+            if ([HbuAreaLocationManager sharedManager].currentAreas.areaId)
             {
+                int shareDistrictId = [HbuAreaLocationManager sharedManager].currentDistrict.areaId;
+                int shareAreaId = [HbuAreaLocationManager sharedManager].currentAreas.areaId;
+                if (shareDistrictId && shareDistrictId!=_locationDistrictId)
+                {
+                    _locationDistrictId = shareDistrictId;
+                    [self getWorkerListWithAreaId:shareDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
+                    UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
+                    temLabel.text = [HbuAreaLocationManager sharedManager].currentDistrict.name;
+                }
+                else
+                {
+                    
+                }
                 [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:-1];
-                if ([HbuAreaLocationManager sharedManager].currentAreas.areaId != _locationAreaId)
+                if (shareAreaId != _locationAreaId)
                 {
                     _locationAreaId = [HbuAreaLocationManager sharedManager].currentAreas.areaId;
                     [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {

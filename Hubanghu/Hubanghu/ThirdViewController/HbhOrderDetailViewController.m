@@ -182,6 +182,7 @@ typedef enum : NSUInteger {
     self.movementBtn.userInteractionEnabled = NO;
     self.moreBtn.backgroundColor = KColor;
     [self.moreBtn setTitle:@"再次预约" forState:UIControlStateNormal];
+    [self.moreBtn removeTarget:self action:@selector(cancelOrderBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.moreBtn addTarget:self action:@selector(orderAgian) forControlEvents:UIControlEventTouchUpInside];
 }
 
