@@ -141,7 +141,6 @@ typedef enum : NSUInteger {
         self.workerTypeArray = [(NSMutableArray *)aData.workerTypes mutableCopy];
         self.orderCountArray = [(NSMutableArray *)aData.orderCounts mutableCopy];
         [self.showWorkerListTableView reloadData];
-        [self.dropLocationView reloadTableView];
         [self.dropOrderCountView reloadTableView];
         [self.dropWorkerTypesView reloadTableView];
         if (self.workersArray.count==0) {
@@ -167,8 +166,7 @@ typedef enum : NSUInteger {
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             [weakself.showWorkerListTableView.pullToRefreshView stopAnimating];
-            if ([HbuAreaLocationManager sharedManager].currentAreas.areaId)
-            {
+            
                 int shareDistrictId = [HbuAreaLocationManager sharedManager].currentDistrict.areaId;
                 int shareAreaId = [HbuAreaLocationManager sharedManager].currentAreas.areaId;
                 if (shareDistrictId && shareDistrictId!=_locationDistrictId)
@@ -177,43 +175,26 @@ typedef enum : NSUInteger {
                     [self getWorkerListWithAreaId:shareDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
                     UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
                     temLabel.text = [HbuAreaLocationManager sharedManager].currentDistrict.name;
+                    [self getWorkerListWithAreaId:_locationDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
+                }
+                else if(shareAreaId && shareAreaId != _locationAreaId)
+                {
+                    _locationAreaId = shareAreaId;
+                    [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
+                        self.locationArray = districtArry;
+                        self.dropLocationView.tableArray = self.locationArray;
+                        [self.dropLocationView reloadTableView];
+                        _isLocationed = YES;
+                        HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
+                        UILabel *label0 = (UILabel *)[self.view viewWithTag:100];
+                        label0.text = model.name;
+                        [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:-1 andOrderCountId:-1];
+                    }];
                 }
                 else
                 {
-                    
+                    [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:-1];
                 }
-                [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:-1];
-                if (shareAreaId != _locationAreaId)
-                {
-                    _locationAreaId = [HbuAreaLocationManager sharedManager].currentAreas.areaId;
-                    [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
-                        self.locationArray = districtArry;
-                        self.dropLocationView.tableArray = self.locationArray;
-                        [self.dropLocationView reloadTableView];
-                        _isLocationed = YES;
-                        HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
-                        UILabel *label0 = (UILabel *)[self.view viewWithTag:100];
-                        label0.text = model.name;
-                        [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:-1 andOrderCountId:-1];
-                    }];
-                }
-            }
-            else
-            {
-                if ([HbuAreaLocationManager sharedManager].currentAreas.areaId)
-                {
-                    [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
-                        self.locationArray = districtArry;
-                        self.dropLocationView.tableArray = self.locationArray;
-                        [self.dropLocationView reloadTableView];
-                        _isLocationed = YES;
-                        HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
-                        UILabel *label0 = (UILabel *)[self.view viewWithTag:100];
-                        label0.text = model.name;
-                        [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:-1 andOrderCountId:-1];
-                    }];
-                }
-            }
 
         });
     }];
