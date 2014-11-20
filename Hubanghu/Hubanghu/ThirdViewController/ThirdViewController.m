@@ -52,7 +52,7 @@ typedef enum : NSUInteger {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alipayResultRefreshTable) name:kPaySuccess object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -72,9 +72,15 @@ typedef enum : NSUInteger {
     }
 }
 
+-(void)alipayResultRefreshTable
+{
+    MLOG(@"testalipat");
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginForUserMessage object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessMessae object:nil];
 }
 
 - (void)loginSuccessItem
@@ -466,7 +472,11 @@ typedef enum : NSUInteger {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)dealloc
+{
+    MLOG(@"dealloc");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 /*
 #pragma mark - Navigation
 
