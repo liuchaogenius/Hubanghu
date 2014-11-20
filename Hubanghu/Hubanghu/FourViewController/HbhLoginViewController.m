@@ -160,7 +160,7 @@ enum TextField_Type
         _checkCodeTextField = [self customedTextFieldWithFrame:CGRectMake(5, 65, (whiteBackView.bounds.size.width-10)*1.8/3.0f, 35) andPlaceholder:@"输入验证码" andTag:TextField_checkCode andReturnKeyType:UIReturnKeyNext];
         [whiteBackView addSubview:self.checkCodeTextField];
         
-        _rgPasswordTextField = [self customedTextFieldWithFrame:CGRectMake(5, 115, whiteBackView.bounds.size.width-10, 35) andPlaceholder:@"输入密码" andTag:TextField_checkCode andReturnKeyType:UIReturnKeyGo];
+        _rgPasswordTextField = [self customedTextFieldWithFrame:CGRectMake(5, 115, whiteBackView.bounds.size.width-10, 35) andPlaceholder:@"输入密码" andTag:TextField_rgPassword andReturnKeyType:UIReturnKeyGo];
         self.rgPasswordTextField.secureTextEntry = YES;
         [whiteBackView addSubview:self.rgPasswordTextField];
         [self.view addSubview:_registerView];
@@ -361,6 +361,16 @@ enum TextField_Type
             [self touchLoginButton]; //登陆
         }
             break;
+        case TextField_checkCode:
+        {
+            [self.rgPasswordTextField becomeFirstResponder];
+        }
+            break;
+        case TextField_rgPassword:
+        {
+            [self touchRegisterButton];
+        }
+            break;
         default:
             break;
     }
@@ -395,7 +405,11 @@ enum TextField_Type
 - (UITextField *)customedTextFieldWithFrame:(CGRect)frame andPlaceholder:(NSString *)placeholder andTag:(NSInteger)TextField_Type andReturnKeyType:(UIReturnKeyType)returnKeyType
 {
     UITextField *textField = [[UITextField alloc] initWithFrame:frame];
-    [textField setBorderStyle:UITextBorderStyleBezel];
+    [textField setBorderStyle:UITextBorderStyleRoundedRect];
+    if (kSystemVersion<7.0) {
+        [textField setBorderStyle:UITextBorderStyleBezel];
+    }
+    
     textField.layer.masksToBounds = YES;
     textField.layer.cornerRadius = 4.0f;
     textField.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 207) CGColor];//[KColor CGColor];

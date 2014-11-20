@@ -456,7 +456,9 @@ enum TextFieldType
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self checkAlltextFieldFirstRespond];
-    
+    if ([self.delegate respondsToSelector:@selector(shouldScrolltoPointY:)]){
+        [self.delegate shouldScrolltoPointY:self.top-160];
+    }
     return YES;
 }
 
@@ -488,7 +490,7 @@ enum TextFieldType
     
     //HbuAreaListModelAreas *area = self.cityArray[0];
     [self.clearView removeFromSuperview];
-    
+    [self.delegate shouldScrolltoPointY:self.top-160];
     if ([_datePicker superview]) {
         [self datePickerValueToTextFiled:self.datePicker];
         [UIView animateWithDuration:0.2 animations:^{

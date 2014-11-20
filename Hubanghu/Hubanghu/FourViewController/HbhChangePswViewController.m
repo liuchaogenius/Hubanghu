@@ -164,6 +164,9 @@ enum TextField_Type
 {
     UITextField *textField = [[UITextField alloc] initWithFrame:frame];
     [textField setBorderStyle:UITextBorderStyleRoundedRect];
+    if (kSystemVersion < 7.0) {
+        [textField setBorderStyle:UITextBorderStyleBezel];
+    }
     textField.layer.masksToBounds = YES;
     textField.layer.cornerRadius = 4.0f;
     textField.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 207) CGColor];//[KColor CGColor];
