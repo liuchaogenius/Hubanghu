@@ -111,6 +111,8 @@ typedef enum : NSUInteger {
     [self getFisrtPage];
     [self.view addSubview:self.activityIndicatorView];
     [self.activityIndicatorView startAnimating];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyPayedSuccItem) name:kPaySuccess object:nil];
 }
 
 -(HbhOrderManage *)orderManage
@@ -345,6 +347,11 @@ typedef enum : NSUInteger {
             [self.showOrderTableView reloadData];
         }
     }
+}
+
+- (void)anyPayedSuccItem
+{
+#warning 此处待刷新数据 - cc
 }
 
 #pragma mark tableView datasource

@@ -166,9 +166,17 @@ typedef enum : NSUInteger {
 //确认支付
 - (void)pushToComfirmOrderVC
 {
-    [self.navigationController pushViewController:[[HbhConfirmOrderViewController alloc]
-                                  initWithOrderId:[NSString stringWithFormat:@"%d", (int)self.myModel.orderId]]
-                                         animated:YES];
+    HbhConfirmOrderViewController *vc = [[HbhConfirmOrderViewController alloc] initWithOrderId:[NSString stringWithFormat:@"%d", (int)self.myModel.orderId]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccessItem) name:kPaySuccess object:vc];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)paySuccessItem
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kPaySuccess object:nil];
+    //未支付设为支付完成
+#warning 此处待将各个未支付信息设为已支付的状态 - cc
+    
 }
 
 - (UIView *)topView

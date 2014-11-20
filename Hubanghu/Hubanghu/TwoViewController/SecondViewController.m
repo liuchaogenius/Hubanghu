@@ -230,8 +230,15 @@ typedef enum : NSUInteger {
     UILabel *label1 = (UILabel *)[self.view viewWithTag:101];
     UILabel *label2 = (UILabel *)[self.view viewWithTag:102];
     if (_isLocationed) {
-        HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
-        label0.text = model.name;
+        if ([HbuAreaLocationManager sharedManager].currentDistrict) {
+            HbuAreaListModelAreas *area = [HbuAreaLocationManager sharedManager].currentDistrict;
+            label0.text = area.name;
+        }
+        else
+        {
+            HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
+            label0.text = model.name;
+        }
     }
     else{
     for (int i=0; i<self.areasArray.count; i++) {

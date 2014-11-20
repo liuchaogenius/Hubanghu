@@ -75,7 +75,7 @@
 #pragma mark -
 //提交订单
 - (void)commitOrder{
-    [SVProgressHUD showErrorWithStatus:@"正在下单.." cover:NO offsetY:0];
+    [SVProgressHUD showWithStatus:@"正在下单.." cover:YES offsetY:0];
 	__weak HbhConfirmOrderViewController *weakself = self;
 	[_netManager commitOrderWith:_order succ:^(NSDictionary *succDic) {
         NSDictionary *dataDict = [succDic objectForKey:@"data"];
@@ -170,6 +170,7 @@
 			break;
 	}
 	NSString *price = [NSString stringWithFormat:@"¥%.2lf",_order.price];
+    MLOG(@"ordername:%@",_order.name);
     _order.name = _order.name?_order.name:@"";
     _order.username = _order.username?_order.username:@"";
     dateString = dateString?dateString:@"";
@@ -303,7 +304,8 @@
     NSString *strPric = [NSString stringWithFormat:@"%.2f", self.order.price];
     NSString *strDesc = nil;
     NSString *strTitle = nil;
-    [SVProgressHUD showErrorWithStatus:@"正在下单.." cover:NO offsetY:0];
+    //[SVProgressHUD showErrorWithStatus:@"正在下单.." cover:NO offsetY:0];
+    [SVProgressHUD showWithStatus:@"正在下单.." cover:YES offsetY:0];
     if(self.order.name && self.order.name.length > 0)
     {
         strTitle = self.order.name;
@@ -322,9 +324,9 @@
     }
     [self.netManager aliPaySigned:self.order orderId:self.orderId productDesx:strDesc title:strTitle price:strPric succ:^(NSString *sigAlipayInfo) {
         MLOG(@"sigalipay = %@",sigAlipayInfo);
-        [SVProgressHUD dismiss];
+        [SVProgressHUD dismissWithSuccess:@"下单成功,请现在支付,也可之后进入“我的订单”中进行支付"];
     } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
+        [SVProgressHUD dismissWithSuccess:@"下单成功,请现在支付,也可之后进入“我的订单”中进行支付"];
     }];
 }
 
@@ -340,15 +342,26 @@
     NSString *resultDesc = [memoDict objectForKey:@"memo"];
     if(resultStatus == 9000)///支付成功
     {
+       //已支付 灰色-按钮 不可用  已支付。。---
+        [SVProgressHUD showSuccessWithStatus:@"支付成功" cover:YES offsetY:kMainScreenHeight/2.0];
+        commitButton.enabled = NO;
+        [commitButton setBackgroundColor:[UIColor lightGrayColor]];
+        [commitButton setTitle:@"已支付" forState:UIControlStateNormal];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccess object:self];
         
     }
     else if(resultStatus == 8000)///正在处理也当支付成功
     {
-        
+        [SVProgressHUD showSuccessWithStatus:@"支付成功" cover:YES offsetY:kMainScreenHeight/2.0];
+        commitButton.enabled = NO;
+        [commitButton setBackgroundColor:[UIColor lightGrayColor]];
+        [commitButton setTitle:@"已支付" forState:UIControlStateNormal];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccess object:self];
     }
     else///支付失败
     {
-        
+        [SVProgressHUD showErrorWithStatus:@"支付失败，请重新尝试" cover:YES offsetY:kMainScreenHeight/2.0];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPayFail object:self];
     }
     
 }

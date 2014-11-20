@@ -11,8 +11,8 @@
 #import "HbhUser.h"
 #import "NetManager.h"
 
-@interface AppDelegate ()
-
+@interface AppDelegate ()<UIAlertViewDelegate>
+@property (strong, nonatomic) NSString *updateUrl;
 @end
 
 @implementation AppDelegate
@@ -39,9 +39,26 @@
         NSDictionary *dataDict = [successDict objectForKey:@"data"];
         int Type = [[dataDict objectForKey:@"type"] intValue];
         ////"type":0/*0不更新，1强制更新，2可选更新*/
+        if (Type == 1) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发现新版本，请您先更新版本" message:@"点击“确定”开始更新" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            self.updateUrl = dataDict[@"url"];
+            [alertView show];
+        }else if (Type == 2){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发现有新的版本" message:@"有新的版本可以更新，将会提供更多功能" delegate:self cancelButtonTitle:@"更新" otherButtonTitles:@"取消", nil];
+            self.updateUrl = dataDict[@"url"];
+            [alertView show];
+        }
     } failure:^(NSDictionary *failDict, NSError *error) {
         
     }];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        MLOG(@"%@",self.updateUrl);
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.updateUrl]];
+    }
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
