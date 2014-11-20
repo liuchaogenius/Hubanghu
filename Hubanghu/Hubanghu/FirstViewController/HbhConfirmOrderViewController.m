@@ -286,7 +286,7 @@
 		[self resetDetailsInfo];
 	}
 	if (!_order && _orderId) {
-        [SVProgressHUD showErrorWithStatus:@"获取订单信息..." cover:NO offsetY:0];
+        [SVProgressHUD showWithStatus:@"获取订单信息..." cover:NO offsetY:0];
 		[self getOrderUseOrderId];
 	}
     self.tableView.backgroundView = nil;

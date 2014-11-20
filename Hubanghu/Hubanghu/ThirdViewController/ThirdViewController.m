@@ -52,6 +52,7 @@ typedef enum : NSUInteger {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -112,7 +113,7 @@ typedef enum : NSUInteger {
     [self.view addSubview:self.activityIndicatorView];
     [self.activityIndicatorView startAnimating];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyPayedSuccItem) name:kPaySuccess object:nil];
+    
 }
 
 -(HbhOrderManage *)orderManage
@@ -349,7 +350,7 @@ typedef enum : NSUInteger {
     }
 }
 
-- (void)anyPayedSuccItem
+- (void)anyPayedSuccess
 {
     [self getFisrtPage];
 }
@@ -440,6 +441,7 @@ typedef enum : NSUInteger {
         model = [self.appraiseArray objectAtIndex:indexPath.row];
     }
     HbhOrderDetailViewController *orderDetailVC = [[HbhOrderDetailViewController alloc] initWithOrderStatus:model];
+    orderDetailVC.orderDelegaet = self;
     orderDetailVC.hidesBottomBarWhenPushed = YES;
     HbhOrderAppraiseViewController *orderAppraiseVC = [[HbhOrderAppraiseViewController alloc] initWithModel:model];
     orderAppraiseVC.hidesBottomBarWhenPushed = YES;

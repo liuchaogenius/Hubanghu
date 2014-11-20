@@ -59,7 +59,7 @@
 - (NSInteger)getSgmCount
 {
     CategoryChildInfoModel *childCateModel = nil;
-    if(self.categoryInfoModel.child &&self.categoryInfoModel.child.count >0)
+    if(self.categoryInfoModel.child &&self.categoryInfoModel.child.count >1)
     {
         childCateModel = self.categoryInfoModel.child[0];
     }
@@ -130,6 +130,7 @@
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     _sgmCount = 0;
     [self.tableView registerClass:[HbhCategoryCell class] forCellReuseIdentifier:@"Cell"];
     __weak HbuCategoryViewController *weakSelf = self;
@@ -207,6 +208,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *childArray = (self.sgmCount ? (((CategoryChildInfoModel *)depth2CateModel).child) : self.categoryInfoModel.child);
+    MLOG(@"");
     return childArray.count/2 + childArray.count%2;
 }
 

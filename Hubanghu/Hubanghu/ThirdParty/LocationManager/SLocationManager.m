@@ -298,9 +298,15 @@ static SLocationManager *myLocationObj = nil;
         MLOG(@"%@",str1);
         NSMutableString *mutstr = [[NSMutableString alloc] initWithString:str1];
         NSRange rang = [mutstr rangeOfString:@"renderReverse&&renderReverse("];
-        [mutstr replaceCharactersInRange:rang withString:@""];
+        
+        if (rang.length < 1000) {
+            MLOG(@"%lu %lu",(unsigned long)rang.length,(unsigned long)rang.location);
+            [mutstr replaceCharactersInRange:rang withString:@""];
+        }
         NSRange rang1 = [mutstr rangeOfString:@")"];
-        [mutstr replaceCharactersInRange:rang1 withString:@""];
+        if (rang1.length < 10) {
+            [mutstr replaceCharactersInRange:rang1 withString:@""];
+        }
         self.locationDict = [mutstr objectFromJSONString];
         Location2d l2d={0};
         l2d.lat = weakself.latitude;

@@ -9,7 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "HbhOrderModel.h"
 
+@protocol OrderDetailVCDelegaet <NSObject>
+
+- (void)anyPayedSuccess;
+
+@end
+
 @interface HbhOrderDetailViewController : BaseViewController
 
+@property (weak, nonatomic) id<OrderDetailVCDelegaet> orderDelegaet;
+
 - (instancetype)initWithOrderStatus:(HbhOrderModel *)aModel;
+
 @end

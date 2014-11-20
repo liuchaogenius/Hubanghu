@@ -33,6 +33,7 @@
 
 - (void)checkVersion
 {
+    self.updateUrl = nil;
     NSString *url = nil;
     kHubRequestUrl(@"checkVersion.ashx", url);
     [NetManager requestWith:nil url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
