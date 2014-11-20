@@ -299,12 +299,12 @@ static SLocationManager *myLocationObj = nil;
         NSMutableString *mutstr = [[NSMutableString alloc] initWithString:str1];
         NSRange rang = [mutstr rangeOfString:@"renderReverse&&renderReverse("];
         
-        if (rang.length < 1000) {
+        if (rang.length > 0) {
             MLOG(@"%lu %lu",(unsigned long)rang.length,(unsigned long)rang.location);
             [mutstr replaceCharactersInRange:rang withString:@""];
         }
         NSRange rang1 = [mutstr rangeOfString:@")"];
-        if (rang1.length < 10) {
+        if (rang1.length > 0) {
             [mutstr replaceCharactersInRange:rang1 withString:@""];
         }
         self.locationDict = [mutstr objectFromJSONString];
