@@ -40,6 +40,7 @@
         _rightTitleLabel.tag = kTitleLabelTag;
         [rightBlackView addSubview:self.rightTitleLabel];
         
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.contentView addSubview:rightImageButton];
     }
     return self;

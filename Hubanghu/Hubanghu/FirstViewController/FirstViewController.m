@@ -33,6 +33,7 @@ enum CateId_Type
 @property (strong, nonatomic) UIView *headView; //headView
 @property (strong, nonatomic) HbuAreaLocationManager *areaLocationManager;
 @property (strong, nonatomic) HbuAreaListModelBaseClass *areaListModel;
+@property (strong, nonatomic) UILabel *rightBtnLabel;
 
 @end
 
@@ -73,14 +74,16 @@ enum CateId_Type
     //更改右上button 城市titile
     NSString *rightBtnTitle = (self.areaLocationManager.currentAreas.name.length ?
                                self.areaLocationManager.currentAreas.name : @"城市");
-    [self.rightButton setTitle:rightBtnTitle forState:UIControlStateNormal];
+    self.rightBtnLabel.text = rightBtnTitle;
+    //[self.rightButton setTitle:rightBtnTitle forState:UIControlStateNormal];
    // self.rightButton.titleLabel.text = rightBtnTitle;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setLeftButton:[UIImage imageNamed:@"leftButtonBg"] title:@"" target:self action:@selector(showLeftView)];
-    [self setRightButton:nil title:@"城市" target:self action:@selector(showSelCityVC)];
+    [self creatRightBtn];
+    //[self setRightButton:nil title:@"城市" target:self action:@selector(showSelCityVC)];
     [self settitleLabel:@"预约"];
     self.view.backgroundColor = kViewBackgroundColor;
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-49) style:UITableViewStylePlain];
@@ -118,6 +121,35 @@ enum CateId_Type
     }];
 }
 
+#pragma mark 创建navigation右侧button
+- (void)creatRightBtn
+{
+    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+    rightView.backgroundColor = [UIColor clearColor];
+    
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightButton.backgroundColor = [UIColor clearColor];
+    [rightButton addTarget:self action:@selector(showSelCityVC) forControlEvents:UIControlEventTouchUpInside];
+    rightButton.frame = rightView.frame;
+    [rightView addSubview:rightButton];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, (44-14)/2.0, 60-14, 14)];
+    title.textAlignment = NSTextAlignmentRight;
+    title.backgroundColor = [UIColor clearColor];
+    title.font = kFont14;
+    title.textColor = [UIColor whiteColor];
+    title.text = @"城市";
+    [rightView addSubview:title];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(title.right+4, 0, 10, 6)];
+    imageView.centerY = title.centerY;
+    imageView.image = [UIImage imageNamed:@"downArrow"];
+    [rightView addSubview:imageView];
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightView];
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
+
 - (void)showLeftView
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kLeftViewPushMessage object:nil];
@@ -142,18 +174,6 @@ enum CateId_Type
 {
     return self.allCategoryInfo.count/2 + self.allCategoryInfo.count%2;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return self.headView.height;
-//    
-//}
-//
-//#pragma mark headView
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    return self.headView;
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

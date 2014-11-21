@@ -12,6 +12,7 @@
 #define kTitleFont 15
 #define kCateTitleFont  15
 #define kBorderColor kLineColor//RGBCOLOR(207, 207, 207)
+#define kCateViewHeight (kCateTitleFont+10)*4
 @interface HubControlPriceView()
 {
     NSArray *categoryTitlearry;
@@ -31,15 +32,71 @@
     UILabel *_unitLabel; //单位label
     
     NSString *_cateId;
+    UIView *_cateView;
+    UILabel *_cateTitleLabel;
     
 }
 @property (strong, nonatomic) HbhAppointmentNetManager *netManager;
 @property (strong, nonatomic) NSMutableArray *cateButtonArray;
+@property (strong, nonatomic) UIView *cateListView;
+@property (strong, nonatomic) UIView *clearBackView;
 @end
 
 @implementation HubControlPriceView
 
 #pragma mark - getter and setter
+
+- (UIView *)clearBackView
+{
+    if (!_clearBackView) {
+        _clearBackView  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight)];
+        _clearBackView.backgroundColor = [UIColor clearColor];
+        
+        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeCateListView)];
+        [_clearBackView addGestureRecognizer:tapGR];
+    }
+    return _clearBackView;
+}
+
+- (UIView *)cateListView
+{
+    if (!_cateListView) {
+        _cateListView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, (kCateTitleFont+10)*4)];
+        _cateListView.backgroundColor = [UIColor whiteColor];
+        _cateListView.clipsToBounds = YES;
+        _cateListView.layer.borderWidth = 1.0f;
+        _cateListView.layer.cornerRadius = 2.0f;
+        _cateListView.layer.borderColor = [kLineColor CGColor];
+        _cateButtonArray = [NSMutableArray arrayWithCapacity:categoryTitlearry.count];
+        for(int i=0; i<4; i++)
+        {
+            
+            UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(0, (kCateTitleFont+10)*i, 80, kCateTitleFont+10)];
+            [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
+            cateButton.layer.borderWidth = 1;
+            //cateButton.layer.cornerRadius = 2;
+            cateButton.tag = i;
+            if (cateButtonType == i)
+            {
+                //cateButton.selected = YES;
+                cateButton.layer.borderColor = KColor.CGColor;
+                [cateButton setTitleColor:KColor forState:UIControlStateNormal];
+            }
+            else
+            {
+                cateButton.layer.borderColor = kBorderColor.CGColor;
+                [cateButton setTitleColor:kBorderColor forState:UIControlStateNormal];
+            }
+            [cateButton setTitle:[categoryTitlearry objectAtIndex:i] forState:UIControlStateNormal];
+            [cateButton addTarget:self action:@selector(cateButtonItem:) forControlEvents:UIControlEventTouchUpInside];
+            [_cateListView addSubview:cateButton];
+            [self.cateButtonArray insertObject:cateButton atIndex:i];
+        }
+        _cateListView.tag = 0;
+    }
+    return _cateListView;
+}
+
 - (NSString *)getCateButtonType
 {
     return [NSString stringWithFormat:@"%d",cateButtonType];
@@ -104,7 +161,7 @@
         countType = 0;
         uragent = NO;
         
-        offsetY = 15;
+        offsetY = 20;
         
         //input
         //UI
@@ -128,6 +185,30 @@
     [categoryTitle setFont:[UIFont systemFontOfSize:kTitleFont]];
     categoryTitle.textColor = [UIColor blackColor];
     [self addSubview:categoryTitle];
+    
+    UIView *cateView = [[UIView alloc] initWithFrame:CGRectMake(categoryTitle.right+10, 0, 80, 30)];
+    cateView.backgroundColor = [UIColor whiteColor];
+    cateView.centerY = categoryTitle.centerY;
+    cateView.layer.borderWidth = 1;
+    cateView.layer.borderColor = [kLineColor CGColor];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(5, (30-kCateTitleFont)/2.0, 60, kCateTitleFont)];
+    title.textColor = KColor;
+    title.font = [UIFont systemFontOfSize:kCateTitleFont];
+    title.text = categoryTitlearry[0];
+    title.textAlignment = NSTextAlignmentCenter;
+    [cateView addSubview:title];
+    _cateTitleLabel = title;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(cateView.width-20, 0, 12, 8)];
+    imageView.centerY = title.centerY;
+    imageView.image = [UIImage imageNamed:@"downArrowGray"];
+    [cateView addSubview:imageView];
+    
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCateView)];
+    [cateView addGestureRecognizer:tapGR];
+    
+    [self addSubview:cateView];
+    /*
     _cateButtonArray = [NSMutableArray arrayWithCapacity:categoryTitlearry.count];
     for(int i=0; i<4; i++)
     {
@@ -153,12 +234,12 @@
         [self addSubview:cateButton];
         [self.cateButtonArray insertObject:cateButton atIndex:i];
     }
-    
-    UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, categoryTitle.bottom+15, kMainScreenWidth, 1)];
+    */
+    UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, categoryTitle.bottom+20, kMainScreenWidth, 1)];
     lineview.backgroundColor = RGBCOLOR(232, 232, 232);
     [self addSubview:lineview];
-    
-    offsetY = lineview.bottom+15;
+    _cateView = cateView;
+    offsetY = lineview.bottom+20;
 }
 
 
@@ -212,11 +293,11 @@
     unitLabel.textColor = kBorderColor;
     [self addSubview:unitLabel];
     
-    UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, countTitleLabel.bottom+15, kMainScreenWidth, 1)];
+    UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, countTitleLabel.bottom+20, kMainScreenWidth, 1)];
     lineview.backgroundColor = RGBCOLOR(232, 232, 232);
     [self addSubview:lineview];
     
-    offsetY = lineview.bottom+15;
+    offsetY = lineview.bottom+20;
 }
 
 - (void)createExpeditedView
@@ -252,11 +333,11 @@
     addLabel.text = @"+ ¥ 100";
     [self addSubview:addLabel];
     
-    UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, expeditedTitleLabel.bottom+15, kMainScreenWidth, 1)];
+    UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, expeditedTitleLabel.bottom+20, kMainScreenWidth, 1)];
     lineview.backgroundColor = RGBCOLOR(232, 232, 232);
     [self addSubview:lineview];
     
-    offsetY = lineview.bottom+15;
+    offsetY = lineview.bottom+20;
 }
 
 - (void)createRemarkview
@@ -288,6 +369,34 @@
 }
 
 #pragma mark - Action
+
+- (void)removeCateListView
+{
+    if (self.clearBackView.superview) {
+        [UIView animateWithDuration:0.5f animations:^{
+            self.cateListView.height = 0.1;
+        } completion:^(BOOL finished) {
+            [self.cateListView removeFromSuperview];
+            [self.clearBackView removeFromSuperview];
+        }];
+    }
+}
+
+- (void)tapCateView
+{
+    if (self.cateListView.superview) {
+        [self removeCateListView];
+    }else{
+        self.cateListView.frame = CGRectMake(_cateView.left, _cateView.bottom, self.cateListView.width, 0);
+        [self addSubview:self.clearBackView];
+        [self addSubview:self.cateListView];
+        [UIView animateWithDuration:0.5f animations:^{
+            self.cateListView.height = kCateViewHeight;
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+}
 
 - (BOOL)infoCheck
 {
@@ -330,6 +439,7 @@
 
 - (void)cateButtonItem:(UIButton *)aBut
 {
+    
     if (aBut.tag != cateButtonType) {
         UIButton *button = self.cateButtonArray[cateButtonType];
         if (button) {
@@ -337,10 +447,23 @@
             [button setTitleColor:kBorderColor forState:UIControlStateNormal];
         }
         cateButtonType = (int)aBut.tag;
+        _cateTitleLabel.text = categoryTitlearry[cateButtonType];
+        [UIView animateWithDuration:0.5f animations:^{
+            self.cateListView.height = 0.1;
+        } completion:^(BOOL finished) {
+            [self.cateListView removeFromSuperview];
+        }];
         aBut.layer.borderColor = KColor.CGColor;
         [aBut setTitleColor:KColor forState:UIControlStateNormal];
+        
+        [self getPrice];
+    }else{
+        [UIView animateWithDuration:0.5f animations:^{
+            self.cateListView.height = 0.1;
+        } completion:^(BOOL finished) {
+            [self.cateListView removeFromSuperview];
+        }];
     }
-    [self getPrice];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

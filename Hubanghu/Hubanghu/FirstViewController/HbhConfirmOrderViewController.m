@@ -305,7 +305,7 @@
     NSString *strDesc = nil;
     NSString *strTitle = nil;
     //[SVProgressHUD showErrorWithStatus:@"正在下单.." cover:NO offsetY:0];
-    [SVProgressHUD showWithStatus:@"正在下单.." cover:YES offsetY:0];
+    [SVProgressHUD showWithStatus:@"正在转向支付宝支付.." cover:YES offsetY:0];
     if(self.order.name && self.order.name.length > 0)
     {
         strTitle = self.order.name;

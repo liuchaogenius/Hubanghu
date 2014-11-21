@@ -145,6 +145,9 @@
         weakSelf.categoryInfoModel = cModel;
         weakSelf.title = weakSelf.categoryInfoModel.title;
         weakSelf.sgmCount = [weakSelf getSgmCount];
+        UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 7)];
+        //whiteView.backgroundColor = [UIColor blackColor];
+        weakSelf.tableView.tableHeaderView = whiteView;
         [weakSelf.view addSubview:weakSelf.tableView];
         
         //判断是否需要分栏，并作处理
@@ -152,7 +155,7 @@
             [weakSelf.view addSubview:weakSelf.sgmBtmScrollView];
             
         }
-        weakSelf.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-kSgmBtnHeight : kMainScreenHeight-20-44) );
+        weakSelf.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight+0:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-kSgmBtnHeight : kMainScreenHeight-20-44) );
         [weakSelf addTableViewTrag];
         [weakSelf.tableView reloadData];
     } and:^{
@@ -176,6 +179,7 @@
                 if (weakSelf.sgmCount && !_sgmBtmScrollView) {
                     [weakSelf.view addSubview:weakSelf.sgmBtmScrollView];
                 }
+                
                 weakSelf.title = weakSelf.categoryInfoModel.title;
                 [weakSelf.view addSubview:weakSelf.tableView];
                 

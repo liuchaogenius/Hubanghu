@@ -127,7 +127,7 @@ typedef NS_ENUM(int, AmountDesc)
 - (void)creatControlPriceView
 {
     if (!controlPriceView) {
-        controlPriceView = [[HubControlPriceView alloc] initWithFrame:CGRectMake(0, installDesView.bottom+10, kMainScreenWidth, 196.0)];
+        controlPriceView = [[HubControlPriceView alloc] initWithFrame:CGRectMake(0, installDesView.bottom+10, kMainScreenWidth, 196.0+40)];
         [controlPriceView setCateId:strCateId];
         controlPriceView.delegate = self;
         [scrollview addSubview:controlPriceView];
@@ -286,6 +286,7 @@ typedef NS_ENUM(int, AmountDesc)
 #pragma mark resign first resp
 - (void)shouldResignAllFirstResponds
 {
+    [controlPriceView removeCateListView];
     [controlPriceView allTextFieldsResignFirstRespond];
 }
 
