@@ -8,9 +8,11 @@
 
 #import "HbhOrderDetailViewController.h"
 #import "HbhOrderManage.h"
+#import "HubOrder.h"
 #import "STAlerView.h"
 #import "HbhMakeAppointMentViewController.h"
 #import "HbhConfirmOrderViewController.h"
+#import "HbhAppointmentNetManager.h"
 
 typedef enum : NSUInteger {
     orderStatusUndone = 0,
@@ -35,6 +37,7 @@ typedef enum : NSUInteger {
 
 @property(nonatomic, strong) HbhOrderModel *myModel;
 @property(nonatomic, strong) HbhOrderManage *orderManage;
+@property(nonatomic, strong) HbhAppointmentNetManager *netManager;
 @end
 
 @implementation HbhOrderDetailViewController
@@ -44,6 +47,14 @@ typedef enum : NSUInteger {
     self = [super init];
     self.myModel = aModel;
     return self;
+}
+
+- (HbhAppointmentNetManager *)netManager
+{
+    if (!_netManager) {
+        _netManager = [[HbhAppointmentNetManager alloc] init];
+    }
+    return _netManager;
 }
 
 - (void)viewDidLoad {
@@ -175,6 +186,8 @@ typedef enum : NSUInteger {
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kPaySuccess object:nil];
     //未支付设为支付完成
+    [self simpleUpdateOrder]; //更新模型
+    
     self.showOrderStatusLabel.text = @"交易成功";
     [self.movementBtn setTitle:@"已付款" forState:UIControlStateNormal];
     self.movementBtn.backgroundColor = RGBCOLOR(201, 201, 201);
@@ -184,9 +197,6 @@ typedef enum : NSUInteger {
     [self.moreBtn setTitle:@"再次预约" forState:UIControlStateNormal];
     [self.moreBtn removeTarget:self action:@selector(cancelOrderBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.moreBtn addTarget:self action:@selector(orderAgian) forControlEvents:UIControlEventTouchUpInside];
-    if ([self.orderDelegaet respondsToSelector:@selector(anyPayedSuccess)]) {
-        [self.orderDelegaet anyPayedSuccess];
-    }
 }
 
 - (UIView *)topView
@@ -223,6 +233,24 @@ typedef enum : NSUInteger {
     [formatter1 setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *showtimeNew = [formatter1 stringFromDate:newDate];
     return showtimeNew;
+}
+
+//simple UpdateOrder
+- (void)simpleUpdateOrder
+{
+    __weak HbhOrderDetailViewController *weakself = self;
+    [self.netManager getOrderWith:[NSString stringWithFormat:@"%d",(int)weakself.myModel.orderId] succ:^(HubOrder *order) {
+        weakself.myModel.status = order.status;
+        weakself.myModel.workerName = order.workerName;
+        weakself.myModel.price = order.price;
+        weakself.myModel.urgent = order.urgent;
+        weakself.myModel.time = order.time;
+        weakself.myModel.mountType = order.mountType;
+        weakself.myModel.comment = order.comment;
+        weakself.myModel.name = order.name;
+        weakself.myModel.orderId = order.orderId;
+    } failure:^{
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -73,7 +73,7 @@
             
             UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(0, (kCateTitleFont+10)*i, 80, kCateTitleFont+10)];
             [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
-            cateButton.layer.borderWidth = 1;
+            cateButton.layer.borderWidth = 0.5;
             //cateButton.layer.cornerRadius = 2;
             cateButton.tag = i;
             if (cateButtonType == i)
@@ -373,11 +373,11 @@
 - (void)removeCateListView
 {
     if (self.clearBackView.superview) {
+        [self.clearBackView removeFromSuperview];
         [UIView animateWithDuration:0.5f animations:^{
             self.cateListView.height = 0.1;
         } completion:^(BOOL finished) {
             [self.cateListView removeFromSuperview];
-            [self.clearBackView removeFromSuperview];
         }];
     }
 }

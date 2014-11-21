@@ -100,7 +100,7 @@ typedef NS_ENUM(int, AmountDesc)
             //[_tableView reloadData];
         } failure:^{
             //[_activityView stopAnimating];
-    #warning 获取失败了提醒用户
+   // #warning 获取失败了提醒用户
         }];
     }
 }

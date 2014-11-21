@@ -26,6 +26,8 @@
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *amountType;
+@property (nonatomic, assign) int status;
+@property (nonatomic, assign) int orderId;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;
 - (instancetype)initWithDictionary:(NSDictionary *)dict;

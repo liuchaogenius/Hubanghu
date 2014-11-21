@@ -28,12 +28,14 @@ enum CateId_Type
 };
 
 @interface FirstViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    UILabel *_rightBtnLabel;
+}
 @property (strong, nonatomic) UITableView* tableView;
 @property (strong, nonatomic) NSArray *allCategoryInfo;//所有预约类型info数组
 @property (strong, nonatomic) UIView *headView; //headView
 @property (strong, nonatomic) HbuAreaLocationManager *areaLocationManager;
 @property (strong, nonatomic) HbuAreaListModelBaseClass *areaListModel;
-@property (strong, nonatomic) UILabel *rightBtnLabel;
 
 @end
 
@@ -74,7 +76,7 @@ enum CateId_Type
     //更改右上button 城市titile
     NSString *rightBtnTitle = (self.areaLocationManager.currentAreas.name.length ?
                                self.areaLocationManager.currentAreas.name : @"城市");
-    self.rightBtnLabel.text = rightBtnTitle;
+    _rightBtnLabel.text = rightBtnTitle;
     //[self.rightButton setTitle:rightBtnTitle forState:UIControlStateNormal];
    // self.rightButton.titleLabel.text = rightBtnTitle;
 }
@@ -103,7 +105,7 @@ enum CateId_Type
     //定位处理
     __weak FirstViewController *weakSelf = self;
     [self.areaLocationManager getUserLocationWithSuccess:^{
-        [weakSelf setRightButton:nil title:[HbuAreaLocationManager sharedManager].currentAreas.name target:self action:@selector(showSelCityVC)];
+        _rightBtnLabel.text = weakSelf.areaLocationManager.currentAreas.name;
         //weakSelf.rightButton.titleLabel.text = weakSelf.areaLocationManager.currentAreas.name;
     } Fail:^(NSString *failString, int errorType) {
         if (errorType == errorType_notOpenService) { //未开启定位服务
@@ -139,6 +141,7 @@ enum CateId_Type
     title.font = kFont14;
     title.textColor = [UIColor whiteColor];
     title.text = @"城市";
+    _rightBtnLabel = title;
     [rightView addSubview:title];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(title.right+4, 0, 10, 6)];

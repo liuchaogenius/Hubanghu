@@ -22,6 +22,8 @@ NSString *const kHubOrderLocation = @"location";
 NSString *const kHubOrderCateId = @"cateId";
 NSString *const kHubOrderUsername = @"username";
 NSString *const kHubOrderName = @"name";
+NSString *const kHubOrderOrderId = @"id";
+NSString *const kHbhOrderStatus = @"status";
 NSString *const kHubOrderAmountType = @"amountType";
 
 @interface HubOrder ()
@@ -32,6 +34,7 @@ NSString *const kHubOrderAmountType = @"amountType";
 
 @implementation HubOrder
 
+@synthesize status = _status;
 @synthesize workerId = _workerId;
 @synthesize areaId = _areaId;
 @synthesize phone = _phone;
@@ -46,6 +49,7 @@ NSString *const kHubOrderAmountType = @"amountType";
 @synthesize cateId = _cateId;
 @synthesize username = _username;
 @synthesize name = _name;
+@synthesize orderId = _orderId;
 @synthesize amountType = _amountType;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict
@@ -75,6 +79,8 @@ NSString *const kHubOrderAmountType = @"amountType";
             self.username = [self objectOrNilForKey:kHubOrderUsername fromDictionary:dict];
             self.name = [self objectOrNilForKey:kHubOrderName fromDictionary:dict];
             self.amountType = [self objectOrNilForKey:kHubOrderAmountType fromDictionary:dict];
+            self.status = [[self objectOrNilForKey:kHbhOrderStatus fromDictionary:dict] intValue];
+            self.orderId = [[self objectOrNilForKey:kHubOrderOrderId fromDictionary:dict] intValue];
     }
     
     return self;
@@ -84,6 +90,7 @@ NSString *const kHubOrderAmountType = @"amountType";
 - (NSDictionary *)dictionaryRepresentation
 {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
+    [mutableDict setValue:[NSNumber numberWithInt:self.status] forKey:kHbhOrderStatus];
     [mutableDict setValue:[NSNumber numberWithDouble:self.workerId] forKey:kHubOrderWorkerId];
     [mutableDict setValue:[NSNumber numberWithDouble:self.areaId] forKey:kHubOrderAreaId];
     [mutableDict setValue:[NSNumber numberWithDouble:self.phone] forKey:kHubOrderPhone];
@@ -98,6 +105,7 @@ NSString *const kHubOrderAmountType = @"amountType";
     [mutableDict setValue:[NSNumber numberWithDouble:self.cateId] forKey:kHubOrderCateId];
     [mutableDict setValue:self.username forKey:kHubOrderUsername];
     [mutableDict setValue:self.name forKey:kHubOrderName];
+    [mutableDict setValue:[NSNumber numberWithInt:self.orderId] forKey:kHubOrderOrderId];
     [mutableDict setValue:self.amountType forKey:kHubOrderAmountType];
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
@@ -121,6 +129,7 @@ NSString *const kHubOrderAmountType = @"amountType";
 {
     self = [super init];
 
+    self.status = [aDecoder decodeIntForKey:kHbhOrderStatus];
     self.workerId = [aDecoder decodeDoubleForKey:kHubOrderWorkerId];
     self.areaId = [aDecoder decodeDoubleForKey:kHubOrderAreaId];
     self.phone = [aDecoder decodeDoubleForKey:kHubOrderPhone];
@@ -135,6 +144,7 @@ NSString *const kHubOrderAmountType = @"amountType";
     self.cateId = [aDecoder decodeDoubleForKey:kHubOrderCateId];
     self.username = [aDecoder decodeObjectForKey:kHubOrderUsername];
     self.name = [aDecoder decodeObjectForKey:kHubOrderName];
+    self.orderId = [aDecoder decodeIntForKey:kHubOrderOrderId];
     self.amountType = [aDecoder decodeObjectForKey:kHubOrderAmountType];
     return self;
 }
@@ -142,6 +152,7 @@ NSString *const kHubOrderAmountType = @"amountType";
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
 
+    [aCoder encodeInt:_status forKey:kHbhOrderStatus];
     [aCoder encodeDouble:_workerId forKey:kHubOrderWorkerId];
     [aCoder encodeDouble:_areaId forKey:kHubOrderAreaId];
     [aCoder encodeDouble:_phone forKey:kHubOrderPhone];
@@ -156,6 +167,7 @@ NSString *const kHubOrderAmountType = @"amountType";
     [aCoder encodeDouble:_cateId forKey:kHubOrderCateId];
     [aCoder encodeObject:_username forKey:kHubOrderUsername];
     [aCoder encodeObject:_name forKey:kHubOrderName];
+    [aCoder encodeInt:_orderId forKey:kHubOrderOrderId];
     [aCoder encodeObject:_amountType forKey:kHubOrderAmountType];
 }
 
@@ -164,7 +176,7 @@ NSString *const kHubOrderAmountType = @"amountType";
     HubOrder *copy = [[HubOrder alloc] init];
     
     if (copy) {
-
+        copy.status = self.status;
         copy.workerId = self.workerId;
         copy.areaId = self.areaId;
         copy.phone = self.phone;
@@ -179,6 +191,7 @@ NSString *const kHubOrderAmountType = @"amountType";
         copy.cateId = self.cateId;
         copy.username = [self.username copyWithZone:zone];
         copy.name = [self.name copyWithZone:zone];
+        copy.orderId = self.orderId;
         copy.amountType = [self.amountType copyWithZone:zone];
     }
     

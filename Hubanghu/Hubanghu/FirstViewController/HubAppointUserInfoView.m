@@ -10,6 +10,7 @@
 #import "HbhUser.h"
 #import "AreasDBManager.h"
 #import "HbuAreaLocationManager.h"
+#import "SVProgressHUD.h"
 
 #define kBorderColor kLineColor//RGBCOLOR(232, 232, 232)
 enum TextFieldType
@@ -107,7 +108,8 @@ enum TextFieldType
         if (_districtArray && [_areaPicker superview]) {
             [_areaPicker reloadComponent:2];
         }else{
-#warning 为获取到district数据处理
+//#warning 为获取到district数据处理
+            [SVProgressHUD showErrorWithStatus:@"获取区数据失败，请检查网络稍后重试" cover:YES offsetY:kMainScreenHeight/2.0f];
         }
         
     }];
@@ -122,7 +124,8 @@ enum TextFieldType
         if (_cityArray && [_areaPicker superview]) {
             [_areaPicker reloadComponent:1];
         }else{
-#warning 为获取到city数据处理
+//#warning 为获取到city数据处理
+            [SVProgressHUD showErrorWithStatus:@"获取城市数据失败，请检查网络稍后重试" cover:YES offsetY:kMainScreenHeight/2.0f];
         }
     }];
 }

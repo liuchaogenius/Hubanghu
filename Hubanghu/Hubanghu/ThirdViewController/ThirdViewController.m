@@ -21,7 +21,7 @@ typedef enum : NSUInteger {
     currentTabOrderAppraise
 } currentTabOrder;
 
-@interface ThirdViewController ()<UITableViewDataSource, UITableViewDelegate, OrderDetailVCDelegaet>
+@interface ThirdViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
     BOOL firstInitview;
 }
@@ -71,10 +71,14 @@ typedef enum : NSUInteger {
         }
     }
 }
-
+#pragma mark - 支付成功后刷新数据
 -(void)alipayResultRefreshTable
 {
     MLOG(@"testalipat");
+    self.allOrderArray = nil;
+    self.appraiseArray = nil;
+    self.unDoneArray = nil;
+    [self getFisrtPage];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -359,10 +363,6 @@ typedef enum : NSUInteger {
     }
 }
 
-- (void)anyPayedSuccess
-{
-    [self getFisrtPage];
-}
 
 #pragma mark tableView datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -451,7 +451,6 @@ typedef enum : NSUInteger {
         model = [self.appraiseArray objectAtIndex:indexPath.row];
     }
     HbhOrderDetailViewController *orderDetailVC = [[HbhOrderDetailViewController alloc] initWithOrderStatus:model];
-    orderDetailVC.orderDelegaet = self;
     orderDetailVC.hidesBottomBarWhenPushed = YES;
     HbhOrderAppraiseViewController *orderAppraiseVC = [[HbhOrderAppraiseViewController alloc] initWithModel:model];
     orderAppraiseVC.hidesBottomBarWhenPushed = YES;

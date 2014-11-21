@@ -122,7 +122,6 @@
     NSDictionary *postDic = [NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",checkcode,@"checkcode",password,@"password",nil];
     
     [NetManager requestWith:postDic url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
-#warning 待补完，未实现
         NSDictionary *data = successDict[@"data"];
         int result = [data[@"result"] intValue];
         if (result == 1) {

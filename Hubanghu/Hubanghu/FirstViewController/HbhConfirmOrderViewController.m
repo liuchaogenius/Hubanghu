@@ -348,6 +348,7 @@
         [commitButton setBackgroundColor:[UIColor lightGrayColor]];
         [commitButton setTitle:@"已支付" forState:UIControlStateNormal];
         [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccess object:self];
+       
         
     }
     else if(resultStatus == 8000)///正在处理也当支付成功
@@ -357,6 +358,7 @@
         [commitButton setBackgroundColor:[UIColor lightGrayColor]];
         [commitButton setTitle:@"已支付" forState:UIControlStateNormal];
         [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccess object:self];
+       
     }
     else///支付失败
     {
@@ -371,6 +373,9 @@
     [super viewWillDisappear:animated];
     [SVProgressHUD dismiss];
 }
+
+
+
 /*
 #pragma mark - Navigation
 
