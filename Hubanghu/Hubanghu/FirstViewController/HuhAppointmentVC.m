@@ -277,10 +277,18 @@ typedef NS_ENUM(int, AmountDesc)
 
 - (void)shouldScrolltoPointY:(CGFloat)pointY
 {
-    CGFloat y = 200 +50+ (userInfoView.frame.origin.y + pointY) - (kMainScreenHeight-64);
-    CGPoint thePoint = CGPointMake(0, y);
-    MLOG(@"%lf %lf",thePoint.x,thePoint.y);
-    [scrollview setContentOffset:thePoint animated:YES];
+    if ((int)pointY == 0) {
+        //复原
+        CGFloat thFitY = scrollview.contentSize.height - (kMainScreenHeight - toolBarView.height - 64);
+        [scrollview setContentOffset:CGPointMake(0, thFitY>0 ? thFitY : 0)];
+    }else{
+        CGFloat y = 200 +50+ (userInfoView.frame.origin.y + pointY) - (kMainScreenHeight-64);
+        CGPoint thePoint = CGPointMake(0, y);
+        MLOG(@"%lf %lf",thePoint.x,thePoint.y);
+        [scrollview setContentOffset:thePoint animated:YES];
+    }
+    
+//    self.view.frame = CGRectMake(0, (int)pointY ? self.view.frame.origin.y - pointY : 64, self.view.width, self.view.height);
 }
 
 #pragma mark resign first resp
@@ -320,12 +328,13 @@ typedef NS_ENUM(int, AmountDesc)
     CGRect keyboardRect = [aValue CGRectValue];
     if([userInfoView getCurrentTextField])
     {
+        self.view.frame = CGRectMake(0, self.view.frame.origin.y - keyboardRect.size.height, self.view.width, self.view.height);
     }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    
+    self.view.frame = CGRectMake(0, 0, self.view.width, self.view.height);
 }
 
 - (void)dealloc

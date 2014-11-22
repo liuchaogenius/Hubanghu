@@ -10,4 +10,6 @@
 
 @interface HbhSelCityViewController : BaseViewController
 
+@property (assign, nonatomic) BOOL isOnScreen;//判断是否在屏幕上
+
 @end

@@ -77,8 +77,6 @@ enum CateId_Type
     NSString *rightBtnTitle = (self.areaLocationManager.currentAreas.name.length ?
                                self.areaLocationManager.currentAreas.name : @"城市");
     _rightBtnLabel.text = rightBtnTitle;
-    //[self.rightButton setTitle:rightBtnTitle forState:UIControlStateNormal];
-   // self.rightButton.titleLabel.text = rightBtnTitle;
 }
 
 - (void)viewDidLoad {
@@ -110,15 +108,13 @@ enum CateId_Type
     } Fail:^(NSString *failString, int errorType) {
         if (errorType == errorType_notOpenService) { //未开启定位服务
             //区分是否有之前的定位城市
-            NSString *cancelButtonTiltle = (self.areaLocationManager.currentAreas ? @"知道了":@"手动选择城市");
+            NSString *cancelButtonTiltle = (weakSelf.areaLocationManager.currentAreas ? @"知道了":@"手动选择城市");
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"定位服务未开启" message:@"请在系统设置中开启定位服务（设置->隐私->定位服务->开启互帮互）" delegate:self cancelButtonTitle:cancelButtonTiltle otherButtonTitles:nil, nil];
             alertView.tag = (self.areaLocationManager.currentAreas ? 1 : 2);
             [alertView show];
         }else if(errorType == errorType_locationFailed || errorType == errorType_matchCityFailed){
+            [self showSelCityVC];
             [SVProgressHUD showErrorWithStatus:failString cover:YES offsetY:kMainScreenHeight/2.0];
-            HbhSelCityViewController *selCityVC = [[HbhSelCityViewController alloc] init];
-            selCityVC.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:selCityVC animated:YES];
         }
     }];
 }
@@ -214,9 +210,7 @@ enum CateId_Type
 #pragma mark show SelCityVC
 - (void)showSelCityVC
 {
-    HbhSelCityViewController *selCityVC = [[HbhSelCityViewController alloc] init];
-    selCityVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:selCityVC animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSelCityMessage object:nil];
 }
 
 #pragma mark 点击图片button进入对应type页面
@@ -232,23 +226,12 @@ enum CateId_Type
 {
     if (alertView.tag == 2) {
         if (buttonIndex == 0) {
-            HbhSelCityViewController *selCityVC = [[HbhSelCityViewController alloc] init];
-            selCityVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:selCityVC animated:YES];
+            [self showSelCityVC];
         }
     }
     
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)dealloc
 {

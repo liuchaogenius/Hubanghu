@@ -17,6 +17,7 @@
 #import "HbhLoginViewController.h"
 #import "HbhUser.h"
 #import "IntroduceWebView.h"
+#import "HbhSelCityViewController.h"
 #import "LSNavigationController.h"
 
 @interface RootTabBarController ()
@@ -47,6 +48,8 @@
 }
 @property (nonatomic, strong) HbhLoginViewController *loginVC;
 @property (nonatomic, strong) UINavigationController *loginNav;
+@property (nonatomic, strong) HbhSelCityViewController *selCityVC;
+@property (nonatomic, strong) UINavigationController *selCityNav;
 @end
 
 @implementation RootTabBarController
@@ -67,6 +70,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushLeftView) name:kLeftViewPushMessage object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popLeftView) name:kLeftViewPopMessage object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginViewController:) name:kLoginForUserMessage object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSelCityVC) name:kSelCityMessage object:nil];
 }
 
 - (void)initTabViewController
@@ -216,6 +220,34 @@
             [weakself.loginNav dismissViewControllerAnimated:YES completion:^{
                 
             }];
+        }];
+    }
+}
+
+#pragma mark show selCityVc
+
+- (HbhSelCityViewController *)selCityVC
+{
+    if (!_selCityVC) {
+        _selCityVC = [[HbhSelCityViewController alloc] init];
+        _selCityVC.isOnScreen = NO;
+    }
+    return _selCityVC;
+}
+
+- (UINavigationController *)selCityNav
+{
+    if (!_selCityNav) {
+        _selCityNav = [[UINavigationController alloc] initWithRootViewController:self.selCityVC];
+    }
+    return _selCityNav;
+}
+
+- (void)showSelCityVC
+{
+    if (!self.selCityVC.isOnScreen) {
+        self.selCityVC.isOnScreen = YES;
+        [self presentViewController:self.selCityNav animated:YES completion:^{
         }];
     }
 }

@@ -109,7 +109,7 @@ enum TextFieldType
             [_areaPicker reloadComponent:2];
         }else{
 //#warning 为获取到district数据处理
-            [SVProgressHUD showErrorWithStatus:@"获取区数据失败，请检查网络稍后重试" cover:YES offsetY:kMainScreenHeight/2.0f];
+            //[SVProgressHUD showErrorWithStatus:@"获取区数据失败，请检查网络稍后重试" cover:YES offsetY:kMainScreenHeight/2.0f];
         }
         
     }];
@@ -125,7 +125,7 @@ enum TextFieldType
             [_areaPicker reloadComponent:1];
         }else{
 //#warning 为获取到city数据处理
-            [SVProgressHUD showErrorWithStatus:@"获取城市数据失败，请检查网络稍后重试" cover:YES offsetY:kMainScreenHeight/2.0f];
+            //[SVProgressHUD showErrorWithStatus:@"获取城市数据失败，请检查网络稍后重试" cover:YES offsetY:kMainScreenHeight/2.0f];
         }
     }];
 }
@@ -460,7 +460,7 @@ enum TextFieldType
 {
     [self checkAlltextFieldFirstRespond];
     if ([self.delegate respondsToSelector:@selector(shouldScrolltoPointY:)]){
-        [self.delegate shouldScrolltoPointY:self.top-160];
+        [self.delegate shouldScrolltoPointY:0];
     }
     return YES;
 }
@@ -493,7 +493,7 @@ enum TextFieldType
     
     //HbuAreaListModelAreas *area = self.cityArray[0];
     [self.clearView removeFromSuperview];
-    [self.delegate shouldScrolltoPointY:self.top-160];
+    [self.delegate shouldScrolltoPointY:0];
     if ([_datePicker superview]) {
         [self datePickerValueToTextFiled:self.datePicker];
         [UIView animateWithDuration:0.2 animations:^{

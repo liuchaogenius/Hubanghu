@@ -123,7 +123,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
             [weakSelf refreshData];
         });
     }];
-    
+    [self setLeftButton:[UIImage imageNamed:@"back"] title:nil target:self action:@selector(touchBackItem)];
     [self setRightButton:[UIImage imageNamed:@"refresh"] title:nil target:self action:@selector(reLocationUserArea)];
     
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
@@ -304,6 +304,14 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [tableView setTableFooterView:view];
+}
+
+//back
+- (void)touchBackItem
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.isOnScreen = NO;
+    }];
 }
 
 #pragma mark actionSheet Delegate
