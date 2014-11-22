@@ -108,7 +108,7 @@
 - (UILabel *)urgentLabel
 {
     if (!_urgentLabel) {
-        _urgentLabel = [[UILabel alloc] initWithFrame:CGRectMake(105, 30, 40, 20)];
+        _urgentLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 30, 40, 20)];
         _urgentLabel.text = @"[加急]";
         _urgentLabel.textColor = KColor;
         _urgentLabel.font = kFont10;

@@ -35,7 +35,8 @@
     self.title = @"评价";
     _isAgian = 0;
     
-    self.appraiseTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 140, kMainScreenWidth-30, kMainScreenHeight-140-200-60)];
+    self.appraiseTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 140, kMainScreenWidth-30, 168)];
+    self.appraiseTextView.backgroundColor = kViewBackgroundColor;
     self.appraiseTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.appraiseTextView.layer.borderWidth = 0.5;
     self.appraiseTextView.delegate = self;
@@ -52,7 +53,7 @@
     placeHolderLabel.textColor = [UIColor lightGrayColor];
     [self.view addSubview:placeHolderLabel];
     
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.appraiseTextView.left, kMainScreenHeight-200, kMainScreenWidth-30, 30)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.appraiseTextView.left, self.appraiseTextView.bottom+50, kMainScreenWidth-30, 30)];
     btn.backgroundColor = KColor;
     btn.layer.cornerRadius = 2.5;
     btn.titleLabel.font = kFont20;

@@ -203,7 +203,7 @@ typedef enum : NSUInteger {
 {
     if (!_topView) {
         _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 40)];
-        _topView.backgroundColor = RGBCOLOR(242, 242, 242);
+        _topView.backgroundColor = RGBCOLOR(232, 232, 232);
         
         UILabel *orderStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 80, 20)];
         orderStatusLabel.backgroundColor = [UIColor clearColor];
