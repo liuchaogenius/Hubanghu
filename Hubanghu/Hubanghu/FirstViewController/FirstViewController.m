@@ -84,7 +84,7 @@ enum CateId_Type
     [self setLeftButton:[UIImage imageNamed:@"leftButtonBg"] title:@"" target:self action:@selector(showLeftView)];
     [self creatRightBtn];
     //[self setRightButton:nil title:@"城市" target:self action:@selector(showSelCityVC)];
-    [self settitleLabel:@"预约"];
+    [self settitleLabel:@"户帮户"];
     self.view.backgroundColor = kViewBackgroundColor;
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-49) style:UITableViewStylePlain];
     MLOG(@"%lf",self.tableView.height);
