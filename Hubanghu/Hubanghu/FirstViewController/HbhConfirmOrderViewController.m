@@ -36,7 +36,7 @@
 
 - (void)initData{
 	_netManager = [[HbhAppointmentNetManager alloc] init];
-	_payPathArr = @[@"    支付宝支付"];
+	_payPathArr = @[@"      支付宝支付"];
     if (kSystemVersion < 7.0) {
         _detailsInfoTitle = @[@"名        称:",@"姓        名:",@"手  机  号:",@"数        量:",@"时        间:",@"地        址:",@"安装师傅:",@"备        注:",@"应付金额:"];
     }else{
@@ -87,8 +87,9 @@
             {
                 [commitButton setTitle:@"支付" forState:UIControlStateNormal];
                 [commitButton addTarget:self action:@selector(alipayServier) forControlEvents:UIControlEventTouchDown];
+                [self alipayServier];
             }
-            [SVProgressHUD dismiss];
+            //[SVProgressHUD dismiss];
         }
 
 	} failure:^{
@@ -240,7 +241,14 @@
         if(!self.alipayLogoImgview)
         {
             UIImage *img = [UIImage imageNamed:@"alipay_logo"];
-            self.alipayLogoImgview = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 20, 20)];
+            if(kSystemVersion>6.99)
+            {
+                self.alipayLogoImgview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 12, 20, 20)];
+            }
+            else
+            {
+                self.alipayLogoImgview = [[UIImageView alloc] initWithFrame:CGRectMake(17, 12, 20, 20)];
+            }
             self.alipayLogoImgview.contentMode = UIViewContentModeScaleAspectFill;
             [self.alipayLogoImgview setImage:img];
             [cell addSubview:self.alipayLogoImgview];

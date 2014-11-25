@@ -152,6 +152,7 @@
 		FF9CCD491A05367D007DC51B /* HubControlPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9CCD481A05367D007DC51B /* HubControlPriceView.m */; };
 		FF9CCD4C1A0536AE007DC51B /* HubAppointUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9CCD4B1A0536AE007DC51B /* HubAppointUserInfoView.m */; };
 		FFBBFB2419F3BB18003A200C /* AreasDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBBFB2319F3BB18003A200C /* AreasDBManager.m */; };
+		FFC8CDC81A24708A002844EF /* SImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC8CDC71A24708A002844EF /* SImageUtil.m */; };
 		FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */; };
 		FFD1A2CE19EE4B6D00EA97D4 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C619EE4B6D00EA97D4 /* FMDatabaseAdditions.m */; };
 		FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C819EE4B6D00EA97D4 /* FMDatabasePool.m */; };
@@ -455,6 +456,8 @@
 		FF9CCD4B1A0536AE007DC51B /* HubAppointUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubAppointUserInfoView.m; sourceTree = "<group>"; };
 		FFBBFB2219F3BB18003A200C /* AreasDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AreasDBManager.h; path = Hubanghu/ThirdParty/FMDB/AreasDBManager.h; sourceTree = SOURCE_ROOT; };
 		FFBBFB2319F3BB18003A200C /* AreasDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AreasDBManager.m; path = Hubanghu/ThirdParty/FMDB/AreasDBManager.m; sourceTree = SOURCE_ROOT; };
+		FFC8CDC61A24708A002844EF /* SImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SImageUtil.h; sourceTree = "<group>"; };
+		FFC8CDC71A24708A002844EF /* SImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SImageUtil.m; sourceTree = "<group>"; };
 		FFD1A2C319EE4B6D00EA97D4 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		FFD1A2C519EE4B6D00EA97D4 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -1108,6 +1111,7 @@
 		FF21CF2E19E68C36005007B7 /* ToolUtil */ = {
 			isa = PBXGroup;
 			children = (
+				FFC8CDC51A24706E002844EF /* ImgUtil */,
 				FF1FC27219ED1A1600C362F7 /* STALertView */,
 			);
 			name = ToolUtil;
@@ -1198,6 +1202,15 @@
 			path = LocationManager;
 			sourceTree = "<group>";
 		};
+		FFC8CDC51A24706E002844EF /* ImgUtil */ = {
+			isa = PBXGroup;
+			children = (
+				FFC8CDC61A24708A002844EF /* SImageUtil.h */,
+				FFC8CDC71A24708A002844EF /* SImageUtil.m */,
+			);
+			path = ImgUtil;
+			sourceTree = "<group>";
+		};
 		FFD1A2C219EE4B6D00EA97D4 /* FMDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -1282,7 +1295,6 @@
 				TargetAttributes = {
 					FF21CE6919E64B5A005007B7 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = JERPD52W3W;
 					};
 					FF21CE7C19E64B5A005007B7 = {
 						CreatedOnToolsVersion = 6.0;
@@ -1470,6 +1482,7 @@
 				5B25474019F5439600E50B60 /* HbhSelCityViewController.m in Sources */,
 				FF21CF1B19E66144005007B7 /* UIImage+WebP.m in Sources */,
 				5B16D8D319F139D3009E9FF3 /* CategoryInfoModel.m in Sources */,
+				FFC8CDC81A24708A002844EF /* SImageUtil.m in Sources */,
 				FF21CE9819E65FE7005007B7 /* FirstViewController.m in Sources */,
 				FF21CF1119E66144005007B7 /* SDImageCache.m in Sources */,
 				AB8EA5DE19F482D0001F40C2 /* HbhData.m in Sources */,
@@ -1531,11 +1544,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1568,21 +1582,24 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
 		FF21CE8819E64B5A005007B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: wu chen (7K2NVL8N69)";
 				GCC_PREFIX_HEADER = "Hubanghu/Hubanghu-Prefix.pch";
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1601,6 +1618,7 @@
 		FF21CE8919E64B5A005007B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1670,7 +1688,7 @@
 				FF21CE8619E64B5A005007B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FF21CE8719E64B5A005007B7 /* Build configuration list for PBXNativeTarget "Hubanghu" */ = {
 			isa = XCConfigurationList;
@@ -1679,7 +1697,7 @@
 				FF21CE8919E64B5A005007B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FF21CE8A19E64B5A005007B7 /* Build configuration list for PBXNativeTarget "HubanghuTests" */ = {
 			isa = XCConfigurationList;
@@ -1688,7 +1706,7 @@
 				FF21CE8C19E64B5A005007B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

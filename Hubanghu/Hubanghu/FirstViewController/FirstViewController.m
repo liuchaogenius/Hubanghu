@@ -55,7 +55,7 @@ enum CateId_Type
 {
     if (!_headView) {
         _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenWidth*381/1080.0f+kBlankWidth) ];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kBlankWidth, _headView.width, _headView.height-kBlankWidth)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _headView.width, _headView.height)];
         [imageView setImage:[UIImage imageNamed:@"OrderHeader"]];
         [_headView addSubview:imageView];
     }

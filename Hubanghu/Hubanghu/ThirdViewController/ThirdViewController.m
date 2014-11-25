@@ -430,6 +430,7 @@ typedef enum : NSUInteger {
             label.font = kFont14;
             label.textColor = [UIColor lightGrayColor];
             label.textAlignment = NSTextAlignmentCenter;
+            label.backgroundColor = kClearColor;
             [cell addSubview:label];
         }
         cell.backgroundColor = [UIColor clearColor];

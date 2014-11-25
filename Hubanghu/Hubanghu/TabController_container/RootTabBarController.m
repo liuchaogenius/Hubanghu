@@ -112,12 +112,12 @@
             selimg = [selimg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             tabBarItem.image = norimg;
             tabBarItem.selectedImage = selimg;
-            tabBarItem.tag = i;
         }
         else
         {
             [tabBarItem setFinishedSelectedImage:selimg withFinishedUnselectedImage:norimg];
         }
+        tabBarItem.tag = i;
     }
     
     MLOG(@"tabbarHeight=%f",self.tabBar.frame.size.height);
@@ -131,14 +131,14 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-    MLOG(@"shouldtabsel = %ld", tabBarController.selectedIndex);
+    MLOG(@"shouldtabsel = %ld", (unsigned long)tabBarController.selectedIndex);
     oldSelectIndex = tabBarController.selectedIndex;
     return YES;
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    MLOG(@"tabsel = %ld", tabBarController.selectedIndex);
+    MLOG(@"tabsel = %ld", (unsigned long)tabBarController.selectedIndex);
     newSelectIndex = tabBarController.selectedIndex;
 }
 

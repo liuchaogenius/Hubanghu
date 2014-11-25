@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "ViewInteraction.h"
+#import "SImageUtil.h"
 
 @interface BaseViewController ()
 {
@@ -39,7 +40,9 @@
     }
     else
     {
-        self.navigationController.navigationBar.tintColor = KColor;
+        UIImage *backImg = [SImageUtil imageWithColor:KColor size:CGSizeMake(1, 44)];
+        [[UINavigationBar appearance] setBackgroundImage:backImg forBarMetrics:UIBarMetricsDefault];
+        //self.navigationController.navigationBar.tintColor = KColor;
     }
     self.navigationController.navigationBar.alpha = 1;
     NSDictionary *attributes=[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil];
