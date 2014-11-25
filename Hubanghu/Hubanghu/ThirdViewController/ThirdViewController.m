@@ -425,6 +425,7 @@ typedef enum : NSUInteger {
         cell.userInteractionEnabled=NO;
         if (indexPath.row==3) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-50, 20, 100, 20)];
+            label.backgroundColor = [UIColor clearColor];
             label.text = @"暂时没有数据";
             label.font = kFont14;
             label.textColor = [UIColor lightGrayColor];
