@@ -11,4 +11,5 @@
 @interface LeftView : UIView <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, assign) int selectItem;
 @property(nonatomic, strong) UITableView *leftTableView;
++ (NSString *)getIntroduceUrl:(int)aIndex title:(NSString **)aTitle;
 @end

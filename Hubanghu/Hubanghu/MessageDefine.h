@@ -23,4 +23,13 @@
 #define kAlipayPartnerId @"2088311602278363"
 #define kAlipaySellerAcount @"hu8hu888@sina.com"
 #define kAlipayOrderResultMessage @"payorderResult" 
+typedef NS_ENUM(int, NS_LeftButtonName)
+{
+    E_USERINTRODUCE,//用户须知
+    E_SERVICECOMMIT,//服务承诺
+    E_SERVICESTANDARD,//服务标准
+    E_FEEDBACK,//投诉反馈
+    E_ABOUTUS,//关于户帮户
+    E_SHAREHBH,//分享
+};
 #endif

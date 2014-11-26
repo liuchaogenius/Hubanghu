@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IntroduceWebView : UIWebView
-
+@interface IntroduceWebView : UIWebView<UIWebViewDelegate>
+- (void)loadUrl:(NSString *)aUrl;
+- (void)refreshItem;
 @end

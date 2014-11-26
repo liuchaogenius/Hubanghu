@@ -8,6 +8,8 @@
 
 #import "IntroduceWebView.h"
 #import "ViewInteraction.h"
+#import "SVProgressHUD.h"
+
 @implementation IntroduceWebView
 
 - (id)initWithFrame:(CGRect)frame
@@ -15,38 +17,31 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self addBackButton];
+        //[self addBackButton];
+        self.delegate = self;
     }
     return self;
 }
 
-- (void)addBackButton
+
+- (void)loadUrl:(NSString *)aUrl
 {
-    UIButton *buton = [[UIButton alloc] initWithFrame:CGRectMake(self.right-54, 20, 44, 44)];
-    [buton setTitle:@"返回" forState:UIControlStateNormal];
-    [buton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [buton addTarget:self action:@selector(backItem) forControlEvents:UIControlEventTouchUpInside];
-    buton.backgroundColor = [UIColor blackColor];
-    [self addSubview:buton];
+    if(aUrl)
+    {
+        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:aUrl]];
+        [self loadRequest:request];
+        [SVProgressHUD showWithStatus:@"正在加载..." cover:NO offsetY:0];
+    }
 }
 
-- (void)addRefreshButton
+- (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    UIButton *buton = [[UIButton alloc] initWithFrame:CGRectMake(self.right-54-54, 20, 44, 44)];
-    [buton setTitle:@"刷新" forState:UIControlStateNormal];
-    [buton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [buton addTarget:self action:@selector(refreshItem) forControlEvents:UIControlEventTouchUpInside];
-    buton.backgroundColor = [UIColor blackColor];
-    [self addSubview:buton];
+    [SVProgressHUD dismiss];
 }
-
-- (void)backItem
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    [ViewInteraction viewDissmissAnimationToRight:self isRemove:YES completeBlock:^(BOOL isComplete) {
-        
-    }];
+    [SVProgressHUD dismiss];
 }
-
 - (void)refreshItem
 {
     [self reload];

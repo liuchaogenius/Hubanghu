@@ -136,7 +136,65 @@ NSArray *itemArray;
     [ViewInteraction viewDissmissAnimationToLeft:self isRemove:NO completeBlock:^(BOOL isComplete) {
         
     }];
-    self.selectItem = 1;
+    MLOG(@"%d",indexPath.row);
+    if(indexPath.row == 1)
+    {
+        self.selectItem = E_USERINTRODUCE;
+    }
+    else if(indexPath.row == 2)
+    {
+        self.selectItem = E_SERVICECOMMIT;
+    }
+    else if(indexPath.row == 3)
+    {
+        self.selectItem = E_SERVICESTANDARD;
+    }
+    else if(indexPath.row == 4)
+    {
+        self.selectItem = E_FEEDBACK;
+    }
+    else if(indexPath.row == 5)
+    {
+        self.selectItem = E_ABOUTUS;
+    }
+    else if(indexPath.row == 6)
+    {
+        self.selectItem = E_SHAREHBH;
+    }
+}
+
++ (NSString *)getIntroduceUrl:(int)aIndex title:(NSString **)aTitle
+{
+    NSString *strUrl = nil;
+    switch (aIndex) {
+        case E_USERINTRODUCE:
+            kHubRequestUrl(@"UserInstructions.html", strUrl);
+            *aTitle = @"用户须知";
+            break;
+        case E_SERVICECOMMIT:
+            kHubRequestUrl(@"ServicePromise.html", strUrl);
+            *aTitle = @"服务承诺";
+            break;
+        case E_SERVICESTANDARD:
+            kHubRequestUrl(@"ServiceStandards.html", strUrl);
+            *aTitle = @"服务标准";
+            break;
+        case E_FEEDBACK:
+            kHubRequestUrl(@"ComplaintsFeedback.html", strUrl);
+            *aTitle = @"投诉反馈";
+            break;
+        case E_ABOUTUS:
+            kHubRequestUrl(@"AboutH8H.html", strUrl);
+            *aTitle = @"关于户帮户";
+            break;
+        case E_SHAREHBH:
+            kHubRequestUrl(@"Share.htm", strUrl);
+            *aTitle = @"分享";
+            break;
+        default:
+            break;
+    }
+    return strUrl;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

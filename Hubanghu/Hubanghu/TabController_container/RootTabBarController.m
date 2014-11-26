@@ -16,7 +16,7 @@
 #import "ViewInteraction.h"
 #import "HbhLoginViewController.h"
 #import "HbhUser.h"
-#import "IntroduceWebView.h"
+#import "IntroduceViewController.h"
 #import "HbhSelCityViewController.h"
 #import "LSNavigationController.h"
 
@@ -38,6 +38,8 @@
     FourthViewController *fourthVC;
     
     LeftView *leftview;
+    IntroduceViewController *introduceVC;
+    UINavigationController *introduceNaVC;
     
     NSInteger newSelectIndex;
     NSInteger oldSelectIndex;
@@ -156,7 +158,8 @@
     }
     __weak RootTabBarController *weakself = self;
     [leftViewObserver observe:leftview keyPath:@"selectItem" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
-        [weakself showIntroduceView];
+        int index = [[change objectForKey:@"new"] intValue];
+        [weakself showIntroduceView:index];
     }];
 //    leftViewObserver = [FBKVOController lazyeObserValue:self byObserver:leftview keyPath:@"selectItem" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
 //#warning 这里解析selectitem的新值 调用dealLeftviewSlectitem 去处理页面切换
@@ -164,10 +167,26 @@
 //    }];
 }
 
-- (void)showIntroduceView
+- (void)showIntroduceView:(int)aIndex
 {
-    IntroduceWebView *webview = [[IntroduceWebView alloc] initWithFrame:self.view.bounds];
-    [ViewInteraction viewPresentAnimationFromRight:self.view toView:webview];
+    if(introduceVC == nil)
+    {
+    //IntroduceViewController *
+        introduceVC = [[IntroduceViewController alloc] initWithNibName:nil bundle:nil];
+    }
+    if(introduceNaVC == nil)
+    {
+//    UINavigationController *
+        introduceNaVC = [[UINavigationController alloc] initWithRootViewController:introduceVC];
+    }
+    [ViewInteraction viewPresentAnimationFromRight:self.view toView:introduceNaVC.view];
+    if(introduceVC && [introduceVC respondsToSelector:@selector(viewDidLoad)])
+    {
+        [introduceVC performSelector:@selector(viewDidLoad)];
+    }
+    NSString *title = nil;
+    NSString *url = [LeftView getIntroduceUrl:aIndex title:&title];
+    [introduceVC setUrl:url title:title];
 }
 
 - (void)popLeftView
