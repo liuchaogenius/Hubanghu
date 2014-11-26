@@ -93,7 +93,7 @@
 - (void)initTabBarItem
 {
     //[[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_sel"]]];
-    if(kSystemVersion<7.0)
+    //if(kSystemVersion<7.0)
     {
         UIImage *img = [[UIImage imageNamed:@"tabbarBG"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
         [[UITabBar appearance] setBackgroundImage:img];
