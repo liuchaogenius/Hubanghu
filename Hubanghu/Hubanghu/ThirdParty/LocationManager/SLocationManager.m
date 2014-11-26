@@ -81,7 +81,7 @@ static SLocationManager *myLocationObj = nil;
 {
     self.myLocationManager = [[CLLocationManager alloc] init];
     self.myLocationManager.delegate = self;
-    self.myLocationManager.distanceFilter = 1000;
+    self.myLocationManager.distanceFilter = 10;
 //    self.myLocationManager.purpose =
 //    @"请开启定位,以便我们提供更精确的判断.";
     self.myLocationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -124,7 +124,7 @@ static SLocationManager *myLocationObj = nil;
     [self.myLocationManager startUpdatingLocation];
     if([self getLocationAuthorStatus] != kCLAuthorizationStatusNotDetermined)
     {
-        [self performSelector:@selector(locationTimeOut) withObject:nil afterDelay:10];
+        [self performSelector:@selector(locationTimeOut) withObject:nil afterDelay:20];
     }
 }
 
