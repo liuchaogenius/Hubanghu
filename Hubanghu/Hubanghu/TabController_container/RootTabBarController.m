@@ -19,6 +19,7 @@
 #import "IntroduceViewController.h"
 #import "HbhSelCityViewController.h"
 #import "LSNavigationController.h"
+#import "SImageUtil.h"
 
 @interface RootTabBarController ()
 {
@@ -96,9 +97,10 @@
 {
     //[[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_sel"]]];
     //if(kSystemVersion<7.0)
+    UIImage *img = [SImageUtil imageWithColor:RGBCOLOR(249, 249, 249) size:CGSizeMake(10, 10)];
     {
-        UIImage *img = [[UIImage imageNamed:@"tabbarBG"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-        [[UITabBar appearance] setBackgroundImage:img];
+        UIImage *tabimg = [img resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+        [[UITabBar appearance] setBackgroundImage:tabimg];
     }
     for(int i=0; i<4;i++)
     {

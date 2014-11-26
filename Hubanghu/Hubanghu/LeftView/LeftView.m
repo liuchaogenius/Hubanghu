@@ -23,7 +23,8 @@ NSArray *itemArray;
         self.leftTableView.scrollEnabled = NO;
         self.leftTableView.delegate = self;
         self.leftTableView.dataSource = self;
-        self.leftTableView.backgroundColor = RGBCOLOR(47, 47, 47);
+        UIImage *img = [[UIImage imageNamed:@"leftviewBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
+        self.leftTableView.backgroundColor = [UIColor colorWithPatternImage:img];//RGBCOLOR(47, 47, 47);
         self.leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:self.leftTableView];
     }
@@ -68,6 +69,8 @@ NSArray *itemArray;
                    placeholderImage:[UIImage imageNamed:@"leftDefault"]];
         imgView.clipsToBounds = YES;
         imgView.backgroundColor = kClearColor;
+        imgView.layer.borderWidth=1;
+        imgView.layer.borderColor = [UIColor whiteColor].CGColor;
         [cell addSubview:imgView];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/3-50, imgView.bottom+10, 100, 20)];
         label.font = kFont20;
@@ -89,13 +92,17 @@ NSArray *itemArray;
         if (indexPath.row==1)
         {
             imgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 30, 20, 20)];
+            imgView.tag = 1;
             label = [[UILabel alloc] initWithFrame:CGRectMake(50, 30, 100, 20)];
+            label.tag = 2;
             lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59, kMainScreenWidth*2/3, 1)];
         }
         else if (indexPath.row>1&&indexPath.row<7)
         {
             imgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 20, 20)];
+            imgView.tag = 1;
             label = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, 100, 20)];
+            label.tag = 2;
             lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 39, kMainScreenWidth*2/3, 1)];
         }
         [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"leftItem%d", (int)indexPath.row]]];
