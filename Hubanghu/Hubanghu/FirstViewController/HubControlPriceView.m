@@ -355,6 +355,16 @@
     
 }
 
+- (void)customedOfRenovate
+{
+    UIButton *cateBtn = self.cateButtonArray[3];
+    [self cateButtonItem:cateBtn];
+    
+    countTextField.placeholder = @"不可选择";
+    countTextField.enabled = NO;
+    
+}
+
 #pragma mark - Action
 
 - (BOOL)infoCheck

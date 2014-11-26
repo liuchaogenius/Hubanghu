@@ -43,6 +43,7 @@ typedef NS_ENUM(int, AmountDesc)
     UIButton *_selectWorkerBtn;
     
     UILabel *_totalPriceLabel;
+    BOOL _isRenovate;
 }
 @property(strong, nonatomic) HbhAppointmentNetManager *manager;
 
@@ -84,6 +85,8 @@ typedef NS_ENUM(int, AmountDesc)
     [self creatControlPriceView];
     [self creatUserInfoView];
     [self creatToolBarView];
+    
+    if(_isRenovate) [controlPriceView customedOfRenovate]; //二次翻新项目页面处理
 }
 
 - (void)getAppointInfo
@@ -112,6 +115,12 @@ typedef NS_ENUM(int, AmountDesc)
     if (worker) {
         workerModel = worker;
     }
+}
+- (void)setCustomedVCofRenovateWithCateId:(NSString *)cateId //二次翻新的定制方法
+{
+    strNavtitle = @"二次翻新";
+    strCateId = cateId;
+    _isRenovate = YES;
 }
 
 #pragma mark 构造页面

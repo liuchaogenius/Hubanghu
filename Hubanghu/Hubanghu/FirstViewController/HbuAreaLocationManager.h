@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AreasDBManager.h"
 #import "HbuAreaListModelAreas.h"
+#define locationSuccess 100 //定位并匹配城市成功
 
 enum error_Type
 {
@@ -20,6 +21,7 @@ enum error_Type
     errorType_hadData_locFail,
     errorType_hadData_matchCfail,
     errorType_hadData_notOpService
+    
 };
 
 @class HbuAreaListModelBaseClass;
@@ -29,7 +31,8 @@ enum error_Type
 @property (nonatomic, strong) HbuAreaListModelAreas *currentAreas; //当前城市
 @property (nonatomic, strong) HbuAreaListModelAreas *currentDistrict;//当前区
 @property (nonatomic, strong) HbuAreaListModelAreas *currentProvince;//当前省
-@property (nonatomic, strong) NSString *localCirtyName;//定位结果城市名字
+@property (nonatomic, strong) NSString *localCityName;//定位结果城市名字
+@property (nonatomic, assign) NSInteger locationStatus;//状态-对应error_type及locationSuccess，默认1
 
 //单例方法
 + (instancetype)sharedManager;

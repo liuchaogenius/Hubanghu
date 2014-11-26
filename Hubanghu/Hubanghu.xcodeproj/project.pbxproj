@@ -16,6 +16,8 @@
 		5B16D8D619F140D0009E9FF3 /* CategoryChildInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8D519F140D0009E9FF3 /* CategoryChildInfoModel.m */; };
 		5B1BC75919F0080E007D5AF7 /* HbhChangePswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */; };
 		5B25474019F5439600E50B60 /* HbhSelCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25473F19F5439600E50B60 /* HbhSelCityViewController.m */; };
+		5B3733371A25D5F500C9B76C /* HbhFirstPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3733361A25D5F500C9B76C /* HbhFirstPageManager.m */; };
+		5B37333A1A25D62100C9B76C /* HbhBanners.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3733381A25D62100C9B76C /* HbhBanners.m */; };
 		5B69300A19F399250005862D /* HbuAreaLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B69300919F399250005862D /* HbuAreaLocationManager.m */; };
 		5B69300F19F39BC70005862D /* HbuAreaListModelBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B69300C19F39BC70005862D /* HbuAreaListModelBaseClass.m */; };
 		5B69301019F39BC70005862D /* HbuAreaListModelAreas.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B69300D19F39BC70005862D /* HbuAreaListModelAreas.m */; };
@@ -191,6 +193,10 @@
 		5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhChangePswViewController.m; sourceTree = "<group>"; };
 		5B25473E19F5439600E50B60 /* HbhSelCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhSelCityViewController.h; sourceTree = "<group>"; };
 		5B25473F19F5439600E50B60 /* HbhSelCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhSelCityViewController.m; sourceTree = "<group>"; };
+		5B3733351A25D5F500C9B76C /* HbhFirstPageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhFirstPageManager.h; sourceTree = "<group>"; };
+		5B3733361A25D5F500C9B76C /* HbhFirstPageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhFirstPageManager.m; sourceTree = "<group>"; };
+		5B3733381A25D62100C9B76C /* HbhBanners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhBanners.m; sourceTree = "<group>"; };
+		5B3733391A25D62100C9B76C /* HbhBanners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhBanners.h; sourceTree = "<group>"; };
 		5B69300819F399250005862D /* HbuAreaLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbuAreaLocationManager.h; sourceTree = "<group>"; };
 		5B69300919F399250005862D /* HbuAreaLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbuAreaLocationManager.m; sourceTree = "<group>"; };
 		5B69300B19F39BC70005862D /* HbuAreaListModelBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbuAreaListModelBaseClass.h; sourceTree = "<group>"; };
@@ -512,6 +518,8 @@
 				5B16D8CE19F134C3009E9FF3 /* HbuCategoryListManager.m */,
 				5B69300819F399250005862D /* HbuAreaLocationManager.h */,
 				5B69300919F399250005862D /* HbuAreaLocationManager.m */,
+				5B3733351A25D5F500C9B76C /* HbhFirstPageManager.h */,
+				5B3733361A25D5F500C9B76C /* HbhFirstPageManager.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -519,6 +527,8 @@
 		5B16D8D019F139A4009E9FF3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5B3733381A25D62100C9B76C /* HbhBanners.m */,
+				5B3733391A25D62100C9B76C /* HbhBanners.h */,
 				B09D1DAA19F654D200C7513C /* HubOrder.h */,
 				B09D1DAB19F654D200C7513C /* HubOrder.m */,
 				5B69300B19F39BC70005862D /* HbuAreaListModelBaseClass.h */,
@@ -1420,8 +1430,10 @@
 				FF21CF1A19E66144005007B7 /* UIImage+MultiFormat.m in Sources */,
 				ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */,
 				ABC543641A078DBA00C1C601 /* HbhWorkerCommentModel.m in Sources */,
+				5B3733371A25D5F500C9B76C /* HbhFirstPageManager.m in Sources */,
 				AB8EA5DF19F482D0001F40C2 /* HbhModel.m in Sources */,
 				FF21CF0819E66144005007B7 /* AFXMLRequestOperation.m in Sources */,
+				5B37333A1A25D62100C9B76C /* HbhBanners.m in Sources */,
 				FF21CF1319E66144005007B7 /* SDWebImageDecoder.m in Sources */,
 				5BBD051F19F6527100399219 /* HbhHotCityCell.m in Sources */,
 				FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */,

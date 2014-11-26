@@ -12,4 +12,6 @@
 
 - (void)setVCData:(NSString *)title cateId:(NSString *)cateId andWork:(HbhWorkers *)worker;
 
+- (void)setCustomedVCofRenovateWithCateId:(NSString *)cateId ;//首页进入二次翻新的定制方法
+
 @end

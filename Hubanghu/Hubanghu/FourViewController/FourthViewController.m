@@ -71,8 +71,8 @@ enum CellTag_Type
 - (UIView *)logOutHeadView
 {
     if (!_logOutHeadView) {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35+20)];
-        view.backgroundColor = kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35+20+20)];
+        view.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//
         //添加返回按钮
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, kMainScreenWidth-40.0, 35)];//[UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.backgroundColor = kIconSelectColor;
@@ -108,13 +108,13 @@ enum CellTag_Type
     _tableView = tableView;
     tableView.delegate = self;
     tableView.dataSource = self;
-    //tableView.backgroundView = nil;
+    tableView.backgroundView = nil;
     tableView.tableHeaderView = self.fHeadView;
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
     [self updateUserHeadView];
     [self.view addSubview:self.tableView];
-    self.view.backgroundColor = kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
-    self.tableView.backgroundColor = RGBCOLOR(249, 249, 249);
+    self.view.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//
+    self.tableView.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//
     
 }
 
@@ -146,7 +146,7 @@ enum CellTag_Type
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == self.listArray.count+1){
-        return 55;
+        return 75;
     } else {
         return 10;
     }
@@ -174,7 +174,7 @@ enum CellTag_Type
     }else{
         if (kSystemVersion < 7.0) {
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 10)];
-            view.backgroundColor = kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
+            view.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
             return view;
         }
         return nil;
@@ -223,18 +223,18 @@ enum CellTag_Type
             aImageView = [[UIImageView alloc] init];
             if(kSystemVersion<7.0)
             {
-                [aImageView setFrame:CGRectMake(20, (cell.height-25)/2.0, 22, 25)];
+                [aImageView setFrame:CGRectMake(20, (cell.height-22)/2.0, 20, 22)];
             }
             else
             {
-                [aImageView setFrame:CGRectMake(10, (cell.height-25)/2.0, 22, 25)];
+                [aImageView setFrame:CGRectMake(10, (cell.height-22)/2.0, 20, 22)];
             }
             aImageView.tag = kaImageViewTag;
             [cell addSubview:aImageView];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             //显示文字的label
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, kMainScreenWidth-40, cell.height)];
-            //[label setTextAlignment:UITextAlignmentLeft];
+            [label setTextAlignment:NSTextAlignmentLeft];
             [label setFont:kFont13];
             label.tag = klabelTag;
             label.backgroundColor = kClearColor;

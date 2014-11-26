@@ -17,6 +17,10 @@
 #import "HbhUser.h"
 #import "HbhSelCityViewController.h"
 #import "HuhAppointmentVC.h"
+#import "HbhBanners.h"
+#import "HbhFirstPageManager.h"
+#import "IntroduceViewController.h"
+#import "UIImageView+WebCache.h"
 
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
 #define KimageHeight kMainScreenWidth*381/1080.0f+kBlankWidth
@@ -40,14 +44,24 @@ enum CateId_Type
 @property (weak, nonatomic) UIPageControl *pageControl; //分页
 @property (strong, nonatomic) UIScrollView *headScrollView;
 @property (strong, nonatomic) UIView *headAdView; //顶部广告view
+@property (strong, nonatomic) NSMutableArray *bannersArray;//banner数组
 @property (strong, nonatomic) HbuAreaLocationManager *areaLocationManager;
 @property (strong, nonatomic) HbuAreaListModelBaseClass *areaListModel;
+@property (strong, nonatomic) HbhFirstPageManager *fpManager;
 
 @end
 
 @implementation FirstViewController
 
 #pragma mark - getter and setter
+- (HbhFirstPageManager *)fpManager
+{
+    if (!_fpManager) {
+        _fpManager = [[HbhFirstPageManager alloc] init];
+    }
+    return _fpManager;
+}
+
 - (NSArray *)allCategoryInfo
 {
     if (!_allCategoryInfo) {
@@ -89,14 +103,20 @@ enum CateId_Type
     self.tableView.dataSource = self;
     [self.tableView registerClass:[HbhFirstVCCell class] forCellReuseIdentifier:@"FirstVCCell"];
     self.tableView.backgroundColor = kViewBackgroundColor;//[UIColor whiteColor];
+    //定位
+    [self localtion];
     //顶部ad
-    [self creatAddViewWithImageNum:2];
+    [self creatAdView];
     self.tableView.tableHeaderView = self.headAdView;
     
+}
+#pragma mark 定位处理
+- (void)localtion
+{
     //定位相关
     _areaLocationManager = [HbuAreaLocationManager sharedManager];
     [self.areaLocationManager getAreasDataAndSaveToDBifNeeded];
-
+    
     //定位处理
     __weak FirstViewController *weakSelf = self;
     [self.areaLocationManager getUserLocationWithSuccess:^{
@@ -109,21 +129,31 @@ enum CateId_Type
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"定位服务未开启" message:@"请在系统设置中开启定位服务（设置->隐私->定位服务->开启互帮互）" delegate:self cancelButtonTitle:cancelButtonTiltle otherButtonTitles:nil, nil];
             alertView.tag = (self.areaLocationManager.currentAreas ? errorType_hadData_notOpService : errorType_notOpenService);
             [alertView show];
-        }
-//        else if(errorType == errorType_locationFailed || errorType == errorType_matchCityFailed){
-//            [self showSelCityVC];
-//            [SVProgressHUD showErrorWithStatus:failString cover:YES offsetY:kMainScreenHeight/2.0];
-//        }
-        else if (errorType == errorType_matchCityFailed){
+        }else if (errorType == errorType_matchCityFailed || errorType == errorType_hadData_matchCfail){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"城市尚未开通" message:failString delegate:self cancelButtonTitle:@"选择其他城市" otherButtonTitles:@"知道了", nil];
             alertView.tag = errorType_matchCityFailed;
             [alertView show];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"定位失败,请检查网络" cover:YES offsetY:0];
         }
+    }];
+
+}
+
+#pragma mark 顶部广告网络请求
+- (void)loadBanners
+{
+    __weak FirstViewController *weakself = self;
+    [self.fpManager getBannersWithSucc:^(NSMutableArray *succArray) {
+        weakself.bannersArray = succArray;
+        [weakself refreshAddViewWithImageNum:weakself.bannersArray.count];
+    } failure:^{
+        
     }];
 }
 
 //顶部浮动广告view
-- (void)creatAddViewWithImageNum:(NSInteger)imageNum
+- (void)creatAdView
 {
     UIView *headAdView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KimageHeight)];
     headAdView.backgroundColor = [UIColor whiteColor];
@@ -133,30 +163,49 @@ enum CateId_Type
     [headScrollView setBounces:NO];
     headScrollView.backgroundColor = [UIColor whiteColor];
     [headScrollView setShowsHorizontalScrollIndicator:NO];
-    [headScrollView setContentSize:CGSizeMake(imageNum * kMainScreenWidth, KimageHeight)];
+    [headScrollView setContentSize:CGSizeMake(kMainScreenWidth, KimageHeight)];
     headScrollView.delegate = self;
     [headAdView addSubview:headScrollView];
     
-    for (NSInteger i = 1; i <= imageNum; i++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((i-1) * kMainScreenWidth, 0, kMainScreenWidth, KimageHeight)];
-        //设置image
-        imageView.image = [UIImage imageNamed:@"OrderHeader"];
-        [headScrollView addSubview:imageView];
-        imageView.backgroundColor = RGBCOLOR(58, 155, 9);
-        [headScrollView setPagingEnabled:YES];
-        
-    }
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KimageHeight)];
+    //设置image
+    imageView.image = [UIImage imageNamed:@"OrderHeader"];
+    [headScrollView addSubview:imageView];
+    imageView.backgroundColor = RGBCOLOR(58, 155, 9);
+    [headScrollView setPagingEnabled:YES];
+    
     UIPageControl *pageControl = [[UIPageControl alloc] init];
     [pageControl setBounds:CGRectMake(0, 0, 150.0, 50.0)];
     [pageControl setBounds:CGRectMake(0, 0, 150.0, 50.0)];
     [pageControl setCenter:CGPointMake(kMainScreenWidth/2, KimageHeight - 10)];
-    [pageControl setNumberOfPages:imageNum];
+    [pageControl setNumberOfPages:1];
     [pageControl setCurrentPage:0];
     [pageControl setCurrentPageIndicatorTintColor:[UIColor whiteColor]];
     [pageControl setPageIndicatorTintColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.7 alpha:0.8]];
     [_headAdView addSubview:pageControl];
     self.pageControl = pageControl;
     self.headScrollView = headScrollView;
+}
+
+//载入banners的网络数据
+- (void)refreshAddViewWithImageNum:(NSInteger)imageNum
+{
+    [self.headScrollView setContentSize:CGSizeMake(imageNum * kMainScreenWidth, KimageHeight)];
+    
+    for (NSInteger i = 0; i < imageNum; i++) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * kMainScreenWidth, 0, kMainScreenWidth, KimageHeight)];
+        imageView.backgroundColor = [UIColor whiteColor];
+        HbhBanners *banner = self.bannersArray[imageNum];
+        //设置image
+        [imageView sd_setImageWithURL:[NSURL URLWithString:banner.bannerImg]];
+        [self.headScrollView addSubview:imageView];
+        imageView.tag = i;
+        
+        UITapGestureRecognizer *tapgz = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchBanners:)];
+        [imageView addGestureRecognizer:tapgz];
+        
+    }
+    [self.pageControl setNumberOfPages:imageNum];
 }
 
 
@@ -253,12 +302,25 @@ enum CateId_Type
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kSelCityMessage object:nil];
 }
+#pragma mark 点击head的Banner 广告
+- (void)touchBanners : (UITapGestureRecognizer *)taprz
+{
+    NSInteger number = taprz.view.tag;
+    if (number < self.bannersArray.count) {
+        HbhBanners *banner = self.bannersArray[number];
+        IntroduceViewController *iVC = [[IntroduceViewController alloc] init];
+        [iVC setUrl:banner.bannerHref title:banner.bannerText];
+    }
+}
 
 #pragma mark 点击图片button进入对应type页面
 - (void)touchImageButton:(UIButton *)sender
 {
     if (sender.tag == CateId_renovate) { //二次翻新
-#warning 二次翻新
+        HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] init];
+        appointVC.hidesBottomBarWhenPushed = YES;
+        [appointVC setCustomedVCofRenovateWithCateId:[NSString stringWithFormat:@"%d",sender.tag]];
+        [self.navigationController pushViewController:appointVC animated:YES];
     }else if (sender.tag == CateId_niceWorker){
         self.tabBarController.selectedIndex = 1;
     }else if (sender.tag != kBlankButtonTag) {

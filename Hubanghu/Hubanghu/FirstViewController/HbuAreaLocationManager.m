@@ -78,6 +78,7 @@
 - (instancetype)init
 {
     self = [super init];
+    self.locationStatus = 0;
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     
     NSData *currentAreaDate = [userDefault objectForKey:@"currentAreas"];
@@ -189,32 +190,37 @@
                 MLOG(@"province:%@",addressDic[@"province"]);
                 
                 if (addressDic[@"city"]) {
-                    //定位成功
-                    weakSelf.localCirtyName = addressDic[@"city"];
+                    //百度定位成功
+                    weakSelf.localCityName = addressDic[@"city"];
                     [weakSelf.areasDBManager selHbuArealistModelOfCity:addressDic[@"city"] district:addressDic[@"district"] resultBlock:^(HbuAreaListModelAreas *city, HbuAreaListModelAreas *district) {
+                        //匹配城市成功
                         MLOG(@"%@   %@",city.name,district.name);
                         if (city) {
                             weakSelf.currentAreas = city;
                             if (district) {
                                 weakSelf.currentDistrict = district;
                             }
+                            weakSelf.locationStatus = locationSuccess;
                             sBlock();
                         }else{
                              //
-                            aFailBlock(@"您所在的城市暂未开通服务，我们会尽快支持该城市，您也可以选择另外的城市",errorType_matchCityFailed);
-                            //weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_matchCfail)):(aFailBlock(@"匹配用户城市失败，请手动选择",errorType_matchCityFailed));
+                            NSString *errorStr = @"您所在的城市暂未开通服务，我们会尽快支持该城市，您也可以选择另外的城市";
+                            weakSelf.locationStatus = (weakSelf.currentAreas ?errorType_hadData_matchCfail : errorType_matchCityFailed);
+                            weakSelf.currentAreas ? (aFailBlock(errorStr,errorType_hadData_matchCfail)):(aFailBlock(errorStr,errorType_matchCityFailed));
                         }
                         
                     }];
                    
                 }else{ //定位失败
-                    weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_locFail)) : (aFailBlock(@"定位用户城市失败，请手动选择",errorType_locationFailed));                }
+                    weakSelf.locationStatus = errorType_locationFailed;
+                    weakSelf.localCityName = nil;
+                    weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_locFail)) : (aFailBlock(@"定位用户所在城市失败，请手动选择",errorType_locationFailed));                }
             }];
         }];
     }
     else
     {
-// return 一个值 让用户自己选择城市
+        self.locationStatus = errorType_notOpenService;
         aFailBlock(@"未开启定位服务",errorType_notOpenService);
     }
 }

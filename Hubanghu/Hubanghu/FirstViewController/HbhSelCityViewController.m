@@ -282,17 +282,13 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
 {
     _localCityLable.text = @"定位中...";
     [_locationIndictorView startAnimating];
+    __weak HbhSelCityViewController *weakself = self;
     [[HbuAreaLocationManager sharedManager] getUserLocationWithSuccess:^{
         [_locationIndictorView stopAnimating];
-        _localCityLable.text = [HbuAreaLocationManager sharedManager].currentAreas.name;
+        _localCityLable.text = [weakself localInfoTextString];
     } Fail:^(NSString *failString, int errorType) {
         [_locationIndictorView stopAnimating];
-        _localCityLable.text = [self localInfoTextString];
-//        if (errorType == errorType_hadData_matchCfail || errorType == errorType_matchCityFailed) {
-//            _localCityLable.text = @"匹配城市失败，请手动选择城市";
-//        }else{
-//            _localCityLable.text = @"定位失败,点击重新定位";
-//        }
+        _localCityLable.text = [weakself localInfoTextString];
     }];
 }
 
@@ -321,8 +317,8 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
 {
     NSString *infoString = @"";
     HbuAreaLocationManager *lManager = [HbuAreaLocationManager sharedManager];
-    if (lManager.localCirtyName && lManager.localCirtyName.length) {
-        infoString = lManager.localCirtyName;
+    if (lManager.localCityName && lManager.localCityName.length) {
+        infoString = (lManager.locationStatus == locationSuccess ? lManager.localCityName : [NSString stringWithFormat:@"%@(暂不支持)",lManager.localCityName]);
     }else{
         infoString = @"定位失败，点击重新定位";
     }

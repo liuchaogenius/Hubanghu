@@ -30,4 +30,6 @@
 - (NSString *)getComment;//备注
 - (NSString *)getCateButtonType;//返回 是纯装  纯拆。。。
 
+- (void)customedOfRenovate;//二次翻新定制显示状态
+
 @end

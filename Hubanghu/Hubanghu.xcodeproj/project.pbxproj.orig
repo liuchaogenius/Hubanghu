@@ -16,6 +16,8 @@
 		5B16D8D619F140D0009E9FF3 /* CategoryChildInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8D519F140D0009E9FF3 /* CategoryChildInfoModel.m */; };
 		5B1BC75919F0080E007D5AF7 /* HbhChangePswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */; };
 		5B25474019F5439600E50B60 /* HbhSelCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25473F19F5439600E50B60 /* HbhSelCityViewController.m */; };
+		5B3733371A25D5F500C9B76C /* HbhFirstPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3733361A25D5F500C9B76C /* HbhFirstPageManager.m */; };
+		5B37333A1A25D62100C9B76C /* HbhBanners.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3733381A25D62100C9B76C /* HbhBanners.m */; };
 		5B69300A19F399250005862D /* HbuAreaLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B69300919F399250005862D /* HbuAreaLocationManager.m */; };
 		5B69300F19F39BC70005862D /* HbuAreaListModelBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B69300C19F39BC70005862D /* HbuAreaListModelBaseClass.m */; };
 		5B69301019F39BC70005862D /* HbuAreaListModelAreas.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B69300D19F39BC70005862D /* HbuAreaListModelAreas.m */; };
@@ -58,26 +60,26 @@
 		ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2419EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m */; };
 		ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */; };
 		ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */; };
+		ABBCE96F1A072B46008601C6 /* HbhWorkerCommentManage.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBCE96E1A072B46008601C6 /* HbhWorkerCommentManage.m */; };
 		ABC2B37419F3AC63000FEE32 /* HbhModifyUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */; };
-		ABC2B37719F3BBC5000FEE32 /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2B37619F3BBC5000FEE32 /* VPImageCropperViewController.m */; };
 		ABC2B37919F3BC83000FEE32 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */; };
+		ABC543631A078DBA00C1C601 /* HbhWorkerCommentComment.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC543601A078DBA00C1C601 /* HbhWorkerCommentComment.m */; };
+		ABC543641A078DBA00C1C601 /* HbhWorkerCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC543621A078DBA00C1C601 /* HbhWorkerCommentModel.m */; };
 		ABC5D50619F1E59800A306F7 /* HbhMakeAppointMentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */; };
 		ABC5D50F19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D50D19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m */; };
 		ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC5D50E19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib */; };
 		ABC5D51319F1F16100A306F7 /* HbhCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5D51219F1F16100A306F7 /* HbhCommentViewController.m */; };
 		ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */; };
+		B01D687319F90FCF008B6BDE /* TouchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B01D687219F90FCF008B6BDE /* TouchTableView.m */; };
 		B02C2B1719F4FD0600B9C4FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02C2B1619F4FD0600B9C4FF /* Images.xcassets */; };
 		B08F580B19F64D0D00F3E130 /* HbhConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B08F580919F64D0D00F3E130 /* HbhConfirmOrderViewController.m */; };
 		B09D1DAC19F654D200C7513C /* HubOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B09D1DAB19F654D200C7513C /* HubOrder.m */; };
-		B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */; };
 		B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */; };
-		B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */; };
-		B0EED42E19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */; };
-		B0EED42F19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */; };
 		B0FF902519F7B174001B8E14 /* HbhOrderDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */; };
-		B0FF902819F7B4B4001B8E14 /* HbhTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FF902719F7B4B4001B8E14 /* HbhTextField.m */; };
 		FF09640119F539A800EF8D0E /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */; };
 		FF09640219F539A800EF8D0E /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */; };
+		FF0B35D61A05132E00299FC9 /* IntroduceWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0B35D51A05132E00299FC9 /* IntroduceWebView.m */; };
+		FF0B35DE1A052F3800299FC9 /* HuhAppointmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0B35DD1A052F3800299FC9 /* HuhAppointmentVC.m */; };
 		FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252619E7B861008AB6EC /* JsonToModel.m */; };
 		FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252819E7B861008AB6EC /* NSFileManager_Additions.m */; };
 		FF15253219E7B861008AB6EC /* SCach.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252A19E7B861008AB6EC /* SCach.m */; };
@@ -132,14 +134,35 @@
 		FF21CF2A19E66225005007B7 /* ViewInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CF2919E66225005007B7 /* ViewInteraction.m */; };
 		FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF21CF2B19E66238005007B7 /* QuartzCore.framework */; };
 		FF21CF3219E68E28005007B7 /* LeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CF3119E68E28005007B7 /* LeftView.m */; };
+		FF6D905F1A0749B500C966F8 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D90421A0749B500C966F8 /* AlipayRsaLib.a */; };
+		FF6D90601A0749B500C966F8 /* Alixpay.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF6D90441A0749B500C966F8 /* Alixpay.bundle */; };
+		FF6D90611A0749B500C966F8 /* AlixPaylib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D90451A0749B500C966F8 /* AlixPaylib.a */; };
+		FF6D90621A0749B500C966F8 /* AlixPaylib_arc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D90461A0749B500C966F8 /* AlixPaylib_arc.a */; };
+		FF6D90631A0749B500C966F8 /* AlixPayOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90481A0749B500C966F8 /* AlixPayOrder.m */; };
+		FF6D90641A0749B500C966F8 /* AlixPayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D904A1A0749B500C966F8 /* AlixPayResult.m */; };
+		FF6D90651A0749B500C966F8 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D904E1A0749B500C966F8 /* NSObject+SBJSON.m */; };
+		FF6D90661A0749B500C966F8 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90501A0749B500C966F8 /* NSString+SBJSON.m */; };
+		FF6D90671A0749B500C966F8 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90521A0749B500C966F8 /* SBJSON.m */; };
+		FF6D90681A0749B500C966F8 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90541A0749B500C966F8 /* SBJsonBase.m */; };
+		FF6D90691A0749B500C966F8 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90561A0749B500C966F8 /* SBJsonParser.m */; };
+		FF6D906A1A0749B500C966F8 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6D90581A0749B500C966F8 /* SBJsonWriter.m */; };
+		FF6D906B1A0749B500C966F8 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D90591A0749B500C966F8 /* libcrypto.a */; };
+		FF6D906C1A0749B500C966F8 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D905A1A0749B500C966F8 /* libssl.a */; };
 		FF74A83D19EBC4B0006AADD8 /* SLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */; };
+		FF83B3B91A18706600727102 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF83B3B81A18706600727102 /* SystemConfiguration.framework */; };
+		FF9CCD461A05365A007DC51B /* HubInstallDesView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9CCD451A05365A007DC51B /* HubInstallDesView.m */; };
+		FF9CCD491A05367D007DC51B /* HubControlPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9CCD481A05367D007DC51B /* HubControlPriceView.m */; };
+		FF9CCD4C1A0536AE007DC51B /* HubAppointUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9CCD4B1A0536AE007DC51B /* HubAppointUserInfoView.m */; };
 		FFBBFB2419F3BB18003A200C /* AreasDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBBFB2319F3BB18003A200C /* AreasDBManager.m */; };
+		FFC8CDC81A24708A002844EF /* SImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC8CDC71A24708A002844EF /* SImageUtil.m */; };
+		FFCAEEA71A25C7F1006D3E9C /* IntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEEA61A25C7F1006D3E9C /* IntroduceViewController.m */; };
 		FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */; };
 		FFD1A2CE19EE4B6D00EA97D4 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C619EE4B6D00EA97D4 /* FMDatabaseAdditions.m */; };
 		FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C819EE4B6D00EA97D4 /* FMDatabasePool.m */; };
 		FFD1A2D019EE4B6D00EA97D4 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2CA19EE4B6D00EA97D4 /* FMDatabaseQueue.m */; };
 		FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2CC19EE4B6D00EA97D4 /* FMResultSet.m */; };
 		FFD1A2D319EE4B8D00EA97D4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */; };
+		FFDBF2761A11A035004E0868 /* LSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDBF2751A11A035004E0868 /* LSNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +193,10 @@
 		5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhChangePswViewController.m; sourceTree = "<group>"; };
 		5B25473E19F5439600E50B60 /* HbhSelCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhSelCityViewController.h; sourceTree = "<group>"; };
 		5B25473F19F5439600E50B60 /* HbhSelCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhSelCityViewController.m; sourceTree = "<group>"; };
+		5B3733351A25D5F500C9B76C /* HbhFirstPageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhFirstPageManager.h; sourceTree = "<group>"; };
+		5B3733361A25D5F500C9B76C /* HbhFirstPageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhFirstPageManager.m; sourceTree = "<group>"; };
+		5B3733381A25D62100C9B76C /* HbhBanners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhBanners.m; sourceTree = "<group>"; };
+		5B3733391A25D62100C9B76C /* HbhBanners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhBanners.h; sourceTree = "<group>"; };
 		5B69300819F399250005862D /* HbuAreaLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbuAreaLocationManager.h; sourceTree = "<group>"; };
 		5B69300919F399250005862D /* HbuAreaLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbuAreaLocationManager.m; sourceTree = "<group>"; };
 		5B69300B19F39BC70005862D /* HbuAreaListModelBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbuAreaListModelBaseClass.h; sourceTree = "<group>"; };
@@ -247,11 +274,15 @@
 		ABAFAB2519EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhWorkerThirdTopTableViewCell.xib; sourceTree = "<group>"; };
 		ABAFAB2819EF4BDC00B51916 /* HbhWorkerImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerImgTableViewCell.h; sourceTree = "<group>"; };
 		ABAFAB2919EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerImgTableViewCell.m; sourceTree = "<group>"; };
+		ABBCE96D1A072B46008601C6 /* HbhWorkerCommentManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCommentManage.h; sourceTree = "<group>"; };
+		ABBCE96E1A072B46008601C6 /* HbhWorkerCommentManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCommentManage.m; sourceTree = "<group>"; };
 		ABC2B37219F3AC63000FEE32 /* HbhModifyUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhModifyUserDetailViewController.h; sourceTree = "<group>"; };
 		ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhModifyUserDetailViewController.m; sourceTree = "<group>"; };
-		ABC2B37519F3BBC5000FEE32 /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
-		ABC2B37619F3BBC5000FEE32 /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
 		ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		ABC5435F1A078DBA00C1C601 /* HbhWorkerCommentComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCommentComment.h; sourceTree = "<group>"; };
+		ABC543601A078DBA00C1C601 /* HbhWorkerCommentComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCommentComment.m; sourceTree = "<group>"; };
+		ABC543611A078DBA00C1C601 /* HbhWorkerCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerCommentModel.h; sourceTree = "<group>"; };
+		ABC543621A078DBA00C1C601 /* HbhWorkerCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerCommentModel.m; sourceTree = "<group>"; };
 		ABC5D50419F1E59800A306F7 /* HbhMakeAppointMentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhMakeAppointMentViewController.h; sourceTree = "<group>"; };
 		ABC5D50519F1E59800A306F7 /* HbhMakeAppointMentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhMakeAppointMentViewController.m; sourceTree = "<group>"; };
 		ABC5D50C19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderAppraiseViewController.h; sourceTree = "<group>"; };
@@ -261,27 +292,24 @@
 		ABC5D51219F1F16100A306F7 /* HbhCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhCommentViewController.m; sourceTree = "<group>"; };
 		ABE53EC219F0ED9900A8FE8B /* HbhWorkerListManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhWorkerListManage.h; sourceTree = "<group>"; };
 		ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhWorkerListManage.m; sourceTree = "<group>"; };
+		B01D687119F90FCF008B6BDE /* TouchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchTableView.h; sourceTree = "<group>"; };
+		B01D687219F90FCF008B6BDE /* TouchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchTableView.m; sourceTree = "<group>"; };
 		B02C2B1619F4FD0600B9C4FF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B08F580819F64D0D00F3E130 /* HbhConfirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhConfirmOrderViewController.h; sourceTree = "<group>"; };
 		B08F580919F64D0D00F3E130 /* HbhConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhConfirmOrderViewController.m; sourceTree = "<group>"; };
 		B09D1DAA19F654D200C7513C /* HubOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubOrder.h; sourceTree = "<group>"; };
 		B09D1DAB19F654D200C7513C /* HubOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubOrder.m; sourceTree = "<group>"; };
-		B0EB09E019F171FD00EDB0D5 /* HbhAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentViewController.h; sourceTree = "<group>"; };
-		B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentViewController.m; sourceTree = "<group>"; };
 		B0EED42519F37C8E00CBFBFC /* HbhAppointmentNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentNetManager.h; sourceTree = "<group>"; };
 		B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentNetManager.m; sourceTree = "<group>"; };
-		B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentDetailsCell.xib; sourceTree = "<group>"; };
-		B0EED42919F37D4A00CBFBFC /* HbhAppointmentConfirmeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentConfirmeView.h; sourceTree = "<group>"; };
-		B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentConfirmeView.m; sourceTree = "<group>"; };
-		B0EED42B19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhAppointmentDetailsTableViewCell.h; sourceTree = "<group>"; };
-		B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentDetailsTableViewCell.m; sourceTree = "<group>"; };
 		B0FF902319F7B174001B8E14 /* HbhOrderDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderDetailsView.h; sourceTree = "<group>"; };
 		B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderDetailsView.m; sourceTree = "<group>"; };
-		B0FF902619F7B4B4001B8E14 /* HbhTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhTextField.h; sourceTree = "<group>"; };
-		B0FF902719F7B4B4001B8E14 /* HbhTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhTextField.m; sourceTree = "<group>"; };
 		FF0963FE19F539A800EF8D0E /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		FF0B35D41A05132E00299FC9 /* IntroduceWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceWebView.h; sourceTree = "<group>"; };
+		FF0B35D51A05132E00299FC9 /* IntroduceWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroduceWebView.m; sourceTree = "<group>"; };
+		FF0B35DC1A052F3800299FC9 /* HuhAppointmentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuhAppointmentVC.h; sourceTree = "<group>"; };
+		FF0B35DD1A052F3800299FC9 /* HuhAppointmentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuhAppointmentVC.m; sourceTree = "<group>"; };
 		FF15252519E7B861008AB6EC /* JsonToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonToModel.h; sourceTree = "<group>"; };
 		FF15252619E7B861008AB6EC /* JsonToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonToModel.m; sourceTree = "<group>"; };
 		FF15252719E7B861008AB6EC /* NSFileManager_Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManager_Additions.h; sourceTree = "<group>"; };
@@ -397,10 +425,48 @@
 		FF21CF3019E68E28005007B7 /* LeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftView.h; sourceTree = "<group>"; };
 		FF21CF3119E68E28005007B7 /* LeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftView.m; sourceTree = "<group>"; };
 		FF21CF3319E68F5F005007B7 /* MessageDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDefine.h; sourceTree = "<group>"; };
+		FF6D90421A0749B500C966F8 /* AlipayRsaLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = AlipayRsaLib.a; sourceTree = "<group>"; };
+		FF6D90431A0749B500C966F8 /* AlixLibService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixLibService.h; sourceTree = "<group>"; };
+		FF6D90441A0749B500C966F8 /* Alixpay.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Alixpay.bundle; sourceTree = "<group>"; };
+		FF6D90451A0749B500C966F8 /* AlixPaylib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = AlixPaylib.a; sourceTree = "<group>"; };
+		FF6D90461A0749B500C966F8 /* AlixPaylib_arc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = AlixPaylib_arc.a; sourceTree = "<group>"; };
+		FF6D90471A0749B500C966F8 /* AlixPayOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayOrder.h; sourceTree = "<group>"; };
+		FF6D90481A0749B500C966F8 /* AlixPayOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlixPayOrder.m; sourceTree = "<group>"; };
+		FF6D90491A0749B500C966F8 /* AlixPayResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayResult.h; sourceTree = "<group>"; };
+		FF6D904A1A0749B500C966F8 /* AlixPayResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlixPayResult.m; sourceTree = "<group>"; };
+		FF6D904C1A0749B500C966F8 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		FF6D904D1A0749B500C966F8 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		FF6D904E1A0749B500C966F8 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		FF6D904F1A0749B500C966F8 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		FF6D90501A0749B500C966F8 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		FF6D90511A0749B500C966F8 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		FF6D90521A0749B500C966F8 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		FF6D90531A0749B500C966F8 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		FF6D90541A0749B500C966F8 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		FF6D90551A0749B500C966F8 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		FF6D90561A0749B500C966F8 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		FF6D90571A0749B500C966F8 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		FF6D90581A0749B500C966F8 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		FF6D90591A0749B500C966F8 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		FF6D905A1A0749B500C966F8 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		FF6D905C1A0749B500C966F8 /* DataSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSigner.h; sourceTree = "<group>"; };
+		FF6D905D1A0749B500C966F8 /* DataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataVerifier.h; sourceTree = "<group>"; };
 		FF74A83B19EBC4B0006AADD8 /* SLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLocationManager.h; sourceTree = "<group>"; };
 		FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLocationManager.m; sourceTree = "<group>"; };
+		FF83B3B61A186F6800727102 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		FF83B3B81A18706600727102 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FF9CCD441A05365A007DC51B /* HubInstallDesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubInstallDesView.h; sourceTree = "<group>"; };
+		FF9CCD451A05365A007DC51B /* HubInstallDesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubInstallDesView.m; sourceTree = "<group>"; };
+		FF9CCD471A05367D007DC51B /* HubControlPriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubControlPriceView.h; sourceTree = "<group>"; };
+		FF9CCD481A05367D007DC51B /* HubControlPriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubControlPriceView.m; sourceTree = "<group>"; };
+		FF9CCD4A1A0536AE007DC51B /* HubAppointUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubAppointUserInfoView.h; sourceTree = "<group>"; };
+		FF9CCD4B1A0536AE007DC51B /* HubAppointUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HubAppointUserInfoView.m; sourceTree = "<group>"; };
 		FFBBFB2219F3BB18003A200C /* AreasDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AreasDBManager.h; path = Hubanghu/ThirdParty/FMDB/AreasDBManager.h; sourceTree = SOURCE_ROOT; };
 		FFBBFB2319F3BB18003A200C /* AreasDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AreasDBManager.m; path = Hubanghu/ThirdParty/FMDB/AreasDBManager.m; sourceTree = SOURCE_ROOT; };
+		FFC8CDC61A24708A002844EF /* SImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SImageUtil.h; sourceTree = "<group>"; };
+		FFC8CDC71A24708A002844EF /* SImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SImageUtil.m; sourceTree = "<group>"; };
+		FFCAEEA51A25C7F1006D3E9C /* IntroduceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceViewController.h; sourceTree = "<group>"; };
+		FFCAEEA61A25C7F1006D3E9C /* IntroduceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroduceViewController.m; sourceTree = "<group>"; };
 		FFD1A2C319EE4B6D00EA97D4 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		FFD1A2C519EE4B6D00EA97D4 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -412,6 +478,8 @@
 		FFD1A2CB19EE4B6D00EA97D4 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		FFD1A2CC19EE4B6D00EA97D4 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		FFDBF2741A11A035004E0868 /* LSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNavigationController.h; sourceTree = "<group>"; };
+		FFDBF2751A11A035004E0868 /* LSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,9 +487,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF83B3B91A18706600727102 /* SystemConfiguration.framework in Frameworks */,
+				FF6D906C1A0749B500C966F8 /* libssl.a in Frameworks */,
 				ABC2B37919F3BC83000FEE32 /* MobileCoreServices.framework in Frameworks */,
 				FFD1A2D319EE4B8D00EA97D4 /* libsqlite3.dylib in Frameworks */,
+				FF6D90611A0749B500C966F8 /* AlixPaylib.a in Frameworks */,
+				FF6D90621A0749B500C966F8 /* AlixPaylib_arc.a in Frameworks */,
+				FF6D905F1A0749B500C966F8 /* AlipayRsaLib.a in Frameworks */,
 				FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */,
+				FF6D906B1A0749B500C966F8 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +518,8 @@
 				5B16D8CE19F134C3009E9FF3 /* HbuCategoryListManager.m */,
 				5B69300819F399250005862D /* HbuAreaLocationManager.h */,
 				5B69300919F399250005862D /* HbuAreaLocationManager.m */,
+				5B3733351A25D5F500C9B76C /* HbhFirstPageManager.h */,
+				5B3733361A25D5F500C9B76C /* HbhFirstPageManager.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -451,6 +527,8 @@
 		5B16D8D019F139A4009E9FF3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5B3733381A25D62100C9B76C /* HbhBanners.m */,
+				5B3733391A25D62100C9B76C /* HbhBanners.h */,
 				B09D1DAA19F654D200C7513C /* HubOrder.h */,
 				B09D1DAB19F654D200C7513C /* HubOrder.m */,
 				5B69300B19F39BC70005862D /* HbuAreaListModelBaseClass.h */,
@@ -513,11 +591,6 @@
 		5BF8FC7919F1073600598FB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B0EED42919F37D4A00CBFBFC /* HbhAppointmentConfirmeView.h */,
-				B0EED42A19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m */,
-				B0EED42819F37D4A00CBFBFC /* AppointmentDetailsCell.xib */,
-				B0EED42B19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.h */,
-				B0EED42C19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m */,
 				5BF8FC7A19F107C700598FB9 /* HbhFirstVCCell.h */,
 				5BF8FC7B19F107C700598FB9 /* HbhFirstVCCell.m */,
 				5B16D8C919F12F07009E9FF3 /* HbhCategoryCell.h */,
@@ -527,8 +600,14 @@
 				5BBD051E19F6527100399219 /* HbhHotCityCell.xib */,
 				B0FF902319F7B174001B8E14 /* HbhOrderDetailsView.h */,
 				B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */,
-				B0FF902619F7B4B4001B8E14 /* HbhTextField.h */,
-				B0FF902719F7B4B4001B8E14 /* HbhTextField.m */,
+				B01D687119F90FCF008B6BDE /* TouchTableView.h */,
+				B01D687219F90FCF008B6BDE /* TouchTableView.m */,
+				FF9CCD441A05365A007DC51B /* HubInstallDesView.h */,
+				FF9CCD451A05365A007DC51B /* HubInstallDesView.m */,
+				FF9CCD471A05367D007DC51B /* HubControlPriceView.h */,
+				FF9CCD481A05367D007DC51B /* HubControlPriceView.m */,
+				FF9CCD4A1A0536AE007DC51B /* HubAppointUserInfoView.h */,
+				FF9CCD4B1A0536AE007DC51B /* HubAppointUserInfoView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -623,6 +702,8 @@
 				AB06DC5019F126B000B82C62 /* HbhWorkerDetailManage.m */,
 				ABE53EC219F0ED9900A8FE8B /* HbhWorkerListManage.h */,
 				ABE53EC319F0ED9900A8FE8B /* HbhWorkerListManage.m */,
+				ABBCE96D1A072B46008601C6 /* HbhWorkerCommentManage.h */,
+				ABBCE96E1A072B46008601C6 /* HbhWorkerCommentManage.m */,
 			);
 			path = Manage;
 			sourceTree = "<group>";
@@ -630,6 +711,10 @@
 		ABE53EC819F0FB5A00A8FE8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ABC5435F1A078DBA00C1C601 /* HbhWorkerCommentComment.h */,
+				ABC543601A078DBA00C1C601 /* HbhWorkerCommentComment.m */,
+				ABC543611A078DBA00C1C601 /* HbhWorkerCommentModel.h */,
+				ABC543621A078DBA00C1C601 /* HbhWorkerCommentModel.m */,
 				AB8EA5D019F482D0001F40C2 /* HbhDataModels.h */,
 				AB8EA5D119F482D0001F40C2 /* HbhAreas.h */,
 				AB8EA5D219F482D0001F40C2 /* HbhAreas.m */,
@@ -694,6 +779,8 @@
 		FF21CE6119E64B5A005007B7 = {
 			isa = PBXGroup;
 			children = (
+				FF83B3B81A18706600727102 /* SystemConfiguration.framework */,
+				FF83B3B61A186F6800727102 /* CFNetwork.framework */,
 				ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */,
 				FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */,
 				FF21CF2B19E66238005007B7 /* QuartzCore.framework */,
@@ -798,8 +885,6 @@
 				5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */,
 				ABC2B37219F3AC63000FEE32 /* HbhModifyUserDetailViewController.h */,
 				ABC2B37319F3AC63000FEE32 /* HbhModifyUserDetailViewController.m */,
-				ABC2B37519F3BBC5000FEE32 /* VPImageCropperViewController.h */,
-				ABC2B37619F3BBC5000FEE32 /* VPImageCropperViewController.m */,
 			);
 			name = FourthViewController;
 			path = FourViewController;
@@ -856,12 +941,12 @@
 				FF21CE9719E65FE7005007B7 /* FirstViewController.m */,
 				5B16D8C619F12CB7009E9FF3 /* HbuCategoryViewController.h */,
 				5B16D8C719F12CB7009E9FF3 /* HbuCategoryViewController.m */,
-				B0EB09E019F171FD00EDB0D5 /* HbhAppointmentViewController.h */,
-				B0EB09E119F171FD00EDB0D5 /* HbhAppointmentViewController.m */,
 				5B25473E19F5439600E50B60 /* HbhSelCityViewController.h */,
 				5B25473F19F5439600E50B60 /* HbhSelCityViewController.m */,
 				B08F580819F64D0D00F3E130 /* HbhConfirmOrderViewController.h */,
 				B08F580919F64D0D00F3E130 /* HbhConfirmOrderViewController.m */,
+				FF0B35DC1A052F3800299FC9 /* HuhAppointmentVC.h */,
+				FF0B35DD1A052F3800299FC9 /* HuhAppointmentVC.m */,
 			);
 			path = FirstViewController;
 			sourceTree = "<group>";
@@ -869,6 +954,8 @@
 		FF21CEA719E66144005007B7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				FFDBF2731A11A010004E0868 /* LSNavigationController */,
+				FF6D90401A0749B500C966F8 /* alipay_sdk */,
 				FF0963FD19F51F0A00EF8D0E /* ToastView */,
 				FFD1A2C219EE4B6D00EA97D4 /* FMDB */,
 				FF74A83A19EBC4B0006AADD8 /* LocationManager */,
@@ -1037,6 +1124,7 @@
 		FF21CF2E19E68C36005007B7 /* ToolUtil */ = {
 			isa = PBXGroup;
 			children = (
+				FFC8CDC51A24706E002844EF /* ImgUtil */,
 				FF1FC27219ED1A1600C362F7 /* STALertView */,
 			);
 			name = ToolUtil;
@@ -1047,6 +1135,10 @@
 			children = (
 				FF21CF3019E68E28005007B7 /* LeftView.h */,
 				FF21CF3119E68E28005007B7 /* LeftView.m */,
+				FFCAEEA51A25C7F1006D3E9C /* IntroduceViewController.h */,
+				FFCAEEA61A25C7F1006D3E9C /* IntroduceViewController.m */,
+				FF0B35D41A05132E00299FC9 /* IntroduceWebView.h */,
+				FF0B35D51A05132E00299FC9 /* IntroduceWebView.m */,
 			);
 			path = LeftView;
 			sourceTree = "<group>";
@@ -1059,6 +1151,63 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FF6D90401A0749B500C966F8 /* alipay_sdk */ = {
+			isa = PBXGroup;
+			children = (
+				FF6D90411A0749B500C966F8 /* alipay */,
+			);
+			path = alipay_sdk;
+			sourceTree = "<group>";
+		};
+		FF6D90411A0749B500C966F8 /* alipay */ = {
+			isa = PBXGroup;
+			children = (
+				FF6D90421A0749B500C966F8 /* AlipayRsaLib.a */,
+				FF6D90431A0749B500C966F8 /* AlixLibService.h */,
+				FF6D90441A0749B500C966F8 /* Alixpay.bundle */,
+				FF6D90451A0749B500C966F8 /* AlixPaylib.a */,
+				FF6D90461A0749B500C966F8 /* AlixPaylib_arc.a */,
+				FF6D90471A0749B500C966F8 /* AlixPayOrder.h */,
+				FF6D90481A0749B500C966F8 /* AlixPayOrder.m */,
+				FF6D90491A0749B500C966F8 /* AlixPayResult.h */,
+				FF6D904A1A0749B500C966F8 /* AlixPayResult.m */,
+				FF6D904B1A0749B500C966F8 /* json */,
+				FF6D90591A0749B500C966F8 /* libcrypto.a */,
+				FF6D905A1A0749B500C966F8 /* libssl.a */,
+				FF6D905B1A0749B500C966F8 /* RSA */,
+			);
+			path = alipay;
+			sourceTree = "<group>";
+		};
+		FF6D904B1A0749B500C966F8 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				FF6D904C1A0749B500C966F8 /* JSON.h */,
+				FF6D904D1A0749B500C966F8 /* NSObject+SBJSON.h */,
+				FF6D904E1A0749B500C966F8 /* NSObject+SBJSON.m */,
+				FF6D904F1A0749B500C966F8 /* NSString+SBJSON.h */,
+				FF6D90501A0749B500C966F8 /* NSString+SBJSON.m */,
+				FF6D90511A0749B500C966F8 /* SBJSON.h */,
+				FF6D90521A0749B500C966F8 /* SBJSON.m */,
+				FF6D90531A0749B500C966F8 /* SBJsonBase.h */,
+				FF6D90541A0749B500C966F8 /* SBJsonBase.m */,
+				FF6D90551A0749B500C966F8 /* SBJsonParser.h */,
+				FF6D90561A0749B500C966F8 /* SBJsonParser.m */,
+				FF6D90571A0749B500C966F8 /* SBJsonWriter.h */,
+				FF6D90581A0749B500C966F8 /* SBJsonWriter.m */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		FF6D905B1A0749B500C966F8 /* RSA */ = {
+			isa = PBXGroup;
+			children = (
+				FF6D905C1A0749B500C966F8 /* DataSigner.h */,
+				FF6D905D1A0749B500C966F8 /* DataVerifier.h */,
+			);
+			path = RSA;
+			sourceTree = "<group>";
+		};
 		FF74A83A19EBC4B0006AADD8 /* LocationManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1066,6 +1215,15 @@
 				FF74A83C19EBC4B0006AADD8 /* SLocationManager.m */,
 			);
 			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		FFC8CDC51A24706E002844EF /* ImgUtil */ = {
+			isa = PBXGroup;
+			children = (
+				FFC8CDC61A24708A002844EF /* SImageUtil.h */,
+				FFC8CDC71A24708A002844EF /* SImageUtil.m */,
+			);
+			path = ImgUtil;
 			sourceTree = "<group>";
 		};
 		FFD1A2C219EE4B6D00EA97D4 /* FMDB */ = {
@@ -1092,6 +1250,15 @@
 				FFBBFB2319F3BB18003A200C /* AreasDBManager.m */,
 			);
 			name = AreasModel;
+			sourceTree = "<group>";
+		};
+		FFDBF2731A11A010004E0868 /* LSNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				FFDBF2741A11A035004E0868 /* LSNavigationController.h */,
+				FFDBF2751A11A035004E0868 /* LSNavigationController.m */,
+			);
+			path = LSNavigationController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1180,11 +1347,11 @@
 				ABAFAB2719EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.xib in Resources */,
 				AB090E1619EE323C00D943C6 /* HbhWorkerTableViewCell.xib in Resources */,
 				ABAFAB1D19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib in Resources */,
-				B0EED42D19F37D4A00CBFBFC /* AppointmentDetailsCell.xib in Resources */,
 				5BBD052019F6527100399219 /* HbhHotCityCell.xib in Resources */,
 				ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */,
 				5BF8FC7819F0FA3900598FB9 /* HbhAllCategory.plist in Resources */,
 				FF09640219F539A800EF8D0E /* SVProgressHUD.bundle in Resources */,
+				FF6D90601A0749B500C966F8 /* Alixpay.bundle in Resources */,
 				5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */,
 				B02C2B1719F4FD0600B9C4FF /* Images.xcassets in Resources */,
 				5B03CC0019EFE0D000A367DC /* HbhQRcodeViewController.xib in Resources */,
@@ -1211,18 +1378,21 @@
 				FF15253419E7B861008AB6EC /* ThreadSafeMutableDictionary.m in Sources */,
 				FF21CF1919E66144005007B7 /* UIImage+GIF.m in Sources */,
 				AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */,
+				FF6D90691A0749B500C966F8 /* SBJsonParser.m in Sources */,
 				FF21CF2119E66144005007B7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				B09D1DAC19F654D200C7513C /* HubOrder.m in Sources */,
 				ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */,
 				FF09640119F539A800EF8D0E /* SVProgressHUD.m in Sources */,
 				AB06DC4E19F1269500B82C62 /* HbhWorkerModel.m in Sources */,
 				FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */,
+				FF6D90641A0749B500C966F8 /* AlixPayResult.m in Sources */,
 				ABAFAB2119EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m in Sources */,
 				AB06DC4D19F1269500B82C62 /* HbhWorkerData.m in Sources */,
 				B08F580B19F64D0D00F3E130 /* HbhConfirmOrderViewController.m in Sources */,
 				FF21CE9B19E66030005007B7 /* SecondViewController.m in Sources */,
 				ABAFAB2A19EF4BDC00B51916 /* HbhWorkerImgTableViewCell.m in Sources */,
 				AB7DE99719EFC7B000AA9F93 /* HbhDropDownView.m in Sources */,
+				FF9CCD461A05365A007DC51B /* HubInstallDesView.m in Sources */,
 				FFD1A2CE19EE4B6D00EA97D4 /* FMDatabaseAdditions.m in Sources */,
 				5B69300F19F39BC70005862D /* HbuAreaListModelBaseClass.m in Sources */,
 				FF21CEA419E660CC005007B7 /* BaseViewController.m in Sources */,
@@ -1235,12 +1405,16 @@
 				AB090E2419EE61F700D943C6 /* HbhWorkerDetailViewController.m in Sources */,
 				ABC5D50619F1E59800A306F7 /* HbhMakeAppointMentViewController.m in Sources */,
 				FF21CF1F19E66144005007B7 /* DataCenterDeal.mm in Sources */,
+				FF0B35DE1A052F3800299FC9 /* HuhAppointmentVC.m in Sources */,
 				5B16D8D619F140D0009E9FF3 /* CategoryChildInfoModel.m in Sources */,
 				FF21CF0C19E66144005007B7 /* FBKVOController.m in Sources */,
 				AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */,
+				FF6D90681A0749B500C966F8 /* SBJsonBase.m in Sources */,
 				5B16D8CB19F12F07009E9FF3 /* HbhCategoryCell.m in Sources */,
 				B0FF902519F7B174001B8E14 /* HbhOrderDetailsView.m in Sources */,
 				FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */,
+				ABBCE96F1A072B46008601C6 /* HbhWorkerCommentManage.m in Sources */,
+				FF6D90661A0749B500C966F8 /* NSString+SBJSON.m in Sources */,
 				5B69301019F39BC70005862D /* HbuAreaListModelAreas.m in Sources */,
 				FF15253119E7B861008AB6EC /* NSFileManager_Additions.m in Sources */,
 				FF21CF1819E66144005007B7 /* UIButton+WebCache.m in Sources */,
@@ -1251,23 +1425,30 @@
 				FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */,
 				B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */,
 				FF21CF2619E66144005007B7 /* UIViewAdditions.m in Sources */,
+				FFDBF2761A11A035004E0868 /* LSNavigationController.m in Sources */,
+				FF6D906A1A0749B500C966F8 /* SBJsonWriter.m in Sources */,
 				FF21CF1A19E66144005007B7 /* UIImage+MultiFormat.m in Sources */,
 				ABAFAB2619EF484A00B51916 /* HbhWorkerThirdTopTableViewCell.m in Sources */,
+				ABC543641A078DBA00C1C601 /* HbhWorkerCommentModel.m in Sources */,
+				5B3733371A25D5F500C9B76C /* HbhFirstPageManager.m in Sources */,
 				AB8EA5DF19F482D0001F40C2 /* HbhModel.m in Sources */,
 				FF21CF0819E66144005007B7 /* AFXMLRequestOperation.m in Sources */,
+				5B37333A1A25D62100C9B76C /* HbhBanners.m in Sources */,
 				FF21CF1319E66144005007B7 /* SDWebImageDecoder.m in Sources */,
 				5BBD051F19F6527100399219 /* HbhHotCityCell.m in Sources */,
 				FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */,
 				FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */,
 				FFD1A2D019EE4B6D00EA97D4 /* FMDatabaseQueue.m in Sources */,
 				FF21CF0719E66144005007B7 /* AFURLConnectionOperation.m in Sources */,
-				B0FF902819F7B4B4001B8E14 /* HbhTextField.m in Sources */,
 				FF21CF1D19E66144005007B7 /* UIImageView+WebCache.m in Sources */,
 				FF21CF0A19E66144005007B7 /* NetManager.m in Sources */,
+				FFCAEEA71A25C7F1006D3E9C /* IntroduceViewController.m in Sources */,
 				5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */,
 				ABC5D50F19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m in Sources */,
+				FF6D90651A0749B500C966F8 /* NSObject+SBJSON.m in Sources */,
 				AB090E2819EE63E000D943C6 /* HbhTopTableViewCell.m in Sources */,
 				5B16D8C819F12CB7009E9FF3 /* HbuCategoryViewController.m in Sources */,
+				ABC543631A078DBA00C1C601 /* HbhWorkerCommentComment.m in Sources */,
 				FF21CF0319E66144005007B7 /* AFImageRequestOperation.m in Sources */,
 				ABAFAB1C19EF35A900B51916 /* HbhWorkerCommentTableViewCell.m in Sources */,
 				AB06DC4C19F1269500B82C62 /* HbhWorkerComment.m in Sources */,
@@ -1280,6 +1461,7 @@
 				5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */,
 				5BD54D3319EE4DC6002C4355 /* HbhUserManager.m in Sources */,
 				FF21CF1419E66144005007B7 /* SDWebImageDownloader.m in Sources */,
+				B01D687319F90FCF008B6BDE /* TouchTableView.m in Sources */,
 				AB8EA5E219F482D0001F40C2 /* HbhWorkerTypes.m in Sources */,
 				FF21CF0E19E66144005007B7 /* JSONKit.m in Sources */,
 				FF21CF0B19E66144005007B7 /* UIImageView+AFNetworking.m in Sources */,
@@ -1287,18 +1469,19 @@
 				AB8EA5E019F482D0001F40C2 /* HbhOrderCounts.m in Sources */,
 				FFBBFB2419F3BB18003A200C /* AreasDBManager.m in Sources */,
 				FF21CF1C19E66144005007B7 /* UIImageView+HighlightedWebCache.m in Sources */,
-				B0EB09E219F171FD00EDB0D5 /* HbhAppointmentViewController.m in Sources */,
 				FF15253219E7B861008AB6EC /* SCach.m in Sources */,
+				FF9CCD4C1A0536AE007DC51B /* HubAppointUserInfoView.m in Sources */,
 				FF21CF0119E66144005007B7 /* AFHTTPClient.m in Sources */,
 				AB06DC5119F126B000B82C62 /* HbhWorkerDetailManage.m in Sources */,
 				FF21CE9019E64D76005007B7 /* RootTabBarController.m in Sources */,
 				FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */,
+				FF0B35D61A05132E00299FC9 /* IntroduceWebView.m in Sources */,
 				FF21CE9E19E66054005007B7 /* ThirdViewController.m in Sources */,
-				ABC2B37719F3BBC5000FEE32 /* VPImageCropperViewController.m in Sources */,
 				FF21CF0619E66144005007B7 /* AFPropertyListRequestOperation.m in Sources */,
 				FF21CF1E19E66144005007B7 /* UIView+WebCacheOperation.m in Sources */,
 				FF21CF1219E66144005007B7 /* SDWebImageCompat.m in Sources */,
 				FF21CE7319E64B5A005007B7 /* AppDelegate.m in Sources */,
+				FF9CCD491A05367D007DC51B /* HubControlPriceView.m in Sources */,
 				FF21CF0F19E66144005007B7 /* MKAnnotationView+WebCache.m in Sources */,
 				5B16D8CF19F134C3009E9FF3 /* HbuCategoryListManager.m in Sources */,
 				FF21CF0519E66144005007B7 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -1306,18 +1489,19 @@
 				FF21CF0D19E66144005007B7 /* NSData+Base64.m in Sources */,
 				FF21CF1719E66144005007B7 /* SDWebImagePrefetcher.m in Sources */,
 				AB66D37C19ECAC0900518005 /* HbhOrderDetailViewController.m in Sources */,
+				FF6D90671A0749B500C966F8 /* SBJSON.m in Sources */,
 				FF21CE7019E64B5A005007B7 /* main.m in Sources */,
 				FF21CF1519E66144005007B7 /* SDWebImageDownloaderOperation.m in Sources */,
 				FF21CEA119E6607B005007B7 /* FourthViewController.m in Sources */,
 				FF21CF1619E66144005007B7 /* SDWebImageManager.m in Sources */,
-				B0EED42E19F37D4A00CBFBFC /* HbhAppointmentConfirmeView.m in Sources */,
 				FF21CF2219E66144005007B7 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				FF21CF2519E66144005007B7 /* UIImage+ImageEffects.m in Sources */,
+				FF6D90631A0749B500C966F8 /* AlixPayOrder.m in Sources */,
 				AB8EA5DD19F482D0001F40C2 /* HbhAreas.m in Sources */,
-				B0EED42F19F37D4A00CBFBFC /* HbhAppointmentDetailsTableViewCell.m in Sources */,
 				5B25474019F5439600E50B60 /* HbhSelCityViewController.m in Sources */,
 				FF21CF1B19E66144005007B7 /* UIImage+WebP.m in Sources */,
 				5B16D8D319F139D3009E9FF3 /* CategoryInfoModel.m in Sources */,
+				FFC8CDC81A24708A002844EF /* SImageUtil.m in Sources */,
 				FF21CE9819E65FE7005007B7 /* FirstViewController.m in Sources */,
 				FF21CF1119E66144005007B7 /* SDImageCache.m in Sources */,
 				AB8EA5DE19F482D0001F40C2 /* HbhData.m in Sources */,
@@ -1361,8 +1545,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yuan yongyao (L9NP99245H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yuan yongyao (L9NP99245H)";
+				CODE_SIGN_IDENTITY = "iOS Development: wu chen (7K2NVL8N69)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: wu chen (7K2NVL8N69)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1379,10 +1563,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1403,8 +1589,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yuan yongyao (L9NP99245H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yuan yongyao (L9NP99245H)";
+				CODE_SIGN_IDENTITY = "iOS Development: wu chen (7K2NVL8N69)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wu chen (7K2NVL8N69)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1415,42 +1601,64 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
 		FF21CE8819E64B5A005007B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+<<<<<<< Updated upstream
+				CODE_SIGN_IDENTITY = "iOS Development: wu chen (7K2NVL8N69)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: wu chen (7K2NVL8N69)";
+=======
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+>>>>>>> Stashed changes
 				GCC_PREFIX_HEADER = "Hubanghu/Hubanghu-Prefix.pch";
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Hubanghu/ThirdParty/alipay_sdk/alipay",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = Hubanghu;
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
 		FF21CE8919E64B5A005007B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iOS Development: wu chen (7K2NVL8N69)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "Hubanghu/Hubanghu-Prefix.pch";
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Hubanghu/ThirdParty/alipay_sdk/alipay",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = Hubanghu;
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -1504,7 +1712,7 @@
 				FF21CE8619E64B5A005007B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FF21CE8719E64B5A005007B7 /* Build configuration list for PBXNativeTarget "Hubanghu" */ = {
 			isa = XCConfigurationList;
@@ -1513,7 +1721,7 @@
 				FF21CE8919E64B5A005007B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FF21CE8A19E64B5A005007B7 /* Build configuration list for PBXNativeTarget "HubanghuTests" */ = {
 			isa = XCConfigurationList;
@@ -1522,7 +1730,7 @@
 				FF21CE8C19E64B5A005007B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
