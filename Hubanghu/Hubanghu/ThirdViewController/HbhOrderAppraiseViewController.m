@@ -31,8 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = kViewBackgroundColor;
-    self.title = @"评价";
+    self.view.backgroundColor = RGBCOLOR(250, 250, 250);
+//    self.title = @"评价";
+    [self settitleLabel:@"评价"];
     _isAgian = 0;
     
     self.appraiseTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 140, kMainScreenWidth-30, 168)];

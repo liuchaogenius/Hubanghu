@@ -598,7 +598,6 @@ typedef enum : NSUInteger {
         cell.backgroundColor = [UIColor clearColor];
         return cell;
     }
-    
 }
 
 #pragma mark tableView delegate

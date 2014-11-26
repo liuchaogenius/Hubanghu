@@ -42,7 +42,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"工人详情";
+//    self.title = @"工人详情";
+    [self settitleLabel:@"工人详情"];
     
     self.workDetailTableView = [[UITableView alloc]
                                 initWithFrame:self.view.bounds style:UITableViewStylePlain];

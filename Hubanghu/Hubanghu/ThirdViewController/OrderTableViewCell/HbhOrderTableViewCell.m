@@ -31,7 +31,7 @@
         lineView.backgroundColor = kLineColor;
         [self addSubview:lineView];
         
-        self.backgroundColor = kViewBackgroundColor;
+        self.backgroundColor = RGBCOLOR(250, 250, 250);
 //    }
     
     return self;

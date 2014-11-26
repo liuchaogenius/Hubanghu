@@ -42,7 +42,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"用户评论";
+//    self.title = @"用户评论";
+    [self settitleLabel:@"用户评论"];
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 10)];
     view.backgroundColor = [UIColor whiteColor];

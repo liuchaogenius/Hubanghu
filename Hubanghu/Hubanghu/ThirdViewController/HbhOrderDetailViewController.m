@@ -59,8 +59,9 @@ typedef enum : NSUInteger {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = kViewBackgroundColor;
-    self.title = @"订单详情";
+    self.view.backgroundColor = RGBCOLOR(250, 250, 250);
+//    self.title = @"订单详情";
+    [self settitleLabel:@"订单详情"];
     
     _orderStatus = self.myModel.status;
     [self setUIWithModel:self.myModel];
@@ -203,7 +204,7 @@ typedef enum : NSUInteger {
 {
     if (!_topView) {
         _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 40)];
-        _topView.backgroundColor = RGBCOLOR(232, 232, 232);
+        _topView.backgroundColor = RGBCOLOR(245, 245, 245);
         
         UILabel *orderStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 80, 20)];
         orderStatusLabel.backgroundColor = [UIColor clearColor];
