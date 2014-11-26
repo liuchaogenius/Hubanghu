@@ -199,6 +199,9 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
             cell.textLabel.textColor = KColor;
             _localCityLable = cell.textLabel;
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            if (kSystemVersion < 7.0) {
+                cell.textLabel.font = kFont16;
+            }
         }
         cell.textLabel.text = [self localInfoTextString];
         return cell;
@@ -207,6 +210,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
         
         if (![((UIButton *)cell.hotCityButtons[0]) respondsToSelector:@selector(touchHotCityButton:)]) {
             for (UIButton *button  in cell.hotCityButtons) {
+                if(kSystemVersion < 7.0) button.titleLabel.font = kFont16;
                 [button addTarget:self action:@selector(touchHotCityButton:) forControlEvents:UIControlEventTouchUpInside];
                 [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             }
@@ -221,6 +225,10 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
         }
         HbuAreaListModelAreas *area = ((NSArray *)self.cityDict[self.firstCharArray[indexPath.section - 2]])[indexPath.row];
         cell.textLabel.text = area.name;
+        
+        if (kSystemVersion < 7.0) {
+            cell.textLabel.font = kFont16;
+        }
         
         return cell;
     }

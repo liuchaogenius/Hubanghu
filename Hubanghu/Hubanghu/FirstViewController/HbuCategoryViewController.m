@@ -125,7 +125,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    [self settitleLabel:@"加载中..."];
     _tableView = [[UITableView alloc] init];
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.delegate = self;
@@ -143,8 +143,8 @@
     [HbuCategoryListManager getCategroryInfoWithCateId:self.cateId WithSuccBlock:^(CategoryInfoModel *cModel) {
         [indictor stopAnimating];
         weakSelf.categoryInfoModel = cModel;
-        weakSelf.title = weakSelf.categoryInfoModel.title;
-        //[weakSelf settitleLabel:weakSelf.categoryInfoModel.title];
+        //weakSelf.title = weakSelf.categoryInfoModel.title;
+        [weakSelf settitleLabel:weakSelf.categoryInfoModel.title];
         weakSelf.sgmCount = [weakSelf getSgmCount];
         UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 7)];
         //whiteView.backgroundColor = [UIColor blackColor];
@@ -181,8 +181,8 @@
                     [self.view addSubview:weakSelf.sgmBtmScrollView];
                 }
                 
-                weakSelf.title = weakSelf.categoryInfoModel.title;
-                //[weakSelf settitleLabel:weakSelf.categoryInfoModel.title];
+                //weakSelf.title = weakSelf.categoryInfoModel.title;
+                [self settitleLabel:weakSelf.categoryInfoModel.title];
                 [weakSelf.view addSubview:weakSelf.tableView];
                 
                 //判断是否需要分栏，并作处理

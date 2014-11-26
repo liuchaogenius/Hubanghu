@@ -218,17 +218,13 @@ enum CellTag_Type
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             cell.accessoryView.backgroundColor = [UIColor whiteColor];
             
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(kMainScreenWidth-30, 0, kMainScreenWidth, cell.height)];
+            view.backgroundColor = [UIColor whiteColor];
+            [cell.contentView addSubview:view];
             //图片
             UIImageView *aImageView = nil;
             aImageView = [[UIImageView alloc] init];
-            if(kSystemVersion<7.0)
-            {
-                [aImageView setFrame:CGRectMake(20, (cell.height-22)/2.0, 20, 22)];
-            }
-            else
-            {
-                [aImageView setFrame:CGRectMake(10, (cell.height-22)/2.0, 20, 22)];
-            }
+            [aImageView setFrame:CGRectMake(10, (cell.height-22)/2.0, 20, 22)];
             aImageView.tag = kaImageViewTag;
             [cell addSubview:aImageView];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];

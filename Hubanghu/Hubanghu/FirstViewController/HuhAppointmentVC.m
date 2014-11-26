@@ -280,7 +280,7 @@ typedef NS_ENUM(int, AmountDesc)
 - (void)priceChangedWithPrice:(NSString *)price
 {
     if (price) {
-        _totalPriceLabel.text = [NSString stringWithFormat:@"%@",price];
+        _totalPriceLabel.text = [NSString stringWithFormat:@"%.2lf",[price doubleValue]];
     }
 }
 

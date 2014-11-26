@@ -189,7 +189,7 @@
                 MLOG(@"district:%@",addressDic[@"district"]);
                 MLOG(@"province:%@",addressDic[@"province"]);
                 
-                if (addressDic[@"city"]) {
+                if (addressDic[@"city"] && ((NSString *)addressDic[@"city"]).length) {
                     //百度定位成功
                     weakSelf.localCityName = addressDic[@"city"];
                     [weakSelf.areasDBManager selHbuArealistModelOfCity:addressDic[@"city"] district:addressDic[@"district"] resultBlock:^(HbuAreaListModelAreas *city, HbuAreaListModelAreas *district) {
