@@ -72,7 +72,7 @@ enum CellTag_Type
 {
     if (!_logOutHeadView) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35+20)];
-        view.backgroundColor = RGBCOLOR(249, 249, 249);
+        view.backgroundColor = kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
         //添加返回按钮
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, kMainScreenWidth-40.0, 35)];//[UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.backgroundColor = kIconSelectColor;
@@ -105,7 +105,6 @@ enum CellTag_Type
     [self settitleLabel:@"我的"];
     
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-49-64) style:UITableViewStylePlain];
-    tableView.backgroundColor = RGBCOLOR(249, 249, 249);
     _tableView = tableView;
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -114,7 +113,7 @@ enum CellTag_Type
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
     [self updateUserHeadView];
     [self.view addSubview:self.tableView];
-    self.view.backgroundColor = RGBCOLOR(249, 249, 249);
+    self.view.backgroundColor = kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
     self.tableView.backgroundColor = RGBCOLOR(249, 249, 249);
     
 }
@@ -167,27 +166,7 @@ enum CellTag_Type
 #pragma mark headView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//    if (section == 0) {
-//        
-//        HbhUser *user = [HbhUser sharedHbhUser];
-//        if (user.isLogin) {
-//            
-//            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchHeadView)];
-//            [self.fHeadView addGestureRecognizer:tapRecognizer];
-//            
-//            self.fHeadView.hasLoginView.hidden = NO;
-//            self.fHeadView.notLoginView.hidden = YES;
-//            self.fHeadView.nickNameLabel.text = user.nickName;
-//            self.fHeadView.pointLabel.text = [NSString stringWithFormat:@"积分：%ld",(long)user.point];
-////            [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
-//            [self loadUserPhoto];
-//            [self.fHeadView.changePhotoButton addTarget:self action:@selector(touchModifyUserDetail) forControlEvents:UIControlEventTouchUpInside];
-//        }
-//        self.fHeadView.hasLoginView.hidden = (user.isLogin ? NO:YES);
-//        self.fHeadView.notLoginView.hidden = (user.isLogin ? YES:NO);
-//        return self.fHeadView;
-//        
-//    }else
+
     if(section == self.listArray.count+1){
         self.logOutHeadView.hidden = ([HbhUser sharedHbhUser].isLogin ? NO : YES);
         
@@ -195,7 +174,7 @@ enum CellTag_Type
     }else{
         if (kSystemVersion < 7.0) {
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 10)];
-            view.backgroundColor = RGBCOLOR(249, 249, 249);
+            view.backgroundColor = kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
             return view;
         }
         return nil;
@@ -235,7 +214,10 @@ enum CellTag_Type
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+            cell.contentView.backgroundColor = [UIColor whiteColor];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+            cell.accessoryView.backgroundColor = [UIColor whiteColor];
+            
             //图片
             UIImageView *aImageView = nil;
             aImageView = [[UIImageView alloc] init];
@@ -297,6 +279,7 @@ enum CellTag_Type
         textLabel.text = dic[@"name"];
         //cell.textLabel.text = dic[@"name"];
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+
         return cell;
     }
     
