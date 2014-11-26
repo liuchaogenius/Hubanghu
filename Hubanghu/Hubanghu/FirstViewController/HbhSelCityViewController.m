@@ -107,7 +107,8 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"选择城市";
+    //self.title = @"选择城市";
+    [self settitleLabel:@"选择城市"];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

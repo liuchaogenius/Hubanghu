@@ -144,6 +144,7 @@
         [indictor stopAnimating];
         weakSelf.categoryInfoModel = cModel;
         weakSelf.title = weakSelf.categoryInfoModel.title;
+        //[weakSelf settitleLabel:weakSelf.categoryInfoModel.title];
         weakSelf.sgmCount = [weakSelf getSgmCount];
         UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 7)];
         //whiteView.backgroundColor = [UIColor blackColor];
@@ -177,10 +178,11 @@
                 weakSelf.categoryInfoModel = cModel;
                 _sgmCount = [weakSelf getSgmCount];
                 if (weakSelf.sgmCount && !_sgmBtmScrollView) {
-                    [weakSelf.view addSubview:weakSelf.sgmBtmScrollView];
+                    [self.view addSubview:weakSelf.sgmBtmScrollView];
                 }
                 
                 weakSelf.title = weakSelf.categoryInfoModel.title;
+                //[weakSelf settitleLabel:weakSelf.categoryInfoModel.title];
                 [weakSelf.view addSubview:weakSelf.tableView];
                 
                 //判断是否需要分栏，并作处理

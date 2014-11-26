@@ -201,7 +201,8 @@ enum TextField_Type
     [self.view addSubview:self.sgmLoginButton];
     [self.view addSubview:self.sgmRegisterButton];
     self.sgmLoginButton.selected = YES;
-    self.title = @"登 录";
+    //self.title = @"登 录";
+    [self settitleLabel:@"登 陆"];
     
     [self.view addSubview:self.loginView];
     [self.view addSubview:self.selectedLine];
