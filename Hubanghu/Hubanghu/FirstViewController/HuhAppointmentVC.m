@@ -294,7 +294,6 @@ typedef NS_ENUM(int, AmountDesc)
 #pragma mark resign first resp
 - (void)shouldResignAllFirstResponds
 {
-    [controlPriceView removeCateListView];
     [controlPriceView allTextFieldsResignFirstRespond];
 }
 

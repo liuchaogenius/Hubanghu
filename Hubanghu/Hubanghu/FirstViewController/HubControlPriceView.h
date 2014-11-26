@@ -30,5 +30,4 @@
 - (NSString *)getComment;//备注
 - (NSString *)getCateButtonType;//返回 是纯装  纯拆。。。
 
-- (void)removeCateListView;
 @end

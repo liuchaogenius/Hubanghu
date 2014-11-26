@@ -238,7 +238,11 @@
     if(!countTextField)
     {
         countTextField = [[UITextField alloc] initWithFrame:CGRectMake(countTitleLabel.right+10, countTitleLabel.top, 80, 30)];
-    
+        if (kSystemVersion < 7.0) {
+            countTextField.borderStyle = UITextBorderStyleBezel;
+        }else{
+            countTextField.borderStyle = UITextBorderStyleRoundedRect;
+        }
         countTextField.centerY = countTitleLabel.centerY;
         [self addSubview:countTextField];
     }
@@ -329,6 +333,11 @@
     
     if (!remarkTextField) {
         remarkTextField = [[UITextField alloc] initWithFrame:CGRectMake(remarkTitleLabel.right+10, remarkTitleLabel.top,kMainScreenWidth - remarkTitleLabel.right-10-20,30)];
+        if (kSystemVersion < 7.0) {
+            remarkTextField.borderStyle = UITextBorderStyleBezel;
+        }else{
+            remarkTextField.borderStyle = UITextBorderStyleRoundedRect;
+        }
         remarkTextField.centerY = remarkTitleLabel.centerY;
         remarkTextField.delegate = self;
         remarkTextField.tag = 0;

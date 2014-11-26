@@ -71,11 +71,10 @@ enum CellTag_Type
 - (UIView *)logOutHeadView
 {
     if (!_logOutHeadView) {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35)];
-        view.backgroundColor = [UIColor clearColor];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35+20)];
+        view.backgroundColor = RGBCOLOR(249, 249, 249);
         //添加返回按钮
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];//[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button setFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, kMainScreenWidth-40.0, 35)];//[UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.backgroundColor = kIconSelectColor;
         [button addTarget:self action:@selector(touchLogoutButton) forControlEvents:UIControlEventTouchUpInside];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -110,12 +109,13 @@ enum CellTag_Type
     _tableView = tableView;
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.backgroundView = nil;
+    //tableView.backgroundView = nil;
     tableView.tableHeaderView = self.fHeadView;
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
     [self updateUserHeadView];
     [self.view addSubview:self.tableView];
-    self.view.backgroundColor = kViewBackgroundColor;
+    self.view.backgroundColor = RGBCOLOR(249, 249, 249);
+    self.tableView.backgroundColor = RGBCOLOR(249, 249, 249);
     
 }
 
@@ -147,17 +147,17 @@ enum CellTag_Type
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == self.listArray.count+1){
-        return 35;
+        return 55;
     } else {
         return 10;
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    if(section == self.listArray.count) return 10;
-    else return 0;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    if(section == self.listArray.count) return 10;
+//    else return 0;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -193,6 +193,11 @@ enum CellTag_Type
         
         return self.logOutHeadView;
     }else{
+        if (kSystemVersion < 7.0) {
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 10)];
+            view.backgroundColor = RGBCOLOR(249, 249, 249);
+            return view;
+        }
         return nil;
     }
 }
