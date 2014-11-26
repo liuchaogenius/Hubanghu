@@ -153,7 +153,6 @@
 		FF9CCD4C1A0536AE007DC51B /* HubAppointUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9CCD4B1A0536AE007DC51B /* HubAppointUserInfoView.m */; };
 		FFBBFB2419F3BB18003A200C /* AreasDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBBFB2319F3BB18003A200C /* AreasDBManager.m */; };
 		FFC8CDC81A24708A002844EF /* SImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC8CDC71A24708A002844EF /* SImageUtil.m */; };
-		FFCAEEA71A25C7F1006D3E9C /* IntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEEA61A25C7F1006D3E9C /* IntroduceViewController.m */; };
 		FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */; };
 		FFD1A2CE19EE4B6D00EA97D4 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C619EE4B6D00EA97D4 /* FMDatabaseAdditions.m */; };
 		FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C819EE4B6D00EA97D4 /* FMDatabasePool.m */; };
@@ -459,8 +458,6 @@
 		FFBBFB2319F3BB18003A200C /* AreasDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AreasDBManager.m; path = Hubanghu/ThirdParty/FMDB/AreasDBManager.m; sourceTree = SOURCE_ROOT; };
 		FFC8CDC61A24708A002844EF /* SImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SImageUtil.h; sourceTree = "<group>"; };
 		FFC8CDC71A24708A002844EF /* SImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SImageUtil.m; sourceTree = "<group>"; };
-		FFCAEEA51A25C7F1006D3E9C /* IntroduceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceViewController.h; sourceTree = "<group>"; };
-		FFCAEEA61A25C7F1006D3E9C /* IntroduceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroduceViewController.m; sourceTree = "<group>"; };
 		FFD1A2C319EE4B6D00EA97D4 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		FFD1A2C519EE4B6D00EA97D4 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -1125,8 +1122,6 @@
 			children = (
 				FF21CF3019E68E28005007B7 /* LeftView.h */,
 				FF21CF3119E68E28005007B7 /* LeftView.m */,
-				FFCAEEA51A25C7F1006D3E9C /* IntroduceViewController.h */,
-				FFCAEEA61A25C7F1006D3E9C /* IntroduceViewController.m */,
 				FF0B35D41A05132E00299FC9 /* IntroduceWebView.h */,
 				FF0B35D51A05132E00299FC9 /* IntroduceWebView.m */,
 			);
@@ -1430,7 +1425,6 @@
 				FF21CF0719E66144005007B7 /* AFURLConnectionOperation.m in Sources */,
 				FF21CF1D19E66144005007B7 /* UIImageView+WebCache.m in Sources */,
 				FF21CF0A19E66144005007B7 /* NetManager.m in Sources */,
-				FFCAEEA71A25C7F1006D3E9C /* IntroduceViewController.m in Sources */,
 				5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */,
 				ABC5D50F19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m in Sources */,
 				FF6D90651A0749B500C966F8 /* NSObject+SBJSON.m in Sources */,
@@ -1605,11 +1599,13 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-
+<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iOS Development: wu chen (7K2NVL8N69)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: wu chen (7K2NVL8N69)";
+=======
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+>>>>>>> new
 				GCC_PREFIX_HEADER = "Hubanghu/Hubanghu-Prefix.pch";
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

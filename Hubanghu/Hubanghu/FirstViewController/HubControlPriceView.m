@@ -186,29 +186,6 @@
     categoryTitle.textColor = [UIColor blackColor];
     [self addSubview:categoryTitle];
     
-    UIView *cateView = [[UIView alloc] initWithFrame:CGRectMake(categoryTitle.right+10, 0, 80, 30)];
-    cateView.backgroundColor = [UIColor whiteColor];
-    cateView.centerY = categoryTitle.centerY;
-    cateView.layer.borderWidth = 1;
-    cateView.layer.borderColor = [kLineColor CGColor];
-    
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(5, (30-kCateTitleFont)/2.0, 60, kCateTitleFont)];
-    title.textColor = KColor;
-    title.font = [UIFont systemFontOfSize:kCateTitleFont];
-    title.text = categoryTitlearry[0];
-    title.textAlignment = NSTextAlignmentCenter;
-    [cateView addSubview:title];
-    _cateTitleLabel = title;
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(cateView.width-20, 0, 12, 8)];
-    imageView.centerY = title.centerY;
-    imageView.image = [UIImage imageNamed:@"downArrowGray"];
-    [cateView addSubview:imageView];
-    
-    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCateView)];
-    [cateView addGestureRecognizer:tapGR];
-    
-    [self addSubview:cateView];
-    /*
     _cateButtonArray = [NSMutableArray arrayWithCapacity:categoryTitlearry.count];
     for(int i=0; i<4; i++)
     {
@@ -234,11 +211,11 @@
         [self addSubview:cateButton];
         [self.cateButtonArray insertObject:cateButton atIndex:i];
     }
-    */
+    
     UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, categoryTitle.bottom+20, kMainScreenWidth, 1)];
     lineview.backgroundColor = RGBCOLOR(232, 232, 232);
     [self addSubview:lineview];
-    _cateView = cateView;
+    //_cateView = cateView;
     offsetY = lineview.bottom+20;
 }
 
@@ -261,6 +238,11 @@
     if(!countTextField)
     {
         countTextField = [[UITextField alloc] initWithFrame:CGRectMake(countTitleLabel.right+10, countTitleLabel.top, 80, 30)];
+        if (kSystemVersion < 7.0) {
+            countTextField.borderStyle = UITextBorderStyleBezel;
+        }else{
+            countTextField.borderStyle = UITextBorderStyleRoundedRect;
+        }
         countTextField.centerY = countTitleLabel.centerY;
         [self addSubview:countTextField];
     }
@@ -273,7 +255,7 @@
     countTextField.returnKeyType = UIReturnKeyDone;
     countTextField.font = kFont13;
     countTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-    countTextField.textAlignment = NSTextAlignmentCenter;
+    countTextField.textAlignment = NSTextAlignmentLeft;
     countTextField.layer.borderWidth = 1;
     countTextField.layer.borderColor = kBorderColor.CGColor;
     countTextField.layer.cornerRadius = 2;
@@ -351,6 +333,11 @@
     
     if (!remarkTextField) {
         remarkTextField = [[UITextField alloc] initWithFrame:CGRectMake(remarkTitleLabel.right+10, remarkTitleLabel.top,kMainScreenWidth - remarkTitleLabel.right-10-20,30)];
+        if (kSystemVersion < 7.0) {
+            remarkTextField.borderStyle = UITextBorderStyleBezel;
+        }else{
+            remarkTextField.borderStyle = UITextBorderStyleRoundedRect;
+        }
         remarkTextField.centerY = remarkTitleLabel.centerY;
         remarkTextField.delegate = self;
         remarkTextField.tag = 0;
@@ -359,7 +346,7 @@
         remarkTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         remarkTextField.returnKeyType = UIReturnKeyDone;
         remarkTextField.font = kFont13;
-        remarkTextField.textAlignment = NSTextAlignmentCenter;
+        remarkTextField.textAlignment = NSTextAlignmentLeft;
         remarkTextField.layer.borderWidth = 1;
         remarkTextField.layer.borderColor = kBorderColor.CGColor;
         remarkTextField.layer.cornerRadius = 2.0;
@@ -369,34 +356,6 @@
 }
 
 #pragma mark - Action
-
-- (void)removeCateListView
-{
-    if (self.clearBackView.superview) {
-        [self.clearBackView removeFromSuperview];
-        [UIView animateWithDuration:0.5f animations:^{
-            self.cateListView.height = 0.1;
-        } completion:^(BOOL finished) {
-            [self.cateListView removeFromSuperview];
-        }];
-    }
-}
-
-- (void)tapCateView
-{
-    if (self.cateListView.superview) {
-        [self removeCateListView];
-    }else{
-        self.cateListView.frame = CGRectMake(_cateView.left, _cateView.bottom, self.cateListView.width, 0);
-        [self addSubview:self.clearBackView];
-        [self addSubview:self.cateListView];
-        [UIView animateWithDuration:0.5f animations:^{
-            self.cateListView.height = kCateViewHeight;
-        } completion:^(BOOL finished) {
-            
-        }];
-    }
-}
 
 - (BOOL)infoCheck
 {
@@ -447,22 +406,11 @@
             [button setTitleColor:kBorderColor forState:UIControlStateNormal];
         }
         cateButtonType = (int)aBut.tag;
-        _cateTitleLabel.text = categoryTitlearry[cateButtonType];
-        [UIView animateWithDuration:0.5f animations:^{
-            self.cateListView.height = 0.1;
-        } completion:^(BOOL finished) {
-            [self.cateListView removeFromSuperview];
-        }];
+        
         aBut.layer.borderColor = KColor.CGColor;
         [aBut setTitleColor:KColor forState:UIControlStateNormal];
         
         [self getPrice];
-    }else{
-        [UIView animateWithDuration:0.5f animations:^{
-            self.cateListView.height = 0.1;
-        } completion:^(BOOL finished) {
-            [self.cateListView removeFromSuperview];
-        }];
     }
 }
 

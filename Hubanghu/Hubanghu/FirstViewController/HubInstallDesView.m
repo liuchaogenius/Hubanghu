@@ -32,11 +32,15 @@
     {
         contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, kMainScreenWidth-20, self.height)];
         contentLabel.backgroundColor = kClearColor;
-        contentLabel.font = [UIFont systemFontOfSize:13];
+        contentLabel.font = [UIFont systemFontOfSize:15];
         contentLabel.textAlignment = NSTextAlignmentLeft;
         contentLabel .numberOfLines = 0;
         contentLabel.textColor = [UIColor blackColor];
         [self addSubview:contentLabel];
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, kMainScreenWidth, 0.7)];
+        line.backgroundColor = kLineColor;
+        [contentLabel addSubview:line];
     }
 }
 - (void)setContent:(NSString *)aContent

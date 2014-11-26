@@ -261,7 +261,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	self.navigationItem.title = @"确认下单";
+	//self.navigationItem.title = @"确认下单";
+    [self settitleLabel:@"确认下单"];
 	self.view.backgroundColor = [UIColor whiteColor];
 	
 	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];

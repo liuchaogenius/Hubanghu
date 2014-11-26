@@ -16,24 +16,30 @@
 #import "SVProgressHUD.h"
 #import "HbhUser.h"
 #import "HbhSelCityViewController.h"
+#import "HuhAppointmentVC.h"
 
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
+#define KimageHeight kMainScreenWidth*381/1080.0f+kBlankWidth
 enum CateId_Type
 {
-    CateId_floor = 1,//地板
+    CateId_floor = 2,//地板
     CateId_bathroom,//卫浴
     CateId_light,//灯饰
     CateId_wallpaper,//墙纸
-    CateId_renovate//二次翻新
+    CateId_renovate,//二次翻新
+    CateId_niceWorker//优秀工人
 };
 
-@interface FirstViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface FirstViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
     UILabel *_rightBtnLabel;
 }
 @property (strong, nonatomic) UITableView* tableView;
 @property (strong, nonatomic) NSArray *allCategoryInfo;//所有预约类型info数组
 @property (strong, nonatomic) UIView *headView; //headView
+@property (weak, nonatomic) UIPageControl *pageControl; //分页
+@property (strong, nonatomic) UIScrollView *headScrollView;
+@property (strong, nonatomic) UIView *headAdView; //顶部广告view
 @property (strong, nonatomic) HbuAreaLocationManager *areaLocationManager;
 @property (strong, nonatomic) HbuAreaListModelBaseClass *areaListModel;
 
@@ -49,17 +55,6 @@ enum CateId_Type
         _allCategoryInfo = [NSArray arrayWithContentsOfFile:path];
     }
     return _allCategoryInfo;
-}
-
-- (UIView *)headView
-{
-    if (!_headView) {
-        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenWidth*381/1080.0f+kBlankWidth) ];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _headView.width, _headView.height)];
-        [imageView setImage:[UIImage imageNamed:@"OrderHeader"]];
-        [_headView addSubview:imageView];
-    }
-    return _headView;
 }
 
 - (HbuAreaLocationManager *)areaLocationManager
@@ -94,8 +89,10 @@ enum CateId_Type
     self.tableView.dataSource = self;
     [self.tableView registerClass:[HbhFirstVCCell class] forCellReuseIdentifier:@"FirstVCCell"];
     self.tableView.backgroundColor = kViewBackgroundColor;//[UIColor whiteColor];
-    //self.tableView.bounces = NO;
-    self.tableView.tableHeaderView = self.headView;
+    //顶部ad
+    [self creatAddViewWithImageNum:2];
+    self.tableView.tableHeaderView = self.headAdView;
+    
     //定位相关
     _areaLocationManager = [HbuAreaLocationManager sharedManager];
     [self.areaLocationManager getAreasDataAndSaveToDBifNeeded];
@@ -110,14 +107,58 @@ enum CateId_Type
             //区分是否有之前的定位城市
             NSString *cancelButtonTiltle = (weakSelf.areaLocationManager.currentAreas ? @"知道了":@"手动选择城市");
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"定位服务未开启" message:@"请在系统设置中开启定位服务（设置->隐私->定位服务->开启互帮互）" delegate:self cancelButtonTitle:cancelButtonTiltle otherButtonTitles:nil, nil];
-            alertView.tag = (self.areaLocationManager.currentAreas ? 1 : 2);
+            alertView.tag = (self.areaLocationManager.currentAreas ? errorType_hadData_notOpService : errorType_notOpenService);
             [alertView show];
-        }else if(errorType == errorType_locationFailed || errorType == errorType_matchCityFailed){
-            [self showSelCityVC];
-            [SVProgressHUD showErrorWithStatus:failString cover:YES offsetY:kMainScreenHeight/2.0];
+        }
+//        else if(errorType == errorType_locationFailed || errorType == errorType_matchCityFailed){
+//            [self showSelCityVC];
+//            [SVProgressHUD showErrorWithStatus:failString cover:YES offsetY:kMainScreenHeight/2.0];
+//        }
+        else if (errorType == errorType_matchCityFailed){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"城市尚未开通" message:failString delegate:self cancelButtonTitle:@"选择其他城市" otherButtonTitles:@"知道了", nil];
+            alertView.tag = errorType_matchCityFailed;
+            [alertView show];
         }
     }];
 }
+
+//顶部浮动广告view
+- (void)creatAddViewWithImageNum:(NSInteger)imageNum
+{
+    UIView *headAdView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KimageHeight)];
+    headAdView.backgroundColor = [UIColor whiteColor];
+    _headAdView = headAdView;
+    
+    UIScrollView *headScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenWidth*381/1080.0f+kBlankWidth)];
+    [headScrollView setBounces:NO];
+    headScrollView.backgroundColor = [UIColor whiteColor];
+    [headScrollView setShowsHorizontalScrollIndicator:NO];
+    [headScrollView setContentSize:CGSizeMake(imageNum * kMainScreenWidth, KimageHeight)];
+    headScrollView.delegate = self;
+    [headAdView addSubview:headScrollView];
+    
+    for (NSInteger i = 1; i <= imageNum; i++) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((i-1) * kMainScreenWidth, 0, kMainScreenWidth, KimageHeight)];
+        //设置image
+        imageView.image = [UIImage imageNamed:@"OrderHeader"];
+        [headScrollView addSubview:imageView];
+        imageView.backgroundColor = RGBCOLOR(58, 155, 9);
+        [headScrollView setPagingEnabled:YES];
+        
+    }
+    UIPageControl *pageControl = [[UIPageControl alloc] init];
+    [pageControl setBounds:CGRectMake(0, 0, 150.0, 50.0)];
+    [pageControl setBounds:CGRectMake(0, 0, 150.0, 50.0)];
+    [pageControl setCenter:CGPointMake(kMainScreenWidth/2, KimageHeight - 10)];
+    [pageControl setNumberOfPages:imageNum];
+    [pageControl setCurrentPage:0];
+    [pageControl setCurrentPageIndicatorTintColor:[UIColor whiteColor]];
+    [pageControl setPageIndicatorTintColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.7 alpha:0.8]];
+    [_headAdView addSubview:pageControl];
+    self.pageControl = pageControl;
+    self.headScrollView = headScrollView;
+}
+
 
 #pragma mark 创建navigation右侧button
 - (void)creatRightBtn
@@ -216,7 +257,11 @@ enum CateId_Type
 #pragma mark 点击图片button进入对应type页面
 - (void)touchImageButton:(UIButton *)sender
 {
-    if (sender.tag != kBlankButtonTag) {
+    if (sender.tag == CateId_renovate) { //二次翻新
+#warning 二次翻新
+    }else if (sender.tag == CateId_niceWorker){
+        self.tabBarController.selectedIndex = 1;
+    }else if (sender.tag != kBlankButtonTag) {
         [self.navigationController pushViewController:[[HbuCategoryViewController alloc] initWithCateId:sender.tag] animated:YES];
     }
 }
@@ -224,7 +269,11 @@ enum CateId_Type
 #pragma mark -alertview delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == 2) {
+    if (alertView.tag == errorType_notOpenService) {
+        if (buttonIndex == 0) {
+            [self showSelCityVC];
+        }
+    }else if (alertView.tag == errorType_matchCityFailed){
         if (buttonIndex == 0) {
             [self showSelCityVC];
         }
@@ -232,6 +281,12 @@ enum CateId_Type
     
 }
 
+#pragma mark scrollView delegat
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSInteger pageNo = scrollView.contentOffset.x / kMainScreenWidth;
+    [self.pageControl setCurrentPage:pageNo];
+}
 
 - (void)dealloc
 {

@@ -254,7 +254,7 @@ typedef enum : NSUInteger {
     if (!_btnBackView)
     {
         _btnBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 40)];
-        _btnBackView.backgroundColor = RGBCOLOR(242, 242, 242);
+        _btnBackView.backgroundColor = RGBCOLOR(247, 247, 247);
         NSArray *array = @[@"全部订单", @"未完成", @"待评价"];
         for (int i=0; i<3; i++)
         {

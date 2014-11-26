@@ -123,7 +123,7 @@
 }
 - (void)setLeftButton:(UIImage *)aImg title:(NSString *)aTitle target:(id)aTarget action:(SEL)aSelector
 {
-    CGRect buttonFrame = CGRectMake(-5, 0, 88/2, 44);
+    CGRect buttonFrame = CGRectMake(-5, (44-30)/2.0, 34, 30);//CGRectMake(-5, 0, 88/2, 44);
     UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
     if(aImg)
     {
@@ -134,7 +134,7 @@
         [button setTitle:aTitle forState:UIControlStateNormal];
     }
     [button addTarget:aTarget action:aSelector forControlEvents:UIControlEventTouchUpInside];
-    CGRect viewFrame = CGRectMake(0, 0, 88/2, 44);
+    CGRect viewFrame = CGRectMake(0, 0, 44, 44);//CGRectMake(0, 0, 88/2, 44);
     UIView *view = [[UIView alloc]initWithFrame:viewFrame];
     [view addSubview:button];
     
@@ -162,7 +162,8 @@
 
 - (void)setRightButton:(UIImage *)aImg title:(NSString *)aTitle target:(id)aTarget action:(SEL)aSelector
 {
-    CGRect buttonFrame = CGRectMake(5, 0, 59.0f, 44.0f);
+    //64 58
+    CGRect buttonFrame = CGRectMake(5, (44-58/2.0)/2.0, 64/2.0, 58/2.0);//CGRectMake(5, 0, 59.0f, 44.0f);
     UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
     [button addTarget:aTarget action:aSelector forControlEvents:UIControlEventTouchUpInside];
     [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -175,7 +176,8 @@
     {
         [button setBackgroundImage:aImg forState:UIControlStateNormal];
     }
-    CGRect viewFrame = CGRectMake(kMainScreenWidth-100/2, 0, 59, 44);
+    
+    CGRect viewFrame = CGRectMake(kMainScreenWidth-44, 0, 30, 44);//CGRectMake(kMainScreenWidth-100/2, 0, 59, 44);
     UIView *view = [[UIView alloc]initWithFrame:viewFrame];
     [view addSubview:button];
     if(self.navigationController && self.navigationItem)

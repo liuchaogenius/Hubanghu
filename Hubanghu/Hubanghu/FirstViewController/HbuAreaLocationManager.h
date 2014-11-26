@@ -29,6 +29,7 @@ enum error_Type
 @property (nonatomic, strong) HbuAreaListModelAreas *currentAreas; //当前城市
 @property (nonatomic, strong) HbuAreaListModelAreas *currentDistrict;//当前区
 @property (nonatomic, strong) HbuAreaListModelAreas *currentProvince;//当前省
+@property (nonatomic, strong) NSString *localCirtyName;//定位结果城市名字
 
 //单例方法
 + (instancetype)sharedManager;

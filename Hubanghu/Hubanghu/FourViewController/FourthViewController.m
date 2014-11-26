@@ -71,10 +71,10 @@ enum CellTag_Type
 - (UIView *)logOutHeadView
 {
     if (!_logOutHeadView) {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35+20)];
+        view.backgroundColor = kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
         //添加返回按钮
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];//[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button setFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, kMainScreenWidth-40.0, 35)];//[UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.backgroundColor = kIconSelectColor;
         [button addTarget:self action:@selector(touchLogoutButton) forControlEvents:UIControlEventTouchUpInside];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -104,13 +104,17 @@ enum CellTag_Type
     [super viewDidLoad];
     [self settitleLabel:@"我的"];
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-49-64) style:UITableViewStyleGrouped];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-49-64) style:UITableViewStylePlain];
     _tableView = tableView;
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.backgroundView = nil;
+    //tableView.backgroundView = nil;
+    tableView.tableHeaderView = self.fHeadView;
+    [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
+    [self updateUserHeadView];
     [self.view addSubview:self.tableView];
-    self.view.backgroundColor = kViewBackgroundColor;
+    self.view.backgroundColor = kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
+    self.tableView.backgroundColor = RGBCOLOR(249, 249, 249);
     
 }
 
@@ -141,14 +145,18 @@ enum CellTag_Type
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return kHeaderHeight;
-    } else if (section == self.listArray.count+1){
-        return 35;
+    if (section == self.listArray.count+1){
+        return 55;
     } else {
-        return 6;
+        return 10;
     }
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    if(section == self.listArray.count) return 10;
+//    else return 0;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -158,33 +166,39 @@ enum CellTag_Type
 #pragma mark headView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        
-        HbhUser *user = [HbhUser sharedHbhUser];
-        if (user.isLogin) {
-            
-            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchHeadView)];
-            [self.fHeadView addGestureRecognizer:tapRecognizer];
-            
-            self.fHeadView.hasLoginView.hidden = NO;
-            self.fHeadView.notLoginView.hidden = YES;
-            self.fHeadView.nickNameLabel.text = user.nickName;
-            self.fHeadView.pointLabel.text = [NSString stringWithFormat:@"积分：%ld",(long)user.point];
-//            [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
-            [self loadUserPhoto];
-            [self.fHeadView.changePhotoButton addTarget:self action:@selector(touchModifyUserDetail) forControlEvents:UIControlEventTouchUpInside];
-        }
-        self.fHeadView.hasLoginView.hidden = (user.isLogin ? NO:YES);
-        self.fHeadView.notLoginView.hidden = (user.isLogin ? YES:NO);
-        return self.fHeadView;
-        
-    }else if(section == self.listArray.count+1){
+
+    if(section == self.listArray.count+1){
         self.logOutHeadView.hidden = ([HbhUser sharedHbhUser].isLogin ? NO : YES);
         
         return self.logOutHeadView;
     }else{
+        if (kSystemVersion < 7.0) {
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 10)];
+            view.backgroundColor = kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
+            return view;
+        }
         return nil;
     }
+}
+
+- (void)updateUserHeadView
+{
+    HbhUser *user = [HbhUser sharedHbhUser];
+    if (user.isLogin) {
+        
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchHeadView)];
+        [self.fHeadView addGestureRecognizer:tapRecognizer];
+        
+        self.fHeadView.hasLoginView.hidden = NO;
+        self.fHeadView.notLoginView.hidden = YES;
+        self.fHeadView.nickNameLabel.text = user.nickName;
+        self.fHeadView.pointLabel.text = [NSString stringWithFormat:@"积分：%ld",(long)user.point];
+        //            [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+        [self loadUserPhoto];
+        [self.fHeadView.changePhotoButton addTarget:self action:@selector(touchModifyUserDetail) forControlEvents:UIControlEventTouchUpInside];
+    }
+    self.fHeadView.hasLoginView.hidden = (user.isLogin ? NO:YES);
+    self.fHeadView.notLoginView.hidden = (user.isLogin ? YES:NO);
 }
 
 #pragma mark 每行显示内容
@@ -200,7 +214,10 @@ enum CellTag_Type
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+            cell.contentView.backgroundColor = [UIColor whiteColor];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+            cell.accessoryView.backgroundColor = [UIColor whiteColor];
+            
             //图片
             UIImageView *aImageView = nil;
             aImageView = [[UIImageView alloc] init];
@@ -262,6 +279,7 @@ enum CellTag_Type
         textLabel.text = dic[@"name"];
         //cell.textLabel.text = dic[@"name"];
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+
         return cell;
     }
     
@@ -323,6 +341,13 @@ enum CellTag_Type
     }
 }
 
+- (void)setExtraCellLineHidden: (UITableView *)tableView
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
+}
+
 #pragma amrk 刷新订单等提示数字
 - (void)refreshNumberLabels
 {
@@ -352,6 +377,7 @@ enum CellTag_Type
 - (void)loginSuccessItem
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessMessae object:nil];
+    [self updateUserHeadView];
     [self.tableView reloadData];
 }
 
@@ -359,6 +385,7 @@ enum CellTag_Type
 - (void)touchLogoutButton
 {
     [[HbhUser sharedHbhUser] logoutUser];
+    [self updateUserHeadView];
     [self.tableView reloadData];
 }
 

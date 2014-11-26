@@ -29,7 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"预约";
+//    self.title = @"预约";
+    [self settitleLabel:@"预约"];
     int Interval = 5;
     CGFloat btnWidth = kMainScreenWidth/2-2.5;
     CGFloat btnHeight = btnWidth/534*368;
