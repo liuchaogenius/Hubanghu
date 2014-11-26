@@ -125,6 +125,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     }];
     [self setLeftButton:[UIImage imageNamed:@"back"] title:nil target:self action:@selector(touchBackItem)];
     [self setRightButton:[UIImage imageNamed:@"refresh"] title:nil target:self action:@selector(reLocationUserArea)];
+
     
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
     
@@ -198,11 +199,11 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
             _localCityLable = cell.textLabel;
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
-        cell.textLabel.text = ([HbuAreaLocationManager sharedManager].currentAreas.name.length ? [HbuAreaLocationManager sharedManager].currentAreas.name : @"定位失败,点击重新定位");
+        cell.textLabel.text = [self localInfoTextString];
         return cell;
     }else if(indexPath.section == 1){
         HbhHotCityCell *cell = [tableView dequeueReusableCellWithIdentifier:hotCellIdentifier forIndexPath:indexPath];
-
+        
         if (![((UIButton *)cell.hotCityButtons[0]) respondsToSelector:@selector(touchHotCityButton:)]) {
             for (UIButton *button  in cell.hotCityButtons) {
                 [button addTarget:self action:@selector(touchHotCityButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -255,7 +256,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
             actionSheet.tag = kActionSheet_selectCity;
             [actionSheet showInView:self.tableView];
         }else{
-            [SVProgressHUD showErrorWithStatus:@"暂不支持该城市，选择失败" cover:YES offsetY:kMainScreenHeight/2.0];
+            [SVProgressHUD showErrorWithStatus:@"该城市暂时还未开通，选择失败" cover:YES offsetY:kMainScreenHeight/2.0];
         }
     }];
 }
@@ -278,18 +279,19 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
 //重新定位
 - (void)reLocationUserArea
 {
+    _localCityLable.text = @"定位中...";
     [_locationIndictorView startAnimating];
     [[HbuAreaLocationManager sharedManager] getUserLocationWithSuccess:^{
         [_locationIndictorView stopAnimating];
         _localCityLable.text = [HbuAreaLocationManager sharedManager].currentAreas.name;
     } Fail:^(NSString *failString, int errorType) {
         [_locationIndictorView stopAnimating];
-        
-        if (errorType == errorType_hadData_matchCfail || errorType == errorType_matchCityFailed) {
-            _localCityLable.text = @"匹配城市失败，请手动选择城市";
-        }else{
-            _localCityLable.text = @"定位失败,点击重新定位";
-        }
+        _localCityLable.text = [self localInfoTextString];
+//        if (errorType == errorType_hadData_matchCfail || errorType == errorType_matchCityFailed) {
+//            _localCityLable.text = @"匹配城市失败，请手动选择城市";
+//        }else{
+//            _localCityLable.text = @"定位失败,点击重新定位";
+//        }
     }];
 }
 
@@ -312,6 +314,18 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     [self dismissViewControllerAnimated:YES completion:^{
         self.isOnScreen = NO;
     }];
+}
+#pragma mark 定位cell显示的信息
+- (NSString *)localInfoTextString
+{
+    NSString *infoString = @"";
+    HbuAreaLocationManager *lManager = [HbuAreaLocationManager sharedManager];
+    if (lManager.localCirtyName && lManager.localCirtyName.length) {
+        infoString = lManager.localCirtyName;
+    }else{
+        infoString = @"定位失败，点击重新定位";
+    }
+    return infoString;
 }
 
 #pragma mark actionSheet Delegate

@@ -189,6 +189,8 @@
                 MLOG(@"province:%@",addressDic[@"province"]);
                 
                 if (addressDic[@"city"]) {
+                    //定位成功
+                    weakSelf.localCirtyName = addressDic[@"city"];
                     [weakSelf.areasDBManager selHbuArealistModelOfCity:addressDic[@"city"] district:addressDic[@"district"] resultBlock:^(HbuAreaListModelAreas *city, HbuAreaListModelAreas *district) {
                         MLOG(@"%@   %@",city.name,district.name);
                         if (city) {
@@ -198,12 +200,14 @@
                             }
                             sBlock();
                         }else{
-                            weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_matchCfail)):(aFailBlock(@"匹配用户城市失败，请手动选择",errorType_matchCityFailed));
+                             //
+                            aFailBlock(@"您所在的城市暂未开通服务，我们会尽快支持该城市，您也可以选择另外的城市",errorType_matchCityFailed);
+                            //weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_matchCfail)):(aFailBlock(@"匹配用户城市失败，请手动选择",errorType_matchCityFailed));
                         }
                         
                     }];
                    
-                }else{
+                }else{ //定位失败
                     weakSelf.currentAreas ? (aFailBlock(nil,errorType_hadData_locFail)) : (aFailBlock(@"定位用户城市失败，请手动选择",errorType_locationFailed));                }
             }];
         }];

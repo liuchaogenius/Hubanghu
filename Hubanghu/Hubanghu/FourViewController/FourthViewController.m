@@ -72,6 +72,7 @@ enum CellTag_Type
 {
     if (!_logOutHeadView) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35)];
+        view.backgroundColor = [UIColor clearColor];
         //添加返回按钮
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];//[UIButton buttonWithType:UIButtonTypeRoundedRect];
         [button setFrame:CGRectMake(20, 0, kMainScreenWidth-40.0, 35)];
@@ -104,11 +105,15 @@ enum CellTag_Type
     [super viewDidLoad];
     [self settitleLabel:@"我的"];
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-49-64) style:UITableViewStyleGrouped];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-49-64) style:UITableViewStylePlain];
+    tableView.backgroundColor = RGBCOLOR(249, 249, 249);
     _tableView = tableView;
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundView = nil;
+    tableView.tableHeaderView = self.fHeadView;
+    [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
+    [self updateUserHeadView];
     [self.view addSubview:self.tableView];
     self.view.backgroundColor = kViewBackgroundColor;
     
@@ -141,13 +146,17 @@ enum CellTag_Type
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return kHeaderHeight;
-    } else if (section == self.listArray.count+1){
+    if (section == self.listArray.count+1){
         return 35;
     } else {
-        return 6;
+        return 10;
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if(section == self.listArray.count) return 10;
+    else return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -158,33 +167,54 @@ enum CellTag_Type
 #pragma mark headView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        
-        HbhUser *user = [HbhUser sharedHbhUser];
-        if (user.isLogin) {
-            
-            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchHeadView)];
-            [self.fHeadView addGestureRecognizer:tapRecognizer];
-            
-            self.fHeadView.hasLoginView.hidden = NO;
-            self.fHeadView.notLoginView.hidden = YES;
-            self.fHeadView.nickNameLabel.text = user.nickName;
-            self.fHeadView.pointLabel.text = [NSString stringWithFormat:@"积分：%ld",(long)user.point];
-//            [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
-            [self loadUserPhoto];
-            [self.fHeadView.changePhotoButton addTarget:self action:@selector(touchModifyUserDetail) forControlEvents:UIControlEventTouchUpInside];
-        }
-        self.fHeadView.hasLoginView.hidden = (user.isLogin ? NO:YES);
-        self.fHeadView.notLoginView.hidden = (user.isLogin ? YES:NO);
-        return self.fHeadView;
-        
-    }else if(section == self.listArray.count+1){
+//    if (section == 0) {
+//        
+//        HbhUser *user = [HbhUser sharedHbhUser];
+//        if (user.isLogin) {
+//            
+//            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchHeadView)];
+//            [self.fHeadView addGestureRecognizer:tapRecognizer];
+//            
+//            self.fHeadView.hasLoginView.hidden = NO;
+//            self.fHeadView.notLoginView.hidden = YES;
+//            self.fHeadView.nickNameLabel.text = user.nickName;
+//            self.fHeadView.pointLabel.text = [NSString stringWithFormat:@"积分：%ld",(long)user.point];
+////            [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+//            [self loadUserPhoto];
+//            [self.fHeadView.changePhotoButton addTarget:self action:@selector(touchModifyUserDetail) forControlEvents:UIControlEventTouchUpInside];
+//        }
+//        self.fHeadView.hasLoginView.hidden = (user.isLogin ? NO:YES);
+//        self.fHeadView.notLoginView.hidden = (user.isLogin ? YES:NO);
+//        return self.fHeadView;
+//        
+//    }else
+    if(section == self.listArray.count+1){
         self.logOutHeadView.hidden = ([HbhUser sharedHbhUser].isLogin ? NO : YES);
         
         return self.logOutHeadView;
     }else{
         return nil;
     }
+}
+
+- (void)updateUserHeadView
+{
+    HbhUser *user = [HbhUser sharedHbhUser];
+    if (user.isLogin) {
+        
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchHeadView)];
+        [self.fHeadView addGestureRecognizer:tapRecognizer];
+        
+        self.fHeadView.hasLoginView.hidden = NO;
+        self.fHeadView.notLoginView.hidden = YES;
+        self.fHeadView.nickNameLabel.text = user.nickName;
+        self.fHeadView.pointLabel.text = [NSString stringWithFormat:@"积分：%ld",(long)user.point];
+        //            [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+        [self loadUserPhoto];
+        [self.fHeadView.changePhotoButton addTarget:self action:@selector(touchModifyUserDetail) forControlEvents:UIControlEventTouchUpInside];
+    }
+    self.fHeadView.hasLoginView.hidden = (user.isLogin ? NO:YES);
+    self.fHeadView.notLoginView.hidden = (user.isLogin ? YES:NO);
 }
 
 #pragma mark 每行显示内容
@@ -323,6 +353,13 @@ enum CellTag_Type
     }
 }
 
+- (void)setExtraCellLineHidden: (UITableView *)tableView
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
+}
+
 #pragma amrk 刷新订单等提示数字
 - (void)refreshNumberLabels
 {
@@ -352,6 +389,7 @@ enum CellTag_Type
 - (void)loginSuccessItem
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessMessae object:nil];
+    [self updateUserHeadView];
     [self.tableView reloadData];
 }
 
@@ -359,6 +397,7 @@ enum CellTag_Type
 - (void)touchLogoutButton
 {
     [[HbhUser sharedHbhUser] logoutUser];
+    [self updateUserHeadView];
     [self.tableView reloadData];
 }
 

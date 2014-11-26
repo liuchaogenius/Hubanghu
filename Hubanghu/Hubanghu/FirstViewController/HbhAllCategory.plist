@@ -42,5 +42,13 @@
 		<key>cateId</key>
 		<integer>6</integer>
 	</dict>
+	<dict>
+		<key>CategoryName</key>
+		<string>优秀工人</string>
+		<key>image</key>
+		<string>OrderType_6</string>
+		<key>cateId</key>
+		<integer>7</integer>
+	</dict>
 </array>
 </plist>
