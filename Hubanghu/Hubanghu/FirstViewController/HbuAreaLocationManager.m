@@ -30,19 +30,21 @@
         NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentAreas];
         [userDefault setObject:currentAreasData forKey:@"currentAreas"];
         
-        [userDefault removeObjectForKey:@"currentDistrict"];
+        //[userDefault removeObjectForKey:@"currentDistrict"];
         [userDefault synchronize];
     }
 }
 
 - (void)setCurrentDistrict:(HbuAreaListModelAreas *)currentDistrict
 {
-    _currentDistrict = currentDistrict;
-    if (_currentDistrict.areaId) {
-        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-        NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentDistrict];
-        [userDefault setObject:currentAreasData forKey:@"currentDistrict"];
-        [userDefault synchronize];
+    if ((int)currentDistrict.level == 3) {
+        _currentDistrict = currentDistrict;
+        if (_currentDistrict.areaId) {
+            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+            NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentDistrict];
+            [userDefault setObject:currentAreasData forKey:@"currentDistrict"];
+            [userDefault synchronize];
+        }
     }
 }
 
@@ -87,10 +89,12 @@
     if (currentAreaDate) {
         self.currentAreas = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
         if (currentDistrictData) {
-            self.currentDistrict = [NSKeyedUnarchiver unarchiveObjectWithData:currentAreaDate];
+            HbuAreaListModelAreas *area = [NSKeyedUnarchiver unarchiveObjectWithData:currentDistrictData];
+            if((int)area.parent == (int)self.currentAreas.areaId) self.currentDistrict = area;
         }
         if (currentProvinceData) {
-            self.currentProvince = [NSKeyedUnarchiver unarchiveObjectWithData:currentProvinceData];
+            HbuAreaListModelAreas *area = [NSKeyedUnarchiver unarchiveObjectWithData:currentProvinceData];
+            if((int)area.areaId == (int)self.currentAreas.parent) self.currentProvince = area;
         }
     }
     return self;

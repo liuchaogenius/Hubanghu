@@ -75,7 +75,7 @@ enum PickerType
 }
 - (NSString *)getTime
 {
-    UITextField *tf = self.textFiledArray[TextField_name];
+    UITextField *tf = self.textFiledArray[TextField_time];
     if (tf && tf.text.length && _time) {
         return [NSString stringWithFormat:@"%lf",_time];
     }
@@ -408,6 +408,8 @@ enum PickerType
         _timesArray = self.todayTimesArray;
         _dateSelectNum = 0;
         _timeSelectNum = 0;
+        [self.datePicker selectRow:0 inComponent:0 animated:YES];
+        [self.datePicker selectRow:0 inComponent:1 animated:YES];
         
         toolView.backgroundColor = [UIColor lightGrayColor];
         _tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 50, 0, 30, 30)];
@@ -533,6 +535,7 @@ enum PickerType
     tf.text = dateStr;
     NSDateFormatter *selectDateFormatter = [[NSDateFormatter alloc] init];
     selectDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm"; // 设置时间和日期的格式
+    selectDateFormatter.timeZone = [[NSTimeZone alloc] initWithName:@"GMT+8"];
     NSDate *date = [selectDateFormatter dateFromString:dateStr];
     _time = date.timeIntervalSince1970;
     
@@ -669,6 +672,7 @@ enum PickerType
     else if (pickerView.tag == Picker_date){
         //选中处理
         if (component == 0) {
+            _dateSelectNum = row;
             _timesArray = (row ? self.normalTimesArray : self.todayTimesArray);
             [pickerView selectRow:0 inComponent:1 animated:YES];
             [pickerView reloadComponent:1];
@@ -683,6 +687,7 @@ enum PickerType
 {
     if (!_dateFormat) {
         _dateFormat = [[NSDateFormatter alloc] init];
+        _dateFormat.timeZone = [[NSTimeZone alloc] initWithName:@"GMT+8"];
         [_dateFormat setDateFormat:@"yyyy-MM-dd"];
     }
     return _dateFormat;

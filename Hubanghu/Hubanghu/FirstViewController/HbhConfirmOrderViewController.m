@@ -16,6 +16,8 @@
 #import "JSONKit.h"
 
 #define kDoubleToString(a) [NSString stringWithFormat:@"%.0lf",a]
+#define kPriceCellHeight 44
+#define kPriceFont 18
 @interface HbhConfirmOrderViewController ()
 {
     UIButton *commitButton;
@@ -30,6 +32,7 @@
 //UI
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) UIImageView *alipayLogoImgview;
+@property (nonatomic, strong) UILabel *priceLabel;
 @end
 
 @implementation HbhConfirmOrderViewController
@@ -192,13 +195,15 @@
 
 #pragma mark - tableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	return 2;
+	return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	if(section == 0){
-		return _detailsInfoTitle.count;
-	}else if (section == 1){
+		return _detailsInfoTitle.count-1;
+    }else if(section == 1){ //价格section
+        return 1;
+    }else if (section == 2){
 		return _payPathArr.count;
 	}
 	return 0;
@@ -207,36 +212,77 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	if (indexPath.section == 0) {
 		return 35;
-	}else if(indexPath.section == 1){
-		return 44;
-	}
+	}else if(indexPath.section == 1){ //金额cell
+		return kPriceCellHeight;
+    }else if (indexPath.section == 2){
+        return 44;
+    }
 	return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"payCell"];
-	if (!cell) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"payCell"];
-	}
+    static NSString *infoCell = @"infoCell"; //信息
+    static NSString *priceCell = @"priceCell"; //价格
+    static NSString *payCell = @"payCell"; //支付
+
 	if(indexPath.section == 0){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:infoCell];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:infoCell];
+            
+            UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, kMainScreenHeight - 40, 35)];
+            //		tf.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            //		tf.layer.borderWidth = 1;
+            tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+            tf.enabled = NO; // 设置为不可编辑
+            tf.font = kFont13;
+            tf.textColor = [UIColor lightGrayColor];
+            tf.tag = 50;
+            
+            tf.leftViewMode = UITextFieldViewModeAlways;
+            
+            [cell.contentView addSubview:tf];
+        }
 		NSInteger i = indexPath.row;
-		UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, kMainScreenHeight - 40, 35)];
-//		tf.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//		tf.layer.borderWidth = 1;
-        tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-		tf.enabled = NO; // 设置为不可编辑
-		tf.font = kFont13;
-		tf.textColor = [UIColor lightGrayColor];
-		tf.text = _detailsInfo[indexPath.row];
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+        UITextField *tf = (UITextField *)[tableView viewWithTag:50];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
         label.backgroundColor = [UIColor clearColor];
-		label.text = _detailsInfoTitle[i	];
-		label.font = kFont13;
-		
-		tf.leftViewMode = UITextFieldViewModeAlways;
-		tf.leftView = label;
-		[cell.contentView addSubview:tf];
-	}else if(indexPath.section == 1){
+        label.text = _detailsInfoTitle[i];
+        label.font = kFont13;
+        label.tag = 51;
+		tf.text = _detailsInfo[indexPath.row];
+		label.text = _detailsInfoTitle[i];
+        tf.leftView = label;
+        return cell;
+    }else if(indexPath.section == 1){
+        //价格
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:priceCell];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:priceCell];
+            UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (kPriceCellHeight - kPriceFont)/2.0, kMainScreenWidth, kPriceFont)];
+            priceLabel.textColor = KColor;
+            priceLabel.textAlignment = NSTextAlignmentCenter;
+            self.priceLabel = priceLabel;
+            [cell.contentView addSubview:priceLabel];
+        }
+        self.priceLabel.text = [NSString stringWithFormat:@"应付金额：%@",_detailsInfo[_detailsInfo.count-1]];
+        return cell;
+        
+    }else if(indexPath.section == 2){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:payCell];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:payCell];
+            UIButton *selectButton = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth-20-30, (44-20)/2.0f, 20, 20)];
+            selectButton.tag = 100;
+            [selectButton setBackgroundImage:[UIImage imageNamed:@"selectOff"] forState:UIControlStateNormal];
+            [selectButton addTarget:self action:@selector(touchSelBtn) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:selectButton];
+        }
+        
+        UIButton *selectButton = (UIButton *)[cell viewWithTag:100];
+#warning 今后待需要更多支付方式时在此 处理默认支付方式
+        if(indexPath.row == 0) [selectButton setBackgroundImage:[UIImage imageNamed:@"selectOn"] forState:UIControlStateNormal];
+        //
 		cell.textLabel.text = [_payPathArr objectAtIndex:indexPath.row];
         if(!self.alipayLogoImgview)
         {
@@ -253,8 +299,14 @@
             [self.alipayLogoImgview setImage:img];
             [cell addSubview:self.alipayLogoImgview];
         }
+        return cell;
 	}
-	return cell;
+    return nil;
+}
+
+- (void)touchSelBtn
+{
+#warning TODO 之后支付方式>1时 在此处处理选择按钮
 }
 
 #pragma mark - viewController life loop

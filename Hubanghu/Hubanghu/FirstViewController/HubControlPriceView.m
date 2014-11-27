@@ -40,6 +40,7 @@
 @property (strong, nonatomic) NSMutableArray *cateButtonArray;
 @property (strong, nonatomic) UIView *cateListView;
 @property (strong, nonatomic) UIView *clearBackView;
+@property (assign, nonatomic) BOOL isRenovate;
 @end
 
 @implementation HubControlPriceView
@@ -153,6 +154,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.isRenovate = NO;
         categoryTitlearry = @[@"纯装",@"纯拆",@"拆装",@"勘察"];
         countArry = @[@"数量:",@"面积:",@"长度:"];
         unitArry = @[@"(个)",@"(㎡)",@"(米)"];
@@ -363,6 +365,9 @@
     countTextField.placeholder = @"不可选择";
     countTextField.enabled = NO;
     
+    self.isRenovate = YES;
+    [self getPrice];
+    
 }
 
 #pragma mark - Action
@@ -379,15 +384,26 @@
 
 - (void)getPrice
 {
-    if (countTextField && countTextField.text.length && _cateId) {
-        [self.netManager getAppointmentPriceWithCateId:_cateId type:cateButtonType amountType:countType amount:countTextField.text urgent:uragent succ:^(NSString *price) {
+    if (self.isRenovate) {//二次翻新特例
+        [self.netManager getAppointmentPriceWithCateId:_cateId type:cateButtonType amountType:countType amount:@"1" urgent:uragent succ:^(NSString *price) {
             //通知vc修改价格
             [self.delegate priceChangedWithPrice:price];
         } failure:^{
             [SVProgressHUD showErrorWithStatus:@"网络请求失败，请检查网络!" cover:YES offsetY:kMainScreenHeight/2.0];
         }];
+
+    }else{
+        if (countTextField && countTextField.text.length && _cateId) {
+            [self.netManager getAppointmentPriceWithCateId:_cateId type:cateButtonType amountType:countType amount:countTextField.text urgent:uragent succ:^(NSString *price) {
+                //通知vc修改价格
+                [self.delegate priceChangedWithPrice:price];
+            } failure:^{
+                [SVProgressHUD showErrorWithStatus:@"网络请求失败，请检查网络!" cover:YES offsetY:kMainScreenHeight/2.0];
+            }];
+        }
     }
 }
+
 
 - (void)selectUrgent:(UIButton*)aBut
 {

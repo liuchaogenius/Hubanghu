@@ -249,6 +249,16 @@ typedef NS_ENUM(int, AmountDesc)
 #pragma mark 提交订单,进入下个页面
 - (void)submitOrder
 {
+    /*时间测试
+    float times = [[userInfoView getTime] floatValue];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:times];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
+    dateFormat.timeZone = [[NSTimeZone alloc] initWithName:@"GMT+8"];
+    MLOG(@"%@",[dateFormat stringFromDate:date]);
+     */
+    
+    
     NSDictionary *orderDic = @{@"cateId":strCateId,
                                @"username":[userInfoView getUserName],
                                @"time":[userInfoView getTime],
