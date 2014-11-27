@@ -125,7 +125,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self settitleLabel:@"加载中..."];
+    //[self settitleLabel:@"加载中..."];
+    if(self.cateId == 2)
+    {
+        [self settitleLabel:@"地板安装"];
+    }
+    if(self.cateId == 3)
+    {
+        [self settitleLabel:@"卫浴安装"];
+    }
+    if(self.cateId == 4)
+    {
+        [self settitleLabel:@"灯饰安装"];
+    }
+    if(self.cateId == 5)
+    {
+        [self settitleLabel:@"墙纸安装"];
+    }
+
     _tableView = [[UITableView alloc] init];
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.delegate = self;
@@ -144,7 +161,7 @@
         [indictor stopAnimating];
         weakSelf.categoryInfoModel = cModel;
         //weakSelf.title = weakSelf.categoryInfoModel.title;
-        [weakSelf settitleLabel:weakSelf.categoryInfoModel.title];
+        //[weakSelf settitleLabel:weakSelf.categoryInfoModel.title];
         weakSelf.sgmCount = [weakSelf getSgmCount];
         UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 7)];
         //whiteView.backgroundColor = [UIColor blackColor];
@@ -182,7 +199,7 @@
                 }
                 
                 //weakSelf.title = weakSelf.categoryInfoModel.title;
-                [self settitleLabel:weakSelf.categoryInfoModel.title];
+                //[self settitleLabel:weakSelf.categoryInfoModel.title];
                 [weakSelf.view addSubview:weakSelf.tableView];
                 
                 //判断是否需要分栏，并作处理
