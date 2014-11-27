@@ -86,6 +86,8 @@
 		FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252D19E7B861008AB6EC /* ThreadSafeMutableArry.m */; };
 		FF15253419E7B861008AB6EC /* ThreadSafeMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252F19E7B861008AB6EC /* ThreadSafeMutableDictionary.m */; };
 		FF185FF51A26D0D0007F9E67 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF185FF21A26D0D0007F9E67 /* libMobClickLibrary.a */; };
+		FF185FFB1A26E2ED007F9E67 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF185FFA1A26E2ED007F9E67 /* CoreGraphics.framework */; };
+		FF185FFD1A26E4C8007F9E67 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FF185FFC1A26E4C8007F9E67 /* libz.dylib */; };
 		FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1FC27419ED1A2F00C362F7 /* STAlerView.m */; };
 		FF21CE7019E64B5A005007B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE6F19E64B5A005007B7 /* main.m */; };
 		FF21CE7319E64B5A005007B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE7219E64B5A005007B7 /* AppDelegate.m */; };
@@ -324,6 +326,8 @@
 		FF185FF21A26D0D0007F9E67 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		FF185FF31A26D0D0007F9E67 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		FF185FF41A26D0D0007F9E67 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		FF185FFA1A26E2ED007F9E67 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FF185FFC1A26E4C8007F9E67 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		FF1FC27319ED1A2F00C362F7 /* STAlerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlerView.h; sourceTree = "<group>"; };
 		FF1FC27419ED1A2F00C362F7 /* STAlerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlerView.m; sourceTree = "<group>"; };
 		FF21CE6A19E64B5A005007B7 /* Hubanghu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hubanghu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -491,6 +495,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF185FFD1A26E4C8007F9E67 /* libz.dylib in Frameworks */,
+				FF185FFB1A26E2ED007F9E67 /* CoreGraphics.framework in Frameworks */,
 				FF83B3B91A18706600727102 /* SystemConfiguration.framework in Frameworks */,
 				FF6D906C1A0749B500C966F8 /* libssl.a in Frameworks */,
 				ABC2B37919F3BC83000FEE32 /* MobileCoreServices.framework in Frameworks */,
@@ -794,6 +800,8 @@
 		FF21CE6119E64B5A005007B7 = {
 			isa = PBXGroup;
 			children = (
+				FF185FFC1A26E4C8007F9E67 /* libz.dylib */,
+				FF185FFA1A26E2ED007F9E67 /* CoreGraphics.framework */,
 				FF83B3B81A18706600727102 /* SystemConfiguration.framework */,
 				FF83B3B61A186F6800727102 /* CFNetwork.framework */,
 				ABC2B37819F3BC83000FEE32 /* MobileCoreServices.framework */,
@@ -1548,6 +1556,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1592,6 +1601,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1630,7 +1640,7 @@
 		FF21CE8819E64B5A005007B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iOS Development: wu chen (7K2NVL8N69)";
@@ -1654,7 +1664,7 @@
 		FF21CE8919E64B5A005007B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iOS Development: wu chen (7K2NVL8N69)";
