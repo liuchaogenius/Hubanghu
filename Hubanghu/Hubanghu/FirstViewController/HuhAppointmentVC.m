@@ -224,9 +224,11 @@ typedef NS_ENUM(int, AmountDesc)
 #pragma mark 数据完整性检查
 - (BOOL)infoCheck
 {
-    if (![controlPriceView infoCheck]) {
-        [SVProgressHUD showErrorWithStatus:@"请输入安装数量(㎡/个/长度)" cover:YES offsetY:kMainScreenHeight/2.0];
-        return NO;
+    if (!_isRenovate) {
+        if (![controlPriceView infoCheck]) {
+            [SVProgressHUD showErrorWithStatus:@"请输入安装数量(㎡/个/长度)" cover:YES offsetY:kMainScreenHeight/2.0];
+            return NO;
+        }
     }else if (![userInfoView infoCheck]){
         [SVProgressHUD showErrorWithStatus:@"请输入完整信息" cover:YES offsetY:kMainScreenHeight/2.0];
         return NO;
@@ -242,6 +244,7 @@ typedef NS_ENUM(int, AmountDesc)
     else{
         return YES;
     }
+    return YES;
 }
 #pragma mark 提交订单,进入下个页面
 - (void)submitOrder

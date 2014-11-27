@@ -13,6 +13,7 @@
 #import "SVProgressHUD.h"
 
 #define kBorderColor kLineColor//RGBCOLOR(232, 232, 232)
+#define kPerTimes 30 //时间间隔 以分钟表示- 不可等于0
 enum TextFieldType
 {
     TextField_time = 0,
@@ -20,6 +21,11 @@ enum TextFieldType
     TextField_name,
     TextField_location,
     TextField_detailLoc
+};
+enum PickerType
+{
+    Picker_date = 1,
+    Piker_area
 };
 @interface HubAppointUserInfoView()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIAlertViewDelegate>
 {
@@ -33,12 +39,17 @@ enum TextFieldType
     NSString *strCurrentCity;
     NSString *strCurrentDistrict;
     UITextField *currentTextField;
+    
+    NSMutableArray *_timesArray;
+    NSInteger _dateSelectNum;
+    NSInteger _timeSelectNum;
 }
 
 @property (strong, nonatomic) NSArray *placehodeArray;
 @property (strong, nonatomic) NSMutableArray *textFiledArray;
-@property (strong, nonatomic) UIDatePicker *datePicker;
+//@property (strong, nonatomic) UIDatePicker *datePicker;
 @property (strong, nonatomic) UIPickerView *areaPicker;
+@property (strong, nonatomic) UIPickerView *datePicker;
 @property (strong, nonatomic) UIButton *tool;
 @property (strong, nonatomic) AreasDBManager *areaManager;
 @property (strong, nonatomic) NSMutableArray *provinceArray;
@@ -46,6 +57,10 @@ enum TextFieldType
 @property (strong ,nonatomic) NSMutableArray *districtArray;//区数组
 @property (strong, nonatomic) HbuAreaLocationManager *areaLocationManger;
 @property (strong, nonatomic) UIView *clearView;
+@property (strong, nonatomic) NSDateFormatter *dateFormat;//日期format 不包括时间
+@property (strong, nonatomic) NSMutableArray *normalTimesArray;
+@property (strong, nonatomic) NSMutableArray *nextSevenDaysDateArray;
+@property (strong, nonatomic) NSMutableArray *todayTimesArray;
 
 @end
 @implementation HubAppointUserInfoView
@@ -176,9 +191,10 @@ enum TextFieldType
     return _areaManager;
 }
 
-- (UIDatePicker *)datePicker
+- (UIPickerView *)datePicker
 {
     if (!_datePicker) {
+        /*
         _datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, kMainScreenHeight, kMainScreenWidth, 180)];
         _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
         _datePicker.date = [NSDate date];
@@ -187,6 +203,12 @@ enum TextFieldType
         _datePicker.minuteInterval = 10;
         [_datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
         _datePicker.minimumDate = [NSDate date];
+         */
+        _datePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight, kMainScreenWidth, 200)];
+        _datePicker.backgroundColor = [UIColor whiteColor];
+        _datePicker.dataSource =self;
+        _datePicker.delegate = self;
+        _datePicker.tag = Picker_date;
     }
     return _datePicker;
 }
@@ -212,6 +234,7 @@ enum TextFieldType
         _areaPicker.backgroundColor = [UIColor whiteColor];
         _areaPicker.dataSource =self;
         _areaPicker.delegate = self;
+        _areaPicker.tag = Piker_area;
         //_areaPicker.showsSelectionIndicator = YES;
     }
     return _areaPicker;
@@ -354,6 +377,7 @@ enum TextFieldType
 #pragma mark - action
 
 - (void)showDatePickView{
+    /*
     if (![self.datePicker superview]) {
         
         UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _datePicker.top-30, kMainScreenWidth, 30)];
@@ -364,6 +388,34 @@ enum TextFieldType
         _tool.titleLabel.font = kFont13;
         _tool.backgroundColor = [UIColor clearColor];
         [_tool addTarget:self action:@selector(datePickerPickEnd:) forControlEvents:UIControlEventTouchDown];
+        [toolView addSubview:_tool];
+        
+        [[UIApplication sharedApplication].keyWindow addSubview:self.clearView];
+        [[UIApplication sharedApplication].keyWindow addSubview:_datePicker];
+        [[UIApplication sharedApplication].keyWindow addSubview:toolView];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            _datePicker.top = kMainScreenHeight - 200;
+            toolView.top = _datePicker.top - 30;
+        }];
+    }
+     */
+    if (![self.datePicker superview]) {
+        
+        UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _datePicker.top-30, kMainScreenWidth, 30)];
+        self.nextSevenDaysDateArray = [self getNextSevenDaysDateArray];
+        self.todayTimesArray = [self getTodayTimesArray];
+        _timesArray = self.todayTimesArray;
+        _dateSelectNum = 0;
+        _timeSelectNum = 0;
+        
+        toolView.backgroundColor = [UIColor lightGrayColor];
+        _tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 50, 0, 30, 30)];
+        [_tool setTitle:@"完成" forState:UIControlStateNormal];
+        _tool.titleLabel.textAlignment = NSTextAlignmentCenter;
+        _tool.titleLabel.font = kFont13;
+        _tool.backgroundColor = [UIColor clearColor];
+        [_tool addTarget:self action:@selector(pickerPickEnd:) forControlEvents:UIControlEventTouchDown];
         [toolView addSubview:_tool];
         
         [[UIApplication sharedApplication].keyWindow addSubview:self.clearView];
@@ -389,7 +441,7 @@ enum TextFieldType
             _tool.titleLabel.textAlignment = NSTextAlignmentCenter;
             _tool.titleLabel.font = kFont13;
             _tool.backgroundColor = [UIColor clearColor];
-            [_tool addTarget:self action:@selector(datePickerPickEnd:) forControlEvents:UIControlEventTouchDown];
+            [_tool addTarget:self action:@selector(pickerPickEnd:) forControlEvents:UIControlEventTouchDown];
             [toolView addSubview:_tool];
             
             [[UIApplication sharedApplication].keyWindow addSubview:self.clearView];
@@ -465,8 +517,9 @@ enum TextFieldType
     return YES;
 }
 
-- (void)datePickerValueToTextFiled : (UIDatePicker *)sender
+- (void)datePickerValueToTextFiled : (UIPickerView *)sender
 {
+    /*
     NSDate *select = [sender date]; // 获取被选中的时间
     NSDateFormatter *selectDateFormatter = [[NSDateFormatter alloc] init];
     selectDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm"; // 设置时间和日期的格式
@@ -474,6 +527,15 @@ enum TextFieldType
     UITextField *tf = self.textFiledArray[TextField_time];
     tf.text = dateAndTime;
     _time = select.timeIntervalSince1970;
+     */
+    NSString *dateStr = [NSString stringWithFormat:@"%@ %@",self.nextSevenDaysDateArray[_dateSelectNum],_timesArray[_timeSelectNum]];
+    UITextField *tf = self.textFiledArray[TextField_time];
+    tf.text = dateStr;
+    NSDateFormatter *selectDateFormatter = [[NSDateFormatter alloc] init];
+    selectDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm"; // 设置时间和日期的格式
+    NSDate *date = [selectDateFormatter dateFromString:dateStr];
+    _time = date.timeIntervalSince1970;
+    
 }
 
 - (void)areaPikerValueToTextField
@@ -485,11 +547,12 @@ enum TextFieldType
 }
 
 #pragma mark - 实现DatePicker的监听方法
+/*
 - (void)datePickerValueChanged : (UIDatePicker *) sender {
     [self datePickerValueToTextFiled:sender];
 }
-
-- (void)datePickerPickEnd:(UIButton *)sender{
+*/
+- (void)pickerPickEnd:(UIButton *)sender{
     
     //HbuAreaListModelAreas *area = self.cityArray[0];
     [self.clearView removeFromSuperview];
@@ -514,71 +577,165 @@ enum TextFieldType
 
 #pragma mark - pickerView delegate and datasource
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 3;
+    return  pickerView.tag == Piker_area ? 3 : 2;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    if (component == 0) {
-        return self.provinceArray.count;
-    }else if(component == 1){
-        return self.cityArray.count;
-    }else if(component == 2){
-        return self.districtArray.count;
+    if (Piker_area == pickerView.tag) {
+        if (component == 0) {
+            return self.provinceArray.count;
+        }else if(component == 1){
+            return self.cityArray.count;
+        }else if(component == 2){
+            return self.districtArray.count;
+        }
+    }
+    else if (Picker_date == pickerView.tag){
+        if(component == 0) return self.nextSevenDaysDateArray.count; //7天
+        else if (component ==1) {
+            return _timesArray.count;
+            //return 24/0.5; //30分钟一个刻度
+        }
     }
     return 0;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
-    return 100;
+    if (pickerView.tag == Piker_area) {
+        return 100;
+    }else if(pickerView.tag == Picker_date) {
+        return 140;
+    }
+    return 0;
+    
 }
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
     return 20;
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    if (component == 0) {
-        HbuAreaListModelAreas *area = self.provinceArray[row];
-        return area.name;
-    }else if(component == 1){
-        HbuAreaListModelAreas *area = self.cityArray[row];
-        return area.name;
-    }else if(component == 2){
-        HbuAreaListModelAreas *area = self.districtArray[row];
-        return area.name;
+    if (pickerView.tag == Piker_area) {
+        if (component == 0) {
+            HbuAreaListModelAreas *area = self.provinceArray[row];
+            return area.name;
+        }else if(component == 1){
+            HbuAreaListModelAreas *area = self.cityArray[row];
+            return area.name;
+        }else if(component == 2){
+            HbuAreaListModelAreas *area = self.districtArray[row];
+            return area.name;
+        }
+    }else if(pickerView.tag == Picker_date){
+        if (component == 0) {
+            //return 今天  后面 （xxxx年）x月x日（周x）
+            return row == 0 ? @"今天" : [self.nextSevenDaysDateArray objectAtIndex:row];
+        }else if (component == 1){
+            //return 0.30 1.00 1.30
+            return _timesArray[row];
+        }
     }
+    
     return nil;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    
-    if (component == 0) {
-        _province = self.provinceArray[row];
-        [self setCityArrayWithParentId:_province.areaId WithSuccessBlock:^{
-            
-        }];
-        if (self.cityArray.count) {
-            _city = self.cityArray[0];
-            [pickerView selectRow:0 inComponent:1 animated:YES];
+    if (pickerView.tag == Piker_area) {
+        if (component == 0) {
+            _province = self.provinceArray[row];
+            [self setCityArrayWithParentId:_province.areaId WithSuccessBlock:^{
+                
+            }];
+            if (self.cityArray.count) {
+                _city = self.cityArray[0];
+                [pickerView selectRow:0 inComponent:1 animated:YES];
+                [self setDistrictArrayWithParentId:_city.areaId WithSuccessBlock:^{
+                    
+                }];
+                [pickerView selectRow:0 inComponent:2 animated:YES];
+                _district = self.districtArray[0];
+            }
+        }else if(component == 1){
+            _city = self.cityArray[row];
             [self setDistrictArrayWithParentId:_city.areaId WithSuccessBlock:^{
                 
             }];
-            [pickerView selectRow:0 inComponent:2 animated:YES];
-            _district = self.districtArray[0];
+            if (self.districtArray.count) {
+                _district = self.districtArray[0];
+                [pickerView selectRow:0 inComponent:2 animated:YES];
+            }
+        }else if(component == 2){
+            _district = self.districtArray[row];
         }
-    }else if(component == 1){
-        _city = self.cityArray[row];
-        [self setDistrictArrayWithParentId:_city.areaId WithSuccessBlock:^{
-            
-        }];
-        if (self.districtArray.count) {
-            _district = self.districtArray[0];
-            [pickerView selectRow:0 inComponent:2 animated:YES];
+    }
+    else if (pickerView.tag == Picker_date){
+        //选中处理
+        if (component == 0) {
+            _timesArray = (row ? self.normalTimesArray : self.todayTimesArray);
+            [pickerView selectRow:0 inComponent:1 animated:YES];
+            [pickerView reloadComponent:1];
+        }else if (component == 1){
+            _timeSelectNum = row;
         }
-    }else if(component == 2){
-        _district = self.districtArray[row];
     }
 }
 
+#pragma mark customDate handle
+- (NSDateFormatter *)dateFormat
+{
+    if (!_dateFormat) {
+        _dateFormat = [[NSDateFormatter alloc] init];
+        [_dateFormat setDateFormat:@"yyyy-MM-dd"];
+    }
+    return _dateFormat;
+}
+//返回接下去七天的日期
+- (NSMutableArray *)getNextSevenDaysDateArray
+{
+    NSDate *myDate = [NSDate date];
+    NSTimeInterval secondsPerDay = 60 * 60 * 24;
+    NSMutableArray *dateArray = [NSMutableArray arrayWithCapacity:7];
+    
+    for (int i = 0; i < 7; i++) {
+        NSDate *date = [NSDate dateWithTimeInterval:secondsPerDay*i sinceDate:myDate];
+        NSString *dateStr = [self.dateFormat stringFromDate:date];
+        dateArray[i] = dateStr;
+    }
+    //dateArray[0] = @"今天";
+    return dateArray;
+}
+//非今天状态下 的时间 hh：mm
+- (NSMutableArray *)normalTimesArray
+{
+    if (!_normalTimesArray) {
+        _normalTimesArray = [NSMutableArray arrayWithCapacity:(24*30/kPerTimes)];
+        int i,j;
+        for (i = 0; i < 24; i++) {
+            for (j = 0; j < 60; j+=kPerTimes) {
+                [_normalTimesArray addObject:[NSString stringWithFormat:@"%02d:%02d",i,j]];
+            }
+        }
+    }
+    return _normalTimesArray;
+}
 
+- (NSMutableArray *)getTodayTimesArray
+{
+    //获取当前时间
+    NSDate *currentDate = [NSDate date];
+    NSCalendar *currentCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *currentComps = [[NSDateComponents alloc] init];
+    
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    
+    currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
+    
+    int number = currentComps.hour * (int)(60/kPerTimes) + (int)(currentComps.minute/kPerTimes);
+    //NSString *minStr = [];
+    NSMutableArray *todayTimesArray = [NSMutableArray arrayWithCapacity:self.normalTimesArray.count];
+    for (int i = number + 1; i < self.normalTimesArray.count; i++) {
+        [todayTimesArray addObject:self.normalTimesArray[i]];
+    }
+    return todayTimesArray;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
