@@ -16,6 +16,7 @@ NSString *const kHbhWorkersOrderCount = @"orderCount";
 NSString *const kHbhWorkersCase = @"case";
 NSString *const kHbhWorkersWorkingAge = @"workingAge";
 NSString *const kHbhWorkersComment = @"comment";
+NSString *const kHbhWorkersDistance = @"distance";
 
 
 @interface HbhWorkers ()
@@ -34,6 +35,7 @@ NSString *const kHbhWorkersComment = @"comment";
 @synthesize caseProperty = _caseProperty;
 @synthesize workingAge = _workingAge;
 @synthesize comment = _comment;
+@synthesize distance = _distance;
 
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict
@@ -57,7 +59,7 @@ NSString *const kHbhWorkersComment = @"comment";
             //int age = [[self objectOrNilForKey:kHbhWorkersWorkingAge fromDictionary:dict] intValue];
             self.workingAge = [self objectOrNilForKey:kHbhWorkersWorkingAge fromDictionary:dict];
             self.comment = [self objectOrNilForKey:kHbhWorkersComment fromDictionary:dict];
-
+        self.distance = [[self objectOrNilForKey:kHbhWorkersDistance fromDictionary:dict] doubleValue];
     }
     
     return self;
@@ -67,6 +69,7 @@ NSString *const kHbhWorkersComment = @"comment";
 - (NSDictionary *)dictionaryRepresentation
 {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
+    [mutableDict setValue:[NSNumber numberWithDouble:self.distance] forKey:kHbhWorkersDistance];
     [mutableDict setValue:self.name forKey:kHbhWorkersName];
     [mutableDict setValue:[NSNumber numberWithInt:self.workersIdentifier] forKey:kHbhWorkersId];
     [mutableDict setValue:self.workTypeName forKey:kHbhWorkersWorkTypeName];

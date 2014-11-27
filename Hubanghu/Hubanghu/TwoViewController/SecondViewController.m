@@ -16,6 +16,7 @@
 #import "HbuAreaLocationManager.h"
 #import "AreasDBManager.h"
 #import "HbuAreaListModelAreas.h"
+#import "SVProgressHUD.h"
 
 typedef enum : NSUInteger {
     btnViewTypeAreas=10,
@@ -153,6 +154,7 @@ typedef enum : NSUInteger {
         }
     } andFailBlock:^{
 //        [self.view addSubview:self.failView];
+        [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
 }
 
@@ -226,7 +228,7 @@ typedef enum : NSUInteger {
                     [self.showWorkerListTableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationFade];
 //                    [self.showWorkerListTableView reloadData];
                 } andFailBlock:^{
-                    
+                    [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
                 }];
             });
         }];
@@ -567,8 +569,16 @@ typedef enum : NSUInteger {
         HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
         [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
         cell.workerNameLabel.text = model.name;
-        cell.workerMountLabel.text = [NSString stringWithFormat:@"%d", (int)model.orderCount];
+        cell.workerMountLabel.text = [NSString stringWithFormat:@"%d单", (int)model.orderCount];
         cell.workYearLabel.text = model.workingAge;
+        if (model.distance && model.distance>0) {
+            cell.workerDistanceCountLabel.text = [NSString stringWithFormat:@"%.2f千米", model.distance];
+        }
+        else
+        {
+            cell.workerDistanceCountLabel.hidden = YES;
+            cell.workerDistanceLabel.hidden = YES;
+        }
         if ([model.workTypeName isEqualToString:@""]||model.workTypeName==nil) {
             cell.workerTypeLabel.text = @"";
         }

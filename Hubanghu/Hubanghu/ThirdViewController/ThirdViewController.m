@@ -14,6 +14,7 @@
 #import "HbhOrderManage.h"
 #import "HbhOrderModel.h"
 #import "HbhUser.h"
+#import "SVProgressHUD.h"
 
 typedef enum : NSUInteger {
     currentTabOrderAll = 0,
@@ -165,6 +166,7 @@ typedef enum : NSUInteger {
         [self.showOrderTableView reloadData];
     } andFailBlock:^{
 //        [self.view addSubview:self.failView];
+        [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
         _isHaveData = NO;
     }];
 }
@@ -188,7 +190,7 @@ typedef enum : NSUInteger {
         }
 //        [self.showOrderTableView reloadData];
     } andFailBlock:^{
-        
+        [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
 }
 

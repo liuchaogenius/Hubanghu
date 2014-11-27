@@ -12,6 +12,7 @@
 @interface HbhWorkers : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) double distance;
 @property (nonatomic, assign) int workersIdentifier;
 @property (nonatomic, strong) NSString *workTypeName;
 @property (nonatomic, strong) NSString *photoUrl;

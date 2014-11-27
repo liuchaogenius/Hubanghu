@@ -229,7 +229,7 @@
             cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", self.workerData.workTypeName];
         }
         cell.workerYearLabel.text = self.workerData.workingAge;
-        cell.workerMountLabel.text = self.workerData.orderCount;
+        cell.workerMountLabel.text = [NSString stringWithFormat:@"%d单", self.workerData.orderCount];
         cell.personLabel.text = self.workerData.desc;
         cell.successLabel.text = self.workerData.succCaseDesc;
         cell.honorLabel.text = self.workerData.certificationDesc;

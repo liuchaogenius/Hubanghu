@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSArray *comment;
 @property (nonatomic, assign) double attitude;
 @property (nonatomic, strong) NSString *desc;
-@property (nonatomic, strong) NSString *orderCount;
+@property (nonatomic, assign) int orderCount;
 @property (nonatomic, assign) double satisfaction;
 @property (nonatomic, strong) NSString *photoUrl;
 @property (nonatomic, strong) NSString *name;

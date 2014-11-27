@@ -12,6 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "SVPullToRefresh.h"
 #import "HbhWorkerCommentManage.h"
+#import "SVProgressHUD.h"
 
 @interface HbhCommentViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -41,7 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = kViewBackgroundColor;
 //    self.title = @"用户评论";
     [self settitleLabel:@"用户评论"];
     
@@ -53,6 +54,7 @@
     self.showCommentTableView.delegate = self;
     self.showCommentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.showCommentTableView.tableHeaderView = view;
+    self.showCommentTableView.backgroundColor = kViewBackgroundColor;
     [self.view addSubview:self.showCommentTableView];
     
     [self addTableViewTrag];
@@ -114,6 +116,7 @@
         [self.activityView stopAnimating];
     } andFailBlock:^{
         [self.view addSubview:self.failView];
+        [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
 }
 
@@ -123,7 +126,7 @@
         [self.commentArray addObjectsFromArray:aCommentArray];
         [self.showCommentTableView reloadData];
     } andFailBlock:^{
-        
+        [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
 }
 
@@ -182,6 +185,7 @@
     cell.commentLabel.text = model.content;
     cell.workerNameLabel.text = model.worker;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 
