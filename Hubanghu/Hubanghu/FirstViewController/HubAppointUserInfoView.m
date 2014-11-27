@@ -205,6 +205,7 @@ enum PickerType
         _datePicker.minimumDate = [NSDate date];
          */
         _datePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight, kMainScreenWidth, 200)];
+        _datePicker.showsSelectionIndicator = YES;
         _datePicker.backgroundColor = [UIColor whiteColor];
         _datePicker.dataSource =self;
         _datePicker.delegate = self;
@@ -235,7 +236,7 @@ enum PickerType
         _areaPicker.dataSource =self;
         _areaPicker.delegate = self;
         _areaPicker.tag = Piker_area;
-        //_areaPicker.showsSelectionIndicator = YES;
+        _areaPicker.showsSelectionIndicator = YES;
     }
     return _areaPicker;
 }
@@ -613,7 +614,7 @@ enum PickerType
     
 }
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
-    return 20;
+    return 30;
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     if (pickerView.tag == Piker_area) {
