@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = kViewBackgroundColor;
 //    self.title = @"预约";
     [self settitleLabel:@"预约"];
     int Interval = 5;
