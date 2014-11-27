@@ -460,10 +460,12 @@ typedef enum : NSUInteger {
             /*0未付款，1已付款，2待评价*/
         case 0:
         case 1:
-        case 3:
+        case 2:
+        case 4:
+        case 5:
             [self.navigationController pushViewController:orderDetailVC animated:YES];
             break;
-        case 2:
+        case 3:
             [self.navigationController pushViewController:orderAppraiseVC animated:YES];
             break;
         default:

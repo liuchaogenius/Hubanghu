@@ -147,13 +147,22 @@
     self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f", aModel.price];
     switch ((int)aModel.status) {
         case 0:
-            self.orderStateLabel.text = @"去付款";
+            self.orderStateLabel.text = @"待付款";
             break;
         case 1:
             self.orderStateLabel.text = @"已付款";
             break;
         case 2:
-            self.orderStateLabel.text = @"去评价";
+            self.orderStateLabel.text = @"已分配";
+            break;
+        case 3:
+            self.orderStateLabel.text = @"待评价";
+            break;
+        case 4:
+            self.orderStateLabel.text = @"安装失败";
+            break;
+        case 5:
+            self.orderStateLabel.text = @"完成";
             break;
         default:
             break;

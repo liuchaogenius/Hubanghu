@@ -40,7 +40,7 @@
     label.font = kFont17;
     [self.view addSubview:label];
     
-    for (int i=0; i<5; i++)
+    for (int i=0; i<4; i++)
     {
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(i%2*(btnWidth+Interval), 50+i/2*(btnHeight+Interval), btnWidth, btnHeight)];
         MLOG(@"%f%f%f%f", btn.left, btn.top , btn.right, btn.bottom);
