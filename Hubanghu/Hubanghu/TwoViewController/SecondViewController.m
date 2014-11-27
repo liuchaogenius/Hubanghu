@@ -572,7 +572,13 @@ typedef enum : NSUInteger {
         cell.workerMountLabel.text = [NSString stringWithFormat:@"%d单", (int)model.orderCount];
         cell.workYearLabel.text = model.workingAge;
         if (model.distance && model.distance>0) {
-            cell.workerDistanceCountLabel.text = [NSString stringWithFormat:@"%.2f千米", model.distance];
+            if (model.distance>1000) {
+                cell.workerDistanceCountLabel.text = @">1000千米";
+            }
+            else
+            {
+                cell.workerDistanceCountLabel.text = [NSString stringWithFormat:@"%.2f千米", model.distance];
+            }
         }
         else
         {
