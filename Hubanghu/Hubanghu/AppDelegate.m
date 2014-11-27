@@ -10,6 +10,7 @@
 #import "RootTabBarController.h"
 #import "HbhUser.h"
 #import "NetManager.h"
+#import "MobClick.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate>
 @property (strong, nonatomic) NSString *updateUrl;
@@ -36,6 +37,11 @@
     self.updateUrl = nil;
     NSString *url = nil;
     kHubRequestUrl(@"checkVersion.ashx", url);
+    NSDictionary *bundleDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [bundleDic objectForKey:@"CFBundleShortVersionString"];
+    [MobClick startWithAppkey:kYOUMENG_APPKEY reportPolicy:SENDWIFIONLY channelId:nil];
+    [MobClick setAppVersion:appVersion];
+    
     [NetManager requestWith:nil url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         NSDictionary *dataDict = [successDict objectForKey:@"data"];
         int Type = [[dataDict objectForKey:@"type"] intValue];

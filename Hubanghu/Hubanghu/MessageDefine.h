@@ -23,6 +23,8 @@
 #define kAlipayPartnerId @"2088311602278363"
 #define kAlipaySellerAcount @"hu8hu888@sina.com"
 #define kAlipayOrderResultMessage @"payorderResult" 
+#define kYOUMENG_APPKEY  @"5455121dfd98c55f55004fa9"
+
 typedef NS_ENUM(int, NS_LeftButtonName)
 {
     E_USERINTRODUCE,//用户须知

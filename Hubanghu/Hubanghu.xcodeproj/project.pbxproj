@@ -85,6 +85,7 @@
 		FF15253219E7B861008AB6EC /* SCach.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252A19E7B861008AB6EC /* SCach.m */; };
 		FF15253319E7B861008AB6EC /* ThreadSafeMutableArry.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252D19E7B861008AB6EC /* ThreadSafeMutableArry.m */; };
 		FF15253419E7B861008AB6EC /* ThreadSafeMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FF15252F19E7B861008AB6EC /* ThreadSafeMutableDictionary.m */; };
+		FF185FF51A26D0D0007F9E67 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF185FF21A26D0D0007F9E67 /* libMobClickLibrary.a */; };
 		FF1FC27519ED1A2F00C362F7 /* STAlerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1FC27419ED1A2F00C362F7 /* STAlerView.m */; };
 		FF21CE7019E64B5A005007B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE6F19E64B5A005007B7 /* main.m */; };
 		FF21CE7319E64B5A005007B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF21CE7219E64B5A005007B7 /* AppDelegate.m */; };
@@ -320,6 +321,9 @@
 		FF15252D19E7B861008AB6EC /* ThreadSafeMutableArry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadSafeMutableArry.m; sourceTree = "<group>"; };
 		FF15252E19E7B861008AB6EC /* ThreadSafeMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadSafeMutableDictionary.h; sourceTree = "<group>"; };
 		FF15252F19E7B861008AB6EC /* ThreadSafeMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadSafeMutableDictionary.m; sourceTree = "<group>"; };
+		FF185FF21A26D0D0007F9E67 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		FF185FF31A26D0D0007F9E67 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		FF185FF41A26D0D0007F9E67 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		FF1FC27319ED1A2F00C362F7 /* STAlerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlerView.h; sourceTree = "<group>"; };
 		FF1FC27419ED1A2F00C362F7 /* STAlerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlerView.m; sourceTree = "<group>"; };
 		FF21CE6A19E64B5A005007B7 /* Hubanghu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hubanghu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -496,6 +500,7 @@
 				FF6D905F1A0749B500C966F8 /* AlipayRsaLib.a in Frameworks */,
 				FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */,
 				FF6D906B1A0749B500C966F8 /* libcrypto.a in Frameworks */,
+				FF185FF51A26D0D0007F9E67 /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,6 +772,16 @@
 			path = ThreadSafeDict;
 			sourceTree = "<group>";
 		};
+		FF185FF11A26D0D0007F9E67 /* UMAnalytics_Sdk_3.1.8 */ = {
+			isa = PBXGroup;
+			children = (
+				FF185FF21A26D0D0007F9E67 /* libMobClickLibrary.a */,
+				FF185FF31A26D0D0007F9E67 /* MobClick.h */,
+				FF185FF41A26D0D0007F9E67 /* MobClickSocialAnalytics.h */,
+			);
+			path = UMAnalytics_Sdk_3.1.8;
+			sourceTree = "<group>";
+		};
 		FF1FC27219ED1A1600C362F7 /* STALertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -954,6 +969,7 @@
 		FF21CEA719E66144005007B7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				FF185FF11A26D0D0007F9E67 /* UMAnalytics_Sdk_3.1.8 */,
 				FFDBF2731A11A010004E0868 /* LSNavigationController */,
 				FF6D90401A0749B500C966F8 /* alipay_sdk */,
 				FF0963FD19F51F0A00EF8D0E /* ToastView */,
@@ -1626,6 +1642,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/alipay_sdk/alipay",
+					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMAnalytics_Sdk_3.1.8",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = Hubanghu;
@@ -1649,6 +1666,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/alipay_sdk/alipay",
+					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMAnalytics_Sdk_3.1.8",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = Hubanghu;
