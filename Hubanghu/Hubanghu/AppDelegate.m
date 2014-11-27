@@ -12,6 +12,7 @@
 #import "NetManager.h"
 #import "MobClick.h"
 #import "UMSocial.h"
+#import "HbhUser.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate>
 @property (strong, nonatomic) NSString *updateUrl;
@@ -34,7 +35,7 @@
     [self performSelector:@selector(registerRemoteToken) withObject:nil afterDelay:5];
     return YES;
 }
-
+///注册友盟
 - (void)umengregister
 {
     NSDictionary *bundleDic = [[NSBundle mainBundle] infoDictionary];
@@ -99,13 +100,15 @@
         NSString *oldToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"DeviceToken"];
         if(![oldToken isEqualToString:strToken])//如果不等就上报
         {
-            
-//            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:strToken,@"device_token",uInfo.strUserId,@"user_id", nil];
-//            [NetManager requestWith:dict url:kUploadDeviceToken method:@"GET" operationKey:[self description] parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
-//                [[NSUserDefaults standardUserDefaults] setObject:strToken forKey:@"DeviceToken"];
-//            } failure:^(NSDictionary *failDict, NSError *error) {
-//                
-//            }];
+            NSString *struserid = [HbhUser sharedHbhUser].userID?[HbhUser sharedHbhUser].userID:@"0";
+            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:strToken,@"DeviceNo",struserid,@"CustomerID", [NSString stringWithFormat:@"%.2f",kSystemVersion],@"OSVersion",@"iphone",@"DeviceName",nil];
+            NSString *devurl = nil;
+            kHubRequestUrl(@"SubmitPushDevice.ashx ", devurl);
+            [NetManager requestWith:dict url:devurl method:@"POST" operationKey:[self description] parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
+                [[NSUserDefaults standardUserDefaults] setObject:strToken forKey:@"DeviceToken"];
+            } failure:^(NSDictionary *failDict, NSError *error) {
+                
+            }];
         }
         
     }
