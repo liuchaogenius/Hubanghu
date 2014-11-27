@@ -421,11 +421,11 @@ enum PickerType
         [toolView addSubview:_tool];
         
         [[UIApplication sharedApplication].keyWindow addSubview:self.clearView];
-        [[UIApplication sharedApplication].keyWindow addSubview:_datePicker];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.datePicker];
         [[UIApplication sharedApplication].keyWindow addSubview:toolView];
         
         [UIView animateWithDuration:0.2 animations:^{
-            _datePicker.top = kMainScreenHeight - 200;
+            _datePicker.top = kMainScreenHeight - 180;
             toolView.top = _datePicker.top - 30;
         }];
     }
