@@ -11,6 +11,7 @@
 #import "HbhUser.h"
 #import "NetManager.h"
 #import "MobClick.h"
+#import "UMSocial.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate>
 @property (strong, nonatomic) NSString *updateUrl;
@@ -29,7 +30,18 @@
     self.window.rootViewController = rootvc;
     [self.window makeKeyAndVisible];
     [self checkVersion];
+    [self umengregister];
+    [self performSelector:@selector(registerRemoteToken) withObject:nil afterDelay:5];
     return YES;
+}
+
+- (void)umengregister
+{
+    NSDictionary *bundleDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [bundleDic objectForKey:@"CFBundleShortVersionString"];
+    [MobClick startWithAppkey:kYOUMENG_APPKEY reportPolicy:SENDWIFIONLY channelId:nil];
+    [UMSocialData setAppKey:kYOUMENG_APPKEY];
+    [MobClick setAppVersion:appVersion];
 }
 
 - (void)checkVersion
@@ -37,11 +49,7 @@
     self.updateUrl = nil;
     NSString *url = nil;
     kHubRequestUrl(@"checkVersion.ashx", url);
-    NSDictionary *bundleDic = [[NSBundle mainBundle] infoDictionary];
-    NSString *appVersion = [bundleDic objectForKey:@"CFBundleShortVersionString"];
-    [MobClick startWithAppkey:kYOUMENG_APPKEY reportPolicy:SENDWIFIONLY channelId:nil];
-    [MobClick setAppVersion:appVersion];
-    
+
     [NetManager requestWith:nil url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         NSDictionary *dataDict = [successDict objectForKey:@"data"];
         int Type = [[dataDict objectForKey:@"type"] intValue];
@@ -65,6 +73,41 @@
     if (buttonIndex == 0) {
         MLOG(@"%@",self.updateUrl);
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.updateUrl]];
+    }
+}
+#pragma mark 注册devicetoken
+- (void)registerRemoteToken
+{
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    MLOG(@"error");
+}
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    MLOG(@"fasfas");
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    if(deviceToken)
+    {
+        NSString *strToken  = [NSString stringWithFormat:@"%@",deviceToken];
+        MLOG(@"device_token = %@",strToken);
+        NSString *oldToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"DeviceToken"];
+        if(![oldToken isEqualToString:strToken])//如果不等就上报
+        {
+            
+//            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:strToken,@"device_token",uInfo.strUserId,@"user_id", nil];
+//            [NetManager requestWith:dict url:kUploadDeviceToken method:@"GET" operationKey:[self description] parameEncoding:AFFormURLParameterEncoding succ:^(NSDictionary *successDict) {
+//                [[NSUserDefaults standardUserDefaults] setObject:strToken forKey:@"DeviceToken"];
+//            } failure:^(NSDictionary *failDict, NSError *error) {
+//                
+//            }];
+        }
+        
     }
 }
 
