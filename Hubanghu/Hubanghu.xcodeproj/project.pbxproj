@@ -324,6 +324,7 @@
 		FF0725B71A2843D100CD21CB /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
 		FF0725B81A2843D100CD21CB /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		FF0725B91A2843D100CD21CB /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		FF0725BD1A2857BA00CD21CB /* GTCommontHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTCommontHeader.h; sourceTree = "<group>"; };
 		FF0963FE19F539A800EF8D0E /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
@@ -807,6 +808,14 @@
 			path = Wechat;
 			sourceTree = "<group>";
 		};
+		FF0725BC1A2857A800CD21CB /* SCommontHeader */ = {
+			isa = PBXGroup;
+			children = (
+				FF0725BD1A2857BA00CD21CB /* GTCommontHeader.h */,
+			);
+			path = SCommontHeader;
+			sourceTree = "<group>";
+		};
 		FF0963FD19F51F0A00EF8D0E /* ToastView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1259,6 +1268,7 @@
 		FF21CF2E19E68C36005007B7 /* ToolUtil */ = {
 			isa = PBXGroup;
 			children = (
+				FF0725BC1A2857A800CD21CB /* SCommontHeader */,
 				FFC8CDC51A24706E002844EF /* ImgUtil */,
 				FF1FC27219ED1A1600C362F7 /* STALertView */,
 			);
