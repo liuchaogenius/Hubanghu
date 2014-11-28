@@ -8,7 +8,6 @@
 
 #import "HbhSelCityViewController.h"
 #import "HbuAreaLocationManager.h"
-#import "HbhHotCityCell.h"
 #import "SVProgressHUD.h"
 #import "SVPullToRefresh.h"
 #define kHotButtonHeight 32
@@ -227,7 +226,7 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
             
             for (int i = 0; i < _hotCityArray.count; i ++ ) {
                 HbuAreaListModelAreas *area = _hotCityArray[i];
-                UIButton *cityBtn = [self hotCityButtonWithFrame:CGRectMake((i%4)*(kHotBtnGap+60) + kHotBtnGap, (kHotButtonHeight+10)*i/4+10, 60, kHotButtonHeight) title:area.name tag:i];
+                UIButton *cityBtn = [self hotCityButtonWithFrame:CGRectMake((i%4)*(kHotBtnGap+60) + kHotBtnGap, (kHotButtonHeight+10)*(i/4)+10, 60, kHotButtonHeight) title:area.name tag:i];
                 [cityBtn addTarget:self action:@selector(touchHotCityButton:) forControlEvents:UIControlEventTouchUpInside];
                 [_hotCityCell.contentView addSubview:cityBtn];
             }
@@ -396,11 +395,14 @@ enum kHotCity_tag //与xib的cell中的button的tag对应
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = frame;
     button.tag = tag;
+    MLOG(@"%@",title);
     [button setTitle:title forState:UIControlStateNormal];
     button.titleLabel.font = kFont15;
-    [button setTintColor:[UIColor blackColor]];
+    //[button setBackgroundColor:RGBCOLOR(249, 249, 249)];
+    button.layer.cornerRadius = 4.0f;
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     button.layer.borderColor = [kLineColor CGColor];
-    button.layer.borderWidth = 0.7f;
+    button.layer.borderWidth = 1.0f;
     
     return button;
 }

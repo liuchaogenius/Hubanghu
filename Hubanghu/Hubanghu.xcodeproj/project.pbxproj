@@ -23,8 +23,6 @@
 		5BB325A319ECF4170085CAEB /* FouthVCList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325A219ECF4170085CAEB /* FouthVCList.plist */; };
 		5BB325AA19ECFAFF0085CAEB /* FourthVCHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */; };
 		5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */; };
-		5BBD051F19F6527100399219 /* HbhHotCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD051D19F6527100399219 /* HbhHotCityCell.m */; };
-		5BBD052019F6527100399219 /* HbhHotCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BBD051E19F6527100399219 /* HbhHotCityCell.xib */; };
 		5BD44C211A2869D100710E3C /* HbhSelCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD44C201A2869D100710E3C /* HbhSelCityViewController.m */; };
 		5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */; };
 		5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2F19EE4CC5002C4355 /* HbhUser.m */; };
@@ -223,9 +221,6 @@
 		5BB325A819ECFAFF0085CAEB /* FourthVCHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthVCHeadView.h; sourceTree = "<group>"; };
 		5BB325A919ECFAFF0085CAEB /* FourthVCHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthVCHeadView.m; sourceTree = "<group>"; };
 		5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourthVCHeadView.xib; sourceTree = "<group>"; };
-		5BBD051C19F6527100399219 /* HbhHotCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhHotCityCell.h; sourceTree = "<group>"; };
-		5BBD051D19F6527100399219 /* HbhHotCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhHotCityCell.m; sourceTree = "<group>"; };
-		5BBD051E19F6527100399219 /* HbhHotCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhHotCityCell.xib; sourceTree = "<group>"; };
 		5BD44C201A2869D100710E3C /* HbhSelCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhSelCityViewController.m; sourceTree = "<group>"; };
 		5BD54D2B19EE4C4A002C4355 /* HbhLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhLoginViewController.h; sourceTree = "<group>"; };
 		5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhLoginViewController.m; sourceTree = "<group>"; };
@@ -651,9 +646,6 @@
 				5BF8FC7B19F107C700598FB9 /* HbhFirstVCCell.m */,
 				5B16D8C919F12F07009E9FF3 /* HbhCategoryCell.h */,
 				5B16D8CA19F12F07009E9FF3 /* HbhCategoryCell.m */,
-				5BBD051C19F6527100399219 /* HbhHotCityCell.h */,
-				5BBD051D19F6527100399219 /* HbhHotCityCell.m */,
-				5BBD051E19F6527100399219 /* HbhHotCityCell.xib */,
 				B0FF902319F7B174001B8E14 /* HbhOrderDetailsView.h */,
 				B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */,
 				B01D687119F90FCF008B6BDE /* TouchTableView.h */,
@@ -1498,7 +1490,6 @@
 				AB090E1619EE323C00D943C6 /* HbhWorkerTableViewCell.xib in Resources */,
 				ABAFAB1D19EF35A900B51916 /* HbhWorkerCommentTableViewCell.xib in Resources */,
 				FF18601C1A271375007F9E67 /* UMSCommentInputController.xib in Resources */,
-				5BBD052019F6527100399219 /* HbhHotCityCell.xib in Resources */,
 				ABC5D51019F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib in Resources */,
 				FF1860201A271375007F9E67 /* UMSLoginViewController.xib in Resources */,
 				FF1860221A271376007F9E67 /* UMSShareListController.xib in Resources */,
@@ -1592,7 +1583,6 @@
 				FF21CF0819E66144005007B7 /* AFXMLRequestOperation.m in Sources */,
 				5B37333A1A25D62100C9B76C /* HbhBanners.m in Sources */,
 				FF21CF1319E66144005007B7 /* SDWebImageDecoder.m in Sources */,
-				5BBD051F19F6527100399219 /* HbhHotCityCell.m in Sources */,
 				FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */,
 				FF15253019E7B861008AB6EC /* JsonToModel.m in Sources */,
 				FFD1A2D019EE4B6D00EA97D4 /* FMDatabaseQueue.m in Sources */,

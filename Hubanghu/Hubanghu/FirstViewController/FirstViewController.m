@@ -108,6 +108,7 @@ enum CateId_Type
     //顶部ad
     [self creatAdView];
     self.tableView.tableHeaderView = self.headAdView;
+    [self loadBanners];
     
 }
 #pragma mark 定位处理
@@ -159,6 +160,9 @@ enum CateId_Type
     headAdView.backgroundColor = [UIColor whiteColor];
     _headAdView = headAdView;
     
+    UITapGestureRecognizer *tapgz = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchBanners)];
+    [headAdView addGestureRecognizer:tapgz];
+    
     UIScrollView *headScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenWidth*381/1080.0f+kBlankWidth)];
     [headScrollView setBounces:NO];
     headScrollView.backgroundColor = [UIColor whiteColor];
@@ -195,15 +199,11 @@ enum CateId_Type
     for (NSInteger i = 0; i < imageNum; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * kMainScreenWidth, 0, kMainScreenWidth, KimageHeight)];
         imageView.backgroundColor = [UIColor whiteColor];
-        HbhBanners *banner = self.bannersArray[imageNum];
+        HbhBanners *banner = self.bannersArray[i];
         //设置image
         [imageView sd_setImageWithURL:[NSURL URLWithString:banner.bannerImg]];
         [self.headScrollView addSubview:imageView];
         imageView.tag = i;
-        
-        UITapGestureRecognizer *tapgz = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchBanners:)];
-        [imageView addGestureRecognizer:tapgz];
-        
     }
     [self.pageControl setNumberOfPages:imageNum];
 }
@@ -303,13 +303,19 @@ enum CateId_Type
     [[NSNotificationCenter defaultCenter] postNotificationName:kSelCityMessage object:nil];
 }
 #pragma mark 点击head的Banner 广告
-- (void)touchBanners : (UITapGestureRecognizer *)taprz
+- (void)touchBanners
 {
-    NSInteger number = taprz.view.tag;
+    NSInteger number = self.pageControl.currentPage;
     if (number < self.bannersArray.count) {
         HbhBanners *banner = self.bannersArray[number];
         IntroduceViewController *iVC = [[IntroduceViewController alloc] init];
+        //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:iVC];
         [iVC setUrl:banner.bannerHref title:banner.bannerText];
+        //nav.hidesBottomBarWhenPushed = YES;
+        //[self.navigationController pushViewController:iVC animated:YES];
+        
+        //[self presentViewController:iVC animated:YES completion:nil];
+        [self.navigationController pushViewController:iVC animated:YES];
     }
 }
 

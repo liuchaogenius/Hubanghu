@@ -62,6 +62,12 @@
 	return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.hidesBottomBarWhenPushed = YES;
+    [super viewWillAppear:YES];
+}
+
 - (instancetype)initWithOrderId:(NSString *)orderId
 {
 	self = [super init];

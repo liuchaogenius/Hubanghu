@@ -58,6 +58,7 @@
 //        }];
 //        [dataQueue close];
         [self createAreasTable];
+        [self creatHotCitysTable];
     }
     return self;
 }
@@ -99,6 +100,8 @@
         }
     }];
 }
+
+
 
 - (void)selHbuArealistModel:(NSString *)aCityName resultBlock:(void(^)(HbuAreaListModelAreas*model))aResultBlock
 {
@@ -193,7 +196,6 @@
                    parent:(NSString *)aParent
                  typeName:(NSString *)aTypeName
                 firstchar:(NSString *)aFirstchar
-                ishotcity:(int)aIshotcity
 
 {
     [dataQueue inDatabase:^(FMDatabase *db) {
@@ -206,9 +208,9 @@
                 if(![cityResultset next])
                 {
                     NSString *first = [aFirstchar substringToIndex:1];
-                    NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into areas_table('areaId','name','level','parent','TypeName','firstchar','ishotcity') values(?,?,?,?,?,?,?)"];
+                    NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into areas_table('areaId','name','level','parent','TypeName','firstchar') values(?,?,?,?,?,?)"];
                     BOOL res = [db executeUpdate:sqlIntoArea,
-                                aAreaId,aName,[NSNumber numberWithInt:aLevel],aParent,aTypeName,first,aIshotcity];
+                                aAreaId,aName,[NSNumber numberWithInt:aLevel],aParent,aTypeName,first];
                     MLOG(@"insertAreaRes=%d", res);
                 }
             }
@@ -326,27 +328,6 @@
     }];
 }
 
-- (void)selHotCityResultBlock:(void(^)(NSMutableArray *cityArray))acityBlock
-{
-    __weak AreasDBManager *weakself = self;
-    [dataQueue inDatabase:^(FMDatabase *db) {
-        if([db open])
-        {
-            NSString *sqlSELcity = @"select * from areas_table where TypeName='市' and ishotcity = 1";
-            NSMutableArray *mutArry = [[NSMutableArray alloc] init];
-            FMResultSet *cityResultset = [db executeQuery:sqlSELcity];
-            while([cityResultset next])
-            {
-                HbuAreaListModelAreas *model = [weakself parseFMResultToHubAreasModel:cityResultset];
-                if(model)
-                {
-                    [mutArry addObject:model];
-                }
-            }
-            acityBlock(mutArry);
-        }
-    }];
-}
 
 - (void)selParentModel:(NSString *)aAreadid resultBlock:(void(^)(HbuAreaListModelAreas*model))aResultBlock __attribute__((nonnull(1)))
 {
@@ -388,6 +369,7 @@
     }];
 }
 
+
 - (HbuAreaListModelAreas *)parseFMResultToHubAreasModel:(FMResultSet *)aResultSet
 {
     if(aResultSet)
@@ -403,5 +385,82 @@
     }
     return nil;
 }
+
+#pragma markm - hotCity 
+
+- (void)creatHotCitysTable
+{
+    [dataQueue inDatabase:^(FMDatabase *db) {
+        if([db open])
+        {
+            NSString *sqlCreateHotCitysTable = [NSString stringWithFormat:@"create table hotCitys_table('areaId','name','level','parent','TypeName','firstchar','ishotcity')"];
+            BOOL res = [db executeUpdate:sqlCreateHotCitysTable];
+            if(res)
+            {
+                MLOG(@"hotcity表创建成功");
+            }
+            else
+            {
+                MLOG(@"hotcity表创建失败或者表已经存在");
+            }
+        }
+    }];
+}
+
+
+
+- (void)insertAreaToHotCityTable:(NSString *)aAreaId
+                            name:(NSString*)aName
+                           level:(int)aLevel
+                          parent:(NSString *)aParent
+                        typeName:(NSString *)aTypeName
+                       firstchar:(NSString *)aFirstchar
+                       ishotcity:(int)aIshotcity
+
+{
+    [dataQueue inDatabase:^(FMDatabase *db) {
+        if([db open])
+        {
+            if(aFirstchar && aFirstchar.length>0)
+            {
+                NSString *sel = @"select * from hotCitys_table where areaId=?";
+                FMResultSet *cityResultset = [db executeQuery:sel,aAreaId];
+                if(![cityResultset next])
+                {
+                    NSString *first = [aFirstchar substringToIndex:1];
+                    NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into hotCitys_table('areaId','name','level','parent','TypeName','firstchar','ishotcity') values(?,?,?,?,?,?,?)"];
+                    BOOL res = [db executeUpdate:sqlIntoArea,
+                                aAreaId,aName,[NSNumber numberWithInt:aLevel],aParent,aTypeName,first,[NSNumber numberWithInt:aIshotcity]];
+                    MLOG(@"insertHotCity=%d", res);
+                }
+            }
+        }
+    }];
+    
+}
+
+- (void)selHotCityResultBlock:(void(^)(NSMutableArray *cityArray))acityBlock
+{
+    __weak AreasDBManager *weakself = self;
+    [dataQueue inDatabase:^(FMDatabase *db) {
+        if([db open])
+        {
+            NSString *sqlSELcity = @"select * from hotCitys_table where TypeName like '市'";
+            NSMutableArray *mutArry = [[NSMutableArray alloc] init];
+            FMResultSet *cityResultset = [db executeQuery:sqlSELcity];
+            while([cityResultset next])
+            {
+                HbuAreaListModelAreas *model = [weakself parseFMResultToHubAreasModel:cityResultset];
+                if(model)
+                {
+                    [mutArry addObject:model];
+                }
+            }
+            acityBlock(mutArry);
+        }
+    }];
+}
+
+
 
 @end
