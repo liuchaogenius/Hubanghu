@@ -194,16 +194,6 @@ enum PickerType
 - (UIPickerView *)datePicker
 {
     if (!_datePicker) {
-        /*
-        _datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, kMainScreenHeight, kMainScreenWidth, 180)];
-        _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-        _datePicker.date = [NSDate date];
-        _datePicker.timeZone = [NSTimeZone timeZoneWithName:@"GMT+8"];
-        _datePicker.backgroundColor = [UIColor whiteColor];
-        _datePicker.minuteInterval = 10;
-        [_datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
-        _datePicker.minimumDate = [NSDate date];
-         */
         _datePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight, kMainScreenWidth, 200)];
         _datePicker.showsSelectionIndicator = YES;
         _datePicker.backgroundColor = [UIColor whiteColor];
@@ -378,29 +368,6 @@ enum PickerType
 #pragma mark - action
 
 - (void)showDatePickView{
-    /*
-    if (![self.datePicker superview]) {
-        
-        UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _datePicker.top-30, kMainScreenWidth, 30)];
-        toolView.backgroundColor = [UIColor lightGrayColor];
-        _tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 50, 0, 30, 30)];
-        [_tool setTitle:@"完成" forState:UIControlStateNormal];
-        _tool.titleLabel.textAlignment = NSTextAlignmentCenter;
-        _tool.titleLabel.font = kFont13;
-        _tool.backgroundColor = [UIColor clearColor];
-        [_tool addTarget:self action:@selector(datePickerPickEnd:) forControlEvents:UIControlEventTouchDown];
-        [toolView addSubview:_tool];
-        
-        [[UIApplication sharedApplication].keyWindow addSubview:self.clearView];
-        [[UIApplication sharedApplication].keyWindow addSubview:_datePicker];
-        [[UIApplication sharedApplication].keyWindow addSubview:toolView];
-        
-        [UIView animateWithDuration:0.2 animations:^{
-            _datePicker.top = kMainScreenHeight - 200;
-            toolView.top = _datePicker.top - 30;
-        }];
-    }
-     */
     if (![self.datePicker superview]) {
         
         UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _datePicker.top-30, kMainScreenWidth, 30)];

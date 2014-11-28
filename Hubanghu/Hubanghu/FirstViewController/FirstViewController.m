@@ -310,6 +310,7 @@ enum CateId_Type
         HbhBanners *banner = self.bannersArray[number];
         IntroduceViewController *iVC = [[IntroduceViewController alloc] init];
         iVC.isSysPush = YES;
+        iVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:iVC animated:YES];
         [iVC setUrl:banner.bannerHref title:banner.bannerText];
     }

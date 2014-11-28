@@ -207,7 +207,7 @@ enum kActionSheet_Type
     }else if(indexPath.section == 1){
         if (!_hotCityCell) {
             _hotCityCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:hotCellIdentifier];
-            [_hotCityCell setSelectionStyle:UITableViewCellEditingStyleNone];
+            [_hotCityCell setSelectionStyle:UITableViewCellSelectionStyleNone];
             int number = _hotCityArray.count;
             int cityRowCount = number/4 + (number%4?1:0);//行数
             CGFloat cellHeight = (number == 0 ? 40 : cityRowCount*(10+kHotButtonHeight)+10);
@@ -222,16 +222,6 @@ enum kActionSheet_Type
             
             
         }
-        /*
-        HbhHotCityCell *cell = [tableView dequeueReusableCellWithIdentifier:hotCellIdentifier forIndexPath:indexPath];
-        
-        if (![((UIButton *)cell.hotCityButtons[0]) respondsToSelector:@selector(touchHotCityButton:)]) {
-            for (UIButton *button  in cell.hotCityButtons) {
-                if(kSystemVersion < 7.0) button.titleLabel.font = kFont16;
-                [button addTarget:self action:@selector(touchHotCityButton:) forControlEvents:UIControlEventTouchUpInside];
-                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            }
-        }*/
         
         return _hotCityCell;
     }else{
