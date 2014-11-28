@@ -76,6 +76,8 @@
 		B09D1DAC19F654D200C7513C /* HubOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B09D1DAB19F654D200C7513C /* HubOrder.m */; };
 		B0EED42719F37C8E00CBFBFC /* HbhAppointmentNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */; };
 		B0FF902519F7B174001B8E14 /* HbhOrderDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */; };
+		FF0725BA1A2843D100CD21CB /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF0725B51A2843D100CD21CB /* libSocialWechat.a */; };
+		FF0725BB1A2843D100CD21CB /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF0725B61A2843D100CD21CB /* libWeChatSDK.a */; };
 		FF09640119F539A800EF8D0E /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */; };
 		FF09640219F539A800EF8D0E /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */; };
 		FF0B35D61A05132E00299FC9 /* IntroduceWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0B35D51A05132E00299FC9 /* IntroduceWebView.m */; };
@@ -317,6 +319,11 @@
 		B0EED42619F37C8E00CBFBFC /* HbhAppointmentNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhAppointmentNetManager.m; sourceTree = "<group>"; };
 		B0FF902319F7B174001B8E14 /* HbhOrderDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderDetailsView.h; sourceTree = "<group>"; };
 		B0FF902419F7B174001B8E14 /* HbhOrderDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderDetailsView.m; sourceTree = "<group>"; };
+		FF0725B51A2843D100CD21CB /* libSocialWechat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWechat.a; sourceTree = "<group>"; };
+		FF0725B61A2843D100CD21CB /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		FF0725B71A2843D100CD21CB /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
+		FF0725B81A2843D100CD21CB /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		FF0725B91A2843D100CD21CB /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		FF0963FE19F539A800EF8D0E /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		FF0963FF19F539A800EF8D0E /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		FF09640019F539A800EF8D0E /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
@@ -535,6 +542,7 @@
 				FF18601A1A271375007F9E67 /* libUMSocial_Sdk_4.2.a in Frameworks */,
 				FF6D906C1A0749B500C966F8 /* libssl.a in Frameworks */,
 				ABC2B37919F3BC83000FEE32 /* MobileCoreServices.framework in Frameworks */,
+				FF0725BA1A2843D100CD21CB /* libSocialWechat.a in Frameworks */,
 				FFD1A2D319EE4B8D00EA97D4 /* libsqlite3.dylib in Frameworks */,
 				FF6D90611A0749B500C966F8 /* AlixPaylib.a in Frameworks */,
 				FF6D90621A0749B500C966F8 /* AlixPaylib_arc.a in Frameworks */,
@@ -542,6 +550,7 @@
 				FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */,
 				FF6D906B1A0749B500C966F8 /* libcrypto.a in Frameworks */,
 				FF185FF51A26D0D0007F9E67 /* libMobClickLibrary.a in Frameworks */,
+				FF0725BB1A2843D100CD21CB /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,6 +785,26 @@
 				AB8EA5DC19F482D0001F40C2 /* HbhWorkerTypes.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		FF0725B31A2843D100CD21CB /* UMSocial_Sdk_Extra_Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF0725B41A2843D100CD21CB /* Wechat */,
+			);
+			path = UMSocial_Sdk_Extra_Frameworks;
+			sourceTree = "<group>";
+		};
+		FF0725B41A2843D100CD21CB /* Wechat */ = {
+			isa = PBXGroup;
+			children = (
+				FF0725B51A2843D100CD21CB /* libSocialWechat.a */,
+				FF0725B61A2843D100CD21CB /* libWeChatSDK.a */,
+				FF0725B71A2843D100CD21CB /* UMSocialWechatHandler.h */,
+				FF0725B81A2843D100CD21CB /* WXApi.h */,
+				FF0725B91A2843D100CD21CB /* WXApiObject.h */,
+			);
+			path = Wechat;
 			sourceTree = "<group>";
 		};
 		FF0963FD19F51F0A00EF8D0E /* ToastView */ = {
@@ -1057,6 +1086,7 @@
 		FF21CEA719E66144005007B7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				FF0725B31A2843D100CD21CB /* UMSocial_Sdk_Extra_Frameworks */,
 				FF185FFE1A271375007F9E67 /* UMSocial_Sdk_4.2 */,
 				FF185FF11A26D0D0007F9E67 /* UMAnalytics_Sdk_3.1.8 */,
 				FFDBF2731A11A010004E0868 /* LSNavigationController */,
@@ -1758,6 +1788,8 @@
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/alipay_sdk/alipay",
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMAnalytics_Sdk_3.1.8",
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_4.2",
+					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_4.2/Wechat",
+					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = Hubanghu;
@@ -1783,6 +1815,8 @@
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/alipay_sdk/alipay",
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMAnalytics_Sdk_3.1.8",
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_4.2",
+					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_4.2/Wechat",
+					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = Hubanghu;

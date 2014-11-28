@@ -13,6 +13,7 @@
 #import "MobClick.h"
 #import "UMSocial.h"
 #import "HbhUser.h"
+#import "UMSocialWechatHandler.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate>
 @property (strong, nonatomic) NSString *updateUrl;
@@ -40,8 +41,9 @@
 {
     NSDictionary *bundleDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [bundleDic objectForKey:@"CFBundleShortVersionString"];
-    [MobClick startWithAppkey:kYOUMENG_APPKEY reportPolicy:SENDWIFIONLY channelId:nil];
-    [UMSocialData setAppKey:kYOUMENG_APPKEY];
+    [MobClick startWithAppkey:kUMENG_APPKEY reportPolicy:SENDWIFIONLY channelId:nil];
+    [UMSocialData setAppKey:kUMENG_APPKEY];
+    [UMSocialWechatHandler setWXAppId:kShareWEIXINAPPID appSecret:kShareWEIXINAPPSECRET url:@"http://app.hu8hu.com/"];
     [MobClick setAppVersion:appVersion];
 }
 

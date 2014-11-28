@@ -20,7 +20,8 @@
 #import "HbhSelCityViewController.h"
 #import "LSNavigationController.h"
 #import "SImageUtil.h"
-
+#import "UMSocialSnsService.h"
+#import "UMSocialSnsPlatformManager.h"
 @interface RootTabBarController ()
 {
 //    UINavigationController *firstNav;
@@ -175,6 +176,16 @@
     {
     //IntroduceViewController *
         introduceVC = [[IntroduceViewController alloc] initWithNibName:nil bundle:nil];
+    }
+    if(aIndex == E_SHAREHBH)///分享微信
+    {
+        [UMSocialSnsService presentSnsIconSheetView:self
+                                             appKey:kUMENG_APPKEY
+                                          shareText:@"户帮户家装第一家,提供优质的服务,http://app.hu8hu.com/"
+                                         shareImage:[UIImage imageNamed:@"iconweixin"]
+                                    shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite]
+                                           delegate:nil];
+        return ;
     }
     if(introduceNaVC == nil)
     {

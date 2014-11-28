@@ -23,8 +23,9 @@
 #define kAlipayPartnerId @"2088311602278363"
 #define kAlipaySellerAcount @"hu8hu888@sina.com"
 #define kAlipayOrderResultMessage @"payorderResult" 
-#define kYOUMENG_APPKEY  @"5455121dfd98c55f55004fa9"
-
+#define kUMENG_APPKEY  @"5455121dfd98c55f55004fa9"
+#define kShareWEIXINAPPID @"wxe6b503e2e0a525bb"
+#define kShareWEIXINAPPSECRET  @"184bdda809f433132d978ca25ddce157"
 typedef NS_ENUM(int, NS_LeftButtonName)
 {
     E_USERINTRODUCE,//用户须知

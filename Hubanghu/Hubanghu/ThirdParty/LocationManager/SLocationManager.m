@@ -289,55 +289,46 @@ static SLocationManager *myLocationObj = nil;
 {
     __weak SLocationManager *weakself = self;
     NSString *strlocation = [NSString stringWithFormat:@"http://api.map.baidu.com/geocoder/v2/?ak=F2fc1e6d3ef4195131cbcb8af07a604b&callback=renderReverse&location=%.6f,%.6f&output=json",lat,alon];
-//        NSString *strlocation = [NSString stringWithFormat:@"http://api.map.baidu.com/geocoder/v2/?ak=F2fc1e6d3ef4195131cbcb8af07a604b&callback=renderReverse&location=39.983424,116.322987&output=json"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:strlocation]];
         NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         
         NSString *str1 = [[NSString alloc]initWithData:received encoding:NSUTF8StringEncoding];
         MLOG(@"%@",str1);
-        NSMutableString *mutstr = [[NSMutableString alloc] initWithString:str1];
-        NSRange rang = [mutstr rangeOfString:@"renderReverse&&renderReverse("];
-        
-        if (rang.length > 0) {
-            MLOG(@"%lu %lu",(unsigned long)rang.length,(unsigned long)rang.location);
-            [mutstr replaceCharactersInRange:rang withString:@""];
+        if(str1 && str1.length>0)
+        {
+            NSMutableString *mutstr = [[NSMutableString alloc] initWithString:str1];
+            NSRange rang = [mutstr rangeOfString:@"renderReverse&&renderReverse("];
+            
+            if (rang.length > 0) {
+                MLOG(@"%lu %lu",(unsigned long)rang.length,(unsigned long)rang.location);
+                [mutstr replaceCharactersInRange:rang withString:@""];
+            }
+            NSRange rang1 = [mutstr rangeOfString:@")"];
+            if (rang1.length > 0) {
+                [mutstr replaceCharactersInRange:rang1 withString:@""];
+            }
+            self.locationDict = [mutstr objectFromJSONString];
+            Location2d l2d={0};
+            l2d.lat = weakself.latitude;
+            l2d.lon = weakself.longitude;
+            l2d.code = 1;
+            MLOG(@"1111%@",self.locationDict);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.addressBlock(weakself.locationDict, l2d);
+            });
         }
-        NSRange rang1 = [mutstr rangeOfString:@")"];
-        if (rang1.length > 0) {
-            [mutstr replaceCharactersInRange:rang1 withString:@""];
+        else
+        {
+            Location2d l2d={0};
+            l2d.lat = weakself.latitude;
+            l2d.lon = weakself.longitude;
+            l2d.code = 1;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.addressBlock(nil, l2d);
+            });
         }
-        self.locationDict = [mutstr objectFromJSONString];
-        Location2d l2d={0};
-        l2d.lat = weakself.latitude;
-        l2d.lon = weakself.longitude;
-        l2d.code = 1;
-        MLOG(@"1111%@",self.locationDict);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.addressBlock(weakself.locationDict, l2d);
-        });
     });
-
-    
-//    __weak SLocationManager *weakself = self;
-//    CLGeocoder *clGeoCoder = [[CLGeocoder alloc] init];
-//    [clGeoCoder reverseGeocodeLocation:locationGps completionHandler:^(NSArray *placemarks, NSError *error)
-//     {
-//         MLOG(@"error %@ placemarks count %lu",error.localizedDescription,(unsigned long)placemarks.count);
-//         for (CLPlacemark *placeMark in placemarks)
-//         {
-//             self.locationDict = placeMark.addressDictionary;
-//         }
-//         MLOG(@"CLPlacemarkCLPlacemark%@",weakself.locationDict);
-//         if(self.addressBlock)
-//         {
-//             Location2d l2d={0};
-//             l2d.lat = weakself.latitude;
-//             l2d.lon = weakself.longitude;
-//             l2d.code = 1;
-//             self.addressBlock(weakself.locationDict, l2d);
-//         }
-//     }];
 }
 
 
