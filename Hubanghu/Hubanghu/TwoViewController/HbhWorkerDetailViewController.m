@@ -260,6 +260,8 @@
                 UITableViewCell *cell = [[UITableViewCell alloc] init];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.textLabel.text = @"暂无评论";
+                cell.textLabel.textColor = [UIColor lightGrayColor];
+                cell.textLabel.font = kFont14;
                 return cell;
             }
             else
