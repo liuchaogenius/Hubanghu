@@ -309,13 +309,9 @@ enum CateId_Type
     if (number < self.bannersArray.count) {
         HbhBanners *banner = self.bannersArray[number];
         IntroduceViewController *iVC = [[IntroduceViewController alloc] init];
-        //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:iVC];
-        [iVC setUrl:banner.bannerHref title:banner.bannerText];
-        //nav.hidesBottomBarWhenPushed = YES;
-        //[self.navigationController pushViewController:iVC animated:YES];
-        
-        //[self presentViewController:iVC animated:YES completion:nil];
+        iVC.isSysPush = YES;
         [self.navigationController pushViewController:iVC animated:YES];
+        [iVC setUrl:banner.bannerHref title:banner.bannerText];
     }
 }
 

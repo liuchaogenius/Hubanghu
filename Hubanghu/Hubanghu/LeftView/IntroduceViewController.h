@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface IntroduceViewController : BaseViewController
+@property(nonatomic, assign)BOOL isSysPush;
 - (void)setUrl:(NSString *)aLoadUrl title:(NSString *)aTitle;
 @end

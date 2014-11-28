@@ -34,9 +34,16 @@
 }
 - (void)backItem
 {
-    [ViewInteraction viewDissmissAnimationToRight:self.navigationController.view isRemove:NO completeBlock:^(BOOL isComplete) {
-        
-    }];
+    if(self.isSysPush)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        [ViewInteraction viewDissmissAnimationToRight:self.navigationController.view isRemove:NO completeBlock:^(BOOL isComplete) {
+            
+        }];
+    }
 }
 - (void)setUrl:(NSString *)aLoadUrl title:(NSString *)aTitle
 {
