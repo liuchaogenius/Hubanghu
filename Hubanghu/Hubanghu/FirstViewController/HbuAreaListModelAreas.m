@@ -7,13 +7,14 @@
 
 #import "HbuAreaListModelAreas.h"
 
-
+//ishotcity
 NSString *const kHbuAreaListModelAreasName = @"name";
 NSString *const kHbuAreaListModelAreasParent = @"parent";
 NSString *const kHbuAreaListModelAreasLevel = @"level";
 NSString *const kHbuAreaListModelAreasAreaId = @"areaId";
 NSString *const kHbuAreaListModelAreasTypeName = @"TypeName";
 NSString *const kHbuAreaListModelAreasFirstchar = @"firstchar";
+NSString *const kHbuAreaListModelAreasIshotcity = @"ishotcity";
 
 
 @interface HbuAreaListModelAreas ()
@@ -30,6 +31,7 @@ NSString *const kHbuAreaListModelAreasFirstchar = @"firstchar";
 @synthesize areaId = _areaId;
 @synthesize typeName = _typeName;
 @synthesize firstchar = _firstchar;
+@synthesize ishotcity = _ishotcity;
 
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict
@@ -50,6 +52,7 @@ NSString *const kHbuAreaListModelAreasFirstchar = @"firstchar";
             self.areaId = [[self objectOrNilForKey:kHbuAreaListModelAreasAreaId fromDictionary:dict] doubleValue];
             self.typeName = [self objectOrNilForKey:kHbuAreaListModelAreasTypeName fromDictionary:dict];
             self.firstchar = [self objectOrNilForKey:kHbuAreaListModelAreasFirstchar fromDictionary:dict];
+            self.ishotcity = [[self objectOrNilForKey:kHbuAreaListModelAreasIshotcity fromDictionary:dict] integerValue];
 
     }
     
@@ -66,6 +69,7 @@ NSString *const kHbuAreaListModelAreasFirstchar = @"firstchar";
     [mutableDict setValue:[NSNumber numberWithDouble:self.areaId] forKey:kHbuAreaListModelAreasAreaId];
     [mutableDict setValue:self.typeName forKey:kHbuAreaListModelAreasTypeName];
     [mutableDict setValue:self.firstchar forKey:kHbuAreaListModelAreasFirstchar];
+    [mutableDict setValue:[NSNumber numberWithInt:self.ishotcity] forKey:kHbuAreaListModelAreasIshotcity];
 
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
@@ -95,6 +99,7 @@ NSString *const kHbuAreaListModelAreasFirstchar = @"firstchar";
     self.areaId = [aDecoder decodeDoubleForKey:kHbuAreaListModelAreasAreaId];
     self.typeName = [aDecoder decodeObjectForKey:kHbuAreaListModelAreasTypeName];
     self.firstchar = [aDecoder decodeObjectForKey:kHbuAreaListModelAreasFirstchar];
+    self.ishotcity = [aDecoder decodeInt32ForKey:kHbuAreaListModelAreasIshotcity];
     return self;
 }
 
@@ -107,6 +112,7 @@ NSString *const kHbuAreaListModelAreasFirstchar = @"firstchar";
     [aCoder encodeDouble:_areaId forKey:kHbuAreaListModelAreasAreaId];
     [aCoder encodeObject:_typeName forKey:kHbuAreaListModelAreasTypeName];
     [aCoder encodeObject:_firstchar forKey:kHbuAreaListModelAreasFirstchar];
+    [aCoder encodeInt:_ishotcity forKey:kHbuAreaListModelAreasIshotcity];
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -121,6 +127,7 @@ NSString *const kHbuAreaListModelAreasFirstchar = @"firstchar";
         copy.areaId = self.areaId;
         copy.typeName = [self.typeName copyWithZone:zone];
         copy.firstchar = [self.firstchar copyWithZone:zone];
+        copy.ishotcity = self.ishotcity;
     }
     
     return copy;

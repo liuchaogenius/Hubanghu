@@ -193,6 +193,8 @@
                    parent:(NSString *)aParent
                  typeName:(NSString *)aTypeName
                 firstchar:(NSString *)aFirstchar
+                ishotcity:(int)aIshotcity
+
 {
     [dataQueue inDatabase:^(FMDatabase *db) {
         if([db open])
@@ -204,9 +206,9 @@
                 if(![cityResultset next])
                 {
                     NSString *first = [aFirstchar substringToIndex:1];
-                    NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into areas_table('areaId','name','level','parent','TypeName','firstchar') values(?,?,?,?,?,?)"];
+                    NSString *sqlIntoArea = [NSString stringWithFormat:@"insert into areas_table('areaId','name','level','parent','TypeName','firstchar','ishotcity') values(?,?,?,?,?,?,?)"];
                     BOOL res = [db executeUpdate:sqlIntoArea,
-                                aAreaId,aName,[NSNumber numberWithInt:aLevel],aParent,aTypeName,first];
+                                aAreaId,aName,[NSNumber numberWithInt:aLevel],aParent,aTypeName,first,aIshotcity];
                     MLOG(@"insertAreaRes=%d", res);
                 }
             }
@@ -324,6 +326,27 @@
     }];
 }
 
+- (void)selHotCityResultBlock:(void(^)(NSMutableArray *cityArray))acityBlock
+{
+    __weak AreasDBManager *weakself = self;
+    [dataQueue inDatabase:^(FMDatabase *db) {
+        if([db open])
+        {
+            NSString *sqlSELcity = @"select * from areas_table where TypeName='市' and ishotcity = 1";
+            NSMutableArray *mutArry = [[NSMutableArray alloc] init];
+            FMResultSet *cityResultset = [db executeQuery:sqlSELcity];
+            while([cityResultset next])
+            {
+                HbuAreaListModelAreas *model = [weakself parseFMResultToHubAreasModel:cityResultset];
+                if(model)
+                {
+                    [mutArry addObject:model];
+                }
+            }
+            acityBlock(mutArry);
+        }
+    }];
+}
 
 - (void)selParentModel:(NSString *)aAreadid resultBlock:(void(^)(HbuAreaListModelAreas*model))aResultBlock __attribute__((nonnull(1)))
 {

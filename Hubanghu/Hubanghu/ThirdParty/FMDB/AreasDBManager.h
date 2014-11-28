@@ -24,7 +24,8 @@
                     level:(int)aLevel
                    parent:(NSString *)aParent
                  typeName:(NSString *)aTypeName
-                firstchar:(NSString *)aFirstchar;
+                firstchar:(NSString *)aFirstchar
+                ishotcity:(int)aIshotcity;
 ///获取根据字母分组城市
 - (void)selGroupAreaCity:(void(^)(NSMutableDictionary *cityDict))aCityBlock;
 
@@ -43,4 +44,6 @@
 - (void)selParentModel:(NSString *)aAreadid resultBlock:(void(^)(HbuAreaListModelAreas*model))aResultBlock __attribute__((nonnull(1)));
 //获取第一个省下的第一个city
 - (void)firstCityOfFirstProvinceResultBlock:(void(^)(HbuAreaListModelAreas*model))aCityBlock;
+//获取热门城市数组
+- (void)selHotCityResultBlock:(void(^)(NSMutableArray *cityArray))acityBlock;
 @end

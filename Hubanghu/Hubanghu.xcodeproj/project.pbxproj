@@ -15,7 +15,6 @@
 		5B16D8D319F139D3009E9FF3 /* CategoryInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8D219F139D3009E9FF3 /* CategoryInfoModel.m */; };
 		5B16D8D619F140D0009E9FF3 /* CategoryChildInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B16D8D519F140D0009E9FF3 /* CategoryChildInfoModel.m */; };
 		5B1BC75919F0080E007D5AF7 /* HbhChangePswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */; };
-		5B25474019F5439600E50B60 /* HbhSelCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B25473F19F5439600E50B60 /* HbhSelCityViewController.m */; };
 		5B3733371A25D5F500C9B76C /* HbhFirstPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3733361A25D5F500C9B76C /* HbhFirstPageManager.m */; };
 		5B37333A1A25D62100C9B76C /* HbhBanners.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3733381A25D62100C9B76C /* HbhBanners.m */; };
 		5B69300A19F399250005862D /* HbuAreaLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B69300919F399250005862D /* HbuAreaLocationManager.m */; };
@@ -26,6 +25,7 @@
 		5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB325AB19ECFB250085CAEB /* FourthVCHeadView.xib */; };
 		5BBD051F19F6527100399219 /* HbhHotCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD051D19F6527100399219 /* HbhHotCityCell.m */; };
 		5BBD052019F6527100399219 /* HbhHotCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BBD051E19F6527100399219 /* HbhHotCityCell.xib */; };
+		5BD44C211A2869D100710E3C /* HbhSelCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD44C201A2869D100710E3C /* HbhSelCityViewController.m */; };
 		5BD54D2D19EE4C4A002C4355 /* HbhLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */; };
 		5BD54D3019EE4CC5002C4355 /* HbhUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D2F19EE4CC5002C4355 /* HbhUser.m */; };
 		5BD54D3319EE4DC6002C4355 /* HbhUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD54D3219EE4DC6002C4355 /* HbhUserManager.m */; };
@@ -208,7 +208,6 @@
 		5B1BC75719F0080E007D5AF7 /* HbhChangePswViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhChangePswViewController.h; sourceTree = "<group>"; };
 		5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhChangePswViewController.m; sourceTree = "<group>"; };
 		5B25473E19F5439600E50B60 /* HbhSelCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhSelCityViewController.h; sourceTree = "<group>"; };
-		5B25473F19F5439600E50B60 /* HbhSelCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhSelCityViewController.m; sourceTree = "<group>"; };
 		5B3733351A25D5F500C9B76C /* HbhFirstPageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhFirstPageManager.h; sourceTree = "<group>"; };
 		5B3733361A25D5F500C9B76C /* HbhFirstPageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhFirstPageManager.m; sourceTree = "<group>"; };
 		5B3733381A25D62100C9B76C /* HbhBanners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhBanners.m; sourceTree = "<group>"; };
@@ -227,6 +226,7 @@
 		5BBD051C19F6527100399219 /* HbhHotCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhHotCityCell.h; sourceTree = "<group>"; };
 		5BBD051D19F6527100399219 /* HbhHotCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhHotCityCell.m; sourceTree = "<group>"; };
 		5BBD051E19F6527100399219 /* HbhHotCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhHotCityCell.xib; sourceTree = "<group>"; };
+		5BD44C201A2869D100710E3C /* HbhSelCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhSelCityViewController.m; sourceTree = "<group>"; };
 		5BD54D2B19EE4C4A002C4355 /* HbhLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhLoginViewController.h; sourceTree = "<group>"; };
 		5BD54D2C19EE4C4A002C4355 /* HbhLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhLoginViewController.m; sourceTree = "<group>"; };
 		5BD54D2E19EE4CC5002C4355 /* HbhUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhUser.h; sourceTree = "<group>"; };
@@ -1083,7 +1083,7 @@
 				5B16D8C619F12CB7009E9FF3 /* HbuCategoryViewController.h */,
 				5B16D8C719F12CB7009E9FF3 /* HbuCategoryViewController.m */,
 				5B25473E19F5439600E50B60 /* HbhSelCityViewController.h */,
-				5B25473F19F5439600E50B60 /* HbhSelCityViewController.m */,
+				5BD44C201A2869D100710E3C /* HbhSelCityViewController.m */,
 				B08F580819F64D0D00F3E130 /* HbhConfirmOrderViewController.h */,
 				B08F580919F64D0D00F3E130 /* HbhConfirmOrderViewController.m */,
 				FF0B35DC1A052F3800299FC9 /* HuhAppointmentVC.h */,
@@ -1540,6 +1540,7 @@
 				ABE53EC419F0ED9900A8FE8B /* HbhWorkerListManage.m in Sources */,
 				FF09640119F539A800EF8D0E /* SVProgressHUD.m in Sources */,
 				AB06DC4E19F1269500B82C62 /* HbhWorkerModel.m in Sources */,
+				5BD44C211A2869D100710E3C /* HbhSelCityViewController.m in Sources */,
 				FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */,
 				FF6D90641A0749B500C966F8 /* AlixPayResult.m in Sources */,
 				ABAFAB2119EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m in Sources */,
@@ -1654,7 +1655,6 @@
 				FF21CF2519E66144005007B7 /* UIImage+ImageEffects.m in Sources */,
 				FF6D90631A0749B500C966F8 /* AlixPayOrder.m in Sources */,
 				AB8EA5DD19F482D0001F40C2 /* HbhAreas.m in Sources */,
-				5B25474019F5439600E50B60 /* HbhSelCityViewController.m in Sources */,
 				FF21CF1B19E66144005007B7 /* UIImage+WebP.m in Sources */,
 				5B16D8D319F139D3009E9FF3 /* CategoryInfoModel.m in Sources */,
 				FFC8CDC81A24708A002844EF /* SImageUtil.m in Sources */,

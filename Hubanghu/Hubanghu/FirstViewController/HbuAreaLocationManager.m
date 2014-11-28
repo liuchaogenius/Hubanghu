@@ -105,7 +105,7 @@
 {
     __weak HbuAreaLocationManager *weakSelf = self;
     [self.areasDBManager selGroupAreaCity:^(NSMutableDictionary *cityDict){
-        if (!cityDict) {
+        if (cityDict) {
             //不用获取
         }else{
             [weakSelf getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
@@ -142,7 +142,8 @@
     NSArray *areas = areaListModel.areas;
     if (areas && areas.count > 0) {
         for (HbuAreaListModelAreas *area in areas) {
-            [self.areasDBManager insertAreaToTable:[NSString stringWithFormat:@"%d",(int)area.areaId] name:area.name level:(int)area.level parent:[NSString stringWithFormat:@"%d",(int)area.parent] typeName:area.typeName firstchar:area.firstchar];
+            area.ishotcity =  area.ishotcity == 1 ?:0;
+            [self.areasDBManager insertAreaToTable:[NSString stringWithFormat:@"%d",(int)area.areaId] name:area.name level:(int)area.level parent:[NSString stringWithFormat:@"%d",(int)area.parent] typeName:area.typeName firstchar:area.firstchar ishotcity:area.ishotcity];
         }
 // 对应保存这份数据的time（版本号） nsuser
         double time = areaListModel.time;
