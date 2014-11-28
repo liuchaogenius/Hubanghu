@@ -64,7 +64,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.hidesBottomBarWhenPushed = YES;
+    if (!self.tabBarController.tabBar.hidden) {
+        self.tabBarController.tabBar.hidden = YES;
+    }
     [super viewWillAppear:YES];
 }
 
@@ -184,7 +186,7 @@
     _order.name = _order.name?_order.name:@"";
     _order.username = _order.username?_order.username:@"";
     dateString = dateString?dateString:@"";
-    areaStr = dateString?dateString:@"";
+    areaStr = areaStr?areaStr:@"";
     workName = workName?workName:@"";
     comment = comment?comment:@"";
     price = price?price:@"";
@@ -260,7 +262,7 @@
         label.text = _detailsInfoTitle[i];
         label.font = kFont13;
         label.tag = 51;
-		tf.text = _detailsInfo[indexPath.row];
+		tf.text = _detailsInfo[i];
 		label.text = _detailsInfoTitle[i];
         tf.leftView = label;
         return cell;

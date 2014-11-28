@@ -257,7 +257,7 @@ typedef NS_ENUM(int, AmountDesc)
     dateFormat.timeZone = [[NSTimeZone alloc] initWithName:@"GMT+8"];
     MLOG(@"%@",[dateFormat stringFromDate:date]);
      */
-    
+    MLOG(@"%@ %@",[userInfoView getAreaId],[userInfoView getLocation]);
     
     NSDictionary *orderDic = @{@"cateId":strCateId,
                                @"username":[userInfoView getUserName],

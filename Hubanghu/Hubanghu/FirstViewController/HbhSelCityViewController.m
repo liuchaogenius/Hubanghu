@@ -17,17 +17,6 @@ enum kActionSheet_Type
     kActionSheet_selectCity = 100
 };
 
-enum kHotCity_tag //与xib的cell中的button的tag对应
-{
-    kHotCity_NanChang = 1,
-    kHotCity_ShangHai,
-    kHotCity_ShenZheng,
-    kHotCity_TianJing,
-    kHotCity_GuangZhou,
-    kHotCity_XiAn,
-    kHotCity_ChengDu,
-    kHotCity_HangZhou
-};
 
 @interface HbhSelCityViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 {
