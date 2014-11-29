@@ -177,7 +177,7 @@
     //IntroduceViewController *
         introduceVC = [[IntroduceViewController alloc] initWithNibName:nil bundle:nil];
     }
-    if(aIndex == E_SHAREHBH)///分享微信
+    if(aIndex == E_SHAREHBH)///友盟分享微信
     {
         [UMSocialSnsService presentSnsIconSheetView:self
                                              appKey:kUMENG_APPKEY
