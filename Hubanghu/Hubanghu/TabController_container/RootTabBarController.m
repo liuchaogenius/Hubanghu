@@ -181,7 +181,7 @@
     {
         [UMSocialSnsService presentSnsIconSheetView:self
                                              appKey:kUMENG_APPKEY
-                                          shareText:@"户帮户家装第一家,提供优质的服务,http://app.hu8hu.com/"
+                                          shareText:@"户帮户APP叫安装师傅太方便了，服务好，价格公道。我在淘宝上淘的家具都已经安装好了，小伙伴们快来参观吧！http://app.hu8hu.com/"
                                          shareImage:[UIImage imageNamed:@"iconweixin"]
                                     shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite]
                                            delegate:nil];
