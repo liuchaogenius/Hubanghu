@@ -94,7 +94,7 @@
     aliOrder.tradeNO = aOrderId;
     aliOrder.productName = aTitle; //商品标题
     aliOrder.productDescription = aDisc; //商品描述
-    float fprice = 0.01;//[aPrice floatValue];
+    float fprice = [aPrice floatValue];
     aliOrder.amount = [NSString stringWithFormat:@"%.2f",fprice]; //商品价格
     NSString *notifyUrl = nil;
     kHubRequestUrl(@"TaobaoNotify_URL.ashx", notifyUrl);
