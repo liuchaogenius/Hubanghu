@@ -167,5 +167,6 @@
 - (void)aliPayResult:(NSString*)resultid
 {
     MLOG(@"alipayresut");
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAlipayOrderResultMessage object:resultid];
 }
 @end

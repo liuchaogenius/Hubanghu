@@ -414,35 +414,38 @@
     MLOG(@"%@",aNotification);
     NSString *strNotification = [aNotification object];
     NSString *strEncode = [strNotification stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *notificationDict = [strEncode objectFromJSONString];
-     MLOG(@"notificationDict = %@",notificationDict);
-    NSDictionary *memoDict = [notificationDict objectForKey:@"memo"];
-    int resultStatus = [[memoDict objectForKey:@"ResultStatus"] intValue];
-    NSString *resultDesc = [memoDict objectForKey:@"memo"];
-    if(resultStatus == 9000)///支付成功
+    if(strEncode && strEncode.length > 0)
     {
-       //已支付 灰色-按钮 不可用  已支付。。---
-        [SVProgressHUD showSuccessWithStatus:@"支付成功" cover:YES offsetY:kMainScreenHeight/2.0];
-        commitButton.enabled = NO;
-        [commitButton setBackgroundColor:[UIColor lightGrayColor]];
-        [commitButton setTitle:@"已支付" forState:UIControlStateNormal];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccess object:self];
-       
-        
-    }
-    else if(resultStatus == 8000)///正在处理也当支付成功
-    {
-        [SVProgressHUD showSuccessWithStatus:@"支付成功" cover:YES offsetY:kMainScreenHeight/2.0];
-        commitButton.enabled = NO;
-        [commitButton setBackgroundColor:[UIColor lightGrayColor]];
-        [commitButton setTitle:@"已支付" forState:UIControlStateNormal];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccess object:self];
-       
-    }
-    else///支付失败
-    {
-        [SVProgressHUD showErrorWithStatus:@"支付失败，请重新尝试" cover:YES offsetY:kMainScreenHeight/2.0];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kPayFail object:self];
+        NSDictionary *notificationDict = [strEncode objectFromJSONString];
+         MLOG(@"notificationDict = %@",notificationDict);
+        NSDictionary *memoDict = [notificationDict objectForKey:@"memo"];
+        int resultStatus = [[memoDict objectForKey:@"ResultStatus"] intValue];
+        NSString *resultDesc = [memoDict objectForKey:@"memo"];
+        if(resultStatus == 9000)///支付成功
+        {
+           //已支付 灰色-按钮 不可用  已支付。。---
+            [SVProgressHUD showSuccessWithStatus:@"支付成功" cover:YES offsetY:kMainScreenHeight/2.0];
+            commitButton.enabled = NO;
+            [commitButton setBackgroundColor:[UIColor lightGrayColor]];
+            [commitButton setTitle:@"已支付" forState:UIControlStateNormal];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccess object:self];
+           
+            
+        }
+        else if(resultStatus == 8000)///正在处理也当支付成功
+        {
+            [SVProgressHUD showSuccessWithStatus:@"支付成功" cover:YES offsetY:kMainScreenHeight/2.0];
+            commitButton.enabled = NO;
+            [commitButton setBackgroundColor:[UIColor lightGrayColor]];
+            [commitButton setTitle:@"已支付" forState:UIControlStateNormal];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccess object:self];
+           
+        }
+        else///支付失败
+        {
+            [SVProgressHUD showErrorWithStatus:@"支付失败，请重新尝试" cover:YES offsetY:kMainScreenHeight/2.0];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kPayFail object:self];
+        }
     }
     
 }
