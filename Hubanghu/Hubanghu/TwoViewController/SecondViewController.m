@@ -293,7 +293,7 @@ typedef enum : NSUInteger {
             UITapGestureRecognizer *tapGestureBtnView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchBtnView:)];
             [btnView addGestureRecognizer:tapGestureBtnView];
             [_btnBackView addSubview:btnView];
-            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/6-30, 15, 50, 15)];
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/6-37, 15, 60, 15)];
             UIImageView *arrowDownImg = [[UIImageView alloc] initWithFrame:CGRectMake(titleLabel.right+2, 20, 13, 8)];
             arrowDownImg.image = [UIImage imageNamed:@"arrowDown"];
             [btnView addSubview:arrowDownImg];

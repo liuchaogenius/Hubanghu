@@ -23,9 +23,9 @@
     
     cellHeight = 42;
     _tableArray = aArray;
-    if (cellHeight*aArray.count>42*8)
+    if (cellHeight*aArray.count>42*6)
     {
-        tableHeight = 42*8;
+        tableHeight = 42*6;
     }
     else
     {
@@ -47,9 +47,9 @@
 
 - (void)reloadTableView
 {
-    if (cellHeight*self.tableArray.count>42*8)
+    if (cellHeight*self.tableArray.count>42*6)
     {
-        tableHeight = 42*8;
+        tableHeight = 42*6;
     }
     else
     {
