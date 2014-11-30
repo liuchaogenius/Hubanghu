@@ -359,7 +359,8 @@ enum kActionSheet_Type
         {
             if (buttonIndex == 0) {
                 [HbuAreaLocationManager sharedManager].currentAreas = _selectArea;
-                [self.navigationController popViewControllerAnimated:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                //[self.navigationController popViewControllerAnimated:YES];
             }
         }
             break;

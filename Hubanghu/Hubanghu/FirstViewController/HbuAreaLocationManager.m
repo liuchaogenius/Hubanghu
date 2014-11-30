@@ -104,8 +104,8 @@
 - (void)getAreasDataAndSaveToDBifNeeded
 {
     __weak HbuAreaLocationManager *weakSelf = self;
-    [self.areasDBManager selGroupAreaCity:^(NSMutableDictionary *cityDict){
-        if (cityDict) {
+    [self.areasDBManager firstCityOfFirstProvinceResultBlock:^(HbuAreaListModelAreas *model) {
+        if (model && model.name.length) {
             //不用获取
         }else{
             [weakSelf getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
