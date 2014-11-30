@@ -59,44 +59,44 @@
     return _clearBackView;
 }
 
-- (UIView *)cateListView
-{
-    if (!_cateListView) {
-        _cateListView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, (kCateTitleFont+10)*4)];
-        _cateListView.backgroundColor = [UIColor whiteColor];
-        _cateListView.clipsToBounds = YES;
-        _cateListView.layer.borderWidth = 1.0f;
-        _cateListView.layer.cornerRadius = 2.0f;
-        _cateListView.layer.borderColor = [kLineColor CGColor];
-        _cateButtonArray = [NSMutableArray arrayWithCapacity:categoryTitlearry.count];
-        for(int i=0; i<4; i++)
-        {
-            
-            UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(0, (kCateTitleFont+10)*i, 80, kCateTitleFont+10)];
-            [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
-            cateButton.layer.borderWidth = 0.5;
-            //cateButton.layer.cornerRadius = 2;
-            cateButton.tag = i;
-            if (cateButtonType == i)
-            {
-                //cateButton.selected = YES;
-                cateButton.layer.borderColor = KColor.CGColor;
-                [cateButton setTitleColor:KColor forState:UIControlStateNormal];
-            }
-            else
-            {
-                cateButton.layer.borderColor = kBorderColor.CGColor;
-                [cateButton setTitleColor:kBorderColor forState:UIControlStateNormal];
-            }
-            [cateButton setTitle:[categoryTitlearry objectAtIndex:i] forState:UIControlStateNormal];
-            [cateButton addTarget:self action:@selector(cateButtonItem:) forControlEvents:UIControlEventTouchUpInside];
-            [_cateListView addSubview:cateButton];
-            [self.cateButtonArray insertObject:cateButton atIndex:i];
-        }
-        _cateListView.tag = 0;
-    }
-    return _cateListView;
-}
+//- (UIView *)cateListView
+//{
+//    if (!_cateListView) {
+//        _cateListView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, (kCateTitleFont+10)*4)];
+//        _cateListView.backgroundColor = [UIColor whiteColor];
+//        _cateListView.clipsToBounds = YES;
+//        _cateListView.layer.borderWidth = 1.0f;
+//        _cateListView.layer.cornerRadius = 2.0f;
+//        _cateListView.layer.borderColor = [kLineColor CGColor];
+//        _cateButtonArray = [NSMutableArray arrayWithCapacity:categoryTitlearry.count];
+//        for(int i=0; i<4; i++)
+//        {
+//            
+//            UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(0, (kCateTitleFont+10+5)*i, 80, kCateTitleFont+10+10)];
+//            [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
+//            cateButton.layer.borderWidth = 0.5;
+//            //cateButton.layer.cornerRadius = 2;
+//            cateButton.tag = i;
+//            if (cateButtonType == i)
+//            {
+//                //cateButton.selected = YES;
+//                cateButton.layer.borderColor = KColor.CGColor;
+//                [cateButton setTitleColor:KColor forState:UIControlStateNormal];
+//            }
+//            else
+//            {
+//                cateButton.layer.borderColor = kBorderColor.CGColor;
+//                [cateButton setTitleColor:kBorderColor forState:UIControlStateNormal];
+//            }
+//            [cateButton setTitle:[categoryTitlearry objectAtIndex:i] forState:UIControlStateNormal];
+//            [cateButton addTarget:self action:@selector(cateButtonItem:) forControlEvents:UIControlEventTouchUpInside];
+//            [_cateListView addSubview:cateButton];
+//            [self.cateButtonArray insertObject:cateButton atIndex:i];
+//        }
+//        _cateListView.tag = 0;
+//    }
+//    return _cateListView;
+//}
 
 - (NSString *)getCateButtonType
 {
@@ -192,7 +192,7 @@
     for(int i=0; i<4; i++)
     {
         
-        UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(categoryTitle.right+10+(i*50+(i)*15), categoryTitle.top, 60, kCateTitleFont+6)];
+        UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(categoryTitle.right+10+(i*50+(i)*15), categoryTitle.top-2.5, 60, kCateTitleFont+6+5)];
         [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
         cateButton.layer.borderWidth = 1;
         cateButton.layer.cornerRadius = 2;

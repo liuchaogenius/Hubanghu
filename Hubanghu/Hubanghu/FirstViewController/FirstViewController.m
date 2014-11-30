@@ -90,7 +90,10 @@ enum CateId_Type
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setLeftButton:[UIImage imageNamed:@"leftButtonBg"] title:@"" target:self action:@selector(showLeftView)];
+    [self creatLeftButton];
+    //[self setLeftButton:[UIImage imageNamed:@"leftButtonBg"] title:@"" target:self action:@selector(showLeftView)];
+    //self.leftButton.frame = CGRectMake(self.leftButton.frame.origin.x, self.leftButton.frame.origin.y, 60, 60);
+    
     [self creatRightBtn];
     //[self setRightButton:nil title:@"城市" target:self action:@selector(showSelCityVC)];
     [self settitleLabel:@"户帮户"];
@@ -357,4 +360,24 @@ enum CateId_Type
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void)creatLeftButton
+{
+    CGRect buttonFrame = CGRectMake(0, 0, 48, 44);
+    CGRect viewFrame = CGRectMake(-5, 0, 48, 44);
+    UIView *view = [[UIView alloc]initWithFrame:viewFrame];
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:viewFrame];
+    [button addTarget:self action:@selector(showLeftView) forControlEvents:UIControlEventTouchUpInside];
+    button.backgroundColor = kClearColor;
+    //[button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    
+    UIImageView *imgview = [[UIImageView alloc] initWithFrame:buttonFrame];
+    [imgview setImage:[UIImage imageNamed:@"leftButtonBg"]];
+    [view addSubview:imgview];
+    [view addSubview:button];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+    
+}
+
 @end

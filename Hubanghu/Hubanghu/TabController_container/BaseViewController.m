@@ -128,6 +128,7 @@
     UIView *view = [[UIView alloc]initWithFrame:viewFrame];
     CGRect buttonFrame = CGRectMake(-5, (44-30)/2.0, 34, 30);//CGRectMake(-5, 0, 88/2, 44);
     UIButton *button = [[UIButton alloc] initWithFrame:viewFrame];
+    _leftButton = button;
     button.backgroundColor = kClearColor;
 //    if(aImg)
 //    {
@@ -165,7 +166,7 @@
     titleLabel.center = self.navigationController.navigationBar.center;
     titleLabel.backgroundColor = kClearColor;
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = kFont18;
+    titleLabel.font = kFont19;
     titleLabel.text = aTitle;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     

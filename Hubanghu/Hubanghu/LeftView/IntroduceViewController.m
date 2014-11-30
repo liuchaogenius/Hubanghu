@@ -9,6 +9,7 @@
 #import "IntroduceViewController.h"
 #import "IntroduceWebView.h"
 #import "ViewInteraction.h"
+#import "SVProgressHUD.h"
 @interface IntroduceViewController ()
 @property (nonatomic, strong)IntroduceWebView *webView;
 @end
@@ -34,6 +35,7 @@
 }
 - (void)backItem
 {
+    [SVProgressHUD dismiss];
     if(self.isSysPush)
     {
         [self.navigationController popViewControllerAnimated:YES];

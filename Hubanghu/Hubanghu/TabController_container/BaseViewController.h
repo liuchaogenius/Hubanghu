@@ -12,7 +12,8 @@
 
 @property (nonatomic, assign) CGFloat g_OffsetY;
 @property (nonatomic, strong) UIImage *backgroundimg;
-@property (nonatomic ,strong) UIButton *rightButton;
+@property (nonatomic,strong) UIButton *rightButton;
+@property (nonatomic, strong) UIButton *leftButton;
 - (void)setLeftButton:(UIImage *)aImg
                 title:(NSString *)aTitle
                target:(id)aTarget
