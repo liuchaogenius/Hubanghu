@@ -21,11 +21,11 @@
 {
     self = [super init];
     
-    cellHeight = 30;
+    cellHeight = 42;
     _tableArray = aArray;
-    if (cellHeight*aArray.count>160)
+    if (cellHeight*aArray.count>42*8)
     {
-        tableHeight = 160;
+        tableHeight = 42*8;
     }
     else
     {
@@ -47,9 +47,9 @@
 
 - (void)reloadTableView
 {
-    if (cellHeight*self.tableArray.count>160)
+    if (cellHeight*self.tableArray.count>42*8)
     {
-        tableHeight = 160;
+        tableHeight = 42*8;
     }
     else
     {
@@ -81,7 +81,7 @@
     cell.textLabel.font = kFont15;
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.textColor = RGBCOLOR(122, 122, 122);
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 29, cell.frame.size.width, 1)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 42-1, cell.frame.size.width, 1)];
     lineView.backgroundColor = RGBCOLOR(196, 196, 196);
     [cell addSubview:lineView];
     UIView *leftLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, cellHeight)];

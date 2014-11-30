@@ -17,6 +17,7 @@
 #import "AreasDBManager.h"
 #import "HbuAreaListModelAreas.h"
 #import "SVProgressHUD.h"
+#define btnBackViewH 45
 
 typedef enum : NSUInteger {
     btnViewTypeAreas=10,
@@ -94,11 +95,11 @@ typedef enum : NSUInteger {
     
     if (!_isSpecial)
     {
-        self.showWorkerListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight-64-40-49)];
+        self.showWorkerListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, btnBackViewH, kMainScreenWidth, kMainScreenHeight-62-btnBackViewH-49)];
     }
     else
     {
-        self.showWorkerListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight-64-40)];
+        self.showWorkerListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, btnBackViewH, kMainScreenWidth, kMainScreenHeight-62-btnBackViewH)];
     }
     
     self.showWorkerListTableView.delegate = self;
@@ -282,7 +283,7 @@ typedef enum : NSUInteger {
 {
     if (!_btnBackView)
     {
-        _btnBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 40)];
+        _btnBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, btnBackViewH)];
         _btnBackView.backgroundColor = RGBCOLOR(242, 242, 242);
         NSArray *array = @[@"所有区域", @"所有工种", @"接单量"];
         for (int i=0; i<3; i++)
@@ -292,24 +293,24 @@ typedef enum : NSUInteger {
             UITapGestureRecognizer *tapGestureBtnView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchBtnView:)];
             [btnView addGestureRecognizer:tapGestureBtnView];
             [_btnBackView addSubview:btnView];
-            UIImageView *arrowDownImg = [[UIImageView alloc] initWithFrame:CGRectMake(kMainScreenWidth/3-16, 16, 13, 8)];
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/6-30, 15, 50, 15)];
+            UIImageView *arrowDownImg = [[UIImageView alloc] initWithFrame:CGRectMake(titleLabel.right+2, 20, 13, 8)];
             arrowDownImg.image = [UIImage imageNamed:@"arrowDown"];
             [btnView addSubview:arrowDownImg];
-            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, kMainScreenWidth/3, 20)];
             titleLabel.backgroundColor = [UIColor clearColor];
             titleLabel.text = [array objectAtIndex:i];
-            titleLabel.textAlignment = NSTextAlignmentCenter;
+            titleLabel.textAlignment = NSTextAlignmentRight;
             titleLabel.font = kFont15;
             titleLabel.tag = i+100;
             [btnView addSubview:titleLabel];
             if (i!=0)
             {
-                UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(kMainScreenWidth/3*i, 5, 0.5, 30)];
+                UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(kMainScreenWidth/3*i, 5, 0.5, _btnBackView.bottom-10)];
                 lineView.backgroundColor = kLineColor;
                 [_btnBackView addSubview:lineView];
             }
         }
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 39.5, kMainScreenWidth, 0.5)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, _btnBackView.bottom-0.5, kMainScreenWidth, 0.5)];
         lineView.backgroundColor = kLineColor;
         [_btnBackView addSubview:lineView];
     }
@@ -429,7 +430,7 @@ typedef enum : NSUInteger {
 - (UIView *)maskingView
 {
     if (!_maskingView) {
-        _maskingView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight)];
+        _maskingView = [[UIView alloc] initWithFrame:CGRectMake(0, btnBackViewH, kMainScreenWidth, kMainScreenHeight)];
         _maskingView.backgroundColor = [UIColor grayColor];
         _maskingView.alpha = 0.5;
         _maskingView.userInteractionEnabled = YES;
