@@ -323,7 +323,10 @@ enum PickerType
                 }
             }
         }else{
-            _district = weakSelf.districtArray[0];
+            if(weakSelf.districtArray.count>0)
+            {
+                _district = weakSelf.districtArray[0];
+            }
         }
         
         //地址textField文字

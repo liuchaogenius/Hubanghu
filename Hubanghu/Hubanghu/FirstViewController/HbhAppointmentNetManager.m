@@ -158,7 +158,7 @@
 {
     NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                              orderInfo, sigInfo, @"RSA"];
-    NSString *strSchem = @"com.Hubanghu";
+    NSString *strSchem = @"com.hubanghu.hu8hu";
     MLOG(@"alipaystring= %@", orderString);
     [AlixLibService payOrder:orderString AndScheme:strSchem seletor:@selector(aliPayResult:) target:self];
 }
