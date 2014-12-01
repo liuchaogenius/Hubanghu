@@ -43,25 +43,25 @@ enum TextField_Type
 
 - (void)setUI
 {
-    UIView *whiteBackView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, kMainScreenWidth-40, 165)];
+    UIView *whiteBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 165+40)];
     whiteBackView.backgroundColor = [UIColor whiteColor];
     whiteBackView.layer.borderColor = [kLineColor CGColor];//[RGBCOLOR(207, 207, 207) CGColor];
     whiteBackView.layer.borderWidth = 1.0f;
-    whiteBackView.layer.cornerRadius = 4.0;
+    //whiteBackView.layer.cornerRadius = 4.0;
     [self.view addSubview:whiteBackView];
     
-    _oldPswTextField = [self customedTextFieldWithFrame:CGRectMake(5, 15, whiteBackView.bounds.size.width-10, 35)  andPlaceholder:@"原密码" andTag:TextField_oldPsw andReturnKeyType:UIReturnKeyNext];
+    _oldPswTextField = [self customedTextFieldWithFrame:CGRectMake(5+20, 15+20, whiteBackView.bounds.size.width-10-40, 35)  andPlaceholder:@"原密码" andTag:TextField_oldPsw andReturnKeyType:UIReturnKeyNext];
     [whiteBackView addSubview:self.oldPswTextField];
     
-    _aNewPswTextField = [self customedTextFieldWithFrame:CGRectMake(5, 65, whiteBackView.bounds.size.width-10, 35) andPlaceholder:@"新密码" andTag:TextField_newPsw andReturnKeyType:UIReturnKeyNext];
+    _aNewPswTextField = [self customedTextFieldWithFrame:CGRectMake(5+20, 65+20, whiteBackView.bounds.size.width-10-40, 35) andPlaceholder:@"新密码" andTag:TextField_newPsw andReturnKeyType:UIReturnKeyNext];
     self.aNewPswTextField.secureTextEntry = YES;
     [whiteBackView addSubview:self.aNewPswTextField];
     
-    _confirmPswTextField = [self customedTextFieldWithFrame:CGRectMake(5, 115, whiteBackView.bounds.size.width-10, 35) andPlaceholder:@"确认新密码" andTag:TextField_ConfirmPsw andReturnKeyType:UIReturnKeyGo];
+    _confirmPswTextField = [self customedTextFieldWithFrame:CGRectMake(5+20, 115+20, whiteBackView.bounds.size.width-10-40, 35) andPlaceholder:@"确认新密码" andTag:TextField_ConfirmPsw andReturnKeyType:UIReturnKeyGo];
     self.confirmPswTextField.secureTextEntry = YES;
     [whiteBackView addSubview:self.confirmPswTextField];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 188, 150, 25)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 205+5, 150, 25)];
     label.textColor = [UIColor lightGrayColor];
     label.text = @"至少6位的数字和字母组成";
     label.font = kFont11;
