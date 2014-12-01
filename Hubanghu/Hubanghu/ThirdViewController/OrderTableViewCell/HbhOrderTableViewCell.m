@@ -52,7 +52,7 @@
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-70, 10, 60, 20)];
         _priceLabel.textColor = KColor;
         _priceLabel.font = kFont14;
-        _priceLabel.text = @"￥110.00";
+        _priceLabel.text = @" ";
         _priceLabel.backgroundColor = [UIColor clearColor];
     }
     return _priceLabel;
