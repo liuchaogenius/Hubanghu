@@ -121,10 +121,9 @@ typedef enum : NSUInteger {
     firstInitview = YES;
     [self addTableViewTrag];
     [self getFisrtPage];
-    [self.view addSubview:self.activityIndicatorView];
-    [self.activityIndicatorView startAnimating];
-    
-    
+//    [self.view addSubview:self.activityIndicatorView];
+//    [self.activityIndicatorView startAnimating];
+    [SVProgressHUD show:YES offsetY:kMainScreenHeight/2.0];
 }
 
 -(HbhOrderManage *)orderManage
@@ -162,7 +161,8 @@ typedef enum : NSUInteger {
             default:
                 break;
         }
-        [self.activityIndicatorView stopAnimating];
+//        [self.activityIndicatorView stopAnimating];
+        [SVProgressHUD dismiss];
         [self.showOrderTableView reloadData];
     } andFailBlock:^{
 //        [self.view addSubview:self.failView];
@@ -311,7 +311,8 @@ typedef enum : NSUInteger {
 {
     _currentTab = (int)aBtn.tag - 10;
     [self.showOrderTableView reloadData];
-    [self.activityIndicatorView startAnimating];
+//    [self.activityIndicatorView startAnimating];
+    [SVProgressHUD show:YES offsetY:kMainScreenHeight/2.0];
     for (int i=0; i<3; i++)
     {
         UIButton *temBtn = (UIButton *)[self.view viewWithTag:i+10];
@@ -331,7 +332,8 @@ typedef enum : NSUInteger {
         }
         else{
             _isHaveData = YES;
-            [self.activityIndicatorView stopAnimating];
+//            [self.activityIndicatorView stopAnimating];
+            [SVProgressHUD dismiss];
 //            [self.failView removeFromSuperview];
             [self.showOrderTableView reloadData];
         }
@@ -344,7 +346,8 @@ typedef enum : NSUInteger {
         }
         else{
             _isHaveData = YES;
-            [self.activityIndicatorView stopAnimating];
+//            [self.activityIndicatorView stopAnimating];
+            [SVProgressHUD dismiss];
 //            [self.failView removeFromSuperview];
             [self.showOrderTableView reloadData];
         }
@@ -358,7 +361,8 @@ typedef enum : NSUInteger {
         else
         {
             _isHaveData = YES;
-            [self.activityIndicatorView stopAnimating];
+//            [self.activityIndicatorView stopAnimating];
+            [SVProgressHUD dismiss];
 //            [self.failView removeFromSuperview];;
             [self.showOrderTableView reloadData];
         }

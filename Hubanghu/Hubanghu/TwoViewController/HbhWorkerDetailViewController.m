@@ -17,6 +17,7 @@
 #import "HbhMakeAppointMentViewController.h"
 #import "HbhCommentViewController.h"
 #import "SVPullToRefresh.h"
+#import "SVProgressHUD.h"
 //RGBCOLOR(244, 244, 244);
 @interface HbhWorkerDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -54,14 +55,17 @@
     self.workDetailTableView.backgroundColor = RGBCOLOR(247, 247, 247);
     [self.view addSubview:self.workDetailTableView];
     
-    [self.view addSubview:self.activityView];
-    [self.activityView startAnimating];
+//    [self.view addSubview:self.activityView];
+//    [self.activityView startAnimating];
+    [SVProgressHUD show:YES offsetY:kMainScreenHeight/2.0];
+    
     [self addTableViewTrag];
     
     [self.workerDetailManage getWorkerDetailWithWorkerId:self.myWorkerId SuccBlock:^(HbhWorkerData *aData) {
         self.workerData = aData;
         [self.workDetailTableView reloadData];
-        [self.activityView stopAnimating];
+//        [self.activityView stopAnimating];
+        [SVProgressHUD dismiss];
     } and:^{
         
     }];
@@ -80,7 +84,8 @@
             [self.workerDetailManage getWorkerDetailWithWorkerId:self.myWorkerId SuccBlock:^(HbhWorkerData *aData) {
                 self.workerData = aData;
                 [self.workDetailTableView reloadData];
-                [self.activityView stopAnimating];
+//                [self.activityView stopAnimating];
+                [SVProgressHUD dismiss];
             } and:^{
                 
             }];

@@ -108,8 +108,9 @@ typedef enum : NSUInteger {
     self.showWorkerListTableView.backgroundColor = kViewBackgroundColor;
     [self.view addSubview:self.showWorkerListTableView];
     
-    [self.view addSubview:self.activityView];
-    [self.activityView startAnimating];
+//    [self.view addSubview:self.activityView];
+//    [self.activityView startAnimating];
+    [SVProgressHUD show:YES offsetY:kMainScreenHeight/2.0];
     [self addTableViewTrag];
     
 #pragma mark 网络请求
@@ -148,7 +149,8 @@ typedef enum : NSUInteger {
         if (self.workersArray.count==0) {
 //            [self.view addSubview:self.failView];
         }
-        [self.activityView stopAnimating];
+//        [self.activityView stopAnimating];
+        [SVProgressHUD dismiss];
         if (aAreaId!=-1 && aWorkTypeId!=-1 && aOrderId !=-1)
         {
             [self updateBtn];
@@ -470,7 +472,8 @@ typedef enum : NSUInteger {
             NSLog(@"%d", row);
             _dropLocationView.hidden = YES;
             [self.maskingView removeFromSuperview];
-            [self.activityView startAnimating];
+//            [self.activityView startAnimating];
+            [SVProgressHUD show:YES offsetY:kMainScreenHeight/2.0];
             HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:row];
             [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:-1 andOrderCountId:-1];
             UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
@@ -490,7 +493,8 @@ typedef enum : NSUInteger {
             NSLog(@"%d", row);
             _dropAreasView.hidden = YES;
             [self.maskingView removeFromSuperview];
-            [self.activityView startAnimating];
+//            [self.activityView startAnimating];
+            [SVProgressHUD show:YES offsetY:kMainScreenHeight/2.0];
             HbhAreas *model = [self.areasArray objectAtIndex:row];
             [self getWorkerListWithAreaId:model.areasIdentifier andWorkerTypeId:-1 andOrderCountId:-1];
             UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
@@ -509,7 +513,8 @@ typedef enum : NSUInteger {
             NSLog(@"%d", row);
             _dropWorkerTypesView.hidden = YES;
             [self.maskingView removeFromSuperview];
-            [self.activityView startAnimating];
+//            [self.activityView startAnimating];
+            [SVProgressHUD show:YES offsetY:kMainScreenHeight/2.0];
             HbhWorkerTypes *model = [self.workerTypeArray objectAtIndex:row];
             [self getWorkerListWithAreaId:-1 andWorkerTypeId:model.workerTypesIdentifier andOrderCountId:-1];
             UILabel *temLabel = (UILabel *)[self.view viewWithTag:101];
@@ -528,7 +533,8 @@ typedef enum : NSUInteger {
             NSLog(@"%d", row);
             _dropOrderCountView.hidden = YES;
             [self.maskingView removeFromSuperview];
-            [self.activityView startAnimating];
+//            [self.activityView startAnimating];
+            [SVProgressHUD show:YES offsetY:kMainScreenHeight/2.0];
             HbhOrderCounts *model = [self.orderCountArray objectAtIndex:row];
             [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:model.orderCountsIdentifier];
             UILabel *temLabel = (UILabel *)[self.view viewWithTag:102];
