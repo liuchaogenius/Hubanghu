@@ -109,6 +109,7 @@ enum CellTag_Type
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundView = nil;
+    //[tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLineEtched];
     tableView.tableHeaderView = self.fHeadView;
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
     [self updateUserHeadView];
@@ -214,6 +215,9 @@ enum CellTag_Type
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        
+            cell.layer.borderWidth = 0.6;
+            cell.layer.borderColor = [kLineColor CGColor];
             cell.contentView.backgroundColor = [UIColor whiteColor];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             cell.accessoryView.backgroundColor = [UIColor whiteColor];
