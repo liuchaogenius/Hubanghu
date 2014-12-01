@@ -156,7 +156,7 @@
     {
         CGRect viewFrame = CGRectMake(0, 0, 44, 44);//CGRectMake(0, 0, 88/2, 44);
         UIView *view = [[UIView alloc]initWithFrame:viewFrame];
-        CGRect buttonFrame = CGRectMake(0, (44-30)/2.0, 34, 30);//CGRectMake(-5, 0, 88/2, 44);
+        CGRect buttonFrame = CGRectMake(5, (44-30)/2.0, 34, 30);//CGRectMake(-5, 0, 88/2, 44);
         UIButton *button = [[UIButton alloc] initWithFrame:viewFrame];
         _leftButton = button;
         button.backgroundColor = kClearColor;

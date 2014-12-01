@@ -595,7 +595,10 @@ typedef enum : NSUInteger {
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell addSubview:lineView];
-        
+        if(kSystemVersion<7.0)
+        {
+            cell.contentView.backgroundColor = [UIColor whiteColor];
+        }
         return cell;
     }
     else

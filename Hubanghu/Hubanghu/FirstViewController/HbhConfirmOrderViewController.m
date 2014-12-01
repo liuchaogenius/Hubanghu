@@ -270,6 +270,10 @@
 		tf.text = _detailsInfo[i];
 		label.text = _detailsInfoTitle[i];
         tf.leftView = label;
+//        if(kSystemVersion<7.0)
+//        {
+//            cell.contentView.backgroundColor = [UIColor whiteColor];
+//        }
         return cell;
     }else if(indexPath.section == 1){
         //价格
@@ -284,6 +288,10 @@
             priceLabel.backgroundColor = [UIColor clearColor];
         }
         self.priceLabel.text = [NSString stringWithFormat:@"应付金额：%@",_detailsInfo[_detailsInfo.count-1]];
+//        if(kSystemVersion<7.0)
+//        {
+//            cell.contentView.backgroundColor = [UIColor whiteColor];
+//        }
         return cell;
         
     }else if(indexPath.section == 2){
@@ -294,12 +302,15 @@
             selectButton.tag = 100;
             [selectButton setBackgroundImage:[UIImage imageNamed:@"selectOff"] forState:UIControlStateNormal];
             [selectButton addTarget:self action:@selector(touchSelBtn) forControlEvents:UIControlEventTouchUpInside];
-            [cell.contentView addSubview:selectButton];
+            [cell addSubview:selectButton];
         }
         
         UIButton *selectButton = (UIButton *)[cell viewWithTag:100];
 #warning 今后待需要更多支付方式时在此 处理默认支付方式
-        if(indexPath.row == 0) [selectButton setBackgroundImage:[UIImage imageNamed:@"selectOn"] forState:UIControlStateNormal];
+        if(indexPath.row == 0)
+        {
+            [selectButton setBackgroundImage:[UIImage imageNamed:@"selectOn"] forState:UIControlStateNormal];
+        }
         //
 		cell.textLabel.text = [_payPathArr objectAtIndex:indexPath.row];
         if(!self.alipayLogoImgview)
@@ -317,6 +328,10 @@
             [self.alipayLogoImgview setImage:img];
             [cell addSubview:self.alipayLogoImgview];
         }
+//        if(kSystemVersion<7.0)
+//        {
+//            cell.contentView.backgroundColor = [UIColor whiteColor];
+//        }
         return cell;
 	}
     return nil;
