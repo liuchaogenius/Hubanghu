@@ -160,7 +160,7 @@ enum CellTag_Type
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    return 44;
 }
 
 #pragma mark headView
@@ -231,7 +231,7 @@ enum CellTag_Type
             //显示文字的label
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, kMainScreenWidth-40, cell.height)];
             [label setTextAlignment:NSTextAlignmentLeft];
-            [label setFont:kFont13];
+            [label setFont:kFont15];
             label.tag = klabelTag;
             label.backgroundColor = kClearColor;
             [cell.contentView addSubview:label];

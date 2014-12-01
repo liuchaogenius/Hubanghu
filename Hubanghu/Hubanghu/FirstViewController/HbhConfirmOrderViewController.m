@@ -229,7 +229,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	if (indexPath.section == 0) {
-		return 35;
+		return 40;
 	}else if(indexPath.section == 1){ //金额cell
 		return kPriceCellHeight;
     }else if (indexPath.section == 2){
