@@ -123,36 +123,61 @@
 }
 - (void)setLeftButton:(UIImage *)aImg title:(NSString *)aTitle target:(id)aTarget action:(SEL)aSelector
 {
-    
-    CGRect viewFrame = CGRectMake(0, 0, 44, 44);//CGRectMake(0, 0, 88/2, 44);
-    UIView *view = [[UIView alloc]initWithFrame:viewFrame];
-    CGRect buttonFrame = CGRectMake(-5, (44-30)/2.0, 34, 30);//CGRectMake(-5, 0, 88/2, 44);
-    UIButton *button = [[UIButton alloc] initWithFrame:viewFrame];
-    _leftButton = button;
-    button.backgroundColor = kClearColor;
-//    if(aImg)
-//    {
-//        [button setBackgroundImage:aImg forState:UIControlStateNormal];
-//    }
-    if(aTitle)
+    if(kSystemVersion>6.99)
     {
-        [button setTitle:aTitle forState:UIControlStateNormal];
-    }
-    [button addTarget:aTarget action:aSelector forControlEvents:UIControlEventTouchUpInside];
-    
-    if(aImg)
-    {
-        UIImageView *imgview = [[UIImageView alloc] initWithFrame:buttonFrame];
-        [imgview setImage:aImg];
-        [view addSubview:imgview];
-    }
-    
+        CGRect viewFrame = CGRectMake(0, 0, 44, 44);//CGRectMake(0, 0, 88/2, 44);
+        UIView *view = [[UIView alloc]initWithFrame:viewFrame];
+        CGRect buttonFrame = CGRectMake(-5, (44-30)/2.0, 34, 30);//CGRectMake(-5, 0, 88/2, 44);
+        UIButton *button = [[UIButton alloc] initWithFrame:viewFrame];
+        _leftButton = button;
+        button.backgroundColor = kClearColor;
+        if(aTitle)
+        {
+            [button setTitle:aTitle forState:UIControlStateNormal];
+        }
+        [button addTarget:aTarget action:aSelector forControlEvents:UIControlEventTouchUpInside];
+        
+        if(aImg)
+        {
+            UIImageView *imgview = [[UIImageView alloc] initWithFrame:buttonFrame];
+            [imgview setImage:aImg];
+            [view addSubview:imgview];
+        }
+        
 
-    [view addSubview:button];
-    
-    if(self.navigationController && self.navigationItem)
+        [view addSubview:button];
+        
+        if(self.navigationController && self.navigationItem)
+        {
+            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+        }
+    }
+    else
     {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+        CGRect viewFrame = CGRectMake(0, 0, 44, 44);//CGRectMake(0, 0, 88/2, 44);
+        UIView *view = [[UIView alloc]initWithFrame:viewFrame];
+        CGRect buttonFrame = CGRectMake(0, (44-30)/2.0, 34, 30);//CGRectMake(-5, 0, 88/2, 44);
+        UIButton *button = [[UIButton alloc] initWithFrame:viewFrame];
+        _leftButton = button;
+        button.backgroundColor = kClearColor;
+        if(aTitle)
+        {
+            [button setTitle:aTitle forState:UIControlStateNormal];
+        }
+        [button addTarget:aTarget action:aSelector forControlEvents:UIControlEventTouchUpInside];
+        
+        if(aImg)
+        {
+            UIImageView *imgview = [[UIImageView alloc] initWithFrame:buttonFrame];
+            [imgview setImage:aImg];
+            [view addSubview:imgview];
+        }
+        [view addSubview:button];
+        
+        if(self.navigationController && self.navigationItem)
+        {
+            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+        }
     }
 }
 

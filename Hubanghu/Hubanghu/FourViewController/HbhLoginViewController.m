@@ -111,7 +111,7 @@ enum TextField_Type
         whiteBackView.layer.cornerRadius = 4.0;
         [_loginView addSubview:whiteBackView];
         
-        self.phoneNumberTextField = [self customedTextFieldWithFrame:CGRectMake(5, 10, whiteBackView.bounds.size.width-10, 35) andPlaceholder:@"用户名/邮箱/手机号" andTag:TextField_phoneNumber andReturnKeyType:(UIReturnKeyNext)];
+        self.phoneNumberTextField = [self customedTextFieldWithFrame:CGRectMake(5, 10, whiteBackView.bounds.size.width-10, 35) andPlaceholder:@"手机号码" andTag:TextField_phoneNumber andReturnKeyType:(UIReturnKeyNext)];
         [whiteBackView addSubview:self.phoneNumberTextField];
         
         self.passwordTextField = [self customedTextFieldWithFrame:CGRectMake(5, 60, whiteBackView.bounds.size.width-10, 35) andPlaceholder:@"密码" andTag:TextField_password andReturnKeyType:UIReturnKeyGo];

@@ -70,6 +70,7 @@
     self.textField = [[UITextField alloc] initWithFrame:CGRectMake(backView.left+10, backView.top+5, pencilImgView.left-10-backView.left, 30)];
     self.textField.font = kFont15;
     self.textField.placeholder = @"输入用户名";
+    self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.textField.returnKeyType = UIReturnKeyDone;
     self.textField.text = [HbhUser sharedHbhUser].nickName;
     self.textField.delegate = self;

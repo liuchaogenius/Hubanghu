@@ -7,6 +7,7 @@
 //
 
 #import "HbhOrderTableViewCell.h"
+#import "SImageUtil.h"
 
 @implementation HbhOrderTableViewCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -30,8 +31,9 @@
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
         lineView.backgroundColor = kLineColor;
         [self addSubview:lineView];
-        
-        self.backgroundColor = RGBCOLOR(250, 250, 250);
+        UIImage *bgImg = [SImageUtil imageWithColor:RGBCOLOR(250, 250, 250) size:CGSizeMake(10, 10)];
+        bgImg = [bgImg resizableImageWithCapInsets:UIEdgeInsetsMake(3, 3, 3, 3)];
+        self.backgroundColor = [UIColor colorWithPatternImage:bgImg];
 //    }
     
     return self;
