@@ -74,11 +74,11 @@ typedef NS_ENUM(int, AmountDesc)
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self settitleLabel:strNavtitle];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = kViewBackgroundColor;
     scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-65)];
     scrollview.contentSize = CGSizeMake(kMainScreenWidth, 600);
     [self.view addSubview:scrollview];
-    scrollview.backgroundColor = RGBCOLOR(249, 249, 249);
+    scrollview.backgroundColor = kViewBackgroundColor;
     
     [self createHeadInstallDesView];
     [self getAppointInfo];

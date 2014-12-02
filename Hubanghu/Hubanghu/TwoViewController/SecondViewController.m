@@ -75,7 +75,7 @@ typedef enum : NSUInteger {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIImage *img = [SImageUtil imageWithColor:RGBCOLOR(234, 234, 234) size:CGSizeMake(10, 10)];
+    UIImage *img = [UIImage imageNamed:@"workBg"];
     img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
     self.view.backgroundColor = [UIColor colorWithPatternImage:img];
     [self settitleLabel:@"预约工人"];
@@ -415,7 +415,9 @@ typedef enum : NSUInteger {
         failLabel.textAlignment = NSTextAlignmentCenter;
         failLabel.textColor = [UIColor lightGrayColor];
         [_failView addSubview:failLabel];
-        _failView.backgroundColor = kViewBackgroundColor;
+        UIImage *img = [UIImage imageNamed:@"workBg"];
+        img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
+        _failView.backgroundColor = [UIColor colorWithPatternImage:img];
     }
     return _failView;
 }

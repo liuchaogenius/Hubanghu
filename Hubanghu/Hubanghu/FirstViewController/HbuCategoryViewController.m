@@ -124,7 +124,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = kViewBackgroundColor;
     //[self settitleLabel:@"加载中..."];
     if(self.cateId == 2)
     {
@@ -144,7 +144,7 @@
     }
 
     _tableView = [[UITableView alloc] init];
-    _tableView.backgroundColor = [UIColor whiteColor];
+    _tableView.backgroundColor = kViewBackgroundColor;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -285,6 +285,7 @@
     }
     
     [cell.rightImageButton addTarget:self action:@selector(touchImageButton:) forControlEvents:UIControlEventTouchUpInside];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 

@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self settitleLabel:@"我的二维码"];
-    self.view.backgroundColor = RGBCOLOR(249, 249, 249);
+    self.view.backgroundColor = kViewBackgroundColor;
     _UserPhotoImageView.layer.cornerRadius = _UserPhotoImageView.frame.size.height/2.0f;
     _UserPhotoImageView.layer.masksToBounds = YES;
     [_UserPhotoImageView setContentMode:UIViewContentModeScaleAspectFill];

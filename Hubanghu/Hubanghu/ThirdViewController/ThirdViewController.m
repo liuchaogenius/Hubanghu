@@ -98,7 +98,7 @@ typedef enum : NSUInteger {
 
 - (void)initView
 {
-    UIImage *img = [SImageUtil imageWithColor:RGBCOLOR(234, 234, 234) size:CGSizeMake(10, 10)];
+    UIImage *img = [UIImage imageNamed:@"ImgBg"];;
     img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
     self.view.backgroundColor = [UIColor colorWithPatternImage:img];
     [self settitleLabel:@"我的订单"];
@@ -118,7 +118,7 @@ typedef enum : NSUInteger {
     self.showOrderTableView.delegate = self;
     self.showOrderTableView.dataSource = self;
     self.showOrderTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.showOrderTableView.backgroundColor = kViewBackgroundColor;
+    self.showOrderTableView.backgroundColor = [UIColor colorWithPatternImage:img];
     [self.view addSubview:self.showOrderTableView];
     firstInitview = YES;
     [self addTableViewTrag];

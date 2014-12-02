@@ -31,7 +31,7 @@ enum TextField_Type
     [super viewDidLoad];
     //self.title = @"修改密码";
     [self settitleLabel:@"修改密码"];
-    self.view.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//
+    self.view.backgroundColor = kViewBackgroundColor;//
     [self setUI];
     
 }
