@@ -217,23 +217,30 @@ typedef enum : NSUInteger {
     
 
         [weakself.showWorkerListTableView addInfiniteScrollingWithActionHandler:^{
-            int64_t delayInSeconds = 2.0;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-            dispatch_after(popTime, dispatch_get_main_queue(), ^{
+            if(self.workersArray.count>0)
+            {
+                int64_t delayInSeconds = 2.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+                dispatch_after(popTime, dispatch_get_main_queue(), ^{
+                    [weakself.showWorkerListTableView.infiniteScrollingView stopAnimating];
+                    [self.workerListManage getNextPageWorerListSuccBlock:^(HbhData *aData) {
+                        NSMutableArray *insertIndexPaths = [NSMutableArray new];
+                        for (unsigned long i=self.workersArray.count; i<self.workersArray.count+aData.workers.count; i++) {
+                            NSIndexPath *indexpath = [NSIndexPath indexPathForRow:i inSection:0];
+                            [insertIndexPaths addObject:indexpath];
+                        }
+                        [self.workersArray addObjectsFromArray:aData.workers];
+                        [self.showWorkerListTableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+    //                    [self.showWorkerListTableView reloadData];
+                    } andFailBlock:^{
+                        [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
+                    }];
+                });
+            }
+            else
+            {
                 [weakself.showWorkerListTableView.infiniteScrollingView stopAnimating];
-                [self.workerListManage getNextPageWorerListSuccBlock:^(HbhData *aData) {
-                    NSMutableArray *insertIndexPaths = [NSMutableArray new];
-                    for (unsigned long i=self.workersArray.count; i<self.workersArray.count+aData.workers.count; i++) {
-                        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:i inSection:0];
-                        [insertIndexPaths addObject:indexpath];
-                    }
-                    [self.workersArray addObjectsFromArray:aData.workers];
-                    [self.showWorkerListTableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationFade];
-//                    [self.showWorkerListTableView reloadData];
-                } andFailBlock:^{
-                    [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
-                }];
-            });
+            }
         }];
 }
 
@@ -552,13 +559,19 @@ typedef enum : NSUInteger {
     }
     else
     {
-        return 4;
+        return 1;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    if (self.workersArray.count>0) {
+        return 60;
+    }
+    else
+    {
+        return self.showWorkerListTableView.frame.size.height;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -589,8 +602,8 @@ typedef enum : NSUInteger {
         }
         else
         {
-            cell.workerDistanceCountLabel.hidden = YES;
-            cell.workerDistanceLabel.hidden = YES;
+            cell.workerDistanceCountLabel.text=@"";
+            cell.workerDistanceLabel.text=@"";
         }
         if ([model.workTypeName isEqualToString:@""]||model.workTypeName==nil) {
             cell.workerTypeLabel.text = @"";
@@ -605,22 +618,25 @@ typedef enum : NSUInteger {
         {
             cell.contentView.backgroundColor = [UIColor whiteColor];
         }
+        if (model.totalscore && model.totalscore>=0) {
+            cell.workerScoreLabel.text = [NSString stringWithFormat:@"评分:%.1f", model.totalscore];
+        }
+        else
+        {
+            cell.workerScoreLabel.text=@"";
+        }
+        
         return cell;
     }
     else
     {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         cell.userInteractionEnabled=NO;
-        if (indexPath.row==3) {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-50, 20, 100, 20)];
-            label.backgroundColor = [UIColor clearColor];
-            label.text = @"暂时没有数据";
-            label.font = kFont14;
-            label.textColor = [UIColor lightGrayColor];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.backgroundColor = kClearColor;
-            [cell addSubview:label];
-        }
+//        if (indexPath.row==3) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-75, self.showWorkerListTableView.frame.size.height/2-75, 150, 150)];
+        imgView.image = [UIImage imageNamed:@"Hbh404a"];
+        [cell addSubview:imgView];
+//        }
         cell.backgroundColor = [UIColor clearColor];
         return cell;
     }

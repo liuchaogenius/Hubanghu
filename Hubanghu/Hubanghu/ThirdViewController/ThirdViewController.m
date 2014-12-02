@@ -221,12 +221,33 @@ typedef enum : NSUInteger {
     
 
     [weakself.showOrderTableView addInfiniteScrollingWithActionHandler:^{
-        int64_t delayInSeconds = 2.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+        NSArray *tableViewArray = [NSArray new];
+        switch (_currentTab) {
+            case currentTabOrderAll:
+                tableViewArray = self.allOrderArray;
+                break;
+            case currentTabOrderUndone:
+                tableViewArray = self.unDoneArray;
+                break;
+            case currentTabOrderAppraise:
+                tableViewArray = self.appraiseArray;
+                break;
+            default:
+                break;
+        }
+        if (tableViewArray.count>0) {
+            int64_t delayInSeconds = 2.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^{
+                [weakself.showOrderTableView.infiniteScrollingView stopAnimating];
+                [self getNextPage];
+            });
+        }
+        else
+        {
             [weakself.showOrderTableView.infiniteScrollingView stopAnimating];
-            [self getNextPage];
-        });
+        }
+        
     }];
 }
 
@@ -382,21 +403,26 @@ typedef enum : NSUInteger {
         {
             return self.appraiseArray.count;
         }
-        else if (_currentTab == currentTabOrderUndone)
+        else
         {
             return self.unDoneArray.count;
         }
     }
     else
     {
-        return 4;
+        return 1;
     }
-    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    if (!_isHaveData==NO) {
+        return 60;
+    }
+    else
+    {
+        return self.showOrderTableView.frame.size.height;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -433,16 +459,11 @@ typedef enum : NSUInteger {
     {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         cell.userInteractionEnabled=NO;
-        if (indexPath.row==3) {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-50, 20, 100, 20)];
-            label.backgroundColor = [UIColor clearColor];
-            label.text = @"暂时没有数据";
-            label.font = kFont14;
-            label.textColor = [UIColor lightGrayColor];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.backgroundColor = kClearColor;
-            [cell addSubview:label];
-        }
+//        if (indexPath.row==3) {
+            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-75, self.showOrderTableView.frame.size.height/2-75, 150, 150)];
+        imgView.image = [UIImage imageNamed:@"Hbh404a"];
+            [cell addSubview:imgView];
+//        }
         cell.backgroundColor = [UIColor clearColor];
         return cell;
     }

@@ -17,6 +17,7 @@ NSString *const kHbhWorkersCase = @"case";
 NSString *const kHbhWorkersWorkingAge = @"workingAge";
 NSString *const kHbhWorkersComment = @"comment";
 NSString *const kHbhWorkersDistance = @"distance";
+NSString *const kHbhworkersTotalscore = @"totalscore";
 
 
 @interface HbhWorkers ()
@@ -50,6 +51,7 @@ NSString *const kHbhWorkersDistance = @"distance";
     // This check serves to make sure that a non-NSDictionary object
     // passed into the model class doesn't break the parsing.
     if(self && [dict isKindOfClass:[NSDictionary class]]) {
+        self.totalscore = [[self objectOrNilForKey:kHbhworkersTotalscore fromDictionary:dict] doubleValue];
             self.name = [self objectOrNilForKey:kHbhWorkersName fromDictionary:dict];
             self.workersIdentifier = [[self objectOrNilForKey:kHbhWorkersId fromDictionary:dict] intValue];
             self.workTypeName = [self objectOrNilForKey:kHbhWorkersWorkTypeName fromDictionary:dict];
@@ -69,6 +71,7 @@ NSString *const kHbhWorkersDistance = @"distance";
 - (NSDictionary *)dictionaryRepresentation
 {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
+    [mutableDict setValue:[NSNumber numberWithDouble:self.totalscore] forKey:kHbhworkersTotalscore];
     [mutableDict setValue:[NSNumber numberWithDouble:self.distance] forKey:kHbhWorkersDistance];
     [mutableDict setValue:self.name forKey:kHbhWorkersName];
     [mutableDict setValue:[NSNumber numberWithInt:self.workersIdentifier] forKey:kHbhWorkersId];

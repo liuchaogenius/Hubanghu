@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *workerIcon;
 @property (strong, nonatomic) IBOutlet UILabel *workerDistanceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *workerDistanceCountLabel;
+@property (strong, nonatomic) IBOutlet UILabel *workerScoreLabel;
 
 - (instancetype)init;
 @end
