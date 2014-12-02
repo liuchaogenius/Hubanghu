@@ -21,7 +21,7 @@
 #import "HbhFirstPageManager.h"
 #import "IntroduceViewController.h"
 #import "UIImageView+WebCache.h"
-
+#import "SImageUtil.h"
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
 #define KimageHeight kMainScreenWidth*381/1080.0f+kBlankWidth
 enum CateId_Type
@@ -97,7 +97,9 @@ enum CateId_Type
     [self creatRightBtn];
     //[self setRightButton:nil title:@"城市" target:self action:@selector(showSelCityVC)];
     [self settitleLabel:@"户帮户"];
-    self.view.backgroundColor = kViewBackgroundColor;
+    UIImage *img = [SImageUtil imageWithColor:RGBCOLOR(234, 234, 234) size:CGSizeMake(10, 10)];
+    img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:img];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-49) style:UITableViewStylePlain];
     MLOG(@"%lf",self.tableView.height);
     [self.view addSubview:self.tableView];
@@ -105,7 +107,7 @@ enum CateId_Type
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[HbhFirstVCCell class] forCellReuseIdentifier:@"FirstVCCell"];
-    self.tableView.backgroundColor = kViewBackgroundColor;//[UIColor whiteColor];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:img];//[UIColor whiteColor];
     //定位
     [self localtion];
     //顶部ad

@@ -15,7 +15,7 @@
 #import "HbhOrderModel.h"
 #import "HbhUser.h"
 #import "SVProgressHUD.h"
-
+#import "SImageUtil.h"
 typedef enum : NSUInteger {
     currentTabOrderAll = 0,
     currentTabOrderUndone,
@@ -98,7 +98,9 @@ typedef enum : NSUInteger {
 
 - (void)initView
 {
-    self.view.backgroundColor = kViewBackgroundColor;
+    UIImage *img = [SImageUtil imageWithColor:RGBCOLOR(234, 234, 234) size:CGSizeMake(10, 10)];
+    img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:img];
     [self settitleLabel:@"我的订单"];
     if (!self.paramCurrentTab)
     {
@@ -461,7 +463,7 @@ typedef enum : NSUInteger {
         cell.userInteractionEnabled=NO;
 //        if (indexPath.row==3) {
             UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-75, self.showOrderTableView.frame.size.height/2-75, 150, 150)];
-        imgView.image = [UIImage imageNamed:@"Hbh404a"];
+        imgView.image = [UIImage imageNamed:@"orderNoData"];
             [cell addSubview:imgView];
 //        }
         cell.backgroundColor = [UIColor clearColor];

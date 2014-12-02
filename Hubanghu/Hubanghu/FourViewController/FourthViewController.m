@@ -16,7 +16,7 @@
 #import "HbhChangePswViewController.h"
 #import "ThirdViewController.h"
 #import "HbhModifyUserDetailViewController.h"
-
+#import "SImageUtil.h"
 #define KSetionNumber 5
 #define kcornerRadius 4
 #define kHeaderHeight 114
@@ -115,8 +115,11 @@ enum CellTag_Type
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
     [self updateUserHeadView];
     [self.view addSubview:self.tableView];
-    self.view.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//
-    self.tableView.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//
+    UIImage *img = [SImageUtil imageWithColor:RGBCOLOR(234, 234, 234) size:CGSizeMake(10, 10)];
+    img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:img];
+    //self.view.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:img];//kViewBackgroundColor;//
     
 }
 

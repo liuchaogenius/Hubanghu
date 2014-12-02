@@ -18,7 +18,7 @@
 #import "HbuAreaListModelAreas.h"
 #import "SVProgressHUD.h"
 #define btnBackViewH 45
-
+#import "SImageUtil.h"
 typedef enum : NSUInteger {
     btnViewTypeAreas=10,
     btnViewTypeWorkerTypes,
@@ -75,6 +75,9 @@ typedef enum : NSUInteger {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIImage *img = [SImageUtil imageWithColor:RGBCOLOR(234, 234, 234) size:CGSizeMake(10, 10)];
+    img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:img];
     [self settitleLabel:@"预约工人"];
     [self.view addSubview:self.btnBackView];
     
@@ -105,7 +108,7 @@ typedef enum : NSUInteger {
     self.showWorkerListTableView.delegate = self;
     self.showWorkerListTableView.dataSource = self;
     self.showWorkerListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.showWorkerListTableView.backgroundColor = kViewBackgroundColor;
+    self.showWorkerListTableView.backgroundColor = [UIColor colorWithPatternImage:img];
     [self.view addSubview:self.showWorkerListTableView];
     
 //    [self.view addSubview:self.activityView];
