@@ -624,7 +624,7 @@ typedef enum : NSUInteger {
             cell.contentView.backgroundColor = [UIColor whiteColor];
         }
         if (model.totalscore && model.totalscore>=0) {
-            cell.workerScoreLabel.text = [NSString stringWithFormat:@"评分:%.1f", model.totalscore];
+            cell.workerScoreLabel.text = [NSString stringWithFormat:@"评分:%.1f分", model.totalscore];
         }
         else
         {

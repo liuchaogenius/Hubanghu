@@ -28,15 +28,25 @@
         [self addSubview:self.priceLabel];
         [self addSubview:self.lineView];
         
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
-        lineView.backgroundColor = kLineColor;
-        [self addSubview:lineView];
+        underlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
+        [self addSubview:underlineView];
+        underlineView.backgroundColor = [UIColor clearColor];
         UIImage *bgImg = [SImageUtil imageWithColor:RGBCOLOR(250, 250, 250) size:CGSizeMake(10, 10)];
         bgImg = [bgImg resizableImageWithCapInsets:UIEdgeInsetsMake(3, 3, 3, 3)];
         self.backgroundColor = [UIColor colorWithPatternImage:bgImg];
 //    }
     
     return self;
+}
+
+- (void)setLineKColor
+{
+    underlineView.backgroundColor = kLineColor;
+}
+
+- (void)setLineClear
+{
+    underlineView.backgroundColor = [UIColor clearColor];
 }
 
 - (UIView *)lineView
@@ -134,6 +144,7 @@
 - (void)setCellWithModel:(HbhOrderModel *)aModel
 {
     self.nameLabel.text = aModel.name;
+    [self setLineClear];
     if(aModel.workerName && aModel.workerName.length>0)
     {
         self.workerNameLabel.text = aModel.workerName;
@@ -150,6 +161,7 @@
     switch ((int)aModel.status) {
         case 0:
             self.orderStateLabel.text = @"待付款";
+            [self setLineKColor];
             break;
         case 1:
             self.orderStateLabel.text = @"已付款";
@@ -159,6 +171,7 @@
             break;
         case 3:
             self.orderStateLabel.text = @"待评价";
+            [self setLineKColor];
             break;
         case 4:
             self.orderStateLabel.text = @"安装失败";
