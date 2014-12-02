@@ -24,11 +24,6 @@
 #import "UMSocialSnsPlatformManager.h"
 @interface RootTabBarController ()
 {
-//    UINavigationController *firstNav;
-//    UINavigationController *secondNav;
-//    UINavigationController *thirdNav;
-//    UINavigationController *fourthNav;
-    
     LSNavigationController *firstNav;
     LSNavigationController *secondNav;
     LSNavigationController *thirdNav;
@@ -96,8 +91,6 @@
 
 - (void)initTabBarItem
 {
-    //[[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:[NSString stringWithFormat:@"TabBarItem_sel"]]];
-    //if(kSystemVersion<7.0)
     UIImage *img = [SImageUtil imageWithColor:RGBCOLOR(249, 249, 249) size:CGSizeMake(10, 10)];
     {
         UIImage *tabimg = [img resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
@@ -128,11 +121,6 @@
     MLOG(@"tabbarHeight=%f",self.tabBar.frame.size.height);
 
 }
-
-//- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-//{
-//    tabBar.selectedItem.title = @" ";
-//}
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {

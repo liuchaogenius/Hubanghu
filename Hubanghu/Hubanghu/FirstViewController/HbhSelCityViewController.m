@@ -333,8 +333,9 @@ enum kActionSheet_Type
 //back
 - (void)touchBackItem
 {
+    self.isOnScreen = NO;
     [self dismissViewControllerAnimated:YES completion:^{
-        self.isOnScreen = NO;
+        
     }];
 }
 #pragma mark 定位cell显示的信息
@@ -359,6 +360,7 @@ enum kActionSheet_Type
         {
             if (buttonIndex == 0) {
                 [HbuAreaLocationManager sharedManager].currentAreas = _selectArea;
+                self.isOnScreen = NO;
                 [self dismissViewControllerAnimated:YES completion:nil];
                 //[self.navigationController popViewControllerAnimated:YES];
             }
