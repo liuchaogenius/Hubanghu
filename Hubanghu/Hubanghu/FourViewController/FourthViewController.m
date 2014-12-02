@@ -109,6 +109,7 @@ enum CellTag_Type
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundView = nil;
+    [tableView setSeparatorColor:[UIColor clearColor]];
     //[tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLineEtched];
     tableView.tableHeaderView = self.fHeadView;
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
@@ -173,12 +174,12 @@ enum CellTag_Type
         
         return self.logOutHeadView;
     }else{
-        if (kSystemVersion < 7.0) {
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 10)];
-            view.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
-            return view;
-        }
-        return nil;
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 10)];
+        view.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 10, kMainScreenWidth, 0.5)];
+        line.backgroundColor = kLineColor;
+        [view addSubview:line];
+        return view;
     }
 }
 
@@ -215,9 +216,7 @@ enum CellTag_Type
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-        
-            cell.layer.borderWidth = 0.6;
-            cell.layer.borderColor = [kLineColor CGColor];
+            
             cell.contentView.backgroundColor = [UIColor whiteColor];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             cell.accessoryView.backgroundColor = [UIColor whiteColor];
@@ -251,6 +250,9 @@ enum CellTag_Type
             numberLabel.tag = kNumberLabelTag;
             _numberLabel = numberLabel;
             [cell.contentView addSubview:numberLabel];
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, cell.height-0.5, kMainScreenWidth, 0.5)];
+            line.backgroundColor = kLineColor;
+            [cell addSubview:line];
         }
         NSArray *array = self.listArray[indexPath.section-1];
         NSDictionary *dic = array[indexPath.row];
