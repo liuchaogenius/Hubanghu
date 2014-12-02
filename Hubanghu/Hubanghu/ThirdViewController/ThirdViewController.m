@@ -237,7 +237,7 @@ typedef enum : NSUInteger {
             default:
                 break;
         }
-        if (tableViewArray.count>0) {
+        if (tableViewArray.count==20) {
             int64_t delayInSeconds = 2.0;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^{
