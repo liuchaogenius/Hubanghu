@@ -35,8 +35,8 @@
     CGFloat btnWidth = kMainScreenWidth/2-2.5;
     CGFloat btnHeight = btnWidth/534*368;
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 50)];
-    label.text = @"请选择要预约的项目 :";
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, kMainScreenWidth, 50)];
+    label.text = @"请选择要预约的项目:";
     label.font = kFont17;
     [self.view addSubview:label];
     

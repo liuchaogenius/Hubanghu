@@ -441,7 +441,8 @@
                                  // Make sure to remove the overlay window from the list of windows
                                  // before trying to find the key window in that same list
                                  NSMutableArray *windows = [[NSMutableArray alloc] initWithArray:[UIApplication sharedApplication].windows];
-                                 [windows removeObject:overlayWindow];
+                                 [overlayWindow removeFromSuperview];
+                                 //[windows removeObject:overlayWindow];
                                  overlayWindow = nil;
                                  
                                  [windows enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(UIWindow *window, NSUInteger idx, BOOL *stop) {

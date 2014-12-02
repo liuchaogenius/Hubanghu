@@ -13,7 +13,7 @@
 #import "AlixPayResult.h"
 #import "DataSigner.h"
 #import "JSONKit.h"
-
+#import "SVProgressHUD.h"
 @implementation HbhAppointmentNetManager
 
 - (void)commitOrderWith:(HubOrder *)order succ:(void (^)(NSDictionary *))succ failure:(void (^)())failure{
@@ -160,6 +160,7 @@
                              orderInfo, sigInfo, @"RSA"];
     NSString *strSchem = @"com.hubanghu.hu8hu";
     MLOG(@"alipaystring= %@", orderString);
+    [SVProgressHUD dismiss];
     [AlixLibService payOrder:orderString AndScheme:strSchem seletor:@selector(aliPayResult:) target:self];
 }
 

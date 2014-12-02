@@ -408,7 +408,7 @@ typedef enum : NSUInteger {
             cell = [[HbhOrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        if(kSystemVersion<7.0)
+        //if(kSystemVersion<7.0)
         {
             cell.contentView.backgroundColor = [UIColor whiteColor];
         }

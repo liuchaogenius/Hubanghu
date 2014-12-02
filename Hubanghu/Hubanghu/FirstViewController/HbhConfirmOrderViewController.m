@@ -427,6 +427,7 @@
 - (void)aliPayresult:(NSNotification *)aNotification
 {
     MLOG(@"%@",aNotification);
+    [SVProgressHUD dismiss];
     NSString *strNotification = [aNotification object];
     NSString *strEncode = [strNotification stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if(strEncode && strEncode.length > 0)

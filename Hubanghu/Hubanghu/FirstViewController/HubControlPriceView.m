@@ -256,7 +256,7 @@
     countTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     countTextField.returnKeyType = UIReturnKeyDone;
     countTextField.font = kFont13;
-    countTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    countTextField.keyboardType = UIKeyboardTypeNumberPad;//UIKeyboardTypeNumbersAndPunctuation;
     countTextField.textAlignment = NSTextAlignmentLeft;
     countTextField.layer.borderWidth = 1;
     countTextField.layer.borderColor = kBorderColor.CGColor;
