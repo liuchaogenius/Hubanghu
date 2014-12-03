@@ -16,6 +16,7 @@
 #import "HbhUser.h"
 #import "SVProgressHUD.h"
 #import "SImageUtil.h"
+#define btnBackViewH 45
 typedef enum : NSUInteger {
     currentTabOrderAll = 0,
     currentTabOrderUndone,
@@ -105,12 +106,12 @@ typedef enum : NSUInteger {
     if (!self.paramCurrentTab)
     {
         _currentTab = currentTabOrderAll;
-        self.showOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight-64-40-49)];
+        self.showOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, btnBackViewH, kMainScreenWidth, kMainScreenHeight-62-btnBackViewH-49)];
     }
     else
     {
         _currentTab = self.paramCurrentTab;
-        self.showOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight-64-40)];
+        self.showOrderTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, btnBackViewH, kMainScreenWidth, kMainScreenHeight-62-btnBackViewH)];
     }
     
     [self.view addSubview:self.btnBackView];
@@ -268,7 +269,7 @@ typedef enum : NSUInteger {
     if (!_selectedLineView)
     {
         _selectedLineView = [[UIView alloc] init];
-        [_selectedLineView setFrame:CGRectMake(kMainScreenWidth/3*_currentTab+10, self.btnBackView.bottom-1, kMainScreenWidth/3-20, 1)];
+        [_selectedLineView setFrame:CGRectMake(kMainScreenWidth/3*_currentTab+10, btnBackViewH-1, kMainScreenWidth/3-20, 1)];
         _selectedLineView.backgroundColor = KColor;
     }
     return _selectedLineView;
@@ -278,12 +279,12 @@ typedef enum : NSUInteger {
 {
     if (!_btnBackView)
     {
-        _btnBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 40)];
+        _btnBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, btnBackViewH)];
         _btnBackView.backgroundColor = RGBCOLOR(247, 247, 247);
         NSArray *array = @[@"全部订单", @"未完成", @"待评价"];
         for (int i=0; i<3; i++)
         {
-            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth/3*i, 0, kMainScreenWidth/3, self.btnBackView.bottom)];
+            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth/3*i, 0, kMainScreenWidth/3, btnBackViewH)];
             btn.titleLabel.font = kFont15;
             [btn setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -304,7 +305,7 @@ typedef enum : NSUInteger {
         }
         [_btnBackView addSubview:self.selectedLineView];
         
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 39.5, kMainScreenWidth, 0.5)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, btnBackViewH-0.5, kMainScreenWidth, 0.5)];
         lineView.backgroundColor = kLineColor;
         [_btnBackView addSubview:lineView];
     }
