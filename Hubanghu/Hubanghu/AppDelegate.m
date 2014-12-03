@@ -16,6 +16,9 @@
 #import "UMSocialWechatHandler.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate>
+{
+    int Type;
+}
 @property (strong, nonatomic) NSString *updateUrl;
 @end
 
@@ -55,7 +58,7 @@
 
     [NetManager requestWith:nil url:url method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         NSDictionary *dataDict = [successDict objectForKey:@"data"];
-        int Type = [[dataDict objectForKey:@"type"] intValue];
+        Type = [[dataDict objectForKey:@"type"] intValue];
         ////"type":0/*0不更新，1强制更新，2可选更新*/
         if (Type == 1) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发现新版本，请您先更新版本" message:@"点击“确定”开始更新" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -78,9 +81,11 @@
         
         NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%d", 945963130];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-        
-        NSMutableArray *ary = [NSMutableArray array];
-        [ary addObject:nil];
+        if(Type == 1)
+        {
+            NSMutableArray *ary = [NSMutableArray array];
+            [ary addObject:nil];
+        }
     }
 }
 #pragma mark 注册devicetoken
