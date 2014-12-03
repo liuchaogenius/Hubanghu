@@ -27,7 +27,10 @@
 #define MLOG(...)  printf("\n\t<%s line%d>\n%s\n", __FUNCTION__,__LINE__,[[NSString stringWithFormat:__VA_ARGS__] UTF8String])
 #else
 #define MLOG(...)
-#define NSLog(...) {}
+#endif
+
+#if !defined(DEBUG)
+#define NSLog(...)
 #endif
 
 #define kViewBackgroundColor RGBCOLOR(234,234,234) // 所有屏幕底色

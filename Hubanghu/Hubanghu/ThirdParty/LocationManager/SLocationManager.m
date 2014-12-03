@@ -12,14 +12,6 @@
 #define MIN_VALUE 1e-8  //根据需要调整这个值
 #define IS_DOUBLE_ZERO(d) (abs(d) < MIN_VALUE)
 
-#ifdef DEBUG
-#define MLOG(...)  printf("\n\t<%s line%d>\n%s\n", __FUNCTION__,__LINE__,[[NSString stringWithFormat:__VA_ARGS__] UTF8String])
-
-#else
-#define MLOG(...)
-#define NSLog(...) {}
-#endif
-
 static SLocationManager *myLocationObj = nil;
 @implementation SLocationManager
 @synthesize myLocationManager;
