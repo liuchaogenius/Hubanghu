@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-
+@class HbhCategory;
 @protocol controlPriceDelegate <NSObject>
 
 - (void)priceChangedWithPrice:(NSString *)price; //和vc交互 修改价格
@@ -19,8 +18,9 @@
 
 @property(nonatomic, weak) id<controlPriceDelegate> delegate;
 
-- (void)setCountType:(int)aType;// 1:(数量),2:（面积）,3:（长度)
-- (void)setCateId:(NSString *)cateId;
+- (instancetype)initWithFrame:(CGRect)frame categoryModel:(HbhCategory *)cateModel;
+//- (void)setCountType:(int)aType;// 1:(数量),2:（面积）,3:（长度)
+//- (void)setCateId:(NSString *)cateId;
 - (void)allTextFieldsResignFirstRespond;
 
 - (BOOL)infoCheck;

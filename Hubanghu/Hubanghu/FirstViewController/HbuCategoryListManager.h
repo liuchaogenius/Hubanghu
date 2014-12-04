@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@class CategoryInfoModel;
+@class HbhCategory;
 @interface HbuCategoryListManager : NSObject
 
-+ (void)getCategroryInfoWithCateId:(double)cateId WithSuccBlock:(void(^)(CategoryInfoModel *cModel))aSuccBlock and:(void(^)(void))aFailBlock;
++ (void)getCategroryInfoWithCateId:(double)cateId WithSuccBlock:(void(^)(HbhCategory *cModel))aSuccBlock and:(void(^)(void))aFailBlock;
 
 @end

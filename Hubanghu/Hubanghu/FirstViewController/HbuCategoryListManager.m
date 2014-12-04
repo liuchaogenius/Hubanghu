@@ -10,17 +10,19 @@
 #import "NetManager.h"
 #import "CategoryInfoModel.h"
 #import "CategoryChildInfoModel.h"
+#import "HbhCategory.h"
 
 @implementation HbuCategoryListManager
 
-+ (void)getCategroryInfoWithCateId:(double)cateId WithSuccBlock:(void(^)(CategoryInfoModel *cModel))aSuccBlock and:(void(^)(void))aFailBlock{
++ (void)getCategroryInfoWithCateId:(double)cateId WithSuccBlock:(void(^)(HbhCategory *cModel))aSuccBlock and:(void(^)(void))aFailBlock{
     NSString *getCategoryUrl = nil;
     NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:cateId] forKey:@"cateId"];
     kHubRequestUrl(@"getCategory.ashx",getCategoryUrl);
     [NetManager requestWith:dic url:getCategoryUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
         NSDictionary *dataDic = successDict[@"data"];
         if (aSuccBlock) {
-            aSuccBlock([CategoryInfoModel modelObjectWithDictionary:dataDic]);
+            //aSuccBlock([CategoryInfoModel modelObjectWithDictionary:dataDic]);
+            aSuccBlock([HbhCategory modelObjectWithDictionary:dataDic]);
         }
     } failure:^(NSDictionary *failDict, NSError *error) {
         MLOG(@"%@",error.localizedDescription);

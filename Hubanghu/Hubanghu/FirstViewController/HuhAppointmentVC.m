@@ -18,6 +18,7 @@
 #import "SVProgressHUD.h"
 #import "HubOrder.h"
 #import "HbhSelCityViewController.h"
+#import "HbhCategory.h"
 
 
 typedef NS_ENUM(int, AmountDesc)
@@ -31,7 +32,7 @@ typedef NS_ENUM(int, AmountDesc)
     NSString *strNavtitle;
     NSString *strCateId;
     HbhWorkers *workerModel;
-    NSString *strInstallDesc;
+    //NSString *strInstallDesc;
     AmountDesc amounttype;
     
     UIScrollView *scrollview;
@@ -43,9 +44,10 @@ typedef NS_ENUM(int, AmountDesc)
     UIButton *_selectWorkerBtn;
     
     UILabel *_totalPriceLabel;
-    BOOL _isRenovate;
+    BOOL _isDepthZero;//当depth=0 即类似二次刷新类 的标志
 }
 @property(strong, nonatomic) HbhAppointmentNetManager *manager;
+@property(strong, nonatomic) HbhCategory *cateModel;
 
 @end
 
@@ -69,11 +71,23 @@ typedef NS_ENUM(int, AmountDesc)
     return self;
 }
 
+- (instancetype)initWithCateModel:(HbhCategory *)model andWorker:(HbhWorkers *)worker
+{
+    if (self = [super init]) {
+        if (worker) {
+            workerModel = worker;
+        }
+        self.cateModel = model;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self settitleLabel:strNavtitle];
+    [self settitleLabel:self.cateModel.title];
+    [self setLeftButton:[UIImage imageNamed:@"back"] title:nil target:self action:@selector(touchBackBtn)];
     self.view.backgroundColor = kViewBackgroundColor;
     scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-65)];
     scrollview.contentSize = CGSizeMake(kMainScreenWidth, 600);
@@ -81,46 +95,20 @@ typedef NS_ENUM(int, AmountDesc)
     scrollview.backgroundColor = kViewBackgroundColor;
     
     [self createHeadInstallDesView];
-    [self getAppointInfo];
+    //[self getAppointInfo];
     [self creatControlPriceView];
     [self creatUserInfoView];
     [self creatToolBarView];
     
-    if(_isRenovate) [controlPriceView customedOfRenovate]; //二次翻新项目页面处理
+    [installDesView setContent:self.cateModel.desc.length ? self.cateModel.desc : @""];
+    
+    if(_isDepthZero && self.cateModel.cateId == kTwiceRenovationCateId) [controlPriceView customedOfRenovate]; //二次翻新项目页面处理
 }
 
-- (void)getAppointInfo
+- (void)setCustomedVCofDepthisZero//二次翻新的定制方法
 {
-    if(strCateId)
-    {
-        [self.manager getAppointmentInfoWith:strCateId succ:^(NSDictionary *succDic) {
-            strInstallDesc = [succDic objectForKey:@"desc"];
-            amounttype = [[succDic objectForKey:@"amountType"] intValue];
-            
-            [installDesView setContent:strInstallDesc];
-            [controlPriceView setCountType:amounttype];
-            //[_activityView stopAnimating];
-            //[_tableView reloadData];
-        } failure:^{
-            //[_activityView stopAnimating];
-   // #warning 获取失败了提醒用户
-        }];
-    }
-}
-
-- (void)setVCData:(NSString *)title cateId:(NSString *)cateId andWork:(HbhWorkers *)worker
-{
-    strNavtitle = title;
-    strCateId = cateId;
-    if (worker) {
-        workerModel = worker;
-    }
-}
-- (void)setCustomedVCofRenovateWithCateId:(NSString *)cateId //二次翻新的定制方法
-{
-    strNavtitle = @"二次翻新";
-    strCateId = cateId;
-    _isRenovate = YES;
+    //strNavtitle = @"二次翻新";
+    _isDepthZero = YES;
 }
 
 #pragma mark 构造页面
@@ -136,8 +124,7 @@ typedef NS_ENUM(int, AmountDesc)
 - (void)creatControlPriceView
 {
     if (!controlPriceView) {
-        controlPriceView = [[HubControlPriceView alloc] initWithFrame:CGRectMake(0, installDesView.bottom+10, kMainScreenWidth, 196.0+40)];
-        [controlPriceView setCateId:strCateId];
+        controlPriceView = [[HubControlPriceView alloc] initWithFrame:CGRectMake(0, installDesView.bottom+10, kMainScreenWidth, 196.0+40) categoryModel:self.cateModel];
         controlPriceView.delegate = self;
         [scrollview addSubview:controlPriceView];
     }
@@ -198,6 +185,16 @@ typedef NS_ENUM(int, AmountDesc)
 }
 
 #pragma mark - action
+
+- (void)touchBackBtn
+{
+    if (_isDepthZero) {//depth=0 类二次刷新cate的处理
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 - (void)touchSelectWorkerBtn
 {
     [self pickWorker];
@@ -224,7 +221,7 @@ typedef NS_ENUM(int, AmountDesc)
 #pragma mark 数据完整性检查
 - (BOOL)infoCheck
 {
-    if (!_isRenovate) {
+    if (!_isDepthZero) {
         if (![controlPriceView infoCheck]) {
             [SVProgressHUD showErrorWithStatus:@"请输入安装数量(㎡/个/长度)" cover:YES offsetY:kMainScreenHeight/2.0];
             return NO;
@@ -249,17 +246,9 @@ typedef NS_ENUM(int, AmountDesc)
 #pragma mark 提交订单,进入下个页面
 - (void)submitOrder
 {
-    /*时间测试
-    float times = [[userInfoView getTime] floatValue];
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:times];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
-    dateFormat.timeZone = [[NSTimeZone alloc] initWithName:@"GMT+8"];
-    MLOG(@"%@",[dateFormat stringFromDate:date]);
-     */
     MLOG(@"%@ %@",[userInfoView getAreaId],[userInfoView getLocation]);
     
-    NSDictionary *orderDic = @{@"cateId":strCateId,
+    NSDictionary *orderDic = @{@"cateId":[NSString stringWithFormat:@"%d",self.cateModel.cateId],
                                @"username":[userInfoView getUserName],
                                @"time":[userInfoView getTime],
                                @"amount":[controlPriceView getAmount],
@@ -273,7 +262,7 @@ typedef NS_ENUM(int, AmountDesc)
                                @"price":_totalPriceLabel.text,
                                //@"workerName":workerModel.name,
                                @"urgent":[controlPriceView getUrgent],
-                               @"name":strNavtitle};
+                               @"name":self.cateModel.title};
     NSMutableDictionary *mutDict = [NSMutableDictionary dictionaryWithDictionary:orderDic];
     if(workerModel && workerModel.workersIdentifier)
     {

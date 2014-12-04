@@ -324,12 +324,13 @@ enum CateId_Type
 #pragma mark 点击图片button进入对应type页面
 - (void)touchImageButton:(UIButton *)sender
 {
-    if (sender.tag == CateId_renovate) { //二次翻新
-        HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] init];
-        appointVC.hidesBottomBarWhenPushed = YES;
-        [appointVC setCustomedVCofRenovateWithCateId:[NSString stringWithFormat:@"%d",sender.tag]];
-        [self.navigationController pushViewController:appointVC animated:YES];
-    }else if (sender.tag == CateId_niceWorker){
+//    if (sender.tag == CateId_renovate) { //二次翻新
+//        HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] init];
+//        appointVC.hidesBottomBarWhenPushed = YES;
+//        [appointVC setCustomedVCofRenovateWithCateId:[NSString stringWithFormat:@"%d",sender.tag]];
+//        [self.navigationController pushViewController:appointVC animated:YES];
+//    }else
+    if (sender.tag == CateId_niceWorker){
         self.tabBarController.selectedIndex = 1;
     }else if (sender.tag != kBlankButtonTag) {
         [self.navigationController pushViewController:[[HbuCategoryViewController alloc] initWithCateId:sender.tag] animated:YES];

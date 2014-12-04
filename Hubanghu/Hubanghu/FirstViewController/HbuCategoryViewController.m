@@ -16,6 +16,7 @@
 #import "HbhUser.h"
 #import "SVPullToRefresh.h"
 #import "SVProgressHUD.h"
+#import "HbhCategory.h"
 
 #define kSgmBtnHeight 35
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
@@ -27,12 +28,13 @@
 @interface HbuCategoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIButton *_touchedButton;
+    HbhCategory *_selectCateModel;
 }
 @property (strong ,nonatomic) HbhWorkers *worker; //if！=nil 代表有预先确定的工人
 
 @property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) CategoryInfoModel *categoryInfoModel;
-@property (strong, nonatomic) CategoryChildInfoModel *categoryChildInfoModel;
+//@property (strong, nonatomic) CategoryInfoModel *categoryInfoModel;
+//@property (strong, nonatomic) CategoryChildInfoModel *categoryChildInfoModel;
 
 //分栏相关
 @property (strong, nonatomic) NSMutableArray *segmentButtonArray; //上方分栏
@@ -40,6 +42,10 @@
 @property (weak, nonatomic) UIButton *selectSgmButton;//记录选中的sgmBtm
 @property (assign, nonatomic) NSInteger sgmCount; //分栏数量,若=0，则表示不需要分栏
 @property (strong, nonatomic) UIView *selectLine; //橙色选择表示线
+//new changed
+@property (strong, nonatomic) HbhCategory *categoryModel;
+@property (strong, nonatomic) HbhCategory *categoryChildModel;
+@property (assign, nonatomic) NSInteger depth; //顶级分类确定层级，0.直接是产品跳转到订单页面（二次翻新用），1.无二级分类，直接出来产品，2.含二级分类，二级分类下的产品
 
 @end
 
@@ -58,13 +64,7 @@
 
 - (NSInteger)getSgmCount
 {
-    CategoryChildInfoModel *childCateModel = nil;
-    if(self.categoryInfoModel.child &&self.categoryInfoModel.child.count >1)
-    {
-        childCateModel = self.categoryInfoModel.child[0];
-    }
-    MLOG(@"%@",childCateModel);
-    _sgmCount = (childCateModel ? self.categoryInfoModel.child.count : 0);//判断是否多层
+    _sgmCount = self.depth == 2 ? self.categoryModel.child.count : 0;
     return _sgmCount;
 }
 
@@ -86,8 +86,9 @@
         //添加sgmButton
         CGFloat buttonWidth = (self.sgmCount>=5 ? kMainScreenWidth/5.0f : kMainScreenWidth/(float)self.sgmCount);
         for (int i = 0; i < self.sgmCount; i++) {
-            CategoryChildInfoModel *childModel = self.categoryInfoModel.child[i];
-            UIButton *sgmButton = [self customButtonWithFrame:CGRectMake(i*buttonWidth, 0, buttonWidth, kSgmBtnHeight) andTitle:childModel.title];
+            //CategoryChildInfoModel *childModel = self.categoryInfoModel.child[i];
+            _categoryChildModel = [HbhCategory modelObjectWithDictionary:self.categoryModel.child[i]];
+            UIButton *sgmButton = [self customButtonWithFrame:CGRectMake(i*buttonWidth, 0, buttonWidth, kSgmBtnHeight) andTitle:_categoryChildModel.title];
             sgmButton.tag = i + kSelectTagBase;//用tag%kSelectTagBase 来记录选中的分类
             if (i == 0) {
                 sgmButton.selected = YES; //默认选择第一个
@@ -104,7 +105,7 @@
 }
 
 
-- (instancetype)initWithCateId:(double)cateId
+- (instancetype)initWithCateId:(int)cateId
 {
     if (self = [super init]) {
         self.cateId = cateId;
@@ -113,7 +114,7 @@
     return self;
 }
 
-- (instancetype)initWithCateId:(double)cateId andWorker:(HbhWorkers *)worker
+- (instancetype)initWithCateId:(int)cateId andWorker:(HbhWorkers *)worker
 {
     if ((self = [self initWithCateId:cateId]) && worker) {
         self.worker = worker;
@@ -124,6 +125,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.depth = -1; //初始化depth
+    _sgmCount = 0;
+    
     self.view.backgroundColor = kViewBackgroundColor;
     //[self settitleLabel:@"加载中..."];
     if(self.cateId == 2)
@@ -147,9 +152,13 @@
     _tableView.backgroundColor = kViewBackgroundColor;
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 7)];
+    //whiteView.backgroundColor = [UIColor blackColor];
+    self.tableView.tableHeaderView = whiteView;
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    _sgmCount = 0;
     [self.tableView registerClass:[HbhCategoryCell class] forCellReuseIdentifier:@"Cell"];
+    [self.view addSubview:self.tableView];
+    [self addTableViewTrag];
     __weak HbuCategoryViewController *weakSelf = self;
     
     UIActivityIndicatorView *indictor = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -157,30 +166,58 @@
     [self.view addSubview:indictor];
     [indictor startAnimating];
     
-    [HbuCategoryListManager getCategroryInfoWithCateId:self.cateId WithSuccBlock:^(CategoryInfoModel *cModel) {
+    [HbuCategoryListManager getCategroryInfoWithCateId:self.cateId WithSuccBlock:^(HbhCategory *cModel) {
         [indictor stopAnimating];
-        weakSelf.categoryInfoModel = cModel;
-        //weakSelf.title = weakSelf.categoryInfoModel.title;
-        //[weakSelf settitleLabel:weakSelf.categoryInfoModel.title];
-        weakSelf.sgmCount = [weakSelf getSgmCount];
-        UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 7)];
-        //whiteView.backgroundColor = [UIColor blackColor];
-        weakSelf.tableView.tableHeaderView = whiteView;
-        [weakSelf.view addSubview:weakSelf.tableView];
-        
-        //判断是否需要分栏，并作处理
-        if (weakSelf.sgmCount) {
-            [weakSelf.view addSubview:weakSelf.sgmBtmScrollView];
-            
-        }
-        weakSelf.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight+0:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-kSgmBtnHeight : kMainScreenHeight-20-44) );
-        [weakSelf addTableViewTrag];
-        [weakSelf.tableView reloadData];
+        [weakSelf refreshUIwithModel:cModel];
     } and:^{
         //错误处理
         [indictor stopAnimating];
         [SVProgressHUD showErrorWithStatus:@"加载失败，请检查网络" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
+}
+
+- (void)refreshUIwithModel:(HbhCategory *)cModel// isFirstTimeL:(BOOL)isfirst;
+{
+    self.categoryModel = cModel;
+    self.depth = cModel.depth;
+    //依靠depth区分，顶级分类确定层级，0.直接是产品跳转到订单页面（二次翻新用），1.无二级分类，直接出来产品，2.含二级分类，二级分类下的产品
+    switch (self.depth) {
+        case 0:
+        {
+            //0.直接是产品跳转到订单页面（二次翻新用）
+            HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] initWithCateModel:self.categoryModel andWorker:self.worker];
+            [appointVC setCustomedVCofDepthisZero];
+            appointVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:appointVC animated:YES];
+            
+        }
+            break;
+        case 1:
+        {
+            //1.无二级分类，直接出来产品
+            [self settitleLabel:cModel.title];
+            
+            if(![self.tableView superview]) [self.view addSubview:self.tableView];
+            self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth,kMainScreenHeight-20-44);
+            
+            [self.tableView reloadData];
+        }
+            break;
+        case 2:
+        {
+            //2.含二级分类，二级分类下的产品
+            [self settitleLabel:cModel.title];
+            self.sgmCount = cModel.child.count;
+            if(![self.sgmBtmScrollView superview]) [self.view addSubview:self.sgmBtmScrollView];
+            self.tableView.frame = CGRectMake(0, 0+kSgmBtnHeight, kMainScreenWidth,kMainScreenHeight-20-44-kSgmBtnHeight);
+            if(![self.tableView superview])  [self.view addSubview:self.tableView];
+            //[self addTableViewTrag];
+            [self.tableView reloadData];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)addTableViewTrag
@@ -191,21 +228,8 @@
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             [weakSelf.tableView.pullToRefreshView stopAnimating];
-            [HbuCategoryListManager getCategroryInfoWithCateId:self.cateId WithSuccBlock:^(CategoryInfoModel *cModel) {
-                weakSelf.categoryInfoModel = cModel;
-                _sgmCount = [weakSelf getSgmCount];
-                if (weakSelf.sgmCount && !_sgmBtmScrollView) {
-                    [self.view addSubview:weakSelf.sgmBtmScrollView];
-                }
-                
-                //weakSelf.title = weakSelf.categoryInfoModel.title;
-                //[self settitleLabel:weakSelf.categoryInfoModel.title];
-                [weakSelf.view addSubview:weakSelf.tableView];
-                
-                //判断是否需要分栏，并作处理
-                
-                weakSelf.tableView.frame = CGRectMake(0, (self.sgmCount ? kSgmBtnHeight:0), kMainScreenWidth, (self.sgmCount ? kMainScreenHeight-20-44-kSgmBtnHeight : kMainScreenHeight-20-44) );
-                [weakSelf.tableView reloadData];
+            [HbuCategoryListManager getCategroryInfoWithCateId:self.cateId WithSuccBlock:^(HbhCategory *cModel) {
+                [weakSelf refreshUIwithModel:cModel];
             } and:nil];
         });
     }];
@@ -220,7 +244,7 @@
 #pragma mark Section Number
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (self.categoryInfoModel) {
+    if (self.categoryModel) {
         return 1;
     }else{
         return 0;
@@ -230,9 +254,16 @@
 #pragma mark 数据行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *childArray = (self.sgmCount ? (((CategoryChildInfoModel *)depth2CateModel).child) : self.categoryInfoModel.child);
-    MLOG(@"");
-    return childArray.count/2 + childArray.count%2;
+    if (self.depth == 1) {
+        return self.categoryModel.child.count/2 + self.categoryModel.child.count%2;
+    }else if (self.depth == 2){
+        NSArray *childArray = self.categoryModel.child;
+        _categoryChildModel = [HbhCategory modelObjectWithDictionary:childArray[self.selectSgmButton.tag % kSelectTagBase]];
+        return _categoryChildModel.child.count/2 +_categoryChildModel.child.count%2;
+        
+    }else{
+        return 0;
+    }
 }
 
 
@@ -249,19 +280,18 @@
     HbhCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     cell.rightImageButton.hidden = NO;
-    CategoryChildInfoModel *leftCateModel =(self.sgmCount ? [self childDepthThreeCateModelWithIndex:indexPath.row * 2] : self.categoryInfoModel.child[indexPath.row*2]);
     
+    HbhCategory *leftCateModel = (self.depth == 2 ? [self grandsonCateModelWithChildIndex:self.selectSgmButton.tag % kSelectTagBase grandsonIndex:indexPath.row*2] : [self childCateModelWithIndex:indexPath.row*2]);
+
     [cell.leftImageButton sd_setImageWithURL:[NSURL URLWithString:leftCateModel.imageUrl] forState:UIControlStateNormal];
     if (![cell respondsToSelector:@selector(touchImageButton:)]) {
         [cell.leftImageButton addTarget:self action:@selector(touchImageButton:) forControlEvents:UIControlEventTouchUpInside];
     }
-    cell.leftImageButton.tag = leftCateModel.cateId;
+    cell.leftImageButton.tag = indexPath.row*2;//leftCateModel.cateId;
     cell.leftTitleLable.text = leftCateModel.title;
     
     //当category总数为奇数个时，最后一排右侧部分处理
-    //self.categoryInfoModel.child.count%2 &&
-
-    if (((indexPath.row+1)*2 == (self.sgmCount ? ((CategoryChildInfoModel *)depth2CateModel).child.count+1 : self.categoryInfoModel.child.count+1))) {
+    if (((indexPath.row+1)*2 == (self.depth == 2 ? [self childCateModelWithIndex:self.selectSgmButton.tag % kSelectTagBase].child.count+1 : self.categoryModel.child.count+1))) {
 
         [cell.rightImageButton setImage:nil forState:UIControlStateNormal];
         cell.rightTitleLabel.text = @"";
@@ -269,18 +299,19 @@
         cell.rightImageButton.tag = kBlankButtonTag;
     
     }else{
-        CategoryChildInfoModel *rightCateModel;
+        HbhCategory *rightCateModel = (self.depth == 2 ? [self grandsonCateModelWithChildIndex:self.selectSgmButton.tag % kSelectTagBase grandsonIndex:indexPath.row * 2 + 1] : [self childCateModelWithIndex:indexPath.row * 2 + 1]);
+        /*
         if (self.sgmCount) {
             rightCateModel = [self childDepthThreeCateModelWithIndex:indexPath.row * 2 + 1];
         }else{
             rightCateModel = self.categoryInfoModel.child[indexPath.row*2 + 1];
-        }
+        }*/
         
         
         [cell.rightImageButton sd_setImageWithURL:[NSURL URLWithString:rightCateModel.imageUrl] forState:UIControlStateNormal ];
         
         [cell.rightImageButton addTarget:self action:@selector(touchImageButton:) forControlEvents:UIControlEventTouchUpInside];
-        cell.rightImageButton.tag = rightCateModel.cateId;
+        cell.rightImageButton.tag = indexPath.row*2+1;//rightCateModel.cateId;
         cell.rightTitleLabel.text = rightCateModel.title;
     }
     
@@ -307,13 +338,16 @@
 - (void)touchImageButton:(UIButton *)sender
 {
     _touchedButton = sender; //记录sender
-    double cateId = _touchedButton.tag;
-    if (cateId != kBlankButtonTag) {
+    int tag = _touchedButton.tag;
+    if (tag != kBlankButtonTag) {
+        _selectCateModel = nil;
+        _selectCateModel = self.depth == 2 ? [self grandsonCateModelWithChildIndex:self.selectSgmButton.tag % kSelectTagBase grandsonIndex:tag] : [self childCateModelWithIndex:tag];
         if(![HbhUser sharedHbhUser].isLogin)
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginForUserMessage object:[NSNumber numberWithBool:NO]];
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PushtoAppointVC) name:kLoginSuccessMessae object:nil];
         }else{
+            ;
             [self PushtoAppointVC];
         }
     }
@@ -323,12 +357,12 @@
 - (void)PushtoAppointVC
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessMessae object:nil];
-    if (_touchedButton) {
-        double cateId = _touchedButton.tag;
-        UILabel *titileLable = (UILabel *)[_touchedButton viewWithTag:kTitleLabelTag];
-        NSDictionary *infoDic = [NSDictionary dictionaryWithObjectsAndKeys:titileLable.text?:@"",@"title",[NSString stringWithFormat:@"%lf",cateId],@"cateId", nil];
-        HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] init];//WithTitle:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:self.worker];
-        [appointVC setVCData:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:self.worker];
+    if (_touchedButton && _selectCateModel) {
+        //double cateId = _touchedButton.tag;
+        //UILabel *titileLable = (UILabel *)[_touchedButton viewWithTag:kTitleLabelTag];
+        //NSDictionary *infoDic = [NSDictionary dictionaryWithObjectsAndKeys:titileLable.text?:@"",@"title",[NSString stringWithFormat:@"%lf",cateId],@"cateId", nil];
+        HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] initWithCateModel:_selectCateModel andWorker:self.worker];//WithTitle:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:self.worker];
+        //[appointVC setVCData:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:self.worker];
         appointVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:appointVC animated:YES];
     }
@@ -352,14 +386,24 @@
     return button;
 }
 
-//分栏下 返回选中种类下cateModel下 具体index的子cateModel
-- (CategoryChildInfoModel *)childDepthThreeCateModelWithIndex:(NSInteger)index
+//非分栏下，返回index子model
+- (HbhCategory *)childCateModelWithIndex:(NSInteger)index
 {
-    CategoryChildInfoModel *childModel = self.categoryInfoModel.child[self.selectSgmButton.tag % kSelectTagBase];
-    MLOG(@"%d",childModel.child.count)
-    ;
-    return [CategoryChildInfoModel modelObjectWithDictionary:childModel.child[index]];
+    NSArray *array = self.categoryModel.child;
+    if (index < array.count) {
+        return [HbhCategory modelObjectWithDictionary:self.categoryModel.child[index]];
+    }else{
+        return nil;
+    }
+    
 }
+////分栏下 返回选中cindex种类cateModel下 具体gindex的子cateModel
+- (HbhCategory *)grandsonCateModelWithChildIndex:(NSInteger)cIndex grandsonIndex:(NSInteger)gIndex
+{
+    HbhCategory *childCateModel = [HbhCategory modelObjectWithDictionary:self.categoryModel.child[cIndex]];
+    return [HbhCategory modelObjectWithDictionary:childCateModel.child[gIndex]];
+}
+
 
 /*
 #pragma mark - Navigation

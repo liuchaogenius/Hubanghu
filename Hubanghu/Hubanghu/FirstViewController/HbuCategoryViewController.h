@@ -12,8 +12,8 @@
 
 @property (assign, nonatomic) double cateId;
 
-- (instancetype)initWithCateId:(double)cateId;
+- (instancetype)initWithCateId:(int)cateId;
 //确定了工人呢的构造方法
-- (instancetype)initWithCateId:(double)cateId andWorker:(HbhWorkers *)worker;
+- (instancetype)initWithCateId:(int)cateId andWorker:(HbhWorkers *)worker;
 
 @end

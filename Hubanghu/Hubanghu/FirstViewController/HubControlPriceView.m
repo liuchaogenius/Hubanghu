@@ -9,6 +9,7 @@
 #import "HubControlPriceView.h"
 #import "HbhAppointmentNetManager.h"
 #import "SVProgressHUD.h"
+#import "HbhCategory.h"
 #define kTitleFont 15
 #define kCateTitleFont  15
 #define kBorderColor kLineColor//RGBCOLOR(207, 207, 207)
@@ -18,6 +19,7 @@
     NSArray *categoryTitlearry;
     NSArray *countArry;
     NSArray *unitArry;
+    NSArray *_mountTypeArray;
     int cateButtonType;
     int countType;
     BOOL uragent;
@@ -41,12 +43,13 @@
 @property (strong, nonatomic) UIView *cateListView;
 @property (strong, nonatomic) UIView *clearBackView;
 @property (assign, nonatomic) BOOL isRenovate;
+@property (strong, nonatomic) HbhCategory *cateModel;
 @end
 
 @implementation HubControlPriceView
 
 #pragma mark - getter and setter
-
+/*
 - (UIView *)clearBackView
 {
     if (!_clearBackView) {
@@ -57,46 +60,7 @@
         [_clearBackView addGestureRecognizer:tapGR];
     }
     return _clearBackView;
-}
-
-//- (UIView *)cateListView
-//{
-//    if (!_cateListView) {
-//        _cateListView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, (kCateTitleFont+10)*4)];
-//        _cateListView.backgroundColor = [UIColor whiteColor];
-//        _cateListView.clipsToBounds = YES;
-//        _cateListView.layer.borderWidth = 1.0f;
-//        _cateListView.layer.cornerRadius = 2.0f;
-//        _cateListView.layer.borderColor = [kLineColor CGColor];
-//        _cateButtonArray = [NSMutableArray arrayWithCapacity:categoryTitlearry.count];
-//        for(int i=0; i<4; i++)
-//        {
-//            
-//            UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(0, (kCateTitleFont+10+5)*i, 80, kCateTitleFont+10+10)];
-//            [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
-//            cateButton.layer.borderWidth = 0.5;
-//            //cateButton.layer.cornerRadius = 2;
-//            cateButton.tag = i;
-//            if (cateButtonType == i)
-//            {
-//                //cateButton.selected = YES;
-//                cateButton.layer.borderColor = KColor.CGColor;
-//                [cateButton setTitleColor:KColor forState:UIControlStateNormal];
-//            }
-//            else
-//            {
-//                cateButton.layer.borderColor = kBorderColor.CGColor;
-//                [cateButton setTitleColor:kBorderColor forState:UIControlStateNormal];
-//            }
-//            [cateButton setTitle:[categoryTitlearry objectAtIndex:i] forState:UIControlStateNormal];
-//            [cateButton addTarget:self action:@selector(cateButtonItem:) forControlEvents:UIControlEventTouchUpInside];
-//            [_cateListView addSubview:cateButton];
-//            [self.cateButtonArray insertObject:cateButton atIndex:i];
-//        }
-//        _cateListView.tag = 0;
-//    }
-//    return _cateListView;
-//}
+}*/
 
 - (NSString *)getCateButtonType
 {
@@ -148,7 +112,7 @@
 {
     _cateId = cateId;
 }
-
+/*
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -157,7 +121,7 @@
         self.isRenovate = NO;
         categoryTitlearry = @[@"纯装",@"纯拆",@"拆装",@"勘察"];
         countArry = @[@"数量:",@"面积:",@"长度:"];
-        unitArry = @[@"(个)",@"(㎡)",@"(米)"];
+        //unitArry = @[@"(个)",@"(㎡)",@"(米)"];
         
         cateButtonType = 0; //0起步 0，1，2，3
         countType = 0;
@@ -175,7 +139,34 @@
     }
     return self;
 }
-
+*/
+- (instancetype)initWithFrame:(CGRect)frame categoryModel:(HbhCategory *)cateModel
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.isRenovate = NO;
+        self.cateModel = cateModel;
+#warning 单位方面未完
+        categoryTitlearry = @[@"纯装",@"纯拆",@"拆装",@"勘察"];
+        countArry = @[@"数量:",@"面积:",@"长度:"];
+        countType = 0;
+        _mountTypeArray = [self.cateModel.mountType componentsSeparatedByString:@","];
+        if (!_mountTypeArray.count) {
+            _mountTypeArray = @[@"0",@"1",@"2",@"3"];
+        }
+        uragent = NO;
+        offsetY = 20;
+        cateButtonType = self.cateModel.mountDefault;
+        
+        //ui
+        self.backgroundColor = [UIColor whiteColor];
+        [self createCategoryButton:countType];
+        [self createCountview];
+        [self createExpeditedView];
+        [self createRemarkview];
+    }
+    return self;
+}
 
 
 - (void)createCategoryButton:(int)aMountType
@@ -189,15 +180,15 @@
     [self addSubview:categoryTitle];
     
     _cateButtonArray = [NSMutableArray arrayWithCapacity:categoryTitlearry.count];
-    for(int i=0; i<4; i++)
+    for(int i=0; i<_mountTypeArray.count; i++)
     {
         
         UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(categoryTitle.right+10+(i*50+(i)*15), categoryTitle.top-2.5, 60, kCateTitleFont+6+5)];
         [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
         cateButton.layer.borderWidth = 1;
         cateButton.layer.cornerRadius = 2;
-        cateButton.tag = i;
-        if (cateButtonType == i)
+        cateButton.tag = [_mountTypeArray[i] integerValue];
+        if (cateButtonType == cateButton.tag)
         {
             //cateButton.selected = YES;
             cateButton.layer.borderColor = KColor.CGColor;
@@ -208,7 +199,7 @@
             cateButton.layer.borderColor = kBorderColor.CGColor;
             [cateButton setTitleColor:kBorderColor forState:UIControlStateNormal];
         }
-        [cateButton setTitle:[categoryTitlearry objectAtIndex:i] forState:UIControlStateNormal];
+        [cateButton setTitle:[categoryTitlearry objectAtIndex:cateButton.tag] forState:UIControlStateNormal];
         [cateButton addTarget:self action:@selector(cateButtonItem:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:cateButton];
         [self.cateButtonArray insertObject:cateButton atIndex:i];
@@ -232,7 +223,9 @@
     _countTitleLabel = countTitleLabel;
     if(countType < [countArry count])
     {
-        countTitleLabel.text = [countArry objectAtIndex:(countType)];
+#warning 单位描述未解决
+       // countTitleLabel.text = [countArry objectAtIndex:(countType)];
+        countTitleLabel.text = @"数量";
     }
     countTitleLabel.textColor = [UIColor blackColor];
     [self addSubview:countTitleLabel];
@@ -272,7 +265,8 @@
 
     if((countType) < [unitArry count])
     {
-        unitLabel.text = [unitArry objectAtIndex:(countType)];
+#warning 此处单位
+        unitLabel.text = self.cateModel.mountType;//[unitArry objectAtIndex:(countType)];
     }
     unitLabel.textColor = kBorderColor;
     [self addSubview:unitLabel];
@@ -359,8 +353,8 @@
 
 - (void)customedOfRenovate
 {
-    UIButton *cateBtn = self.cateButtonArray[3];
-    [self cateButtonItem:cateBtn];
+//    UIButton *cateBtn = self.cateButtonArray[3];
+//    [self cateButtonItem:cateBtn];
     
     countTextField.placeholder = @"不可选择";
     countTextField.enabled = NO;
@@ -426,13 +420,19 @@
 {
     
     if (aBut.tag != cateButtonType) {
-        UIButton *button = self.cateButtonArray[cateButtonType];
+        UIButton *button;
+        for (int i = 0; i < self.cateButtonArray.count; i++) {
+            if(((UIButton *)self.cateButtonArray[i]).tag == cateButtonType){
+                button = self.cateButtonArray[i];
+                break;
+            }
+        }
         if (button) {
             button.layer.borderColor = kBorderColor.CGColor;
             [button setTitleColor:kBorderColor forState:UIControlStateNormal];
         }
-        cateButtonType = (int)aBut.tag;
-        
+        cateButtonType = aBut.tag;
+        MLOG(@"%d",cateButtonType);
         aBut.layer.borderColor = KColor.CGColor;
         [aBut setTitleColor:KColor forState:UIControlStateNormal];
         
@@ -476,5 +476,44 @@
     // Drawing code
 }
 */
+
+//- (UIView *)cateListView
+//{
+//    if (!_cateListView) {
+//        _cateListView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, (kCateTitleFont+10)*4)];
+//        _cateListView.backgroundColor = [UIColor whiteColor];
+//        _cateListView.clipsToBounds = YES;
+//        _cateListView.layer.borderWidth = 1.0f;
+//        _cateListView.layer.cornerRadius = 2.0f;
+//        _cateListView.layer.borderColor = [kLineColor CGColor];
+//        _cateButtonArray = [NSMutableArray arrayWithCapacity:categoryTitlearry.count];
+//        for(int i=0; i<4; i++)
+//        {
+//
+//            UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(0, (kCateTitleFont+10+5)*i, 80, kCateTitleFont+10+10)];
+//            [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
+//            cateButton.layer.borderWidth = 0.5;
+//            //cateButton.layer.cornerRadius = 2;
+//            cateButton.tag = i;
+//            if (cateButtonType == i)
+//            {
+//                //cateButton.selected = YES;
+//                cateButton.layer.borderColor = KColor.CGColor;
+//                [cateButton setTitleColor:KColor forState:UIControlStateNormal];
+//            }
+//            else
+//            {
+//                cateButton.layer.borderColor = kBorderColor.CGColor;
+//                [cateButton setTitleColor:kBorderColor forState:UIControlStateNormal];
+//            }
+//            [cateButton setTitle:[categoryTitlearry objectAtIndex:i] forState:UIControlStateNormal];
+//            [cateButton addTarget:self action:@selector(cateButtonItem:) forControlEvents:UIControlEventTouchUpInside];
+//            [_cateListView addSubview:cateButton];
+//            [self.cateButtonArray insertObject:cateButton atIndex:i];
+//        }
+//        _cateListView.tag = 0;
+//    }
+//    return _cateListView;
+//}
 
 @end

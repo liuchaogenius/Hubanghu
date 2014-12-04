@@ -17,6 +17,7 @@
 		5B1BC75919F0080E007D5AF7 /* HbhChangePswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BC75819F0080E007D5AF7 /* HbhChangePswViewController.m */; };
 		5B3733371A25D5F500C9B76C /* HbhFirstPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3733361A25D5F500C9B76C /* HbhFirstPageManager.m */; };
 		5B37333A1A25D62100C9B76C /* HbhBanners.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3733381A25D62100C9B76C /* HbhBanners.m */; };
+		5B41E8CA1A2F4FDF005DD38B /* HbhCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B41E8C91A2F4FDF005DD38B /* HbhCategory.m */; };
 		5B69300A19F399250005862D /* HbuAreaLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B69300919F399250005862D /* HbuAreaLocationManager.m */; };
 		5B69300F19F39BC70005862D /* HbuAreaListModelBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B69300C19F39BC70005862D /* HbuAreaListModelBaseClass.m */; };
 		5B69301019F39BC70005862D /* HbuAreaListModelAreas.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B69300D19F39BC70005862D /* HbuAreaListModelAreas.m */; };
@@ -212,6 +213,8 @@
 		5B3733361A25D5F500C9B76C /* HbhFirstPageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhFirstPageManager.m; sourceTree = "<group>"; };
 		5B3733381A25D62100C9B76C /* HbhBanners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhBanners.m; sourceTree = "<group>"; };
 		5B3733391A25D62100C9B76C /* HbhBanners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhBanners.h; sourceTree = "<group>"; };
+		5B41E8C81A2F4FDF005DD38B /* HbhCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhCategory.h; sourceTree = "<group>"; };
+		5B41E8C91A2F4FDF005DD38B /* HbhCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhCategory.m; sourceTree = "<group>"; };
 		5B69300819F399250005862D /* HbuAreaLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbuAreaLocationManager.h; sourceTree = "<group>"; };
 		5B69300919F399250005862D /* HbuAreaLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbuAreaLocationManager.m; sourceTree = "<group>"; };
 		5B69300B19F39BC70005862D /* HbuAreaListModelBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbuAreaListModelBaseClass.h; sourceTree = "<group>"; };
@@ -585,6 +588,8 @@
 		5B16D8D019F139A4009E9FF3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5B41E8C81A2F4FDF005DD38B /* HbhCategory.h */,
+				5B41E8C91A2F4FDF005DD38B /* HbhCategory.m */,
 				5B3733381A25D62100C9B76C /* HbhBanners.m */,
 				5B3733391A25D62100C9B76C /* HbhBanners.h */,
 				B09D1DAA19F654D200C7513C /* HubOrder.h */,
@@ -1661,6 +1666,7 @@
 				FF21CEA119E6607B005007B7 /* FourthViewController.m in Sources */,
 				FF21CF1619E66144005007B7 /* SDWebImageManager.m in Sources */,
 				FF21CF2219E66144005007B7 /* UIScrollView+SVPullToRefresh.m in Sources */,
+				5B41E8CA1A2F4FDF005DD38B /* HbhCategory.m in Sources */,
 				FF21CF2519E66144005007B7 /* UIImage+ImageEffects.m in Sources */,
 				FF6D90631A0749B500C966F8 /* AlixPayOrder.m in Sources */,
 				AB8EA5DD19F482D0001F40C2 /* HbhAreas.m in Sources */,

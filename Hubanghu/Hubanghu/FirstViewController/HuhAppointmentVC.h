@@ -8,10 +8,13 @@
 
 #import "BaseViewController.h"
 @class HbhWorkers;
+@class HbhCategory;
 @interface HuhAppointmentVC : BaseViewController
 
-- (void)setVCData:(NSString *)title cateId:(NSString *)cateId andWork:(HbhWorkers *)worker;
+//- (void)setVCData:(NSString *)title cateId:(NSString *)cateId andWork:(HbhWorkers *)worker;
 
-- (void)setCustomedVCofRenovateWithCateId:(NSString *)cateId ;//首页进入二次翻新的定制方法
+- (void)setCustomedVCofDepthisZero;//进入类似二次翻新的定制方法-depth = 0时，直接进入下单
+
+- (instancetype)initWithCateModel:(HbhCategory *)model andWorker:(HbhWorkers *)worker;
 
 @end

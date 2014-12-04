@@ -18,7 +18,7 @@
 //通过orderID获取order的信息
 - (void)getOrderWith:(NSString *)orderId succ:(void(^)(HubOrder* order))succ failure:(void(^)())failure;
 
-- (void)getAppointmentInfoWith:(NSString*)cateId succ:(void(^)(NSDictionary* succDic))succ failure:(void(^)())failure;
+//- (void)getAppointmentInfoWith:(NSString*)cateId succ:(void(^)(NSDictionary* succDic))succ failure:(void(^)())failure;
 
 - (void)getAppointmentPriceWithCateId:(NSString *)cateId type:(int)type amountType:(int)amountType amount:(NSString *)amount urgent:(BOOL)urgent succ:(void(^)(NSString *price))succ failure:(void(^)())failure;
 - (void)aliPaySigned:(HubOrder *)aOrder
