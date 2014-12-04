@@ -10,9 +10,7 @@
 #import "HbhOrderModel.h"
 
 @interface HbhOrderTableViewCell : UITableViewCell
-{
-    UIView *underlineView;
-}
+
 @property(nonatomic, strong) UILabel *nameLabel;
 @property(nonatomic, strong) UILabel *typeLabel;
 @property(nonatomic, strong) UILabel *workerLabel;

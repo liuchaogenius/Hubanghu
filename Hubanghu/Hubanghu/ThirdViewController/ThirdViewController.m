@@ -32,14 +32,12 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) UIView *selectedLineView;
 @property(nonatomic, strong) UIView *btnBackView;
 @property(nonatomic, strong) UITableView *showOrderTableView;
-@property(nonatomic, strong) UIView *failView;
 
 @property(nonatomic, strong) HbhOrderManage *orderManage;
 @property(nonatomic, strong) NSMutableArray *allOrderArray;
 @property(nonatomic, strong) NSMutableArray *appraiseArray;
 @property(nonatomic, strong) NSMutableArray *unDoneArray;
 
-@property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @property(nonatomic) BOOL isHaveData;
 @end
 
@@ -141,11 +139,9 @@ typedef enum : NSUInteger {
 - (void)getFisrtPage
 {
     [self.orderManage getOrderWithListFilterId:_currentTab andSuccBlock:^(NSArray *aArray) {
-//        [self.failView removeFromSuperview];
         if (aArray.count==0)
         {
             _isHaveData = NO;
-//            [self.view addSubview:self.failView];
         }
         else
         {
@@ -164,11 +160,9 @@ typedef enum : NSUInteger {
             default:
                 break;
         }
-//        [self.activityIndicatorView stopAnimating];
         [SVProgressHUD dismiss];
         [self.showOrderTableView reloadData];
     } andFailBlock:^{
-//        [self.view addSubview:self.failView];
         [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
         _isHaveData = NO;
     }];
@@ -191,7 +185,6 @@ typedef enum : NSUInteger {
             default:
                 break;
         }
-//        [self.showOrderTableView reloadData];
     } andFailBlock:^{
         [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
@@ -255,15 +248,6 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark getter
-- (UIActivityIndicatorView *)activityIndicatorView
-{
-    if (!_activityIndicatorView) {
-        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-20, kMainScreenHeight/2-20, 40, 40)];
-        _activityIndicatorView.color = [UIColor blackColor];
-    }
-    return _activityIndicatorView;
-}
-
 - (UIView *)selectedLineView
 {
     if (!_selectedLineView)
@@ -313,29 +297,11 @@ typedef enum : NSUInteger {
     return _btnBackView;
 }
 
-- (UIView *)failView
-{
-    if (!_failView) {
-        _failView = [[UIView alloc] init];
-        _failView.frame = self.showOrderTableView.frame;
-        UILabel *failLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-100, kMainScreenHeight/2-100, 200, 50)];
-        failLabel.text = @"暂时没有数据";
-        failLabel.font = kFont14;
-        failLabel.backgroundColor = [UIColor clearColor];
-        failLabel.textAlignment = NSTextAlignmentCenter;
-        failLabel.textColor = [UIColor lightGrayColor];
-        [_failView addSubview:failLabel];
-        _failView.backgroundColor = kViewBackgroundColor;
-    }
-    return _failView;
-}
-
 #pragma mark 选中button
 - (void)selectButton:(UIButton *)aBtn
 {
     _currentTab = (int)aBtn.tag - 10;
     [self.showOrderTableView reloadData];
-//    [self.activityIndicatorView startAnimating];
     [SVProgressHUD show:YES offsetY:kMainScreenHeight/2.0];
     for (int i=0; i<3; i++)
     {
@@ -352,13 +318,10 @@ typedef enum : NSUInteger {
     {
         if (self.allOrderArray.count == 0) {
             [self getFisrtPage];
-//            [self.view addSubview:self.failView];
         }
         else{
             _isHaveData = YES;
-//            [self.activityIndicatorView stopAnimating];
             [SVProgressHUD dismiss];
-//            [self.failView removeFromSuperview];
             [self.showOrderTableView reloadData];
         }
     }
@@ -366,13 +329,10 @@ typedef enum : NSUInteger {
     {
         if (self.appraiseArray.count == 0) {
             [self getFisrtPage];
-//            [self.view addSubview:self.failView];
         }
         else{
             _isHaveData = YES;
-//            [self.activityIndicatorView stopAnimating];
             [SVProgressHUD dismiss];
-//            [self.failView removeFromSuperview];
             [self.showOrderTableView reloadData];
         }
     }
@@ -380,14 +340,11 @@ typedef enum : NSUInteger {
     {
         if (self.unDoneArray.count == 0) {
             [self getFisrtPage];
-//            [self.view addSubview:self.failView];
         }
         else
         {
             _isHaveData = YES;
-//            [self.activityIndicatorView stopAnimating];
             [SVProgressHUD dismiss];
-//            [self.failView removeFromSuperview];;
             [self.showOrderTableView reloadData];
         }
     }

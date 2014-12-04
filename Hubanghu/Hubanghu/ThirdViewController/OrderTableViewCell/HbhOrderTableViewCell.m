@@ -28,9 +28,9 @@
         [self addSubview:self.priceLabel];
         [self addSubview:self.lineView];
         
-        underlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
+        UIView *underlineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
         [self addSubview:underlineView];
-        underlineView.backgroundColor = [UIColor clearColor];
+        underlineView.backgroundColor = kLineColor;
         UIImage *bgImg = [SImageUtil imageWithColor:RGBCOLOR(250, 250, 250) size:CGSizeMake(10, 10)];
         bgImg = [bgImg resizableImageWithCapInsets:UIEdgeInsetsMake(3, 3, 3, 3)];
         self.backgroundColor = [UIColor colorWithPatternImage:bgImg];
@@ -41,12 +41,12 @@
 
 - (void)setLineKColor
 {
-    underlineView.backgroundColor = KColor;
+    self.lineView.backgroundColor = KColor;
 }
 
 - (void)setLineClear
 {
-    underlineView.backgroundColor = [UIColor clearColor];
+    self.lineView.backgroundColor = [UIColor clearColor];
 }
 
 - (UIView *)lineView

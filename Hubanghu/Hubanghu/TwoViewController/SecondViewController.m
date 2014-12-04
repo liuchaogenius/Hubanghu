@@ -43,10 +43,8 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) NSMutableArray *orderCountArray;
 //蒙层
 @property(nonatomic, strong) UIView *maskingView;
-@property(nonatomic, strong) UIActivityIndicatorView *activityView;
 
 @property(nonatomic, strong) void(^myWorkerDetailBlock)(HbhWorkers *);
-@property(nonatomic, strong) UIView *failView;
 
 @property(nonatomic, strong) NSArray *locationArray;
 @property(nonatomic) BOOL isLocationed;
@@ -141,7 +139,6 @@ typedef enum : NSUInteger {
 {
     [self.showWorkerListTableView setContentOffset:CGPointMake(0, 0) animated:YES];
     [self.workerListManage getWorkerListWithAreaId:aAreaId andWorkerTypeId:aWorkTypeId andOrderCountId:aOrderId SuccBlock:^(HbhData *aData) {
-//        [self.failView removeFromSuperview];
         self.workersArray = [(NSMutableArray *)aData.workers mutableCopy];
         self.areasArray = [(NSMutableArray *)aData.areas mutableCopy];
         self.workerTypeArray = [(NSMutableArray *)aData.workerTypes mutableCopy];
@@ -150,16 +147,13 @@ typedef enum : NSUInteger {
         [self.dropOrderCountView reloadTableView];
         [self.dropWorkerTypesView reloadTableView];
         if (self.workersArray.count==0) {
-//            [self.view addSubview:self.failView];
         }
-//        [self.activityView stopAnimating];
         [SVProgressHUD dismiss];
         if (aAreaId!=-1 && aWorkTypeId!=-1 && aOrderId !=-1)
         {
             [self updateBtn];
         }
     } andFailBlock:^{
-//        [self.view addSubview:self.failView];
         [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
 }
@@ -234,7 +228,6 @@ typedef enum : NSUInteger {
                         }
                         [self.workersArray addObjectsFromArray:aData.workers];
                         [self.showWorkerListTableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationFade];
-    //                    [self.showWorkerListTableView reloadData];
                     } andFailBlock:^{
                         [SVProgressHUD showErrorWithStatus:@"网络请求失败,请稍后重试" cover:YES offsetY:kMainScreenHeight/2.0];
                     }];
@@ -401,35 +394,6 @@ typedef enum : NSUInteger {
         _areasDBManage = [[AreasDBManager alloc] init];
     }
     return _areasDBManage;
-}
-
-- (UIView *)failView
-{
-    if (!_failView) {
-        _failView = [[UIView alloc] init];
-        _failView.frame = self.showWorkerListTableView.frame;
-        UILabel *failLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/2-100, kMainScreenHeight/2-100, 200, 50)];
-        failLabel.text = @"暂时没有数据";
-        failLabel.font = kFont14;
-        failLabel.backgroundColor = [UIColor clearColor];
-        failLabel.textAlignment = NSTextAlignmentCenter;
-        failLabel.textColor = [UIColor lightGrayColor];
-        [_failView addSubview:failLabel];
-        UIImage *img = [UIImage imageNamed:@"workBg"];
-        img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
-        _failView.backgroundColor = [UIColor colorWithPatternImage:img];
-    }
-    return _failView;
-}
-
-- (UIActivityIndicatorView *)activityView
-{
-    if (!_activityView) {
-        _activityView = [[UIActivityIndicatorView alloc]
-                         initWithFrame:CGRectMake(kMainScreenWidth/2-20, kMainScreenHeight/2-20, 40, 40)];
-        _activityView.color = [UIColor blackColor];
-    }
-    return _activityView;
 }
 
 - (HbhWorkerListManage *)workerListManage
