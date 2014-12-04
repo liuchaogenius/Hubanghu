@@ -41,7 +41,7 @@
 
 - (void)setLineKColor
 {
-    underlineView.backgroundColor = kLineColor;
+    underlineView.backgroundColor = KColor;
 }
 
 - (void)setLineClear
@@ -64,7 +64,7 @@
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-70, 10, 60, 20)];
         _priceLabel.textColor = KColor;
         _priceLabel.font = kFont14;
-        _priceLabel.text = @" ";
+//        _priceLabel.text = @" ";
         _priceLabel.backgroundColor = [UIColor clearColor];
     }
     return _priceLabel;
@@ -74,7 +74,7 @@
 {
     if (!_orderStateLabel) {
         _orderStateLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-55, 30, 40, 15)];
-        _orderStateLabel.text = @"已付款";
+//        _orderStateLabel.text = @"已付款";
         _orderStateLabel.font = kFont11;
         _orderStateLabel.textColor = KColor;
         _orderStateLabel.backgroundColor = [UIColor clearColor];
@@ -87,7 +87,7 @@
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 160, 25)];
         _nameLabel.font = kFont14;
-        _nameLabel.text = @"预约 卫浴安装坐便器安装";
+//        _nameLabel.text = @"预约 卫浴安装坐便器安装";
         _nameLabel.backgroundColor = [UIColor clearColor];
     }
     return _nameLabel;
@@ -109,7 +109,7 @@
 {
     if (!_workerNameLabel) {
         _workerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 30, 40, 20)];
-        _workerNameLabel.text = @"某某某";
+//        _workerNameLabel.text = @"某某某";
         _workerNameLabel.font = kFont10;
         _workerNameLabel.textColor = [UIColor lightGrayColor];
         _workerNameLabel.backgroundColor = [UIColor clearColor];
@@ -121,7 +121,7 @@
 {
     if (!_urgentLabel) {
         _urgentLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 30, 40, 20)];
-        _urgentLabel.text = @"[加急]";
+//        _urgentLabel.text = @"[加急]";
         _urgentLabel.textColor = KColor;
         _urgentLabel.font = kFont10;
         _urgentLabel.backgroundColor = [UIColor clearColor];
@@ -133,7 +133,7 @@
 {
     if (!_typeLabel) {
         _typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 5, 40, 25)];
-        _typeLabel.text = @"[拆装]";
+//        _typeLabel.text = @"[拆装]";
         _typeLabel.textColor = KColor;
         _typeLabel.font = kFont14;
         _typeLabel.backgroundColor = [UIColor clearColor];
@@ -154,8 +154,13 @@
         self.workerNameLabel.text = @"客服安排";
     }
     
-    if (!aModel.urgent) {
+    if (!aModel.urgent)
+    {
         self.urgentLabel.text = @"";
+    }
+    else
+    {
+        self.urgentLabel.text = @"[加急]";
     }
     self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f", aModel.price];
     switch ((int)aModel.status) {
