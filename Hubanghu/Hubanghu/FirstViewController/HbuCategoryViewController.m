@@ -131,6 +131,7 @@
     
     self.view.backgroundColor = kViewBackgroundColor;
     //[self settitleLabel:@"加载中..."];
+    /*
     if(self.cateId == 2)
     {
         [self settitleLabel:@"地板安装"];
@@ -146,32 +147,34 @@
     if(self.cateId == 5)
     {
         [self settitleLabel:@"墙纸安装"];
-    }
+    }*/
 
     _tableView = [[UITableView alloc] init];
     _tableView.backgroundColor = kViewBackgroundColor;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 7)];
-    //whiteView.backgroundColor = [UIColor blackColor];
-    self.tableView.tableHeaderView = whiteView;
+//    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 7)];
+//    //whiteView.backgroundColor = [UIColor blackColor];
+//    self.tableView.tableHeaderView = whiteView;
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView registerClass:[HbhCategoryCell class] forCellReuseIdentifier:@"Cell"];
     [self.view addSubview:self.tableView];
     [self addTableViewTrag];
     __weak HbuCategoryViewController *weakSelf = self;
     
-    UIActivityIndicatorView *indictor = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    indictor.center = CGPointMake(kMainScreenWidth/2.0,100);
-    [self.view addSubview:indictor];
-    [indictor startAnimating];
-    
+//    UIActivityIndicatorView *indictor = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//    indictor.center = CGPointMake(kMainScreenWidth/2.0,100);
+//    [self.view addSubview:indictor];
+//    [indictor startAnimating];
+    [SVProgressHUD showWithStatus:@"拼命加载中..." cover:YES offsetY:0];
     [HbuCategoryListManager getCategroryInfoWithCateId:self.cateId WithSuccBlock:^(HbhCategory *cModel) {
-        [indictor stopAnimating];
+        //[indictor stopAnimating];
+        [SVProgressHUD dismiss];
         [weakSelf refreshUIwithModel:cModel];
     } and:^{
         //错误处理
-        [indictor stopAnimating];
+        //[indictor stopAnimating];
+        [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:@"加载失败，请检查网络" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
 }
@@ -234,6 +237,12 @@
         });
     }];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [SVProgressHUD dismiss];
+    [super viewWillDisappear:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -258,8 +267,10 @@
         return self.categoryModel.child.count/2 + self.categoryModel.child.count%2;
     }else if (self.depth == 2){
         NSArray *childArray = self.categoryModel.child;
-        _categoryChildModel = [HbhCategory modelObjectWithDictionary:childArray[self.selectSgmButton.tag % kSelectTagBase]];
-        return _categoryChildModel.child.count/2 +_categoryChildModel.child.count%2;
+        if (childArray.count > self.selectSgmButton.tag % kSelectTagBase) {
+            _categoryChildModel = [HbhCategory modelObjectWithDictionary:childArray[self.selectSgmButton.tag % kSelectTagBase]];
+            return _categoryChildModel.child.count/2 +_categoryChildModel.child.count%2;
+        }else return 0;
         
     }else{
         return 0;

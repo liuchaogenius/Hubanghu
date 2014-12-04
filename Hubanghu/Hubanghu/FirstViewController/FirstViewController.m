@@ -26,7 +26,7 @@
 #define KimageHeight kMainScreenWidth*381/1080.0f+kBlankWidth
 enum CateId_Type
 {
-    CateId_floor = 2,//地板
+    CateId_floor = 1,//地板
     CateId_bathroom,//卫浴
     CateId_light,//灯饰
     CateId_wallpaper,//墙纸

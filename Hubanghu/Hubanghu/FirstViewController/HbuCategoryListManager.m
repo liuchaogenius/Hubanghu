@@ -19,7 +19,9 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:cateId] forKey:@"cateId"];
     kHubRequestUrl(@"getCategory.ashx",getCategoryUrl);
     [NetManager requestWith:dic url:getCategoryUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict) {
-        NSDictionary *dataDic = successDict[@"data"];
+        MLOG(@"%@",successDict);
+        NSArray *dataArray = successDict[@"data"];
+        NSDictionary *dataDic = dataArray[0];
         if (aSuccBlock) {
             //aSuccBlock([CategoryInfoModel modelObjectWithDictionary:dataDic]);
             aSuccBlock([HbhCategory modelObjectWithDictionary:dataDic]);

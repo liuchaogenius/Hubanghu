@@ -166,6 +166,6 @@ NSNumber *iNum = [NSNumber numberWithLongLong:i];\
 
 #define KColor kIconSelectColor//RGBCOLOR(225, 44, 25)
 
-#define kTwiceRenovationCateId 6
+#define kTwiceRenovationCateId 5
 
 #endif
