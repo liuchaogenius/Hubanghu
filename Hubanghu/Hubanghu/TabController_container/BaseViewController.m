@@ -202,11 +202,11 @@
     if(kSystemVersion>6.99)
     {
         //64 58
-        CGRect buttonFrame = CGRectMake(5, (44-58/2.0)/2.0, 64/2.0, 58/2.0);//CGRectMake(5, 0, 59.0f, 44.0f);
-        CGRect viewFrame = CGRectMake(kMainScreenWidth-44, 0, 30, 44);//CGRectMake(kMainScreenWidth-100/2, 0, 59, 44);
+        CGRect buttonFrame = CGRectMake(15, (44-58/2.0)/2.0, 64/2.0, 58/2.0);//CGRectMake(5, 0, 59.0f, 44.0f);
+        CGRect viewFrame = CGRectMake(kMainScreenWidth-44, 0, 44, 44);//CGRectMake(kMainScreenWidth-100/2, 0, 59, 44);
         UIView *view = [[UIView alloc]initWithFrame:viewFrame];
         
-        UIButton *button = [[UIButton alloc] initWithFrame:viewFrame];
+        UIButton *button = [[UIButton alloc] initWithFrame:view.bounds];
         [button addTarget:aTarget action:aSelector forControlEvents:UIControlEventTouchUpInside];
         button.backgroundColor = kClearColor;
         [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -232,11 +232,11 @@
     else
     {
         //64 58
-        CGRect buttonFrame = CGRectMake(0, (44-58/2.0)/2.0, 64/2.0, 58/2.0);//CGRectMake(5, 0, 59.0f, 44.0f);
-        CGRect viewFrame = CGRectMake(kMainScreenWidth-64, 0, 30, 44);//CGRectMake(kMainScreenWidth-100/2, 0, 59, 44);
+        CGRect buttonFrame = CGRectMake(5, (44-58/2.0)/2.0, 64/2.0, 58/2.0);//CGRectMake(5, 0, 59.0f, 44.0f);
+        CGRect viewFrame = CGRectMake(kMainScreenWidth-64, 0, 44, 44);//CGRectMake(kMainScreenWidth-100/2, 0, 59, 44);
         UIView *view = [[UIView alloc]initWithFrame:viewFrame];
         
-        UIButton *button = [[UIButton alloc] initWithFrame:viewFrame];
+        UIButton *button = [[UIButton alloc] initWithFrame:view.bounds];
         [button addTarget:aTarget action:aSelector forControlEvents:UIControlEventTouchUpInside];
         button.backgroundColor = kClearColor;
         [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];

@@ -22,6 +22,7 @@
 #import "SImageUtil.h"
 #import "UMSocialSnsService.h"
 #import "UMSocialSnsPlatformManager.h"
+#import "UMFeedback.h"
 @interface RootTabBarController ()
 {
     LSNavigationController *firstNav;
@@ -67,7 +68,7 @@
 - (void)initNotifyRegister
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushLeftView) name:kLeftViewPushMessage object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popLeftView) name:kLeftViewPopMessage object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popLeftView) name:kLeftViewPopMessage object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginViewController:) name:kLoginForUserMessage object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSelCityVC) name:kSelCityMessage object:nil];
 }
@@ -175,9 +176,25 @@
                                            delegate:nil];
         return ;
     }
+    if(aIndex == E_HOTILINE)//拨打客服电话
+    {
+        UIActionSheet *telSheet = [[UIActionSheet alloc] initWithTitle:@"咨询投诉、预约上门安装请拨打客服电话" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"呼叫" otherButtonTitles:nil, nil];
+        [telSheet showFromTabBar:self.tabBar];
+        return;
+    }
+    if(aIndex == E_GOMYTAB)
+    {
+        self.selectedIndex=3;
+        return;
+    }
+    if(aIndex == E_FEEDBACK)
+    {
+        [self presentModalViewController:[UMFeedback feedbackModalViewController]
+                                animated:YES];
+        return;
+    }
     if(introduceNaVC == nil)
     {
-//    UINavigationController *
         introduceNaVC = [[UINavigationController alloc] initWithRootViewController:introduceVC];
     }
     [ViewInteraction viewPresentAnimationFromRight:self.view toView:introduceNaVC.view];
@@ -190,10 +207,20 @@
     [introduceVC setUrl:url title:title];
 }
 
-- (void)popLeftView
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
+    MLOG(@"%ld",(long)buttonIndex);
+    if(buttonIndex == 0)//拨打电话
+    {
+         NSString *tel = [[NSString alloc] initWithFormat:@"tel://%@",@"4006638585"];
+         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tel]];
+    }
 }
+
+//- (void)popLeftView
+//{
+//    
+//}
 
 #pragma mark show login
 - (void)showLoginViewController:(NSNotification *)aNotification

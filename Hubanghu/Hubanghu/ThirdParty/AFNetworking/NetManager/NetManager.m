@@ -172,7 +172,7 @@
 #else
     [aRequest addValue:@"0" forHTTPHeaderField:@"hbh_mock"];
 #endif
-    
+    [aRequest addValue:@"1" forHTTPHeaderField:@"hbh_encrypt"];
     NSDictionary *bundleDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [bundleDic objectForKey:@"CFBundleShortVersionString"];
     [aRequest addValue:appVersion forHTTPHeaderField:@"hbh_appver"];

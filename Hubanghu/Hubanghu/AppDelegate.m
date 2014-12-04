@@ -14,7 +14,7 @@
 #import "UMSocial.h"
 #import "HbhUser.h"
 #import "UMSocialWechatHandler.h"
-
+#import "UMFeedback.h"
 @interface AppDelegate ()<UIAlertViewDelegate>
 {
     int Type;
@@ -46,6 +46,7 @@
     NSString *appVersion = [bundleDic objectForKey:@"CFBundleShortVersionString"];
     [MobClick startWithAppkey:kUMENG_APPKEY reportPolicy:SENDWIFIONLY channelId:nil];
     [UMSocialData setAppKey:kUMENG_APPKEY];
+    [UMFeedback setAppkey:kUMENG_APPKEY];
     [UMSocialWechatHandler setWXAppId:kShareWEIXINAPPID appSecret:kShareWEIXINAPPSECRET url:@"http://app.hu8hu.com/"];
     [MobClick setAppVersion:appVersion];
 }
@@ -83,8 +84,10 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         if(Type == 1)
         {
+#if RELEASE
             NSMutableArray *ary = [NSMutableArray array];
             [ary addObject:nil];
+#endif
         }
     }
 }

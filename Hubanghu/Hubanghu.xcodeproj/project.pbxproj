@@ -177,6 +177,8 @@
 		FFD1A2D119EE4B6D00EA97D4 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2CC19EE4B6D00EA97D4 /* FMResultSet.m */; };
 		FFD1A2D319EE4B8D00EA97D4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */; };
 		FFDBF2761A11A035004E0868 /* LSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDBF2751A11A035004E0868 /* LSNavigationController.m */; };
+		FFEF86351A300F7A0030E05C /* UMFeedbackLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFEF86301A300F7A0030E05C /* UMFeedbackLocalizable.strings */; };
+		FFEF86361A300F7A0030E05C /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEF86321A300F7A0030E05C /* libUMFeedback.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -525,6 +527,10 @@
 		FFD1A2D219EE4B8D00EA97D4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		FFDBF2741A11A035004E0868 /* LSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNavigationController.h; sourceTree = "<group>"; };
 		FFDBF2751A11A035004E0868 /* LSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSNavigationController.m; sourceTree = "<group>"; };
+		FFEF86311A300F7A0030E05C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/UMFeedbackLocalizable.strings; sourceTree = "<group>"; };
+		FFEF86321A300F7A0030E05C /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
+		FFEF86331A300F7A0030E05C /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
+		FFEF86341A300F7A0030E05C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UMFeedbackLocalizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,6 +550,7 @@
 				FF6D90621A0749B500C966F8 /* AlixPaylib_arc.a in Frameworks */,
 				FF6D905F1A0749B500C966F8 /* AlipayRsaLib.a in Frameworks */,
 				FF21CF2C19E66238005007B7 /* QuartzCore.framework in Frameworks */,
+				FFEF86361A300F7A0030E05C /* libUMFeedback.a in Frameworks */,
 				FF6D906B1A0749B500C966F8 /* libcrypto.a in Frameworks */,
 				FF185FF51A26D0D0007F9E67 /* libMobClickLibrary.a in Frameworks */,
 				FF0725BB1A2843D100CD21CB /* libWeChatSDK.a in Frameworks */,
@@ -1087,6 +1094,7 @@
 		FF21CEA719E66144005007B7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				FFEF862F1A300F7A0030E05C /* UMengFeedback_SDK_2.0.1 */,
 				FF0725B31A2843D100CD21CB /* UMSocial_Sdk_Extra_Frameworks */,
 				FF185FFE1A271375007F9E67 /* UMSocial_Sdk_4.2 */,
 				FF185FF11A26D0D0007F9E67 /* UMAnalytics_Sdk_3.1.8 */,
@@ -1398,6 +1406,16 @@
 			path = LSNavigationController;
 			sourceTree = "<group>";
 		};
+		FFEF862F1A300F7A0030E05C /* UMengFeedback_SDK_2.0.1 */ = {
+			isa = PBXGroup;
+			children = (
+				FFEF86301A300F7A0030E05C /* UMFeedbackLocalizable.strings */,
+				FFEF86321A300F7A0030E05C /* libUMFeedback.a */,
+				FFEF86331A300F7A0030E05C /* UMFeedback.h */,
+			);
+			path = UMengFeedback_SDK_2.0.1;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1502,6 +1520,7 @@
 				5B03CC0019EFE0D000A367DC /* HbhQRcodeViewController.xib in Resources */,
 				AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */,
 				ABAFAB2219EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.xib in Resources */,
+				FFEF86351A300F7A0030E05C /* UMFeedbackLocalizable.strings in Resources */,
 				5BB325AC19ECFB250085CAEB /* FourthVCHeadView.xib in Resources */,
 				FF18601D1A271375007F9E67 /* UMSCommentInputControlleriPad.xib in Resources */,
 				FF18601F1A271375007F9E67 /* UMShareEditViewControlleriPad.xib in Resources */,
@@ -1683,6 +1702,15 @@
 			name = UMSocialLocalizable.strings;
 			sourceTree = "<group>";
 		};
+		FFEF86301A300F7A0030E05C /* UMFeedbackLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFEF86311A300F7A0030E05C /* Base */,
+				FFEF86341A300F7A0030E05C /* zh-Hans */,
+			);
+			name = UMFeedbackLocalizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1725,6 +1753,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
@@ -1764,6 +1794,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1790,6 +1822,7 @@
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_4.2",
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_4.2/Wechat",
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMengFeedback_SDK_2.0.1",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = Hubanghu;
@@ -1817,6 +1850,7 @@
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_4.2",
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_4.2/Wechat",
 					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/Hubanghu/ThirdParty/UMengFeedback_SDK_2.0.1",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = Hubanghu;

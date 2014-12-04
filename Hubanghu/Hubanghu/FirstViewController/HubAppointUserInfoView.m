@@ -383,7 +383,7 @@ enum PickerType
         [self.datePicker selectRow:0 inComponent:1 animated:YES];
         
         toolView.backgroundColor = [UIColor lightGrayColor];
-        _tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 50, 0, 30, 30)];
+        _tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 50, 0, 40, 40)];
         [_tool setTitle:@"完成" forState:UIControlStateNormal];
         _tool.titleLabel.textAlignment = NSTextAlignmentCenter;
         _tool.titleLabel.font = kFont13;
@@ -684,7 +684,7 @@ enum PickerType
     if (!_normalTimesArray) {
         _normalTimesArray = [NSMutableArray arrayWithCapacity:(24*30/kPerTimes)];
         int i,j;
-        for (i = 0; i < 24; i++) {
+        for (i = 8; i < 21; i++) {
             for (j = 0; j < 60; j+=kPerTimes) {
                 [_normalTimesArray addObject:[NSString stringWithFormat:@"%02d:%02d",i,j]];
             }

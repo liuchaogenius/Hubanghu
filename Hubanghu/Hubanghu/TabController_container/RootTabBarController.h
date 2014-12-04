@@ -13,6 +13,6 @@
 @class FourthViewController;
 @class LeftView;
 
-@interface RootTabBarController : UITabBarController<UITabBarControllerDelegate,UITabBarDelegate>
+@interface RootTabBarController : UITabBarController<UITabBarControllerDelegate,UITabBarDelegate,UIActionSheetDelegate>
 
 @end

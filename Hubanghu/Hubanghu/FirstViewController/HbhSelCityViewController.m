@@ -123,7 +123,6 @@ enum kActionSheet_Type
     }];
     [self setLeftButton:[UIImage imageNamed:@"back"] title:nil target:self action:@selector(touchBackItem)];
     [self setRightButton:[UIImage imageNamed:@"refresh"] title:nil target:self action:@selector(reLocationUserArea)];
-
     
     [self setExtraCellLineHidden:self.tableView]; //隐藏多需的cell线
     

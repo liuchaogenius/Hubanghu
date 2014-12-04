@@ -130,7 +130,7 @@ NSArray *itemArray;
         phoneLabel.textColor = RGBCOLOR(147, 147, 147);
         phoneLabel.textAlignment = NSTextAlignmentCenter;
         phoneLabel.font = kFont20;
-        phoneLabel.text = @"400-663-8585";
+        phoneLabel.text = KHotlineTel;
         phoneLabel.backgroundColor = kClearColor;
         [cell addSubview:phoneLabel];
     }
@@ -167,6 +167,14 @@ NSArray *itemArray;
     else if(indexPath.row == 6)
     {
         self.selectItem = E_SHAREHBH;
+    }
+    else if(indexPath.row == 7)
+    {
+        self.selectItem = E_HOTILINE;
+    }
+    else if(indexPath.row == 0)
+    {
+        self.selectItem = E_GOMYTAB;
     }
 }
 
