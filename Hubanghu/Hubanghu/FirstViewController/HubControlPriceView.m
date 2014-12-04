@@ -262,11 +262,11 @@
     unitLabel.backgroundColor = kClearColor;
     unitLabel.textAlignment = NSTextAlignmentCenter;
     _unitLabel = unitLabel;
-
+    unitLabel.text = self.cateModel.amountType;
     if((countType) < [unitArry count])
     {
 #warning 此处单位
-        unitLabel.text = self.cateModel.mountType;//[unitArry objectAtIndex:(countType)];
+        //unitLabel.text = [unitArry objectAtIndex:(countType)];
     }
     unitLabel.textColor = kBorderColor;
     [self addSubview:unitLabel];

@@ -31,9 +31,10 @@ enum CellTag_Type
     CellTag_notCommentOrder,//待评价订单
     CellTag_QRcode,//二维码
     CellTag_changePassWord,//修改密码
+    CellTag_call,//客服热线
 };
 
-@interface FourthViewController ()
+@interface FourthViewController ()<UIActionSheetDelegate>
 {
     UILabel *_numberLabel; // cell右方提示数量的label
     UILabel *_notCommentNumberLabel;//待评价订单 提示数量label
@@ -43,12 +44,25 @@ enum CellTag_Type
 @property (strong, nonatomic) NSArray *listArray; //页面列表数据
 @property (strong, nonatomic) FourthVCHeadView *fHeadView;//用户信息headerView
 @property (strong, nonatomic) UIView *logOutHeadView;//附退出登陆按钮 headerView
+@property (strong, nonatomic) UILabel *callNumberLabel;//电话号码label
 
 @end
 
 @implementation FourthViewController
 
 #pragma mark - getter and setter
+- (UILabel *)callNumberLabel
+{
+    if (!_callNumberLabel) {
+        _callNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-30-80, 0, 80, 44)];
+        _callNumberLabel.backgroundColor = [UIColor clearColor];
+        _callNumberLabel.text = @"400-663-8585";
+        _callNumberLabel.textColor = [UIColor lightGrayColor];
+        _callNumberLabel.font = kFont12;
+        
+    }
+    return _callNumberLabel;
+}
 - (NSArray *)listArray
 {
     if (!_listArray) {
@@ -230,7 +244,7 @@ enum CellTag_Type
             //图片
             UIImageView *aImageView = nil;
             aImageView = [[UIImageView alloc] init];
-            [aImageView setFrame:CGRectMake(10, (cell.height-22)/2.0, 20, 22)];
+            [aImageView setFrame:CGRectMake(10, (cell.height-24)/2.0, 24, 24)];
             aImageView.tag = kaImageViewTag;
             [cell addSubview:aImageView];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -257,6 +271,7 @@ enum CellTag_Type
             line.backgroundColor = kLineColor;
             [cell addSubview:line];
         }
+        if([self.callNumberLabel superview]) [self.callNumberLabel removeFromSuperview];
         NSArray *array = self.listArray[indexPath.section-1];
         NSDictionary *dic = array[indexPath.row];
         _numberLabel = (UILabel *)[cell viewWithTag:kNumberLabelTag];
@@ -275,6 +290,10 @@ enum CellTag_Type
                 _notDoneNumberLabel = _numberLabel;
             }
                 break;
+            case CellTag_call:
+            {
+                [cell.contentView addSubview:self.callNumberLabel];
+            }
             default:
                 break;
         }
@@ -337,7 +356,12 @@ enum CellTag_Type
                 HbhChangePswViewController *cpswVC = [[HbhChangePswViewController alloc] init];
                 cpswVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:cpswVC animated:YES];
+            }
                 break;
+            case CellTag_call:
+            {
+                UIActionSheet *telSheet = [[UIActionSheet alloc] initWithTitle:@"咨询投诉、预约上门安装请拨打客服电话" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"呼叫" otherButtonTitles:nil, nil];
+                [telSheet showFromTabBar:self.tabBarController.tabBar];
             }
                 break;
             default:
@@ -425,6 +449,18 @@ enum CellTag_Type
         self.fHeadView.photoImageView.image = [UIImage imageWithContentsOfFile:localPhotoUrl];
     }else{
         [self.fHeadView.photoImageView setImageWithURL:[NSURL URLWithString:user.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+    }
+}
+
+#pragma mark - delegate
+//电话
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    MLOG(@"%ld",(long)buttonIndex);
+    if(buttonIndex == 0)//拨打电话
+    {
+        NSString *tel = [[NSString alloc] initWithFormat:@"tel://%@",@"4006638585"];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tel]];
     }
 }
 
