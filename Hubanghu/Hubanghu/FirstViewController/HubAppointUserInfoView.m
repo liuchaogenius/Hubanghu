@@ -14,6 +14,7 @@
 
 #define kBorderColor kLineColor//RGBCOLOR(232, 232, 232)
 #define kPerTimes 30 //时间间隔 以分钟表示- 不可等于0
+#define kButtonTag_Cancel 10
 enum TextFieldType
 {
     TextField_time = 0,
@@ -43,6 +44,8 @@ enum PickerType
     NSMutableArray *_timesArray;
     NSInteger _dateSelectNum;
     NSInteger _timeSelectNum;
+    
+    UIButton *_cancelBtn;
 }
 
 @property (strong, nonatomic) NSArray *placehodeArray;
@@ -398,6 +401,15 @@ enum PickerType
         [_tool addTarget:self action:@selector(pickerPickEnd:) forControlEvents:UIControlEventTouchDown];
         [toolView addSubview:_tool];
         
+        _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
+        [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+        _cancelBtn.tag = kButtonTag_Cancel;
+        _cancelBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        _cancelBtn.titleLabel.font = kFont15;
+        _cancelBtn.backgroundColor = [UIColor clearColor];
+        [_cancelBtn addTarget:self action:@selector(pickerPickEnd:) forControlEvents:UIControlEventTouchDown];
+        [toolView addSubview:_cancelBtn];
+        
         [[UIApplication sharedApplication].keyWindow addSubview:self.clearView];
         [[UIApplication sharedApplication].keyWindow addSubview:self.datePicker];
         [[UIApplication sharedApplication].keyWindow addSubview:toolView];
@@ -423,6 +435,15 @@ enum PickerType
             _tool.backgroundColor = [UIColor clearColor];
             [_tool addTarget:self action:@selector(pickerPickEnd:) forControlEvents:UIControlEventTouchDown];
             [toolView addSubview:_tool];
+            
+            _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
+            [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+            _cancelBtn.tag = kButtonTag_Cancel;
+            _cancelBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+            _cancelBtn.titleLabel.font = kFont15;
+            _cancelBtn.backgroundColor = [UIColor clearColor];
+            [_cancelBtn addTarget:self action:@selector(pickerPickEnd:) forControlEvents:UIControlEventTouchDown];
+            [toolView addSubview:_cancelBtn];
             
             [[UIApplication sharedApplication].keyWindow addSubview:self.clearView];
             [[UIApplication sharedApplication].keyWindow addSubview:self.areaPicker];
@@ -530,7 +551,9 @@ enum PickerType
     [self.clearView removeFromSuperview];
     [self.delegate shouldScrolltoPointY:0];
     if ([_datePicker superview]) {
-        [self datePickerValueToTextFiled:self.datePicker];
+        if (sender.tag != kButtonTag_Cancel) {
+            [self datePickerValueToTextFiled:self.datePicker];
+        }
         [UIView animateWithDuration:0.2 animations:^{
             _datePicker.top = kMainScreenHeight;
             [_datePicker removeFromSuperview];
@@ -538,7 +561,9 @@ enum PickerType
         }];
     }
     if ([_areaPicker superview]) {
-        [self areaPikerValueToTextField];
+        if (sender.tag != kButtonTag_Cancel) {
+            [self areaPikerValueToTextField];
+        }
         [UIView animateWithDuration:0.2 animations:^{
             _areaPicker.top = kMainScreenHeight;
             [_areaPicker removeFromSuperview];
