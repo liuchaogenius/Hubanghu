@@ -128,26 +128,32 @@
     
     self.depth = -1; //初始化depth
     _sgmCount = 0;
-    
     self.view.backgroundColor = kViewBackgroundColor;
     //[self settitleLabel:@"加载中..."];
-    /*
-    if(self.cateId == 2)
-    {
-        [self settitleLabel:@"地板安装"];
-    }
-    if(self.cateId == 3)
-    {
-        [self settitleLabel:@"卫浴安装"];
-    }
-    if(self.cateId == 4)
-    {
-        [self settitleLabel:@"灯饰安装"];
-    }
-    if(self.cateId == 5)
-    {
-        [self settitleLabel:@"墙纸安装"];
-    }*/
+//    if(self.cateId == CateId_floor)
+//    {
+//        [self settitleLabel:@"地板安装"];
+//    }
+//    if(self.cateId == CateId_bathroom)
+//    {
+//        [self settitleLabel:@"卫浴安装"];
+//    }
+//    if(self.cateId == CateId_light)
+//    {
+//        [self settitleLabel:@"灯饰安装"];
+//    }
+//    if(self.cateId == CateId_wallpaper)
+//    {
+//        [self settitleLabel:@"墙纸安装"];
+//    }
+//    if(self.cateId == CateId_renovate)
+//    {
+//        [self settitleLabel:@"二次翻新"];
+//    }
+//    if(self.cateId == CateId_niceWorker)
+//    {
+//        [self settitleLabel:@"现场增新"];
+//    }
 
     _tableView = [[UITableView alloc] init];
     _tableView.backgroundColor = kViewBackgroundColor;
@@ -190,8 +196,11 @@
             //0.直接是产品跳转到订单页面（二次翻新用）
             HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] initWithCateModel:self.categoryModel andWorker:self.worker];
             [appointVC setCustomedVCofDepthisZero];
+            [self settitleLabel:self.categoryModel.title];
             appointVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:appointVC animated:YES];
+            appointVC.view.frame = self.view.bounds;
+            [self.view addSubview:appointVC.view];
+            //[self.navigationController pushViewController:appointVC animated:YES];
             
         }
             break;

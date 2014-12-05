@@ -171,6 +171,7 @@
 		FFBBFB2419F3BB18003A200C /* AreasDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBBFB2319F3BB18003A200C /* AreasDBManager.m */; };
 		FFC8CDC81A24708A002844EF /* SImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC8CDC71A24708A002844EF /* SImageUtil.m */; };
 		FFCAEEA71A25C7F1006D3E9C /* IntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEEA61A25C7F1006D3E9C /* IntroduceViewController.m */; };
+		FFCD6F311A317A8400BF25AA /* UILabel+dynamicSizeMe.m in Sources */ = {isa = PBXBuildFile; fileRef = FFCD6F301A317A8400BF25AA /* UILabel+dynamicSizeMe.m */; };
 		FFD1A2CD19EE4B6D00EA97D4 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */; };
 		FFD1A2CE19EE4B6D00EA97D4 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C619EE4B6D00EA97D4 /* FMDatabaseAdditions.m */; };
 		FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD1A2C819EE4B6D00EA97D4 /* FMDatabasePool.m */; };
@@ -517,6 +518,8 @@
 		FFC8CDC71A24708A002844EF /* SImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SImageUtil.m; sourceTree = "<group>"; };
 		FFCAEEA51A25C7F1006D3E9C /* IntroduceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceViewController.h; sourceTree = "<group>"; };
 		FFCAEEA61A25C7F1006D3E9C /* IntroduceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroduceViewController.m; sourceTree = "<group>"; };
+		FFCD6F2F1A317A8400BF25AA /* UILabel+dynamicSizeMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+dynamicSizeMe.h"; sourceTree = "<group>"; };
+		FFCD6F301A317A8400BF25AA /* UILabel+dynamicSizeMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+dynamicSizeMe.m"; sourceTree = "<group>"; };
 		FFD1A2C319EE4B6D00EA97D4 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		FFD1A2C419EE4B6D00EA97D4 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		FFD1A2C519EE4B6D00EA97D4 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -1099,6 +1102,7 @@
 		FF21CEA719E66144005007B7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				FFCD6F2E1A317A8400BF25AA /* UILabel+dynamicSizeMe */,
 				FFEF862F1A300F7A0030E05C /* UMengFeedback_SDK_2.0.1 */,
 				FF0725B31A2843D100CD21CB /* UMSocial_Sdk_Extra_Frameworks */,
 				FF185FFE1A271375007F9E67 /* UMSocial_Sdk_4.2 */,
@@ -1376,6 +1380,15 @@
 			path = ImgUtil;
 			sourceTree = "<group>";
 		};
+		FFCD6F2E1A317A8400BF25AA /* UILabel+dynamicSizeMe */ = {
+			isa = PBXGroup;
+			children = (
+				FFCD6F2F1A317A8400BF25AA /* UILabel+dynamicSizeMe.h */,
+				FFCD6F301A317A8400BF25AA /* UILabel+dynamicSizeMe.m */,
+			);
+			path = "UILabel+dynamicSizeMe";
+			sourceTree = "<group>";
+		};
 		FFD1A2C219EE4B6D00EA97D4 /* FMDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -1579,6 +1592,7 @@
 				FF21CF1F19E66144005007B7 /* DataCenterDeal.mm in Sources */,
 				FF0B35DE1A052F3800299FC9 /* HuhAppointmentVC.m in Sources */,
 				5B16D8D619F140D0009E9FF3 /* CategoryChildInfoModel.m in Sources */,
+				FFCD6F311A317A8400BF25AA /* UILabel+dynamicSizeMe.m in Sources */,
 				FF21CF0C19E66144005007B7 /* FBKVOController.m in Sources */,
 				AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */,
 				FF6D90681A0749B500C966F8 /* SBJsonBase.m in Sources */,

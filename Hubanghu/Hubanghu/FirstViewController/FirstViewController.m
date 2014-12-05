@@ -24,15 +24,7 @@
 #import "SImageUtil.h"
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
 #define KimageHeight kMainScreenWidth*381/1080.0f+kBlankWidth
-enum CateId_Type
-{
-    CateId_floor = 1,//地板
-    CateId_bathroom,//卫浴
-    CateId_light,//灯饰
-    CateId_wallpaper,//墙纸
-    CateId_renovate,//二次翻新
-    CateId_niceWorker//优秀工人
-};
+
 
 @interface FirstViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
@@ -330,9 +322,11 @@ enum CateId_Type
 //        [appointVC setCustomedVCofRenovateWithCateId:[NSString stringWithFormat:@"%d",sender.tag]];
 //        [self.navigationController pushViewController:appointVC animated:YES];
 //    }else
-    if (sender.tag == CateId_niceWorker){
-        self.tabBarController.selectedIndex = 1;
-    }else if (sender.tag != kBlankButtonTag) {
+//    if (sender.tag == CateId_niceWorker){
+//        self.tabBarController.selectedIndex = 1;
+//    }else
+    if (sender.tag != kBlankButtonTag)
+    {
         [self.navigationController pushViewController:[[HbuCategoryViewController alloc] initWithCateId:sender.tag] animated:YES];
     }
 }

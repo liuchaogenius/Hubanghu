@@ -39,4 +39,14 @@ typedef NS_ENUM(int, NS_LeftButtonName)
     E_GOMYTAB//进入我的页面
     
 };
+
+enum CateId_Type
+{
+    CateId_floor = 1,//地板
+    CateId_bathroom,//卫浴
+    CateId_light,//灯饰
+    CateId_wallpaper,//墙纸
+    CateId_renovate,//二次翻新
+    CateId_niceWorker//优秀工人
+};
 #endif

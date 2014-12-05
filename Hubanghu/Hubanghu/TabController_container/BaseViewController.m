@@ -9,10 +9,10 @@
 #import "BaseViewController.h"
 #import "ViewInteraction.h"
 #import "SImageUtil.h"
-
+#import "UILabel+dynamicSizeMe.h"
 @interface BaseViewController ()
 {
-    UILabel *titleLabel;
+//    UILabel *titleLabel;
 }
 @end
 
@@ -183,18 +183,19 @@
 
 - (void)settitleLabel:(NSString*)aTitle
 {
-    if(!titleLabel)
-    {
-        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 200, self.navigationController.navigationBar.frame.size.height)];
-        self.navigationItem.titleView = titleLabel;
-    }
-    titleLabel.center = self.navigationController.navigationBar.center;
-    titleLabel.backgroundColor = kClearColor;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = kFont19;
-    titleLabel.text = aTitle;
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    
+    self.navigationItem.title = aTitle;
+    return;
+//    CGSize size = [aTitle sizeWithFont:kFont18];
+//    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((kMainScreenWidth-size.width+3)/2, 0, size.width, 44)];
+//    MLOG(@"%@",NSStringFromCGRect(self.navigationItem.titleView.frame));
+//    titleLabel.backgroundColor = kClearColor;
+//    titleLabel.textColor = [UIColor whiteColor];
+//    titleLabel.font = kFont18;
+//    titleLabel.text = aTitle;
+//    titleLabel.textAlignment = NSTextAlignmentCenter;
+////    self.navigationController.navigationBar.tit
+//    
+//    self.navigationItem.titleView = titleLabel;
 }
 
 - (void)setRightButton:(UIImage *)aImg title:(NSString *)aTitle target:(id)aTarget action:(SEL)aSelector
