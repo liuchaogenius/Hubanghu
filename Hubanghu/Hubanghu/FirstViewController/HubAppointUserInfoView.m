@@ -376,7 +376,14 @@ enum PickerType
         UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _datePicker.top-30, kMainScreenWidth, 30)];
         self.nextSevenDaysDateArray = [self getNextSevenDaysDateArray];
         self.todayTimesArray = [self getTodayTimesArray];
-        _timesArray = self.todayTimesArray;
+        if(self.todayTimesArray.count == 0)
+        {
+            _timesArray = [self normalTimesArray];
+        }
+        else
+        {
+            _timesArray = self.todayTimesArray;
+        }
         _dateSelectNum = 0;
         _timeSelectNum = 0;
         [self.datePicker selectRow:0 inComponent:0 animated:YES];
@@ -492,15 +499,6 @@ enum PickerType
 
 - (void)datePickerValueToTextFiled : (UIPickerView *)sender
 {
-    /*
-    NSDate *select = [sender date]; // 获取被选中的时间
-    NSDateFormatter *selectDateFormatter = [[NSDateFormatter alloc] init];
-    selectDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm"; // 设置时间和日期的格式
-    NSString *dateAndTime = [selectDateFormatter stringFromDate:select]; // 把date类型转为设置好格式的
-    UITextField *tf = self.textFiledArray[TextField_time];
-    tf.text = dateAndTime;
-    _time = select.timeIntervalSince1970;
-     */
     NSString *dateStr = [NSString stringWithFormat:@"%@ %@",self.nextSevenDaysDateArray[_dateSelectNum],_timesArray[_timeSelectNum]];
     UITextField *tf = self.textFiledArray[TextField_time];
     tf.text = dateStr;
@@ -565,7 +563,10 @@ enum PickerType
         }
     }
     else if (Picker_date == pickerView.tag){
-        if(component == 0) return self.nextSevenDaysDateArray.count; //7天
+        if(component == 0)
+        {
+            return self.nextSevenDaysDateArray.count; //7天
+        }
         else if (component ==1) {
             return _timesArray.count;
             //return 24/0.5; //30分钟一个刻度
@@ -601,7 +602,16 @@ enum PickerType
     }else if(pickerView.tag == Picker_date){
         if (component == 0) {
             //return 今天  后面 （xxxx年）x月x日（周x）
-            return row == 0 ? @"今天" : [self.nextSevenDaysDateArray objectAtIndex:row];
+            NSString *strData = nil;
+            if(self.todayTimesArray.count > 0)
+            {
+                strData = row == 0 ? @"今天" : [self.nextSevenDaysDateArray objectAtIndex:row];
+            }
+            else
+            {
+                strData = [self.nextSevenDaysDateArray objectAtIndex:row];
+            }
+            return strData;
         }else if (component == 1){
             //return 0.30 1.00 1.30
             return _timesArray[row];
@@ -668,12 +678,23 @@ enum PickerType
 {
     NSDate *myDate = [NSDate date];
     NSTimeInterval secondsPerDay = 60 * 60 * 24;
-    NSMutableArray *dateArray = [NSMutableArray arrayWithCapacity:7];
+    int count = 0;
+    int i=0;
+    if(self.todayTimesArray.count>0)
+    {
+        count = 7;
+    }
+    else
+    {
+        count = 8;
+        i=1;
+    }
+    NSMutableArray *dateArray = [NSMutableArray arrayWithCapacity:0];
     
-    for (int i = 0; i < 7; i++) {
+    for (; i < count; i++) {
         NSDate *date = [NSDate dateWithTimeInterval:secondsPerDay*i sinceDate:myDate];
         NSString *dateStr = [self.dateFormat stringFromDate:date];
-        dateArray[i] = dateStr;
+        [dateArray addObject:dateStr];
     }
     //dateArray[0] = @"今天";
     return dateArray;
@@ -704,9 +725,9 @@ enum PickerType
     
     currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
     
-    int number = currentComps.hour * (int)(60/kPerTimes) + (int)(currentComps.minute/kPerTimes);
+    int number = (currentComps.hour-8) * (int)(60/kPerTimes) + (int)(currentComps.minute/kPerTimes);
     //NSString *minStr = [];
-    NSMutableArray *todayTimesArray = [NSMutableArray arrayWithCapacity:self.normalTimesArray.count];
+    NSMutableArray *todayTimesArray = [NSMutableArray arrayWithCapacity:0];
     for (int i = number + 1; i < self.normalTimesArray.count; i++) {
         [todayTimesArray addObject:self.normalTimesArray[i]];
     }

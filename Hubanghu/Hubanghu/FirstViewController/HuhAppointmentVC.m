@@ -291,16 +291,23 @@ typedef NS_ENUM(int, AmountDesc)
 
 - (void)shouldScrolltoPointY:(CGFloat)pointY
 {
-    if ((int)pointY == 0) {
-        //复原
-        CGFloat thFitY = scrollview.contentSize.height - (kMainScreenHeight - toolBarView.height - 64);
-        [scrollview setContentOffset:CGPointMake(0, thFitY>0 ? thFitY : 0)];
-    }else{
-        CGFloat y = 200 +50+ (userInfoView.frame.origin.y + pointY) - (kMainScreenHeight-64);
-        CGPoint thePoint = CGPointMake(0, y);
-        MLOG(@"%lf %lf",thePoint.x,thePoint.y);
-        [scrollview setContentOffset:thePoint animated:YES];
+    @try {
+        if ((int)pointY == 0) {
+            //复原
+            CGFloat thFitY = scrollview.contentSize.height - (kMainScreenHeight - toolBarView.height - 64);
+            [scrollview setContentOffset:CGPointMake(0, thFitY>0 ? thFitY : 0)];
+        }else{
+            CGFloat y = 200 +50+ (userInfoView.frame.origin.y + pointY) - (kMainScreenHeight-64);
+            CGPoint thePoint = CGPointMake(0, y);
+            MLOG(@"%lf %lf",thePoint.x,thePoint.y);
+            [scrollview setContentOffset:thePoint animated:YES];
+        }
     }
+    @catch (NSException *exception) {
+        
+    }
+
+
 }
 
 //显示描述页面
