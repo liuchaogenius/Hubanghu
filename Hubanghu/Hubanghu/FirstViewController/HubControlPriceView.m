@@ -237,11 +237,11 @@
     countTextField.layer.cornerRadius = 2;
     countTextField.delegate = self;
     
-    UILabel *unitLabel = [[UILabel alloc] initWithFrame:CGRectMake(countTextField.right+3, countTextField.bottom-13, 28, 15)];
+    UILabel *unitLabel = [[UILabel alloc] initWithFrame:CGRectMake(countTextField.right+3, countTextField.bottom-13, kMainScreenWidth-countTextField.right-3, 15)];
     unitLabel.bottom = countTextField.bottom;
     unitLabel.font = [UIFont systemFontOfSize:kTitleFont - 2];
     unitLabel.backgroundColor = kClearColor;
-    unitLabel.textAlignment = NSTextAlignmentCenter;
+    unitLabel.textAlignment = NSTextAlignmentLeft;
     _unitLabel = unitLabel;
     unitLabel.text = self.cateModel.amountType;
     if((countType) < [unitArry count])
@@ -249,7 +249,7 @@
 #warning 此处单位
         //unitLabel.text = [unitArry objectAtIndex:(countType)];
     }
-    unitLabel.textColor = kBorderColor;
+    unitLabel.textColor = [UIColor lightGrayColor];
     [self addSubview:unitLabel];
     
     UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, countTitleLabel.bottom+20, kMainScreenWidth, 1)];
@@ -280,7 +280,7 @@
     uragentDesc.backgroundColor = kClearColor;
     uragentDesc.centerY = bt.centerY;
     uragentDesc.font = [UIFont systemFontOfSize:kTitleFont-2];
-    uragentDesc.textColor = [UIColor grayColor];
+    uragentDesc.textColor = [UIColor lightGrayColor];
     uragentDesc.text = @"12小时内上门安装";
     [self addSubview:uragentDesc];
     
