@@ -124,10 +124,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
     if (self.categoryModel && self.categoryModel.depth == 0) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:NO];
     }
+    [super viewWillAppear:YES];
+    
 }
 
 - (void)viewDidLoad {
