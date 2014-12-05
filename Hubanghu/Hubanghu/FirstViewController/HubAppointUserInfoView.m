@@ -679,7 +679,14 @@ enum PickerType
         //选中处理
         if (component == 0) {
             _dateSelectNum = row;
-            _timesArray = (row ? self.normalTimesArray : self.todayTimesArray);
+            if(self.todayTimesArray.count>0)
+            {
+                _timesArray = (row ? self.normalTimesArray : self.todayTimesArray);
+            }
+            else
+            {
+                _timesArray = self.normalTimesArray;
+            }
             [pickerView selectRow:0 inComponent:1 animated:YES];
             [pickerView reloadComponent:1];
         }else if (component == 1){
