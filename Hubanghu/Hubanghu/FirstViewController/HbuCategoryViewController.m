@@ -25,7 +25,7 @@
 //需分栏下 返回选中种类的catemodel
 #define depth2CateModel (self.categoryInfoModel.child[self.selectSgmButton.tag % kSelectTagBase])
 
-@interface HbuCategoryViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HbuCategoryViewController ()<UITableViewDelegate,UITableViewDataSource,AppointVCDelegate>
 {
     UIButton *_touchedButton;
     HbhCategory *_selectCateModel;
@@ -129,31 +129,6 @@
     self.depth = -1; //初始化depth
     _sgmCount = 0;
     self.view.backgroundColor = kViewBackgroundColor;
-    //[self settitleLabel:@"加载中..."];
-//    if(self.cateId == CateId_floor)
-//    {
-//        [self settitleLabel:@"地板安装"];
-//    }
-//    if(self.cateId == CateId_bathroom)
-//    {
-//        [self settitleLabel:@"卫浴安装"];
-//    }
-//    if(self.cateId == CateId_light)
-//    {
-//        [self settitleLabel:@"灯饰安装"];
-//    }
-//    if(self.cateId == CateId_wallpaper)
-//    {
-//        [self settitleLabel:@"墙纸安装"];
-//    }
-//    if(self.cateId == CateId_renovate)
-//    {
-//        [self settitleLabel:@"二次翻新"];
-//    }
-//    if(self.cateId == CateId_niceWorker)
-//    {
-//        [self settitleLabel:@"现场增新"];
-//    }
 
     _tableView = [[UITableView alloc] init];
     _tableView.backgroundColor = kViewBackgroundColor;
@@ -167,11 +142,7 @@
     [self.view addSubview:self.tableView];
     [self addTableViewTrag];
     __weak HbuCategoryViewController *weakSelf = self;
-    
-//    UIActivityIndicatorView *indictor = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//    indictor.center = CGPointMake(kMainScreenWidth/2.0,100);
-//    [self.view addSubview:indictor];
-//    [indictor startAnimating];
+
     [SVProgressHUD showWithStatus:@"拼命加载中..." cover:YES offsetY:0];
     [HbuCategoryListManager getCategroryInfoWithCateId:self.cateId WithSuccBlock:^(HbhCategory *cModel) {
         //[indictor stopAnimating];
@@ -199,8 +170,9 @@
             [self settitleLabel:self.categoryModel.title];
             appointVC.hidesBottomBarWhenPushed = YES;
             appointVC.view.frame = self.view.bounds;
+            appointVC.delegate = self;
             [self.view addSubview:appointVC.view];
-            //[self.navigationController pushViewController:appointVC animated:YES];
+            //[self.navigationController pushViewController:appointVC animated:NO];
             
         }
             break;
@@ -423,7 +395,11 @@
     HbhCategory *childCateModel = [HbhCategory modelObjectWithDictionary:self.categoryModel.child[cIndex]];
     return [HbhCategory modelObjectWithDictionary:childCateModel.child[gIndex]];
 }
-
+#pragma -depth0时，appointvc 的push协议
+- (void)pushWithVc:(BaseViewController *)vc
+{
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 /*
 #pragma mark - Navigation

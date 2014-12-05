@@ -12,7 +12,9 @@
 @class ThirdViewController;
 @class FourthViewController;
 @class LeftView;
+@class LSNavigationController;
 
 @interface RootTabBarController : UITabBarController<UITabBarControllerDelegate,UITabBarDelegate,UIActionSheetDelegate>
+@property (strong, nonatomic) LSNavigationController *nav;
 
 @end

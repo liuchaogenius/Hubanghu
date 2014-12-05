@@ -9,9 +9,15 @@
 #import "BaseViewController.h"
 @class HbhWorkers;
 @class HbhCategory;
+@protocol AppointVCDelegate <NSObject>
+//当depth=0 委托上层nav push
+- (void)pushWithVc:(BaseViewController *)vc;
+
+@end
 @interface HuhAppointmentVC : BaseViewController
 
 //- (void)setVCData:(NSString *)title cateId:(NSString *)cateId andWork:(HbhWorkers *)worker;
+@property (weak, nonatomic) id<AppointVCDelegate> delegate;
 
 - (void)setCustomedVCofDepthisZero;//进入类似二次翻新的定制方法-depth = 0时，直接进入下单
 

@@ -77,6 +77,7 @@
 {
     firstVC = [[FirstViewController alloc] init];
     firstNav = [[LSNavigationController alloc] initWithRootViewController:firstVC];
+    self.nav = firstNav;
     
     secondVC = [[SecondViewController alloc] init];
     secondNav = [[LSNavigationController alloc] initWithRootViewController:secondVC];

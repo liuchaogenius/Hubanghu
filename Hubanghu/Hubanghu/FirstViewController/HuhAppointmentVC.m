@@ -277,7 +277,13 @@ typedef NS_ENUM(int, AmountDesc)
     }
     HubOrder *order = [[HubOrder alloc] initWithDictionary:mutDict];
     HbhConfirmOrderViewController * covc = [[HbhConfirmOrderViewController alloc] initWithOrder:order];
-    [self.navigationController pushViewController:covc animated:YES];
+    if (_isDepthZero) {
+        [self.delegate pushWithVc:covc];
+    }else{
+        [self.navigationController pushViewController:covc animated:YES];
+    }
+    
+    
 }
 
 #pragma mark - delegate
@@ -318,8 +324,13 @@ typedef NS_ENUM(int, AmountDesc)
         IntroduceViewController *iVC = [[IntroduceViewController alloc] init];
         iVC.isSysPush = YES;
         iVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:iVC animated:YES];
+        //[self.navigationController pushViewController:iVC animated:YES];
         [iVC setUrl:self.cateModel.descUrl title:@"详细信息"];
+        if (_isDepthZero && [self.delegate respondsToSelector:@selector(pushWithVc:)]) {
+            [self.delegate pushWithVc:iVC];
+        }else{
+            [self.navigationController pushViewController:iVC animated:YES];
+        }
     }
 }
 
@@ -336,7 +347,7 @@ typedef NS_ENUM(int, AmountDesc)
     if (buttonIndex == 1) {
         HbhSelCityViewController *vc = [[HbhSelCityViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 
