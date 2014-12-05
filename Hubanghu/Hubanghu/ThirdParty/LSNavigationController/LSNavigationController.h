@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LSNavigationController : UINavigationController<UIGestureRecognizerDelegate,UINavigationControllerDelegate>
-
+@property (nonatomic, assign) BOOL unenableGest;
 @end

@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     __weak LSNavigationController *weakSelf = self;
-    
+    self.unenableGest = YES;
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)])
     {
         self.interactivePopGestureRecognizer.delegate = weakSelf;
@@ -39,7 +39,9 @@
 {
     if([self respondsToSelector:@selector(interactivePopGestureRecognizer)])
     {
-        self.interactivePopGestureRecognizer.enabled = YES;
+ 
+        self.interactivePopGestureRecognizer.enabled = self.unenableGest;
+        
     }
 }
 
