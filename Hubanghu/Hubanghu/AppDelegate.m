@@ -80,7 +80,7 @@
 {
     if (buttonIndex == 0) {
         MLOG(@"%@",self.updateUrl);
-#if RELEASE
+//#if RELEASE
         NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%d", 945963130];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         if(Type == 1)
@@ -90,7 +90,7 @@
             [ary addObject:nil];
 
         }
-#endif
+//#endif
     }
 }
 #pragma mark 注册devicetoken
