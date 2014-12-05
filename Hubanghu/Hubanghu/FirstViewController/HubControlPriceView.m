@@ -424,6 +424,10 @@
         [self getPrice];
     }
 }
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self allTextFieldsResignFirstRespond];
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
