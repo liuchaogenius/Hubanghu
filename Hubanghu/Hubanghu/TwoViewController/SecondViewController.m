@@ -558,6 +558,7 @@ typedef enum : NSUInteger {
         HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
         [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
         cell.workerNameLabel.text = model.name;
+        CGSize namesize = [model.name sizeWithFont:kFont14];
         cell.workerMountLabel.text = [NSString stringWithFormat:@"%d单", (int)model.orderCount];
         cell.workYearLabel.text = model.workingAge;
         if (model.distance && model.distance>0) {
@@ -580,6 +581,9 @@ typedef enum : NSUInteger {
         {
             cell.workerTypeLabel.text = [NSString stringWithFormat:@"[%@]", model.workTypeName];
         }
+        CGRect typeLabelRect = cell.workerTypeLabel.frame;
+        typeLabelRect.origin.x =cell.workerNameLabel.frame.origin.x+namesize.width+3;
+        cell.workerTypeLabel.frame = typeLabelRect;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell addSubview:lineView];
         //if(kSystemVersion<7.0)
