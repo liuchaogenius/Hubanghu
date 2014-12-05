@@ -80,7 +80,7 @@ enum PickerType
 {
     UITextField *tf = self.textFiledArray[TextField_time];
     if (tf && tf.text.length && _time) {
-        return [NSString stringWithFormat:@"%lf",_time];
+        return [NSString stringWithFormat:@"%lf",_time*kTimeUnit];
     }
     return @"";
 }

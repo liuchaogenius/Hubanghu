@@ -156,7 +156,7 @@
 
 - (void)resetDetailsInfo{
 //	_detailsInfoTitle = @[@"名称:",@"姓名:",@"手机号",@"数量",@"时间",@"地址",@"安装师傅",@"备注",@"应付金额"];
-	NSDate *date = [NSDate dateWithTimeIntervalSince1970:_order.time];
+	NSDate *date = [NSDate dateWithTimeIntervalSince1970:_order.time/kTimeUnit];
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 	dateFormatter.timeZone = [[NSTimeZone alloc] initWithName:@"GMT+8"];

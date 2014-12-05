@@ -339,7 +339,7 @@
             self.selectLine.centerX = sender.centerX;
         }];
         [self.tableView reloadData];
-        //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self.tableView setContentOffset:CGPointMake(0, 0)];
     }
 }
 #pragma mark push进入预定界面

@@ -168,4 +168,6 @@ NSNumber *iNum = [NSNumber numberWithLongLong:i];\
 
 #define kTwiceRenovationCateId 5
 
+#define kTimeUnit 1000  //与后台间交互的时间单位，设1000就是ms，设1就是s
+
 #endif
