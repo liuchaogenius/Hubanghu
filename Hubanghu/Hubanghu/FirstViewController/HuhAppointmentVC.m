@@ -218,7 +218,12 @@ typedef NS_ENUM(int, AmountDesc)
             [_selectWorkerBtn setTitle:workerModel.name forState:UIControlStateNormal];
         }
     }];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (_isDepthZero && [self.delegate respondsToSelector:@selector(pushWithVc:)]) {
+        [self.delegate pushWithVc:vc];
+    }else{
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    //[self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark 数据完整性检查
