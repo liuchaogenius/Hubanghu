@@ -18,11 +18,9 @@
 
 @property(nonatomic, weak) id<controlPriceDelegate> delegate;
 @property(nonatomic, assign) BOOL hadGetPrice;
-@property(nonatomic, assign) BOOL ishaveMountType;
+@property(nonatomic, assign) BOOL ishaveMountType;//catebtn有无判断
 
 - (instancetype)initWithFrame:(CGRect)frame categoryModel:(HbhCategory *)cateModel;
-//- (void)setCountType:(int)aType;// 1:(数量),2:（面积）,3:（长度)
-//- (void)setCateId:(NSString *)cateId;
 - (void)allTextFieldsResignFirstRespond;
 
 - (BOOL)infoCheck;
@@ -32,6 +30,6 @@
 - (NSString *)getComment;//备注
 - (NSString *)getCateButtonType;//返回 是纯装  纯拆。。。
 
-- (void)customedOfRenovate;//二次翻新定制显示状态
+//- (void)customedOfRenovate;//二次翻新定制显示状态
 
 @end

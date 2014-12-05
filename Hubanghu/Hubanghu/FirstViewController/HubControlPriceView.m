@@ -42,7 +42,7 @@
 @property (strong, nonatomic) NSMutableArray *cateButtonArray;
 @property (strong, nonatomic) UIView *cateListView;
 @property (strong, nonatomic) UIView *clearBackView;
-@property (assign, nonatomic) BOOL isRenovate;
+@property (assign, nonatomic) BOOL isRenovate;//二次翻新类，数量输入不可用标志
 @property (strong, nonatomic) HbhCategory *cateModel;
 @end
 
@@ -79,7 +79,7 @@
     if (countTextField.text && countTextField.text.length) {
         return countTextField.text;
     }
-    return @" ";
+    return @"0";
 }
 - (NSString *)getComment//备注
 {
@@ -108,38 +108,7 @@
     cateButtonType = aType;
 }
 
-//- (void)setCateId:(NSString *)cateId
-//{
-//    _cateId = cateId;
-//}
-/*
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        self.isRenovate = NO;
-        categoryTitlearry = @[@"纯装",@"纯拆",@"拆装",@"勘察"];
-        countArry = @[@"数量:",@"面积:",@"长度:"];
-        //unitArry = @[@"(个)",@"(㎡)",@"(米)"];
-        
-        cateButtonType = 0; //0起步 0，1，2，3
-        countType = 0;
-        uragent = NO;
-        
-        offsetY = 20;
-        
-        //input
-        //UI
-        self.backgroundColor = [UIColor whiteColor];
-        [self createCategoryButton:countType];
-        [self createCountview];
-        [self createExpeditedView];
-        [self createRemarkview];
-    }
-    return self;
-}
-*/
+
 - (instancetype)initWithFrame:(CGRect)frame categoryModel:(HbhCategory *)cateModel
 {
     self = [super initWithFrame:frame];
@@ -157,17 +126,24 @@
         }
         if (!_mountTypeArray.count) {
             self.ishaveMountType = NO;//_mountTypeArray = @[@"0",@"1",@"2",@"3"];
+            cateButtonType = 0;
+        }
+        if ([self.cateModel.amountType isEqualToString:@""]) {
+            self.isRenovate = YES;
         }
         uragent = NO;
         offsetY = 20;
         cateButtonType = [self.cateModel.mountDefault integerValue];
-        
         //ui
         self.backgroundColor = [UIColor whiteColor];
         [self createCategoryButton:countType];
         [self createCountview];
         [self createExpeditedView];
         [self createRemarkview];
+        if (self.isRenovate) {
+            [self getPrice];
+            [countTextField setEnabled:NO];
+        }
     }
     return self;
 }
@@ -398,7 +374,8 @@
         if (countTextField && countTextField.text.length) {
             [self.netManager getAppointmentPriceWithCateId:[NSString stringWithFormat:@"%d",self.cateModel.cateId] type:cateButtonType amountType:countType amount:countTextField.text urgent:uragent succ:^(NSString *price) {
                 //通知vc修改价格
-                [self.delegate priceChangedWithPrice:price];
+                [weakself.delegate priceChangedWithPrice:price];
+                weakself.hadGetPrice = YES;
             } failure:^{
                 [SVProgressHUD showErrorWithStatus:@"网络请求失败，请检查网络!" cover:YES offsetY:kMainScreenHeight/2.0];
             }];

@@ -104,7 +104,7 @@ typedef NS_ENUM(int, AmountDesc)
     [installDesView setContent:self.cateModel.desc.length ? self.cateModel.desc : @""];
     [installDesView setdescUrl:self.cateModel.descUrl];
 
-    if(_isDepthZero && self.cateModel.cateId == kTwiceRenovationCateId) [controlPriceView customedOfRenovate]; //二次翻新项目页面处理
+    //if(_isDepthZero && self.cateModel.cateId == kTwiceRenovationCateId) [controlPriceView customedOfRenovate]; //二次翻新项目页面处理
 }
 
 - (void)setCustomedVCofDepthisZero//二次翻新的定制方法
