@@ -36,7 +36,8 @@
     [self.window makeKeyAndVisible];
     [self checkVersion];
     [self umengregister];
-    [self performSelector:@selector(registerRemoteToken) withObject:nil afterDelay:5];
+    [self registerRemoteToken];
+    //[self performSelector:@selector(registerRemoteToken) withObject:nil afterDelay:0];
     return YES;
 }
 ///注册友盟

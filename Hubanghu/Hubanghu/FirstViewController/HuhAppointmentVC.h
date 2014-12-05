@@ -11,7 +11,7 @@
 @class HbhCategory;
 @protocol AppointVCDelegate <NSObject>
 //当depth=0 委托上层nav push
-- (void)pushWithVc:(BaseViewController *)vc;
+- (void)pushWithVc:(UIViewController *)vc;
 
 @end
 @interface HuhAppointmentVC : BaseViewController

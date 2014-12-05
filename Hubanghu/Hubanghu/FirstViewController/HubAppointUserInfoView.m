@@ -758,6 +758,10 @@ enum PickerType
     currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
     
     int number = (currentComps.hour-8) * (int)(60/kPerTimes) + (int)(currentComps.minute/kPerTimes);
+    if(currentComps.hour<8)
+    {
+        number=-1;
+    }
     //NSString *minStr = [];
     NSMutableArray *todayTimesArray = [NSMutableArray arrayWithCapacity:0];
     for (int i = number + 1; i < self.normalTimesArray.count; i++) {

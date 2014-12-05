@@ -22,7 +22,10 @@
     _webView = [[IntroduceWebView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:_webView];
     self.view.backgroundColor = kViewBackgroundColor;
-    [self setLeftButton:[UIImage imageNamed:@"back"] title:nil target:self action:@selector(backItem)];
+    if(self.isSysPush == NO)
+    {
+        [self setLeftButton:[UIImage imageNamed:@"back"] title:nil target:self action:@selector(backButtonItem)];
+    }
     [self setRightButton:[UIImage imageNamed:@"refresh"] title:nil target:self action:@selector(refeshWebview)];
 }
 
@@ -33,7 +36,7 @@
         [_webView refreshItem];
     }
 }
-- (void)backItem
+- (void)backButtonItem
 {
     [SVProgressHUD dismiss];
     if(self.isSysPush)
@@ -75,7 +78,7 @@
         UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
         button.backgroundColor = kClearColor;
         [button setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(backItem) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(backButtonItem) forControlEvents:UIControlEventTouchUpInside];
         
 //        UIImageView *imgview = [[UIImageView alloc] initWithFrame:buttonFrame];
 //        [imgview setImage:[UIImage imageNamed:@"back"]];

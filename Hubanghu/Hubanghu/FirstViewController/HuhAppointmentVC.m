@@ -328,6 +328,7 @@ typedef NS_ENUM(int, AmountDesc)
 - (void)showDescUrl
 {
     if (self.cateModel.descUrl.length) {
+
         IntroduceViewController *iVC = [[IntroduceViewController alloc] init];
         iVC.isSysPush = YES;
         iVC.hidesBottomBarWhenPushed = YES;

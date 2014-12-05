@@ -17,7 +17,7 @@
 #import "SVPullToRefresh.h"
 #import "SVProgressHUD.h"
 #import "HbhCategory.h"
-
+#import "IntroduceViewController.h"
 #define kSgmBtnHeight 35
 #define kBlankButtonTag 149 //当cate数量为奇数时，空白button的tag值
 #define kSelectTagBase 200 //selectline的tag值的起步值
@@ -29,6 +29,7 @@
 {
     UIButton *_touchedButton;
     HbhCategory *_selectCateModel;
+    BOOL isDescWebview;
 }
 @property (strong ,nonatomic) HbhWorkers *worker; //if！=nil 代表有预先确定的工人
 
@@ -124,8 +125,12 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (self.categoryModel && self.categoryModel.depth == 0) {
+    if (self.categoryModel && self.categoryModel.depth == 0 && isDescWebview == NO) {
         [self.navigationController popViewControllerAnimated:NO];
+    }
+    if(isDescWebview == YES)
+    {
+        isDescWebview = NO;
     }
     [super viewWillAppear:YES];
     
@@ -414,8 +419,12 @@
     return [HbhCategory modelObjectWithDictionary:childCateModel.child[gIndex]];
 }
 #pragma -depth0时，appointvc 的push协议
-- (void)pushWithVc:(BaseViewController *)vc
+- (void)pushWithVc:(UIViewController *)vc
 {
+    if([vc isKindOfClass:[IntroduceViewController class]])
+    {
+        isDescWebview = YES;
+    }
     [self.navigationController pushViewController:vc animated:YES];
 }
 
