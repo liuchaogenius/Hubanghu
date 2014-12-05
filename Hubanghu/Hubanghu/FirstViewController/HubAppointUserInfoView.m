@@ -373,7 +373,7 @@ enum PickerType
 - (void)showDatePickView{
     if (![self.datePicker superview]) {
         
-        UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _datePicker.top-30, kMainScreenWidth, 30)];
+        UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _datePicker.top-40, kMainScreenWidth, 40)];
         self.nextSevenDaysDateArray = [self getNextSevenDaysDateArray];
         self.todayTimesArray = [self getTodayTimesArray];
         if(self.todayTimesArray.count == 0)
@@ -390,10 +390,10 @@ enum PickerType
         [self.datePicker selectRow:0 inComponent:1 animated:YES];
         
         toolView.backgroundColor = [UIColor lightGrayColor];
-        _tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 50, 0, 40, 40)];
+        _tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 60, 0, 60, 40)];
         [_tool setTitle:@"完成" forState:UIControlStateNormal];
         _tool.titleLabel.textAlignment = NSTextAlignmentCenter;
-        _tool.titleLabel.font = kFont13;
+        _tool.titleLabel.font = kFont15;
         _tool.backgroundColor = [UIColor clearColor];
         [_tool addTarget:self action:@selector(pickerPickEnd:) forControlEvents:UIControlEventTouchDown];
         [toolView addSubview:_tool];
@@ -414,12 +414,12 @@ enum PickerType
     if (self.provinceArray && self.provinceArray.count) {
         [self.areaPicker reloadAllComponents];
         if (![self.areaPicker superview]) {
-            UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _areaPicker.top-30, kMainScreenWidth, 30)];
+            UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, _areaPicker.top-30, kMainScreenWidth, 40)];
             toolView.backgroundColor = [UIColor lightGrayColor];
-            _tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 50, 0, 30, 30)];
+            _tool = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 60, 0, 60, 40)];
             [_tool setTitle:@"完成" forState:UIControlStateNormal];
             _tool.titleLabel.textAlignment = NSTextAlignmentCenter;
-            _tool.titleLabel.font = kFont13;
+            _tool.titleLabel.font = kFont15;
             _tool.backgroundColor = [UIColor clearColor];
             [_tool addTarget:self action:@selector(pickerPickEnd:) forControlEvents:UIControlEventTouchDown];
             [toolView addSubview:_tool];
