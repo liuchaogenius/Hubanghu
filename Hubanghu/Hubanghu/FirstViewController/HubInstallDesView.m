@@ -11,6 +11,8 @@
 @interface HubInstallDesView()
 {
     UILabel *contentLabel;
+    NSString *_descUrl;
+
 }
 @end
 @implementation HubInstallDesView
@@ -22,6 +24,9 @@
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
         [self createLabel];
+        
+        UITapGestureRecognizer *tp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchDescUrl)];
+        [self addGestureRecognizer:tp];
     }
     return self;
 }
@@ -38,6 +43,7 @@
         contentLabel.textColor = [UIColor blackColor];
         [self addSubview:contentLabel];
         
+
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, kMainScreenWidth, 0.7)];
         line.backgroundColor = kLineColor;
         [contentLabel addSubview:line];
@@ -50,6 +56,23 @@
         contentLabel.text = aContent;
     }
 }
+
+
+- (void)setdescUrl:(NSString *)aUrl
+{
+    _descUrl = aUrl;
+}
+
+- (void)touchDescUrl
+{
+    if ([self.delegate respondsToSelector:@selector(showDescUrl)]) {
+        [self.delegate showDescUrl];
+        
+    }
+}
+
+
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -378,10 +378,13 @@
 
 - (void)getPrice
 {
+    self.hadGetPrice = NO;
+    __weak HubControlPriceView *weakself = self;
     if (self.isRenovate) {//二次翻新特例
         [self.netManager getAppointmentPriceWithCateId:_cateId type:cateButtonType amountType:countType amount:@"1" urgent:uragent succ:^(NSString *price) {
             //通知vc修改价格
-            [self.delegate priceChangedWithPrice:price];
+            [weakself.delegate priceChangedWithPrice:price];
+            weakself.hadGetPrice = YES;
         } failure:^{
             [SVProgressHUD showErrorWithStatus:@"网络请求失败，请检查网络!" cover:YES offsetY:kMainScreenHeight/2.0];
         }];

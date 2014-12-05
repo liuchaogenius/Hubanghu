@@ -19,6 +19,7 @@
 #import "HubOrder.h"
 #import "HbhSelCityViewController.h"
 #import "HbhCategory.h"
+#import "IntroduceViewController.h"
 
 
 typedef NS_ENUM(int, AmountDesc)
@@ -27,7 +28,7 @@ typedef NS_ENUM(int, AmountDesc)
     E_AREA,
     E_LENGHT
 };
-@interface HuhAppointmentVC ()<controlPriceDelegate,appointUserInfoDelegate>
+@interface HuhAppointmentVC ()<controlPriceDelegate,appointUserInfoDelegate,IDesDelegate>
 {
     NSString *strNavtitle;
     NSString *strCateId;
@@ -101,7 +102,8 @@ typedef NS_ENUM(int, AmountDesc)
     [self creatToolBarView];
     
     [installDesView setContent:self.cateModel.desc.length ? self.cateModel.desc : @""];
-    
+    [installDesView setdescUrl:self.cateModel.descUrl];
+
     if(_isDepthZero && self.cateModel.cateId == kTwiceRenovationCateId) [controlPriceView customedOfRenovate]; //二次翻新项目页面处理
 }
 
@@ -117,6 +119,7 @@ typedef NS_ENUM(int, AmountDesc)
     if(!installDesView)
     {
         installDesView = [[HubInstallDesView alloc] initWithFrame:CGRectMake(0, 10, kMainScreenWidth, 65)];
+        installDesView.delegate = self;
         [scrollview addSubview:installDesView];
     }
 }
@@ -229,7 +232,7 @@ typedef NS_ENUM(int, AmountDesc)
     }else if (![userInfoView infoCheck]){
         [SVProgressHUD showErrorWithStatus:@"请输入完整信息" cover:YES offsetY:kMainScreenHeight/2.0];
         return NO;
-    }else if ([_totalPriceLabel.text isEqualToString:@"0.00"]){
+    }else if (!controlPriceView.hadGetPrice){
         [SVProgressHUD showErrorWithStatus:@"价格读取中.." cover:YES offsetY:kMainScreenHeight/2.0];
         return NO;
     }
@@ -298,9 +301,20 @@ typedef NS_ENUM(int, AmountDesc)
         MLOG(@"%lf %lf",thePoint.x,thePoint.y);
         [scrollview setContentOffset:thePoint animated:YES];
     }
-    
-//    self.view.frame = CGRectMake(0, (int)pointY ? self.view.frame.origin.y - pointY : 64, self.view.width, self.view.height);
 }
+
+//显示描述页面
+- (void)showDescUrl
+{
+    if (self.cateModel.descUrl.length) {
+        IntroduceViewController *iVC = [[IntroduceViewController alloc] init];
+        iVC.isSysPush = YES;
+        iVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:iVC animated:YES];
+        [iVC setUrl:self.cateModel.descUrl title:@"详细信息"];
+    }
+}
+
 
 #pragma mark resign first resp
 - (void)shouldResignAllFirstResponds

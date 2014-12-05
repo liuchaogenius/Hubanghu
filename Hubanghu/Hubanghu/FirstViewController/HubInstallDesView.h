@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol IDesDelegate <NSObject>
+- (void)showDescUrl;
+@end
 @interface HubInstallDesView : UIView
+
+@property (weak, nonatomic) id<IDesDelegate> delegate;
 - (void)setContent:(NSString *)aContent;
+- (void)setdescUrl:(NSString *)aUrl;
+
 @end
