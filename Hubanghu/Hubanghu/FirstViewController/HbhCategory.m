@@ -18,7 +18,7 @@ NSString *const kHbhCategoryImageUrl = @"imageUrl";
 NSString *const kHbhCategoryChild = @"child";
 NSString *const kHbhCategoryMountType = @"mountType";
 NSString *const kHbhCategoryDesc = @"desc";
-NSString *const kHbhCategoryMountDefault = @"mountDefault";
+NSString *const kHbhCategoryMountDefault = @"mountDefualt";
 
 
 @interface HbhCategory ()
@@ -66,7 +66,7 @@ NSString *const kHbhCategoryMountDefault = @"mountDefault";
     self.child = [NSArray arrayWithArray:receivedHbhChild];
             self.mountType = [self objectOrNilForKey:kHbhCategoryMountType fromDictionary:dict];
             self.desc = [self objectOrNilForKey:kHbhCategoryDesc fromDictionary:dict];
-            self.mountDefault = [[self objectOrNilForKey:kHbhCategoryMountDefault fromDictionary:dict] intValue];
+        self.mountDefault = [self objectOrNilForKey:kHbhCategoryMountDefault fromDictionary:dict];
 
     }
     
@@ -87,7 +87,7 @@ NSString *const kHbhCategoryMountDefault = @"mountDefault";
     [mutableDict setValue:self.child forKey:kHbhCategoryChild];
     [mutableDict setValue:self.mountType forKey:kHbhCategoryMountType];
     [mutableDict setValue:self.desc forKey:kHbhCategoryDesc];
-    [mutableDict setValue:[NSNumber numberWithInt:self.mountDefault] forKey:kHbhCategoryMountDefault];
+    [mutableDict setValue:self.mountDefault forKey:kHbhCategoryMountDefault];
 
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
@@ -121,7 +121,7 @@ NSString *const kHbhCategoryMountDefault = @"mountDefault";
     self.child = [aDecoder decodeObjectForKey:kHbhCategoryChild];
     self.mountType = [aDecoder decodeObjectForKey:kHbhCategoryMountType];
     self.desc = [aDecoder decodeObjectForKey:kHbhCategoryDesc];
-    self.mountDefault = [aDecoder decodeIntForKey:kHbhCategoryMountDefault];
+    self.mountDefault = [aDecoder decodeObjectForKey:kHbhCategoryMountDefault];
     return self;
 }
 
@@ -138,7 +138,7 @@ NSString *const kHbhCategoryMountDefault = @"mountDefault";
     [aCoder encodeObject:_child forKey:kHbhCategoryChild];
     [aCoder encodeObject:_mountType forKey:kHbhCategoryMountType];
     [aCoder encodeObject:_desc forKey:kHbhCategoryDesc];
-    [aCoder encodeInt:_mountDefault forKey:kHbhCategoryMountDefault];
+    [aCoder encodeObject:_mountDefault forKey:kHbhCategoryMountDefault];
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -157,7 +157,7 @@ NSString *const kHbhCategoryMountDefault = @"mountDefault";
         copy.child = [self.child copyWithZone:zone];
         copy.mountType = [self.mountType copyWithZone:zone];
         copy.desc = [self.desc copyWithZone:zone];
-        copy.mountDefault = self.mountDefault;
+        copy.mountDefault = [self.mountDefault copyWithZone:zone];
     }
     
     return copy;

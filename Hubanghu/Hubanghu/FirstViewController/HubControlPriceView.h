@@ -18,6 +18,7 @@
 
 @property(nonatomic, weak) id<controlPriceDelegate> delegate;
 @property(nonatomic, assign) BOOL hadGetPrice;
+@property(nonatomic, assign) BOOL ishaveMountType;
 
 - (instancetype)initWithFrame:(CGRect)frame categoryModel:(HbhCategory *)cateModel;
 //- (void)setCountType:(int)aType;// 1:(数量),2:（面积）,3:（长度)

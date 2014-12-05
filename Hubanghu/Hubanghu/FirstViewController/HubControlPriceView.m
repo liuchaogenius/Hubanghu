@@ -33,7 +33,7 @@
     UILabel *_countTitleLabel; //数量title
     UILabel *_unitLabel; //单位label
     
-    NSString *_cateId;
+    //NSString *_cateId;
     UIView *_cateView;
     UILabel *_cateTitleLabel;
     
@@ -108,10 +108,10 @@
     cateButtonType = aType;
 }
 
-- (void)setCateId:(NSString *)cateId
-{
-    _cateId = cateId;
-}
+//- (void)setCateId:(NSString *)cateId
+//{
+//    _cateId = cateId;
+//}
 /*
 - (id)initWithFrame:(CGRect)frame
 {
@@ -144,19 +144,23 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.ishaveMountType = YES;
         self.isRenovate = NO;
         self.cateModel = cateModel;
+        
 #warning 单位方面未完
         categoryTitlearry = @[@"纯装",@"纯拆",@"拆装",@"勘察"];
         countArry = @[@"数量:",@"面积:",@"长度:"];
         countType = 0;
-        _mountTypeArray = [self.cateModel.mountType componentsSeparatedByString:@","];
+        if (![self.cateModel.mountType isEqualToString:@""]) {
+            _mountTypeArray = [self.cateModel.mountType componentsSeparatedByString:@","];
+        }
         if (!_mountTypeArray.count) {
-            _mountTypeArray = @[@"0",@"1",@"2",@"3"];
+            self.ishaveMountType = NO;//_mountTypeArray = @[@"0",@"1",@"2",@"3"];
         }
         uragent = NO;
         offsetY = 20;
-        cateButtonType = self.cateModel.mountDefault;
+        cateButtonType = [self.cateModel.mountDefault integerValue];
         
         //ui
         self.backgroundColor = [UIColor whiteColor];
@@ -178,31 +182,32 @@
     [categoryTitle setFont:[UIFont systemFontOfSize:kTitleFont]];
     categoryTitle.textColor = [UIColor blackColor];
     [self addSubview:categoryTitle];
-    
-    _cateButtonArray = [NSMutableArray arrayWithCapacity:categoryTitlearry.count];
-    for(int i=0; i<_mountTypeArray.count; i++)
-    {
-        
-        UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(categoryTitle.right+10+(i*50+(i)*15), categoryTitle.top-2.5, 60, kCateTitleFont+6+5)];
-        [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
-        cateButton.layer.borderWidth = 1;
-        cateButton.layer.cornerRadius = 2;
-        cateButton.tag = [_mountTypeArray[i] integerValue];
-        if (cateButtonType == cateButton.tag)
+    if (self.ishaveMountType) {
+        _cateButtonArray = [NSMutableArray arrayWithCapacity:categoryTitlearry.count];
+        for(int i=0; i<_mountTypeArray.count; i++)
         {
-            //cateButton.selected = YES;
-            cateButton.layer.borderColor = KColor.CGColor;
-            [cateButton setTitleColor:KColor forState:UIControlStateNormal];
+            
+            UIButton *cateButton = [[UIButton alloc] initWithFrame:CGRectMake(categoryTitle.right+10+(i*50+(i)*15), categoryTitle.top-2.5, 60, kCateTitleFont+6+5)];
+            [cateButton.titleLabel setFont:[UIFont systemFontOfSize:kCateTitleFont]];
+            cateButton.layer.borderWidth = 1;
+            cateButton.layer.cornerRadius = 2;
+            cateButton.tag = [_mountTypeArray[i] integerValue];
+            if (cateButtonType == cateButton.tag)
+            {
+                //cateButton.selected = YES;
+                cateButton.layer.borderColor = KColor.CGColor;
+                [cateButton setTitleColor:KColor forState:UIControlStateNormal];
+            }
+            else
+            {
+                cateButton.layer.borderColor = kBorderColor.CGColor;
+                [cateButton setTitleColor:kBorderColor forState:UIControlStateNormal];
+            }
+            [cateButton setTitle:[categoryTitlearry objectAtIndex:cateButton.tag] forState:UIControlStateNormal];
+            [cateButton addTarget:self action:@selector(cateButtonItem:) forControlEvents:UIControlEventTouchUpInside];
+            [self addSubview:cateButton];
+            [self.cateButtonArray insertObject:cateButton atIndex:i];
         }
-        else
-        {
-            cateButton.layer.borderColor = kBorderColor.CGColor;
-            [cateButton setTitleColor:kBorderColor forState:UIControlStateNormal];
-        }
-        [cateButton setTitle:[categoryTitlearry objectAtIndex:cateButton.tag] forState:UIControlStateNormal];
-        [cateButton addTarget:self action:@selector(cateButtonItem:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:cateButton];
-        [self.cateButtonArray insertObject:cateButton atIndex:i];
     }
     
     UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, categoryTitle.bottom+20, kMainScreenWidth, 1)];
@@ -381,7 +386,7 @@
     self.hadGetPrice = NO;
     __weak HubControlPriceView *weakself = self;
     if (self.isRenovate) {//二次翻新特例
-        [self.netManager getAppointmentPriceWithCateId:_cateId type:cateButtonType amountType:countType amount:@"1" urgent:uragent succ:^(NSString *price) {
+        [self.netManager getAppointmentPriceWithCateId:[NSString stringWithFormat:@"%d",self.cateModel.cateId] type:cateButtonType amountType:countType amount:@"0" urgent:uragent succ:^(NSString *price) {
             //通知vc修改价格
             [weakself.delegate priceChangedWithPrice:price];
             weakself.hadGetPrice = YES;
@@ -390,8 +395,8 @@
         }];
 
     }else{
-        if (countTextField && countTextField.text.length && _cateId) {
-            [self.netManager getAppointmentPriceWithCateId:_cateId type:cateButtonType amountType:countType amount:countTextField.text urgent:uragent succ:^(NSString *price) {
+        if (countTextField && countTextField.text.length) {
+            [self.netManager getAppointmentPriceWithCateId:[NSString stringWithFormat:@"%d",self.cateModel.cateId] type:cateButtonType amountType:countType amount:countTextField.text urgent:uragent succ:^(NSString *price) {
                 //通知vc修改价格
                 [self.delegate priceChangedWithPrice:price];
             } failure:^{
@@ -412,7 +417,7 @@
 //        [aBut setImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
 //    }
 //    uragent = !uragent;
-    if (countTextField && countTextField.text.length) {
+    if (self.isRenovate || (countTextField && countTextField.text.length)) {
         [self getPrice];
     }
     MLOG(@"%d",uragent);

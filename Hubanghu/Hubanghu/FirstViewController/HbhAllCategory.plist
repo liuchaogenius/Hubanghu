@@ -12,7 +12,7 @@
 	</dict>
 	<dict>
 		<key>CategoryName</key>
-		<string>地板安装</string>
+		<string>卫浴安装</string>
 		<key>image</key>
 		<string>OrderType_2</string>
 		<key>cateId</key>
@@ -20,7 +20,7 @@
 	</dict>
 	<dict>
 		<key>CategoryName</key>
-		<string>地板安装</string>
+		<string>灯饰安装</string>
 		<key>image</key>
 		<string>OrderType_3</string>
 		<key>cateId</key>
@@ -28,7 +28,7 @@
 	</dict>
 	<dict>
 		<key>CategoryName</key>
-		<string>地板安装</string>
+		<string>墙纸安装</string>
 		<key>image</key>
 		<string>OrderType_4</string>
 		<key>cateId</key>
@@ -36,7 +36,7 @@
 	</dict>
 	<dict>
 		<key>CategoryName</key>
-		<string>地板安装</string>
+		<string>二次翻新</string>
 		<key>image</key>
 		<string>OrderType_5</string>
 		<key>cateId</key>

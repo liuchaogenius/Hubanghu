@@ -284,6 +284,7 @@ typedef NS_ENUM(int, AmountDesc)
 #pragma mark 价格改动
 - (void)priceChangedWithPrice:(NSString *)price
 {
+    MLOG(@"get new price-------->%@",price);
     if (price) {
         _totalPriceLabel.text = [NSString stringWithFormat:@"%.2lf",[price doubleValue]];
     }

@@ -21,7 +21,7 @@
 @property (nonatomic, strong) NSArray *child;
 @property (nonatomic, strong) NSString *mountType;
 @property (nonatomic, strong) NSString *desc;
-@property (nonatomic, assign) int mountDefault;
+@property (nonatomic, strong) NSString *mountDefault;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;
 - (instancetype)initWithDictionary:(NSDictionary *)dict;

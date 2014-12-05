@@ -22,6 +22,8 @@
         MLOG(@"%@",successDict);
         NSArray *dataArray = successDict[@"data"];
         NSDictionary *dataDic = dataArray[0];
+        MLOG(@"%@",dataDic);
+        MLOG(@"%@",dataDic[@"mountDefualt"]);
         if (aSuccBlock) {
             //aSuccBlock([CategoryInfoModel modelObjectWithDictionary:dataDic]);
             aSuccBlock([HbhCategory modelObjectWithDictionary:dataDic]);
