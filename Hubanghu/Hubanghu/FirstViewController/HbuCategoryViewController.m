@@ -122,6 +122,13 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    if (self.categoryModel && self.categoryModel.depth == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -165,13 +172,15 @@
         case 0:
         {
             //0.直接是产品跳转到订单页面（二次翻新用）
-            HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] initWithCateModel:self.categoryModel andWorker:self.worker];
-            [appointVC setCustomedVCofDepthisZero];
-            [self settitleLabel:self.categoryModel.title];
-            appointVC.hidesBottomBarWhenPushed = YES;
-            appointVC.view.frame = self.view.bounds;
-            appointVC.delegate = self;
-            [self.view addSubview:appointVC.view];
+            if(![HbhUser sharedHbhUser].isLogin)
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginForUserMessage object:[NSNumber numberWithBool:NO]];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushAppointVCofDepthZero) name:kLoginSuccessMessae object:nil];
+            }else{
+                ;
+                [self pushAppointVCofDepthZero];
+            }
+            
             //[self.navigationController pushViewController:appointVC animated:NO];
             
         }
@@ -324,6 +333,7 @@
             self.selectLine.centerX = sender.centerX;
         }];
         [self.tableView reloadData];
+        //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 }
 #pragma mark push进入预定界面
@@ -350,16 +360,23 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessMessae object:nil];
     if (_touchedButton && _selectCateModel) {
-        //double cateId = _touchedButton.tag;
-        //UILabel *titileLable = (UILabel *)[_touchedButton viewWithTag:kTitleLabelTag];
-        //NSDictionary *infoDic = [NSDictionary dictionaryWithObjectsAndKeys:titileLable.text?:@"",@"title",[NSString stringWithFormat:@"%lf",cateId],@"cateId", nil];
-        HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] initWithCateModel:_selectCateModel andWorker:self.worker];//WithTitle:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:self.worker];
-        //[appointVC setVCData:infoDic[@"title"] cateId:infoDic[@"cateId"] andWork:self.worker];
+        HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] initWithCateModel:_selectCateModel andWorker:self.worker];//WithTitle:infoDic[@"title"]
         appointVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:appointVC animated:YES];
     }
 }
 
+- (void)pushAppointVCofDepthZero
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessMessae object:nil];
+    HuhAppointmentVC *appointVC = [[HuhAppointmentVC alloc] initWithCateModel:self.categoryModel andWorker:self.worker];
+    [appointVC setCustomedVCofDepthisZero];
+    [self settitleLabel:self.categoryModel.title];
+    appointVC.hidesBottomBarWhenPushed = YES;
+    appointVC.view.frame = self.view.bounds;
+    appointVC.delegate = self;
+    [self.view addSubview:appointVC.view];
+}
 
 #pragma mark - customButtom构造
 - (UIButton *)customButtonWithFrame:(CGRect)frame andTitle:(NSString *)title
