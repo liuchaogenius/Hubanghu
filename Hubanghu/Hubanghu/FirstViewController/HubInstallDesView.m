@@ -10,9 +10,9 @@
 
 @interface HubInstallDesView()
 {
-    UILabel *contentLabel;
+    //UILabel *contentLabel;
     NSString *_descUrl;
-
+    UITextView *textview;
 }
 @end
 @implementation HubInstallDesView
@@ -23,7 +23,9 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
-        [self createLabel];
+       
+        [self creatTextView];
+        // [self createLabel];
         
         UITapGestureRecognizer *tp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchDescUrl)];
         [self addGestureRecognizer:tp];
@@ -31,29 +33,44 @@
     return self;
 }
 
-- (void)createLabel
+//- (void)createLabel
+//{
+//    if(!contentLabel)
+//    {
+//        contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, kMainScreenWidth-20, self.height)];
+//        contentLabel.backgroundColor = kClearColor;
+//        contentLabel.font = [UIFont systemFontOfSize:15];
+//        contentLabel.textAlignment = NSTextAlignmentLeft;
+//        contentLabel .numberOfLines = 0;
+//        contentLabel.textColor = [UIColor blackColor];
+//        [self addSubview:contentLabel];
+//    }
+//}
+- (void)creatTextView
 {
-    if(!contentLabel)
-    {
-        contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, kMainScreenWidth-20, self.height)];
-        contentLabel.backgroundColor = kClearColor;
-        contentLabel.font = [UIFont systemFontOfSize:15];
-        contentLabel.textAlignment = NSTextAlignmentLeft;
-        contentLabel .numberOfLines = 0;
-        contentLabel.textColor = [UIColor blackColor];
-        [self addSubview:contentLabel];
+    if (!textview) {
+        UITextView *tv = [[UITextView alloc] initWithFrame:CGRectMake(10, 0, kMainScreenWidth-20, self.height)];
+        tv.backgroundColor = [UIColor clearColor];
+        tv.font = [UIFont systemFontOfSize:15];
+        //tv.textAlignment = NSTextAlignmentLeft;
+        tv.textColor = [UIColor blackColor];
+        tv.editable = NO;
+        [self addSubview:tv];
+        textview = tv;
         
-
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, kMainScreenWidth, 0.7)];
         line.backgroundColor = kLineColor;
-        [contentLabel addSubview:line];
+        [self addSubview:line];
     }
 }
+
 - (void)setContent:(NSString *)aContent
 {
-    if(contentLabel)
+    if(textview)
     {
-        contentLabel.text = aContent;
+        //contentLabel.text = aContent;
+        textview.text = aContent;
+        //contentLabel.text = @"11\r\n11";
     }
 }
 
