@@ -159,6 +159,7 @@
         MLOG(@"userId : %@",user.userID);
     }
     if ([net getAreaId]) {
+        MLOG(@"areaidididid=%@",[net getAreaId]);
         [aRequest setValue:[net getAreaId] forHTTPHeaderField:@"hbh_areaId"];
     }
     if ([net getLat]) {

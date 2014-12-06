@@ -84,8 +84,10 @@ typedef enum : NSUInteger {
         _locationAreaId = [HbuAreaLocationManager sharedManager].currentAreas.areaId;
         [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
             self.locationArray = districtArry;
-            _isLocationed = YES;
+            
         }];
+//
+        _isLocationed = YES;
     }
     else
     {
@@ -113,7 +115,17 @@ typedef enum : NSUInteger {
 //    [self.activityView startAnimating];
     [SVProgressHUD show:YES offsetY:kMainScreenHeight/2.0];
     [self addTableViewTrag];
-    
+    [self getWorkListData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCurrentCityItem) name:kChanageCurrentCity object:nil];
+}
+
+- (void)changeCurrentCityItem
+{
+
+}
+
+- (void)getWorkListData
+{
 #pragma mark 网络请求
     if (_isLocationed) {
         if ([HbuAreaLocationManager sharedManager].currentDistrict) {

@@ -14,7 +14,7 @@
 #define kLoginForUserMessage @"loginforuser"
 #define kLoginSuccessMessae @"loginsuccess" //登陆成功发送消息
 #define kLoginFailMessage @"loginFail"
-
+#define kChanageCurrentCity @"chanageCurrentCity"
 #define kSelCityMessage @"selCitymessage" //show selcityVC
 
 #define kPaySuccess @"paySuccess"
