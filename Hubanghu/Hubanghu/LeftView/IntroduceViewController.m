@@ -56,6 +56,8 @@
         }];
     }
 }
+
+
 - (void)setUrl:(NSString *)aLoadUrl title:(NSString *)aTitle
 {
     if(aTitle)

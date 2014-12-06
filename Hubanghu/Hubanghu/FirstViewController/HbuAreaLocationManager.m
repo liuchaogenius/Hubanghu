@@ -20,25 +20,38 @@
 
 - (void)setCurrentAreas:(HbuAreaListModelAreas *)currentAreas
 {
-    _currentAreas = currentAreas;
-// 设置http透明的areadid
-    if (_currentAreas.areaId) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kChanageCurrentCity object:nil];
-        [[NetManager shareInstance] setAreaId:[NSString stringWithFormat:@"%d",(int)_currentAreas.areaId]];
-        //修改文件，记录地区
-        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-        
-        NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentAreas];
-        [userDefault setObject:currentAreasData forKey:@"currentAreas"];
-        
-        //[userDefault removeObjectForKey:@"currentDistrict"];
-        [userDefault synchronize];
+    if (!_currentAreas || (int)_currentAreas.areaId != (int)currentAreas.areaId) {
+        _currentAreas = currentAreas;
+        // 设置http透明的areadid
+        if (_currentAreas.areaId) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kChanageCurrentCity object:nil];
+            [[NetManager shareInstance] setAreaId:[NSString stringWithFormat:@"%d",(int)_currentAreas.areaId]];
+            //修改文件，记录地区
+            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+            
+            NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentAreas];
+            [userDefault setObject:currentAreasData forKey:@"currentAreas"];
+            //[userDefault removeObjectForKey:@"currentDistrict"];
+            [userDefault synchronize];
+            
+            if (self.currentDistrict && self.currentDistrict.parent != (int)_currentAreas.areaId) {
+                _currentDistrict = nil;
+            }
+            
+            if (self.currentProvince &&(int)self.currentProvince.areaId != (int)currentAreas.areaId) {
+                __weak HbuAreaLocationManager *weakself = self;
+                [self.areasDBManager selParentModel:[NSString stringWithFormat:@"%d",(int)currentAreas.parent] resultBlock:^(HbuAreaListModelAreas *model) {
+                    weakself.currentProvince = model;
+                }];
+            }
+            
+        }
     }
 }
 
 - (void)setCurrentDistrict:(HbuAreaListModelAreas *)currentDistrict
 {
-    if ([currentDistrict.typeName isEqualToString:@"区"]) {
+    if (!_currentDistrict || ((int)currentDistrict.areaId != (int)_currentDistrict.areaId && [currentDistrict.typeName isEqualToString:@"区"])) {
         _currentDistrict = currentDistrict;
         if (_currentDistrict.areaId) {
             NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
@@ -51,12 +64,14 @@
 
 - (void)setCurrentProvince:(HbuAreaListModelAreas *)currentProvince
 {
-    _currentProvince = currentProvince;
-    if (_currentProvince.areaId) {
-        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-        NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentProvince];
-        [userDefault setObject:currentAreasData forKey:@"currentProvince"];
-        [userDefault synchronize];
+    if (!_currentProvince || (int)currentProvince.areaId != (int)_currentProvince.areaId) {
+        _currentProvince = currentProvince;
+        if (_currentProvince.areaId) {
+            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+            NSData *currentAreasData = [NSKeyedArchiver archivedDataWithRootObject:_currentProvince];
+            [userDefault setObject:currentAreasData forKey:@"currentProvince"];
+            [userDefault synchronize];
+        }
     }
 }
 
