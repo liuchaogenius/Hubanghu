@@ -81,12 +81,6 @@ typedef enum : NSUInteger {
     
     if ([HbuAreaLocationManager sharedManager].currentAreas.areaId)
     {
-        _locationAreaId = [HbuAreaLocationManager sharedManager].currentAreas.areaId;
-        [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
-            self.locationArray = districtArry;
-            
-        }];
-//
         _isLocationed = YES;
     }
     else
@@ -121,25 +115,15 @@ typedef enum : NSUInteger {
 
 - (void)changeCurrentCityItem
 {
-
+    [self getWorkListData];
 }
 
 - (void)getWorkListData
 {
 #pragma mark 网络请求
-    if (_isLocationed) {
-        if ([HbuAreaLocationManager sharedManager].currentDistrict) {
-            HbuAreaListModelAreas *area = [HbuAreaLocationManager sharedManager].currentDistrict;
-            _locationDistrictId = area.areaId;
-            [self getWorkerListWithAreaId:area.areaId andWorkerTypeId:0 andOrderCountId:0];
-            UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
-            temLabel.text = area.name;
-        }
-        else
-        {
-            HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
-            [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:0 andOrderCountId:0];
-        }
+    if ([HbuAreaLocationManager sharedManager].currentAreas.areaId)
+    {
+        [self getWorkerListWithAreaId:[HbuAreaLocationManager sharedManager].currentAreas.areaId andWorkerTypeId:0 andOrderCountId:0];
     }
     else
     {
@@ -153,13 +137,18 @@ typedef enum : NSUInteger {
     [self.workerListManage getWorkerListWithAreaId:aAreaId andWorkerTypeId:aWorkTypeId andOrderCountId:aOrderId SuccBlock:^(HbhData *aData) {
         self.workersArray = [(NSMutableArray *)aData.workers mutableCopy];
         self.areasArray = [(NSMutableArray *)aData.areas mutableCopy];
+        self.locationArray = [(NSMutableArray *)aData.areas mutableCopy];
         self.workerTypeArray = [(NSMutableArray *)aData.workerTypes mutableCopy];
         self.orderCountArray = [(NSMutableArray *)aData.orderCounts mutableCopy];
         [self.showWorkerListTableView reloadData];
+        self.dropOrderCountView.tableArray = self.orderCountArray;
+        self.dropLocationView.tableArray = self.locationArray;
+        self.dropWorkerTypesView.tableArray = self.workerTypeArray;
+        self.dropAreasView.tableArray = self.areasArray;
         [self.dropOrderCountView reloadTableView];
         [self.dropWorkerTypesView reloadTableView];
-        if (self.workersArray.count==0) {
-        }
+        [self.dropLocationView reloadTableView];
+        [self.dropAreasView reloadTableView];
         [SVProgressHUD dismiss];
         if (aAreaId!=-1 && aWorkTypeId!=-1 && aOrderId !=-1)
         {
@@ -180,47 +169,7 @@ typedef enum : NSUInteger {
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             [weakself.showWorkerListTableView.pullToRefreshView stopAnimating];
-            
-            int shareDistrictId = [HbuAreaLocationManager sharedManager].currentDistrict.areaId;
-            int shareAreaId = [HbuAreaLocationManager sharedManager].currentAreas.areaId;
-            if(shareAreaId && shareAreaId != _locationAreaId)
-            {
-                _locationAreaId = shareAreaId;
-                [self.areasDBManage selCityOfDistrict:[NSString stringWithFormat:@"%d", (int)[HbuAreaLocationManager sharedManager].currentAreas.areaId] district:^(NSMutableArray *districtArry) {
-                    self.locationArray = districtArry;
-                    self.dropLocationView.tableArray = self.locationArray;
-                    [self.dropLocationView reloadTableView];
-                    _isLocationed = YES;
-                    if (shareDistrictId && shareDistrictId!=_locationDistrictId)
-                    {
-                        _locationDistrictId = shareDistrictId;
-                        [self getWorkerListWithAreaId:shareDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
-                        UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
-                        temLabel.text = [HbuAreaLocationManager sharedManager].currentDistrict.name;
-                        [self getWorkerListWithAreaId:_locationDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
-                    }
-                    else
-                    {
-                        HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
-                        UILabel *label0 = (UILabel *)[self.view viewWithTag:100];
-                        label0.text = model.name;
-                        [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:-1 andOrderCountId:-1];
-                    }
-                }];
-            }
-            else if (shareDistrictId && shareDistrictId!=_locationDistrictId)
-            {
-                _locationDistrictId = shareDistrictId;
-                [self getWorkerListWithAreaId:shareDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
-                UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
-                temLabel.text = [HbuAreaLocationManager sharedManager].currentDistrict.name;
-                [self getWorkerListWithAreaId:_locationDistrictId andWorkerTypeId:-1 andOrderCountId:-1];
-            }
-            else
-            {
-                [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:-1];
-            }
-
+            [self getWorkerListWithAreaId:-1 andWorkerTypeId:-1 andOrderCountId:-1];
         });
     }];
     
@@ -259,15 +208,20 @@ typedef enum : NSUInteger {
     UILabel *label0 = (UILabel *)[self.view viewWithTag:100];
     UILabel *label1 = (UILabel *)[self.view viewWithTag:101];
     UILabel *label2 = (UILabel *)[self.view viewWithTag:102];
-    if (_isLocationed) {
-        if ([HbuAreaLocationManager sharedManager].currentDistrict) {
-            HbuAreaListModelAreas *area = [HbuAreaLocationManager sharedManager].currentDistrict;
-            label0.text = area.name;
-        }
-        else
+    if ([HbuAreaLocationManager sharedManager].currentAreas.areaId)
+    {
+        for (int i=0; i<self.locationArray.count; i++)
         {
-            HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:0];
-            label0.text = model.name;
+            HbhAreas *model = [self.locationArray objectAtIndex:i];
+            if (model.selected==true)
+            {
+                label0.text = model.name;
+                break;
+            }
+            if (i==self.locationArray.count-1) {
+                HbhAreas *model = [self.locationArray objectAtIndex:0];
+                label0.text = model.name;
+            }
         }
     }
     else{
@@ -277,13 +231,22 @@ typedef enum : NSUInteger {
             label0.text = model.name;
             break;
         }
+        if (i==self.areasArray.count-1) {
+            HbhAreas *model = [self.areasArray objectAtIndex:0];
+            label0.text = model.name;
+        }
     }
     }
-    for (int i=0; i<self.workerTypeArray.count; i++) {
+    for (int i=0; i<self.workerTypeArray.count; i++)
+    {
         HbhWorkerTypes *model = [self.workerTypeArray objectAtIndex:i];
         if (model.selected==true) {
             label1.text = model.name;
             break;
+        }
+        if (i==self.workerTypeArray.count-1) {
+            HbhWorkerTypes *model = [self.workerTypeArray objectAtIndex:0];
+            label1.text = model.name;
         }
     }
     for (int i=0; i<self.orderCountArray.count; i++) {
@@ -291,6 +254,10 @@ typedef enum : NSUInteger {
         if (model.selected==true) {
             label2.text = model.name;
             break;
+        }
+        if (i==self.orderCountArray.count-1) {
+            HbhOrderCounts *model = [self.orderCountArray objectAtIndex:0];
+            label2.text = model.name;
         }
     }
 }
@@ -310,7 +277,7 @@ typedef enum : NSUInteger {
             UITapGestureRecognizer *tapGestureBtnView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchBtnView:)];
             [btnView addGestureRecognizer:tapGestureBtnView];
             [_btnBackView addSubview:btnView];
-            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/6-37, 15, 60, 15)];
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth/6-45, 15, 70, 15)];
             UIImageView *arrowDownImg = [[UIImageView alloc] initWithFrame:CGRectMake(titleLabel.right+2, 20, 13, 8)];
             arrowDownImg.image = [UIImage imageNamed:@"arrowDown"];
             [btnView addSubview:arrowDownImg];
@@ -346,7 +313,7 @@ typedef enum : NSUInteger {
     [self.view addSubview:self.maskingView];
     if (aTapGesture.view.tag==btnViewTypeAreas)
     {
-        if (_isLocationed) {
+        if ([HbuAreaLocationManager sharedManager].currentAreas.areaId) {
             [self showDropView:self.dropLocationView];
             [self.view bringSubviewToFront:self.dropLocationView];
         }
@@ -449,7 +416,7 @@ typedef enum : NSUInteger {
 - (HbhDropDownView *)dropLocationView
 {
     if (!_dropLocationView) {
-        if (_isLocationed) {
+        if ([HbuAreaLocationManager sharedManager].currentAreas.areaId) {
             _dropLocationView = [[HbhDropDownView alloc] initWithArray:self.locationArray andButton:[self.view viewWithTag:btnViewTypeAreas]];
         }
         else
@@ -462,8 +429,8 @@ typedef enum : NSUInteger {
             [self.maskingView removeFromSuperview];
 //            [self.activityView startAnimating];
             [SVProgressHUD show:YES offsetY:kMainScreenHeight/2.0];
-            HbuAreaListModelAreas *model = [self.locationArray objectAtIndex:row];
-            [self getWorkerListWithAreaId:model.areaId andWorkerTypeId:-1 andOrderCountId:-1];
+            HbhAreas *model = [self.locationArray objectAtIndex:row];
+            [self getWorkerListWithAreaId:model.areasIdentifier andWorkerTypeId:-1 andOrderCountId:-1];
             UILabel *temLabel = (UILabel *)[self.view viewWithTag:100];
             temLabel.text = model.name;
         }];

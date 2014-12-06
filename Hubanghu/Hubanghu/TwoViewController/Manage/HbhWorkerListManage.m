@@ -22,13 +22,13 @@ NSString *orderCountId;
     pageindex = 1;
     pageCount = 20;
     NSString *workerListUrl = nil;
-    if ((aAreaId != [areaId intValue])&&aAreaId!=-1) {
+    if (aAreaId!=-1) {
         areaId = [NSString stringWithFormat:@"%d", aAreaId];
     }
-    if ((aWorkTypeid != [workTypeId intValue])&&aWorkTypeid!=-1) {
+    if (aWorkTypeid!=-1) {
         workTypeId = [NSString stringWithFormat:@"%d", aWorkTypeid];
     }
-    if ((aOrderId != [orderCountId intValue])&&aOrderId!=-1) {
+    if (aOrderId!=-1) {
         orderCountId = [NSString stringWithFormat:@"%d", aOrderId];
     }
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:areaId,@"area",workTypeId,@"workerType",orderCountId,@"orderCount", [NSString stringWithFormat:@"%d", pageindex],@"pageIndex",[NSString stringWithFormat:@"%d", pageCount],@"pageSize", nil];
