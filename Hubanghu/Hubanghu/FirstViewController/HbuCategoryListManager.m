@@ -8,8 +8,6 @@
 
 #import "HbuCategoryListManager.h"
 #import "NetManager.h"
-#import "CategoryInfoModel.h"
-#import "CategoryChildInfoModel.h"
 #import "HbhCategory.h"
 
 @implementation HbuCategoryListManager

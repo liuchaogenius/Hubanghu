@@ -29,6 +29,12 @@
     [self setRightButton:[UIImage imageNamed:@"refresh"] title:nil target:self action:@selector(refeshWebview)];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [SVProgressHUD dismiss];
+}
+
 - (void)refeshWebview
 {
     if(_webView)

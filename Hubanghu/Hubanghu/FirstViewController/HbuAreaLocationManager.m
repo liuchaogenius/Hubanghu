@@ -24,7 +24,7 @@
 // 设置http透明的areadid
     if (_currentAreas.areaId) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kChanageCurrentCity object:nil];
-        [[NetManager shareInstance] setAreaId:[NSString stringWithFormat:@"%f",_currentAreas.areaId]];
+        [[NetManager shareInstance] setAreaId:[NSString stringWithFormat:@"%d",(int)_currentAreas.areaId]];
         //修改文件，记录地区
         NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
         

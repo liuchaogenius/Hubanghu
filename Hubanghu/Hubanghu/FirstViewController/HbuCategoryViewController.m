@@ -7,9 +7,7 @@
 //
 
 #import "HbuCategoryViewController.h"
-#import "CategoryInfoModel.h"
 #import "HbuCategoryListManager.h"
-#import "CategoryChildInfoModel.h"
 #import "HbhCategoryCell.h"
 #import "UIButton+WebCache.h"
 #import "HuhAppointmentVC.h"

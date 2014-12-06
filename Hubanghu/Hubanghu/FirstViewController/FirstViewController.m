@@ -16,7 +16,6 @@
 #import "SVProgressHUD.h"
 #import "HbhUser.h"
 #import "HbhSelCityViewController.h"
-#import "HuhAppointmentVC.h"
 #import "HbhBanners.h"
 #import "HbhFirstPageManager.h"
 #import "IntroduceViewController.h"
