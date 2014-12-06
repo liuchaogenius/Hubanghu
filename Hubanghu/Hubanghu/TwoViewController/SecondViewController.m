@@ -136,22 +136,22 @@ typedef enum : NSUInteger {
     [self.showWorkerListTableView setContentOffset:CGPointMake(0, 0) animated:YES];
     [self.workerListManage getWorkerListWithAreaId:aAreaId andWorkerTypeId:aWorkTypeId andOrderCountId:aOrderId SuccBlock:^(HbhData *aData) {
         self.workersArray = [(NSMutableArray *)aData.workers mutableCopy];
-        self.areasArray = [(NSMutableArray *)aData.areas mutableCopy];
-        self.locationArray = [(NSMutableArray *)aData.areas mutableCopy];
-        self.workerTypeArray = [(NSMutableArray *)aData.workerTypes mutableCopy];
-        self.orderCountArray = [(NSMutableArray *)aData.orderCounts mutableCopy];
         [self.showWorkerListTableView reloadData];
-        self.dropOrderCountView.tableArray = self.orderCountArray;
-        self.dropLocationView.tableArray = self.locationArray;
-        self.dropWorkerTypesView.tableArray = self.workerTypeArray;
-        self.dropAreasView.tableArray = self.areasArray;
-        [self.dropOrderCountView reloadTableView];
-        [self.dropWorkerTypesView reloadTableView];
-        [self.dropLocationView reloadTableView];
-        [self.dropAreasView reloadTableView];
         [SVProgressHUD dismiss];
         if (aAreaId!=-1 && aWorkTypeId!=-1 && aOrderId !=-1)
         {
+            self.areasArray = [(NSMutableArray *)aData.areas mutableCopy];
+            self.locationArray = [(NSMutableArray *)aData.areas mutableCopy];
+            self.workerTypeArray = [(NSMutableArray *)aData.workerTypes mutableCopy];
+            self.orderCountArray = [(NSMutableArray *)aData.orderCounts mutableCopy];
+            self.dropOrderCountView.tableArray = self.orderCountArray;
+            self.dropLocationView.tableArray = self.locationArray;
+            self.dropWorkerTypesView.tableArray = self.workerTypeArray;
+            self.dropAreasView.tableArray = self.areasArray;
+            [self.dropOrderCountView reloadTableView];
+            [self.dropWorkerTypesView reloadTableView];
+            [self.dropLocationView reloadTableView];
+            [self.dropAreasView reloadTableView];
             [self updateBtn];
         }
     } andFailBlock:^{
