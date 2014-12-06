@@ -23,6 +23,7 @@
 #define kNumberLabelTag 55
 #define kaImageViewTag 56
 #define klabelTag 57
+#define kCallNumberLabel 58
 
 enum CellTag_Type
 {
@@ -44,6 +45,7 @@ enum CellTag_Type
 @property (strong, nonatomic) NSArray *listArray; //页面列表数据
 @property (strong, nonatomic) FourthVCHeadView *fHeadView;//用户信息headerView
 @property (strong, nonatomic) UIView *logOutHeadView;//附退出登陆按钮 headerView
+@property (strong, nonatomic) UIButton *logoutButton;
 @property (strong, nonatomic) UILabel *callNumberLabel;//电话号码label
 
 @end
@@ -86,7 +88,9 @@ enum CellTag_Type
 {
     if (!_logOutHeadView) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 35+20+20)];
-        view.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//
+        _logOutHeadView=view;
+        //view.backgroundColor = [UIColor redColor];
+        view.backgroundColor = [UIColor clearColor];//RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//
         //添加返回按钮
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, kMainScreenWidth-40.0, 35)];//[UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.backgroundColor = kIconSelectColor;
@@ -95,7 +99,7 @@ enum CellTag_Type
         [button setTitle:@"退出登录" forState:UIControlStateNormal];
         button.layer.cornerRadius = kcornerRadius;
         [view addSubview:button];
-        _logOutHeadView = view;
+        _logoutButton = button;
     }
     return _logOutHeadView;
 }
@@ -148,24 +152,25 @@ enum CellTag_Type
 #pragma mark Section Number
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.listArray.count +2;//增加第一个head的section和最后退出登录的section
+    int num = self.listArray.count + 1;
+    return num;//增加最后退出登录的section
 }
 
 #pragma mark 数据行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0||section == self.listArray.count+1) {//头像section 与 退出登录的section
+    if (section == self.listArray.count) {//退出登录的section
         return 0;
     }else{
-        NSArray *array = self.listArray[section-1];
+        NSArray *array = self.listArray[section];
         return array.count;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == self.listArray.count+1){
-        return 75;
+    if (section == self.listArray.count){
+        return self.logOutHeadView.height;
     } else {
         return 10;
     }
@@ -186,13 +191,14 @@ enum CellTag_Type
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 
-    if(section == self.listArray.count+1){
-        self.logOutHeadView.hidden = ([HbhUser sharedHbhUser].isLogin ? NO : YES);
-        
+    if(section == self.listArray.count){
+        if (self.logOutHeadView) {
+            self.logoutButton.hidden = ([HbhUser sharedHbhUser].isLogin ? NO : YES);
+        }
         return self.logOutHeadView;
     }else{
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 10)];
-        view.backgroundColor = RGBCOLOR(249, 249, 249);//kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
+        view.backgroundColor = RGBCOLOR(234, 234, 234);//kViewBackgroundColor;//RGBCOLOR(249, 249, 249);
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 10, kMainScreenWidth, 0.5)];
         line.backgroundColor = kLineColor;
         [view addSubview:line];
@@ -223,11 +229,9 @@ enum CellTag_Type
 #pragma mark 每行显示内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //static NSString *HeadcellIdentifier = @"HeadCell";
     static NSString *cellIdentifier = @"cell";
-    //static NSString *logoutCellIdentifier = @"logoutCell";
     
-    if (indexPath.section == 0 || indexPath.section == self.listArray.count+1) { //第一个与最后一个section只使用header
+    if (indexPath.section == self.listArray.count) { //最后一个section只使用header
         return nil;
     }else{
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -246,7 +250,7 @@ enum CellTag_Type
             aImageView = [[UIImageView alloc] init];
             [aImageView setFrame:CGRectMake(10, (cell.height-24)/2.0, 24, 24)];
             aImageView.tag = kaImageViewTag;
-            [cell addSubview:aImageView];
+            [cell.contentView addSubview:aImageView];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             //显示文字的label
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, kMainScreenWidth-40, cell.height)];
@@ -267,16 +271,27 @@ enum CellTag_Type
             numberLabel.tag = kNumberLabelTag;
             _numberLabel = numberLabel;
             [cell.contentView addSubview:numberLabel];
+            
+            UILabel *callNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth-30-80, 0, 80, 44)];
+            callNumberLabel.backgroundColor = [UIColor clearColor];
+            //callNumberLabel.text = @"400-663-8585";
+            callNumberLabel.textColor = [UIColor lightGrayColor];
+            callNumberLabel.font = kFont12;
+            callNumberLabel.tag = kCallNumberLabel;
+            [cell.contentView addSubview:callNumberLabel];
+            
             UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, cell.height-0.5, kMainScreenWidth, 0.5)];
             line.backgroundColor = kLineColor;
-            [cell addSubview:line];
+            [cell.contentView addSubview:line];
         }
-        if([self.callNumberLabel superview]) [self.callNumberLabel removeFromSuperview];
-        NSArray *array = self.listArray[indexPath.section-1];
+
+        NSArray *array = self.listArray[indexPath.section];
         NSDictionary *dic = array[indexPath.row];
         _numberLabel = (UILabel *)[cell viewWithTag:kNumberLabelTag];
         _numberLabel.hidden = YES;
         NSInteger typeTag = [dic[@"typeTag"] integerValue];//通过tag区分cell功能
+        UILabel *callNumberLabel = (UILabel *)[cell viewWithTag:kCallNumberLabel];
+        callNumberLabel.text = @"";
         cell.tag = typeTag;
         switch (typeTag) {
             case CellTag_notCommentOrder:
@@ -292,17 +307,20 @@ enum CellTag_Type
                 break;
             case CellTag_call:
             {
-                [cell.contentView addSubview:self.callNumberLabel];
+                //[cell.contentView addSubview:self.callNumberLabel];
+                callNumberLabel.text = @"400-663-8585";
+                cell.hidden =NO;
             }
             default:
                 break;
         }
+    
         UIImageView *aImageView = (UIImageView *)[cell viewWithTag:kaImageViewTag];
         aImageView.image = [UIImage imageNamed:dic[@"image"]];
         UILabel *textLabel = (UILabel *)[cell viewWithTag:klabelTag];
         textLabel.text = dic[@"name"];
         //cell.textLabel.text = dic[@"name"];
-        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        //[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 
         return cell;
     }
