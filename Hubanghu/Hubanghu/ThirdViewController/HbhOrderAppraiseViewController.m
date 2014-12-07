@@ -8,10 +8,13 @@
 
 #import "HbhOrderAppraiseViewController.h"
 #import "NetManager.h"
+#import "YHBStarImageView.h"
 
 @interface HbhOrderAppraiseViewController ()<UITextViewDelegate>
 {
     UILabel *placeHolderLabel;
+    int skill;
+    int status;
 }
 
 @property (strong, nonatomic) IBOutlet UIButton *agianBtn;
@@ -33,6 +36,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = RGBCOLOR(250, 250, 250);
 //    self.title = @"评价";
+    skill = 5;
+    status = 5;
     [self settitleLabel:@"评价"];
     _isAgian = 0;
     
@@ -45,6 +50,14 @@
     self.appraiseTextView.returnKeyType = UIReturnKeyDone;
     self.appraiseTextView.font = kFont14;
     [self.view addSubview:self.appraiseTextView];
+    
+    YHBStarImageView *skillImgView = [[YHBStarImageView alloc] initWithFrame:CGRectMake(self.skillLabel.right+5, self.skillLabel.top, 135, 20)];
+    skillImgView.userInteractionEnabled = YES;
+    [self.view addSubview:skillImgView];
+    
+    YHBStarImageView *statusImgView = [[YHBStarImageView alloc] initWithFrame:CGRectMake(self.skillLabel.right+5, self.skillLabel.bottom+20, 135, 20)];
+    statusImgView.userInteractionEnabled = YES;
+    [self.view addSubview:statusImgView];
     
     [self.agianBtn addTarget:self action:@selector(chooseAgain) forControlEvents:UIControlEventTouchUpInside];
     

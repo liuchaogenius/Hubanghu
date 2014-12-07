@@ -40,6 +40,7 @@
 		AB090E2919EE63E000D943C6 /* HbhTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB090E2719EE63E000D943C6 /* HbhTopTableViewCell.xib */; };
 		AB17314C19EBB94C008463E1 /* HbhOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */; };
 		AB5D5FBB19EC1EB600E881E6 /* HbhOrderManage.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5D5FBA19EC1EB600E881E6 /* HbhOrderManage.m */; };
+		AB62E67A1A3445A8003F7762 /* YHBStarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB62E6791A3445A8003F7762 /* YHBStarImageView.m */; };
 		AB66D37C19ECAC0900518005 /* HbhOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB66D37A19ECAC0900518005 /* HbhOrderDetailViewController.m */; };
 		AB66D37D19ECAC0900518005 /* HbhOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB66D37B19ECAC0900518005 /* HbhOrderDetailViewController.xib */; };
 		AB66D38119ECDCBE00518005 /* HbhOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB66D38019ECDCBE00518005 /* HbhOrderModel.m */; };
@@ -253,6 +254,8 @@
 		AB17314A19EBB94C008463E1 /* HbhOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HbhOrderTableViewCell.m; path = OrderTableViewCell/HbhOrderTableViewCell.m; sourceTree = "<group>"; };
 		AB5D5FB919EC1EB600E881E6 /* HbhOrderManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderManage.h; sourceTree = "<group>"; };
 		AB5D5FBA19EC1EB600E881E6 /* HbhOrderManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderManage.m; sourceTree = "<group>"; };
+		AB62E6781A3445A8003F7762 /* YHBStarImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHBStarImageView.h; sourceTree = "<group>"; };
+		AB62E6791A3445A8003F7762 /* YHBStarImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHBStarImageView.m; sourceTree = "<group>"; };
 		AB66D37919ECAC0900518005 /* HbhOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HbhOrderDetailViewController.h; sourceTree = "<group>"; };
 		AB66D37A19ECAC0900518005 /* HbhOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HbhOrderDetailViewController.m; sourceTree = "<group>"; };
 		AB66D37B19ECAC0900518005 /* HbhOrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HbhOrderDetailViewController.xib; sourceTree = "<group>"; };
@@ -1038,6 +1041,8 @@
 				ABC5D50C19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.h */,
 				ABC5D50D19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.m */,
 				ABC5D50E19F1EAAE00A306F7 /* HbhOrderAppraiseViewController.xib */,
+				AB62E6781A3445A8003F7762 /* YHBStarImageView.h */,
+				AB62E6791A3445A8003F7762 /* YHBStarImageView.m */,
 			);
 			path = ThirdViewController;
 			sourceTree = "<group>";
@@ -1556,6 +1561,7 @@
 				5BD44C211A2869D100710E3C /* HbhSelCityViewController.m in Sources */,
 				FFD1A2CF19EE4B6D00EA97D4 /* FMDatabasePool.m in Sources */,
 				FF6D90641A0749B500C966F8 /* AlixPayResult.m in Sources */,
+				AB62E67A1A3445A8003F7762 /* YHBStarImageView.m in Sources */,
 				ABAFAB2119EF36A400B51916 /* HbhWorkerSecondTopTableViewCell.m in Sources */,
 				AB06DC4D19F1269500B82C62 /* HbhWorkerData.m in Sources */,
 				B08F580B19F64D0D00F3E130 /* HbhConfirmOrderViewController.m in Sources */,

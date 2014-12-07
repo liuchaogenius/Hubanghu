@@ -11,6 +11,7 @@
 
 @interface HbhOrderAppraiseViewController : BaseViewController
 
+@property (strong, nonatomic) IBOutlet UILabel *skillLabel;
 
 - (instancetype)initWithModel:(HbhOrderModel *)aModel;
 @end
