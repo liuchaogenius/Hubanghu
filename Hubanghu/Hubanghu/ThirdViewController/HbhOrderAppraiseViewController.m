@@ -15,6 +15,8 @@
     UILabel *placeHolderLabel;
     int skill;
     int status;
+    YHBStarImageView *skillImgView;
+    YHBStarImageView *statusImgView;
 }
 
 @property (strong, nonatomic) IBOutlet UIButton *agianBtn;
@@ -51,11 +53,11 @@
     self.appraiseTextView.font = kFont14;
     [self.view addSubview:self.appraiseTextView];
     
-    YHBStarImageView *skillImgView = [[YHBStarImageView alloc] initWithFrame:CGRectMake(self.skillLabel.right+5, self.skillLabel.top, 135, 20)];
+    skillImgView = [[YHBStarImageView alloc] initWithFrame:CGRectMake(self.skillLabel.right+5, self.skillLabel.top, 135, 20) canModify:YES];
     skillImgView.userInteractionEnabled = YES;
     [self.view addSubview:skillImgView];
     
-    YHBStarImageView *statusImgView = [[YHBStarImageView alloc] initWithFrame:CGRectMake(self.skillLabel.right+5, self.skillLabel.bottom+20, 135, 20)];
+    statusImgView = [[YHBStarImageView alloc] initWithFrame:CGRectMake(self.skillLabel.right+5, self.skillLabel.bottom+20, 135, 20) canModify:YES];
     statusImgView.userInteractionEnabled = YES;
     [self.view addSubview:statusImgView];
     
@@ -117,7 +119,7 @@
 - (void)commitComment
 {
     NSString *commentUrl = nil;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", (int)self.myModel.orderId],@"orderId",@"4",@"skill",@"4",@"status",[NSString stringWithFormat:@"%d", _isAgian],@"again",self.appraiseTextView.text,@"commment", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", (int)self.myModel.orderId],@"orderId",[NSString stringWithFormat:@"%d", skillImgView.count],@"skill",[NSString stringWithFormat:@"%d",statusImgView.count],@"status",[NSString stringWithFormat:@"%d", _isAgian],@"again",self.appraiseTextView.text,@"commment", nil];
     kHubRequestUrl(@"submitComment.ashx", commentUrl);
     [NetManager requestWith:dict url:commentUrl method:@"POST" operationKey:nil parameEncoding:AFJSONParameterEncoding succ:^(NSDictionary *successDict){
         MLOG(@"%@", successDict);

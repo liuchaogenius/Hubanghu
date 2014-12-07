@@ -7,6 +7,7 @@
 //
 
 #import "HbhTopTableViewCell.h"
+#import "YHBStarImageView.h"
 
 @implementation HbhTopTableViewCell
 
@@ -32,7 +33,7 @@
     
     self.personLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 140, kMainScreenWidth-20, 32)];
     self.personLabel.numberOfLines = 2;
-    self.personLabel.text = @"   我们的工人进入客户的家中，会认真的与我们的客户核对产品的数量和完整性，在客户确认无误后即会准备施工。";
+//    self.personLabel.text = @"   我们的工人进入客户的家中，会认真的与我们的客户核对产品的数量和完整性，在客户确认无误后即会准备施工。";
     self.personLabel.font = kFont12;
     self.personLabel.backgroundColor = [UIColor clearColor];
     self.personLabel.textColor = [UIColor lightGrayColor];
@@ -41,14 +42,14 @@
     self.successLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 175, kMainScreenWidth-80, 15)];
     self.successLabel.font = kFont12;
     self.successLabel.textColor = [UIColor lightGrayColor];
-    self.successLabel.text = @"我们会认真的与我们的客户核对产品的数量。";
+//    self.successLabel.text = @"我们会认真的与我们的客户核对产品的数量。";
     self.successLabel.backgroundColor = [UIColor clearColor];
     [self addSubview:self.successLabel];
     
     self.honorLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 195, kMainScreenWidth-80, 15)];
     self.honorLabel.font = kFont12;
     self.honorLabel.textColor = [UIColor lightGrayColor];
-    self.honorLabel.text = @"2012年获得某某某装修奖";
+//    self.honorLabel.text = @"2012年获得某某某装修奖";
     self.honorLabel.backgroundColor = [UIColor clearColor];
     [self addSubview:self.honorLabel];
     
@@ -56,6 +57,12 @@
     otherlineView.backgroundColor = RGBCOLOR(218, 218, 218);
     [self addSubview:otherlineView];
 
+    self.skillStar = [[YHBStarImageView alloc] initWithFrame:CGRectMake(55, 89, 80, 12) canModify:NO];
+    [self addSubview:self.skillStar];
+    
+    self.stasStar = [[YHBStarImageView alloc] initWithFrame:CGRectMake(205, 89, 80, 12) canModify:NO];
+    [self addSubview:self.stasStar];
+    
     return self;
 }
 

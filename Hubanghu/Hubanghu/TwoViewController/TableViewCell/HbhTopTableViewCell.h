@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YHBStarImageView.h"
 
 @interface HbhTopTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *workerIcon;
@@ -15,6 +16,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *workerYearLabel;
 @property (strong, nonatomic) IBOutlet UILabel *workerMountLabel;
 
+@property(nonatomic, strong) YHBStarImageView *skillStar;
+@property(nonatomic, strong) YHBStarImageView *stasStar;
 @property(nonatomic, strong) UILabel *personLabel;
 @property(nonatomic, strong) UILabel *successLabel;
 @property(nonatomic, strong) UILabel *honorLabel;

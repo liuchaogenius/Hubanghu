@@ -239,6 +239,8 @@
         cell.successLabel.text = self.workerData.succCaseDesc;
         cell.honorLabel.text = self.workerData.certificationDesc;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell.skillStar changeStarCount:self.workerData.satisfaction];
+        [cell.stasStar changeStarCount:self.workerData.attitude];
         [cell.appointmentBtn addTarget:self action:@selector(makeAppointment) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }

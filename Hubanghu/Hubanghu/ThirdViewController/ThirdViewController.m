@@ -454,8 +454,8 @@ typedef enum : NSUInteger {
         case 2:
         case 4:
         case 5:
-//            [self.navigationController pushViewController:orderDetailVC animated:YES];
-//            break;
+            [self.navigationController pushViewController:orderDetailVC animated:YES];
+            break;
         case 3:
             [self.navigationController pushViewController:orderAppraiseVC animated:YES];
             break;

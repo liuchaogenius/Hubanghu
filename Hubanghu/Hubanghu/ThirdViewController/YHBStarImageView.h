@@ -13,6 +13,7 @@
     UIView *backView;
 }
 
-@property(nonatomic, assign) float count;
-- (instancetype)initWithFrame:(CGRect)frame;
+@property(nonatomic, assign) int count;
+- (instancetype)initWithFrame:(CGRect)frame canModify:(BOOL)aBool;
+- (void)changeStarCount:(CGFloat)aStarCount;
 @end
