@@ -120,7 +120,7 @@ typedef NS_ENUM(int, AmountDesc)
 {
     if(!installDesView)
     {
-        installDesView = [[HubInstallDesView alloc] initWithFrame:CGRectMake(0, 10, kMainScreenWidth, 65)];
+        installDesView = [[HubInstallDesView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 65)];
         installDesView.delegate = self;
         [scrollview addSubview:installDesView];
     }
@@ -129,7 +129,7 @@ typedef NS_ENUM(int, AmountDesc)
 - (void)creatControlPriceView
 {
     if (!controlPriceView) {
-        controlPriceView = [[HubControlPriceView alloc] initWithFrame:CGRectMake(0, installDesView.bottom+10, kMainScreenWidth, 196.0+40) categoryModel:self.cateModel];
+        controlPriceView = [[HubControlPriceView alloc] initWithFrame:CGRectMake(0, installDesView.bottom+18, kMainScreenWidth, 196.0+40) categoryModel:self.cateModel];
         controlPriceView.delegate = self;
         [scrollview addSubview:controlPriceView];
     }
