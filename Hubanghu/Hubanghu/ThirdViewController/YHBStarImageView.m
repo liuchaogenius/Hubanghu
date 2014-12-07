@@ -9,6 +9,7 @@
 
 #import "YHBStarImageView.h"
 
+#define radius 0.5925
 BOOL canModify;
 @implementation YHBStarImageView
 
@@ -31,6 +32,7 @@ BOOL canModify;
         {
             self.count = 0;
             starImg.image = [UIImage imageNamed:@"detailStar"];
+            [self changeStarCount:0];
         }
         starImg.userInteractionEnabled = YES;
         [self addSubview:starImg];
@@ -40,39 +42,43 @@ BOOL canModify;
 
 - (void)changeStarCount:(CGFloat)aStarCount
 {
-    if (aStarCount<1)
+    if (aStarCount==0)
     {
-        [self setWidth:10.6];
+        [self setWidth:0];
+    }
+    else if (aStarCount<1)
+    {
+        [self setWidth:10.6*radius];
     }
     else if(aStarCount==1)
     {
-        [self setWidth:21];
+        [self setWidth:21*radius];
     }
     else if(aStarCount<2)
     {
-        [self setWidth:39];
+        [self setWidth:39*radius];
     }
     else if(aStarCount==2)
     {
-        [self setWidth:50];
+        [self setWidth:50*radius];
     }else if(aStarCount<3)
     {
-        [self setWidth:67.5];
+        [self setWidth:67.5*radius];
     }else if(aStarCount==3)
     {
-        [self setWidth:78];
+        [self setWidth:78*radius];
     }else if(aStarCount<4)
     {
-        [self setWidth:96];
+        [self setWidth:96*radius];
     }else if(aStarCount==4)
     {
-        [self setWidth:106];
+        [self setWidth:106*radius];
     }else if(aStarCount<5)
     {
-        [self setWidth:125];
+        [self setWidth:125*radius];
     }else
     {
-        [self setWidth:135];
+        [self setWidth:80];
     }
 }
 
