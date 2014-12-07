@@ -539,19 +539,17 @@ typedef enum : NSUInteger {
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, kMainScreenWidth, 0.5)];
         lineView.backgroundColor = kLineColor;
         HbhWorkers *model = [self.workersArray objectAtIndex:indexPath.row];
-        [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+        [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:model.photoUrl] placeholderImage:[UIImage imageNamed:@"workerIcon"]];
         cell.workerNameLabel.text = model.name;
         CGSize namesize = [model.name sizeWithFont:kFont14];
         cell.workerMountLabel.text = [NSString stringWithFormat:@"%d单", (int)model.orderCount];
         cell.workYearLabel.text = model.workingAge;
-        if (model.distance && model.distance>0) {
-            if (model.distance>1000) {
-                cell.workerDistanceCountLabel.text = @"1000km";
-            }
-            else
-            {
-                cell.workerDistanceCountLabel.text = [NSString stringWithFormat:@"%.2fkm", model.distance];
-            }
+        cell.workerDistanceCountLabel.textAlignment = NSTextAlignmentRight;
+        if (model && model.distance && model.distance.length>0)
+        {
+
+            cell.workerDistanceCountLabel.text = model.distance;
+            
         }
         else
         {

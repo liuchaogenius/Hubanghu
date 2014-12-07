@@ -224,7 +224,7 @@
     if (indexPath.section==0)
     {
         HbhTopTableViewCell *cell = [[HbhTopTableViewCell alloc] init];
-        [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:self.workerData.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+        [cell.workerIcon sd_setImageWithURL:[NSURL URLWithString:self.workerData.photoUrl] placeholderImage:[UIImage imageNamed:@"workerIcon"]];
         cell.workerNameLabel.text = self.workerData.name;
         if ([self.workerData.workTypeName isEqualToString:@""]||self.workerData.workTypeName==nil) {
             cell.workerTypeLabel.text = @"";
@@ -281,7 +281,7 @@
                 }
                 NSArray *array = self.workerData.comment;
                 HbhWorkerComment *model = [array objectAtIndex:indexPath.row-1];
-                [cell.userImg sd_setImageWithURL:[NSURL URLWithString:model.photoUrl] placeholderImage:[UIImage imageNamed:@"DefaultUserPhoto"]];
+                [cell.userImg sd_setImageWithURL:[NSURL URLWithString:model.photoUrl] placeholderImage:[UIImage imageNamed:@"workerIcon"]];//workerIcon
                 cell.userNameLabel.text = model.username;
                 cell.timeLabel.text = [self transformTime:model.time];
                 cell.typeLabel.text = model.cate;

@@ -61,7 +61,7 @@ NSString *const kHbhworkersTotalscore = @"totalscore";
             //int age = [[self objectOrNilForKey:kHbhWorkersWorkingAge fromDictionary:dict] intValue];
             self.workingAge = [self objectOrNilForKey:kHbhWorkersWorkingAge fromDictionary:dict];
             self.comment = [self objectOrNilForKey:kHbhWorkersComment fromDictionary:dict];
-        self.distance = [[self objectOrNilForKey:kHbhWorkersDistance fromDictionary:dict] doubleValue];
+            self.distance = [self objectOrNilForKey:kHbhWorkersDistance fromDictionary:dict];
     }
     
     return self;
@@ -72,7 +72,7 @@ NSString *const kHbhworkersTotalscore = @"totalscore";
 {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     [mutableDict setValue:[NSNumber numberWithDouble:self.totalscore] forKey:kHbhworkersTotalscore];
-    [mutableDict setValue:[NSNumber numberWithDouble:self.distance] forKey:kHbhWorkersDistance];
+    [mutableDict setValue:self.distance forKey:kHbhWorkersDistance];
     [mutableDict setValue:self.name forKey:kHbhWorkersName];
     [mutableDict setValue:[NSNumber numberWithInt:self.workersIdentifier] forKey:kHbhWorkersId];
     [mutableDict setValue:self.workTypeName forKey:kHbhWorkersWorkTypeName];

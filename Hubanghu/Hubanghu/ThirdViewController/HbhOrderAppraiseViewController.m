@@ -41,18 +41,19 @@
     self.appraiseTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.appraiseTextView.layer.borderWidth = 0.5;
     self.appraiseTextView.delegate = self;
+    self.appraiseTextView.text = @"请输入您的评价...";
     self.appraiseTextView.returnKeyType = UIReturnKeyDone;
     self.appraiseTextView.font = kFont14;
     [self.view addSubview:self.appraiseTextView];
     
     [self.agianBtn addTarget:self action:@selector(chooseAgain) forControlEvents:UIControlEventTouchUpInside];
     
-    placeHolderLabel = [[UILabel alloc] init];
-    placeHolderLabel.frame = CGRectMake(18, 140, kMainScreenHeight-30, 30);
-    placeHolderLabel.text = @"请输入您的评价...";
-    placeHolderLabel.font = kFont14;
-    placeHolderLabel.textColor = [UIColor lightGrayColor];
-    [self.view addSubview:placeHolderLabel];
+//    placeHolderLabel = [[UILabel alloc] init];
+//    placeHolderLabel.frame = CGRectMake(18, 140, kMainScreenHeight-30, 30);
+//    placeHolderLabel.text = @"请输入您的评价...";
+//    placeHolderLabel.font = kFont14;
+//    placeHolderLabel.textColor = [UIColor lightGrayColor];
+//    [self.view addSubview:placeHolderLabel];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.appraiseTextView.left, self.appraiseTextView.bottom+50, kMainScreenWidth-30, 30)];
     btn.backgroundColor = KColor;
@@ -76,7 +77,11 @@
         [self.agianBtn setBackgroundImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
     }
 }
-
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    textView.text = @"";
+    return YES;
+}
 -(void)textViewDidChange:(UITextView *)textView
 {
     if (textView.text.length == 0) {

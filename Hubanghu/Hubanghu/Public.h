@@ -11,7 +11,8 @@
 
 #define kMainScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kMainScreenWidth  [UIScreen mainScreen].bounds.size.width
-#define kHubBaseUrl @"http://114.215.207.196/ApiService/"
+//#define kHubBaseUrl @"http://114.215.207.196/ApiService/"
+#define kHubBaseUrl @"http://app1.hu8hu.com/ApiService/"
 #define kHubRequestUrl(path,outUrl) do{\
   outUrl = [NSString stringWithFormat:@"%@%@",kHubBaseUrl,path];\
 }while(0)
