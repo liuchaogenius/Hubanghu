@@ -36,7 +36,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = RGBCOLOR(250, 250, 250);
+    UIImage *BGimg = [[UIImage imageNamed:@"commentBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:BGimg];//RGBCOLOR(250, 250, 250);
 //    self.title = @"评价";
     skill = 5;
     status = 5;

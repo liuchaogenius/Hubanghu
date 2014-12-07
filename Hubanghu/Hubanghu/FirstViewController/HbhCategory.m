@@ -18,7 +18,7 @@ NSString *const kHbhCategoryImageUrl = @"imageUrl";
 NSString *const kHbhCategoryChild = @"child";
 NSString *const kHbhCategoryMountType = @"mountType";
 NSString *const kHbhCategoryDesc = @"desc";
-NSString *const kHbhCategoryMountDefault = @"mountDefualt";
+NSString *const kHbhCategoryMountDefault = @"mountDefault";
 
 
 @interface HbhCategory ()
