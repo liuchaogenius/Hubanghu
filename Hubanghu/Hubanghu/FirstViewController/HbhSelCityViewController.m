@@ -269,19 +269,9 @@ enum kActionSheet_Type
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"选择%@作为您所在的城市？",area.name] delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确定" otherButtonTitles:nil, nil];
     actionSheet.tag = kActionSheet_selectCity;
+    _selectArea = area;
     [actionSheet showInView:self.tableView];
     
-//    //热门城市各个按钮tag从1开始
-//    [[HbuAreaLocationManager sharedManager].areasDBManager selHbuArealistModel:self.hotCityName[sender.tag-1] resultBlock:^(HbuAreaListModelAreas *model) {
-//        if (model) {
-//            _selectArea = model;
-//            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"选择%@作为您所在的城市？",model.name] delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            actionSheet.tag = kActionSheet_selectCity;
-//            [actionSheet showInView:self.tableView];
-//        }else{
-//            [SVProgressHUD showErrorWithStatus:@"该城市暂时还未开通，选择失败" cover:YES offsetY:kMainScreenHeight/2.0];
-//        }
-//    }];
 }
 //刷新数据
 - (void)refreshData
