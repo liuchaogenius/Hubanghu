@@ -195,6 +195,7 @@
     for (NSInteger i = 0; i < imageNum; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * kMainScreenWidth, 0, kMainScreenWidth, KimageHeight)];
         imageView.backgroundColor = [UIColor whiteColor];
+
         HbhBanners *banner = self.bannersArray[i];
         //设置image
         [imageView sd_setImageWithURL:[NSURL URLWithString:banner.bannerImg]];
@@ -202,6 +203,7 @@
         imageView.tag = i;
     }
     [self.pageControl setNumberOfPages:imageNum];
+    [self.pageControl setCurrentPage:0];
 }
 
 
@@ -304,11 +306,13 @@
     NSInteger number = self.pageControl.currentPage;
     if (number < self.bannersArray.count) {
         HbhBanners *banner = self.bannersArray[number];
-        IntroduceViewController *iVC = [[IntroduceViewController alloc] init];
-        iVC.isSysPush = YES;
-        iVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:iVC animated:YES];
-        [iVC setUrl:banner.bannerHref title:banner.bannerText];
+        if (banner.bannerHref.length > 1) {
+            IntroduceViewController *iVC = [[IntroduceViewController alloc] init];
+            iVC.isSysPush = YES;
+            iVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:iVC animated:YES];
+            [iVC setUrl:banner.bannerHref title:banner.bannerText];
+        }
     }
 }
 
