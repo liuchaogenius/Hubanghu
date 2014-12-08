@@ -12,6 +12,7 @@
 #import "AreasDBManager.h"
 #import "SLocationManager.h"
 #import "HbhSelCityViewController.h"
+#import "SVProgressHUD.h"
 
 @implementation HbuAreaLocationManager
 
@@ -157,9 +158,11 @@
 {
     NSArray *areas = areaListModel.areas;
     if (areas && areas.count > 0) {
+        [SVProgressHUD dismiss];
+        
         for (HbuAreaListModelAreas *area in areas) {
             area.ishotcity = area.ishotcity == 1 ?:0;
-            
+
             if (area.ishotcity && [area.typeName isEqualToString:@"市"]) {
                 //热门城市插入表格
                 [self.areasDBManager insertAreaToHotCityTable:[NSString stringWithFormat:@"%d",(int)area.areaId] name:area.name level:(int)area.level parent:[NSString stringWithFormat:@"%d",(int)area.parent] typeName:area.typeName firstchar:area.firstchar ishotcity:area.ishotcity];
@@ -172,6 +175,7 @@
         double time = areaListModel.time;
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setDouble:time forKey:@"time"];
+        
     }
 }
 

@@ -460,7 +460,29 @@
         }
     }];
 }
+- (void)clearAreasData
+{
+    [dataQueue inDatabase:^(FMDatabase *db) {
+        if([db open])
+        {
+            NSString *sql = @"delete from areas_table";
+            [db executeUpdate:sql];
+            //NSString *sql2 = @"update sqlite_sequence set seq=0 where name= ’areas_table‘";
+            //[db executeUpdate:<#(NSString *), ...#>]
+        }
+    }];
+}
 
+- (void)clearHotCitiesData
+{
+    [dataQueue inDatabase:^(FMDatabase *db) {
+        if([db open])
+        {
+            NSString *sql = @"delete from hotCitys_table";
+            [db executeUpdate:sql];
+        }
+    }];
+}
 
 
 @end

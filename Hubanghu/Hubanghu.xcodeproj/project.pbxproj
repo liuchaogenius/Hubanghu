@@ -1473,11 +1473,11 @@
 				TargetAttributes = {
 					FF21CE6919E64B5A005007B7 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = P6ACM673Y8;
+						DevelopmentTeam = JERPD52W3W;
 					};
 					FF21CE7C19E64B5A005007B7 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = P6ACM673Y8;
+						DevelopmentTeam = JERPD52W3W;
 						TestTargetID = FF21CE6919E64B5A005007B7;
 					};
 				};
@@ -1817,8 +1817,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chen Guojin (99H8ZUSW2J)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chen Guojin (99H8ZUSW2J)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "Hubanghu/Hubanghu-Prefix.pch";
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1845,8 +1845,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chen Guojin (99H8ZUSW2J)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chen Guojin (99H8ZUSW2J)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "Hubanghu/Hubanghu-Prefix.pch";
 				INFOPLIST_FILE = Hubanghu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

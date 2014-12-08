@@ -15,6 +15,7 @@
 #import "HbhUser.h"
 #import "UMSocialWechatHandler.h"
 #import "UMFeedback.h"
+#import "AreasDBManager.h"
 @interface AppDelegate ()<UIAlertViewDelegate>
 {
     int Type;
@@ -66,6 +67,12 @@
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发现新版本，请您先更新版本" message:@"点击“确定”开始更新" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             self.updateUrl = dataDict[@"url"];
             [alertView show];
+
+            //清空城市数据
+            AreasDBManager *dbManager = [[AreasDBManager alloc] init];
+            [dbManager clearAreasData];
+            [dbManager clearHotCitiesData];
+    
         }else if (Type == 2){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发现有新的版本" message:@"有新的版本可以更新，将会提供更多功能" delegate:self cancelButtonTitle:@"更新" otherButtonTitles:@"取消", nil];
             self.updateUrl = dataDict[@"url"];

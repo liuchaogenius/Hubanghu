@@ -54,4 +54,9 @@
                        ishotcity:(int)aIshotcity;
 //获取热门城市数组
 - (void)selHotCityResultBlock:(void(^)(NSMutableArray *cityArray))acityBlock;
+
+//清空用户城市数据库数据
+- (void)clearAreasData;
+//清空用户hotcity数据库数据
+- (void)clearHotCitiesData;
 @end

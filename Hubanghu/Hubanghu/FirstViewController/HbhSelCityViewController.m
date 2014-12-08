@@ -29,7 +29,6 @@ enum kActionSheet_Type
 @property (strong, nonatomic) AreasDBManager *areaDBManager;
 @property (strong, nonatomic) NSMutableDictionary *cityDict; //地区数组
 @property (strong, nonatomic) NSMutableArray *firstCharArray; //首字母数组
-@property (strong, nonatomic) NSArray *hotCityName; //热门城市名字数组
 @property (strong, nonatomic) NSMutableArray *hotCityArray;//热门城市数组
 @property (strong, nonatomic) UIView *selectorView;//首字母检索view
 
@@ -54,13 +53,7 @@ enum kActionSheet_Type
     return _cityDict;
 }
 
-- (NSArray *)hotCityName
-{
-    if (!_hotCityName) {
-        _hotCityName = @[@"南昌",@"上海",@"深圳",@"天津",@"广州",@"西安",@"成都",@"杭州"];
-    }
-    return _hotCityName;
-}
+
 
 - (AreasDBManager *)areaDBManager
 {
@@ -114,11 +107,13 @@ enum kActionSheet_Type
         self.hotCityArray = cityArray;
     }];
     [self.tableView addPullToRefreshWithActionHandler:^{
-        int64_t delayInSeconds = 2.0;
+        int64_t delayInSeconds = 4.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
-            [weakSelf.tableView.pullToRefreshView stopAnimating];
             [weakSelf refreshData];
+            [weakSelf.tableView.pullToRefreshView stopAnimating];
+            
+            //[weakSelf.tableView reloadData];
         });
     }];
     [self setLeftButton:[UIImage imageNamed:@"back"] title:nil target:self action:@selector(touchBackItem)];
@@ -277,16 +272,24 @@ enum kActionSheet_Type
 - (void)refreshData
 {
     __weak HbhSelCityViewController *weakself = self;
+//清空数据库
+    [self.areaDBManager clearAreasData];
+    [self.areaDBManager clearHotCitiesData];
+    
+    [SVProgressHUD showWithStatus:@"城市信息更新中..." cover:NO offsetY:0];
     [[HbuAreaLocationManager sharedManager] shouldGetAreasDataAndSaveToDBWithSuccess:^{
         weakself.firstCharArray = nil;
         weakself.cityDict = nil;
+        weakself.hotCityArray = nil;
+        [weakself.selectorView removeFromSuperview];
+        weakself.selectorView = nil;
+        _hotCityCell = nil;
         [weakself reloadHotCityArray];
-        [self.selectorView removeFromSuperview];
-        self.selectorView = nil;
-        [self.tableView reloadData];
-        [self.view addSubview:self.selectorView];
-        [self reLocationUserArea];
-
+        
+        [weakself.view addSubview:weakself.selectorView];
+        [weakself reLocationUserArea];
+        [weakself.tableView reloadData];
+        [SVProgressHUD dismiss];
     } Fail:^{
         [SVProgressHUD showErrorWithStatus:@"刷新失败" cover:YES offsetY:kMainScreenHeight/2.0];
     }];
