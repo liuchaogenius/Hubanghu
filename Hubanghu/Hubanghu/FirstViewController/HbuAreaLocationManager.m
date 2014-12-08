@@ -181,6 +181,10 @@
 
 #pragma mark 无视是否有本地数据,进行地区模型的获取，并存入DB
 - (void)shouldGetAreasDataAndSaveToDBWithSuccess : (void (^)())sBlock Fail : (void(^)())fBlock{
+    //清空数据库
+    [self.areasDBManager clearAreasData];
+    [self.areasDBManager clearHotCitiesData];
+
     __weak HbuAreaLocationManager *weakSelf = self;
     [self getAreaListInfoWithsucc:^(HbuAreaListModelBaseClass *areaListModel) {
         [weakSelf saveDataToDBWithAreasArray:areaListModel];

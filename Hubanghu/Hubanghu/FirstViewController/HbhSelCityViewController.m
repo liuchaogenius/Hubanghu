@@ -272,9 +272,6 @@ enum kActionSheet_Type
 - (void)refreshData
 {
     __weak HbhSelCityViewController *weakself = self;
-//清空数据库
-    [self.areaDBManager clearAreasData];
-    [self.areaDBManager clearHotCitiesData];
     
     [SVProgressHUD showWithStatus:@"城市信息更新中..." cover:NO offsetY:0];
     [[HbuAreaLocationManager sharedManager] shouldGetAreasDataAndSaveToDBWithSuccess:^{

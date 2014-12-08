@@ -41,7 +41,7 @@ enum error_Type
 - (void)getAreasDataAndSaveToDBifNeeded;
 //定位
 - (void)getUserLocationWithSuccess : (void (^)())sBlock Fail : (void(^)(NSString *failString,int errorType))aFailBlock;
-//从网络获取地区信息，并存入数据库（不管数据库有没有地区信息）
+//从网络获取地区信息，并存入数据库（不管数据库有没有地区信息，强制重新获取）
 - (void)shouldGetAreasDataAndSaveToDBWithSuccess : (void (^)())sBlock Fail : (void(^)())fBlock;
 
 @end
