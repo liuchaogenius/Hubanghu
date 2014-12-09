@@ -28,7 +28,7 @@ enum kActionSheet_Type
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) AreasDBManager *areaDBManager;
 @property (strong, nonatomic) NSMutableDictionary *cityDict; //地区数组
-@property (strong, nonatomic) NSMutableArray *firstCharArray; //首字母数组
+@property (strong, nonatomic) NSArray *firstCharArray; //首字母数组
 @property (strong, nonatomic) NSMutableArray *hotCityArray;//热门城市数组
 @property (strong, nonatomic) UIView *selectorView;//首字母检索view
 
@@ -43,10 +43,17 @@ enum kActionSheet_Type
     if (!_cityDict) {
         [self.areaDBManager selGroupAreaCity:^(NSMutableDictionary *cityDict) {
             _cityDict = cityDict;
-            self.firstCharArray = [NSMutableArray arrayWithCapacity:26];
+//            self.firstCharArray = [NSMutableArray arrayWithCapacity:26];
+            NSMutableArray *array = [NSMutableArray arrayWithCapacity:26];
             NSEnumerator *enumerator = [cityDict keyEnumerator];
             for (NSString *str in enumerator) {
-                [self.firstCharArray addObject:str];
+                [array addObject:str];
+            }
+            if (array.count) {
+                self.firstCharArray= [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                    NSComparisonResult result = [obj1 compare:obj2];
+                    return result;
+                }];
             }
         }];
     }
