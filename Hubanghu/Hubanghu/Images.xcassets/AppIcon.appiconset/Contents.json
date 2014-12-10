@@ -3,26 +3,43 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "icon58-58.png",
-      "scale" : "2x"
+      "filename" : "icon29.png",
+      "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
       "filename" : "icon58-58-1.png",
-      "scale" : "3x"
-    },
-    {
-      "size" : "40x40",
-      "idiom" : "iphone",
-      "filename" : "icon87-87.png",
       "scale" : "2x"
     },
     {
-      "size" : "40x40",
+      "size" : "29x29",
       "idiom" : "iphone",
       "filename" : "icon87-87-1.png",
       "scale" : "3x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "icon40.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "size" : "40x40",
+      "scale" : "3x"
+    },
+    {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "icon_57.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "icon114-114.png",
+      "scale" : "2x"
     },
     {
       "size" : "60x60",
@@ -33,8 +50,63 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "icon114-114.png",
+      "filename" : "icon180-180.png",
       "scale" : "3x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "29x29",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "29x29",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "40x40",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "40x40",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "50x50",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "50x50",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "72x72",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "72x72",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "76x76",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "76x76",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "car",
+      "size" : "120x120",
+      "scale" : "1x"
     }
   ],
   "info" : {
