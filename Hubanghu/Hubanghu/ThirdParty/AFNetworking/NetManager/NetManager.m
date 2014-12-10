@@ -168,11 +168,11 @@
     if ([net getLon]) {
         [aRequest setValue:[NSString stringWithFormat:@"%.3f",[net getLon]] forHTTPHeaderField:@"hbh_lon"];
     }
-#if DEBUG
-    [aRequest addValue:@"0" forHTTPHeaderField:@"hbh_mock"];
-#else
-    [aRequest addValue:@"0" forHTTPHeaderField:@"hbh_mock"];
-#endif
+//#if DEBUG
+//    [aRequest addValue:@"0" forHTTPHeaderField:@"hbh_mock"];
+//#else
+//    [aRequest addValue:@"0" forHTTPHeaderField:@"hbh_mock"];
+//#endif
     [aRequest addValue:@"1" forHTTPHeaderField:@"hbh_encrypt"];
     NSDictionary *bundleDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [bundleDic objectForKey:@"CFBundleShortVersionString"];
